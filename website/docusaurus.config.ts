@@ -108,8 +108,8 @@ const config: Config = {
     facebookAppId: '1677033832619985',
   },
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'pt-br',
+    locales: ['pt-br'],
   },
   onBrokenLinks: 'warn',
   headTags: [
