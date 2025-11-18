@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: tutorial
-title: Learn the Basics
+title: Aprenda o Básico
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-React Native is like React, but it uses native components instead of web components as building blocks. So to understand the basic structure of a React Native app, you need to understand some of the basic React concepts, like JSX, components, `state`, and `props`. If you already know React, you still need to learn some React Native specific stuff, like the native components. This tutorial is aimed at all audiences, whether you have React experience or not.
+React Native é como React, mas usa componentes nativos em vez de componentes web como blocos de construção. Então, para entender a estrutura básica de um app React Native, você precisa entender alguns dos conceitos básicos do React, como JSX, components, `state` e `props`. Se você já conhece React, ainda precisa aprender algumas coisas específicas do React Native, como os componentes nativos. Este tutorial é destinado a todos os públicos, independentemente de você ter experiência com React ou não.
 
-Let's do this thing.
+Vamos fazer isso.
 
 ## Hello World
 
-In accordance with the ancient traditions of our people, we must first build an app that does nothing except say "Hello, world!". Here it is:
+De acordo com as antigas tradições do nosso povo, primeiro devemos construir um app que não faz nada além de dizer "Hello, world!". Aqui está:
 
 ```SnackPlayer name=Hello%20World
 import React from 'react';
@@ -32,36 +33,36 @@ const HelloWorldApp = () => {
 export default HelloWorldApp;
 ```
 
-If you are feeling curious, you can play around with sample code directly in the web simulators. You can also paste it into your `App.js` file to create a real app on your local machine.
+Se você estiver curioso, pode brincar com o código de exemplo diretamente nos simuladores web. Você também pode colá-lo no seu arquivo `App.js` para criar um app real na sua máquina local.
 
-## What's going on here?
+## O que está acontecendo aqui?
 
-1. First of all, we need to import `React` to be able to use `JSX`, which will then be transformed to the native components of each platform.
-2. On line 2, we import the `Text` and `View` components from `react-native`
+1. Primeiro de tudo, precisamos importar `React` para poder usar `JSX`, que será então transformado nos componentes nativos de cada plataforma.
+2. Na linha 2, importamos os componentes `Text` e `View` do `react-native`
 
-Then we define the `HelloWorldApp` function, which is a [function component](https://react.dev/reference/react/Component) and behaves in the same way as in React for the web. This function returns a `View` component with some styles and a`Text` as its child.
+Então definimos a função `HelloWorldApp`, que é um [function component](https://react.dev/reference/react/Component) e se comporta da mesma maneira que no React para a web. Esta função retorna um componente `View` com alguns estilos e um `Text` como seu filho.
 
-The `Text` component allows us to render a text, while the `View` component renders a container. This container has several styles applied, let's analyze what each one is doing.
+O componente `Text` nos permite renderizar um texto, enquanto o componente `View` renderiza um container. Este container tem vários estilos aplicados, vamos analisar o que cada um está fazendo.
 
-The first style that we find is `flex: 1`, the [`flex`](layout-props#flex) prop will define how your items are going to "fill" over the available space along your main axis. Since we only have one container, it will take all the available space of the parent component. In this case, it is the only component, so it will take all the available screen space.
+O primeiro estilo que encontramos é `flex: 1`, a prop [`flex`](layout-props#flex) vai definir como seus itens vão "preencher" o espaço disponível ao longo do seu eixo principal. Como temos apenas um container, ele ocupará todo o espaço disponível do componente pai. Neste caso, é o único componente, então ele ocupará todo o espaço disponível da tela.
 
-The following style is [`justifyContent`](layout-props#justifycontent): "center". This aligns children of a container in the center of the container's main axis. Finally, we have [`alignItems`](layout-props#alignitems): "center", which aligns children of a container in the center of the container's cross axis.
+O estilo seguinte é [`justifyContent`](layout-props#justifycontent): "center". Isso alinha os filhos de um container no centro do eixo principal do container. Finalmente, temos [`alignItems`](layout-props#alignitems): "center", que alinha os filhos de um container no centro do eixo transversal do container.
 
-Some of the things in here might not look like JavaScript to you. Don't panic. _This is the future_.
+Algumas coisas aqui podem não parecer JavaScript para você. Não entre em pânico. _Este é o futuro_.
 
-First of all, ES2015 (also known as ES6) is a set of improvements to JavaScript that is now part of the official standard, but not yet supported by all browsers, so often it isn't used yet in web development. React Native ships with ES2015 support, so you can use this stuff without worrying about compatibility. `import`, `export`, `const` and `from` in the example above are all ES2015 features. If you aren't familiar with ES2015, you can probably pick it up by reading through sample code like this tutorial has. If you want, [this page](https://babeljs.io/learn-es2015/) has a good overview of ES2015 features.
+Primeiro de tudo, ES2015 (também conhecido como ES6) é um conjunto de melhorias para JavaScript que agora faz parte do padrão oficial, mas ainda não é suportado por todos os navegadores, então muitas vezes ainda não é usado no desenvolvimento web. React Native vem com suporte ES2015, então você pode usar isso sem se preocupar com compatibilidade. `import`, `export`, `const` e `from` no exemplo acima são todos recursos do ES2015. Se você não está familiarizado com ES2015, provavelmente pode aprender lendo código de exemplo como este tutorial tem. Se quiser, [esta página](https://babeljs.io/learn-es2015/) tem uma boa visão geral dos recursos do ES2015.
 
-The other unusual thing in this code example is `<View><Text>Hello world!</Text></View>`. This is JSX - a syntax for embedding XML within JavaScript. Many frameworks use a specialized templating language which lets you embed code inside markup language. In React, this is reversed. JSX lets you write your markup language inside code. It looks like HTML on the web, except instead of web things like `<div>` or `<span>`, you use React components. In this case, `<Text>` is a [Core Component](intro-react-native-components) that displays some text and `View` is like the `<div>` or `<span>`.
+A outra coisa incomum neste exemplo de código é `<View><Text>Hello world!</Text></View>`. Isso é JSX - uma sintaxe para incorporar XML dentro de JavaScript. Muitos frameworks usam uma linguagem de template especializada que permite incorporar código dentro de linguagem de marcação. No React, isso é invertido. JSX permite que você escreva sua linguagem de marcação dentro do código. Parece HTML na web, exceto que em vez de coisas web como `<div>` ou `<span>`, você usa componentes React. Neste caso, `<Text>` é um [Core Component](intro-react-native-components) que exibe algum texto e `View` é como o `<div>` ou `<span>`.
 
 ## Components
 
-So this code is defining `HelloWorldApp`, a new `Component`. When you're building a React Native app, you'll be making new components a lot. Anything you see on the screen is some sort of component.
+Então este código está definindo `HelloWorldApp`, um novo `Component`. Quando você está construindo um app React Native, você estará criando novos componentes frequentemente. Qualquer coisa que você vê na tela é algum tipo de componente.
 
 ## Props
 
-Most components can be customized when they are created, with different parameters. These creation parameters are called props.
+A maioria dos componentes pode ser personalizada quando são criados, com diferentes parâmetros. Esses parâmetros de criação são chamados de props.
 
-Your own components can also use `props`. This lets you make a single component that is used in many different places in your app, with slightly different properties in each place. Refer to `props.YOUR_PROP_NAME` in your functional components or `this.props.YOUR_PROP_NAME` in your class components. Here's an example:
+Seus próprios componentes também podem usar `props`. Isso permite que você faça um único componente que é usado em muitos lugares diferentes no seu app, com propriedades ligeiramente diferentes em cada lugar. Refira-se a `props.YOUR_PROP_NAME` nos seus componentes funcionais ou `this.props.YOUR_PROP_NAME` nos seus componentes de classe. Aqui está um exemplo:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -138,21 +139,21 @@ export default LotsOfGreetings;
 </TabItem>
 </Tabs>
 
-Using `name` as a prop lets us customize the `Greeting` component, so we can reuse that component for each of our greetings. This example also uses the `Greeting` component in JSX. The power to do this is what makes React so cool.
+Usar `name` como prop nos permite personalizar o componente `Greeting`, para que possamos reutilizar esse componente para cada uma das nossas saudações. Este exemplo também usa o componente `Greeting` em JSX. O poder de fazer isso é o que torna React tão legal.
 
-The other new thing going on here is the [`View`](view.md) component. A [`View`](view.md) is useful as a container for other components, to help control style and layout.
+A outra coisa nova acontecendo aqui é o componente [`View`](view.md). Um [`View`](view.md) é útil como um container para outros componentes, para ajudar a controlar estilo e layout.
 
-With `props` and the basic [`Text`](text.md), [`Image`](image.md), and [`View`](view.md) components, you can build a wide variety of static screens. To learn how to make your app change over time, you need to [learn about State](#state).
+Com `props` e os componentes básicos [`Text`](text.md), [`Image`](image.md) e [`View`](view.md), você pode construir uma grande variedade de telas estáticas. Para aprender como fazer seu app mudar ao longo do tempo, você precisa [aprender sobre State](#state).
 
 ## State
 
-Unlike props [that are read-only](https://react.dev/reference/react/Component#props) and should not be modified, the `state` allows React components to change their output over time in response to user actions, network responses and anything else.
+Ao contrário das props [que são somente leitura](https://react.dev/reference/react/Component#props) e não devem ser modificadas, o `state` permite que componentes React alterem sua saída ao longo do tempo em resposta a ações do usuário, respostas de rede e qualquer outra coisa.
 
-#### What's the difference between state and props in React?
+#### Qual é a diferença entre state e props no React?
 
-In a React component, the props are the variables that we pass from a parent component to a child component. Similarly, the state are also variables, with the difference that they are not passed as parameters, but rather that the component initializes and manages them internally.
+Em um componente React, as props são as variáveis que passamos de um componente pai para um componente filho. Da mesma forma, o state também são variáveis, com a diferença de que elas não são passadas como parâmetros, mas sim que o componente as inicializa e gerencia internamente.
 
-#### Are there differences between React and React Native to handle the state?
+#### Existem diferenças entre React e React Native para lidar com o state?
 
 <div className="two-columns">
 
@@ -219,9 +220,9 @@ const styles = StyleSheet.create({
 
 </div>
 
-As shown above, there is no difference in handling the `state` between [React](https://react.dev/learn/state-a-components-memory) and `React Native`. You can use the state of your components both in classes and in function components using [hooks](https://react.dev/reference/react/useState)!
+Como mostrado acima, não há diferença no tratamento do `state` entre [React](https://react.dev/learn/state-a-components-memory) e `React Native`. Você pode usar o state dos seus componentes tanto em classes quanto em componentes de função usando [hooks](https://react.dev/reference/react/useState)!
 
-In the following example we will show the same above counter example using classes.
+No exemplo a seguir, mostraremos o mesmo exemplo de contador acima usando classes.
 
 ```SnackPlayer name=Hello%20Classes
 import React, {Component} from 'react';

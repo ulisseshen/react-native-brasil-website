@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: handling-text-input
-title: Handling Text Input
+title: Manipulação de Entrada de Texto
 ---
 
-[`TextInput`](textinput#content) is a [Core Component](intro-react-native-components) that allows the user to enter text. It has an `onChangeText` prop that takes a function to be called every time the text changed, and an `onSubmitEditing` prop that takes a function to be called when the text is submitted.
+[`TextInput`](textinput#content) é um [Core Component](intro-react-native-components) que permite ao usuário inserir texto. Ele tem uma prop `onChangeText` que recebe uma função a ser chamada toda vez que o texto muda, e uma prop `onSubmitEditing` que recebe uma função a ser chamada quando o texto é enviado.
 
-For example, let's say that as the user types, you're translating their words into a different language. In this new language, every single word is written the same way: 🍕. So the sentence "Hello there Bob" would be translated as "🍕 🍕 🍕".
+Por exemplo, digamos que conforme o usuário digita, você está traduzindo suas palavras para uma língua diferente. Nesta nova língua, cada palavra é escrita da mesma maneira: 🍕. Então a frase "Hello there Bob" seria traduzida como "🍕 🍕 🍕".
 
 ```SnackPlayer name=Handling%20Text%20Input
 import React, {useState} from 'react';
@@ -39,8 +40,8 @@ const PizzaTranslator = () => {
 export default PizzaTranslator;
 ```
 
-In this example, we store `text` in the state, because it changes over time.
+Neste exemplo, armazenamos `text` no state, porque ele muda ao longo do tempo.
 
-There are a lot more things you might want to do with a text input. For example, you could validate the text inside while the user types. For more detailed examples, see the [React docs on controlled components](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable), or the [reference docs for TextInput](textinput.md).
+Há muito mais coisas que você pode querer fazer com uma entrada de texto. Por exemplo, você pode validar o texto enquanto o usuário digita. Para exemplos mais detalhados, veja a [documentação do React sobre componentes controlados](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable), ou a [documentação de referência para TextInput](textinput.md).
 
-Text input is one of the ways the user interacts with the app. Next, let's look at another type of input and [learn how to handle touches](handling-touches.md).
+A entrada de texto é uma das maneiras pelas quais o usuário interage com o aplicativo. A seguir, vamos ver outro tipo de entrada e [aprender a manipular toques](handling-touches.md).
