@@ -1,87 +1,88 @@
 ---
-title: React Native - H2 2021 Recap
+ia-translated: true
+title: React Native - Resumo do H2 2021
 authors: [cortinico]
 tags: [announcement]
 ---
 
-While we're all still excited for the [release of React Native 0.67](/blog/2022/01/19/version-067), we want to take a moment to **celebrate** what the community achieved in the last half and share what we have on the **horizon** for the future of React Native.
+Enquanto todos nós ainda estamos empolgados com o [lançamento do React Native 0.67](/blog/2022/01/19/version-067), queremos aproveitar um momento para **celebrar** o que a comunidade alcançou no último semestre e compartilhar o que temos no **horizonte** para o futuro do React Native.
 
 <!--truncate-->
 
-Specifically, H2 2021 was an [exciting half for both us and the community](/blog/2021/08/19/h2-2021#pushing-the-technology-forward) where we had the opportunity to invest more in our open-source ecosystem. We revamped some of our processes and created new ones from scratch that will help you, us, and the community to enjoy a **better** React Native experience.
+Especificamente, o H2 2021 foi um [semestre emocionante tanto para nós quanto para a comunidade](/blog/2021/08/19/h2-2021#pushing-the-technology-forward) onde tivemos a oportunidade de investir mais em nosso ecossistema open-source. Reformulamos alguns de nossos processos e criamos novos do zero que ajudarão você, nós e a comunidade a desfrutar de uma experiência **melhor** com React Native.
 
-## Repository Health
+## Saúde do Repositório
 
-In H2 2021, we invested in tackling some of the _OSS debt_ that our repository built up over the years. Specifically, most of our focus was around **pull requests**. We built an internal process to make sure all the new pull requests are addressed in a timely manner.
+No H2 2021, investimos em lidar com parte da _dívida OSS_ que nosso repositório acumulou ao longo dos anos. Especificamente, a maior parte de nosso foco estava em **pull requests**. Construímos um processo interno para garantir que todos os novos pull requests sejam abordados em tempo hábil.
 
-Although this is not a complete list, we would like to highlight some **impactful** PRs we received from our contributors:
+Embora esta não seja uma lista completa, gostaríamos de destacar alguns PRs **impactantes** que recebemos de nossos colaboradores:
 
 - **Accessibility**
-  - [#31630](https://github.com/facebook/react-native/pull/31630) `Added Support for Entrance/exit from collection by Flatlist` by [@anaskhraza](https://github.com/anaskhraza)
+  - [#31630](https://github.com/facebook/react-native/pull/31630) `Added Support for Entrance/exit from collection by Flatlist` por [@anaskhraza](https://github.com/anaskhraza)
 - **Crash**
-  - [#29452](https://github.com/facebook/react-native/pull/29452) `Fix - TextInput Drawable to avoid Null Pointer Exception RuntimeError` by [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
+  - [#29452](https://github.com/facebook/react-native/pull/29452) `Fix - TextInput Drawable to avoid Null Pointer Exception RuntimeError` por [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
 - **Display**
-  - [#31777](https://github.com/facebook/react-native/pull/31777) `fix: TouchableNativeFeedback ripple starts on previous touch location` by [@intergalacticspacehighway](https://github.com/intergalacticspacehighway)
-  - [#31789](https://github.com/facebook/react-native/pull/31789) `Fix support for blobs larger than 64 KB on Android` by [@tomekzaw](https://github.com/tomekzaw)
-  - [#31007](https://github.com/facebook/react-native/pull/31007) `Fix selectionColor doesn't style Android TextInput selection handles` by [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
-  - [#32398](https://github.com/facebook/react-native/pull/32398) `Fix Android border positioning regression` by [@oblador](https://github.com/oblador)
-  - [#29099](https://github.com/facebook/react-native/pull/29099) `[Android] Allows to set individual (left,top,right,bottom) dotted/dashed` by [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
-  - [#29117](https://github.com/facebook/react-native/pull/29117) `[Android] Fix font weight numeric values` by [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
+  - [#31777](https://github.com/facebook/react-native/pull/31777) `fix: TouchableNativeFeedback ripple starts on previous touch location` por [@intergalacticspacehighway](https://github.com/intergalacticspacehighway)
+  - [#31789](https://github.com/facebook/react-native/pull/31789) `Fix support for blobs larger than 64 KB on Android` por [@tomekzaw](https://github.com/tomekzaw)
+  - [#31007](https://github.com/facebook/react-native/pull/31007) `Fix selectionColor doesn't style Android TextInput selection handles` por [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
+  - [#32398](https://github.com/facebook/react-native/pull/32398) `Fix Android border positioning regression` por [@oblador](https://github.com/oblador)
+  - [#29099](https://github.com/facebook/react-native/pull/29099) `[Android] Allows to set individual (left,top,right,bottom) dotted/dashed` por [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
+  - [#29117](https://github.com/facebook/react-native/pull/29117) `[Android] Fix font weight numeric values` por [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
 - **Interaction**
-  - [#28995](https://github.com/facebook/react-native/pull/28995) `[Android] Fix TextInput Cursor jumping to the right when placeholder null` by [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
-  - [#28952](https://github.com/facebook/react-native/pull/28952) `[Android] Fix non selectable Text in FlatList` by [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
-  - [#29046](https://github.com/facebook/react-native/pull/29046) `[Android] onKeyPress event not fired with numeric keys` by [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
-  - [#31500](https://github.com/facebook/react-native/pull/31500) `fix#29319 - ios dismiss modal` by [@intergalacticspacehighway](https://github.com/intergalacticspacehighway)
-  - [#32179](https://github.com/facebook/react-native/pull/32179) `Fix: multiline textinput start "jerking" when trying to move cursor.` by [@xiankuncheng](https://github.com/xiankuncheng)
-  - [#29039](https://github.com/facebook/react-native/pull/29039) `Fix to make taps on views outside parent bounds work on Android` by [@hsource](https://github.com/hsource)
+  - [#28995](https://github.com/facebook/react-native/pull/28995) `[Android] Fix TextInput Cursor jumping to the right when placeholder null` por [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
+  - [#28952](https://github.com/facebook/react-native/pull/28952) `[Android] Fix non selectable Text in FlatList` por [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
+  - [#29046](https://github.com/facebook/react-native/pull/29046) `[Android] onKeyPress event not fired with numeric keys` por [@fabriziobertoglio1987](https://github.com/fabriziobertoglio1987)
+  - [#31500](https://github.com/facebook/react-native/pull/31500) `fix#29319 - ios dismiss modal` por [@intergalacticspacehighway](https://github.com/intergalacticspacehighway)
+  - [#32179](https://github.com/facebook/react-native/pull/32179) `Fix: multiline textinput start "jerking" when trying to move cursor.` por [@xiankuncheng](https://github.com/xiankuncheng)
+  - [#29039](https://github.com/facebook/react-native/pull/29039) `Fix to make taps on views outside parent bounds work on Android` por [@hsource](https://github.com/hsource)
 - **Performance**
-  - [#31764](https://github.com/facebook/react-native/pull/31764) `Optimize font handling on iOS` by [@Adlai-Holler](https://github.com/Adlai-Holler)
-  - [#32536](https://github.com/facebook/react-native/pull/32536) `Don't reconstruct app component on split-screen` by [@Somena1](https://github.com/Somena1)
+  - [#31764](https://github.com/facebook/react-native/pull/31764) `Optimize font handling on iOS` por [@Adlai-Holler](https://github.com/Adlai-Holler)
+  - [#32536](https://github.com/facebook/react-native/pull/32536) `Don't reconstruct app component on split-screen` por [@Somena1](https://github.com/Somena1)
 - **Testing**
-  - [#31401](https://github.com/facebook/react-native/pull/31401) `Add unit tests for VirtualizedList render quirks` by [@NickGerleman](https://github.com/NickGerleman)
+  - [#31401](https://github.com/facebook/react-native/pull/31401) `Add unit tests for VirtualizedList render quirks` por [@NickGerleman](https://github.com/NickGerleman)
 
-Some of those PRs addressed issues that were impacting both Meta and the overall OSS community, given the number of reactions on the corresponding issue they closed.
+Alguns desses PRs abordaram problemas que estavam impactando tanto a Meta quanto a comunidade OSS em geral, dado o número de reações nas issues correspondentes que eles fecharam.
 
-There are so many more PRs we would like to call out, and we want to **thank** again all the people that are spending their time to help us address bugs and improve React Native.
+Existem muito mais PRs que gostaríamos de destacar, e queremos **agradecer** novamente todas as pessoas que estão dedicando seu tempo para nos ajudar a resolver bugs e melhorar o React Native.
 
-## Community Engagement
+## Engajamento da Comunidade
 
-At the beginning of the half we set a goal to **communicate** with our community more and set process for the behavior to continue. Here were some of our engagements in H2 2021:
+No início do semestre, estabelecemos uma meta de **comunicar** mais com nossa comunidade e definir processos para que esse comportamento continue. Aqui estão alguns de nossos engajamentos no H2 2021:
 
 <!--alex ignore gross-->
 
-- We had the opportunity to participate in [React Native EU](https://www.react-native.eu/) with a talk from [Joshua Gross](https://twitter.com/joshuaisgross) - [Bringing the Fabric renderer to the “Facebook” app](https://www.youtube.com/watch?v=xKOkILSLs0Q&t=3987s)
-- We hosted an [“Ask Us Anything“ (AUA) on Reddit](https://www.reddit.com/r/reactnative/comments/pzdo1r/react_native_team_aua_thursday_oct_14_9am_pt/) and received over 100 questions! AUAs are a great opportunity for both us, to get a sense of the community engagement, and you all, to ask any kind of questions. If you haven’t yet, make sure you check the answers as some of them are extremely insightful
-- We shared our [Many Platform Vision](https://reactnative.dev/blog/2021/08/26/many-platform-vision), a guide for gotchas for [Android 12 and iOS 15](https://reactnative.dev/blog/2021/09/01/preparing-your-app-for-iOS-15-and-android-12), and the progress and [vision for Hermes to become the default JS engine](https://reactnative.dev/blog/2021/10/26/toward-hermes-being-the-default) for React Native!
-- Our own [Kevin Gozali](https://twitter.com/fkgozali) appeared on [an episode of React Native Radio podcast](https://reactnativeradio.com/episodes/rnr-222-the-new-architecture-with-kevin-gozali-from-the-rn-core-team) to talk about the new architecture.
-- At [ReactConf 2021](https://conf.reactjs.org/), ReactConf [Rick Hanlon](https://twitter.com/rickhanlonii) shared the unified many-platform vision for React and React Native. Moreover, [Eric Rozell](https://twitter.com/EricRozell) and [Steven Moyes](https://twitter.com/moyessa) got to share the amazing progress React Native Desktop has made in supporting both Meta and Microsoft apps and showcasing the Many Platform Vision in practice.
+- Tivemos a oportunidade de participar do [React Native EU](https://www.react-native.eu/) com uma palestra de [Joshua Gross](https://twitter.com/joshuaisgross) - [Bringing the Fabric renderer to the "Facebook" app](https://www.youtube.com/watch?v=xKOkILSLs0Q&t=3987s)
+- Hospedamos um ["Ask Us Anything" (AUA) no Reddit](https://www.reddit.com/r/reactnative/comments/pzdo1r/react_native_team_aua_thursday_oct_14_9am_pt/) e recebemos mais de 100 perguntas! AUAs são uma ótima oportunidade tanto para nós, para ter uma noção do engajamento da comunidade, quanto para vocês, para fazer qualquer tipo de pergunta. Se você ainda não conferiu, certifique-se de verificar as respostas, pois algumas delas são extremamente valiosas
+- Compartilhamos nossa [Visão de Múltiplas Plataformas](https://reactnative.dev/blog/2021/08/26/many-platform-vision), um guia para armadilhas do [Android 12 e iOS 15](https://reactnative.dev/blog/2021/09/01/preparing-your-app-for-iOS-15-and-android-12), e o progresso e [visão para o Hermes se tornar o engine JavaScript padrão](https://reactnative.dev/blog/2021/10/26/toward-hermes-being-the-default) para React Native!
+- Nosso próprio [Kevin Gozali](https://twitter.com/fkgozali) apareceu em [um episódio do podcast React Native Radio](https://reactnativeradio.com/episodes/rnr-222-the-new-architecture-with-kevin-gozali-from-the-rn-core-team) para falar sobre a nova arquitetura.
+- Na [ReactConf 2021](https://conf.reactjs.org/), [Rick Hanlon](https://twitter.com/rickhanlonii) compartilhou a visão unificada de múltiplas plataformas para React e React Native. Além disso, [Eric Rozell](https://twitter.com/EricRozell) e [Steven Moyes](https://twitter.com/moyessa) puderam compartilhar o progresso incrível que o React Native Desktop fez no suporte a aplicativos da Meta e Microsoft e apresentar a Visão de Múltiplas Plataformas na prática.
 
-Beyond sharing more updates in H2 2021, we also **leaned** on our community more than ever. We relied on critical feedback from contributors as they dogfooded early drafts of the New Architecture material. As well, we were heavily supported by the expertise of our community in debugging critical release issues and improvements.
+Além de compartilhar mais atualizações no H2 2021, também **contamos** com nossa comunidade mais do que nunca. Confiamos no feedback crítico de colaboradores enquanto eles testavam os primeiros rascunhos do material da New Architecture. Além disso, fomos fortemente apoiados pela expertise de nossa comunidade na depuração de problemas críticos de lançamento e melhorias.
 
-There is a wealth of knowledge that our community brings into React Native, and we need to continue to nurture it.
+Há uma riqueza de conhecimento que nossa comunidade traz para o React Native, e precisamos continuar a nutri-la.
 
-## The New Architecture Rollout and Releases
+## Rollout da New Architecture e Lançamentos
 
-2022 is going to be the year of the **New Architecture in open source**.
+2022 será o ano da **New Architecture em open source**.
 
-We’ve been working hard to deliver the infrastructure needed to rollout the New Architecture to apps and libraries. We involved some of our partners and core contributors/library maintainers to refine our support for the new architecture to get early stage feedback.
+Temos trabalhado arduamente para entregar a infraestrutura necessária para o rollout da New Architecture para aplicativos e bibliotecas. Envolvemos alguns de nossos parceiros e principais colaboradores/mantenedores de bibliotecas para refinar nosso suporte à nova arquitetura e obter feedback de estágio inicial.
 
-We are now preparing to release a new guide on our website: [Getting Started with the New Architecture](https://github.com/facebook/react-native-website/pull/2879). That will be the entry point to a collection of material that we’re going to release in 2022 and will help you migrate/start your project with the new architecture.
+Estamos agora nos preparando para lançar um novo guia em nosso website: [Getting Started with the New Architecture](https://github.com/facebook/react-native-website/pull/2879). Esse será o ponto de entrada para uma coleção de materiais que vamos lançar em 2022 e que ajudarão você a migrar/iniciar seu projeto com a nova arquitetura.
 
-Moreover, we would like to stress the [importance of **giving feedback**](https://github.com/facebook/react-native-website/pull/2879) on the New Architecture material. We’re still in the process of finalizing the last details and your input will help everyone adopt the new architecture more seamlessly.
+Além disso, gostaríamos de enfatizar a [importância de **dar feedback**](https://github.com/facebook/react-native-website/pull/2879) sobre o material da New Architecture. Ainda estamos no processo de finalizar os últimos detalhes e sua contribuição ajudará todos a adotarem a nova arquitetura de forma mais tranquila.
 
-**Releases** play a critical role in the New Architecture rollout. Our goal last half was to ensure any release blocking issues did not stagnate. We approached the problem by [clarifying and improving process and responsibilities](https://github.com/facebook/react-native/wiki/Releases) for better accountability. Our release coordination now occurs in a [dedicated discussions repository](https://github.com/reactwg/react-native-releases/discussions) with [clearer release issue reporting](https://github.com/facebook/react-native/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2CType%3A+Upgrade+Issue&template=upgrade-regression-form.yml).
+**Lançamentos** desempenham um papel crítico no rollout da New Architecture. Nossa meta no último semestre foi garantir que quaisquer problemas bloqueadores de lançamento não ficassem estagnados. Abordamos o problema [esclarecendo e melhorando processos e responsabilidades](https://github.com/facebook/react-native/wiki/Releases) para melhor responsabilização. Nossa coordenação de lançamentos agora ocorre em um [repositório de discussões dedicado](https://github.com/reactwg/react-native-releases/discussions) com [relatórios de problemas de lançamento mais claros](https://github.com/facebook/react-native/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2CType%3A+Upgrade+Issue&template=upgrade-regression-form.yml).
 
-In H1 2022, we will continue to iterate on release responsibilities to support new architecture rollout. If you’d like to help out testing release candidates or [working on improvements](https://github.com/facebook/react-native/projects/18), feel free to [join the discussion](https://github.com/reactwg/react-native-releases/discussions/categories/improvements)!
+No H1 2022, continuaremos a iterar sobre as responsabilidades de lançamento para apoiar o rollout da nova arquitetura. Se você quiser ajudar a testar release candidates ou [trabalhar em melhorias](https://github.com/facebook/react-native/projects/18), sinta-se à vontade para [participar da discussão](https://github.com/reactwg/react-native-releases/discussions/categories/improvements)!
 
-## To Mobile and beyond
+## Para Mobile e além
 
-As you can see from [the ReactConf talk lineup](https://conf.reactjs.org/), React Native is not only Android & iOS.
+Como você pode ver pela [lista de palestras da ReactConf](https://conf.reactjs.org/), React Native não é apenas Android e iOS.
 
-Earlier in 2021, we shared our [Many Platform Vision](https://reactnative.dev/blog/2021/08/26/many-platform-vision), and we had a successful time rolling out React Native on both Desktop and VR.
+No início de 2021, compartilhamos nossa [Visão de Múltiplas Plataformas](https://reactnative.dev/blog/2021/08/26/many-platform-vision), e tivemos um tempo de sucesso no rollout do React Native tanto em Desktop quanto em VR.
 
-We’re looking forward to **converging patterns** that are platform-specific into the React Native experience.
+Estamos ansiosos para **convergir padrões** que são específicos de plataforma na experiência React Native.
 
-Finally, we want to thank again the community for the enormous support in H2 2021. It’s always amazing to see how contributors come together and support each other on GitHub, fixing bugs, sharing their and helping us deliver React Native to millions of users.
+Finalmente, queremos agradecer novamente à comunidade pelo enorme apoio no H2 2021. É sempre incrível ver como os colaboradores se unem e apoiam uns aos outros no GitHub, corrigindo bugs, compartilhando e nos ajudando a entregar React Native para milhões de usuários.
 
-Stay tuned and looking forward to an **even more amazing 2022** 🎉!
+Fiquem atentos e aguardem um **2022 ainda mais incrível** 🎉!

@@ -1,66 +1,67 @@
 ---
-title: The GAAD Pledge - March Accessibility Issues Update
+ia-translated: true
+title: O Compromisso GAAD - Atualização de Issues de Acessibilidade de Março
 authors: [alexmarlette]
 tags: [announcement]
 ---
 
-It has been four weeks since we reached out to the GitHub community with a thoroughly reviewed gap analysis and list of issues to improve React Native's accessibility. With the help of the React Native community, we are already making great progress on improving accessibility. Community members have been helping contributors, reviewing tests, and bringing attention to prior accessibility issues. Since March 8th the community has closed six issues with four pull requests and seven other pull requests are in the pipeline for review.
+Passaram-se quatro semanas desde que entramos em contato com a comunidade do GitHub com uma análise de lacunas minuciosamente revisada e uma lista de issues para melhorar a acessibilidade do React Native. Com a ajuda da comunidade React Native, já estamos fazendo um ótimo progresso na melhoria da acessibilidade. Membros da comunidade têm ajudado contribuidores, revisando testes e trazendo atenção para issues de acessibilidade anteriores. Desde 8 de março, a comunidade fechou seis issues com quatro pull requests e sete outros pull requests estão em andamento para revisão.
 
-While this work continues, the React Native and Accessibility teams at Facebook are evaluating accessibility bugs and issues that were submitted prior to this initiative, to determine if they are already covered by our current gap analysis or if there are additional issues that need to be brought into the project. One new issue has already been discovered and moved into the project, four others directly mapped to existing issues and two others are expected to be closed by addressing existing issues that address the root cause of their issue.
+Enquanto este trabalho continua, as equipes de React Native e Acessibilidade no Facebook estão avaliando bugs e issues de acessibilidade que foram enviados antes desta iniciativa, para determinar se já estão cobertos por nossa análise de lacunas atual ou se existem issues adicionais que precisam ser incluídas no projeto. Uma nova issue já foi descoberta e movida para o projeto, quatro outras mapearam diretamente para issues existentes e espera-se que duas outras sejam fechadas ao abordar issues existentes que tratam da causa raiz de seu problema.
 
-Thank you to all the community members who have participated. You are truly moving the needle in making React Native more accessible for everyone!
+Obrigado a todos os membros da comunidade que participaram. Vocês estão realmente fazendo a diferença ao tornar o React Native mais acessível para todos!
 
 <!--truncate-->
 
-## Closed Pull Requests 🎉
+## Pull Requests Fechados 🎉
 
-- [Added talkback support for button accessibility: disabled prop #31001](https://github.com/facebook/react-native/pull/31001) - closed by [@huzaifaaak ](https://twitter.com/huzaifaaak)
+- [Added talkback support for button accessibility: disabled prop #31001](https://github.com/facebook/react-native/pull/31001) - fechado por [@huzaifaaak ](https://twitter.com/huzaifaaak)
 
-- [feat: set disabled accessibilityState when TouchableHighlight is disabled #31135](https://github.com/facebook/react-native/pull/31135) closed by [@natural_clar](https://twitter.com/natural_clar)
+- [feat: set disabled accessibilityState when TouchableHighlight is disabled #31135](https://github.com/facebook/react-native/pull/31135) fechado por [@natural_clar](https://twitter.com/natural_clar)
 
-- [[Android] Selected State does not annonce when TextInput Component selected #31144](https://github.com/facebook/react-native/pull/31144) closed by [fabriziobertoglio1987](https://fabriziobertoglio.xyz/)
+- [[Android] Selected State does not annonce when TextInput Component selected #31144](https://github.com/facebook/react-native/pull/31144) fechado por [fabriziobertoglio1987](https://fabriziobertoglio.xyz/)
 
-- [Added talkback support for TouchableNativeFeedback accessibility: disabled prop #31224](https://github.com/facebook/react-native/pull/31224) closed by [@kyamashiro73](https://twitter.com/kyamashiro73)
+- [Added talkback support for TouchableNativeFeedback accessibility: disabled prop #31224](https://github.com/facebook/react-native/pull/31224) fechado por [@kyamashiro73](https://twitter.com/kyamashiro73)
 
-- [Accessibility/button test #31189](https://github.com/facebook/react-native/pull/31189) closed by [@huzaifaaak ](https://twitter.com/huzaifaaak)
-  - Adds a test for accessibilityState for button
+- [Accessibility/button test #31189](https://github.com/facebook/react-native/pull/31189) fechado por [@huzaifaaak ](https://twitter.com/huzaifaaak)
+  - Adiciona um teste para accessibilityState para button
 
-## Fixes
+## Correções
 
-- `Button` component (fixed by [#31001](https://github.com/facebook/react-native/pull/31001)):
-  - Now announces when it is disabled
+- Componente `Button` (corrigido por [#31001](https://github.com/facebook/react-native/pull/31001)):
+  - Agora anuncia quando está desabilitado
 
-  - Disables click functionality for screen readers when the button is disabled
+  - Desabilita a funcionalidade de clique para leitores de tela quando o botão está desabilitado
 
-  - Announces the selected state of the button
+  - Anuncia o estado selecionado do botão
 
-- `TextInput` component (fixed by [#31144](https://github.com/facebook/react-native/pull/31144)):
-  - Announces "selected" when the "selected" accessibilityState is set to true and the element is focused
+- Componente `TextInput` (corrigido por [#31144](https://github.com/facebook/react-native/pull/31144)):
+  - Anuncia "selected" quando o accessibilityState "selected" está definido como true e o elemento está em foco
 
-- `TouchableHighlight` component (fixed by [#31135](https://github.com/facebook/react-native/pull/31135)):
-  - Disables click functionality for screen readers when the component is disabled
+- Componente `TouchableHighlight` (corrigido por [#31135](https://github.com/facebook/react-native/pull/31135)):
+  - Desabilita a funcionalidade de clique para leitores de tela quando o componente está desabilitado
 
-- `TouchableNativeFeedback` component (fixed by [#31224](https://github.com/facebook/react-native/pull/31224)):
-  - Disables click functionality for screen readers when the component is disabled
+- Componente `TouchableNativeFeedback` (corrigido por [#31224](https://github.com/facebook/react-native/pull/31224)):
+  - Desabilita a funcionalidade de clique para leitores de tela quando o componente está desabilitado
 
-## Other Progress
+## Outros Progressos
 
-| Status                                  | Number of Issues |
+| Status                                  | Número de Issues |
 | --------------------------------------- | :--------------: |
-| Issues To Do                            |        53        |
-| In Progress Issues by the Community     |        8         |
-| In Progress Issues by React Native Team |        5         |
-| Pull Request in Progress                |        3         |
-| Pull Request in Reviews                 |        4         |
+| Issues A Fazer                          |        53        |
+| Issues em Progresso pela Comunidade     |        8         |
+| Issues em Progresso pela Equipe React Native |        5         |
+| Pull Request em Progresso               |        3         |
+| Pull Request em Revisão                 |        4         |
 
-## Get involved!
+## Envolva-se!
 
-- New contributors should read the [contribution guide](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) and browse the list of 37 [good first issues](https://github.com/facebook/react-native/issues?q=is%3Aopen+is%3Aissue+label%3A%22Good+first+issue%22+label%3AAccessibility) in the React Native GitHub.
+- Novos contribuidores devem ler o [guia de contribuição](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) e navegar pela lista de 37 [good first issues](https://github.com/facebook/react-native/issues?q=is%3Aopen+is%3Aissue+label%3A%22Good+first+issue%22+label%3AAccessibility) no GitHub do React Native.
 
-- Contributors interested in issues requiring a bit more effort should visit [the project page for Improved React Native Accessibility](https://github.com/facebook/react-native/projects/15) to see the GitHub issues that need their knowledge of React Native.
+- Contribuidores interessados em issues que requerem um pouco mais de esforço devem visitar [a página do projeto para Acessibilidade Melhorada do React Native](https://github.com/facebook/react-native/projects/15) para ver as issues no GitHub que precisam do seu conhecimento de React Native.
 
-- Technical writers interested in updating React Native's documentation to reflect the accessibility gaps being closed should visit the [React Native Docs](https://github.com/facebook/react-native-website#-overview).
+- Escritores técnicos interessados em atualizar a documentação do React Native para refletir as lacunas de acessibilidade que estão sendo fechadas devem visitar a [Documentação do React Native](https://github.com/facebook/react-native-website#-overview).
 
-- Share this initiative with anyone who may be able to help!
+- Compartilhe esta iniciativa com qualquer pessoa que possa ajudar!
 
-- Follow the GAAD Pledge Open Source Accessibility Community Manager for React Native on [Twitter](https://twitter.com/alexmarlette) or [Facebook](https://www.facebook.com/React-Native-Open-Source-Accessibility-Community-Manager-102732258549941) to keep up to date on progress.
+- Siga o Gerente de Comunidade de Acessibilidade Open Source do Compromisso GAAD para React Native no [Twitter](https://twitter.com/alexmarlette) ou [Facebook](https://www.facebook.com/React-Native-Open-Source-Accessibility-Community-Manager-102732258549941) para se manter atualizado sobre o progresso.
