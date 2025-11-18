@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: touchableopacity
 title: TouchableOpacity
 ---
 
 :::tip
-If you're looking for a more extensive and future-proof way to handle touch-based input, check out the [Pressable](pressable.md) API.
+Se você está procurando uma maneira mais abrangente e à prova de futuro para lidar com entrada baseada em toque, confira a API [Pressable](pressable.md).
 :::
 
-A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, dimming it.
+Um wrapper para fazer views responderem adequadamente a toques. Ao pressionar, a opacidade da view envolvida é diminuída, escurecendo-a.
 
-Opacity is controlled by wrapping the children in an `Animated.View`, which is added to the view hierarchy. Be aware that this can affect layout.
+A opacidade é controlada envolvendo os children em um `Animated.View`, que é adicionado à hierarquia de view. Esteja ciente de que isso pode afetar o layout.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=TouchableOpacity%20Example
 import React, {useState} from 'react';
@@ -58,13 +59,13 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
 ## Props
 
-### [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props)
+### [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props)
 
-Inherits [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props).
+Herda as [Props do TouchableWithoutFeedback](touchablewithoutfeedback.md#props).
 
 ---
 
@@ -78,7 +79,7 @@ Inherits [TouchableWithoutFeedback Props](touchablewithoutfeedback.md#props).
 
 ### `activeOpacity`
 
-Determines what the opacity of the wrapped view should be when touch is active. Defaults to `0.2`.
+Determina qual deve ser a opacidade da view envolvida quando o toque está ativo. O padrão é `0.2`.
 
 | Type   |
 | ------ |
@@ -88,7 +89,7 @@ Determines what the opacity of the wrapped view should be when touch is active. 
 
 ### `hasTVPreferredFocus` <div className="label ios">iOS</div>
 
-_(Apple TV only)_ TV preferred focus (see documentation for the View component).
+_(Somente Apple TV)_ Foco preferido de TV (veja a documentação do componente View).
 
 | Type |
 | ---- |
@@ -98,7 +99,7 @@ _(Apple TV only)_ TV preferred focus (see documentation for the View component).
 
 ### `nextFocusDown` <div className="label android">Android</div>
 
-TV next focus down (see documentation for the View component).
+Próximo foco de TV para baixo (veja a documentação do componente View).
 
 | Type   |
 | ------ |
@@ -108,7 +109,7 @@ TV next focus down (see documentation for the View component).
 
 ### `nextFocusForward` <div className="label android">Android</div>
 
-TV next focus forward (see documentation for the View component).
+Próximo foco de TV para frente (veja a documentação do componente View).
 
 | Type   |
 | ------ |
@@ -118,7 +119,7 @@ TV next focus forward (see documentation for the View component).
 
 ### `nextFocusLeft` <div className="label android">Android</div>
 
-TV next focus left (see documentation for the View component).
+Próximo foco de TV para a esquerda (veja a documentação do componente View).
 
 | Type   |
 | ------ |
@@ -128,7 +129,7 @@ TV next focus left (see documentation for the View component).
 
 ### `nextFocusRight` <div className="label android">Android</div>
 
-TV next focus right (see documentation for the View component).
+Próximo foco de TV para a direita (veja a documentação do componente View).
 
 | Type   |
 | ------ |
@@ -138,7 +139,7 @@ TV next focus right (see documentation for the View component).
 
 ### `nextFocusUp` <div className="label android">Android</div>
 
-TV next focus up (see documentation for the View component).
+Próximo foco de TV para cima (veja a documentação do componente View).
 
 | Type   |
 | ------ |
@@ -148,4 +149,4 @@ TV next focus up (see documentation for the View component).
 
 ### `ref`
 
-A ref setter that will be assigned an [element node](element-nodes) when mounted.
+Um setter de ref que será atribuído a um [nó de elemento](element-nodes) quando montado.

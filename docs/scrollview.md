@@ -1,23 +1,24 @@
 ---
+ia-translated: true
 id: scrollview
 title: ScrollView
 ---
 
-Component that wraps platform ScrollView while providing integration with touch locking "responder" system.
+Component que encapsula o ScrollView da plataforma enquanto fornece integração com o sistema de "responder" de bloqueio de toque.
 
-Keep in mind that ScrollViews must have a bounded height in order to work, since they contain unbounded-height children into a bounded container (via a scroll interaction). In order to bound the height of a ScrollView, either set the height of the view directly (discouraged) or make sure all parent views have bounded height. Forgetting to transfer `{flex: 1}` down the view stack can lead to errors here, which the element inspector makes quick to debug.
+Tenha em mente que ScrollViews devem ter uma altura limitada para funcionar, pois contêm filhos de altura ilimitada em um container limitado (via uma interação de scroll). Para limitar a altura de um ScrollView, defina a altura da view diretamente (desencorajado) ou certifique-se de que todas as views pai tenham altura limitada. Esquecer de transferir `{flex: 1}` na pilha de views pode levar a erros aqui, que o inspetor de elementos torna rápido de depurar.
 
-Doesn't yet support other contained responders from blocking this scroll view from becoming the responder.
+Ainda não suporta outros responders contidos bloqueando este scroll view de se tornar o responder.
 
-`<ScrollView>` vs [`<FlatList>`](flatlist.md) - which one to use?
+`<ScrollView>` vs [`<FlatList>`](flatlist.md) - qual usar?
 
-`ScrollView` renders all its react child components at once, but this has a performance downside.
+`ScrollView` renderiza todos os seus componentes filhos React de uma vez, mas isso tem uma desvantagem de desempenho.
 
-Imagine you have a very long list of items you want to display, maybe several screens worth of content. Creating JS components and native views for everything all at once, much of which may not even be shown, will contribute to slow rendering and increased memory usage.
+Imagine que você tem uma lista muito longa de itens que deseja exibir, talvez várias telas de conteúdo. Criar componentes JS e views nativas para tudo de uma vez, muito do que pode nem mesmo ser mostrado, contribuirá para renderização lenta e aumento do uso de memória.
 
-This is where `FlatList` comes into play. `FlatList` renders items lazily, when they are about to appear, and removes items that scroll way off screen to save memory and processing time.
+É aqui que `FlatList` entra em jogo. `FlatList` renderiza itens preguiçosamente, quando eles estão prestes a aparecer, e remove itens que saem muito da tela para economizar memória e tempo de processamento.
 
-`FlatList` is also handy if you want to render separators between your items, multiple columns, infinite scroll loading, or any number of other features it supports out of the box.
+`FlatList` também é útil se você deseja renderizar separadores entre seus itens, múltiplas colunas, carregamento de scroll infinito, ou qualquer número de outros recursos que ele suporta prontos para uso.
 
 ## Example
 
@@ -69,13 +70,13 @@ export default App;
 
 ### [View Props](view.md#props)
 
-Inherits [View Props](view#props).
+Herda [View Props](view#props).
 
 ---
 
 ### `StickyHeaderComponent`
 
-A React Component that will be used to render sticky headers, should be used together with `stickyHeaderIndices`. You may need to set this component if your sticky header uses custom transforms, for example, when you want your list to have an animated and hidable header. If a component has not been provided, the default [`ScrollViewStickyHeader`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Components/ScrollView/ScrollViewStickyHeader.js) component will be used.
+Um React Component que será usado para renderizar headers fixos, deve ser usado junto com `stickyHeaderIndices`. Você pode precisar definir este componente se seu header fixo usa transforms customizadas, por exemplo, quando você quer que sua lista tenha um header animado e ocultável. Se um componente não foi fornecido, o componente padrão [`ScrollViewStickyHeader`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Components/ScrollView/ScrollViewStickyHeader.js) será usado.
 
 | Type               |
 | ------------------ |
@@ -85,7 +86,7 @@ A React Component that will be used to render sticky headers, should be used tog
 
 ### `alwaysBounceHorizontal` <div className="label ios">iOS</div>
 
-When true, the scroll view bounces horizontally when it reaches the end even if the content is smaller than the scroll view itself.
+Quando true, o scroll view salta horizontalmente quando alcança o fim mesmo se o conteúdo for menor que o próprio scroll view.
 
 | Type | Default                                               |
 | ---- | ----------------------------------------------------- |
@@ -95,7 +96,7 @@ When true, the scroll view bounces horizontally when it reaches the end even if 
 
 ### `alwaysBounceVertical` <div className="label ios">iOS</div>
 
-When true, the scroll view bounces vertically when it reaches the end even if the content is smaller than the scroll view itself.
+Quando true, o scroll view salta verticalmente quando alcança o fim mesmo se o conteúdo for menor que o próprio scroll view.
 
 | Type | Default                                               |
 | ---- | ----------------------------------------------------- |
@@ -105,7 +106,7 @@ When true, the scroll view bounces vertically when it reaches the end even if th
 
 ### `automaticallyAdjustContentInsets` <div className="label ios">iOS</div>
 
-Controls whether iOS should automatically adjust the content inset for scroll views that are placed behind a navigation bar or tab bar/toolbar.
+Controla se o iOS deve ajustar automaticamente o content inset para scroll views que são colocados atrás de uma barra de navegação ou barra de abas/toolbar.
 
 | Type | Default |
 | ---- | ------- |
@@ -115,7 +116,7 @@ Controls whether iOS should automatically adjust the content inset for scroll vi
 
 ### `automaticallyAdjustKeyboardInsets` <div className="label ios">iOS</div>
 
-Controls whether the ScrollView should automatically adjust its `contentInset` and `scrollViewInsets` when the Keyboard changes its size.
+Controla se o ScrollView deve ajustar automaticamente seu `contentInset` e `scrollViewInsets` quando o Keyboard muda seu tamanho.
 
 | Type | Default |
 | ---- | ------- |
@@ -125,7 +126,7 @@ Controls whether the ScrollView should automatically adjust its `contentInset` a
 
 ### `automaticallyAdjustsScrollIndicatorInsets` <div className="label ios">iOS</div>
 
-Controls whether iOS should automatically adjust the scroll indicator insets. See Apple's [documentation on the property](https://developer.apple.com/documentation/uikit/uiscrollview/3198043-automaticallyadjustsscrollindica).
+Controla se o iOS deve ajustar automaticamente os insets do indicador de scroll. Veja a [documentação da Apple sobre a propriedade](https://developer.apple.com/documentation/uikit/uiscrollview/3198043-automaticallyadjustsscrollindica).
 
 | Type | Default |
 | ---- | ------- |
@@ -135,7 +136,7 @@ Controls whether iOS should automatically adjust the scroll indicator insets. Se
 
 ### `bounces` <div className="label ios">iOS</div>
 
-When true, the scroll view bounces when it reaches the end of the content if the content is larger than the scroll view along the axis of the scroll direction. When `false`, it disables all bouncing even if the `alwaysBounce*` props are `true`.
+Quando true, o scroll view salta quando alcança o fim do conteúdo se o conteúdo for maior que o scroll view ao longo do eixo da direção do scroll. Quando `false`, desabilita todo o salto mesmo se as props `alwaysBounce*` forem `true`.
 
 | Type | Default |
 | ---- | ------- |
@@ -145,7 +146,7 @@ When true, the scroll view bounces when it reaches the end of the content if the
 
 ### `bouncesZoom` <div className="label ios">iOS</div>
 
-When `true`, gestures can drive zoom past min/max and the zoom will animate to the min/max value at gesture end, otherwise the zoom will not exceed the limits.
+Quando `true`, gestos podem impulsionar o zoom além do mín/máx e o zoom animará para o valor mín/máx no fim do gesto, caso contrário o zoom não excederá os limites.
 
 | Type | Default |
 | ---- | ------- |
@@ -155,7 +156,7 @@ When `true`, gestures can drive zoom past min/max and the zoom will animate to t
 
 ### `canCancelContentTouches` <div className="label ios">iOS</div>
 
-When `false`, once tracking starts, won't try to drag if the touch moves.
+Quando `false`, uma vez que o rastreamento começa, não tentará arrastar se o toque se mover.
 
 | Type | Default |
 | ---- | ------- |
@@ -165,7 +166,7 @@ When `false`, once tracking starts, won't try to drag if the touch moves.
 
 ### `centerContent` <div className="label ios">iOS</div>
 
-When `true`, the scroll view automatically centers the content when the content is smaller than the scroll view bounds; when the content is larger than the scroll view, this property has no effect.
+Quando `true`, o scroll view centraliza automaticamente o conteúdo quando o conteúdo é menor que os limites do scroll view; quando o conteúdo é maior que o scroll view, esta propriedade não tem efeito.
 
 | Type | Default |
 | ---- | ------- |
@@ -175,7 +176,7 @@ When `true`, the scroll view automatically centers the content when the content 
 
 ### `contentContainerStyle`
 
-These styles will be applied to the scroll view content container which wraps all of the child views. Example:
+Estes estilos serão aplicados ao container de conteúdo do scroll view que encapsula todas as views filhas. Exemplo:
 
 ```
 return (
@@ -198,7 +199,7 @@ const styles = StyleSheet.create({
 
 ### `contentInset` <div className="label ios">iOS</div>
 
-The amount by which the scroll view content is inset from the edges of the scroll view.
+A quantidade pela qual o conteúdo do scroll view é inserido das bordas do scroll view.
 
 | Type                                                                 | Default                                  |
 | -------------------------------------------------------------------- | ---------------------------------------- |
@@ -208,7 +209,7 @@ The amount by which the scroll view content is inset from the edges of the scrol
 
 ### `contentInsetAdjustmentBehavior` <div className="label ios">iOS</div>
 
-This property specifies how the safe area insets are used to modify the content area of the scroll view. Available on iOS 11 and later.
+Esta propriedade especifica como os insets de área segura são usados para modificar a área de conteúdo do scroll view. Disponível no iOS 11 e posterior.
 
 | Type                                                           | Default   |
 | -------------------------------------------------------------- | --------- |
@@ -218,7 +219,7 @@ This property specifies how the safe area insets are used to modify the content 
 
 ### `contentOffset`
 
-Used to manually set the starting scroll offset.
+Usado para definir manualmente o offset de scroll inicial.
 
 | Type  | Default        |
 | ----- | -------------- |
@@ -228,10 +229,10 @@ Used to manually set the starting scroll offset.
 
 ### `decelerationRate`
 
-A floating-point number that determines how quickly the scroll view decelerates after the user lifts their finger. You may also use string shortcuts `"normal"` and `"fast"` which match the underlying iOS settings for `UIScrollViewDecelerationRateNormal` and `UIScrollViewDecelerationRateFast` respectively.
+Um número de ponto flutuante que determina quão rapidamente o scroll view desacelera após o usuário levantar o dedo. Você também pode usar atalhos de string `"normal"` e `"fast"` que correspondem às configurações do iOS subjacentes para `UIScrollViewDecelerationRateNormal` e `UIScrollViewDecelerationRateFast` respectivamente.
 
-- `'normal'` 0.998 on iOS, 0.985 on Android.
-- `'fast'`, 0.99 on iOS, 0.9 on Android.
+- `'normal'` 0.998 no iOS, 0.985 no Android.
+- `'fast'`, 0.99 no iOS, 0.9 no Android.
 
 | Type                               | Default    |
 | ---------------------------------- | ---------- |
@@ -241,7 +242,7 @@ A floating-point number that determines how quickly the scroll view decelerates 
 
 ### `directionalLockEnabled` <div className="label ios">iOS</div>
 
-When true, the ScrollView will try to lock to only vertical or horizontal scrolling while dragging.
+Quando true, o ScrollView tentará travar apenas para scroll vertical ou horizontal enquanto arrasta.
 
 | Type | Default |
 | ---- | ------- |
@@ -251,7 +252,7 @@ When true, the ScrollView will try to lock to only vertical or horizontal scroll
 
 ### `disableIntervalMomentum`
 
-When true, the scroll view stops on the next index (in relation to scroll position at release) regardless of how fast the gesture is. This can be used for pagination when the page is less than the width of the horizontal ScrollView or the height of the vertical ScrollView.
+Quando true, o scroll view para no próximo índice (em relação à posição de scroll no momento da liberação) independentemente de quão rápido o gesto é. Isso pode ser usado para paginação quando a página é menor que a largura do ScrollView horizontal ou a altura do ScrollView vertical.
 
 | Type | Default |
 | ---- | ------- |
@@ -261,7 +262,7 @@ When true, the scroll view stops on the next index (in relation to scroll positi
 
 ### `disableScrollViewPanResponder`
 
-When true, the default JS pan responder on the ScrollView is disabled, and full control over touches inside the ScrollView is left to its child components. This is particularly useful if `snapToInterval` is enabled, since it does not follow typical touch patterns. Do not use this on regular ScrollView use cases without `snapToInterval` as it may cause unexpected touches to occur while scrolling.
+Quando true, o pan responder JS padrão no ScrollView é desabilitado, e o controle total sobre toques dentro do ScrollView é deixado para seus componentes filhos. Isso é particularmente útil se `snapToInterval` estiver habilitado, pois não segue padrões de toque típicos. Não use isso em casos de uso regulares do ScrollView sem `snapToInterval`, pois pode causar toques inesperados enquanto rola.
 
 | Type | Default |
 | ---- | ------- |
@@ -271,7 +272,7 @@ When true, the default JS pan responder on the ScrollView is disabled, and full 
 
 ### `endFillColor` <div className="label android">Android</div>
 
-Sometimes a scrollview takes up more space than its content fills. When this is the case, this prop will fill the rest of the scrollview with a color to avoid setting a background and creating unnecessary overdraw. This is an advanced optimization that is not needed in the general case.
+Às vezes um scrollview ocupa mais espaço do que seu conteúdo preenche. Quando este é o caso, esta prop preencherá o resto do scrollview com uma cor para evitar definir um background e criar overdraw desnecessário. Esta é uma otimização avançada que não é necessária no caso geral.
 
 | Type            |
 | --------------- |
@@ -281,9 +282,9 @@ Sometimes a scrollview takes up more space than its content fills. When this is 
 
 ### `fadingEdgeLength` <div className="label android">Android</div>
 
-Fades out the edges of the scroll content.
+Esmaece as bordas do conteúdo de scroll.
 
-If the value is greater than `0`, the fading edges will be set accordingly to the current scroll direction and position, indicating if there is more content to show.
+Se o valor for maior que `0`, as bordas de esmaecimento serão definidas de acordo com a direção e posição de scroll atuais, indicando se há mais conteúdo para mostrar.
 
 | Type                                               | Default |
 | -------------------------------------------------- | ------- |
@@ -293,7 +294,7 @@ If the value is greater than `0`, the fading edges will be set accordingly to th
 
 ### `horizontal`
 
-When `true`, the scroll view's children are arranged horizontally in a row instead of vertically in a column.
+Quando `true`, os filhos do scroll view são organizados horizontalmente em uma linha em vez de verticalmente em uma coluna.
 
 | Type | Default |
 | ---- | ------- |
@@ -303,11 +304,11 @@ When `true`, the scroll view's children are arranged horizontally in a row inste
 
 ### `indicatorStyle` <div className="label ios">iOS</div>
 
-The style of the scroll indicators.
+O estilo dos indicadores de scroll.
 
-- `'default'` same as `black`.
-- `'black'`, scroll indicator is `black`. This style is good against a light background.
-- `'white'`, scroll indicator is `white`. This style is good against a dark background.
+- `'default'` igual a `black`.
+- `'black'`, indicador de scroll é `black`. Este estilo é bom contra um fundo claro.
+- `'white'`, indicador de scroll é `white`. Este estilo é bom contra um fundo escuro.
 
 | Type                                    | Default     |
 | --------------------------------------- | ----------- |
@@ -317,7 +318,7 @@ The style of the scroll indicators.
 
 ### `invertStickyHeaders`
 
-If sticky headers should stick at the bottom instead of the top of the ScrollView. This is usually used with inverted ScrollViews.
+Se headers fixos devem colar na parte inferior em vez do topo do ScrollView. Isso é geralmente usado com ScrollViews invertidos.
 
 | Type | Default |
 | ---- | ------- |
@@ -327,14 +328,14 @@ If sticky headers should stick at the bottom instead of the top of the ScrollVie
 
 ### `keyboardDismissMode`
 
-Determines whether the keyboard gets dismissed in response to a drag.
+Determina se o teclado é dispensado em resposta a um arraste.
 
-- `'none'`, drags do not dismiss the keyboard.
-- `'on-drag'`, the keyboard is dismissed when a drag begins.
+- `'none'`, arrastes não dispensam o teclado.
+- `'on-drag'`, o teclado é dispensado quando um arraste começa.
 
 **iOS Only**
 
-- `'interactive'`, the keyboard is dismissed interactively with the drag and moves in synchrony with the touch, dragging upwards cancels the dismissal. On Android this is not supported and it will have the same behavior as `'none'`.
+- `'interactive'`, o teclado é dispensado interativamente com o arraste e se move em sincronia com o toque, arrastar para cima cancela a dispensa. No Android isso não é suportado e terá o mesmo comportamento que `'none'`.
 
 | Type                                                                                                                                                            | Default  |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -344,13 +345,13 @@ Determines whether the keyboard gets dismissed in response to a drag.
 
 ### `keyboardShouldPersistTaps`
 
-Determines when the keyboard should stay visible after a tap.
+Determina quando o teclado deve permanecer visível após um toque.
 
-- `'never'` tapping outside of the focused text input when the keyboard is up dismisses the keyboard. When this happens, children won't receive the tap.
-- `'always'`, the keyboard will not dismiss automatically, and the scroll view will not catch taps, but children of the scroll view can catch taps.
-- `'handled'`, the keyboard will not dismiss automatically when the tap was handled by children of the scroll view (or captured by an ancestor).
-- `false`, **_deprecated_**, use `'never'` instead
-- `true`, **_deprecated_**, use `'always'` instead
+- `'never'` tocar fora do input de texto focado quando o teclado está aberto dispensa o teclado. Quando isso acontece, os filhos não receberão o toque.
+- `'always'`, o teclado não dispensará automaticamente, e o scroll view não capturará toques, mas filhos do scroll view podem capturar toques.
+- `'handled'`, o teclado não dispensará automaticamente quando o toque foi tratado por filhos do scroll view (ou capturado por um ancestral).
+- `false`, **_deprecated_**, use `'never'` em vez disso
+- `true`, **_deprecated_**, use `'always'` em vez disso
 
 | Type                                                      | Default   |
 | --------------------------------------------------------- | --------- |
@@ -360,13 +361,13 @@ Determines when the keyboard should stay visible after a tap.
 
 ### `maintainVisibleContentPosition`
 
-When set, the scroll view will adjust the scroll position so that the first child that is currently visible and at or beyond `minIndexForVisible` will not change position. This is useful for lists that are loading content in both directions, e.g. a chat thread, where new messages coming in might otherwise cause the scroll position to jump. A value of 0 is common, but other values such as 1 can be used to skip loading spinners or other content that should not maintain position.
+Quando definido, o scroll view ajustará a posição de scroll para que o primeiro filho que está atualmente visível e em ou além de `minIndexForVisible` não mude de posição. Isso é útil para listas que estão carregando conteúdo em ambas as direções, por exemplo, um thread de chat, onde novas mensagens chegando poderiam de outra forma fazer a posição de scroll pular. Um valor de 0 é comum, mas outros valores como 1 podem ser usados para pular spinners de carregamento ou outro conteúdo que não deveria manter posição.
 
-The optional `autoscrollToTopThreshold` can be used to make the content automatically scroll to the top after making the adjustment if the user was within the threshold of the top before the adjustment was made. This is also useful for chat-like applications where you want to see new messages scroll into place, but not if the user has scrolled up a ways and it would be disruptive to scroll a bunch.
+O `autoscrollToTopThreshold` opcional pode ser usado para fazer o conteúdo rolar automaticamente para o topo após fazer o ajuste se o usuário estava dentro do limite do topo antes do ajuste ser feito. Isso também é útil para aplicações tipo chat onde você quer ver novas mensagens rolarem para o lugar, mas não se o usuário rolou para cima um pouco e seria perturbador rolar muito.
 
-Caveat 1: Reordering elements in the scrollview with this enabled will probably cause jumpiness and jank. It can be fixed, but there are currently no plans to do so. For now, don't re-order the content of any ScrollViews or Lists that use this feature.
+Advertência 1: Reordenar elementos no scrollview com isso habilitado provavelmente causará instabilidade e problemas. Pode ser corrigido, mas atualmente não há planos para fazer isso. Por enquanto, não reordene o conteúdo de quaisquer ScrollViews ou Lists que usem este recurso.
 
-Caveat 2: This uses `contentOffset` and `frame.origin` in native code to compute visibility. Occlusion, transforms, and other complexity won't be taken into account as to whether content is "visible" or not.
+Advertência 2: Isso usa `contentOffset` e `frame.origin` em código nativo para computar visibilidade. Oclusão, transforms e outra complexidade não serão levadas em conta quanto ao conteúdo estar "visível" ou não.
 
 | Type                                                                     |
 | ------------------------------------------------------------------------ |
@@ -376,7 +377,7 @@ Caveat 2: This uses `contentOffset` and `frame.origin` in native code to compute
 
 ### `maximumZoomScale` <div className="label ios">iOS</div>
 
-The maximum allowed zoom scale.
+A escala de zoom máxima permitida.
 
 | Type   | Default |
 | ------ | ------- |
@@ -386,7 +387,7 @@ The maximum allowed zoom scale.
 
 ### `minimumZoomScale` <div className="label ios">iOS</div>
 
-The minimum allowed zoom scale.
+A escala de zoom mínima permitida.
 
 | Type   | Default |
 | ------ | ------- |
@@ -396,7 +397,7 @@ The minimum allowed zoom scale.
 
 ### `nestedScrollEnabled` <div className="label android">Android</div>
 
-Enables nested scrolling for Android API level 21+.
+Habilita nested scrolling para Android API level 21+.
 
 | Type | Default |
 | ---- | ------- |
@@ -406,11 +407,11 @@ Enables nested scrolling for Android API level 21+.
 
 ### `onContentSizeChange`
 
-Called when scrollable content view of the ScrollView changes.
+Chamado quando a view de conteúdo rolável do ScrollView muda.
 
-The handler function will receive two parameters: the content width and content height `(contentWidth, contentHeight)`.
+A função handler receberá dois parâmetros: a largura do conteúdo e a altura do conteúdo `(contentWidth, contentHeight)`.
 
-It's implemented using onLayout handler attached to the content container which this ScrollView renders.
+É implementado usando um handler onLayout anexado ao container de conteúdo que este ScrollView renderiza.
 
 | Type     |
 | -------- |
@@ -420,7 +421,7 @@ It's implemented using onLayout handler attached to the content container which 
 
 ### `onMomentumScrollBegin`
 
-Called when the momentum scroll starts (scroll which occurs as the ScrollView starts gliding).
+Chamado quando o scroll de momentum começa (scroll que ocorre quando o ScrollView começa a deslizar).
 
 | Type     |
 | -------- |
@@ -430,7 +431,7 @@ Called when the momentum scroll starts (scroll which occurs as the ScrollView st
 
 ### `onMomentumScrollEnd`
 
-Called when the momentum scroll ends (scroll which occurs as the ScrollView glides to a stop).
+Chamado quando o scroll de momentum termina (scroll que ocorre quando o ScrollView desliza até parar).
 
 | Type     |
 | -------- |
@@ -440,7 +441,7 @@ Called when the momentum scroll ends (scroll which occurs as the ScrollView glid
 
 ### `onScroll`
 
-Fires at most once per frame during scrolling. The event has the following shape (all values with unspecified type are numbers):
+Dispara no máximo uma vez por frame durante o scroll. O evento tem a seguinte forma (todos os valores com tipo não especificado são números):
 
 ```js
 {
@@ -466,7 +467,7 @@ Fires at most once per frame during scrolling. The event has the following shape
 
 ### `onScrollBeginDrag`
 
-Called when the user begins to drag the scroll view.
+Chamado quando o usuário começa a arrastar o scroll view.
 
 | Type     |
 | -------- |
@@ -476,7 +477,7 @@ Called when the user begins to drag the scroll view.
 
 ### `onScrollEndDrag`
 
-Called when the user stops dragging the scroll view and it either stops or begins to glide.
+Chamado quando o usuário para de arrastar o scroll view e ele para ou começa a deslizar.
 
 | Type     |
 | -------- |
@@ -486,7 +487,7 @@ Called when the user stops dragging the scroll view and it either stops or begin
 
 ### `onScrollToTop` <div className="label ios">iOS</div>
 
-Fires when the scroll view scrolls to top after the status bar has been tapped.
+Dispara quando o scroll view rola para o topo após a barra de status ter sido tocada.
 
 | Type     |
 | -------- |
@@ -496,13 +497,13 @@ Fires when the scroll view scrolls to top after the status bar has been tapped.
 
 ### `overScrollMode` <div className="label android">Android</div>
 
-Used to override default value of overScroll mode.
+Usado para sobrescrever o valor padrão do modo over-scroll.
 
-Possible values:
+Valores possíveis:
 
-- `'auto'` - Allow a user to over-scroll this view only if the content is large enough to meaningfully scroll.
-- `'always'` - Always allow a user to over-scroll this view.
-- `'never'` - Never allow a user to over-scroll this view.
+- `'auto'` - Permite um usuário fazer over-scroll nesta view apenas se o conteúdo for grande o suficiente para rolar significativamente.
+- `'always'` - Sempre permite um usuário fazer over-scroll nesta view.
+- `'never'` - Nunca permite um usuário fazer over-scroll nesta view.
 
 | Type                                  | Default  |
 | ------------------------------------- | -------- |
@@ -512,7 +513,7 @@ Possible values:
 
 ### `pagingEnabled`
 
-When true, the scroll view stops on multiples of the scroll view's size when scrolling. This can be used for horizontal pagination.
+Quando true, o scroll view para em múltiplos do tamanho do scroll view ao rolar. Isso pode ser usado para paginação horizontal.
 
 | Type | Default |
 | ---- | ------- |
@@ -522,7 +523,7 @@ When true, the scroll view stops on multiples of the scroll view's size when scr
 
 ### `persistentScrollbar` <div className="label android">Android</div>
 
-Causes the scrollbars not to turn transparent when they are not in use.
+Faz com que as scrollbars não fiquem transparentes quando não estão em uso.
 
 | Type | Default |
 | ---- | ------- |
@@ -532,7 +533,7 @@ Causes the scrollbars not to turn transparent when they are not in use.
 
 ### `pinchGestureEnabled` <div className="label ios">iOS</div>
 
-When true, ScrollView allows use of pinch gestures to zoom in and out.
+Quando true, ScrollView permite o uso de gestos de pinça para zoom in e out.
 
 | Type | Default |
 | ---- | ------- |
@@ -542,9 +543,9 @@ When true, ScrollView allows use of pinch gestures to zoom in and out.
 
 ### `refreshControl`
 
-A RefreshControl component, used to provide pull-to-refresh functionality for the ScrollView. Only works for vertical ScrollViews (`horizontal` prop must be `false`).
+Um componente RefreshControl, usado para fornecer funcionalidade de pull-to-refresh para o ScrollView. Funciona apenas para ScrollViews verticais (a prop `horizontal` deve ser `false`).
 
-See [RefreshControl](refreshcontrol).
+Veja [RefreshControl](refreshcontrol).
 
 | Type    |
 | ------- |
@@ -555,10 +556,10 @@ See [RefreshControl](refreshcontrol).
 ### `removeClippedSubviews`
 
 :::warning
-Using this property may lead to bugs (missing content) in some circumstances - use at your own risk.
+Usar esta propriedade pode levar a bugs (conteúdo ausente) em algumas circunstâncias - use por sua conta e risco.
 :::
 
-When `true`, offscreen child views are removed from their native backing superview when offscreen. This may improve scroll performance for large lists. On Android the default value is `true`.
+Quando `true`, views filhas fora da tela são removidas de sua superview nativa de suporte quando fora da tela. Isso pode melhorar o desempenho de scroll para listas grandes. No Android o valor padrão é `true`.
 
 | Type    |
 | ------- |
@@ -568,9 +569,9 @@ When `true`, offscreen child views are removed from their native backing supervi
 
 ### `scrollEnabled`
 
-When false, the view cannot be scrolled via touch interaction.
+Quando false, a view não pode ser rolada via interação de toque.
 
-Note that the view can always be scrolled by calling `scrollTo`.
+Note que a view sempre pode ser rolada chamando `scrollTo`.
 
 | Type | Default |
 | ---- | ------- |
@@ -580,7 +581,7 @@ Note that the view can always be scrolled by calling `scrollTo`.
 
 ### `scrollEventThrottle`
 
-Limits how often scroll events will be fired while scrolling, specified as a time interval in ms. This may be useful when expensive work is performed in response to scrolling. Values &le; `16` will disable throttling, regardless of the refresh rate of the device.
+Limita com que frequência eventos de scroll serão disparados enquanto rola, especificado como um intervalo de tempo em ms. Isso pode ser útil quando trabalho caro é realizado em resposta ao scroll. Valores &le; `16` desabilitarão o throttling, independentemente da taxa de atualização do dispositivo.
 
 | Type   | Default |
 | ------ | ------- |
@@ -590,7 +591,7 @@ Limits how often scroll events will be fired while scrolling, specified as a tim
 
 ### `scrollIndicatorInsets` <div className="label ios">iOS</div>
 
-The amount by which the scroll view indicators are inset from the edges of the scroll view. This should normally be set to the same value as the `contentInset`.
+A quantidade pela qual os indicadores do scroll view são inseridos das bordas do scroll view. Isso normalmente deve ser definido para o mesmo valor que o `contentInset`.
 
 | Type                                                                 | Default                                  |
 | -------------------------------------------------------------------- | ---------------------------------------- |
@@ -600,7 +601,7 @@ The amount by which the scroll view indicators are inset from the edges of the s
 
 ### `scrollPerfTag` <div className="label android">Android</div>
 
-Tag used to log scroll performance on this scroll view. Will force momentum events to be turned on (see sendMomentumEvents). This doesn't do anything out of the box and you need to implement a custom native FpsListener for it to be useful.
+Tag usada para registrar desempenho de scroll neste scroll view. Forçará eventos de momentum a serem ativados (veja sendMomentumEvents). Isso não faz nada pronto para uso e você precisa implementar um FpsListener nativo customizado para que seja útil.
 
 | Type   |
 | ------ |
@@ -610,7 +611,7 @@ Tag used to log scroll performance on this scroll view. Will force momentum even
 
 ### `scrollToOverflowEnabled` <div className="label ios">iOS</div>
 
-When `true`, the scroll view can be programmatically scrolled beyond its content size.
+Quando `true`, o scroll view pode ser rolado programaticamente além de seu tamanho de conteúdo.
 
 | Type | Default |
 | ---- | ------- |
@@ -620,7 +621,7 @@ When `true`, the scroll view can be programmatically scrolled beyond its content
 
 ### `scrollsToTop` <div className="label ios">iOS</div>
 
-When `true`, the scroll view scrolls to top when the status bar is tapped.
+Quando `true`, o scroll view rola para o topo quando a barra de status é tocada.
 
 | Type | Default |
 | ---- | ------- |
@@ -630,7 +631,7 @@ When `true`, the scroll view scrolls to top when the status bar is tapped.
 
 ### `showsHorizontalScrollIndicator`
 
-When `true`, shows a horizontal scroll indicator.
+Quando `true`, mostra um indicador de scroll horizontal.
 
 | Type | Default |
 | ---- | ------- |
@@ -640,7 +641,7 @@ When `true`, shows a horizontal scroll indicator.
 
 ### `showsVerticalScrollIndicator`
 
-When `true`, shows a vertical scroll indicator.
+Quando `true`, mostra um indicador de scroll vertical.
 
 | Type | Default |
 | ---- | ------- |
@@ -650,13 +651,13 @@ When `true`, shows a vertical scroll indicator.
 
 ### `snapToAlignment`
 
-When `snapToInterval` is set, `snapToAlignment` will define the relationship of the snapping to the scroll view.
+Quando `snapToInterval` está definido, `snapToAlignment` definirá a relação do snap com o scroll view.
 
-Possible values:
+Valores possíveis:
 
-- `'start'` will align the snap at the left (horizontal) or top (vertical).
-- `'center'` will align the snap in the center.
-- `'end'` will align the snap at the right (horizontal) or bottom (vertical).
+- `'start'` alinhará o snap à esquerda (horizontal) ou topo (vertical).
+- `'center'` alinhará o snap no centro.
+- `'end'` alinhará o snap à direita (horizontal) ou parte inferior (vertical).
 
 | Type                                 | Default   |
 | ------------------------------------ | --------- |
@@ -666,7 +667,7 @@ Possible values:
 
 ### `snapToEnd`
 
-Use in conjunction with `snapToOffsets`. By default, the end of the list counts as a snap offset. Set `snapToEnd` to false to disable this behavior and allow the list to scroll freely between its end and the last `snapToOffsets` offset.
+Use em conjunto com `snapToOffsets`. Por padrão, o fim da lista conta como um offset de snap. Defina `snapToEnd` como false para desabilitar este comportamento e permitir que a lista role livremente entre seu fim e o último offset de `snapToOffsets`.
 
 | Type | Default |
 | ---- | ------- |
@@ -676,7 +677,7 @@ Use in conjunction with `snapToOffsets`. By default, the end of the list counts 
 
 ### `snapToInterval`
 
-When set, causes the scroll view to stop at multiples of the value of `snapToInterval`. This can be used for paginating through children that have lengths smaller than the scroll view. Typically used in combination with `snapToAlignment` and `decelerationRate="fast"`. Overrides less configurable `pagingEnabled` prop.
+Quando definido, faz com que o scroll view pare em múltiplos do valor de `snapToInterval`. Isso pode ser usado para paginar através de filhos que têm comprimentos menores que o scroll view. Tipicamente usado em combinação com `snapToAlignment` e `decelerationRate="fast"`. Sobrescreve a prop menos configurável `pagingEnabled`.
 
 | Type   |
 | ------ |
@@ -686,7 +687,7 @@ When set, causes the scroll view to stop at multiples of the value of `snapToInt
 
 ### `snapToOffsets`
 
-When set, causes the scroll view to stop at the defined offsets. This can be used for paginating through variously sized children that have lengths smaller than the scroll view. Typically used in combination with `decelerationRate="fast"`. Overrides less configurable `pagingEnabled` and `snapToInterval` props.
+Quando definido, faz com que o scroll view pare nos offsets definidos. Isso pode ser usado para paginar através de filhos de tamanhos variados que têm comprimentos menores que o scroll view. Tipicamente usado em combinação com `decelerationRate="fast"`. Sobrescreve as props menos configuráveis `pagingEnabled` e `snapToInterval`.
 
 | Type            |
 | --------------- |
@@ -696,7 +697,7 @@ When set, causes the scroll view to stop at the defined offsets. This can be use
 
 ### `snapToStart`
 
-Use in conjunction with `snapToOffsets`. By default, the beginning of the list counts as a snap offset. Set `snapToStart` to `false` to disable this behavior and allow the list to scroll freely between its start and the first `snapToOffsets` offset.
+Use em conjunto com `snapToOffsets`. Por padrão, o início da lista conta como um offset de snap. Defina `snapToStart` como `false` para desabilitar este comportamento e permitir que a lista role livremente entre seu início e o primeiro offset de `snapToOffsets`.
 
 | Type | Default |
 | ---- | ------- |
@@ -706,7 +707,7 @@ Use in conjunction with `snapToOffsets`. By default, the beginning of the list c
 
 ### `stickyHeaderHiddenOnScroll`
 
-When set to `true`, sticky header will be hidden when scrolling down the list, and it will dock at the top of the list when scrolling up.
+Quando definido como `true`, header fixo será ocultado ao rolar para baixo a lista, e ele ancorado no topo da lista ao rolar para cima.
 
 | Type | Default |
 | ---- | ------- |
@@ -716,7 +717,7 @@ When set to `true`, sticky header will be hidden when scrolling down the list, a
 
 ### `stickyHeaderIndices`
 
-An array of child indices determining which children get docked to the top of the screen when scrolling. For example, passing `stickyHeaderIndices={[0]}` will cause the first child to be fixed to the top of the scroll view. You can also use like [x,y,z] to make multiple items sticky when they are at the top. This property is not supported in conjunction with `horizontal={true}`.
+Um array de índices filhos determinando quais filhos ficam ancorados no topo da tela ao rolar. Por exemplo, passar `stickyHeaderIndices={[0]}` fará com que o primeiro filho seja fixado no topo do scroll view. Você também pode usar como [x,y,z] para fazer múltiplos itens fixos quando eles estão no topo. Esta propriedade não é suportada em conjunto com `horizontal={true}`.
 
 | Type            |
 | --------------- |
@@ -726,7 +727,7 @@ An array of child indices determining which children get docked to the top of th
 
 ### `zoomScale` <div className="label ios">iOS</div>
 
-The current scale of the scroll view content.
+A escala atual do conteúdo do scroll view.
 
 | Type   | Default |
 | ------ | ------- |
@@ -742,7 +743,7 @@ The current scale of the scroll view content.
 flashScrollIndicators();
 ```
 
-Displays the scroll indicators momentarily.
+Exibe os indicadores de scroll momentaneamente.
 
 ---
 
@@ -756,14 +757,14 @@ scrollTo(
 );
 ```
 
-Scrolls to a given x, y offset, either immediately, with a smooth animation.
+Rola para um dado offset x, y, imediatamente ou com uma animação suave.
 
 **Example:**
 
 `scrollTo({x: 0, y: 0, animated: true})`
 
 :::note
-The weird function signature is due to the fact that, for historical reasons, the function also accepts separate arguments as an alternative to the options object. This is deprecated due to ambiguity (y before x), and SHOULD NOT BE USED.
+A assinatura estranha da função é devido ao fato de que, por razões históricas, a função também aceita argumentos separados como uma alternativa ao objeto de opções. Isso está deprecated devido à ambiguidade (y antes de x), e NÃO DEVE SER USADO.
 :::
 
 ---
@@ -774,6 +775,8 @@ The weird function signature is due to the fact that, for historical reasons, th
 scrollToEnd(options?: {animated?: boolean});
 ```
 
-If this is a vertical ScrollView scrolls to the bottom. If this is a horizontal ScrollView scrolls to the right.
+Se este é um ScrollView vertical rola para o fim. Se este é um ScrollView horizontal rola para a direita.
 
-Use `scrollToEnd({animated: true})` for smooth animated scrolling, `scrollToEnd({animated: false})` for immediate scrolling. If no options are passed, `animated` defaults to `true`.
+Use `scrollToEnd({animated: true})` para scroll animado suave, `scrollToEnd({animated: false})` para scroll imediato. Se nenhuma opção for passada, `animated` tem padrão `true`.
+
+---
