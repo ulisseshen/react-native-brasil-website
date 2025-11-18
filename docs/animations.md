@@ -135,7 +135,7 @@ Quando o componente é montado, a opacidade é definida como 0. Em seguida, uma 
 
 Isso é feito de forma otimizada, que é mais rápida do que chamar `setState` e re-renderizar. Como toda a configuração é declarativa, seremos capazes de implementar otimizações adicionais que serializam a configuração e executam a animação em uma thread de alta prioridade.
 
-### Configurando animações
+### Configurando animações {#configuring-animations}
 
 As animações são altamente configuráveis. Funções de easing personalizadas e predefinidas, atrasos, durações, fatores de decay, constantes de spring e muito mais podem ser ajustados dependendo do tipo de animação.
 
@@ -156,7 +156,7 @@ Animated.timing(this.state.xPosition, {
 
 Dê uma olhada na seção [Configuring animations](animated#configuring-animations) da referência da API `Animated` para saber mais sobre todos os parâmetros de configuração suportados pelas animações integradas.
 
-### Compondo animações
+### Compondo animações {#composing-animations}
 
 As animações podem ser combinadas e reproduzidas em sequência ou em paralelo. Animações sequenciais podem ser reproduzidas imediatamente após a animação anterior ter terminado, ou podem começar após um atraso especificado. A API `Animated` fornece vários métodos, como `sequence()` e `delay()`, cada um dos quais recebe um array de animações para executar e automaticamente chama `start()`/`stop()` conforme necessário.
 
@@ -190,7 +190,7 @@ Se uma animação for parada ou interrompida, todas as outras animações no gru
 
 Você pode encontrar uma lista completa de métodos de composição na seção [Composing animations](animated#composing-animations) da referência da API `Animated`.
 
-### Combinando valores animados
+### Combinando valores animados {#combining-animated-values}
 
 Você pode [combinar dois valores animados](animated#combining-animated-values) por meio de adição, multiplicação, divisão ou módulo para criar um novo valor animado.
 
@@ -206,7 +206,7 @@ Animated.spring(a, {
 }).start();
 ```
 
-### Interpolação
+### Interpolação {#interpolation}
 
 Cada propriedade pode ser executada através de uma interpolação primeiro. Uma interpolação mapeia intervalos de entrada para intervalos de saída, normalmente usando uma interpolação linear, mas também suporta funções de easing. Por padrão, ela extrapolará a curva além dos intervalos fornecidos, mas você também pode fazer com que ela limite o valor de saída.
 
@@ -270,7 +270,7 @@ value.interpolate({
 
 `interpolate()` também suporta funções de easing arbitrárias, muitas das quais já estão implementadas no módulo [`Easing`](easing). `interpolate()` também possui comportamento configurável para extrapolar o `outputRange`. Você pode definir a extrapolação definindo as opções `extrapolate`, `extrapolateLeft` ou `extrapolateRight`. O valor padrão é `extend`, mas você pode usar `clamp` para evitar que o valor de saída exceda o `outputRange`.
 
-### Rastreando valores dinâmicos
+### Rastreando valores dinâmicos {#tracking-dynamic-values}
 
 Valores animados também podem rastrear outros valores definindo o `toValue` de uma animação para outro valor animado em vez de um número simples. Por exemplo, uma animação "Chat Heads" como a usada pelo Messenger no Android poderia ser implementada com um `spring()` fixado em outro valor animado, ou com `timing()` e uma `duration` de 0 para rastreamento rígido. Eles também podem ser compostos com interpolações:
 
@@ -287,7 +287,7 @@ Animated.timing(opacity, {
 
 Os valores animados `leader` e `follower` seriam implementados usando `Animated.ValueXY()`. `ValueXY` é uma maneira prática de lidar com interações 2D, como panorâmica ou arrasto. É um wrapper básico que contém duas instâncias de `Animated.Value` e algumas funções auxiliares que chamam através delas, tornando `ValueXY` uma substituição direta para `Value` em muitos casos. Isso nos permite rastrear os valores x e y no exemplo acima.
 
-### Rastreando gestos
+### Rastreando gestos {#tracking-gestures}
 
 Gestos, como panorâmica ou rolagem, e outros eventos podem mapear diretamente para valores animados usando [`Animated.event`](animated#event). Isso é feito com uma sintaxe de mapa estruturado para que valores possam ser extraídos de objetos de evento complexos. O primeiro nível é um array para permitir mapeamento através de múltiplos argumentos, e esse array contém objetos aninhados.
 
@@ -307,7 +307,7 @@ Por exemplo, ao trabalhar com gestos de rolagem horizontal, você faria o seguin
 
 O exemplo a seguir implementa um carrossel de rolagem horizontal onde os indicadores de posição de rolagem são animados usando o `Animated.event` usado no `ScrollView`
 
-#### Exemplo de ScrollView com Animated Event
+#### Exemplo de ScrollView com Animated Event {#scrollview-example-with-animated-event}
 
 ```SnackPlayer name=Animated&supportedPlatforms=ios,android
 import React from 'react';
@@ -450,7 +450,7 @@ onPanResponderMove={Animated.event(
 ])}
 ```
 
-#### Exemplo de PanResponder com Animated Event
+#### Exemplo de PanResponder com Animated Event {#panresponder-example-with-animated-event}
 
 ```SnackPlayer name=Animated
 import React, {useRef} from 'react';
@@ -507,7 +507,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-### Respondendo ao valor atual da animação
+### Respondendo ao valor atual da animação {#responding-to-the-current-animation-value}
 
 Você pode notar que não há uma maneira clara de ler o valor atual enquanto está animando. Isso ocorre porque o valor pode ser conhecido apenas no runtime nativo devido a otimizações. Se você precisar executar JavaScript em resposta ao valor atual, existem duas abordagens:
 
@@ -516,7 +516,7 @@ Você pode notar que não há uma maneira clara de ler o valor atual enquanto es
 
 `Animated` foi projetado para ser totalmente serializável para que as animações possam ser executadas de maneira de alto desempenho, independentemente do loop de eventos normal do JavaScript. Isso influencia a API, então tenha isso em mente quando parecer um pouco mais complicado fazer algo em comparação com um sistema totalmente síncrono. Confira `Animated.Value.addListener` como uma maneira de contornar algumas dessas limitações, mas use-o com moderação, pois pode ter implicações de desempenho no futuro.
 
-### Usando o native driver
+### Usando o native driver {#using-the-native-driver}
 
 A API `Animated` foi projetada para ser serializável. Ao usar o [native driver](/blog/2017/02/14/using-native-driver-for-animated), enviamos tudo sobre a animação para o nativo antes de iniciar a animação, permitindo que o código nativo execute a animação na thread da UI sem ter que passar pela bridge a cada frame. Uma vez que a animação tenha começado, a thread JS pode ser bloqueada sem afetar a animação.
 
@@ -552,13 +552,13 @@ O native driver também funciona com `Animated.event`. Isso é especialmente út
 
 Você pode ver o native driver em ação executando o [RNTester app](https://github.com/facebook/react-native/blob/main/packages/rn-tester/), depois carregando o Native Animated Example. Você também pode dar uma olhada no [código-fonte](https://github.com/facebook/react-native/blob/master/packages/rn-tester/js/examples/NativeAnimation/NativeAnimationsExample.js) para aprender como esses exemplos foram produzidos.
 
-#### Ressalvas
+#### Ressalvas {#caveats}
 
 Nem tudo que você pode fazer com `Animated` é atualmente suportado pelo native driver. A principal limitação é que você só pode animar propriedades que não sejam de layout: coisas como `transform` e `opacity` funcionarão, mas propriedades de Flexbox e posição não funcionarão. Ao usar `Animated.event`, ele funcionará apenas com eventos diretos e não com eventos de propagação. Isso significa que não funciona com `PanResponder`, mas funciona com coisas como `ScrollView#onScroll`.
 
 Quando uma animação está sendo executada, ela pode impedir que componentes `VirtualizedList` renderizem mais linhas. Se você precisar executar uma animação longa ou em loop enquanto o usuário está rolando por uma lista, você pode usar `isInteraction: false` na configuração da sua animação para evitar esse problema.
 
-### Tenha em mente
+### Tenha em mente {#bear-in-mind}
 
 Ao usar estilos de transform como `rotateY`, `rotateX` e outros, certifique-se de que o estilo de transform `perspective` esteja no lugar. Neste momento, algumas animações podem não renderizar no Android sem ele. Exemplo abaixo.
 
@@ -574,7 +574,7 @@ Ao usar estilos de transform como `rotateY`, `rotateX` e outros, certifique-se d
 />
 ```
 
-### Exemplos adicionais
+### Exemplos adicionais {#additional-examples}
 
 O app RNTester tem vários exemplos de `Animated` em uso:
 
