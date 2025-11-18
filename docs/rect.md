@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: rect
-title: Rect Object Type
+title: Tipo de Objeto Rect
 ---
 
-`Rect` accepts numeric pixel values to describe how far to extend a rectangular area. These values are added to the original area's size to expand it.
+`Rect` aceita valores numéricos em pixels para descrever o quanto deve-se estender uma área retangular. Esses valores são adicionados ao tamanho da área original para expandi-la.
 
-## Example
+## Exemplo
 
 ```js
 {
@@ -16,33 +17,33 @@ title: Rect Object Type
 }
 ```
 
-## Keys and values
+## Chaves e valores
 
 ### `bottom`
 
-| Type                        | Required |
-| --------------------------- | -------- |
-| number, `null`, `undefined` | No       |
+| Tipo                        | Obrigatório |
+| --------------------------- | ----------- |
+| number, `null`, `undefined` | Não         |
 
 ### `left`
 
-| Type                        | Required |
-| --------------------------- | -------- |
-| number, `null`, `undefined` | No       |
+| Tipo                        | Obrigatório |
+| --------------------------- | ----------- |
+| number, `null`, `undefined` | Não         |
 
 ### `right`
 
-| Type                        | Required |
-| --------------------------- | -------- |
-| number, `null`, `undefined` | No       |
+| Tipo                        | Obrigatório |
+| --------------------------- | ----------- |
+| number, `null`, `undefined` | Não         |
 
 ### `top`
 
-| Type                        | Required |
-| --------------------------- | -------- |
-| number, `null`, `undefined` | No       |
+| Tipo                        | Obrigatório |
+| --------------------------- | ----------- |
+| number, `null`, `undefined` | Não         |
 
-## Used by
+## Usado por
 
 - [`Image`](image)
 - [`Pressable`](pressable)

@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: layoutevent
-title: LayoutEvent Object Type
+title: Tipo de Objeto LayoutEvent
 ---
 
-`LayoutEvent` object is returned in the callback as a result of component layout change, for example `onLayout` in [View](view) component.
+O objeto `LayoutEvent` é retornado no callback como resultado de uma mudança de layout do componente, por exemplo `onLayout` no componente [View](view).
 
-## Example
+## Exemplo
 
 ```js
 {
@@ -19,49 +20,49 @@ title: LayoutEvent Object Type
 }
 ```
 
-## Keys and values
+## Chaves e valores
 
 ### `height`
 
-Height of the component after the layout changes.
+Altura do componente após as mudanças de layout.
 
-| Type   | Optional |
+| Tipo   | Opcional |
 | ------ | -------- |
-| number | No       |
+| number | Não      |
 
 ### `width`
 
-Width of the component after the layout changes.
+Largura do componente após as mudanças de layout.
 
-| Type   | Optional |
+| Tipo   | Opcional |
 | ------ | -------- |
-| number | No       |
+| number | Não      |
 
 ### `x`
 
-Component X coordinate inside the parent component.
+Coordenada X do componente dentro do componente pai.
 
-| Type   | Optional |
+| Tipo   | Opcional |
 | ------ | -------- |
-| number | No       |
+| number | Não      |
 
 ### `y`
 
-Component Y coordinate inside the parent component.
+Coordenada Y do componente dentro do componente pai.
 
-| Type   | Optional |
+| Tipo   | Opcional |
 | ------ | -------- |
-| number | No       |
+| number | Não      |
 
 ### `target`
 
-The node id of the element receiving the LayoutEvent.
+O node id do elemento que recebe o LayoutEvent.
 
-| Type                        | Optional |
+| Tipo                        | Opcional |
 | --------------------------- | -------- |
-| number, `null`, `undefined` | No       |
+| number, `null`, `undefined` | Não      |
 
-## Used by
+## Usado por
 
 - [`Image`](image)
 - [`Pressable`](pressable)

@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: targetevent
-title: TargetEvent Object Type
+title: Tipo de Objeto TargetEvent
 ---
 
-`TargetEvent` object is returned in the callback as a result of focus change, for example `onFocus` or `onBlur` in the [TextInput](textinput) component.
+O objeto `TargetEvent` é retornado no callback como resultado de uma mudança de foco, por exemplo `onFocus` ou `onBlur` no componente [TextInput](textinput).
 
-## Example
+## Exemplo
 
 ```
 {
@@ -13,17 +14,17 @@ title: TargetEvent Object Type
 }
 ```
 
-## Keys and values
+## Chaves e valores
 
 ### `target`
 
-The node id of the element receiving the TargetEvent.
+O node id do elemento que recebe o TargetEvent.
 
-| Type                        | Optional |
+| Tipo                        | Opcional |
 | --------------------------- | -------- |
-| number, `null`, `undefined` | No       |
+| number, `null`, `undefined` | Não       |
 
-## Used by
+## Usado por
 
 - [`TextInput`](textinput)
 - [`TouchableWithoutFeedback`](touchablewithoutfeedback)
