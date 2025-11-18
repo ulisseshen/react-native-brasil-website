@@ -1,19 +1,20 @@
 ---
+ia-translated: true
 id: animated
 title: Animated
 ---
 
-The `Animated` library is designed to make animations fluid, powerful, and painless to build and maintain. `Animated` focuses on declarative relationships between inputs and outputs, configurable transforms in between, and `start`/`stop` methods to control time-based animation execution.
+A biblioteca `Animated` foi projetada para tornar as animações fluidas, poderosas e fáceis de criar e manter. `Animated` se concentra em relacionamentos declarativos entre entradas e saídas, transformações configuráveis entre elas, e métodos `start`/`stop` para controlar a execução de animações baseadas em tempo.
 
-The core workflow for creating an animation is to create an `Animated.Value`, hook it up to one or more style attributes of an animated component, and then drive updates via animations using `Animated.timing()`.
+O fluxo de trabalho principal para criar uma animação é criar um `Animated.Value`, conectá-lo a um ou mais atributos de estilo de um componente animado e, em seguida, gerar atualizações via animações usando `Animated.timing()`.
 
 :::note
-Don't modify the animated value directly. You can use the [`useRef` Hook](https://react.dev/reference/react/useRef) to return a mutable ref object. This ref object's `current` property is initialized as the given argument and persists throughout the component lifecycle.
+Não modifique o valor animado diretamente. Você pode usar o [Hook `useRef`](https://react.dev/reference/react/useRef) para retornar um objeto ref mutável. A propriedade `current` deste objeto ref é inicializada como o argumento fornecido e persiste durante todo o ciclo de vida do componente.
 :::
 
 ## Example
 
-The following example contains a `View` which will fade in and fade out based on the animated value `fadeAnim`
+O exemplo a seguir contém um `View` que aparecerá gradualmente (fade in) e desaparecerá gradualmente (fade out) com base no valor animado `fadeAnim`
 
 ```SnackPlayer name=Animated%20Example
 import React, {useRef} from 'react';
@@ -87,30 +88,30 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-Refer to the [Animations](animations#animated-api) guide to see additional examples of `Animated` in action.
+Consulte o guia [Animations](animations#animated-api) para ver exemplos adicionais de `Animated` em ação.
 
 ## Overview
 
-There are two value types you can use with `Animated`:
+Existem dois tipos de valores que você pode usar com `Animated`:
 
-- [`Animated.Value()`](animated#value) for single values
-- [`Animated.ValueXY()`](animated#valuexy) for vectors
+- [`Animated.Value()`](animated#value) para valores únicos
+- [`Animated.ValueXY()`](animated#valuexy) para vetores
 
-`Animated.Value` can bind to style properties or other props, and can be interpolated as well. A single `Animated.Value` can drive any number of properties.
+`Animated.Value` pode ser vinculado a propriedades de estilo ou outras props, e também pode ser interpolado. Um único `Animated.Value` pode controlar qualquer número de propriedades.
 
 ### Configuring animations
 
-`Animated` provides three types of animation types. Each animation type provides a particular animation curve that controls how your values animate from their initial value to the final value:
+`Animated` fornece três tipos de animação. Cada tipo de animação fornece uma curva de animação específica que controla como seus valores são animados do valor inicial até o valor final:
 
-- [`Animated.decay()`](animated#decay) starts with an initial velocity and gradually slows to a stop.
-- [`Animated.spring()`](animated#spring) provides a basic spring physics model.
-- [`Animated.timing()`](animated#timing) animates a value over time using [easing functions](easing).
+- [`Animated.decay()`](animated#decay) inicia com uma velocidade inicial e gradualmente desacelera até parar.
+- [`Animated.spring()`](animated#spring) fornece um modelo básico de física de mola.
+- [`Animated.timing()`](animated#timing) anima um valor ao longo do tempo usando [easing functions](easing).
 
-In most cases, you will be using `timing()`. By default, it uses a symmetric easeInOut curve that conveys the gradual acceleration of an object to full speed and concludes by gradually decelerating to a stop.
+Na maioria dos casos, você usará `timing()`. Por padrão, ele usa uma curva easeInOut simétrica que transmite a aceleração gradual de um objeto até a velocidade máxima e conclui desacelerando gradualmente até parar.
 
 ### Working with animations
 
-Animations are started by calling `start()` on your animation. `start()` takes a completion callback that will be called when the animation is done. If the animation finished running normally, the completion callback will be invoked with `{finished: true}`. If the animation is done because `stop()` was called on it before it could finish (e.g. because it was interrupted by a gesture or another animation), then it will receive `{finished: false}`.
+As animações são iniciadas chamando `start()` na sua animação. `start()` recebe um callback de conclusão que será chamado quando a animação terminar. Se a animação terminar normalmente, o callback de conclusão será invocado com `{finished: true}`. Se a animação terminar porque `stop()` foi chamado nela antes que pudesse terminar (por exemplo, porque foi interrompida por um gesto ou outra animação), então ela receberá `{finished: false}`.
 
 ```tsx
 Animated.timing({}).start(({finished}) => {
@@ -120,17 +121,17 @@ Animated.timing({}).start(({finished}) => {
 
 ### Using the native driver
 
-By using the native driver, we send everything about the animation to native before starting the animation, allowing native code to perform the animation on the UI thread without having to go through the bridge on every frame. Once the animation has started, the JS thread can be blocked without affecting the animation.
+Ao usar o native driver, enviamos tudo sobre a animação para o código nativo antes de iniciar a animação, permitindo que o código nativo execute a animação na thread de UI sem ter que passar pela bridge a cada frame. Uma vez que a animação tenha começado, a thread JS pode ser bloqueada sem afetar a animação.
 
-You can use the native driver by specifying `useNativeDriver: true` in your animation configuration. See the [Animations](animations#using-the-native-driver) guide to learn more.
+Você pode usar o native driver especificando `useNativeDriver: true` na sua configuração de animação. Consulte o guia [Animations](animations#using-the-native-driver) para saber mais.
 
 ### Animatable components
 
-Only animatable components can be animated. These unique components do the magic of binding the animated values to the properties, and do targeted native updates to avoid the cost of the React render and reconciliation process on every frame. They also handle cleanup on unmount so they are safe by default.
+Apenas componentes animáveis podem ser animados. Esses componentes únicos fazem a mágica de vincular os valores animados às propriedades e fazem atualizações nativas direcionadas para evitar o custo do processo de renderização e reconciliação do React a cada frame. Eles também lidam com a limpeza na desmontagem, então são seguros por padrão.
 
-- [`createAnimatedComponent()`](animated#createanimatedcomponent) can be used to make a component animatable.
+- [`createAnimatedComponent()`](animated#createanimatedcomponent) pode ser usado para tornar um componente animável.
 
-`Animated` exports the following animatable components using the above wrapper:
+`Animated` exporta os seguintes componentes animáveis usando o wrapper acima:
 
 - `Animated.Image`
 - `Animated.ScrollView`
@@ -141,20 +142,20 @@ Only animatable components can be animated. These unique components do the magic
 
 ### Composing animations
 
-Animations can also be combined in complex ways using composition functions:
+As animações também podem ser combinadas de formas complexas usando funções de composição:
 
-- [`Animated.delay()`](animated#delay) starts an animation after a given delay.
-- [`Animated.parallel()`](animated#parallel) starts a number of animations at the same time.
-- [`Animated.sequence()`](animated#sequence) starts the animations in order, waiting for each to complete before starting the next.
-- [`Animated.stagger()`](animated#stagger) starts animations in order and in parallel, but with successive delays.
+- [`Animated.delay()`](animated#delay) inicia uma animação após um determinado atraso.
+- [`Animated.parallel()`](animated#parallel) inicia várias animações ao mesmo tempo.
+- [`Animated.sequence()`](animated#sequence) inicia as animações em ordem, esperando cada uma completar antes de iniciar a próxima.
+- [`Animated.stagger()`](animated#stagger) inicia animações em ordem e em paralelo, mas com atrasos sucessivos.
 
-Animations can also be chained together by setting the `toValue` of one animation to be another `Animated.Value`. See [Tracking dynamic values](animations#tracking-dynamic-values) in the Animations guide.
+As animações também podem ser encadeadas definindo o `toValue` de uma animação para ser outro `Animated.Value`. Consulte [Tracking dynamic values](animations#tracking-dynamic-values) no guia de Animations.
 
-By default, if one animation is stopped or interrupted, then all other animations in the group are also stopped.
+Por padrão, se uma animação for interrompida ou parada, todas as outras animações no grupo também serão interrompidas.
 
 ### Combining animated values
 
-You can combine two animated values via addition, subtraction, multiplication, division, or modulo to make a new animated value:
+Você pode combinar dois valores animados via adição, subtração, multiplicação, divisão ou módulo para criar um novo valor animado:
 
 - [`Animated.add()`](animated#add)
 - [`Animated.subtract()`](animated#subtract)
@@ -164,19 +165,19 @@ You can combine two animated values via addition, subtraction, multiplication, d
 
 ### Interpolation
 
-The `interpolate()` function allows input ranges to map to different output ranges. By default, it will extrapolate the curve beyond the ranges given, but you can also have it clamp the output value. It uses linear interpolation by default but also supports easing functions.
+A função `interpolate()` permite que intervalos de entrada sejam mapeados para diferentes intervalos de saída. Por padrão, ela extrapolará a curva além dos intervalos fornecidos, mas você também pode fazer com que ela limite o valor de saída. Ela usa interpolação linear por padrão, mas também suporta easing functions.
 
 - [`interpolate()`](animatedvalue#interpolate)
 
-Read more about interpolation in the [Animation](animations#interpolation) guide.
+Leia mais sobre interpolação no guia [Animation](animations#interpolation).
 
 ### Handling gestures and other events
 
-Gestures, like panning or scrolling, and other events can map directly to animated values using `Animated.event()`. This is done with a structured map syntax so that values can be extracted from complex event objects. The first level is an array to allow mapping across multiple args, and that array contains nested objects.
+Gestos, como pan ou scroll, e outros eventos podem mapear diretamente para valores animados usando `Animated.event()`. Isso é feito com uma sintaxe de mapa estruturado para que valores possam ser extraídos de objetos de evento complexos. O primeiro nível é um array para permitir mapeamento em múltiplos argumentos, e esse array contém objetos aninhados.
 
 - [`Animated.event()`](animated#event)
 
-For example, when working with horizontal scrolling gestures, you would do the following in order to map `event.nativeEvent.contentOffset.x` to `scrollX` (an `Animated.Value`):
+Por exemplo, ao trabalhar com gestos de scroll horizontal, você faria o seguinte para mapear `event.nativeEvent.contentOffset.x` para `scrollX` (um `Animated.Value`):
 
 ```tsx
  onScroll={Animated.event(
@@ -196,7 +197,7 @@ For example, when working with horizontal scrolling gestures, you would do the f
 
 ## Methods
 
-When the given value is a ValueXY instead of a Value, each config option may be a vector of the form `{x: ..., y: ...}` instead of a scalar.
+Quando o valor fornecido é um ValueXY em vez de um Value, cada opção de configuração pode ser um vetor da forma `{x: ..., y: ...}` em vez de um escalar.
 
 ### `decay()`
 
@@ -204,14 +205,14 @@ When the given value is a ValueXY instead of a Value, each config option may be 
 static decay(value, config): CompositeAnimation;
 ```
 
-Animates a value from an initial velocity to zero based on a decay coefficient.
+Anima um valor de uma velocidade inicial para zero com base em um coeficiente de decaimento.
 
-Config is an object that may have the following options:
+Config é um objeto que pode ter as seguintes opções:
 
-- `velocity`: Initial velocity. Required.
-- `deceleration`: Rate of decay. Default 0.997.
-- `isInteraction`: Whether or not this animation creates an "interaction handle" on the `InteractionManager`. Default true.
-- `useNativeDriver`: Uses the native driver when true. Required.
+- `velocity`: Velocidade inicial. Obrigatório.
+- `deceleration`: Taxa de decaimento. Padrão 0.997.
+- `isInteraction`: Se esta animação cria ou não um "interaction handle" no `InteractionManager`. Padrão true.
+- `useNativeDriver`: Usa o native driver quando true. Obrigatório.
 
 ---
 
@@ -221,15 +222,15 @@ Config is an object that may have the following options:
 static timing(value, config): CompositeAnimation;
 ```
 
-Animates a value along a timed easing curve. The [`Easing`](easing) module has tons of predefined curves, or you can use your own function.
+Anima um valor ao longo de uma curva de easing temporizada. O módulo [`Easing`](easing) tem toneladas de curvas predefinidas, ou você pode usar sua própria função.
 
-Config is an object that may have the following options:
+Config é um objeto que pode ter as seguintes opções:
 
-- `duration`: Length of animation (milliseconds). Default 500.
-- `easing`: Easing function to define curve. Default is `Easing.inOut(Easing.ease)`.
-- `delay`: Start the animation after delay (milliseconds). Default 0.
-- `isInteraction`: Whether or not this animation creates an "interaction handle" on the `InteractionManager`. Default true.
-- `useNativeDriver`: Uses the native driver when true. Required.
+- `duration`: Duração da animação (milissegundos). Padrão 500.
+- `easing`: Função de easing para definir a curva. Padrão é `Easing.inOut(Easing.ease)`.
+- `delay`: Inicia a animação após um atraso (milissegundos). Padrão 0.
+- `isInteraction`: Se esta animação cria ou não um "interaction handle" no `InteractionManager`. Padrão true.
+- `useNativeDriver`: Usa o native driver quando true. Obrigatório.
 
 ---
 
@@ -239,34 +240,34 @@ Config is an object that may have the following options:
 static spring(value, config): CompositeAnimation;
 ```
 
-Animates a value according to an analytical spring model based on [damped harmonic oscillation](https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator). Tracks velocity state to create fluid motions as the `toValue` updates, and can be chained together.
+Anima um valor de acordo com um modelo de mola analítico baseado em [oscilação harmônica amortecida](https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator). Rastreia o estado de velocidade para criar movimentos fluidos conforme o `toValue` é atualizado, e pode ser encadeado.
 
-Config is an object that may have the following options.
+Config é um objeto que pode ter as seguintes opções.
 
-Note that you can only define one of bounciness/speed, tension/friction, or stiffness/damping/mass, but not more than one:
+Observe que você só pode definir um de bounciness/speed, tension/friction, ou stiffness/damping/mass, mas não mais de um:
 
-The friction/tension or bounciness/speed options match the spring model in [`Facebook Pop`](https://github.com/facebook/pop), [Rebound](https://github.com/facebookarchive/rebound), and [Origami](https://origami.design/).
+As opções friction/tension ou bounciness/speed correspondem ao modelo de mola em [`Facebook Pop`](https://github.com/facebook/pop), [Rebound](https://github.com/facebookarchive/rebound), e [Origami](https://origami.design/).
 
-- `friction`: Controls "bounciness"/overshoot. Default 7.
-- `tension`: Controls speed. Default 40.
-- `speed`: Controls speed of the animation. Default 12.
-- `bounciness`: Controls bounciness. Default 8.
+- `friction`: Controla o "quique"/overshoot. Padrão 7.
+- `tension`: Controla a velocidade. Padrão 40.
+- `speed`: Controla a velocidade da animação. Padrão 12.
+- `bounciness`: Controla o quique. Padrão 8.
 
-Specifying stiffness/damping/mass as parameters makes `Animated.spring` use an analytical spring model based on the motion equations of a [damped harmonic oscillator](https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator). This behavior is slightly more precise and faithful to the physics behind spring dynamics, and closely mimics the implementation in iOS's CASpringAnimation.
+Especificar stiffness/damping/mass como parâmetros faz com que `Animated.spring` use um modelo de mola analítico baseado nas equações de movimento de um [oscilador harmônico amortecido](https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator). Este comportamento é um pouco mais preciso e fiel à física por trás da dinâmica de mola, e imita de perto a implementação no CASpringAnimation do iOS.
 
-- `stiffness`: The spring stiffness coefficient. Default 100.
-- `damping`: Defines how the spring’s motion should be damped due to the forces of friction. Default 10.
-- `mass`: The mass of the object attached to the end of the spring. Default 1.
+- `stiffness`: O coeficiente de rigidez da mola. Padrão 100.
+- `damping`: Define como o movimento da mola deve ser amortecido devido às forças de fricção. Padrão 10.
+- `mass`: A massa do objeto anexado à extremidade da mola. Padrão 1.
 
-Other configuration options are as follows:
+Outras opções de configuração são as seguintes:
 
-- `velocity`: The initial velocity of the object attached to the spring. Default 0 (object is at rest).
-- `overshootClamping`: Boolean indicating whether the spring should be clamped and not bounce. Default false.
-- `restDisplacementThreshold`: The threshold of displacement from rest below which the spring should be considered at rest. Default 0.001.
-- `restSpeedThreshold`: The speed at which the spring should be considered at rest in pixels per second. Default 0.001.
-- `delay`: Start the animation after delay (milliseconds). Default 0.
-- `isInteraction`: Whether or not this animation creates an "interaction handle" on the `InteractionManager`. Default true.
-- `useNativeDriver`: Uses the native driver when true. Required.
+- `velocity`: A velocidade inicial do objeto anexado à mola. Padrão 0 (objeto está em repouso).
+- `overshootClamping`: Booleano indicando se a mola deve ser limitada e não quicar. Padrão false.
+- `restDisplacementThreshold`: O limite de deslocamento do repouso abaixo do qual a mola deve ser considerada em repouso. Padrão 0.001.
+- `restSpeedThreshold`: A velocidade na qual a mola deve ser considerada em repouso em pixels por segundo. Padrão 0.001.
+- `delay`: Inicia a animação após um atraso (milissegundos). Padrão 0.
+- `isInteraction`: Se esta animação cria ou não um "interaction handle" no `InteractionManager`. Padrão true.
+- `useNativeDriver`: Usa o native driver quando true. Obrigatório.
 
 ---
 
@@ -276,7 +277,7 @@ Other configuration options are as follows:
 static add(a: Animated, b: Animated): AnimatedAddition;
 ```
 
-Creates a new Animated value composed from two Animated values added together.
+Cria um novo valor Animated composto de dois valores Animated somados.
 
 ---
 
@@ -286,7 +287,7 @@ Creates a new Animated value composed from two Animated values added together.
 static subtract(a: Animated, b: Animated): AnimatedSubtraction;
 ```
 
-Creates a new Animated value composed by subtracting the second Animated value from the first Animated value.
+Cria um novo valor Animated composto subtraindo o segundo valor Animated do primeiro valor Animated.
 
 ---
 
@@ -296,7 +297,7 @@ Creates a new Animated value composed by subtracting the second Animated value f
 static divide(a: Animated, b: Animated): AnimatedDivision;
 ```
 
-Creates a new Animated value composed by dividing the first Animated value by the second Animated value.
+Cria um novo valor Animated composto dividindo o primeiro valor Animated pelo segundo valor Animated.
 
 ---
 
@@ -306,7 +307,7 @@ Creates a new Animated value composed by dividing the first Animated value by th
 static multiply(a: Animated, b: Animated): AnimatedMultiplication;
 ```
 
-Creates a new Animated value composed from two Animated values multiplied together.
+Cria um novo valor Animated composto de dois valores Animated multiplicados juntos.
 
 ---
 
@@ -316,7 +317,7 @@ Creates a new Animated value composed from two Animated values multiplied togeth
 static modulo(a: Animated, modulus: number): AnimatedModulo;
 ```
 
-Creates a new Animated value that is the (non-negative) modulo of the provided Animated value
+Cria um novo valor Animated que é o módulo (não-negativo) do valor Animated fornecido
 
 ---
 
@@ -326,9 +327,9 @@ Creates a new Animated value that is the (non-negative) modulo of the provided A
 static diffClamp(a: Animated, min: number, max: number): AnimatedDiffClamp;
 ```
 
-Create a new Animated value that is limited between 2 values. It uses the difference between the last value so even if the value is far from the bounds it will start changing when the value starts getting closer again. (`value = clamp(value + diff, min, max)`).
+Cria um novo valor Animated que é limitado entre 2 valores. Ele usa a diferença entre o último valor, então mesmo que o valor esteja longe dos limites, ele começará a mudar quando o valor começar a se aproximar novamente. (`value = clamp(value + diff, min, max)`).
 
-This is useful with scroll events, for example, to show the navbar when scrolling up and to hide it when scrolling down.
+Isso é útil com eventos de scroll, por exemplo, para mostrar a barra de navegação ao rolar para cima e ocultá-la ao rolar para baixo.
 
 ---
 
@@ -338,7 +339,7 @@ This is useful with scroll events, for example, to show the navbar when scrollin
 static delay(time: number): CompositeAnimation;
 ```
 
-Starts an animation after the given delay.
+Inicia uma animação após o atraso fornecido.
 
 ---
 
@@ -348,7 +349,7 @@ Starts an animation after the given delay.
 static sequence(animations: CompositeAnimation[]): CompositeAnimation;
 ```
 
-Starts an array of animations in order, waiting for each to complete before starting the next. If the current running animation is stopped, no following animations will be started.
+Inicia um array de animações em ordem, esperando cada uma completar antes de iniciar a próxima. Se a animação em execução atual for interrompida, nenhuma animação seguinte será iniciada.
 
 ---
 
@@ -361,7 +362,7 @@ static parallel(
 ): CompositeAnimation;
 ```
 
-Starts an array of animations all at the same time. By default, if one of the animations is stopped, they will all be stopped. You can override this with the `stopTogether` flag.
+Inicia um array de animações todas ao mesmo tempo. Por padrão, se uma das animações for interrompida, todas elas serão interrompidas. Você pode substituir isso com a flag `stopTogether`.
 
 ---
 
@@ -374,7 +375,7 @@ static stagger(
 ): CompositeAnimation;
 ```
 
-Array of animations may run in parallel (overlap), but are started in sequence with successive delays. Nice for doing trailing effects.
+Array de animações pode rodar em paralelo (sobrepostas), mas são iniciadas em sequência com atrasos sucessivos. Bom para fazer efeitos em cascata.
 
 ---
 
@@ -387,11 +388,11 @@ static loop(
 ): CompositeAnimation;
 ```
 
-Loops a given animation continuously, so that each time it reaches the end, it resets and begins again from the start. Will loop without blocking the JS thread if the child animation is set to `useNativeDriver: true`. In addition, loops can prevent `VirtualizedList`-based components from rendering more rows while the animation is running. You can pass `isInteraction: false` in the child animation config to fix this.
+Executa uma determinada animação continuamente em loop, de modo que cada vez que ela atinge o final, ela reinicia e começa novamente do início. Executará em loop sem bloquear a thread JS se a animação filha estiver configurada para `useNativeDriver: true`. Além disso, loops podem impedir que componentes baseados em `VirtualizedList` renderizem mais linhas enquanto a animação está em execução. Você pode passar `isInteraction: false` na configuração da animação filha para corrigir isso.
 
-Config is an object that may have the following options:
+Config é um objeto que pode ter as seguintes opções:
 
-- `iterations`: Number of times the animation should loop. Default `-1` (infinite).
+- `iterations`: Número de vezes que a animação deve fazer loop. Padrão `-1` (infinito).
 
 ---
 
@@ -404,7 +405,7 @@ static event(
 ): (...args: any[]) => void;
 ```
 
-Takes an array of mappings and extracts values from each arg accordingly, then calls `setValue` on the mapped outputs. e.g.
+Recebe um array de mapeamentos e extrai valores de cada argumento de acordo, então chama `setValue` nas saídas mapeadas. Por exemplo:
 
 ```tsx
 onScroll={Animated.event(
@@ -426,10 +427,10 @@ onPanResponderMove: Animated.event(
 );
 ```
 
-Config is an object that may have the following options:
+Config é um objeto que pode ter as seguintes opções:
 
-- `listener`: Optional async listener.
-- `useNativeDriver`: Uses the native driver when true. Required.
+- `listener`: Listener assíncrono opcional.
+- `useNativeDriver`: Usa o native driver quando true. Obrigatório.
 
 ---
 
@@ -439,7 +440,7 @@ Config is an object that may have the following options:
 static forkEvent(event: AnimatedEvent, listener: Function): AnimatedEvent;
 ```
 
-Advanced imperative API for snooping on animated events that are passed in through props. It permits to add a new javascript listener to an existing `AnimatedEvent`. If `animatedEvent` is a javascript listener, it will merge the 2 listeners into a single one, and if `animatedEvent` is null/undefined, it will assign the javascript listener directly. Use values directly where possible.
+API imperativa avançada para espionar eventos animados que são passados através de props. Permite adicionar um novo listener javascript a um `AnimatedEvent` existente. Se `animatedEvent` for um listener javascript, ele mesclará os 2 listeners em um único, e se `animatedEvent` for null/undefined, ele atribuirá o listener javascript diretamente. Use valores diretamente sempre que possível.
 
 ---
 
@@ -457,15 +458,15 @@ static unforkEvent(event: AnimatedEvent, listener: Function);
 static start(callback?: (result: {finished: boolean}) => void);
 ```
 
-Animations are started by calling start() on your animation. start() takes a completion callback that will be called when the animation is done or when the animation is done because stop() was called on it before it could finish.
+As animações são iniciadas chamando start() na sua animação. start() recebe um callback de conclusão que será chamado quando a animação terminar ou quando a animação terminar porque stop() foi chamado nela antes que pudesse terminar.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name     | Type                                    | Required | Description                                                                                                                                                     |
+| Nome     | Tipo                                    | Obrigatório | Descrição                                                                                                                                                     |
 | -------- | --------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| callback | `(result: {finished: boolean}) => void` | No       | Function that will be called after the animation finished running normally or when the animation is done because stop() was called on it before it could finish |
+| callback | `(result: {finished: boolean}) => void` | Não       | Função que será chamada após a animação terminar normalmente ou quando a animação terminar porque stop() foi chamado nela antes que pudesse terminar |
 
-Start example with callback:
+Exemplo de start com callback:
 
 ```tsx
 Animated.timing({}).start(({finished}) => {
@@ -481,7 +482,7 @@ Animated.timing({}).start(({finished}) => {
 static stop();
 ```
 
-Stops any running animation.
+Interrompe qualquer animação em execução.
 
 ---
 
@@ -491,44 +492,44 @@ Stops any running animation.
 static reset();
 ```
 
-Stops any running animation and resets the value to its original.
+Interrompe qualquer animação em execução e redefine o valor para o original.
 
 ## Properties
 
 ### `Value`
 
-Standard value class for driving animations. Typically initialized with `useAnimatedValue(0);` or `new Animated.Value(0);` in class components.
+Classe de valor padrão para conduzir animações. Tipicamente inicializada com `useAnimatedValue(0);` ou `new Animated.Value(0);` em componentes de classe.
 
-You can read more about `Animated.Value` API on the separate [page](animatedvalue).
+Você pode ler mais sobre a API `Animated.Value` na [página](animatedvalue) separada.
 
 ---
 
 ### `ValueXY`
 
-2D value class for driving 2D animations, such as pan gestures.
+Classe de valor 2D para conduzir animações 2D, como gestos de pan.
 
-You can read more about `Animated.ValueXY` API on the separate [page](animatedvaluexy).
+Você pode ler mais sobre a API `Animated.ValueXY` na [página](animatedvaluexy) separada.
 
 ---
 
 ### `Interpolation`
 
-Exported to use the Interpolation type in flow.
+Exportado para usar o tipo Interpolation no flow.
 
 ---
 
 ### `Node`
 
-Exported for ease of type checking. All animated values derive from this class.
+Exportado para facilitar a verificação de tipo. Todos os valores animados derivam desta classe.
 
 ---
 
 ### `createAnimatedComponent`
 
-Make any React component Animatable. Used to create `Animated.View`, etc.
+Torna qualquer componente React animável. Usado para criar `Animated.View`, etc.
 
 ---
 
 ### `attachNativeEvent`
 
-Imperative API to attach an animated value to an event on a view. Prefer using `Animated.event` with `useNativeDriver: true` if possible.
+API imperativa para anexar um valor animado a um evento em uma view. Prefira usar `Animated.event` com `useNativeDriver: true` se possível.

@@ -1,11 +1,12 @@
 ---
 id: settings
 title: Settings
+ia-translated: true
 ---
 
-`Settings` serves as a wrapper for [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/nsuserdefaults), a persistent key-value store available only on iOS.
+`Settings` serve como um wrapper para [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/nsuserdefaults), um armazenamento persistente de chave-valor disponível apenas no iOS.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=Settings%20Example&supportedPlatforms=ios
 import React, {useState} from 'react';
@@ -56,9 +57,9 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `clearWatch()`
 
@@ -66,7 +67,7 @@ export default App;
 static clearWatch(watchId: number);
 ```
 
-`watchId` is the number returned by `watchKeys()` when the subscription was originally configured.
+`watchId` é o número retornado por `watchKeys()` quando a inscrição foi originalmente configurada.
 
 ---
 
@@ -76,7 +77,7 @@ static clearWatch(watchId: number);
 static get(key: string): any;
 ```
 
-Get the current value for a given `key` in `NSUserDefaults`.
+Obtém o valor atual para uma determinada `key` em `NSUserDefaults`.
 
 ---
 
@@ -86,7 +87,7 @@ Get the current value for a given `key` in `NSUserDefaults`.
 static set(settings: Record<string, any>);
 ```
 
-Set one or more values in `NSUserDefaults`.
+Define um ou mais valores em `NSUserDefaults`.
 
 ---
 
@@ -96,8 +97,8 @@ Set one or more values in `NSUserDefaults`.
 static watchKeys(keys: string | array<string>, callback: () => void): number;
 ```
 
-Subscribe to be notified when the value for any of the keys specified by the `keys` parameter has been changed in `NSUserDefaults`. Returns a `watchId` number that may be used with `clearWatch()` to unsubscribe.
+Inscreve-se para ser notificado quando o valor de qualquer uma das chaves especificadas pelo parâmetro `keys` for alterado em `NSUserDefaults`. Retorna um número `watchId` que pode ser usado com `clearWatch()` para cancelar a inscrição.
 
 :::note
-`watchKeys()` by design ignores internal `set()` calls and fires callback only on changes preformed outside of React Native code.
+`watchKeys()` por design ignora chamadas internas de `set()` e dispara o callback apenas em mudanças realizadas fora do código React Native.
 :::
