@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: keyboard
 title: Keyboard
 ---
 
-`Keyboard` module to control keyboard events.
+Módulo `Keyboard` para controlar eventos do teclado.
 
-### Usage
+### Uso
 
-The Keyboard module allows you to listen for native events and react to them, as well as make changes to the keyboard, like dismissing it.
+O módulo Keyboard permite que você escute eventos nativos e reaja a eles, bem como faça alterações no teclado, como descartá-lo.
 
 ```SnackPlayer name=Keyboard%20Example&supportedPlatforms=ios,android
 import React, {useState, useEffect} from 'react';
@@ -66,9 +67,9 @@ export default Example;
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `addListener()`
 
@@ -79,20 +80,20 @@ static addListener: (
 ) => EmitterSubscription;
 ```
 
-The `addListener` function connects a JavaScript function to an identified native keyboard notification event.
+A função `addListener` conecta uma função JavaScript a um evento identificado de notificação nativa do teclado.
 
-This function then returns the reference to the listener.
+Esta função então retorna a referência ao listener.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name                                                                     | Type     | Description                                                                    |
-| ------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------ |
-| eventName <div className="label basic two-lines required">Required</div> | string   | The string that identifies the event you're listening for. See the list below. |
-| callback <div className="label basic two-lines required">Required</div>  | function | The function to be called when the event fires                                 |
+| Nome                                                                     | Tipo     | Descrição                                                                              |
+| ------------------------------------------------------------------------ | -------- | -------------------------------------------------------------------------------------- |
+| eventName <div className="label basic two-lines required">Required</div> | string   | A string que identifica o evento que você está escutando. Veja a lista abaixo.        |
+| callback <div className="label basic two-lines required">Required</div>  | function | A função a ser chamada quando o evento é disparado                                    |
 
 **`eventName`**
 
-This can be any of the following:
+Este pode ser qualquer um dos seguintes:
 
 - `keyboardWillShow`
 - `keyboardDidShow`
@@ -102,7 +103,7 @@ This can be any of the following:
 - `keyboardDidChangeFrame`
 
 :::note
-Only `keyboardDidShow` and `keyboardDidHide` events are available on Android. The events will not be fired when using Android 10 or below if your activity has `android:windowSoftInputMode` set to `adjustResize` or `adjustNothing`.
+Apenas os eventos `keyboardDidShow` e `keyboardDidHide` estão disponíveis no Android. Os eventos não serão disparados ao usar Android 10 ou inferior se sua activity tiver `android:windowSoftInputMode` definido como `adjustResize` ou `adjustNothing`.
 :::
 
 ---
@@ -113,7 +114,7 @@ Only `keyboardDidShow` and `keyboardDidHide` events are available on Android. Th
 static dismiss();
 ```
 
-Dismisses the active keyboard and removes focus.
+Descarta o teclado ativo e remove o foco.
 
 ---
 
@@ -123,7 +124,7 @@ Dismisses the active keyboard and removes focus.
 static scheduleLayoutAnimation(event: KeyboardEvent);
 ```
 
-Useful for syncing TextInput (or other keyboard accessory view) size of position changes with keyboard movements.
+Útil para sincronizar mudanças de tamanho ou posição do TextInput (ou outra view acessória do teclado) com os movimentos do teclado.
 
 ---
 
@@ -133,7 +134,7 @@ Useful for syncing TextInput (or other keyboard accessory view) size of position
 static isVisible(): boolean;
 ```
 
-Whether the keyboard is last known to be visible.
+Se o teclado é conhecido por estar visível pela última vez.
 
 ---
 
@@ -143,4 +144,4 @@ Whether the keyboard is last known to be visible.
 static metrics(): KeyboardMetrics | undefined;
 ```
 
-Return the metrics of the soft-keyboard if visible.
+Retorna as métricas do teclado virtual se visível.
