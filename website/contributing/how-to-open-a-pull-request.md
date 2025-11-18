@@ -1,30 +1,31 @@
 ---
-title: How to Open a Pull Request
+ia-translated: true
+title: Como Abrir um Pull Request
 ---
 
-These instructions provide the step-by-step process to set up your machine to make contributions to the core React Native repository, and create your first pull request.
+Estas instruções fornecem o processo passo a passo para configurar sua máquina para fazer contribuições ao repositório principal do React Native e criar seu primeiro pull request.
 
-## Prologue: Getting Ready
+## Prólogo: Preparando-se
 
-You will need a few tools and dependencies in order to build and develop for React Native. These are covered as part of the [Environment Setup](/docs/environment-setup) guide under the "Building Projects with Native Code" section.
+Você precisará de algumas ferramentas e dependências para compilar e desenvolver para o React Native. Elas são cobertas como parte do guia [Configuração do Ambiente](/docs/environment-setup) na seção "Building Projects with Native Code".
 
-In order to accept your pull request, we need you to submit a [Contributor License Agreement (CLA)](/contributing/contribution-license-agreement). You only need to do this once to work on any of Meta's open source projects. It only takes a minute, so you can do it while you wait for your dependencies to install.
+Para aceitar seu pull request, precisamos que você envie um [Contributor License Agreement (CLA)](/contributing/contribution-license-agreement). Você só precisa fazer isso uma vez para trabalhar em qualquer um dos projetos open source da Meta. Leva apenas um minuto, então você pode fazer isso enquanto espera suas dependências instalarem.
 
-## Chapter I: Welcome to Open Source
+## Capítulo I: Bem-vindo ao Open Source
 
-### 1. Install `git`
+### 1. Instale o `git`
 
-The React Native source code is hosted on GitHub. You can interact with the git version control through the `git` command line program. We recommend you follow [GitHub's instructions](https://help.github.com/articles/set-up-git/) to set up git on your machine.
+O código fonte do React Native está hospedado no GitHub. Você pode interagir com o sistema de controle de versão git através do programa de linha de comando `git`. Recomendamos que você siga as [instruções do GitHub](https://help.github.com/articles/set-up-git/) para configurar o git em sua máquina.
 
-### 2. Get the source code
+### 2. Obtenha o código fonte
 
-While you can browse the source code for React Native on [GitHub](https://github.com/facebook/react-native), we recommend you set up a fork on your local machine.
+Embora você possa navegar pelo código fonte do React Native no [GitHub](https://github.com/facebook/react-native), recomendamos que você configure um fork em sua máquina local.
 
-1. Go to https://github.com/facebook/react-native.
-2. Click on "Fork" button on the upper right.
-3. When asked, select your username as the host for this fork.
+1. Vá para https://github.com/facebook/react-native.
+2. Clique no botão "Fork" no canto superior direito.
+3. Quando perguntado, selecione seu nome de usuário como o host para este fork.
 
-You will now have a fork of React Native on GitHub at https://github.com/your_username/react-native. Next, you will grab a copy of the source code for your local machine. Open a shell and type the following commands:
+Agora você terá um fork do React Native no GitHub em https://github.com/your_username/react-native. Em seguida, você obterá uma cópia do código fonte para sua máquina local. Abra um shell e digite os seguintes comandos:
 
 ```bash
 git clone https://github.com/facebook/react-native.git
@@ -33,103 +34,103 @@ git remote add fork https://github.com/your_username/react-native.git
 ```
 
 :::note
-If the above seems new to you, do not be scared. You can access a shell through the Terminal application on macOS and Linux, or PowerShell on Windows.
+Se o que foi dito acima parece novo para você, não tenha medo. Você pode acessar um shell através do aplicativo Terminal no macOS e Linux, ou PowerShell no Windows.
 :::
 
-A new `react-native` directory will be created with the contents of the core React Native repository. This directory is actually a clone of the React Native git repository. It is set up with two remotes:
+Um novo diretório `react-native` será criado com o conteúdo do repositório principal do React Native. Este diretório é na verdade um clone do repositório git do React Native. Ele está configurado com dois remotes:
 
-- `origin` for the upstream https://github.com/facebook/react-native repository
-- `fork` for the fork of React Native on your own GitHub account.
+- `origin` para o repositório upstream https://github.com/facebook/react-native
+- `fork` para o fork do React Native em sua própria conta do GitHub.
 
-### 3. Create a branch
+### 3. Crie um branch
 
-We recommend creating a new branch in your fork to keep track of your changes:
+Recomendamos criar um novo branch em seu fork para acompanhar suas alterações:
 
 ```bash
 git checkout -b my_feature_branch --track origin/main
 ```
 
-## Chapter II: Implementing your Changes
+## Capítulo II: Implementando suas Alterações
 
-### 1. Install dependencies
+### 1. Instale as dependências
 
-React Native is a JavaScript monorepo managed by [Yarn Workspaces (Yarn Classic)](https://classic.yarnpkg.com/lang/en/docs/workspaces/).
+React Native é um monorepo JavaScript gerenciado pelo [Yarn Workspaces (Yarn Classic)](https://classic.yarnpkg.com/lang/en/docs/workspaces/).
 
-Run a project-level install:
+Execute uma instalação em nível de projeto:
 
 ```sh
 yarn
 ```
 
-You will also need to build the `react-native-codegen` package once:
+Você também precisará compilar o pacote `react-native-codegen` uma vez:
 
 ```sh
 yarn --cwd packages/react-native-codegen build
 ```
 
-### 2. Make changes to the code
+### 2. Faça alterações no código
 
-You can now open the project using your code editor of choice. [Visual Studio Code](https://code.visualstudio.com/) is popular with JavaScript developers, and recommended if you are making general changes to React Native.
+Agora você pode abrir o projeto usando o editor de código de sua escolha. O [Visual Studio Code](https://code.visualstudio.com/) é popular entre desenvolvedores JavaScript e é recomendado se você estiver fazendo alterações gerais no React Native.
 
-IDE project configurations:
+Configurações de projeto para IDE:
 
-- **VS Code**: Open the `react-native.code-workspace` file. This should open with extension recommendations, and configure the Flow Language Service and other editor settings correctly.
-- **Android Studio**: Open the repo root folder (containing the `.idea` config directory).
-- **Xcode**: Open `packages/rn-tester/RNTesterPods.xcworkspace`.
+- **VS Code**: Abra o arquivo `react-native.code-workspace`. Isso deve abrir com recomendações de extensões e configurar corretamente o Flow Language Service e outras configurações do editor.
+- **Android Studio**: Abra a pasta raiz do repositório (contendo o diretório de configuração `.idea`).
+- **Xcode**: Abra `packages/rn-tester/RNTesterPods.xcworkspace`.
 
-### 3. Run your changes
+### 3. Execute suas alterações
 
-The package rn-tester can be used to run and validate your changes. You can learn more in [RNTester readme](https://github.com/facebook/react-native/blob/main/packages/rn-tester/README.md).
+O pacote rn-tester pode ser usado para executar e validar suas alterações. Você pode aprender mais no [readme do RNTester](https://github.com/facebook/react-native/blob/main/packages/rn-tester/README.md).
 
-### 4. Test your changes
+### 4. Teste suas alterações
 
-Make sure your changes are correct and do not introduce any test failures. You can learn more in [Running and Writing Tests](/contributing/how-to-run-and-write-tests).
+Certifique-se de que suas alterações estão corretas e não introduzem nenhuma falha de teste. Você pode aprender mais em [Executando e Escrevendo Testes](/contributing/how-to-run-and-write-tests).
 
-### 5. Lint your code
+### 5. Execute o lint no seu código
 
-We understand it can take a while to ramp up and get a sense of the style followed for each of the languages in use in the core React Native repository. Developers should not need to worry about minor nits, so whenever possible, we use tools that automate the process of rewriting your code to follow conventions.
+Entendemos que pode levar um tempo para se adaptar e ter uma noção do estilo seguido para cada uma das linguagens em uso no repositório principal do React Native. Desenvolvedores não devem se preocupar com pequenos detalhes, então sempre que possível, usamos ferramentas que automatizam o processo de reescrever seu código para seguir as convenções.
 
-For example, we use [Prettier](https://prettier.io/) to format our JavaScript code. This saves you time and energy as you can let Prettier fix up any formatting issues automatically through its editor integrations, or by manually running `yarn run prettier`.
+Por exemplo, usamos o [Prettier](https://prettier.io/) para formatar nosso código JavaScript. Isso economiza seu tempo e energia, pois você pode deixar o Prettier corrigir quaisquer problemas de formatação automaticamente através de suas integrações com editores, ou executando manualmente `yarn run prettier`.
 
-We also use a linter to catch styling issues that may exist in your code. You can check the status of your code styling by running `yarn run lint`.
+Também usamos um linter para capturar problemas de estilo que possam existir em seu código. Você pode verificar o status do estilo do seu código executando `yarn run lint`.
 
-To learn more about coding conventions, refer to the [Coding Style guide](/contributing/how-to-contribute-code#coding-style).
+Para aprender mais sobre convenções de codificação, consulte o guia [Estilo de Codificação](/contributing/how-to-contribute-code#coding-style).
 
-### 6. View your changes
+### 6. Visualize suas alterações
 
-Many popular editors integrate with source control in some way. You can also use `git status` and `git diff` on the command line to keep track of what has changed.
+Muitos editores populares se integram com controle de versão de alguma forma. Você também pode usar `git status` e `git diff` na linha de comando para acompanhar o que mudou.
 
-## Chapter III: Proposing your Changes
+## Capítulo III: Propondo suas Alterações
 
-### 1. Commit your changes
+### 1. Faça commit das suas alterações
 
-Make sure to add your changes to version control using `git`:
+Certifique-se de adicionar suas alterações ao controle de versão usando o `git`:
 
 ```bash
 git add <filename>
 git commit -m <message>
 ```
 
-You can use a short descriptive sentence as your commit message.
+Você pode usar uma frase descritiva curta como sua mensagem de commit.
 
 :::note
-Worried about writing good git commit messages? Do not fret. Later, when your pull request is merged, all your commits will be squashed into a single commit. It is your pull request description which will be used to populate the message for this squashed commit.
+Preocupado em escrever boas mensagens de commit do git? Não se preocupe. Mais tarde, quando seu pull request for mesclado, todos os seus commits serão combinados (squashed) em um único commit. É a descrição do seu pull request que será usada para preencher a mensagem deste commit combinado.
 :::
 
-This guide covers enough information to help you along with your first contribution. GitHub has several resources to help you get started with git:
+Este guia cobre informações suficientes para ajudá-lo com sua primeira contribuição. O GitHub tem vários recursos para ajudá-lo a começar com o git:
 
 - [Using Git](https://help.github.com/en/categories/using-git)
 - [The GitHub Flow](https://guides.github.com/introduction/flow/)
 
-### 2. Push your changes to GitHub
+### 2. Envie suas alterações para o GitHub
 
-Once your changes have been commited to version control, you can push them to GitHub.
+Depois que suas alterações forem commitadas no controle de versão, você pode enviá-las para o GitHub.
 
 ```bash
 git push fork <my_feature_branch>
 ```
 
-If all goes well, you will see a message encouraging you to open a pull request:
+Se tudo correr bem, você verá uma mensagem encorajando você a abrir um pull request:
 
 ```
 remote:
@@ -138,16 +139,16 @@ remote:      https://github.com/your_username/react-native/pull/new/your_feature
 remote:
 ```
 
-Visit the provided URL to proceed to the next step.
+Visite a URL fornecida para prosseguir para o próximo passo.
 
-### 3. Create your pull request
+### 3. Crie seu pull request
 
-You are almost there! The next step is to fill out the pull request. Use a descriptive title that is not too long. Then, make sure to fill out all of the fields provided by the default pull request template:
+Você está quase lá! O próximo passo é preencher o pull request. Use um título descritivo que não seja muito longo. Então, certifique-se de preencher todos os campos fornecidos pelo template padrão de pull request:
 
-- **Summary:** Use this field to provide your motivation for sending this pull request. What are you fixing?
-- **[Changelog](/contributing/changelogs-in-pull-requests):** Help release maintainers write release notes by providing a short description of what will be changed should the pull request get merged.
-- **Test Plan:** Let reviewers know how you tested your changes. Did you consider any edge cases? Which steps did you follow to make sure your changes have the desired effect? See [What is a Test Plan?](https://medium.com/@martinkonicek/what-is-a-test-plan-8bfc840ec171) to learn more.
+- **Summary:** Use este campo para fornecer sua motivação para enviar este pull request. O que você está corrigindo?
+- **[Changelog](/contributing/changelogs-in-pull-requests):** Ajude os mantenedores de release a escrever notas de release fornecendo uma breve descrição do que será alterado caso o pull request seja mesclado.
+- **Test Plan:** Informe aos revisores como você testou suas alterações. Você considerou algum caso extremo? Quais passos você seguiu para garantir que suas alterações tenham o efeito desejado? Consulte [What is a Test Plan?](https://medium.com/@martinkonicek/what-is-a-test-plan-8bfc840ec171) para saber mais.
 
-### 4. Review and address feedback
+### 4. Revise e atenda ao feedback
 
-Keep an eye on any comments and review feedback left on your pull request on GitHub. Maintainers will do their best to provide constructive, actionable feedback to help get your changes ready to be merged into the core React Native repository.
+Fique de olho em quaisquer comentários e feedback de revisão deixados em seu pull request no GitHub. Os mantenedores farão o melhor para fornecer feedback construtivo e prático para ajudar a deixar suas alterações prontas para serem mescladas no repositório principal do React Native.
