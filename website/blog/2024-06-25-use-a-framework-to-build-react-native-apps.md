@@ -1,74 +1,75 @@
 ---
-title: 'Use a framework to build React Native apps'
+ia-translated: true
+title: 'Use um framework para construir apps React Native'
 authors: [cortinico]
 tags: [announcement]
 date: 2024-06-25
 ---
 
-At [React Conf](https://www.youtube.com/live/0ckOUBiuxVY?si=pU4qP4eB5iWfY0IG&t=2320), we updated our guidance on the best tool to get started building React Native apps: a **React Native framework** - a toolbox with all the necessary APIs to let you build production-ready apps.
+Na [React Conf](https://www.youtube.com/live/0ckOUBiuxVY?si=pU4qP4eB5iWfY0IG&t=2320), atualizamos nossa orientação sobre a melhor ferramenta para começar a construir apps React Native: um **framework React Native** - uma caixa de ferramentas com todas as APIs necessárias para você construir apps prontos para produção.
 
-Using React Native frameworks, such as Expo, is now the **recommended** approach to create new apps.
+Usar frameworks React Native, como o Expo, agora é a abordagem **recomendada** para criar novos apps.
 
-In this blogpost we want to walk you through what they are in detail and what they mean for you as a React Native developer starting a new project.
+Neste post do blog queremos explicar em detalhes o que eles são e o que significam para você como desenvolvedor React Native iniciando um novo projeto.
 
 <!-- truncate  -->
 
-## What is a React Native framework?
+## O que é um framework React Native?
 
-If you’ve been building production apps, you probably know that there is a set of common problems you will need to solve sooner or later.
+Se você tem construído apps para produção, provavelmente sabe que existe um conjunto de problemas comuns que você precisará resolver mais cedo ou mais tarde.
 
-When building any application on either web or native, you probably want your users to navigate through different screens, fetch data, and store the state of your user. But for native apps there is even more to deal with: you need tools to upgrade your native code between React Native versions, manage compatible versions of all of your dependencies, and deal with native build tools.
+Ao construir qualquer aplicação seja para web ou nativa, você provavelmente quer que seus usuários naveguem por diferentes telas, busquem dados e armazenem o estado do seu usuário. Mas para apps nativos há ainda mais para lidar: você precisa de ferramentas para atualizar seu código nativo entre versões do React Native, gerenciar versões compatíveis de todas as suas dependências e lidar com ferramentas de build nativas.
 
-It takes a village to bring an app from idea to production without the right tools.
+É preciso uma aldeia para levar um app da ideia para a produção sem as ferramentas certas.
 
-We want you to focus on writing beautiful applications and features for your users, and not solving those common problems over and over.
+Queremos que você foque em escrever aplicações e funcionalidades bonitas para seus usuários, e não em resolver esses problemas comuns repetidamente.
 
-That’s why we believe that the best way for you to experience React Native is through a framework that offers a toolbox with all the necessary tools you need to build production-ready applications.
+É por isso que acreditamos que a melhor maneira para você experimentar o React Native é através de um framework que oferece uma caixa de ferramentas com todas as ferramentas necessárias para construir aplicações prontas para produção.
 
-We’ve found that **you’re either using a framework or you’re building your own framework**.
+Descobrimos que **ou você está usando um framework ou você está construindo seu próprio framework**.
 
-There is nothing wrong with building your own framework, by crafting your own solutions for routing, navigation, deploying, and so on. Major corporations like Meta and Microsoft build their own frameworks internally to integrate deeply into their brownfield apps. But we believe that most people will be better off by using an existing framework.
+Não há nada de errado em construir seu próprio framework, criando suas próprias soluções para routing, navigation, deploy, e assim por diante. Grandes corporações como Meta e Microsoft constroem seus próprios frameworks internamente para integrar profundamente em seus apps brownfield. Mas acreditamos que a maioria das pessoas estará em melhor situação usando um framework existente.
 
-If you’ve been using React on web, you’re probably familiar with a similar concept of [production-grade React frameworks](https://react.dev/learn/start-a-new-react-project#production-grade-react-frameworks).
+Se você tem usado React na web, provavelmente está familiarizado com um conceito similar de [frameworks React de nível de produção](https://react.dev/learn/start-a-new-react-project#production-grade-react-frameworks).
 
-As of today, the only recommended community framework for React Native is [Expo](https://docs.expo.dev/). Folks at Expo have been investing in the React Native ecosystem since the early days of React Native and as of today, we believe the developer experience offered by Expo is best in class.
+Até hoje, o único framework comunitário recomendado para React Native é o [Expo](https://docs.expo.dev/). O pessoal do Expo tem investido no ecossistema React Native desde os primeiros dias do React Native e, até hoje, acreditamos que a experiência de desenvolvedor oferecida pelo Expo é a melhor da categoria.
 
 :::note
 
-Expo, the framework, is and will remain free and open source, while Expo Application Services (EAS) is an optional paid service.
+Expo, o framework, é e permanecerá gratuito e open source, enquanto o Expo Application Services (EAS) é um serviço pago opcional.
 
 :::
 
 <!--alex ignore he-she retext-equality-->
 
-If you haven’t used Expo recently, make sure you don’t miss [this talk from Kadi @ Expo](https://www.youtube.com/live/0ckOUBiuxVY?si=N-WSfmAJSMfd6wDL&t=3888) where she’s showcasing what you can do with Expo in 2024.
+Se você não tem usado o Expo recentemente, não perca [esta palestra da Kadi @ Expo](https://www.youtube.com/live/0ckOUBiuxVY?si=N-WSfmAJSMfd6wDL&t=3888) onde ela mostra o que você pode fazer com o Expo em 2024.
 
-We’ve also updated the [Getting Started page](https://reactnative.dev/docs/environment-setup) on the website to reflect this recommendation.
+Também atualizamos a [página Getting Started](https://reactnative.dev/docs/environment-setup) no site para refletir esta recomendação.
 
-## How will frameworks affect you?
+## Como os frameworks afetarão você?
 
-If you’re already using a recommended framework such as Expo, you’re already good to go!
+Se você já está usando um framework recomendado como o Expo, você já está pronto!
 
-If you'd like to migrate your existing app to Expo, you can find instructions on [the official Expo website](https://docs.expo.dev/bare/overview/). Expo offers many benefits, such as an easier way to [upgrade your React Native version](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/), a better developer experience, and much more.
+Se você gostaria de migrar seu app existente para o Expo, você pode encontrar instruções no [site oficial do Expo](https://docs.expo.dev/bare/overview/). O Expo oferece muitos benefícios, como uma maneira mais fácil de [atualizar sua versão do React Native](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/), uma experiência de desenvolvedor melhor e muito mais.
 
-However, if you can't or don't want to migrate to Expo, that's fine too. Using React Native without an official framework will continue to be supported. The tools you’ve been using such as React Native Community CLI, Template and [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) will keep on working as usual.
+No entanto, se você não pode ou não quer migrar para o Expo, tudo bem também. Usar React Native sem um framework oficial continuará sendo suportado. As ferramentas que você tem usado como React Native Community CLI, Template e [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) continuarão funcionando normalmente.
 
-The `react-native init` command has moved out of core and is now accessible via:
+O comando `react-native init` foi movido para fora do core e agora está acessível via:
 
 ```
 npx @react-native-community/cli@latest init
 ```
 
-and on GitHub at [react-native-community/cli](https://github.com/react-native-community/cli).
+e no GitHub em [react-native-community/cli](https://github.com/react-native-community/cli).
 
-If you’re a React Native library developer, we collected a list of recommendations on which APIs to use. [Read more in the RFC](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0759-react-native-frameworks.md#what-do-we-recommend-to-react-native-library-developers).
+Se você é um desenvolvedor de bibliotecas React Native, coletamos uma lista de recomendações sobre quais APIs usar. [Leia mais no RFC](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0759-react-native-frameworks.md#what-do-we-recommend-to-react-native-library-developers).
 
-## Further reading
+## Leitura adicional
 
-If you’re interested in learning more about the reasoning behind this decision, we invite you to read the [RFC0759: React Native Frameworks](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0759-react-native-frameworks.md#what-do-we-recommend-to-react-native-library-developers). This RFC is a result of a multi-month effort involving countless discussions and brainstorming among different partners and players of the React Native ecosystem.
+Se você está interessado em aprender mais sobre o raciocínio por trás desta decisão, convidamos você a ler o [RFC0759: React Native Frameworks](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0759-react-native-frameworks.md#what-do-we-recommend-to-react-native-library-developers). Este RFC é o resultado de um esforço de vários meses envolvendo inúmeras discussões e brainstorming entre diferentes parceiros e participantes do ecossistema React Native.
 
-While Expo today is the only recommended framework, the RFC also contains [guidelines](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0759-react-native-frameworks.md#becoming-a-react-native-framework) on how to become a recommended framework, as we hope to see more competition and innovation in this space.
+Embora o Expo hoje seja o único framework recomendado, o RFC também contém [diretrizes](https://github.com/react-native-community/discussions-and-proposals/blob/main/proposals/0759-react-native-frameworks.md#becoming-a-react-native-framework) sobre como se tornar um framework recomendado, pois esperamos ver mais competição e inovação neste espaço.
 
-Moreover, you should check out the talk [useFrameworks()](https://www.youtube.com/watch?v=lifGTznLBcw) at App.js 2024 where we presented this RFC and the necessary changes in a short format.
+Além disso, você deve conferir a palestra [useFrameworks()](https://www.youtube.com/watch?v=lifGTznLBcw) na App.js 2024 onde apresentamos este RFC e as mudanças necessárias em um formato curto.
 
-We believe that by clarifying the respective responsibilities of React Native Core and the Frameworks, we can foster a healthier ecosystem and drive growth & innovation for React Native.
+Acreditamos que ao esclarecer as responsabilidades respectivas do React Native Core e dos Frameworks, podemos fomentar um ecossistema mais saudável e impulsionar o crescimento e inovação para o React Native.

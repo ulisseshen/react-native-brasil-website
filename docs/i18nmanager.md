@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: i18nmanager
 title: I18nManager
 ---
 
 # I18nManager
 
-The `I18nManager` module provides utilities for managing Right-to-Left (RTL) layout support for languages like Arabic, Hebrew, and others. It provides methods to control RTL behavior and check the current layout direction.
+O módulo `I18nManager` fornece utilitários para gerenciar o suporte a layout da Direita para a Esquerda (RTL) para idiomas como Árabe, Hebraico e outros. Ele fornece métodos para controlar o comportamento RTL e verificar a direção atual do layout.
 
 ## Examples
 
-### Change positions and animations based on RTL
+### Alterar posições e animações baseadas em RTL
 
-If you absolutely position elements to align with other flexbox elements, they may not align in RTL languages. Using `isRTL` can be used to adjust alignment or animations.
+Se você posicionar elementos de forma absoluta para alinhá-los com outros elementos flexbox, eles podem não alinhar em idiomas RTL. Usar `isRTL` pode ser usado para ajustar o alinhamento ou animações.
 
 ```SnackPlayer name=I18nManager%20Change%20Absolute%20Positions%20And%20Animations
 import React from 'react';
@@ -40,7 +41,7 @@ const App = () => {
 export default App;
 ```
 
-### During Development
+### Durante o Desenvolvimento
 
 ```SnackPlayer name=I18nManager%20During%20Development
 import React, {useState} from 'react';
@@ -99,19 +100,19 @@ export default App;
 static isRTL: boolean;
 ```
 
-A boolean value indicating whether the app is currently in RTL layout mode.
+Um valor booleano indicando se o aplicativo está atualmente no modo de layout RTL.
 
-The value of `isRTL` is determined by the following logic:
+O valor de `isRTL` é determinado pela seguinte lógica:
 
-- If `forceRTL` is `true`, `isRTL` returns `true`
-- If `allowRTL` is `false`, `isRTL` returns `false`
-- Otherwise, `isRTL` will be `true` given the following:
+- Se `forceRTL` for `true`, `isRTL` retorna `true`
+- Se `allowRTL` for `false`, `isRTL` retorna `false`
+- Caso contrário, `isRTL` será `true` dado o seguinte:
   - **iOS:**
-    - The user-preferred language on the device is an RTL language
-    - The application-defined localizations include the user-chosen language (as defined in the Xcode project file (`knownRegions = (...)`)
+    - O idioma preferido do usuário no dispositivo é um idioma RTL
+    - As localizações definidas pelo aplicativo incluem o idioma escolhido pelo usuário (conforme definido no arquivo de projeto do Xcode (`knownRegions = (...)`)
   - **Android:**
-    - The user-preferred language on the device is an RTL language
-    - The application's `AndroidManifest.xml` defines `android:supportsRTL="true"` on the `<application>` element
+    - O idioma preferido do usuário no dispositivo é um idioma RTL
+    - O `AndroidManifest.xml` do aplicativo define `android:supportsRTL="true"` no elemento `<application>`
 
 ### `doLeftAndRightSwapInRTL`
 
@@ -119,7 +120,7 @@ The value of `isRTL` is determined by the following logic:
 static doLeftAndRightSwapInRTL: boolean;
 ```
 
-A boolean value indicating whether left and right style properties should be automatically swapped when in RTL mode. When enabled, left becomes right and right becomes left in RTL layouts.
+Um valor booleano indicando se as propriedades de estilo left e right devem ser automaticamente trocadas quando em modo RTL. Quando habilitado, left se torna right e right se torna left em layouts RTL.
 
 ## Methods
 
@@ -129,16 +130,16 @@ A boolean value indicating whether left and right style properties should be aut
 static allowRTL: (allowRTL: boolean) => void;
 ```
 
-Enables or disables RTL layout support for the application.
+Habilita ou desabilita o suporte a layout RTL para o aplicativo.
 
 **Parameters:**
 
-- `allowRTL` (boolean): Whether to allow RTL layout
+- `allowRTL` (boolean): Se deve permitir layout RTL
 
 **Important Notes:**
 
-- Changes take effect on the next application start, not immediately
-- This setting is persisted across app restarts
+- As alterações entram em vigor na próxima inicialização do aplicativo, não imediatamente
+- Esta configuração é persistida entre reinicializações do aplicativo
 
 ### `forceRTL()`
 
@@ -146,19 +147,19 @@ Enables or disables RTL layout support for the application.
 static forceRTL: (forced: boolean) => void;
 ```
 
-Forces the app to use RTL layout regardless of the device language settings. This is primarily useful for testing RTL layouts during development.
+Força o aplicativo a usar layout RTL independentemente das configurações de idioma do dispositivo. Isso é principalmente útil para testar layouts RTL durante o desenvolvimento.
 
-Avoid forcing RTL in production apps as it requires a full app restart to take effect, which makes for a poor user-experience.
+Evite forçar RTL em aplicativos de produção, pois requer uma reinicialização completa do aplicativo para entrar em vigor, o que resulta em uma experiência de usuário ruim.
 
 **Parameters:**
 
-- `forced` (boolean): Whether to force RTL layout
+- `forced` (boolean): Se deve forçar o layout RTL
 
 **Important Notes:**
 
-- Changes take full effect on the next application start, not immediately
-- The setting is persisted across app restarts
-- Only meant for development and testing. In production, you should either disallow RTL fully or handle it appropriately (see `isRTL`)
+- As alterações entram em vigor completo na próxima inicialização do aplicativo, não imediatamente
+- A configuração é persistida entre reinicializações do aplicativo
+- Destinado apenas para desenvolvimento e testes. Em produção, você deve desabilitar RTL completamente ou lidar com isso apropriadamente (veja `isRTL`)
 
 ### `swapLeftAndRightInRTL()`
 
@@ -166,4 +167,4 @@ Avoid forcing RTL in production apps as it requires a full app restart to take e
 static swapLeftAndRightInRTL: (swapLeftAndRight: boolean) => void;
 ```
 
-Swap left and right style properties in RTL mode. When enabled, left becomes right and right becomes left in RTL layouts. Does not affect the value of `isRTL`.
+Troca propriedades de estilo left e right no modo RTL. Quando habilitado, left se torna right e right se torna left em layouts RTL. Não afeta o valor de `isRTL`.

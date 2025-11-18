@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: animatedvaluexy
 title: Animated.ValueXY
 ---
 
-2D Value for driving 2D animations, such as pan gestures. Almost identical API to normal [`Animated.Value`](animatedvalue), but multiplexed. Contains two regular `Animated.Value`s under the hood.
+Value 2D para conduzir animações 2D, como gestos de pan. API quase idêntica ao [`Animated.Value`](animatedvalue) normal, mas multiplexado. Contém dois `Animated.Value`s regulares internamente.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=Animated.ValueXY%20Example
 import React, {useRef} from 'react';
@@ -63,9 +64,9 @@ export default DraggableView;
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `setValue()`
 
@@ -73,13 +74,13 @@ export default DraggableView;
 setValue(value: {x: number; y: number});
 ```
 
-Directly set the value. This will stop any animations running on the value and update all the bound properties.
+Define o valor diretamente. Isso irá parar quaisquer animações em execução no valor e atualizar todas as propriedades vinculadas.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name  | Type                     | Required | Description |
-| ----- | ------------------------ | -------- | ----------- |
-| value | `{x: number; y: number}` | Yes      | Value       |
+| Nome  | Tipo                     | Obrigatório | Descrição |
+| ----- | ------------------------ | ----------- | --------- |
+| value | `{x: number; y: number}` | Sim         | Valor     |
 
 ---
 
@@ -89,13 +90,13 @@ Directly set the value. This will stop any animations running on the value and u
 setOffset(offset: {x: number; y: number});
 ```
 
-Sets an offset that is applied on top of whatever value is set, whether via `setValue`, an animation, or `Animated.event`. Useful for compensating things like the start of a pan gesture.
+Define um offset que é aplicado sobre qualquer valor que esteja definido, seja via `setValue`, uma animação ou `Animated.event`. Útil para compensar coisas como o início de um gesto de pan.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name   | Type                     | Required | Description  |
-| ------ | ------------------------ | -------- | ------------ |
-| offset | `{x: number; y: number}` | Yes      | Offset value |
+| Nome   | Tipo                     | Obrigatório | Descrição     |
+| ------ | ------------------------ | ----------- | ------------- |
+| offset | `{x: number; y: number}` | Sim         | Valor offset  |
 
 ---
 
@@ -105,7 +106,7 @@ Sets an offset that is applied on top of whatever value is set, whether via `set
 flattenOffset();
 ```
 
-Merges the offset value into the base value and resets the offset to zero. The final output of the value is unchanged.
+Mescla o valor offset no valor base e redefine o offset para zero. A saída final do valor permanece inalterada.
 
 ---
 
@@ -115,7 +116,7 @@ Merges the offset value into the base value and resets the offset to zero. The f
 extractOffset();
 ```
 
-Sets the offset value to the base value, and resets the base value to zero. The final output of the value is unchanged.
+Define o valor offset para o valor base e redefine o valor base para zero. A saída final do valor permanece inalterada.
 
 ---
 
@@ -125,15 +126,15 @@ Sets the offset value to the base value, and resets the base value to zero. The 
 addListener(callback: (value: {x: number; y: number}) => void);
 ```
 
-Adds an asynchronous listener to the value so you can observe updates from animations. This is useful because there is no way to synchronously read the value because it might be driven natively.
+Adiciona um listener assíncrono ao valor para que você possa observar atualizações de animações. Isso é útil porque não há como ler o valor de forma síncrona, já que ele pode ser conduzido nativamente.
 
-Returns a string that serves as an identifier for the listener.
+Retorna uma string que serve como identificador para o listener.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name     | Type     | Required | Description                                                                                 |
-| -------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
-| callback | function | Yes      | The callback function which will receive an object with a `value` key set to the new value. |
+| Nome     | Tipo     | Obrigatório | Descrição                                                                                   |
+| -------- | -------- | ----------- | ------------------------------------------------------------------------------------------- |
+| callback | function | Sim         | A função callback que receberá um objeto com uma chave `value` definida para o novo valor.  |
 
 ---
 
@@ -143,13 +144,13 @@ Returns a string that serves as an identifier for the listener.
 removeListener(id: string);
 ```
 
-Unregister a listener. The `id` param shall match the identifier previously returned by `addListener()`.
+Remove o registro de um listener. O parâmetro `id` deve corresponder ao identificador retornado anteriormente por `addListener()`.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name | Type   | Required | Description                        |
-| ---- | ------ | -------- | ---------------------------------- |
-| id   | string | Yes      | Id for the listener being removed. |
+| Nome | Tipo   | Obrigatório | Descrição                          |
+| ---- | ------ | ----------- | ---------------------------------- |
+| id   | string | Sim         | Id do listener sendo removido.     |
 
 ---
 
@@ -159,7 +160,7 @@ Unregister a listener. The `id` param shall match the identifier previously retu
 removeAllListeners();
 ```
 
-Remove all registered listeners.
+Remove todos os listeners registrados.
 
 ---
 
@@ -169,13 +170,13 @@ Remove all registered listeners.
 stopAnimation(callback?: (value: {x: number; y: number}) => void);
 ```
 
-Stops any running animation or tracking. `callback` is invoked with the final value after stopping the animation, which is useful for updating state to match the animation position with layout.
+Para qualquer animação ou rastreamento em execução. O `callback` é invocado com o valor final após parar a animação, o que é útil para atualizar o estado para corresponder à posição da animação com o layout.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name     | Type     | Required | Description                                   |
-| -------- | -------- | -------- | --------------------------------------------- |
-| callback | function | No       | A function that will receive the final value. |
+| Nome     | Tipo     | Obrigatório | Descrição                                 |
+| -------- | -------- | ----------- | ----------------------------------------- |
+| callback | function | Não         | Uma função que receberá o valor final.    |
 
 ---
 
@@ -185,13 +186,13 @@ Stops any running animation or tracking. `callback` is invoked with the final va
 resetAnimation(callback?: (value: {x: number; y: number}) => void);
 ```
 
-Stops any animation and resets the value to its original.
+Para qualquer animação e redefine o valor para o seu original.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name     | Type     | Required | Description                                      |
-| -------- | -------- | -------- | ------------------------------------------------ |
-| callback | function | No       | A function that will receive the original value. |
+| Nome     | Tipo     | Obrigatório | Descrição                                    |
+| -------- | -------- | ----------- | -------------------------------------------- |
+| callback | function | Não         | Uma função que receberá o valor original.    |
 
 ---
 
@@ -201,7 +202,7 @@ Stops any animation and resets the value to its original.
 getLayout(): {left: Animated.Value, top: Animated.Value};
 ```
 
-Converts `{x, y}` into `{left, top}` for use in style, e.g.
+Converte `{x, y}` em `{left, top}` para uso em style, por exemplo:
 
 ```tsx
 style={this.state.anim.getLayout()}
@@ -218,7 +219,7 @@ getTranslateTransform(): [
 ];
 ```
 
-Converts `{x, y}` into a useable translation transform, e.g.
+Converte `{x, y}` em uma transformação de translação utilizável, por exemplo:
 
 ```tsx
 style={{
