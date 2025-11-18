@@ -1,5 +1,6 @@
 ---
-title: 'idx: The Existential Function'
+ia-translated: true
+title: 'idx: A Função Existencial'
 author: Timothy Yung
 authorTitle: Engineering Manager at Facebook
 authorURL: 'https://github.com/yungsters'
@@ -8,9 +9,9 @@ authorTwitter: yungsters
 tags: [engineering]
 ---
 
-At Facebook, we often need to access deeply nested values in data structures fetched with GraphQL. On the way to accessing these deeply nested values, it is common for one or more intermediate fields to be nullable. These intermediate fields may be null for a variety of reasons, from failed privacy checks to the mere fact that null happens to be the most flexible way to represent non-fatal errors.
+No Facebook, frequentemente precisamos acessar valores profundamente aninhados em estruturas de dados buscadas com GraphQL. No caminho para acessar esses valores profundamente aninhados, é comum que um ou mais campos intermediários sejam anuláveis. Esses campos intermediários podem ser null por várias razões, desde verificações de privacidade falhadas até o mero fato de que null é a maneira mais flexível de representar erros não fatais.
 
-Unfortunately, accessing these deeply nested values is currently tedious and verbose.
+Infelizmente, acessar esses valores profundamente aninhados é atualmente tedioso e verboso.
 
 ```jsx
 props.user &&
@@ -19,22 +20,22 @@ props.user &&
   props.user.friends[0].friends;
 ```
 
-There is [an ECMAScript proposal to introduce the existential operator](https://github.com/claudepache/es-optional-chaining) which will make this much more convenient. But until a time when that proposal is finalized, we want a solution that improves our quality of life, maintains existing language semantics, and encourages type safety with Flow.
+Há [uma proposta ECMAScript para introduzir o operador existencial](https://github.com/claudepache/es-optional-chaining) que tornará isso muito mais conveniente. Mas até o momento em que essa proposta seja finalizada, queremos uma solução que melhore nossa qualidade de vida, mantenha a semântica da linguagem existente e encoraje segurança de tipos com Flow.
 
-We came up with an existential _function_ we call `idx`.
+Criamos uma _função_ existencial que chamamos de `idx`.
 
 ```jsx
 idx(props, _ => _.user.friends[0].friends);
 ```
 
-The invocation in this code snippet behaves similarly to the boolean expression in the code snippet above, except with significantly less repetition. The `idx` function takes exactly two arguments:
+A invocação neste trecho de código se comporta de forma similar à expressão booleana no trecho de código acima, exceto com significativamente menos repetição. A função `idx` recebe exatamente dois argumentos:
 
-- Any value, typically an object or array into which you want to access a nested value.
-- A function that receives the first argument and accesses a nested value on it.
+- Qualquer valor, tipicamente um objeto ou array no qual você deseja acessar um valor aninhado.
+- Uma função que recebe o primeiro argumento e acessa um valor aninhado nele.
 
-In theory, the `idx` function will try-catch errors that are the result of accessing properties on null or undefined. If such an error is caught, it will return either null or undefined. (And you can see how this might be implemented in [idx.js](https://github.com/facebookincubator/idx/blob/master/packages/idx/src/idx.js).)
+Em teoria, a função `idx` fará try-catch de erros que são resultado de acessar propriedades em null ou undefined. Se tal erro for capturado, retornará null ou undefined. (E você pode ver como isso pode ser implementado em [idx.js](https://github.com/facebookincubator/idx/blob/master/packages/idx/src/idx.js).)
 
-In practice, try-catching every nested property access is slow, and differentiating between specific kinds of TypeErrors is fragile. To deal with these shortcomings, we created a Babel plugin that transforms the above `idx` invocation into the following expression:
+Na prática, fazer try-catch de cada acesso a propriedade aninhada é lento, e diferenciar entre tipos específicos de TypeErrors é frágil. Para lidar com essas limitações, criamos um plugin Babel que transforma a invocação `idx` acima na seguinte expressão:
 
 ```jsx
 props.user == null
@@ -46,6 +47,6 @@ props.user == null
       : props.user.friends[0].friends;
 ```
 
-Finally, we added a custom Flow type declaration for `idx` that allows the traversal in the second argument to be properly type-checked while permitting nested access on nullable properties.
+Finalmente, adicionamos uma declaração de tipo Flow personalizada para `idx` que permite que a travessia no segundo argumento seja verificada de tipo adequadamente, permitindo acesso aninhado em propriedades anuláveis.
 
-The function, Babel plugin, and Flow declaration are now [available on GitHub](https://github.com/facebookincubator/idx). They are used by installing the **idx** and **babel-plugin-idx** npm packages, and adding “idx” to the list of plugins in your `.babelrc` file.
+A função, plugin Babel e declaração Flow agora estão [disponíveis no GitHub](https://github.com/facebookincubator/idx). Eles são usados instalando os pacotes npm **idx** e **babel-plugin-idx**, e adicionando "idx" à lista de plugins em seu arquivo `.babelrc`.

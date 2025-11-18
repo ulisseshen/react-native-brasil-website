@@ -1,5 +1,6 @@
 ---
-title: Releasing 0.56
+ia-translated: true
+title: Lançando 0.56
 author: Lorenzo Sciandra
 authorTitle: Core Maintainer & React Native Developer at Drivetribe
 authorURL: 'https://github.com/kelset'
@@ -8,60 +9,60 @@ authorTwitter: kelset
 tags: [announcement, release]
 ---
 
-The long-awaited 0.56 version of React Native is now available 🎉. This blog post highlights some of the [changes](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md#highlights) introduced in this new release. We also want to take the opportunity to explain what has kept us busy since March.
+A tão aguardada versão 0.56 do React Native está agora disponível 🎉. Este blog post destaca algumas das [mudanças](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md#highlights) introduzidas neste novo lançamento. Também queremos aproveitar a oportunidade para explicar o que nos manteve ocupados desde março.
 
-### The breaking changes dilemma, or, "when to release?"
+### O dilema das mudanças breaking, ou, "quando lançar?"
 
-The [Contributor's Guide](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) explains the integration process that all changes to React Native go through. The project has is composed by [many different tools](https://github.com/facebook/react-native-website/issues/370), requiring coordination and constant support to keep everything working properly. Add to this the vibrant open source community that contributes back to the project, and you will get a sense of the mind-bending scale of it all.
+O [Guia do Contribuidor](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) explica o processo de integração pelo qual todas as mudanças no React Native passam. O projeto é composto por [muitas ferramentas diferentes](https://github.com/facebook/react-native-website/issues/370), requerendo coordenação e suporte constante para manter tudo funcionando adequadamente. Adicione a isso a vibrante comunidade open source que contribui de volta para o projeto, e você terá uma noção da escala alucinante de tudo isso.
 
-With React Native's impressive adoption, breaking changes must be made with great care, and the process is not as smooth as we'd like. A decision was made to skip the April and May releases to allow the core team to integrate and test a new set of breaking changes. [Dedicated community communication](https://github.com/react-native-community/react-native-releases/issues/14) channels were used along the way to ensure that the June 2018 (`0.56.0`) release is as hassle-free as possible to adopt by those who patiently waited for the stable release.
+Com a impressionante adoção do React Native, mudanças breaking devem ser feitas com muito cuidado, e o processo não é tão suave quanto gostaríamos. Uma decisão foi tomada para pular os lançamentos de abril e maio para permitir que a equipe principal integre e teste um novo conjunto de mudanças breaking. [Canais de comunicação dedicados da comunidade](https://github.com/react-native-community/react-native-releases/issues/14) foram usados ao longo do caminho para garantir que o lançamento de junho de 2018 (`0.56.0`) seja o mais livre de problemas possível para adotar por aqueles que pacientemente aguardaram pelo lançamento estável.
 
-Is `0.56.0` perfect? No, as every piece of software out there: but we reached a point where the tradeoff between "waiting for more stability" versus "testing led to successful results so we can push forward" that we feel ready to release it. Moreover, we are aware [of](https://github.com/facebook/react-native/issues/19955) [a](https://github.com/facebook/react-native/issues/19827) [few](https://github.com/facebook/react-native/issues/19763) [issues](https://github.com/facebook/react-native/issues/19859) that are not solved in the final `0.56.0` release. Most developers should have no issues upgrading to `0.56.0`. For those that are blocked by the aforementioned issues, we hope to see you around in our discussions and we are looking forward to working with you on a solution to these issues.
+O `0.56.0` é perfeito? Não, como todo software por aí: mas chegamos a um ponto onde o tradeoff entre "esperar por mais estabilidade" versus "os testes levaram a resultados bem-sucedidos, então podemos avançar" que sentimos prontos para lançá-lo. Além disso, estamos cientes [de](https://github.com/facebook/react-native/issues/19955) [alguns](https://github.com/facebook/react-native/issues/19827) [problemas](https://github.com/facebook/react-native/issues/19763) [que](https://github.com/facebook/react-native/issues/19859) não estão resolvidos no lançamento final `0.56.0`. A maioria dos desenvolvedores não deve ter problemas atualizando para `0.56.0`. Para aqueles que estão bloqueados pelos problemas mencionados, esperamos vê-los por aí em nossas discussões e estamos ansiosos para trabalhar com vocês em uma solução para esses problemas.
 
-You might consider `0.56.0` as a fundamental building block towards a more stable framework: it will take probably a week or two of widespread adoption before all the edge cases will be sanded off, but this will lead to an even better July 2018 (`0.57.0`) release.
+Você pode considerar `0.56.0` como um bloco de construção fundamental em direção a um framework mais estável: provavelmente levará uma semana ou duas de adoção generalizada antes que todos os casos extremos sejam polidos, mas isso levará a um lançamento ainda melhor de julho de 2018 (`0.57.0`).
 
-We'd like to conclude this section by thanking [all the 67 contributors who worked on a total of 818 commits](https://github.com/facebook/react-native/compare/v0.55.4...v0.56.0-rc.4) (!) that will help make your apps even better 👏.
+Gostaríamos de concluir esta seção agradecendo [todos os 67 contribuidores que trabalharam em um total de 818 commits](https://github.com/facebook/react-native/compare/v0.55.4...v0.56.0-rc.4) (!) que ajudarão a tornar seus apps ainda melhores 👏.
 
-And now, without further ado...
+E agora, sem mais delongas...
 
-## The Big Changes
+## As Grandes Mudanças
 
 ### Babel 7
 
-As you may know, the transpiler tool that allows us all to use the latest and greatest features of JavaScript, Babel, is moving to [v7 soon](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release). Since this new version brings along some important changes, we felt that now it would be a good time to upgrade, allowing [Metro](https://github.com/facebook/metro) to [leverage on its improvements](https://github.com/facebook/metro/issues/92).
+Como você pode saber, a ferramenta transpiladora que permite que todos nós usemos os recursos mais recentes e melhores do JavaScript, Babel, está mudando para [v7 em breve](https://babeljs.io/blog/2017/12/27/nearing-the-7.0-release). Como esta nova versão traz algumas mudanças importantes, sentimos que agora seria um bom momento para atualizar, permitindo que o [Metro](https://github.com/facebook/metro) [aproveite suas melhorias](https://github.com/facebook/metro/issues/92).
 
-If you find yourself in trouble with upgrading, please refer to the [documentation section related to it](https://new.babeljs.io/docs/en/next/v7-migration.html).
+Se você se encontrar com problemas ao atualizar, consulte a [seção de documentação relacionada a isso](https://new.babeljs.io/docs/en/next/v7-migration.html).
 
-### Modernizing Android support
+### Modernizando o suporte Android
 
-On Android, much of the surrounding tooling has changed. We've updated to [Gradle 3.5](https://github.com/facebook/react-native/commit/699e5eebe807d1ced660d2d2f39b5679d26925da), [Android SDK 26](https://github.com/facebook/react-native/commit/065c5b6590de18281a8c592a04240751c655c03c), [Fresco to 1.9.0, and OkHttp to 3.10.0](https://github.com/facebook/react-native/commit/6b07602915157f54c39adbf0f9746ac056ad2d13) and even the [NDK API target to API 16](https://github.com/facebook/react-native/commit/5ae97990418db613cd67b1fb9070ece976d17dc7). These changes should go without issue and result in faster builds. More importantly, it will help developers comply with the [new Play Store requirements](https://android-developers.googleblog.com/2017/12/improving-app-security-and-performance.html) coming into effect next month.
+No Android, muito do ferramental ao redor mudou. Atualizamos para [Gradle 3.5](https://github.com/facebook/react-native/commit/699e5eebe807d1ced660d2d2f39b5679d26925da), [Android SDK 26](https://github.com/facebook/react-native/commit/065c5b6590de18281a8c592a04240751c655c03c), [Fresco para 1.9.0, e OkHttp para 3.10.0](https://github.com/facebook/react-native/commit/6b07602915157f54c39adbf0f9746ac056ad2d13) e até o [alvo da API NDK para API 16](https://github.com/facebook/react-native/commit/5ae97990418db613cd67b1fb9070ece976d17dc7). Essas mudanças devem ocorrer sem problemas e resultar em builds mais rápidos. Mais importante, isso ajudará os desenvolvedores a cumprir com os [novos requisitos da Play Store](https://android-developers.googleblog.com/2017/12/improving-app-security-and-performance.html) que entrarão em vigor no próximo mês.
 
-Related to this, we'd like to particularly thank [Dulmandakh](https://github.com/dulmandakh) for the many PRs submitted in order to make it possible 👏.
+Relacionado a isso, gostaríamos de agradecer particularmente [Dulmandakh](https://github.com/dulmandakh) pelos muitos PRs enviados para tornar isso possível 👏.
 
-There are some more steps that need to be taken in this direction, and you can follow along with the future planning and discussion of updating the Android support in the [dedicated issue](https://github.com/facebook/react-native/issues/19297) (and a side one for the [JSC](https://github.com/facebook/react-native/issues/19737)).
+Existem mais alguns passos que precisam ser dados nesta direção, e você pode acompanhar o planejamento futuro e discussão sobre atualizar o suporte Android na [issue dedicada](https://github.com/facebook/react-native/issues/19297) (e uma lateral para o [JSC](https://github.com/facebook/react-native/issues/19737)).
 
-### New Node, Xcode, React, and Flow – oh my!
+### Novos Node, Xcode, React e Flow – nossa!
 
-Node 8 is now the standard for React Native. It was actually already being tested already, but we've put both feet forward as Node 6 entered maintenance mode. React was also updated to 16.4, which brings a ton of fixes with it.
+Node 8 é agora o padrão para React Native. Na verdade já estava sendo testado, mas colocamos os dois pés para frente já que o Node 6 entrou em modo de manutenção. React também foi atualizado para 16.4, que traz uma tonelada de correções com ele.
 
-We're dropping support for iOS 8, [making iOS 9 the oldest iOS version that can be targeted](https://github.com/facebook/react-native/commit/f50df4f5eca4b4324ff18a49dcf8be3694482b51). We do not foresee this being a problem, as any device that can run iOS 8, can be upgraded to iOS 9. This change allowed us to remove rarely-used code that implemented workarounds for older devices running iOS 8.
+Estamos descontinuando o suporte para iOS 8, [tornando iOS 9 a versão mais antiga do iOS que pode ser alvo](https://github.com/facebook/react-native/commit/f50df4f5eca4b4324ff18a49dcf8be3694482b51). Não prevemos que isso seja um problema, já que qualquer dispositivo que pode executar iOS 8, pode ser atualizado para iOS 9. Esta mudança nos permitiu remover código raramente usado que implementava soluções alternativas para dispositivos mais antigos executando iOS 8.
 
-The continuous integration toolchain has been updated [to use Xcode 9.4](https://github.com/facebook/react-native/commit/c55bcd6ea729cdf57fc14a5478b7c2e3f6b2a94d), ensuring that all iOS tests are run on the latest developer tools provided by Apple.
+A toolchain de integração contínua foi atualizada [para usar Xcode 9.4](https://github.com/facebook/react-native/commit/c55bcd6ea729cdf57fc14a5478b7c2e3f6b2a94d), garantindo que todos os testes iOS sejam executados nas ferramentas de desenvolvedor mais recentes fornecidas pela Apple.
 
-We have upgraded to [Flow 0.75](https://github.com/facebook/react-native/commit/6264b6932a08e1cefd83c4536ff7839d91938730) to use the new error format [that many devs appreciate](https://twitter.com/dan_abramov/status/998610821096857602). We've also created types for many more components. If you're not yet enforcing static typing in your project, please consider using Flow to identify problems as you code instead of at runtime.
+Atualizamos para [Flow 0.75](https://github.com/facebook/react-native/commit/6264b6932a08e1cefd83c4536ff7839d91938730) para usar o novo formato de erro [que muitos desenvolvedores apreciam](https://twitter.com/dan_abramov/status/998610821096857602). Também criamos tipos para muitos mais componentes. Se você ainda não está aplicando tipagem estática em seu projeto, considere usar Flow para identificar problemas conforme você codifica em vez de em runtime.
 
-### And a lot of other things...
+### E muitas outras coisas...
 
-For instance, YellowBox was [replaced](https://github.com/facebook/react-native/commit/d0219a0301e59e8b0ef75dbd786318d4b4619f4c) with a new implementation that makes debugging a lot better.
+Por exemplo, YellowBox foi [substituído](https://github.com/facebook/react-native/commit/d0219a0301e59e8b0ef75dbd786318d4b4619f4c) com uma nova implementação que torna o debugging muito melhor.
 
-For the complete release notes, please reference the full [changelog here](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md). And remember to keep an eye on the [upgrading guide](/docs/upgrading) to avoid issues moving to this new version.
+Para as notas de lançamento completas, consulte o [changelog completo aqui](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md). E lembre-se de ficar de olho no [guia de atualização](/docs/upgrading) para evitar problemas ao mudar para esta nova versão.
 
 ---
 
-A final note: starting this week, the React Native core team will resume holding monthly meetings. We'll make sure to keep everyone up-to-date with what's covered, and ensure to keep your feedback at hand for future meetings.
+Uma nota final: a partir desta semana, a equipe principal do React Native retomará as reuniões mensais. Vamos nos certificar de manter todos atualizados sobre o que é coberto, e garantir manter seu feedback à mão para reuniões futuras.
 
-Happy coding everyone!
+Feliz codificação a todos!
 
-[Lorenzo](https://twitter.com/Kelset), [Ryan](https://github.com/turnrye), and the whole [React Native core team](https://twitter.com/reactnative)
+[Lorenzo](https://twitter.com/Kelset), [Ryan](https://github.com/turnrye), e toda a [equipe principal do React Native](https://twitter.com/reactnative)
 
-**PS:** as always, we'd like to remind everyone that React Native is still in 0.x versioning because of the many changes still undergoing - so remember when upgrading that yes, probably, something may still crash or be broken. Be helpful towards each other in the issues and when submitting PRs - and remember to follow the [CoC](https://code.fb.com/codeofconduct/) enforced: there's always a human on the other side of the screen.
+**PS:** como sempre, gostaríamos de lembrar a todos que React Native ainda está em versionamento 0.x devido às muitas mudanças ainda em andamento - então lembre-se ao atualizar que sim, provavelmente, algo pode ainda crashar ou estar quebrado. Seja prestativo uns com os outros nas issues e ao enviar PRs - e lembre-se de seguir o [CoC](https://code.fb.com/codeofconduct/) aplicado: sempre há um humano do outro lado da tela.
