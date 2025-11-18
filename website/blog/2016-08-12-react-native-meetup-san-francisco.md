@@ -1,108 +1,109 @@
 ---
-title: San Francisco Meetup Recap
+ia-translated: true
+title: Resumo do Meetup de San Francisco
 authors: [hectorramos]
 hero: '/blog/img/rnmsf-august-2016-hero.jpg'
 tags: [events]
 ---
 
-Last week I had the opportunity to attend the [React Native Meetup](https://www.meetup.com/React-Native-San-Francisco/photos/27168649/#452793854) at Zynga’s San Francisco office. With around 200 people in attendance, it served as a great place to meet other developers near me that are also interested in React Native.
+Na semana passada tive a oportunidade de participar do [React Native Meetup](https://www.meetup.com/React-Native-San-Francisco/photos/27168649/#452793854) no escritório da Zynga em San Francisco. Com cerca de 200 pessoas presentes, serviu como um ótimo lugar para conhecer outros desenvolvedores perto de mim que também estão interessados em React Native.
 
 ![](/blog/assets/rnmsf-august-2016-hero.jpg)
 
-I was particularly interested in learning more about how React and React Native are used at companies like Zynga, Netflix, and Airbnb. The agenda for the night would be as follows:
+Eu estava particularmente interessado em aprender mais sobre como React e React Native são usados em empresas como Zynga, Netflix e Airbnb. A agenda da noite seria a seguinte:
 
-- Rapid Prototyping in React
-- Designing APIs for React Native
-- Bridging the Gap: Using React Native in Existing Codebases
+- Prototipagem Rápida em React
+- Projetando APIs para React Native
+- Preenchendo a Lacuna: Usando React Native em Bases de Código Existentes
 
-But first, the event started off with a quick introduction and a brief recap of recent news:
+Mas primeiro, o evento começou com uma rápida introdução e um breve resumo de notícias recentes:
 
-- Did you know that React Native is now the [top Java repository on GitHub](https://twitter.com/jamespearce/status/759637111880359937)?
-- [rnpm](https://github.com/rnpm/rnpm) is now part of React Native core! You can now use `react-native link` in place of `rnpm link` to [install libraries with native dependencies](/docs/linking-libraries-ios).
-- The React Native Meetup community is growing fast! There are now over 4,800 developers across a variety of React Native meetup groups all over the globe.
+- Você sabia que React Native agora é o [principal repositório Java no GitHub](https://twitter.com/jamespearce/status/759637111880359937)?
+- [rnpm](https://github.com/rnpm/rnpm) agora faz parte do core do React Native! Agora você pode usar `react-native link` no lugar de `rnpm link` para [instalar bibliotecas com dependências nativas](/docs/linking-libraries-ios).
+- A comunidade React Native Meetup está crescendo rapidamente! Agora existem mais de 4.800 desenvolvedores em uma variedade de grupos de meetup React Native em todo o mundo.
 
-If [one of these meetups](https://www.meetup.com/find/?allMeetups=false&keywords=react+native&radius=Infinity&userFreeform=San+Francisco%2C+CA&mcId=z94105&mcName=San+Francisco%2C+CA&sort=recommended&eventFilter=mysugg) is held near you, I highly recommend attending!
+Se [um desses meetups](https://www.meetup.com/find/?allMeetups=false&keywords=react+native&radius=Infinity&userFreeform=San+Francisco%2C+CA&mcId=z94105&mcName=San+Francisco%2C+CA&sort=recommended&eventFilter=mysugg) for realizado perto de você, eu recomendo muito participar!
 
-## Rapid Prototyping in React at Zynga
+## Prototipagem Rápida em React na Zynga
 
-The first round of news was followed by a quick introduction by Zynga, our hosts for the evening. Abhishek Chadha talked about how they use React to quickly prototype new experiences on mobile, demoing a quick prototype of a Draw Something-like app. They use a similar approach as React Native, providing access to native APIs via a bridge. This was demonstrated when Abhishek used the device's camera to snap a photo of the audience and then drew a hat on someone's head.
+A primeira rodada de notícias foi seguida por uma rápida introdução pela Zynga, nossos anfitriões da noite. Abhishek Chadha falou sobre como eles usam React para prototipar rapidamente novas experiências em mobile, demonstrando um protótipo rápido de um aplicativo tipo Draw Something. Eles usam uma abordagem semelhante ao React Native, fornecendo acesso a APIs nativas através de uma bridge. Isso foi demonstrado quando Abhishek usou a câmera do dispositivo para tirar uma foto da audiência e depois desenhou um chapéu na cabeça de alguém.
 
-## Designing APIs for React Native at Netflix
+## Projetando APIs para React Native na Netflix
 
-Up next, the first featured talk of the evening. [Clarence Leung](https://twitter.com/clarler), Senior Software Engineer at Netflix, presented his talk on Designing APIs for React Native. First he noted the two main types of libraries one may work on: components such as tab bars and date pickers, and libraries that provide access to native services such as the camera roll or in-app payments. There are two ways one may approach when building a library for use in React Native:
+Em seguida, a primeira palestra em destaque da noite. [Clarence Leung](https://twitter.com/clarler), Senior Software Engineer na Netflix, apresentou sua palestra sobre Projetando APIs para React Native. Primeiro ele observou os dois principais tipos de bibliotecas em que se pode trabalhar: componentes como barras de abas e seletores de data, e bibliotecas que fornecem acesso a serviços nativos como a galeria de fotos ou pagamentos in-app. Existem duas maneiras que se pode abordar ao construir uma biblioteca para uso no React Native:
 
-- Provide platform-specific components
-- A cross-platform library with a similar API for both Android and iOS
+- Fornecer componentes específicos da plataforma
+- Uma biblioteca multiplataforma com uma API similar para Android e iOS
 
-Each approach has its own considerations, and it’s up to you to determine what works best for your needs.
+Cada abordagem tem suas próprias considerações, e cabe a você determinar o que funciona melhor para suas necessidades.
 
-**Approach #1**
+**Abordagem #1**
 
-As an example of platform-specific components, Clarence talked about the DatePickerIOS and DatePickerAndroid from core React Native. On iOS, date pickers are rendered as part of the UI and can be easily embedded in an existing view, while date pickers on Android are presented modally. It makes sense to provide separate components in this case.
+Como exemplo de componentes específicos da plataforma, Clarence falou sobre o DatePickerIOS e DatePickerAndroid do core do React Native. No iOS, seletores de data são renderizados como parte da UI e podem ser facilmente incorporados em uma view existente, enquanto seletores de data no Android são apresentados modalmente. Faz sentido fornecer componentes separados neste caso.
 
-**Approach #2**
+**Abordagem #2**
 
-Photo pickers, on the other hand, are treated similarly on Android and iOS. There are some slight differences — Android does not group photos into folders like iOS does with Selfies, for example — but those are easily handled using `if` statements and the `Platform` component.
+Seletores de fotos, por outro lado, são tratados de forma semelhante no Android e iOS. Existem algumas pequenas diferenças — Android não agrupa fotos em pastas como iOS faz com Selfies, por exemplo — mas essas são facilmente tratadas usando instruções `if` e o componente `Platform`.
 
-Regardless of which approach you settle on, it’s a good idea to minimize the API surface and build app-specific libraries. For example, iOS’s In-App Purchase framework supports one-time, consumable purchases, as well as renewable subscriptions. If your app will only need to support consumable purchases, you may get away with dropping support for subscriptions in your cross-platform library.
+Independentemente da abordagem que você escolher, é uma boa ideia minimizar a superfície da API e construir bibliotecas específicas do aplicativo. Por exemplo, o framework In-App Purchase do iOS suporta compras únicas e consumíveis, bem como assinaturas renováveis. Se seu aplicativo só precisará suportar compras consumíveis, você pode dispensar o suporte para assinaturas em sua biblioteca multiplataforma.
 
 ![](/blog/assets/rnmsf-august-2016-netflix.jpg)
 
-There was a brief Q&A session at the end of Clarence’s talk. One of the interesting tid bits that came out of it was that around 80% of the React Native code written for these libraries at Netflix is shared across both Android and iOS.
+Houve uma breve sessão de perguntas e respostas no final da palestra de Clarence. Uma das informações interessantes que surgiram foi que cerca de 80% do código React Native escrito para essas bibliotecas na Netflix é compartilhado entre Android e iOS.
 
-## Bridging the Gap, Using React Native in Existing Codebases
+## Preenchendo a Lacuna, Usando React Native em Bases de Código Existentes
 
-The final talk of the night was by [Leland Richardson](https://twitter.com/intelligibabble) from Airbnb. The talk was focused on the use of React Native in existing codebases. I already know how easy it is to write a new app from scratch using React Native, so I was very interested to hear about Airbnb’s experience adopting React Native in their existing native apps.
+A palestra final da noite foi de [Leland Richardson](https://twitter.com/intelligibabble) do Airbnb. A palestra focou no uso de React Native em bases de código existentes. Eu já sei como é fácil escrever um novo aplicativo do zero usando React Native, então eu estava muito interessado em ouvir sobre a experiência do Airbnb adotando React Native em seus aplicativos nativos existentes.
 
-Leland started off by talking about greenfield apps versus brownfield apps. Greenfield means to start a project without the need to consider any prior work. This is in contrast to brownfield projects where you need to take into account the existing project’s requirements, development processes, and all of the teams various needs.
+Leland começou falando sobre aplicativos greenfield versus brownfield. Greenfield significa começar um projeto sem a necessidade de considerar nenhum trabalho anterior. Isso contrasta com projetos brownfield, onde você precisa levar em conta os requisitos do projeto existente, processos de desenvolvimento e todas as várias necessidades das equipes.
 
-When you’re working on a greenfield app, the React Native CLI sets up a single repository for both Android and iOS and everything just works. The first challenge against using React Native at Airbnb was the fact that the Android and iOS app each had their own repository. Multi-repo companies have some hurdles to get past before they can adopt React Native.
+Quando você está trabalhando em um aplicativo greenfield, o CLI do React Native configura um único repositório para Android e iOS e tudo simplesmente funciona. O primeiro desafio contra o uso de React Native no Airbnb foi o fato de que os aplicativos Android e iOS tinham cada um seu próprio repositório. Empresas com múltiplos repositórios têm alguns obstáculos a superar antes de poderem adotar React Native.
 
-To get around this, Airbnb first set up a new repo for the React Native codebase. They used their continuous integration servers to mirror the Android and iOS repos into this new repo. After tests are run and the bundle is built, the build artifacts are synced back to the Android and iOS repos. This allows the mobile engineers to work on native code without altering their development environment. Mobile engineers don't need to install npm, run the packager, or remember to build the JavaScript bundle. The engineers writing actual React Native code do not have to worry about syncing their code across Android and iOS, as they work on the React Native repository directly.
+Para contornar isso, o Airbnb primeiro configurou um novo repo para a base de código React Native. Eles usaram seus servidores de integração contínua para espelhar os repositórios Android e iOS neste novo repo. Depois que os testes são executados e o bundle é construído, os artefatos de build são sincronizados de volta para os repos Android e iOS. Isso permite que os engenheiros mobile trabalhem em código nativo sem alterar seu ambiente de desenvolvimento. Engenheiros mobile não precisam instalar npm, executar o packager ou lembrar de construir o bundle JavaScript. Os engenheiros que escrevem código React Native de fato não precisam se preocupar em sincronizar seu código entre Android e iOS, pois trabalham diretamente no repositório React Native.
 
-This does come with some drawbacks, mainly they could not ship atomic updates. Changes that require a combination of native and JavaScript code would require three separate pull requests, all of which had to be carefully landed. In order to avoid conflicts, CI will fail to land changes back to the Android and iOS repos if master has changed since the build started. This would cause long delays during high commit frequency days (such as when new releases are cut).
+Isso vem com algumas desvantagens, principalmente eles não podiam enviar atualizações atômicas. Mudanças que exigem uma combinação de código nativo e JavaScript exigiriam três pull requests separados, todos os quais tinham que ser cuidadosamente integrados. Para evitar conflitos, o CI falhará ao integrar mudanças de volta aos repos Android e iOS se o master tiver mudado desde que o build começou. Isso causaria longos atrasos durante dias de alta frequência de commits (como quando novos lançamentos são cortados).
 
-Airbnb has since moved to a mono repo approach. Fortunately this was already under consideration, and once the Android and iOS teams became comfortable with using React Native they were happy to accelerate the move towards the mono repo.
+O Airbnb desde então mudou para uma abordagem de mono repo. Felizmente isso já estava em consideração, e uma vez que as equipes Android e iOS ficaram confortáveis com o uso de React Native, eles ficaram felizes em acelerar a mudança para o mono repo.
 
-This has solved most of the issues they had with the split repo approach. Leland did note that this does cause a higher strain on the version control servers, which may be an issue for smaller companies.
+Isso resolveu a maioria dos problemas que eles tinham com a abordagem de repo dividido. Leland notou que isso causa uma maior pressão nos servidores de controle de versão, o que pode ser um problema para empresas menores.
 
 ![](/blog/assets/rnmsf-august-2016-airbnb.jpg)
 
-### The Navigation Problem
+### O Problema da Navegação
 
-The second half of Leland's talk focused on a topic that is dear to me: the Navigation problem in React Native. He talked about the abundance of navigation libraries in React Native, both first party and third party. NavigationExperimental was mentioned as something that seemed promising, but ended up not being well suited for their use case.
+A segunda metade da palestra de Leland focou em um tópico que é caro para mim: o problema da Navegação no React Native. Ele falou sobre a abundância de bibliotecas de navegação no React Native, tanto de primeira parte quanto de terceiros. NavigationExperimental foi mencionado como algo que parecia promissor, mas acabou não sendo adequado para o caso de uso deles.
 
-In fact, none of the existing navigation libraries seem to work well for brownfield apps. A brownfield app requires that the navigation state be fully owned by the native app. For example, if a user’s session expires while a React Native view is being presented, the native app should be able to take over and present a login screen as needed.
+De fato, nenhuma das bibliotecas de navegação existentes parece funcionar bem para aplicativos brownfield. Um aplicativo brownfield requer que o estado de navegação seja totalmente de propriedade do aplicativo nativo. Por exemplo, se a sessão de um usuário expirar enquanto uma view React Native está sendo apresentada, o aplicativo nativo deve ser capaz de assumir o controle e apresentar uma tela de login conforme necessário.
 
-Airbnb also wanted to avoid replacing native navigation bars with JavaScript versions as part of a transition, as the effect could be jarring. Initially they limited themselves to modally presented views, but this obviously presented a problem when it came to adopting React Native more widely within their apps.
+O Airbnb também queria evitar substituir barras de navegação nativas por versões JavaScript como parte de uma transição, pois o efeito poderia ser perturbador. Inicialmente eles se limitaram a views apresentadas modalmente, mas isso obviamente apresentava um problema quando se tratava de adotar React Native de forma mais ampla em seus aplicativos.
 
-They decided that they needed their own library. The library is called `airbnb-navigation`. The library has not yet being open sourced as it is strongly tied to Airbnb’s codebase, but it is something they’d like to release by the end of the year.
+Eles decidiram que precisavam de sua própria biblioteca. A biblioteca é chamada `airbnb-navigation`. A biblioteca ainda não foi lançada como código aberto, pois está fortemente vinculada à base de código do Airbnb, mas é algo que eles gostariam de lançar até o final do ano.
 
-I won’t go into much detail into the library’s API, but here are some of the key takeaways:
+Não vou entrar em muitos detalhes sobre a API da biblioteca, mas aqui estão alguns dos principais pontos:
 
-- One must preregister scenes ahead of time
-- Each scene is displayed within its own `RCTRootView`. They are presented natively on each platform (e.g. `UINavigationController`s are used on iOS).
-- The main `ScrollView` in a scene should be wrapped in a `ScrollScene` component. Doing so allows you to take advantage of native behaviors such as tapping on the status bar to scroll to the top on iOS.
-- Transitions between scenes are handled natively, no need to worry about performance.
-- The Android back button is automatically supported.
-- They can take advantage of View Controller based navigation bar styling via a Navigator.Config UI-less component.
+- É necessário pré-registrar cenas antecipadamente
+- Cada cena é exibida dentro de seu próprio `RCTRootView`. Elas são apresentadas nativamente em cada plataforma (por exemplo, `UINavigationController`s são usados no iOS).
+- A `ScrollView` principal em uma cena deve ser envolvida em um componente `ScrollScene`. Fazer isso permite que você aproveite comportamentos nativos, como tocar na barra de status para rolar para o topo no iOS.
+- Transições entre cenas são tratadas nativamente, sem necessidade de se preocupar com performance.
+- O botão voltar do Android é automaticamente suportado.
+- Eles podem aproveitar o estilo de barra de navegação baseado em View Controller através de um componente UI-less Navigator.Config.
 
-There’s also some considerations to keep in mind:
+Também há algumas considerações a ter em mente:
 
-- The navigation bar is not easily customized in JavaScript, as it is a native component. This is intentional, as using native navigation bars is a hard requirement for this type of library.
-- ScreenProps must be serialized/de-serialized whenever they're sent through the bridge, so care must be taken if sending too much data here.
-- Navigation state is owned by the native app (also a hard requirement for the library), so things like Redux cannot manipulate navigation state.
+- A barra de navegação não é facilmente customizável em JavaScript, pois é um componente nativo. Isso é intencional, pois usar barras de navegação nativas é um requisito difícil para este tipo de biblioteca.
+- ScreenProps devem ser serializados/desserializados sempre que são enviados através da bridge, então cuidado deve ser tomado se enviar muitos dados aqui.
+- O estado de navegação é de propriedade do aplicativo nativo (também um requisito difícil para a biblioteca), então coisas como Redux não podem manipular o estado de navegação.
 
-Leland's talk was also followed by a Q&A session. Overall, Airbnb is satisfied with React Native. They’re interested in using Code Push to fix any issues without going through the App Store, and their engineers love Live Reload, as they don't have to wait for the native app to be rebuilt after every minor change.
+A palestra de Leland também foi seguida por uma sessão de perguntas e respostas. No geral, o Airbnb está satisfeito com React Native. Eles estão interessados em usar Code Push para corrigir quaisquer problemas sem passar pela App Store, e seus engenheiros adoram Live Reload, pois não precisam esperar que o aplicativo nativo seja reconstruído após cada pequena mudança.
 
-## Closing Remarks
+## Observações Finais
 
-The event ended with some additional React Native news:
+O evento terminou com algumas notícias adicionais sobre React Native:
 
-- Deco announced their [React Native Showcase](https://www.decosoftware.com/showcase), and invited everyone to add their app to the list.
-- The recent [documentation overhaul](/blog/2016/07/06/toward-better-documentation) got a shoutout!
-- Devin Abbott, one of the creators of Deco IDE, will be teaching an introductory [React Native course](https://www.decosoftware.com/course).
+- Deco anunciou seu [React Native Showcase](https://www.decosoftware.com/showcase), e convidou todos a adicionar seu aplicativo à lista.
+- A recente [renovação da documentação](/blog/2016/07/06/toward-better-documentation) recebeu destaque!
+- Devin Abbott, um dos criadores do Deco IDE, estará ensinando um [curso introdutório de React Native](https://www.decosoftware.com/course).
 
 ![](/blog/assets/rnmsf-august-2016-docs.jpg)
 
-Meetups provide a good opportunity to meet and learn from other developers in the community. I'm looking forward to attending more React Native meetups in the future. If you make it up to one of these, please look out for me and let me know how we can make React Native work better for you!
+Meetups fornecem uma boa oportunidade para conhecer e aprender com outros desenvolvedores da comunidade. Estou ansioso para participar de mais meetups React Native no futuro. Se você for a um desses, por favor procure por mim e me avise como podemos fazer React Native funcionar melhor para você!

@@ -1,5 +1,6 @@
 ---
-title: 'React Native: A year in review'
+ia-translated: true
+title: 'React Native: Um ano em retrospectiva'
 author: Martin Konicek
 authorTitle: Software Engineer at Facebook
 authorURL: 'https://github.com/mkonicek'
@@ -9,14 +10,14 @@ hero: '/blog/assets/big-hero.png'
 tags: [announcement]
 ---
 
-It's been one year since we open-sourced React Native. What started as an idea with a handful of engineers is now a framework being used by product teams across Facebook and beyond. Today at F8 we announced that Microsoft is bringing [React Native to the Windows ecosystem](https://microsoft.github.io/code-push/articles/ReactNativeWindows.html), giving developers the potential to build React Native on Windows PC, Phone, and Xbox. It will also provide open source tools and services such as a React Native extension for Visual Studio Code and CodePush to help developers create React Native apps on the Windows platform. In addition, [Samsung](https://www.tizen.org/blogs) is building React Native for its hybrid platform, which will empower developers to build apps for millions of SmartTVs and mobile and wearable devices. We also released the [Facebook SDK for React Native](https://github.com/facebook/react-native-fbsdk), which makes it easier for developers to incorporate Facebook social features like Login, Sharing, App Analytics, and Graph APIs into their apps. In one year, React Native has changed the way developers build on every major platform.
+Faz um ano desde que lançamos o React Native como código aberto. O que começou como uma ideia com um punhado de engenheiros agora é um framework sendo usado por equipes de produto em todo o Facebook e além. Hoje na F8 anunciamos que a Microsoft está trazendo [React Native para o ecossistema Windows](https://microsoft.github.io/code-push/articles/ReactNativeWindows.html), dando aos desenvolvedores o potencial de construir React Native no Windows PC, Phone e Xbox. Também fornecerá ferramentas e serviços de código aberto, como uma extensão React Native para Visual Studio Code e CodePush para ajudar os desenvolvedores a criar aplicativos React Native na plataforma Windows. Além disso, a [Samsung](https://www.tizen.org/blogs) está construindo React Native para sua plataforma híbrida, o que capacitará os desenvolvedores a construir aplicativos para milhões de SmartTVs e dispositivos móveis e vestíveis. Também lançamos o [Facebook SDK for React Native](https://github.com/facebook/react-native-fbsdk), que torna mais fácil para os desenvolvedores incorporarem recursos sociais do Facebook como Login, Compartilhamento, Análise de Aplicativos e APIs de Graph em seus aplicativos. Em um ano, React Native mudou a forma como os desenvolvedores constroem em todas as principais plataformas.
 
-It's been an epic ride — but we are only getting started. Here is a look back at how React Native has grown and evolved since we open-sourced it a year ago, some challenges we faced along the way, and what we expect as we look ahead to the future.
+Foi uma jornada épica — mas estamos apenas começando. Aqui está um olhar sobre como o React Native cresceu e evoluiu desde que o lançamos como código aberto há um ano, alguns desafios que enfrentamos ao longo do caminho e o que esperamos ao olhar para o futuro.
 
 <footer>
   <a
     href="https://code.facebook.com/posts/597378980427792/react-native-a-year-in-review/"
-    className="btn">Read more</a>
+    className="btn">Leia mais</a>
 </footer>
 
-> This is an excerpt. Read the rest of the post on [Facebook Code](https://code.facebook.com/posts/597378980427792/react-native-a-year-in-review/).
+> Este é um trecho. Leia o restante do post no [Facebook Code](https://code.facebook.com/posts/597378980427792/react-native-a-year-in-review/).

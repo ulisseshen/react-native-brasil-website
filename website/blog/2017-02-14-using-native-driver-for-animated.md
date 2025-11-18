@@ -1,5 +1,6 @@
 ---
-title: Using Native Driver for Animated
+ia-translated: true
+title: Usando Native Driver para Animated
 author: Janic Duplessis
 authorTitle: Software Engineer at App & Flow
 authorURL: 'https://twitter.com/janicduplessis'
@@ -8,37 +9,37 @@ authorTwitter: janicduplessis
 tags: [engineering]
 ---
 
-For the past year, we've been working on improving performance of animations that use the Animated library. Animations are very important to create a beautiful user experience but can also be hard to do right. We want to make it easy for developers to create performant animations without having to worry about some of their code causing it to lag.
+Pelo último ano, temos trabalhado na melhoria do desempenho de animações que usam a biblioteca Animated. Animações são muito importantes para criar uma experiência de usuário bonita, mas também podem ser difíceis de fazer corretamente. Queremos facilitar para os desenvolvedores criarem animações performáticas sem ter que se preocupar com algum código causando lentidão.
 
-## What is this?
+## O que é isso?
 
-The Animated API was designed with a very important constraint in mind, it is serializable. This means we can send everything about the animation to native before it has even started and allows native code to perform the animation on the UI thread without having to go through the bridge on every frame. It is very useful because once the animation has started, the JS thread can be blocked and the animation will still run smoothly. In practice this can happen a lot because user code runs on the JS thread and React renders can also lock JS for a long time.
+A API Animated foi projetada com uma restrição muito importante em mente: ela é serializável. Isso significa que podemos enviar tudo sobre a animação para o nativo antes mesmo de ela ter começado e permite que o código nativo execute a animação na UI thread sem ter que passar pela bridge em cada frame. É muito útil porque uma vez que a animação tenha começado, a JS thread pode ser bloqueada e a animação ainda será executada suavemente. Na prática, isso pode acontecer muito porque o código do usuário é executado na JS thread e as renderizações do React também podem bloquear o JS por um longo tempo.
 
-## A bit of history...
+## Um pouco de história...
 
-This project started about a year ago, when Expo built the li.st app on Android. [Krzysztof Magiera](https://twitter.com/kzzzf) was contracted to build the initial implementation on Android. It ended up working well and li.st was the first app to ship with native driven animations using Animated. A few months later, [Brandon Withrow](https://github.com/buba447) built the initial implementation on iOS. After that, [Ryan Gomba](https://twitter.com/ryangomba) and myself worked on adding missing features like support for `Animated.event` as well as squash bugs we found when using it in production apps. This was truly a community effort and I would like to thanks everyone that was involved as well as Expo for sponsoring a large part of the development. It is now used by `Touchable` components in React Native as well as for navigation animations in the newly released [React Navigation](https://github.com/react-community/react-navigation) library.
+Este projeto começou há cerca de um ano, quando a Expo construiu o aplicativo li.st no Android. [Krzysztof Magiera](https://twitter.com/kzzzf) foi contratado para construir a implementação inicial no Android. Acabou funcionando bem e li.st foi o primeiro aplicativo a ser lançado com animações native driven usando Animated. Alguns meses depois, [Brandon Withrow](https://github.com/buba447) construiu a implementação inicial no iOS. Depois disso, [Ryan Gomba](https://twitter.com/ryangomba) e eu trabalhamos na adição de recursos ausentes como suporte para `Animated.event`, bem como corrigir bugs que encontramos ao usar em aplicativos de produção. Este foi verdadeiramente um esforço da comunidade e gostaria de agradecer a todos que estiveram envolvidos, bem como a Expo por patrocinar grande parte do desenvolvimento. Agora é usado pelos componentes `Touchable` no React Native, bem como para animações de navegação na recém-lançada biblioteca [React Navigation](https://github.com/react-community/react-navigation).
 
-## How does it work?
+## Como funciona?
 
-First, let's check out how animations currently work using Animated with the JS driver. When using Animated, you declare a graph of nodes that represent the animations that you want to perform, and then use a driver to update an Animated value using a predefined curve. You may also update an Animated value by connecting it to an event of a `View` using `Animated.event`.
+Primeiro, vamos verificar como as animações funcionam atualmente usando Animated com o driver JS. Ao usar Animated, você declara um grafo de nós que representam as animações que deseja executar e, em seguida, usa um driver para atualizar um valor Animated usando uma curva predefinida. Você também pode atualizar um valor Animated conectando-o a um evento de uma `View` usando `Animated.event`.
 
 ![](/blog/assets/animated-diagram.png)
 
-Here's a breakdown of the steps for an animation and where it happens:
+Aqui está um detalhamento das etapas para uma animação e onde isso acontece:
 
-- JS: The animation driver uses `requestAnimationFrame` to execute on every frame and update the value it drives using the new value it calculates based on the animation curve.
-- JS: Intermediate values are calculated and passed to a props node that is attached to a `View`.
-- JS: The `View` is updated using `setNativeProps`.
+- JS: O driver de animação usa `requestAnimationFrame` para executar em cada frame e atualizar o valor que ele dirige usando o novo valor que calcula com base na curva de animação.
+- JS: Valores intermediários são calculados e passados para um nó de props que está anexado a uma `View`.
+- JS: A `View` é atualizada usando `setNativeProps`.
 - JS to Native bridge.
-- Native: The `UIView` or `android.View` is updated.
+- Native: A `UIView` ou `android.View` é atualizada.
 
-As you can see, most of the work happens on the JS thread. If it is blocked the animation will skip frames. It also needs to go through the JS to Native bridge on every frame to update native views.
+Como você pode ver, a maior parte do trabalho acontece na JS thread. Se ela estiver bloqueada, a animação pulará frames. Ela também precisa passar pela JS to Native bridge em cada frame para atualizar as views nativas.
 
-What the native driver does is move all of these steps to native. Since Animated produces a graph of animated nodes, it can be serialized and sent to native only once when the animation starts, eliminating the need to callback into the JS thread; the native code can take care of updating the views directly on the UI thread on every frame.
+O que o native driver faz é mover todas essas etapas para o nativo. Como Animated produz um grafo de nós animados, ele pode ser serializado e enviado para o nativo apenas uma vez quando a animação começa, eliminando a necessidade de callback para a JS thread; o código nativo pode cuidar de atualizar as views diretamente na UI thread em cada frame.
 
-Here's an example of how we can serialize an animated value and an interpolation node (not the exact implementation, just an example).
+Aqui está um exemplo de como podemos serializar um valor animado e um nó de interpolação (não a implementação exata, apenas um exemplo).
 
-Create the native value node, this is the value that will be animated:
+Criar o nó de valor nativo, este é o valor que será animado:
 
 ```
 NativeAnimatedModule.createNode({
@@ -48,7 +49,7 @@ NativeAnimatedModule.createNode({
 });
 ```
 
-Create the native interpolation node, this tells the native driver how to interpolate a value:
+Criar o nó de interpolação nativo, isso diz ao native driver como interpolar um valor:
 
 ```
 NativeAnimatedModule.createNode({
@@ -60,7 +61,7 @@ NativeAnimatedModule.createNode({
 });
 ```
 
-Create the native props node, this tells the native driver which prop on the view it is attached to:
+Criar o nó de props nativo, isso diz ao native driver qual prop na view ele está anexado:
 
 ```
 NativeAnimatedModule.createNode({
@@ -70,22 +71,22 @@ NativeAnimatedModule.createNode({
 });
 ```
 
-Connect nodes together:
+Conectar nós juntos:
 
 ```
 NativeAnimatedModule.connectNodes(1, 2);
 NativeAnimatedModule.connectNodes(2, 3);
 ```
 
-Connect the props node to a view:
+Conectar o nó de props a uma view:
 
 ```
 NativeAnimatedModule.connectToView(3, ReactNative.findNodeHandle(viewRef));
 ```
 
-With that, the native animated module has all the info it needs to update the native views directly without having to go to JS to calculate any value.
+Com isso, o módulo animated nativo tem todas as informações necessárias para atualizar as views nativas diretamente sem ter que ir para o JS para calcular qualquer valor.
 
-All there is left to do is actually start the animation by specifying what type of animation curve we want and what animated value to update. Timing animations can also be simplified by calculating every frame of the animation in advance in JS to make the native implementation smaller.
+Tudo o que resta fazer é realmente iniciar a animação especificando que tipo de curva de animação queremos e qual valor animado atualizar. Animações de timing também podem ser simplificadas calculando cada frame da animação antecipadamente em JS para tornar a implementação nativa menor.
 
 ```
 NativeAnimatedModule.startAnimation({
@@ -95,17 +96,17 @@ NativeAnimatedModule.startAnimation({
 });
 ```
 
-And now here's the breakdown of what happens when the animation runs:
+E agora aqui está o detalhamento do que acontece quando a animação é executada:
 
-- Native: The native animation driver uses `CADisplayLink` or `android.view.Choreographer` to execute on every frame and update the value it drives using the new value it calculates based on the animation curve.
-- Native: Intermediate values are calculated and passed to a props node that is attached to a native view.
-- Native: The `UIView` or `android.View` is updated.
+- Native: O native driver de animação usa `CADisplayLink` ou `android.view.Choreographer` para executar em cada frame e atualizar o valor que ele dirige usando o novo valor que calcula com base na curva de animação.
+- Native: Valores intermediários são calculados e passados para um nó de props que está anexado a uma view nativa.
+- Native: A `UIView` ou `android.View` é atualizada.
 
-As you can see, no more JS thread and no more bridge which means faster animations! 🎉🎉
+Como você pode ver, sem mais JS thread e sem mais bridge, o que significa animações mais rápidas! 🎉🎉
 
-## How do I use this in my app?
+## Como uso isso no meu aplicativo?
 
-For normal animations the answer is simple, just add `useNativeDriver: true` to the animation config when starting it.
+Para animações normais, a resposta é simples: apenas adicione `useNativeDriver: true` à configuração de animação ao iniciá-la.
 
 Before:
 
@@ -126,9 +127,9 @@ Animated.timing(this.state.animatedValue, {
 }).start();
 ```
 
-Animated values are only compatible with one driver so if you use native driver when starting an animation on a value, make sure every animation on that value also uses the native driver.
+Valores Animated são compatíveis apenas com um driver, então se você usar o native driver ao iniciar uma animação em um valor, certifique-se de que cada animação nesse valor também use o native driver.
 
-It also works with `Animated.event`, this is very useful if you have an animation that must follow the scroll position because without the native driver it will always run a frame behind of the gesture because of the async nature of React Native.
+Também funciona com `Animated.event`, isso é muito útil se você tiver uma animação que deve seguir a posição de scroll porque sem o native driver ela sempre será executada um frame atrás do gesto por causa da natureza assíncrona do React Native.
 
 Before:
 
@@ -157,14 +158,14 @@ After:
 </Animated.ScrollView>
 ```
 
-## Caveats
+## Ressalvas
 
-Not everything you can do with Animated is currently supported in Native Animated. The main limitation is that you can only animate non-layout properties, things like `transform` and `opacity` will work but Flexbox and position properties won't. Another one is with `Animated.event`, it will only work with direct events and not bubbling events. This means it does not work with `PanResponder` but does work with things like `ScrollView#onScroll`.
+Nem tudo que você pode fazer com Animated é atualmente suportado no Native Animated. A principal limitação é que você pode apenas animar propriedades não relacionadas a layout, coisas como `transform` e `opacity` funcionarão, mas propriedades de Flexbox e posição não. Outra é com `Animated.event`, ele só funcionará com eventos diretos e não eventos bubbling. Isso significa que não funciona com `PanResponder`, mas funciona com coisas como `ScrollView#onScroll`.
 
-Native Animated has also been part of React Native for quite a while but has never been documented because it was considered experimental. Because of that make sure you are using a recent version (0.40+) of React Native if you want to use this feature.
+Native Animated também faz parte do React Native há um bom tempo, mas nunca foi documentado porque era considerado experimental. Por causa disso, certifique-se de que está usando uma versão recente (0.40+) do React Native se quiser usar este recurso.
 
-## Resources
+## Recursos
 
-For more information about animated I recommend watching [this talk](https://www.youtube.com/watch?v=xtqUJVqpKNo) by [Christopher Chedeau](https://twitter.com/Vjeux).
+Para mais informações sobre animated, recomendo assistir [this talk](https://www.youtube.com/watch?v=xtqUJVqpKNo) por [Christopher Chedeau](https://twitter.com/Vjeux).
 
-If you want a deep dive into animations and how offloading them to native can improve user experience there is also [this talk](https://www.youtube.com/watch?v=qgSMjYWqBk4) by [Krzysztof Magiera](https://twitter.com/kzzzf).
+Se você quer um mergulho profundo em animações e como transferi-las para o nativo pode melhorar a experiência do usuário, há também [this talk](https://www.youtube.com/watch?v=qgSMjYWqBk4) por [Krzysztof Magiera](https://twitter.com/kzzzf).

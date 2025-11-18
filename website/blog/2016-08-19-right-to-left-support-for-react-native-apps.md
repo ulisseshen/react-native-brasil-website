@@ -1,5 +1,6 @@
 ---
-title: Right-to-Left Layout Support For React Native Apps
+ia-translated: true
+title: Suporte de Layout da Direita para a Esquerda para Aplicativos React Native
 author: Mengjue (Mandy) Wang
 authorTitle: Software Engineer Intern at Facebook
 authorURL: 'https://github.com/MengjueW'
@@ -7,47 +8,47 @@ authorImageURL: 'https://avatars0.githubusercontent.com/u/13987140?v=3&s=128'
 tags: [engineering]
 ---
 
-After launching an app to the app stores, internationalization is the next step to further your audience reach. Over 20 countries and numerous people around the world use Right-to-Left (RTL) languages. Thus, making your app support RTL for them is necessary.
+Depois de lançar um aplicativo nas lojas de aplicativos, a internacionalização é o próximo passo para ampliar ainda mais o alcance do seu público. Mais de 20 países e inúmeras pessoas ao redor do mundo usam idiomas da Direita para a Esquerda (RTL). Portanto, fazer seu aplicativo suportar RTL para eles é necessário.
 
-We're glad to announce that React Native has been improved to support RTL layouts. This is now available in the [react-native](https://github.com/facebook/react-native) master branch today, and will be available in the next RC: [`v0.33.0-rc`](https://github.com/facebook/react-native/releases).
+Estamos felizes em anunciar que React Native foi melhorado para suportar layouts RTL. Isso está disponível agora no branch master do [react-native](https://github.com/facebook/react-native) hoje, e estará disponível no próximo RC: [`v0.33.0-rc`](https://github.com/facebook/react-native/releases).
 
-This involved changing [css-layout](https://github.com/facebook/css-layout), the core layout engine used by RN, and RN core implementation, as well as specific OSS JS components to support RTL.
+Isso envolveu mudanças no [css-layout](https://github.com/facebook/css-layout), o motor de layout principal usado pelo RN, e na implementação core do RN, bem como componentes JS OSS específicos para suportar RTL.
 
-To battle test the RTL support in production, the latest version of the **Facebook Ads Manager** app (the first cross-platform 100% RN app) is now available in Arabic and Hebrew with RTL layouts for both [iOS](https://itunes.apple.com/app/id964397083) and [Android](https://play.google.com/store/apps/details?id=com.facebook.adsmanager). Here is how it looks like in those RTL languages:
+Para testar em batalha o suporte RTL em produção, a versão mais recente do aplicativo **Facebook Ads Manager** (o primeiro aplicativo multiplataforma 100% RN) agora está disponível em árabe e hebraico com layouts RTL para [iOS](https://itunes.apple.com/app/id964397083) e [Android](https://play.google.com/store/apps/details?id=com.facebook.adsmanager). Aqui está como ele se parece nesses idiomas RTL:
 
 <>
 <img src="/blog/assets/rtl-ama-ios-arabic.png" width={280} style={{ margin: 10 }} />
 <img src="/blog/assets/rtl-ama-android-hebrew.png" width={280} style={{ margin: 10 }} />
 </>
 
-## Overview Changes in RN for RTL support
+## Visão Geral das Mudanças no RN para suporte RTL
 
-[css-layout](https://github.com/facebook/css-layout) already has a concept of `start` and `end` for the layout. In the Left-to-Right (LTR) layout, `start` means `left`, and `end` means `right`. But in RTL, `start` means `right`, and `end` means `left`. This means we can make RN depend on the `start` and `end` calculation to compute the correct layout, which includes `position`, `padding`, and `margin`.
+[css-layout](https://github.com/facebook/css-layout) já tem um conceito de `start` e `end` para o layout. No layout da Esquerda para a Direita (LTR), `start` significa `left`, e `end` significa `right`. Mas em RTL, `start` significa `right`, e `end` significa `left`. Isso significa que podemos fazer o RN depender do cálculo de `start` e `end` para calcular o layout correto, que inclui `position`, `padding` e `margin`.
 
-In addition, [css-layout](https://github.com/facebook/css-layout) already makes each component's direction inherits from its parent. This means, we simply need to set the direction of the root component to RTL, and the entire app will flip.
+Além disso, [css-layout](https://github.com/facebook/css-layout) já faz com que a direção de cada componente herde de seu pai. Isso significa que simplesmente precisamos definir a direção do componente raiz para RTL, e o aplicativo inteiro irá inverter.
 
-The diagram below describes the changes at high level:
+O diagrama abaixo descreve as mudanças em alto nível:
 
 ![](/blog/assets/rtl-rn-core-updates.png)
 
-These include:
+Estas incluem:
 
-- [css-layout RTL support for absolute positioning](https://github.com/facebook/css-layout/commit/46c842c71a1232c3c78c4215275d104a389a9a0f)
-- mapping `left` and `right` to `start` and `end` in RN core implementation for shadow nodes
-- and exposing a [bridged utility module](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js) to help control the RTL layout
+- [suporte RTL do css-layout para posicionamento absoluto](https://github.com/facebook/css-layout/commit/46c842c71a1232c3c78c4215275d104a389a9a0f)
+- mapeamento de `left` e `right` para `start` e `end` na implementação core do RN para shadow nodes
+- e expor um [módulo utilitário bridged](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js) para ajudar a controlar o layout RTL
 
-With this update, when you allow RTL layout for your app:
+Com esta atualização, quando você permite layout RTL para seu aplicativo:
 
-- every component layout will flip horizontally
-- some gestures and animations will automatically have RTL layout, if you are using RTL-ready OSS components
-- minimal additional effort may be needed to make your app fully RTL-ready
+- o layout de cada componente irá inverter horizontalmente
+- alguns gestos e animações automaticamente terão layout RTL, se você estiver usando componentes OSS prontos para RTL
+- esforço adicional mínimo pode ser necessário para tornar seu aplicativo totalmente pronto para RTL
 
-## Making an App RTL-ready
+## Tornando um Aplicativo Pronto para RTL
 
-1. To support RTL, you should first add the RTL language bundles to your app.
-   - See the general guides from [iOS](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/LocalizingYourApp/LocalizingYourApp.html#//apple_ref/doc/uid/10000171i-CH5-SW1) and [Android](https://developer.android.com/training/basics/supporting-devices/languages.html).
+1. Para suportar RTL, você deve primeiro adicionar os bundles de idioma RTL ao seu aplicativo.
+   - Veja os guias gerais do [iOS](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/LocalizingYourApp/LocalizingYourApp.html#//apple_ref/doc/uid/10000171i-CH5-SW1) e [Android](https://developer.android.com/training/basics/supporting-devices/languages.html).
 
-2. Allow RTL layout for your app by calling the `allowRTL()` function at the beginning of native code. We provided this utility to only apply to an RTL layout when your app is ready. Here is an example:
+2. Permita layout RTL para seu aplicativo chamando a função `allowRTL()` no início do código nativo. Fornecemos este utilitário para aplicar apenas um layout RTL quando seu aplicativo estiver pronto. Aqui está um exemplo:
 
    iOS:
 
@@ -64,39 +65,39 @@ With this update, when you allow RTL layout for your app:
      sharedI18nUtilInstance.allowRTL(context, true);
    ```
 
-3. For Android, you need add `android:supportsRtl="true"` to the [`<application>`](https://developer.android.com/guide/topics/manifest/application-element.html) element in `AndroidManifest.xml` file.
+3. Para Android, você precisa adicionar `android:supportsRtl="true"` ao elemento [`<application>`](https://developer.android.com/guide/topics/manifest/application-element.html) no arquivo `AndroidManifest.xml`.
 
-Now, when you recompile your app and change the device language to an RTL language (e.g. Arabic or Hebrew), your app layout should change to RTL automatically.
+Agora, quando você recompilar seu aplicativo e mudar o idioma do dispositivo para um idioma RTL (por exemplo, árabe ou hebraico), o layout do seu aplicativo deve mudar para RTL automaticamente.
 
-## Writing RTL-ready Components
+## Escrevendo Componentes Prontos para RTL
 
-In general, most components are already RTL-ready, for example:
+Em geral, a maioria dos componentes já está pronta para RTL, por exemplo:
 
-- Left-to-Right Layout
+- Layout da Esquerda para a Direita
 
 <img src="/blog/assets/rtl-demo-listitem-ltr.png" width="300" />
 
-- Right-to-Left Layout
+- Layout da Direita para a Esquerda
 
 <img src="/blog/assets/rtl-demo-listitem-rtl.png" width="300" />
 
-However, there are several cases to be aware of, for which you will need the [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js). In [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js), there is a constant `isRTL` to tell if layout of app is RTL or not, so that you can make the necessary changes according to the layout.
+No entanto, existem vários casos a serem observados, para os quais você precisará do [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js). No [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js), existe uma constante `isRTL` para informar se o layout do aplicativo é RTL ou não, para que você possa fazer as mudanças necessárias de acordo com o layout.
 
-#### Icons with Directional Meaning
+#### Ícones com Significado Direcional
 
-If your component has icons or images, they will be displayed the same way in LTR and RTL layout, because RN will not flip your source image. Therefore, you should flip them according to the layout style.
+Se seu componente tem ícones ou imagens, eles serão exibidos da mesma forma no layout LTR e RTL, porque o RN não irá inverter sua imagem de origem. Portanto, você deve invertê-los de acordo com o estilo de layout.
 
-- Left-to-Right Layout
+- Layout da Esquerda para a Direita
 
 <img src="/blog/assets/rtl-demo-icon-ltr.png" width="300" />
 
-- Right-to-Left Layout
+- Layout da Direita para a Esquerda
 
 <img src="/blog/assets/rtl-demo-icon-rtl.png" width="300" />
 
-Here are two ways to flip the icon according to the direction:
+Aqui estão duas maneiras de inverter o ícone de acordo com a direção:
 
-- Adding a `transform` style to the image component:
+- Adicionando um estilo `transform` ao componente de imagem:
 
   ```jsx
   <Image
@@ -105,7 +106,7 @@ Here are two ways to flip the icon according to the direction:
   />
   ```
 
-- Or, changing the image source according to the direction:
+- Ou, mudando a fonte da imagem de acordo com a direção:
 
   ```jsx
   let imageSource = require('./back.png');
@@ -115,18 +116,18 @@ Here are two ways to flip the icon according to the direction:
   return <Image source={imageSource} />;
   ```
 
-#### Gestures and Animations
+#### Gestos e Animações
 
-In Android and iOS development, when you change to RTL layout, the gestures and animations are the opposite of LTR layout. Currently, in RN, gestures and animations are not supported on RN core code level, but on components level. The good news is, some of these components already support RTL today, such as [`SwipeableRow`](https://github.com/facebook/react-native/blob/38a6eec0db85a5204e85a9a92b4dee2db9641671/Libraries/Experimental/SwipeableRow/SwipeableRow.js) and [`NavigationExperimental`](https://github.com/facebook/react-native/tree/master/Libraries/NavigationExperimental). However, other components with gestures will need to support RTL manually.
+No desenvolvimento Android e iOS, quando você muda para layout RTL, os gestos e animações são o oposto do layout LTR. Atualmente, no RN, gestos e animações não são suportados no nível de código core do RN, mas no nível de componentes. A boa notícia é que alguns desses componentes já suportam RTL hoje, como [`SwipeableRow`](https://github.com/facebook/react-native/blob/38a6eec0db85a5204e85a9a92b4dee2db9641671/Libraries/Experimental/SwipeableRow/SwipeableRow.js) e [`NavigationExperimental`](https://github.com/facebook/react-native/tree/master/Libraries/NavigationExperimental). No entanto, outros componentes com gestos precisarão suportar RTL manualmente.
 
-A good example to illustrate gesture RTL support is [`SwipeableRow`](https://github.com/facebook/react-native/blob/38a6eec0db85a5204e85a9a92b4dee2db9641671/Libraries/Experimental/SwipeableRow/SwipeableRow.js).
+Um bom exemplo para ilustrar o suporte RTL de gestos é [`SwipeableRow`](https://github.com/facebook/react-native/blob/38a6eec0db85a5204e85a9a92b4dee2db9641671/Libraries/Experimental/SwipeableRow/SwipeableRow.js).
 
 <p align="center">
   <img src="/blog/assets/rtl-demo-swipe-ltr.png" width={280} style={{margin: 10}} />
   <img src="/blog/assets/rtl-demo-swipe-rtl.png" width={280} style={{margin: 10}} />
 </p>
 
-##### Gestures Example
+##### Exemplo de Gestos
 
 ```js
 // SwipeableRow.js
@@ -140,7 +141,7 @@ _isSwipingExcessivelyRightFromClosedPosition(gestureState: Object): boolean {
 },
 ```
 
-##### Animation Example
+##### Exemplo de Animação
 
 ```js
 // SwipeableRow.js
@@ -157,9 +158,9 @@ _animateBounceBack(duration: number): void {
 },
 ```
 
-## Maintaining Your RTL-ready App
+## Mantendo Seu Aplicativo Pronto para RTL
 
-Even after the initial RTL-compatible app release, you will likely need to iterate on new features. To improve development efficiency, [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js) provides the `forceRTL()` function for faster RTL testing without changing the test device language. You might want to provide a simple switch for this in your app. Here's an example from the RTL example in the RNTester:
+Mesmo após o lançamento inicial do aplicativo compatível com RTL, você provavelmente precisará iterar em novos recursos. Para melhorar a eficiência de desenvolvimento, [`I18nManager`](https://github.com/facebook/react-native/blob/f0fb228ec76ed49e6ed6d786d888e8113b8959a2/Libraries/Utilities/I18nManager.js) fornece a função `forceRTL()` para testes RTL mais rápidos sem mudar o idioma do dispositivo de teste. Você pode querer fornecer um switch simples para isso em seu aplicativo. Aqui está um exemplo do exemplo RTL no RNTester:
 
 <p align="center">
   <img src="/blog/assets/rtl-demo-forcertl.png" width="300" />
@@ -191,26 +192,26 @@ _onDirectionChange = () => {
 };
 ```
 
-When working on a new feature, you can easily toggle this button and reload the app to see RTL layout. The benefit is you won't need to change the language setting to test, however some text alignment won't change, as explained in the next section. Therefore, it's always a good idea to test your app in the RTL language before launching.
+Ao trabalhar em um novo recurso, você pode facilmente alternar este botão e recarregar o aplicativo para ver o layout RTL. O benefício é que você não precisará mudar a configuração de idioma para testar, no entanto, algum alinhamento de texto não mudará, como explicado na próxima seção. Portanto, é sempre uma boa ideia testar seu aplicativo no idioma RTL antes de lançar.
 
-## Limitations and Future Plan
+## Limitações e Plano Futuro
 
-The RTL support should cover most of the UX in your app; however, there are some limitations for now:
+O suporte RTL deve cobrir a maior parte da UX em seu aplicativo; no entanto, existem algumas limitações por enquanto:
 
-- Text alignment behaviors differ in Android and iOS
-  - In iOS, the default text alignment depends on the active language bundle, they are consistently on one side. In Android, the default text alignment depends on the language of the text content, i.e. English will be left-aligned and Arabic will be right-aligned.
-  - In theory, this should be made consistent across platform, but some people may prefer one behavior to another when using an app. More user experience research may be needed to find out the best practice for text alignment.
+- Os comportamentos de alinhamento de texto diferem no Android e iOS
+  - No iOS, o alinhamento de texto padrão depende do bundle de idioma ativo, eles são consistentemente de um lado. No Android, o alinhamento de texto padrão depende do idioma do conteúdo do texto, ou seja, inglês será alinhado à esquerda e árabe será alinhado à direita.
+  - Em teoria, isso deve ser tornado consistente entre plataformas, mas algumas pessoas podem preferir um comportamento ao outro ao usar um aplicativo. Mais pesquisa de experiência do usuário pode ser necessária para descobrir a melhor prática para alinhamento de texto.
 
-* There is no "true" left/right
+* Não há "verdadeiro" esquerda/direita
 
-  As discussed before, we map the `left`/`right` styles from the JS side to `start`/`end`, all `left` in code for RTL layout becomes "right" on screen, and `right` in code becomes "left" on screen. This is convenient because you don't need to change your product code too much, but it means there is no way to specify "true left" or "true right" in the code. In the future, allowing a component to control its direction regardless of the language may be necessary.
+  Como discutido antes, mapeamos os estilos `left`/`right` do lado JS para `start`/`end`, todo `left` no código para layout RTL se torna "direita" na tela, e `right` no código se torna "esquerda" na tela. Isso é conveniente porque você não precisa mudar muito o código do seu produto, mas significa que não há como especificar "verdadeira esquerda" ou "verdadeira direita" no código. No futuro, permitir que um componente controle sua direção independentemente do idioma pode ser necessário.
 
-* Make RTL support for gestures and animations more developer friendly
+* Tornar o suporte RTL para gestos e animações mais amigável para desenvolvedores
 
-  Currently, there is still some programming effort required to make gestures and animations RTL compatible. In the future, it would be ideal to find a way to make gestures and animations RTL support more developer friendly.
+  Atualmente, ainda há algum esforço de programação necessário para tornar gestos e animações compatíveis com RTL. No futuro, seria ideal encontrar uma maneira de tornar o suporte RTL de gestos e animações mais amigável para desenvolvedores.
 
-## Try it Out!
+## Experimente!
 
-Check out the [`RTLExample`](https://github.com/facebook/react-native/blob/master/packages/rn-tester/js/examples/RTL/RTLExample.js) in the `RNTester` to understand more about RTL support, and let us know how it works for you!
+Confira o [`RTLExample`](https://github.com/facebook/react-native/blob/master/packages/rn-tester/js/examples/RTL/RTLExample.js) no `RNTester` para entender mais sobre o suporte RTL, e nos avise como funciona para você!
 
-Finally, thank you for reading! We hope that the RTL support for React Native helps you grow your apps for international audience!
+Finalmente, obrigado por ler! Esperamos que o suporte RTL para React Native ajude você a expandir seus aplicativos para audiências internacionais!

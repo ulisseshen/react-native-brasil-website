@@ -1,5 +1,6 @@
 ---
-title: Easier Upgrades Thanks to Git
+ia-translated: true
+title: Atualizações Mais Fáceis Graças ao Git
 author: Nicolas Cuillery
 authorTitle: JavaScript consultant and trainer at Zenika
 authorURL: 'https://twitter.com/ncuillery'
@@ -8,54 +9,54 @@ authorTwitter: ncuillery
 tags: [announcement]
 ---
 
-Upgrading to new versions of React Native has been difficult. You might have seen something like this before:
+Atualizar para novas versões do React Native tem sido difícil. Você pode ter visto algo assim antes:
 
 ![](/blog/assets/git-upgrade-conflict.png)
 
-None of those options is ideal. By overwriting the file we lose our local changes. By not overwriting we don't get the latest updates.
+Nenhuma dessas opções é ideal. Ao sobrescrever o arquivo perdemos nossas mudanças locais. Ao não sobrescrever, não obtemos as últimas atualizações.
 
-Today I am proud to introduce a new tool that helps solve this problem. The tool is called `react-native-git-upgrade` and uses Git behind the scenes to resolve conflicts automatically whenever possible.
+Hoje estou orgulhoso de introduzir uma nova ferramenta que ajuda a resolver este problema. A ferramenta é chamada `react-native-git-upgrade` e usa Git por trás dos panos para resolver conflitos automaticamente sempre que possível.
 
-## Usage
+## Uso
 
-> **Requirement**: Git has to be available in the `PATH`. Your project doesn't have to be managed by Git.
+> **Requisito**: Git precisa estar disponível no `PATH`. Seu projeto não precisa ser gerenciado pelo Git.
 
-Install `react-native-git-upgrade` globally:
+Instale `react-native-git-upgrade` globalmente:
 
 ```shell
 $ npm install -g react-native-git-upgrade
 ```
 
-or, using [Yarn](https://yarnpkg.com/):
+ou, usando [Yarn](https://yarnpkg.com/):
 
 ```shell
 $ yarn global add react-native-git-upgrade
 ```
 
-Then, run it inside your project directory:
+Então, execute-o dentro do diretório do seu projeto:
 
 ```shell
 $ cd MyProject
 $ react-native-git-upgrade 0.38.0
 ```
 
-> Note: Do **not** run 'npm install' to install a new version of `react-native`. The tool needs to be able to compare the old and new project template to work correctly. Simply run it inside your app folder as shown above, while still on the old version.
+> Nota: **Não** execute 'npm install' para instalar uma nova versão do `react-native`. A ferramenta precisa ser capaz de comparar o template do projeto antigo e novo para funcionar corretamente. Simplesmente execute-o dentro da pasta do seu aplicativo como mostrado acima, enquanto ainda estiver na versão antiga.
 
-Example output:
+Exemplo de saída:
 
 ![](/blog/assets/git-upgrade-output.png)
 
-You can also run `react-native-git-upgrade` with no arguments to upgrade to the latest version of React Native.
+Você também pode executar `react-native-git-upgrade` sem argumentos para atualizar para a versão mais recente do React Native.
 
-We try to preserve your changes in Android and iOS build files, so you don't need to run `react-native link` after an upgrade.
+Tentamos preservar suas mudanças nos arquivos de build Android e iOS, então você não precisa executar `react-native link` após uma atualização.
 
-We have designed the implementation to be as little intrusive as possible. It is entirely based on a local Git repository created on-the-fly in a temporary directory. It won't interfere with your project repository (no matter what VCS you use: Git, SVN, Mercurial, ... or none). Your sources are restored in case of unexpected errors.
+Projetamos a implementação para ser o menos intrusiva possível. É inteiramente baseada em um repositório Git local criado dinamicamente em um diretório temporário. Não interferirá com o repositório do seu projeto (não importa qual VCS você use: Git, SVN, Mercurial, ... ou nenhum). Suas fontes são restauradas em caso de erros inesperados.
 
-## How does it work?
+## Como funciona?
 
-The key step is generating a Git patch. The patch contains all the changes made in the React Native templates between the version your app is using and the new version.
+O passo chave é gerar um patch Git. O patch contém todas as mudanças feitas nos templates React Native entre a versão que seu aplicativo está usando e a nova versão.
 
-To obtain this patch, we need to generate an app from the templates embedded in the `react-native` package inside your `node_modules` directory (these are the same templates the `react-native init` commands uses). Then, after the native apps have been generated from the templates in both the current version and the new version, Git is able to produce a patch that is adapted to your project (i.e. containing your app name):
+Para obter este patch, precisamos gerar um aplicativo a partir dos templates incorporados no pacote `react-native` dentro do seu diretório `node_modules` (estes são os mesmos templates que o comando `react-native init` usa). Então, depois que os aplicativos nativos foram gerados a partir dos templates tanto na versão atual quanto na nova versão, o Git é capaz de produzir um patch que é adaptado ao seu projeto (ou seja, contendo o nome do seu aplicativo):
 
 ```
 [...]
@@ -76,7 +77,7 @@ index e98ebb0..2fb6a11 100644
 [...]
 ```
 
-All we need now is to apply this patch to your source files. While the old `react-native upgrade` process would have prompted you for any small difference, Git is able to merge most of the changes automatically using its 3-way merge algorithm and eventually leave us with familiar conflict delimiters:
+Tudo o que precisamos agora é aplicar este patch aos seus arquivos de origem. Enquanto o antigo processo de `react-native upgrade` teria solicitado a você qualquer pequena diferença, o Git é capaz de mesclar a maioria das mudanças automaticamente usando seu algoritmo de merge de 3 vias e eventualmente nos deixar com delimitadores de conflito familiares:
 
 ```
     13B07F951A680F5B00A75B9A /* Release */ = {
@@ -101,22 +102,22 @@ All we need now is to apply this patch to your source files. While the old `reac
         );
 ```
 
-These conflicts are generally easy to reason about. The delimiter **ours** stands for "your team" whereas **theirs** could be seen as "the React Native team".
+Esses conflitos geralmente são fáceis de raciocinar. O delimitador **ours** representa "sua equipe", enquanto **theirs** pode ser visto como "a equipe React Native".
 
-## Why introduce a new global package?
+## Por que introduzir um novo pacote global?
 
-React Native comes with a global CLI (the [react-native-cli](https://www.npmjs.com/package/react-native-cli) package) which delegates commands to the local CLI embedded in the `node_modules/react-native/local-cli` directory.
+React Native vem com um CLI global (o pacote [react-native-cli](https://www.npmjs.com/package/react-native-cli)) que delega comandos ao CLI local incorporado no diretório `node_modules/react-native/local-cli`.
 
-As we mentioned above, the process has to be started from your current React Native version. If we had embedded the implementation in the local-cli, you wouldn't be able to enjoy this feature when using old versions of React Native. For example, you wouldn't be able to upgrade from 0.29.2 to 0.38.0 if this new upgrade code was only released in 0.38.0.
+Como mencionamos acima, o processo precisa ser iniciado a partir da sua versão atual do React Native. Se tivéssemos incorporado a implementação no local-cli, você não seria capaz de aproveitar este recurso ao usar versões antigas do React Native. Por exemplo, você não seria capaz de atualizar de 0.29.2 para 0.38.0 se este novo código de atualização só fosse lançado na 0.38.0.
 
-Upgrading based on Git is a big improvement in developer experience and it is important to make it available to everyone. By using a separate package [react-native-git-upgrade](https://www.npmjs.com/package/react-native-git-upgrade) installed globally you can use this new code today no matter what version of React Native your project is using.
+Atualizar com base em Git é uma grande melhoria na experiência do desenvolvedor e é importante disponibilizá-lo para todos. Ao usar um pacote separado [react-native-git-upgrade](https://www.npmjs.com/package/react-native-git-upgrade) instalado globalmente, você pode usar este novo código hoje, independentemente da versão do React Native que seu projeto está usando.
 
-One more reason is the recent [Yeoman wipeout](https://twitter.com/martinkonicek/status/800730190141857793) by Martin Konicek. We didn't want to get these Yeoman dependencies back into the `react-native` package to be able to evaluate the old template in order to create the patch.
+Mais uma razão é a recente [eliminação do Yeoman](https://twitter.com/martinkonicek/status/800730190141857793) por Martin Konicek. Não queríamos trazer essas dependências do Yeoman de volta para o pacote `react-native` para poder avaliar o template antigo e criar o patch.
 
-## Try it out and provide feedback
+## Experimente e dê feedback
 
-As a conclusion, I would say, enjoy the feature and feel free [to suggest improvements, report issues](https://github.com/facebook/react-native/issues) and especially [send pull requests](https://github.com/facebook/react-native/pulls). Each environment is a bit different and each React Native project is different, and we need your feedback to make this work well for everyone.
+Para concluir, eu diria, aproveite o recurso e sinta-se à vontade para [sugerir melhorias, relatar problemas](https://github.com/facebook/react-native/issues) e especialmente [enviar pull requests](https://github.com/facebook/react-native/pulls). Cada ambiente é um pouco diferente e cada projeto React Native é diferente, e precisamos do seu feedback para fazer isso funcionar bem para todos.
 
-### Thank you!
+### Obrigado!
 
-I would like to thank the awesome companies [Zenika](https://www.zenika.com) and [M6 Web (archived)](https://web.archive.org/web/20161230163633/http://www.groupem6.fr:80/le-groupe_en/activites/diversifications/m6-web.html) without whom none of this would have been possible!
+Gostaria de agradecer às incríveis empresas [Zenika](https://www.zenika.com) e [M6 Web (arquivado)](https://web.archive.org/web/20161230163633/http://www.groupem6.fr:80/le-groupe_en/activites/diversifications/m6-web.html) sem as quais nada disso teria sido possível!
