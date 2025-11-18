@@ -1,58 +1,59 @@
 ---
-title: Triaging GitHub Issues
+title: Triagem de Issues do GitHub
+ia-translated: true
 ---
 
-Start out by looking at issues that need triage, as identified by the ["Needs: Triage" label](https://github.com/facebook/react-native/issues?q=is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Triage+%3Amag%3A%22).
+Comece procurando por issues que precisam de triagem, identificadas pela [label "Needs: Triage"](https://github.com/facebook/react-native/issues?q=is%3Aissue+is%3Aopen+label%3A%22Needs%3A+Triage+%3Amag%3A%22).
 
-- Is this a request for code-level help with an individual app? Would this be a better fit for Stack Overflow? If so, apply the "Resolution: For Stack Overflow" label.
-- Does this issue make appropriate use of the template? If not, apply the "Needs: Template" label.
-- Does this issue mention the React Native version that was used? If not, apply the "Needs: Environment Info" label.
-- Does this issue include a Snack, a code example, OR a list of steps to reproduce the issue? If not, apply the "Needs: Repro" label.
+- Esta é uma solicitação de ajuda em nível de código para um aplicativo individual? Seria mais adequado para o Stack Overflow? Se sim, aplique a label "Resolution: For Stack Overflow".
+- Esta issue faz uso apropriado do template? Se não, aplique a label "Needs: Template".
+- Esta issue menciona a versão do React Native que foi usada? Se não, aplique a label "Needs: Environment Info".
+- Esta issue inclui um Snack, um exemplo de código OU uma lista de passos para reproduzir o problema? Se não, aplique a label "Needs: Repro".
 
 :::note
-We sometimes get issues that are quite not appropriate for the GitHub issue tracker. Add the "Type: Invalid" label, and a bot will close the issue automatically.
+Às vezes recebemos issues que não são apropriadas para o issue tracker do GitHub. Adicione a label "Type: Invalid", e um bot fechará a issue automaticamente.
 :::
 
-Once you get to this point, you can transition to parsing the content of the issue itself. Does this issue include a **clear description** of the problem?
+Uma vez que você chegue a este ponto, pode fazer a transição para analisar o conteúdo da issue em si. Esta issue inclui uma **descrição clara** do problema?
 
-If not, _politely_ ask the issue author to update their issue with the necessary information, and apply a "Needs: Author Feedback" label.
+Se não, peça _educadamente_ ao autor da issue para atualizar sua issue com as informações necessárias, e aplique a label "Needs: Author Feedback".
 
-We aim to always be friendly and helpful and expect the same from every member of our community.
+Nosso objetivo é sempre ser amigáveis e prestativos e esperamos o mesmo de cada membro da nossa comunidade.
 
-## Improving an Issue
+## Melhorando uma Issue
 
-If the issue contains all the necessary information, take a moment to consider if the issue can still be improved in some way. Is the formatting alright? You may lightly edit the issue to improve readability as needed.
+Se a issue contém todas as informações necessárias, reserve um momento para considerar se a issue ainda pode ser melhorada de alguma forma. A formatação está adequada? Você pode editar levemente a issue para melhorar a legibilidade conforme necessário.
 
-If the issue contains an unformatted block of code, surround it with three back ticks (```) to convert it into a markdown code block.
+Se a issue contém um bloco de código não formatado, envolva-o com três crases (```) para convertê-lo em um bloco de código markdown.
 
-Are there any labels you can add to help categorize it better? If the issue only affects Android apps, you may add a "Platform: Android" label. Perhaps the issue only manifests itself when developing on Windows, in which case you might add the "Platform: Windows" label.
+Há alguma label que você pode adicionar para ajudar a categorizá-la melhor? Se a issue afeta apenas aplicativos Android, você pode adicionar a label "Platform: Android". Talvez a issue só se manifeste ao desenvolver no Windows, caso em que você pode adicionar a label "Platform: Windows".
 
-We have a long list of [labels](https://github.com/facebook/react-native/issues/labels), please take a look and see if anything might apply!
+Temos uma longa lista de [labels](https://github.com/facebook/react-native/issues/labels), por favor dê uma olhada e veja se algo pode ser aplicado!
 
-## Handling Duplicates
+## Lidando com Duplicatas
 
-As you work through these issues, you will start to get a better understanding of the type of problems that get reported. You may even start noticing the same issue gets reported.
+Ao trabalhar com essas issues, você começará a ter uma melhor compreensão do tipo de problemas que são relatados. Você pode até começar a notar que a mesma issue é relatada.
 
-In these cases, you can close the issue and add a comment that says "Duplicate of #issue". By following this convention, GitHub will automatically mark the issue as a duplicate.
+Nesses casos, você pode fechar a issue e adicionar um comentário que diga "Duplicate of #issue". Ao seguir esta convenção, o GitHub automaticamente marcará a issue como duplicata.
 
-## Assessing Impact
+## Avaliando o Impacto
 
-Next up, we need to determine how severe the issue is.
+Em seguida, precisamos determinar quão grave é a issue.
 
-### Is this a potential **release blocker**?
+### Esta é uma potencial **bloqueadora de release**?
 
-These issues should be addressed within the next week or two, as they may prevent release coordinators from cutting a clean release candidate.
+Essas issues devem ser resolvidas dentro da próxima semana ou duas, pois podem impedir que os coordenadores de release façam um release candidate limpo.
 
-Issues that might be labeled as such could be regressions that break one of our pre-commit tests. Avoid flagging an issue as a release blocker if it has been around for some time (if the issue is already present in one or more releases, it cannot be a RC blocker by definition).
+Issues que podem ser rotuladas como tal podem ser regressões que quebram um de nossos testes de pré-commit. Evite marcar uma issue como bloqueadora de release se ela já existe há algum tempo (se a issue já está presente em um ou mais releases, ela não pode ser uma bloqueadora de RC por definição).
 
-### Does this cause the app to **crash**?
+### Isso faz o aplicativo **crashar**?
 
-These are issues that cause a React Native to crash unexpectedly. These may lead to a poor user experience if not caught early.
+Essas são issues que fazem um aplicativo React Native crashar inesperadamente. Elas podem levar a uma experiência ruim do usuário se não forem detectadas cedo.
 
-### Is this a **bug**?
+### Este é um **bug**?
 
-Describes something that is not working as expected. It'd be nice to get it fixed at some point, but it's not serious enough to block the release train. Even if the issue causes a crash, if there's a reasonable workaround available, it can be classified as a regular bug.
+Descreve algo que não está funcionando como esperado. Seria bom corrigi-lo em algum momento, mas não é sério o suficiente para bloquear o trem de releases. Mesmo se a issue causar um crash, se houver uma solução alternativa razoável disponível, ela pode ser classificada como um bug regular.
 
-### Is this a **good first issue**?
+### Este é um **good first issue**?
 
-These are issues that do not require a deep understanding and familiarity with the repo. GitHub will surface these issues to folks interested in becoming contributors. Keep in mind that issues labeled this way may not end up getting fixed right away.
+Essas são issues que não exigem uma compreensão profunda e familiaridade com o repositório. O GitHub destacará essas issues para pessoas interessadas em se tornar contribuidores. Tenha em mente que issues rotuladas dessa forma podem não ser corrigidas imediatamente.
