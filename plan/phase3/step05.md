@@ -1,58 +1,60 @@
-# Phase 3 - Step 5: Blog Posts 2023-2024
+<!-- ia-translated: true -->
 
-**Target:** ~15 files
-**Category:** React Native Blog Posts (2023-2024)
-**Estimated Time:** 3-4 hours
-**Agent:** `.claude/agents/translator.md`
+# Fase 3 - Passo 5: Posts do Blog 2023-2024
 
-## Objective
-Translate React Native blog posts from 2023-2024, covering recent developments and new architecture maturity.
+**Alvo:** ~15 arquivos
+**Categoria:** Posts do Blog React Native (2023-2024)
+**Tempo Estimado:** 3-4 horas
+**Agente:** `.claude/agents/translator.md`
 
-## Translation Instructions
+## Objetivo
+Traduzir posts do blog React Native de 2023-2024, cobrindo desenvolvimentos recentes e maturidade da nova arquitetura.
 
-Follow the same guidelines as previous Phase 3 steps.
+## Instruções de Tradução
 
-### Key Topics from This Period
-- New Architecture as default
-- React Native 0.7x+ releases
-- Debugging tools improvements
-- Performance enhancements
-- Expo integration updates
+Siga as mesmas diretrizes dos passos anteriores da Fase 3.
+
+### Tópicos Principais Deste Período
+- New Architecture como padrão
+- Lançamentos React Native 0.7x+
+- Melhorias nas ferramentas de debugging
+- Aprimoramentos de performance
+- Atualizações de integração Expo
 - Community showcase
 
-## Files to Translate
+## Arquivos para Traduzir
 
-Find and translate all blog posts from 2023-2024:
+Encontre e traduza todos os posts do blog de 2023-2024:
 
 ```bash
 # List all 2023-2024 blog posts
 find website/blog -name "2023-*.md" -o -name "2024-*.md" | sort
 ```
 
-Approximately 15-20 files from this period.
+Aproximadamente 15-20 arquivos deste período.
 
-## Sample Topics
-- New Architecture improvements
+## Tópicos de Exemplo
+- Melhorias na New Architecture
 - React Native DevTools
 - Bridgeless mode
 - Static Hermes
-- Release updates (0.7x+ series)
-- Community highlights
+- Atualizações de lançamento (série 0.7x+)
+- Destaques da comunidade
 
-## Quality Checklist
+## Lista de Verificação de Qualidade
 
-- [ ] Latest features accurately described
-- [ ] DevTools terminology consistent
-- [ ] Bridgeless mode concepts clear
-- [ ] Recent release notes accurate
-- [ ] Community contributions acknowledged
-- [ ] Future roadmap well explained
+- [ ] Recursos mais recentes descritos com precisão
+- [ ] Terminologia do DevTools consistente
+- [ ] Conceitos do Bridgeless mode claros
+- [ ] Notas de lançamento recentes precisas
+- [ ] Contribuições da comunidade reconhecidas
+- [ ] Roadmap futuro bem explicado
 
-## Output Location
+## Local de Saída
 
 ```
 website/i18n/pt-BR/docusaurus-plugin-content-blog/
 ```
 
-## Next Step
-After completing this step, proceed to **step06.md** (Blog Posts 2025 & Recent)
+## Próximo Passo
+Após completar este passo, prossiga para **step06.md** (Posts do Blog 2025 & Recentes)
