@@ -1,36 +1,37 @@
 ---
-title: Staying up to date
-description: The React Native Community
+ia-translated: true
+title: Manter-se atualizado
+description: A Comunidade React Native
 ---
 
-### News
+### Notícias
 
-Twitter is one of the main communication channels used by the team to communicate updates, news and request for participation: follow the [React Native account](https://twitter.com/reactnative) to stay up to date - the [ReactJS account](https://twitter.com/reactjs) covers both React and React Native.
+Twitter é um dos principais canais de comunicação usados pela equipe para comunicar atualizações, notícias e solicitações de participação: siga a [conta React Native](https://twitter.com/reactnative) para se manter atualizado - a [conta ReactJS](https://twitter.com/reactjs) cobre tanto React quanto React Native.
 
-For long form news and announcements, keep an eye on the [blog](/blog) to find out what is happening in the world of React Native.
+Para notícias e anúncios de formato longo, fique de olho no [blog](/blog) para descobrir o que está acontecendo no mundo do React Native.
 
-### Discussions and efforts
+### Discussões e esforços
 
-React Native is a dynamic framework and there is always room for improvement. As an open source framework, large-scale coordination and discussion should remain publicly accessible. Here are some dedicated discussion groups you can participate in:
+React Native é um framework dinâmico e sempre há espaço para melhorias. Como um framework de código aberto, a coordenação e discussão em larga escala devem permanecer publicamente acessíveis. Aqui estão alguns grupos de discussão dedicados nos quais você pode participar:
 
-Expect important conversations to always be public; depending on the topic, you can find them in one of these places:
+Espere que conversas importantes sejam sempre públicas; dependendo do tópico, você pode encontrá-las em um destes lugares:
 
-- [Framework discussions, proposals and RFCs](https://github.com/react-native-community/discussions-and-proposals/discussions)
-- [Release status and issues](https://github.com/reactwg/react-native-releases/discussions)
-- [New Architecture adoption and feedback](https://github.com/reactwg/react-native-new-architecture/discussions)
-- [Improvements to the Developer Experience](https://github.com/react-native-community/developer-experience-wg)
+- [Discussões do framework, propostas e RFCs](https://github.com/react-native-community/discussions-and-proposals/discussions)
+- [Status de releases e issues](https://github.com/reactwg/react-native-releases/discussions)
+- [Adoção e feedback da Nova Arquitetura](https://github.com/reactwg/react-native-new-architecture/discussions)
+- [Melhorias na Experiência do Desenvolvedor](https://github.com/react-native-community/developer-experience-wg)
 
 ### Packages & Integrations
 
-In the [React Native Directory](https://reactnative.directory/) you will be able to see many libraries that are compatible with React Native. It is a community-driven effort to help developers browse and evaluate packages, plugins, state management libraries, and more.
+No [React Native Directory](https://reactnative.directory/) você poderá ver muitas bibliotecas que são compatíveis com React Native. É um esforço impulsionado pela comunidade para ajudar desenvolvedores a navegar e avaliar pacotes, plugins, bibliotecas de gerenciamento de estado e muito mais.
 
-### Conferences
+### Conferências
 
-Over the years, many conferences organized by companies and partners have been organized around the world - it would be impossible to track them all here; moreover, often there is React Native content in React events as well.
+Ao longo dos anos, muitas conferências organizadas por empresas e parceiros foram organizadas ao redor do mundo - seria impossível rastreá-las todas aqui; além disso, frequentemente há conteúdo de React Native em eventos de React também.
 
-Listed here are but a few of the main React Native related conferences, with links to past editions' recordings:
+Listadas aqui estão apenas algumas das principais conferências relacionadas ao React Native, com links para gravações de edições passadas:
 
-#### [ReactConf](https://conf.react.dev/), organized by Meta
+#### [ReactConf](https://conf.react.dev/), organizada pela Meta
 
 - [React Conf 2024](https://www.youtube.com/watch?v=T8TZQ6k4SLE&list=PLNG_1j3cPCaaY3NEriypd7FKyWqbBNuAB)
 - [React Conf 2021](https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa)
@@ -40,7 +41,7 @@ Listed here are but a few of the main React Native related conferences, with lin
 - [React Conf 2016](https://www.youtube.com/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY)
 - [React Conf 2015](https://www.youtube.com/watch?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr&v=KVZ-P-ZI6W4)
 
-#### [ChainReact](https://cr.infinite.red/), organized by [InfiniteRed](https://infinite.red/)
+#### [ChainReact](https://cr.infinite.red/), organizada pela [InfiniteRed](https://infinite.red/)
 
 - [ChainReact 2024](https://www.youtube.com/playlist?list=PLFHvL21g9bk0XOO9XK6d6S9w1jBU6Dz_U)
 - [ChainReact 2023](https://www.youtube.com/playlist?list=PLFHvL21g9bk30F2UaJfn6TqJn15MAoBOc)
@@ -48,14 +49,14 @@ Listed here are but a few of the main React Native related conferences, with lin
 - [ChainReact 2018](https://www.youtube.com/playlist?list=PLFHvL21g9bk1skdjnKVGXREDmP_HVDj-u)
 - [ChainReact 2017](https://www.youtube.com/playlist?list=PLFHvL21g9bk3RxJ1Ut5nR_uTZFVOxu522)
 
-#### [AppJS](https://appjs.co/), organized by [Software Mansion](https://swmansion.com/)
+#### [AppJS](https://appjs.co/), organizada pela [Software Mansion](https://swmansion.com/)
 
 - [AppJS 2024](https://www.youtube.com/playlist?list=PLSk21zn8fFZDMGB9UCnqz4WqLbnOgLnp5)
 - [AppJS 2023](https://www.youtube.com/playlist?list=PLSk21zn8fFZCfYEMpSqQOHMgyNKc8B7_s)
 - [AppJS 2022](https://www.youtube.com/playlist?list=PLSk21zn8fFZC3UIvyRjDb4Uog3244BwM6)
 - [AppJS 2019](https://www.youtube.com/playlist?list=PLSk21zn8fFZBKEJxmkdSzzmMJrxkfyjph)
 
-#### [React Native Europe](https://www.react-native.eu/), organized by [Callstack](https://www.callstack.com/)
+#### [React Native Europe](https://www.react-native.eu/), organizada pela [Callstack](https://www.callstack.com/)
 
 - [React Native Europe 2022](https://www.youtube.com/playlist?list=PLZ3MwD-soTTE-qcA0MrcvZBdmkHJSIjJX)
 - [React Native Europe 2021](https://www.youtube.com/playlist?list=PLZ3MwD-soTTG-8Ix3lQ8zHvk94juXpYjl)
