@@ -1,5 +1,6 @@
 ---
-title: Introducing Create React Native App
+ia-translated: true
+title: Apresentando Create React Native App
 author: Adam Perry
 authorTitle: Software Engineer at Expo
 authorURL: 'https://github.com/dikaiosune'
@@ -9,11 +10,11 @@ tags: [engineering]
 youtubeVideoId: 9baaVjGdBqs
 ---
 
-Today we’re announcing [Create React Native App](https://github.com/react-community/create-react-native-app): a new tool that makes it significantly easier to get started with a React Native project! It’s heavily inspired by the design of [Create React App](https://github.com/facebookincubator/create-react-app) and is the product of a collaboration between [Facebook](https://code.facebook.com) and [Expo](https://expo.io) (formerly Exponent).
+Hoje estamos anunciando [Create React Native App](https://github.com/react-community/create-react-native-app): uma nova ferramenta que torna significativamente mais fácil começar com um projeto React Native! É fortemente inspirado no design do [Create React App](https://github.com/facebookincubator/create-react-app) e é o produto de uma colaboração entre [Facebook](https://code.facebook.com) e [Expo](https://expo.io) (anteriormente Exponent).
 
-Many developers struggle with installing and configuring React Native’s current native build dependencies, especially for Android. With Create React Native App, there’s no need to use Xcode or Android Studio, and you can develop for your iOS device using Linux or Windows. This is accomplished using the Expo app, which loads and runs CRNA projects written in pure JavaScript without compiling any native code.
+Muitos desenvolvedores lutam com a instalação e configuração das dependências de build nativas atuais do React Native, especialmente para Android. Com Create React Native App, não há necessidade de usar Xcode ou Android Studio, e você pode desenvolver para seu dispositivo iOS usando Linux ou Windows. Isso é realizado usando o aplicativo Expo, que carrega e executa projetos CRNA escritos em JavaScript puro sem compilar qualquer código nativo.
 
-Try creating a new project (replace with suitable yarn commands if you have it installed):
+Tente criar um novo projeto (substitua por comandos yarn adequados se você o tiver instalado):
 
 ```sh
 $ npm i -g create-react-native-app
@@ -22,14 +23,14 @@ $ cd my-project
 $ npm start
 ```
 
-This will start the React Native packager and print a QR code. Open it in the [Expo app](https://expo.io) to load your JavaScript. Calls to `console.log` are forwarded to your terminal. You can make use of any standard React Native APIs as well as the [Expo SDK](https://docs.expo.dev/versions/latest/).
+Isso iniciará o packager do React Native e imprimirá um código QR. Abra-o no [aplicativo Expo](https://expo.io) para carregar seu JavaScript. Chamadas para `console.log` são encaminhadas para seu terminal. Você pode fazer uso de qualquer API padrão do React Native, bem como do [Expo SDK](https://docs.expo.dev/versions/latest/).
 
-## What about native code?
+## E quanto ao código nativo?
 
-Many React Native projects have Java or Objective-C/Swift dependencies that need to be compiled. The Expo app does include APIs for camera, video, contacts, and more, and bundles popular libraries like [Airbnb’s react-native-maps](https://docs.expo.dev/versions/latest/sdk/map-view/), or [Facebook authentication](https://docs.expo.dev/versions/latest/sdk/facebook/). However if you need a native code dependency that Expo doesn’t bundle then you’ll probably need to have your own build configuration for it. Just like Create React App, “ejecting” is supported by CRNA.
+Muitos projetos React Native têm dependências Java ou Objective-C/Swift que precisam ser compiladas. O aplicativo Expo inclui APIs para câmera, vídeo, contatos e muito mais, e agrupa bibliotecas populares como [react-native-maps da Airbnb](https://docs.expo.dev/versions/latest/sdk/map-view/), ou [autenticação Facebook](https://docs.expo.dev/versions/latest/sdk/facebook/). No entanto, se você precisar de uma dependência de código nativo que a Expo não agrupa, provavelmente precisará ter sua própria configuração de build para isso. Assim como Create React App, "ejetar" é suportado pelo CRNA.
 
-You can run `npm run eject` to get a project very similar to what `react-native init` would generate. At that point you’ll need Xcode and/or Android Studio just as you would if you started with `react-native init` , adding libraries with `react-native link` will work, and you’ll have full control over the native code compilation process.
+Você pode executar `npm run eject` para obter um projeto muito similar ao que `react-native init` geraria. Nesse ponto, você precisará do Xcode e/ou Android Studio assim como você precisaria se começasse com `react-native init`, adicionar bibliotecas com `react-native link` funcionará, e você terá controle total sobre o processo de compilação de código nativo.
 
-## Questions? Feedback?
+## Perguntas? Feedback?
 
-Create React Native App is now stable enough for general use, which means we’re very eager to hear about your experience using it! You can find me [on Twitter](https://twitter.com/dika10sune) or open an issue on [the GitHub repository](https://github.com/react-community/create-react-native-app). Pull requests are very welcome!
+Create React Native App agora está estável o suficiente para uso geral, o que significa que estamos muito ansiosos para ouvir sobre sua experiência usando-o! Você pode me encontrar [no Twitter](https://twitter.com/dika10sune) ou abrir uma issue no [repositório GitHub](https://github.com/react-community/create-react-native-app). Pull requests são muito bem-vindos!
