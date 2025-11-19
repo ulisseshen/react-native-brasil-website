@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: keyboardavoidingview
 title: KeyboardAvoidingView
 ---
 
-This component will automatically adjust its height, position, or bottom padding based on the keyboard height to remain visible while the virtual keyboard is displayed.
+Este componente ajustará automaticamente sua altura, posição ou padding inferior com base na altura do teclado para permanecer visível enquanto o teclado virtual estiver sendo exibido.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=KeyboardAvoidingView&supportedPlatforms=android,ios
 import React from 'react';
@@ -69,22 +70,22 @@ export default KeyboardAvoidingComponent;
 
 ---
 
-# Reference
+# Referência
 
 ## Props
 
 ### [View Props](view.md#props)
 
-Inherits [View Props](view.md#props).
+Herda [View Props](view.md#props).
 
 ---
 
 ### `behavior`
 
-Specify how to react to the presence of the keyboard.
+Especifica como reagir à presença do teclado.
 
 :::note
-Android and iOS both interact with this prop differently. On both iOS and Android, setting `behavior` is recommended.
+Android e iOS interagem com esta prop de maneira diferente. Em ambos iOS e Android, configurar `behavior` é recomendado.
 :::
 
 | Type                                        |
@@ -95,7 +96,7 @@ Android and iOS both interact with this prop differently. On both iOS and Androi
 
 ### `contentContainerStyle`
 
-The style of the content container (View) when behavior is `'position'`.
+O style do container de conteúdo (View) quando behavior é `'position'`.
 
 | Type                              |
 | --------------------------------- |
@@ -105,7 +106,7 @@ The style of the content container (View) when behavior is `'position'`.
 
 ### `enabled`
 
-Enabled or disabled KeyboardAvoidingView.
+Habilita ou desabilita o KeyboardAvoidingView.
 
 | Type    | Default |
 | ------- | ------- |
@@ -115,7 +116,7 @@ Enabled or disabled KeyboardAvoidingView.
 
 ### `keyboardVerticalOffset`
 
-This is the distance between the top of the user screen and the react native view, may be non-zero in some use cases.
+Esta é a distância entre o topo da tela do usuário e a view do React Native, pode ser diferente de zero em alguns casos de uso.
 
 | Type   | Default |
 | ------ | ------- |
