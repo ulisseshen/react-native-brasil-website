@@ -1,5 +1,6 @@
 ---
-title: Meet Doctor, a new React Native command
+ia-translated: true
+title: Conheça o Doctor, um novo comando do React Native
 author: Lucas Bento
 authorTitle: React Native Community
 authorURL: 'https://twitter.com/lbentosilva'
@@ -8,11 +9,11 @@ authorTwitter: lbentosilva
 tags: [announcement]
 ---
 
-After over 20 pull requests from 6 contributors in the React Native Community, we're excited to launch `react-native doctor`, a new command to help you out with getting started, troubleshooting and automatically fixing errors with your development environment. The `doctor` command is heavily inspired by [Expo](https://expo.io/) and [Homebrew](https://brew.sh/)'s own doctor command with a pinch of UI inspired by [Jest](https://jestjs.io/).
+Após mais de 20 pull requests de 6 contribuidores na React Native Community, estamos empolgados em lançar o `react-native doctor`, um novo comando para ajudá-lo a começar, solucionar problemas e corrigir automaticamente erros no seu ambiente de desenvolvimento. O comando `doctor` é fortemente inspirado pelo comando doctor do [Expo](https://expo.io/) e do [Homebrew](https://brew.sh/), com um toque de UI inspirada pelo [Jest](https://jestjs.io/).
 
 <!--truncate-->
 
-Here it is in action:
+Aqui está ele em ação:
 
 <p style={{textAlign: 'center'}}>
   <video width={700} controls="controls" autoPlay style={{borderRadius: 5}}>
@@ -20,43 +21,43 @@ Here it is in action:
   </video>
 </p>
 
-## How it works
+## Como funciona
 
-The `doctor` command currently supports most of the software and libraries that React Native relies on, such as CocoaPods, Xcode and Android SDK. With `doctor` we'll find issues with your development environment and give you the option to automatically fix them. If `doctor` is not able to fix an issue, it will display a message and a helpful link explaining how to fix it manually as the following:
+O comando `doctor` atualmente suporta a maioria dos softwares e bibliotecas dos quais o React Native depende, como CocoaPods, Xcode e Android SDK. Com o `doctor` vamos encontrar problemas no seu ambiente de desenvolvimento e dar a você a opção de corrigi-los automaticamente. Se o `doctor` não for capaz de corrigir um problema, ele exibirá uma mensagem e um link útil explicando como corrigi-lo manualmente, conforme o seguinte:
 
 <p style={{textAlign: 'center'}}>
   <img width={700} src="/img/DoctorManualInstallationMessage.png" alt="Doctor command with a link to help on Android SDK's installation" title="Doctor command with a link to help on Android SDK's installation" />
 </p>
 
-## Try it now
+## Experimente agora
 
-The `doctor` command is available as a part of React Native 0.62. However, you can try it without upgrading yet:
+O comando `doctor` está disponível como parte do React Native 0.62. No entanto, você pode experimentá-lo sem atualizar ainda:
 
 ```sh
 npx @react-native-community/cli doctor
 ```
 
-## What checks are currently supported
+## Quais verificações são suportadas atualmente
 
-`doctor` currently supports the following checks:
+O `doctor` atualmente suporta as seguintes verificações:
 
 - Node.js (>= 8.3)
 - yarn (>= 1.10)
 - npm (>= 4)
-- Watchman (>= 4), used for watching changes in the filesystem when in development mode.
+- Watchman (>= 4), usado para observar mudanças no sistema de arquivos quando em modo de desenvolvimento.
 
-Specific to the Android environment:
+Específico para o ambiente Android:
 
-- Android SDK (>= 26), the software runtime for Android.
-- Android NDK (>= 19), the native development toolkit for Android.
-- `ANDROID_HOME`, environment variable required by the Android SDK setup.
+- Android SDK (>= 26), o software runtime para Android.
+- Android NDK (>= 19), o native development toolkit para Android.
+- `ANDROID_HOME`, variável de ambiente requerida pela configuração do Android SDK.
 
-And to the iOS environment:
+E para o ambiente iOS:
 
-- Xcode (>= 10), IDE for developing, building and shipping iOS applications.
-- CocoaPods, library dependency management tool for iOS applications.
-- ios-deploy (optional), library used internally by the CLI to install applications on a physical iOS device.
+- Xcode (>= 10), IDE para desenvolver, compilar e distribuir aplicações iOS.
+- CocoaPods, ferramenta de gerenciamento de dependências de bibliotecas para aplicações iOS.
+- ios-deploy (opcional), biblioteca usada internamente pelo CLI para instalar aplicações em um dispositivo iOS físico.
 
-## Thanks
+## Agradecimentos
 
-Huge thanks for the React Native Community for working on this, in particular [@thymikee](https://github.com/thymikee), [@thib92](https://github.com/thib92), [@jmeistrich](https://github.com/jmeistrich), [@tido64](https://github.com/tido64) and [@rickhanlonii](https://github.com/rickhanlonii).
+Agradecimentos enormes à React Native Community por trabalhar nisso, em particular [@thymikee](https://github.com/thymikee), [@thib92](https://github.com/thib92), [@jmeistrich](https://github.com/jmeistrich), [@tido64](https://github.com/tido64) e [@rickhanlonii](https://github.com/rickhanlonii).
