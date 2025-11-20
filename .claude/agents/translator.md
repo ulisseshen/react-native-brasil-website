@@ -420,10 +420,10 @@ description: Descrição original traduzida
 other-field: Keep as-is if not translatable
 ---
 
-<!-- ia-translated: true -->
-
 # Rest of content...
 ```
+
+**Note:** When frontmatter exists, add ONLY in frontmatter, NOT as HTML comment. Do not duplicate!
 
 ### Step 3: Translate Content
 
