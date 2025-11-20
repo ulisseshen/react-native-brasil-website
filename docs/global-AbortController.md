@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-AbortController
 title: AbortController
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) for more information.
+🚧 Esta página está em desenvolvimento, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) para mais informações.
 :::
 
-The global `AbortController` class, as defined in Web specifications.
+A classe global `AbortController`, conforme definida nas especificações Web.

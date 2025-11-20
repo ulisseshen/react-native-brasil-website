@@ -1,6 +1,7 @@
 ---
 id: global-EventCounts
 title: EventCounts
+ia-translated: true
 ---
 
-The global [`EventCounts`](https://developer.mozilla.org/en-US/docs/Web/API/EventCounts) class, as defined in Web specifications.
+A classe global [`EventCounts`](https://developer.mozilla.org/en-US/docs/Web/API/EventCounts), conforme definida nas especificações Web.

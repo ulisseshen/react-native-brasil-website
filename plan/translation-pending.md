@@ -10,16 +10,16 @@
 
 APIs globais JavaScript/Web disponíveis no React Native:
 
-- [ ] docs/global-AbortController.md
-- [ ] docs/global-AbortSignal.md
-- [ ] docs/global-Blob.md
-- [ ] docs/global-EventCounts.md
-- [ ] docs/global-File.md
-- [ ] docs/global-FileReader.md
-- [ ] docs/global-FormData.md
-- [ ] docs/global-Headers.md
-- [ ] docs/global-PerformanceEntry.md
-- [ ] docs/global-PerformanceEventTiming.md
+- [x] docs/global-AbortController.md
+- [x] docs/global-AbortSignal.md
+- [x] docs/global-Blob.md
+- [x] docs/global-EventCounts.md
+- [x] docs/global-File.md
+- [x] docs/global-FileReader.md
+- [x] docs/global-FormData.md
+- [x] docs/global-Headers.md
+- [x] docs/global-PerformanceEntry.md
+- [x] docs/global-PerformanceEventTiming.md
 - [ ] docs/global-PerformanceLongTaskTiming.md
 - [ ] docs/global-PerformanceMark.md
 - [ ] docs/global-PerformanceMeasure.md
@@ -168,14 +168,14 @@ Documentação da nova arquitetura:
 
 ## 📊 Progresso
 
-- **APIs Globais:** 0/42 (0%)
+- **APIs Globais:** 10/42 (24%)
 - **Componentes e APIs:** 0/51 (0%)
 - **Guias:** 0/13 (0%)
 - **Legacy:** 0/8 (0%)
 - **Releases:** 0/3 (0%)
 - **The New Architecture:** 0/1 (0%)
 
-**Total:** 0/118 (0%)
+**Total:** 10/118 (8%)
 
 ---
 
