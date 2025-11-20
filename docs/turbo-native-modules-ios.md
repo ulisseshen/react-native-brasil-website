@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: turbo-native-modules-ios
 title: 'Turbo Native Modules: iOS'
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Now it's time to write some iOS platform code to make sure `localStorage` survives after the application is closed.
+Agora é hora de escrever algum código da plataforma iOS para garantir que `localStorage` sobreviva após o aplicativo ser fechado.
 
-## Prepare your Xcode Project
+## Prepare seu projeto Xcode
 
-We need to prepare your iOS project using Xcode. After completing these **6 steps** you'll have `RCTNativeLocalStorage` that implements the generated `NativeLocalStorageSpec` interface.
+Precisamos preparar seu projeto iOS usando o Xcode. Após completar estes **6 passos**, você terá `RCTNativeLocalStorage` que implementa a interface `NativeLocalStorageSpec` gerada.
 
-1. Open the CocoaPods generated Xcode Workspace:
+1. Abra o Workspace Xcode gerado pelo CocoaPods:
 
 ```bash
 cd ios
@@ -20,29 +21,29 @@ open TurboModuleExample.xcworkspace
 
 <img className="half-size" alt="Open Xcode Workspace" src="/docs/assets/turbo-native-modules/xcode/1.webp" />
 
-2. Right click on app and select <code>New Group</code>, call the new group `NativeLocalStorage`.
+2. Clique com o botão direito em app e selecione <code>New Group</code>, chame o novo grupo de `NativeLocalStorage`.
 
 <img className="half-size" alt="Right click on app and select New Group" src="/docs/assets/turbo-native-modules/xcode/2.webp" />
 
-3. In the `NativeLocalStorage` group, create <code>New</code>→<code>File from Template</code>.
+3. No grupo `NativeLocalStorage`, crie <code>New</code>→<code>File from Template</code>.
 
 <img className="half-size" alt="Create a new file using the Cocoa Touch Class template" src="/docs/assets/turbo-native-modules/xcode/3.webp" />
 
-4. Use the <code>Cocoa Touch Class</code>.
+4. Use o <code>Cocoa Touch Class</code>.
 
 <img className="half-size" alt="Use the Cocoa Touch Class template" src="/docs/assets/turbo-native-modules/xcode/4.webp"  />
 
-5. Name the Cocoa Touch Class <code>RCTNativeLocalStorage</code> with the <code>Objective-C</code> language.
+5. Nomeie a Cocoa Touch Class como <code>RCTNativeLocalStorage</code> com a linguagem <code>Objective-C</code>.
 
 <img className="half-size" alt="Create an Objective-C RCTNativeLocalStorage class" src="/docs/assets/turbo-native-modules/xcode/5.webp" />
 
-6. Rename <code>RCTNativeLocalStorage.m</code> → <code>RCTNativeLocalStorage.mm</code> making it an Objective-C++ file.
+6. Renomeie <code>RCTNativeLocalStorage.m</code> → <code>RCTNativeLocalStorage.mm</code> tornando-o um arquivo Objective-C++.
 
 <img className="half-size" alt="Convert to and Objective-C++ file" src="/docs/assets/turbo-native-modules/xcode/6.webp" />
 
-## Implement localStorage with NSUserDefaults
+## Implemente localStorage com NSUserDefaults
 
-Start by updating `RCTNativeLocalStorage.h`:
+Comece atualizando `RCTNativeLocalStorage.h`:
 
 ```objc title="NativeLocalStorage/RCTNativeLocalStorage.h"
 //  RCTNativeLocalStorage.h
@@ -62,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 ```
 
-Then update our implementation to use `NSUserDefaults` with a custom [suite name](https://developer.apple.com/documentation/foundation/nsuserdefaults/1409957-initwithsuitename).
+Em seguida, atualize nossa implementação para usar `NSUserDefaults` com um [nome de suite](https://developer.apple.com/documentation/foundation/nsuserdefaults/1409957-initwithsuitename) customizado.
 
 ```objc title="NativeLocalStorage/RCTNativeLocalStorage.mm"
 //  RCTNativeLocalStorage.m
@@ -117,15 +118,15 @@ static NSString *const RCTNativeLocalStorageKey = @"local-storage";
 @end
 ```
 
-Important things to note:
+Coisas importantes a observar:
 
-- You can use Xcode to jump to the Codegen `@protocol NativeLocalStorageSpec`. You can also use Xcode to generate stubs for you.
+- Você pode usar o Xcode para pular para o Codegen `@protocol NativeLocalStorageSpec`. Você também pode usar o Xcode para gerar stubs para você.
 
-## Register the Native Module in your app
+## Registre o Native Module em seu app
 
-The last step consist in updating the `package.json` to tell React Native about the link between the JS specs of the Native Module and the concrete implementation of those specs in native code.
+O último passo consiste em atualizar o `package.json` para informar ao React Native sobre o link entre as specs JS do Native Module e a implementação concreta dessas specs em código nativo.
 
-Modify the `package.json` as it follows:
+Modifique o `package.json` da seguinte forma:
 
 ```json title="package.json"
      "start": "react-native start",
@@ -150,7 +151,7 @@ Modify the `package.json` as it follows:
    "dependencies": {
 ```
 
-At this point, you need to re-install the pods to make sure that codegen runs again to generate the new files:
+Neste ponto, você precisa reinstalar os pods para garantir que o codegen execute novamente para gerar os novos arquivos:
 
 ```bash
 # from the ios folder
@@ -158,9 +159,9 @@ bundle exec pod install
 open SampleApp.xcworkspace
 ```
 
-If you now build your application from Xcode, you should be able to build successfully.
+Se você agora compilar seu aplicativo a partir do Xcode, você deve conseguir compilar com sucesso.
 
-## Build and run your code on a Simulator
+## Compile e execute seu código em um Simulator
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">

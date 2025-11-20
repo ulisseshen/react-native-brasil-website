@@ -1,24 +1,25 @@
 ---
+ia-translated: true
 id: flexbox
-title: Layout with Flexbox
+title: Layout com Flexbox
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-A component can specify the layout of its children using the Flexbox algorithm. Flexbox is designed to provide a consistent layout on different screen sizes.
+Um componente pode especificar o layout de seus filhos usando o algoritmo Flexbox. Flexbox é projetado para fornecer um layout consistente em diferentes tamanhos de tela.
 
-You will normally use a combination of `flexDirection`, `alignItems`, and `justifyContent` to achieve the right layout.
+Você normalmente usará uma combinação de `flexDirection`, `alignItems` e `justifyContent` para alcançar o layout certo.
 
 :::caution
-Flexbox works the same way in React Native as it does in CSS on the web, with a few exceptions.
-The defaults are different, with `flexDirection` defaulting to `column` instead of `row`, `alignContent` defaulting to `flex-start` instead of `stretch`, `flexShrink` defaulting to `0` instead of `1`, the `flex` parameter only supporting a single number.
+Flexbox funciona da mesma forma no React Native como funciona em CSS na web, com algumas exceções.
+Os padrões são diferentes, com `flexDirection` tendo como padrão `column` em vez de `row`, `alignContent` tendo como padrão `flex-start` em vez de `stretch`, `flexShrink` tendo como padrão `0` em vez de `1`, o parâmetro `flex` suportando apenas um único número.
 :::
 
 ## Flex
 
-[`flex`](layout-props#flex) will define how your items are going to **“fill”** over the available space along your main axis. Space will be divided according to each element's flex property.
+[`flex`](layout-props#flex) definirá como seus itens vão **"preencher"** o espaço disponível ao longo do seu eixo principal. O espaço será dividido de acordo com a propriedade flex de cada elemento.
 
-In the following example, the red, orange, and green views are all children in the container view that has `flex: 1` set. The red view uses `flex: 1` , the orange view uses `flex: 2`, and the green view uses `flex: 3` . **1+2+3 = 6**, which means that the red view will get `1/6` of the space, the orange `2/6` of the space, and the green `3/6` of the space.
+No exemplo a seguir, as views vermelha, laranja e verde são todas filhas no view container que tem `flex: 1` definido. A view vermelha usa `flex: 1`, a view laranja usa `flex: 2` e a view verde usa `flex: 3`. **1+2+3 = 6**, o que significa que a view vermelha receberá `1/6` do espaço, a laranja `2/6` do espaço e a verde `3/6` do espaço.
 
 ```SnackPlayer name=Flex%20Example
 import React from 'react';
@@ -53,17 +54,17 @@ export default Flex;
 
 ## Flex Direction
 
-[`flexDirection`](layout-props#flexdirection) controls the direction in which the children of a node are laid out. This is also referred to as the main axis. The cross axis is the axis perpendicular to the main axis, or the axis which the wrapping lines are laid out in.
+[`flexDirection`](layout-props#flexdirection) controla a direção na qual os filhos de um node são dispostos. Isso também é referido como o eixo principal. O eixo transversal é o eixo perpendicular ao eixo principal, ou o eixo no qual as linhas de quebra são dispostas.
 
-- `column` (**default value**) Align children from top to bottom. If wrapping is enabled, then the next line will start to the right of the first item on the top of the container.
+- `column` (**valor padrão**) Alinhar filhos de cima para baixo. Se a quebra estiver habilitada, então a próxima linha começará à direita do primeiro item no topo do container.
 
-- `row` Align children from left to right. If wrapping is enabled, then the next line will start under the first item on the left of the container.
+- `row` Alinhar filhos da esquerda para a direita. Se a quebra estiver habilitada, então a próxima linha começará abaixo do primeiro item à esquerda do container.
 
-- `column-reverse` Align children from bottom to top. If wrapping is enabled, then the next line will start to the right of the first item on the bottom of the container.
+- `column-reverse` Alinhar filhos de baixo para cima. Se a quebra estiver habilitada, então a próxima linha começará à direita do primeiro item na parte inferior do container.
 
-- `row-reverse` Align children from right to left. If wrapping is enabled, then the next line will start under the first item on the right of the container.
+- `row-reverse` Alinhar filhos da direita para a esquerda. Se a quebra estiver habilitada, então a próxima linha começará abaixo do primeiro item à direita do container.
 
-You can learn more [here](https://www.yogalayout.dev/docs/styling/flex-direction).
+Você pode aprender mais [aqui](https://www.yogalayout.dev/docs/styling/flex-direction).
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -276,11 +277,11 @@ export default FlexDirectionBasics;
 
 ## Layout Direction
 
-Layout [`direction`](layout-props#direction) specifies the direction in which children and text in a hierarchy should be laid out. Layout direction also affects what edge `start` and `end` refer to. By default, React Native lays out with LTR layout direction. In this mode `start` refers to left and `end` refers to right.
+Layout [`direction`](layout-props#direction) especifica a direção na qual filhos e texto em uma hierarquia devem ser dispostos. A direção de layout também afeta a qual borda `start` e `end` se referem. Por padrão, React Native dispõe com direção de layout LTR. Neste modo `start` refere-se à esquerda e `end` refere-se à direita.
 
-- `LTR` (**default value**) Text and children are laid out from left to right. Margin and padding applied to the start of an element are applied on the left side.
+- `LTR` (**valor padrão**) Texto e filhos são dispostos da esquerda para a direita. Margem e padding aplicados ao início de um elemento são aplicados no lado esquerdo.
 
-- `RTL` Text and children are laid out from right to left. Margin and padding applied to the start of an element are applied on the right side.
+- `RTL` Texto e filhos são dispostos da direita para a esquerda. Margem e padding aplicados ao início de um elemento são aplicados no lado direito.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -493,21 +494,21 @@ export default DirectionLayout;
 
 ## Justify Content
 
-[`justifyContent`](layout-props#justifycontent) describes how to align children within the main axis of their container. For example, you can use this property to center a child horizontally within a container with `flexDirection` set to `row` or vertically within a container with `flexDirection` set to `column`.
+[`justifyContent`](layout-props#justifycontent) descreve como alinhar filhos dentro do eixo principal de seu container. Por exemplo, você pode usar esta propriedade para centralizar um filho horizontalmente dentro de um container com `flexDirection` definido como `row` ou verticalmente dentro de um container com `flexDirection` definido como `column`.
 
-- `flex-start`(**default value**) Align children of a container to the start of the container's main axis.
+- `flex-start`(**valor padrão**) Alinhar filhos de um container ao início do eixo principal do container.
 
-- `flex-end` Align children of a container to the end of the container's main axis.
+- `flex-end` Alinhar filhos de um container ao final do eixo principal do container.
 
-- `center` Align children of a container in the center of the container's main axis.
+- `center` Alinhar filhos de um container no centro do eixo principal do container.
 
-- `space-between` Evenly space off children across the container's main axis, distributing the remaining space between the children.
+- `space-between` Espaçar filhos uniformemente ao longo do eixo principal do container, distribuindo o espaço restante entre os filhos.
 
-- `space-around` Evenly space off children across the container's main axis, distributing the remaining space around the children. Compared to `space-between`, using `space-around` will result in space being distributed to the beginning of the first child and end of the last child.
+- `space-around` Espaçar filhos uniformemente ao longo do eixo principal do container, distribuindo o espaço restante ao redor dos filhos. Comparado a `space-between`, usar `space-around` resultará em espaço sendo distribuído ao início do primeiro filho e final do último filho.
 
-- `space-evenly` Evenly distribute children within the alignment container along the main axis. The spacing between each pair of adjacent items, the main-start edge and the first item, and the main-end edge and the last item, are all exactly the same.
+- `space-evenly` Distribuir filhos uniformemente dentro do container de alinhamento ao longo do eixo principal. O espaçamento entre cada par de itens adjacentes, a borda main-start e o primeiro item, e a borda main-end e o último item, são todos exatamente os mesmos.
 
-You can learn more [here](https://www.yogalayout.dev/docs/styling/justify-content).
+Você pode aprender mais [aqui](https://www.yogalayout.dev/docs/styling/justify-content).
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -734,23 +735,23 @@ export default JustifyContentBasics;
 
 ## Align Items
 
-[`alignItems`](layout-props#alignitems) describes how to align children along the cross axis of their container. It is very similar to `justifyContent` but instead of applying to the main axis, `alignItems` applies to the cross axis.
+[`alignItems`](layout-props#alignitems) descreve como alinhar filhos ao longo do eixo transversal de seu container. É muito similar a `justifyContent` mas em vez de aplicar ao eixo principal, `alignItems` aplica ao eixo transversal.
 
-- `stretch` (**default value**) Stretch children of a container to match the `height` of the container's cross axis.
+- `stretch` (**valor padrão**) Esticar filhos de um container para corresponder à `height` do eixo transversal do container.
 
-- `flex-start` Align children of a container to the start of the container's cross axis.
+- `flex-start` Alinhar filhos de um container ao início do eixo transversal do container.
 
-- `flex-end` Align children of a container to the end of the container's cross axis.
+- `flex-end` Alinhar filhos de um container ao final do eixo transversal do container.
 
-- `center` Align children of a container in the center of the container's cross axis.
+- `center` Alinhar filhos de um container no centro do eixo transversal do container.
 
-- `baseline` Align children of a container along a common baseline. Individual children can be set to be the reference baseline for their parents.
+- `baseline` Alinhar filhos de um container ao longo de uma linha de base comum. Filhos individuais podem ser definidos para serem a linha de base de referência para seus pais.
 
 :::info
-For `stretch` to have an effect, children must not have a fixed dimension along the secondary axis. In the following example, setting `alignItems: stretch` does nothing until the `width: 50` is removed from the children.
+Para que `stretch` tenha efeito, os filhos não devem ter uma dimensão fixa ao longo do eixo secundário. No exemplo a seguir, definir `alignItems: stretch` não faz nada até que o `width: 50` seja removido dos filhos.
 :::
 
-You can learn more [here](https://www.yogalayout.dev/docs/styling/align-items-self).
+Você pode aprender mais [aqui](https://www.yogalayout.dev/docs/styling/align-items-self).
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -930,7 +931,7 @@ const PreviewLayout = ({
   </View>
 );
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.Create({
   container: {
     flex: 1,
     marginTop: 8,
@@ -983,7 +984,7 @@ export default AlignItemsLayout;
 
 ## Align Self
 
-[`alignSelf`](layout-props#alignself) has the same options and effect as `alignItems` but instead of affecting the children within a container, you can apply this property to a single child to change its alignment within its parent. `alignSelf` overrides any option set by the parent with `alignItems`.
+[`alignSelf`](layout-props#alignself) tem as mesmas opções e efeito que `alignItems` mas em vez de afetar os filhos dentro de um container, você pode aplicar esta propriedade a um único filho para mudar seu alinhamento dentro de seu pai. `alignSelf` sobrescreve qualquer opção definida pelo pai com `alignItems`.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -1219,23 +1220,23 @@ export default AlignSelfLayout;
 
 ## Align Content
 
-[alignContent](layout-props#aligncontent) defines the distribution of lines along the cross-axis. This only has effect when items are wrapped to multiple lines using `flexWrap`.
+[alignContent](layout-props#aligncontent) define a distribuição de linhas ao longo do eixo transversal. Isso só tem efeito quando itens são quebrados em múltiplas linhas usando `flexWrap`.
 
-- `flex-start` (**default value**) Align wrapped lines to the start of the container's cross axis.
+- `flex-start` (**valor padrão**) Alinhar linhas quebradas ao início do eixo transversal do container.
 
-- `flex-end` Align wrapped lines to the end of the container's cross axis.
+- `flex-end` Alinhar linhas quebradas ao final do eixo transversal do container.
 
-- `stretch` (_default value when using Yoga on the web_) Stretch wrapped lines to match the height of the container's cross axis.
+- `stretch` (_valor padrão ao usar Yoga na web_) Esticar linhas quebradas para corresponder à altura do eixo transversal do container.
 
-- `center` Align wrapped lines in the center of the container's cross axis.
+- `center` Alinhar linhas quebradas no centro do eixo transversal do container.
 
-- `space-between` Evenly space wrapped lines across the container's cross axis, distributing the remaining space between the lines.
+- `space-between` Espaçar linhas quebradas uniformemente ao longo do eixo transversal do container, distribuindo o espaço restante entre as linhas.
 
-- `space-around` Evenly space wrapped lines across the container's cross axis, distributing the remaining space around the lines. Each end of the container has a half-sized space compared to the space between items.
+- `space-around` Espaçar linhas quebradas uniformemente ao longo do eixo transversal do container, distribuindo o espaço restante ao redor das linhas. Cada extremidade do container tem um espaço de tamanho pela metade comparado ao espaço entre itens.
 
-- `space-evenly` Evenly space wrapped lines across the container's cross axis, distributing the remaining space around the lines. Each space is the same size.
+- `space-evenly` Espaçar linhas quebradas uniformemente ao longo do eixo transversal do container, distribuindo o espaço restante ao redor das linhas. Cada espaço é do mesmo tamanho.
 
-You can learn more [here](https://www.yogalayout.dev/docs/styling/align-content).
+Você pode aprender mais [aqui](https://www.yogalayout.dev/docs/styling/align-content).
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -1474,9 +1475,9 @@ export default AlignContentLayout;
 
 ## Flex Wrap
 
-The [`flexWrap`](layout-props#flexwrap) property is set on containers and it controls what happens when children overflow the size of the container along the main axis. By default, children are forced into a single line (which can shrink elements). If wrapping is allowed, items are wrapped into multiple lines along the main axis if needed.
+A propriedade [`flexWrap`](layout-props#flexwrap) é definida em containers e controla o que acontece quando os filhos transbordam o tamanho do container ao longo do eixo principal. Por padrão, os filhos são forçados em uma única linha (o que pode encolher elementos). Se a quebra for permitida, itens são quebrados em múltiplas linhas ao longo do eixo principal se necessário.
 
-When wrapping lines, `alignContent` can be used to specify how the lines are placed in the container. Learn more [here](https://www.yogalayout.dev/docs/styling/flex-wrap).
+Ao quebrar linhas, `alignContent` pode ser usado para especificar como as linhas são colocadas no container. Aprenda mais [aqui](https://www.yogalayout.dev/docs/styling/flex-wrap).
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -1695,19 +1696,19 @@ export default FlexWrapLayout;
 </TabItem>
 </Tabs>
 
-## Flex Basis, Grow, and Shrink
+## Flex Basis, Grow e Shrink
 
-- [`flexBasis`](layout-props#flexbasis) is an axis-independent way of providing the default size of an item along the main axis. Setting the `flexBasis` of a child is similar to setting the `width` of that child if its parent is a container with `flexDirection: row` or setting the `height` of a child if its parent is a container with `flexDirection: column`. The `flexBasis` of an item is the default size of that item, the size of the item before any `flexGrow` and `flexShrink` calculations are performed.
+- [`flexBasis`](layout-props#flexbasis) é uma maneira independente de eixo de fornecer o tamanho padrão de um item ao longo do eixo principal. Definir o `flexBasis` de um filho é similar a definir o `width` daquele filho se seu pai é um container com `flexDirection: row` ou definir o `height` de um filho se seu pai é um container com `flexDirection: column`. O `flexBasis` de um item é o tamanho padrão daquele item, o tamanho do item antes que quaisquer cálculos de `flexGrow` e `flexShrink` sejam realizados.
 
-- [`flexGrow`](layout-props#flexgrow) describes how much space within a container should be distributed among its children along the main axis. After laying out its children, a container will distribute any remaining space according to the flex grow values specified by its children.
+- [`flexGrow`](layout-props#flexgrow) descreve quanto espaço dentro de um container deve ser distribuído entre seus filhos ao longo do eixo principal. Depois de dispor seus filhos, um container distribuirá qualquer espaço restante de acordo com os valores de flex grow especificados por seus filhos.
 
-  `flexGrow` accepts any floating point value >= 0, with 0 being the default value. A container will distribute any remaining space among its children weighted by the children’s `flexGrow` values.
+  `flexGrow` aceita qualquer valor de ponto flutuante >= 0, sendo 0 o valor padrão. Um container distribuirá qualquer espaço restante entre seus filhos ponderado pelos valores de `flexGrow` dos filhos.
 
-- [`flexShrink`](layout-props#flexshrink) describes how to shrink children along the main axis in the case in which the total size of the children overflows the size of the container on the main axis. `flexShrink` is very similar to `flexGrow` and can be thought of in the same way if any overflowing size is considered to be negative remaining space. These two properties also work well together by allowing children to grow and shrink as needed.
+- [`flexShrink`](layout-props#flexshrink) descreve como encolher filhos ao longo do eixo principal no caso em que o tamanho total dos filhos transborda o tamanho do container no eixo principal. `flexShrink` é muito similar a `flexGrow` e pode ser pensado da mesma forma se qualquer tamanho transbordante for considerado como espaço restante negativo. Essas duas propriedades também funcionam bem juntas permitindo que filhos cresçam e encolham conforme necessário.
 
-  `flexShrink` accepts any floating point value >= 0, with 0 being the default value (on the web, the default is 1). A container will shrink its children weighted by the children’s `flexShrink` values.
+  `flexShrink` aceita qualquer valor de ponto flutuante >= 0, sendo 0 o valor padrão (na web, o padrão é 1). Um container encolherá seus filhos ponderado pelos valores de `flexShrink` dos filhos.
 
-You can learn more [here](https://www.yogalayout.dev/docs/styling/flex-basis-grow-shrink).
+Você pode aprender mais [aqui](https://www.yogalayout.dev/docs/styling/flex-basis-grow-shrink).
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -2072,15 +2073,15 @@ export default App;
 </TabItem>
 </Tabs>
 
-## Row Gap, Column Gap and Gap
+## Row Gap, Column Gap e Gap
 
-- [`rowGap`](layout-props#rowgap) sets the size of the gap (gutter) between an element's rows.
+- [`rowGap`](layout-props#rowgap) define o tamanho do gap (espaço) entre as linhas de um elemento.
 
-- [`columnGap`](layout-props#columngap) sets the size of the gap (gutter) between an element's columns.
+- [`columnGap`](layout-props#columngap) define o tamanho do gap (espaço) entre as colunas de um elemento.
 
-- [`gap`](layout-props#gap) sets the size of the gap (gutter) between rows and columns. It is a shorthand for `rowGap` and `columnGap`.
+- [`gap`](layout-props#gap) define o tamanho do gap (espaço) entre linhas e colunas. É um atalho para `rowGap` e `columnGap`.
 
-You can use `flexWrap` and `alignContent` along with `gap` to add consistent spacing between items.
+Você pode usar `flexWrap` e `alignContent` junto com `gap` para adicionar espaçamento consistente entre itens.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -2297,17 +2298,17 @@ export default RowGapAndColumnGap;
 </TabItem>
 </Tabs>
 
-## Width and Height
+## Width e Height
 
-The `width` property specifies the width of an element's content area. Similarly, the `height` property specifies the height of an element's content area.
+A propriedade `width` especifica a largura da área de conteúdo de um elemento. Similarmente, a propriedade `height` especifica a altura da área de conteúdo de um elemento.
 
-Both `width` and `height` can take the following values:
+Tanto `width` quanto `height` podem receber os seguintes valores:
 
-- `auto` (**default value**) React Native calculates the width/height for the element based on its content, whether that is other children, text, or an image.
+- `auto` (**valor padrão**) React Native calcula o width/height para o elemento com base em seu conteúdo, seja outros filhos, texto ou uma imagem.
 
-- `pixels` Defines the width/height in absolute pixels. Depending on other styles set on the component, this may or may not be the final dimension of the node.
+- `pixels` Define o width/height em pixels absolutos. Dependendo de outros estilos definidos no componente, isso pode ou não ser a dimensão final do node.
 
-- `percentage` Defines the width or height in percentage of its parent's width or height, respectively.
+- `percentage` Define o width ou height em porcentagem do width ou height de seu pai, respectivamente.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -2577,13 +2578,13 @@ export default WidthHeightBasics;
 
 ## Position
 
-The `position` type of an element defines how it is positioned relative to either itself, its parent, or its [containing block](./flexbox.md#the-containing-block).
+O tipo `position` de um elemento define como ele é posicionado relativamente a si mesmo, seu pai ou seu [bloco contentor](./flexbox.md#the-containing-block).
 
-- `relative` (**default value**) By default, an element is positioned relatively. This means an element is positioned according to the normal flow of the layout, and then offset relative to that position based on the values of `top`, `right`, `bottom`, and `left`. The offset does not affect the position of any sibling or parent elements.
+- `relative` (**valor padrão**) Por padrão, um elemento é posicionado relativamente. Isso significa que um elemento é posicionado de acordo com o fluxo normal do layout, e então deslocado relativo àquela posição com base nos valores de `top`, `right`, `bottom` e `left`. O deslocamento não afeta a posição de nenhum irmão ou elemento pai.
 
-- `absolute` When positioned absolutely, an element doesn't take part in the normal layout flow. It is instead laid out independent of its siblings. The position is determined based on the `top`, `right`, `bottom`, and `left` values. These values will position the element relative to its containing block.
+- `absolute` Quando posicionado absolutamente, um elemento não participa do fluxo de layout normal. Ele é disposto independente de seus irmãos. A posição é determinada com base nos valores de `top`, `right`, `bottom` e `left`. Esses valores posicionarão o elemento relativo ao seu bloco contentor.
 
-- `static` When positioned statically, an element is positioned according to the normal flow of layout, and will ignore the `top`, `right`, `bottom`, and `left` values. This `position` will also cause the element to not form a containing block for absolute descendants, unless some other superceding style prop is present (e.g. `transform`). This allows `absolute` elements to be positioned to something that is not their parent. Note that **`static` is only available on the New Architecture**.
+- `static` Quando posicionado estaticamente, um elemento é posicionado de acordo com o fluxo normal de layout, e ignorará os valores de `top`, `right`, `bottom` e `left`. Este `position` também fará com que o elemento não forme um bloco contentor para descendentes absolutos, a menos que alguma outra prop de estilo substituta esteja presente (por exemplo, `transform`). Isso permite que elementos `absolute` sejam posicionados em algo que não seja seu pai. Note que **`static` está disponível apenas na Nova Arquitetura**.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -2858,27 +2859,27 @@ export default PositionLayout;
 </TabItem>
 </Tabs>
 
-## The Containing Block
+## O Bloco Contentor
 
-The containing block of an element is an ancestor element which controls its position and size.
-The way containing blocks work in React Native is very similar to [how they work on the web](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block), with some simplifications due to the lack of some web features.
+O bloco contentor de um elemento é um elemento ancestral que controla sua posição e tamanho.
+A maneira como blocos contentores funcionam no React Native é muito similar a [como eles funcionam na web](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block), com algumas simplificações devido à falta de algumas funcionalidades web.
 
-The `top`, `right`, `bottom`, and `left` values of an absolutely positioned element will be
-relative to its containing block.
+Os valores `top`, `right`, `bottom` e `left` de um elemento posicionado absolutamente serão
+relativos ao seu bloco contentor.
 
-Percentage lengths (e.g.: `width: '50%'` or `padding: '10%'`) applied to absolutely positioned elements will be calculated relatively to the size of its containing block. For example, if the containing block is 100 points wide, then `width: 50%` on an absolutely positioned element will cause it to be 50 points wide.
+Comprimentos percentuais (por exemplo: `width: '50%'` ou `padding: '10%'`) aplicados a elementos posicionados absolutamente serão calculados relativamente ao tamanho de seu bloco contentor. Por exemplo, se o bloco contentor tem 100 pontos de largura, então `width: 50%` em um elemento posicionado absolutamente fará com que ele tenha 50 pontos de largura.
 
-The following list will help you determine the containing block of any given element:
+A lista a seguir ajudará você a determinar o bloco contentor de qualquer elemento dado:
 
-- If that element has a `position` type of `relative` or `static`, then its containing block is its parent.
-- If that element has a `position` type of `absolute`, then its containing block is the nearest ancestor in which one of the following is true:
-  - It has a `position` type other than `static`
-  - It has a `transform`
+- Se aquele elemento tem um tipo `position` de `relative` ou `static`, então seu bloco contentor é seu pai.
+- Se aquele elemento tem um tipo `position` de `absolute`, então seu bloco contentor é o ancestral mais próximo no qual uma das seguintes é verdadeira:
+  - Ele tem um tipo `position` diferente de `static`
+  - Ele tem um `transform`
 
-## Going Deeper
+## Indo Mais Fundo
 
-Check out the interactive [yoga playground](https://www.yogalayout.dev/playground) that you can use to get a better understanding of flexbox.
+Confira o [yoga playground](https://www.yogalayout.dev/playground) interativo que você pode usar para obter um melhor entendimento de flexbox.
 
-We've covered the basics, but there are many other styles you may need for layouts. The full list of props that control layout is documented [here](./layout-props.md).
+Cobrimos o básico, mas há muitos outros estilos que você pode precisar para layouts. A lista completa de props que controlam layout está documentada [aqui](./layout-props.md).
 
-Additionally, you can see some examples from [Wix Engineers](https://medium.com/wix-engineering/the-full-react-native-layout-cheat-sheet-a4147802405c).
+Adicionalmente, você pode ver alguns exemplos dos [Engenheiros da Wix](https://medium.com/wix-engineering/the-full-react-native-layout-cheat-sheet-a4147802405c).

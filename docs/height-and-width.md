@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: height-and-width
-title: Height and Width
+title: Altura e Largura
 ---
 
-A component's height and width determine its size on the screen.
+A altura e largura de um componente determinam seu tamanho na tela.
 
-## Fixed Dimensions
+## Dimensões Fixas
 
-The general way to set the dimensions of a component is by adding a fixed `width` and `height` to style. All dimensions in React Native are unitless, and represent density-independent pixels.
+A maneira geral de definir as dimensões de um componente é adicionando `width` e `height` fixos ao estilo. Todas as dimensões no React Native são sem unidade e representam pixels independentes de densidade.
 
 ```SnackPlayer name=Height%20and%20Width
 import React from 'react';
@@ -44,18 +45,18 @@ const FixedDimensionsBasics = () => {
 export default FixedDimensionsBasics;
 ```
 
-Setting dimensions this way is common for components whose size should always be fixed to a number of points and not calculated based on screen size.
+Definir dimensões dessa maneira é comum para componentes cujo tamanho deve sempre ser fixo em um número de pontos e não calculado com base no tamanho da tela.
 
 :::caution
-There is no universal mapping from points to physical units of measurement. This means that a component with fixed dimensions might not have the same physical size, across different devices and screen sizes. However, this difference is unnoticeable for most use cases.
+Não há mapeamento universal de pontos para unidades físicas de medida. Isso significa que um componente com dimensões fixas pode não ter o mesmo tamanho físico em diferentes dispositivos e tamanhos de tela. No entanto, essa diferença é imperceptível para a maioria dos casos de uso.
 :::
 
-## Flex Dimensions
+## Dimensões Flex
 
-Use `flex` in a component's style to have the component expand and shrink dynamically based on available space. Normally you will use `flex: 1`, which tells a component to fill all available space, shared evenly amongst other components with the same parent. The larger the `flex` given, the higher the ratio of space a component will take compared to its siblings.
+Use `flex` no estilo de um componente para fazer o componente expandir e encolher dinamicamente com base no espaço disponível. Normalmente você usará `flex: 1`, que diz a um componente para preencher todo o espaço disponível, compartilhado igualmente entre outros componentes com o mesmo pai. Quanto maior o `flex` dado, maior a proporção de espaço que um componente ocupará comparado aos seus irmãos.
 
 :::info
-A component can only expand to fill available space if its parent has dimensions greater than `0`. If a parent does not have either a fixed `width` and `height` or `flex`, the parent will have dimensions of `0` and the `flex` children will not be visible.
+Um componente só pode se expandir para preencher o espaço disponível se seu pai tiver dimensões maiores que `0`. Se um pai não tiver nem `width` e `height` fixos nem `flex`, o pai terá dimensões de `0` e os filhos `flex` não serão visíveis.
 :::
 
 ```SnackPlayer name=Flex%20Dimensions
@@ -78,11 +79,11 @@ const FlexDimensionsBasics = () => {
 export default FlexDimensionsBasics;
 ```
 
-After you can control a component's size, the next step is to [learn how to lay it out on the screen](flexbox.md).
+Depois que você puder controlar o tamanho de um componente, o próximo passo é [aprender como organizá-lo na tela](flexbox.md).
 
-## Percentage Dimensions
+## Dimensões em Porcentagem
 
-If you want to fill a certain portion of the screen, but you _don't_ want to use the `flex` layout, you _can_ use **percentage values** in the component's style. Similar to flex dimensions, percentage dimensions require parent with a defined size.
+Se você quer preencher uma certa porção da tela, mas você _não_ quer usar o layout `flex`, você _pode_ usar **valores de porcentagem** no estilo do componente. Similar a dimensões flex, dimensões em porcentagem exigem um pai com tamanho definido.
 
 ```SnackPlayer name=Percentage%20Dimensions
 import React from 'react';

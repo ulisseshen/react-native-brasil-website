@@ -1,47 +1,48 @@
 ---
+ia-translated: true
 id: fast-refresh
 title: Fast Refresh
 ---
 
-Fast Refresh is a React Native feature that allows you to get near-instant feedback for changes in your React components. Fast Refresh is enabled by default, and you can toggle "Enable Fast Refresh" in the [React Native Dev Menu](/docs/debugging#accessing-the-in-app-developer-menu). With Fast Refresh enabled, most edits should be visible within a second or two.
+Fast Refresh é uma funcionalidade do React Native que permite obter feedback quase instantâneo para alterações em seus componentes React. Fast Refresh é habilitado por padrão, e você pode alternar "Enable Fast Refresh" no [React Native Dev Menu](/docs/debugging#accessing-the-in-app-developer-menu). Com Fast Refresh habilitado, a maioria das edições deve ser visível dentro de um ou dois segundos.
 
-## How It Works
+## Como Funciona
 
-- If you edit a module that **only exports React component(s)**, Fast Refresh will update the code only for that module, and re-render your component. You can edit anything in that file, including styles, rendering logic, event handlers, or effects.
-- If you edit a module with exports that _aren't_ React components, Fast Refresh will re-run both that module, and the other modules importing it. So if both `Button.js` and `Modal.js` import `Theme.js`, editing `Theme.js` will update both components.
-- Finally, if you **edit a file** that's **imported by modules outside of the React tree**, Fast Refresh **will fall back to doing a full reload**. You might have a file which renders a React component but also exports a value that is imported by a **non-React component**. For example, maybe your component also exports a constant, and a non-React utility module imports it. In that case, consider migrating the constant to a separate file and importing it into both files. This will re-enable Fast Refresh to work. Other cases can usually be solved in a similar way.
+- Se você editar um módulo que **exporta apenas componente(s) React**, Fast Refresh atualizará o código apenas para aquele módulo e re-renderizará seu componente. Você pode editar qualquer coisa naquele arquivo, incluindo estilos, lógica de renderização, manipuladores de eventos ou effects.
+- Se você editar um módulo com exports que _não são_ componentes React, Fast Refresh re-executará tanto aquele módulo quanto os outros módulos que o importam. Então se tanto `Button.js` quanto `Modal.js` importam `Theme.js`, editar `Theme.js` atualizará ambos os componentes.
+- Finalmente, se você **editar um arquivo** que é **importado por módulos fora da árvore React**, Fast Refresh **voltará a fazer um reload completo**. Você pode ter um arquivo que renderiza um componente React mas também exporta um valor que é importado por um **componente não-React**. Por exemplo, talvez seu componente também exporte uma constante, e um módulo utilitário não-React a importe. Nesse caso, considere migrar a constante para um arquivo separado e importá-la em ambos os arquivos. Isso reabilitará Fast Refresh para funcionar. Outros casos geralmente podem ser resolvidos de maneira similar.
 
-## Error Resilience
+## Resiliência a Erros
 
-If you make a **syntax error** during a Fast Refresh session, you can fix it and save the file again. The redbox will disappear. Modules with syntax errors are prevented from running, so you won't need to reload the app.
+Se você cometer um **erro de sintaxe** durante uma sessão de Fast Refresh, você pode corrigi-lo e salvar o arquivo novamente. A redbox desaparecerá. Módulos com erros de sintaxe são impedidos de executar, então você não precisará recarregar o app.
 
-If you make a **runtime error during the module initialization** (for example, typing `Style.create` instead of `StyleSheet.create`), the Fast Refresh session will continue once you fix the error. The redbox will disappear, and the module will be updated.
+Se você cometer um **erro de runtime durante a inicialização do módulo** (por exemplo, digitando `Style.create` em vez de `StyleSheet.create`), a sessão de Fast Refresh continuará assim que você corrigir o erro. A redbox desaparecerá, e o módulo será atualizado.
 
-If you make a mistake that leads to a **runtime error inside your component**, the Fast Refresh session will _also_ continue after you fix the error. In that case, React will remount your application using the updated code.
+Se você cometer um erro que leva a um **erro de runtime dentro de seu componente**, a sessão de Fast Refresh _também_ continuará depois que você corrigir o erro. Nesse caso, React remontará sua aplicação usando o código atualizado.
 
-If you have [error boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary) in your app (which is a good idea for graceful failures in production), they will retry rendering on the next edit after a redbox. In that sense, having an error boundary can prevent you from always getting kicked out to the root app screen. However, keep in mind that error boundaries shouldn't be _too_ granular. They are used by React in production, and should always be designed intentionally.
+Se você tem [error boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary) em seu app (o que é uma boa ideia para falhas graciosas em produção), eles tentarão renderizar novamente na próxima edição após uma redbox. Nesse sentido, ter um error boundary pode evitar que você sempre seja jogado de volta para a tela raiz do app. No entanto, tenha em mente que error boundaries não devem ser _muito_ granulares. Eles são usados pelo React em produção, e devem sempre ser projetados intencionalmente.
 
-## Limitations
+## Limitações
 
-Fast Refresh tries to preserve local React state in the component you're editing, but only if it's safe to do so. Here's a few reasons why you might see local state being reset on every edit to a file:
+Fast Refresh tenta preservar o state local do React no componente que você está editando, mas somente se for seguro fazê-lo. Aqui estão algumas razões pelas quais você pode ver o state local sendo resetado a cada edição em um arquivo:
 
-- Local state is not preserved for class components (only function components and Hooks preserve state).
-- The module you're editing might have _other_ exports in addition to a React component.
-- Sometimes, a module would export the result of calling higher-order component like `createNavigationContainer(MyScreen)`. If the returned component is a class, state will be reset.
+- State local não é preservado para componentes de classe (apenas componentes de função e Hooks preservam state).
+- O módulo que você está editando pode ter _outras_ exportações além de um componente React.
+- Às vezes, um módulo exportaria o resultado de chamar um componente de ordem superior como `createNavigationContainer(MyScreen)`. Se o componente retornado é uma classe, o state será resetado.
 
-In the longer term, as more of your codebase moves to function components and Hooks, you can expect state to be preserved in more cases.
+No longo prazo, à medida que mais de sua base de código se move para componentes de função e Hooks, você pode esperar que o state seja preservado em mais casos.
 
-## Tips
+## Dicas
 
-- Fast Refresh preserves React local state in function components (and Hooks) by default.
-- Sometimes you might want to _force_ the state to be reset, and a component to be remounted. For example, this can be handy if you're tweaking an animation that only happens on mount. To do this, you can add `// @refresh reset` anywhere in the file you're editing. This directive is local to the file, and instructs Fast Refresh to remount components defined in that file on every edit.
+- Fast Refresh preserva o state local do React em componentes de função (e Hooks) por padrão.
+- Às vezes você pode querer _forçar_ o state a ser resetado e um componente a ser remontado. Por exemplo, isso pode ser útil se você estiver ajustando uma animação que só acontece na montagem. Para fazer isso, você pode adicionar `// @refresh reset` em qualquer lugar no arquivo que você está editando. Esta diretiva é local ao arquivo e instrui Fast Refresh a remontar componentes definidos naquele arquivo a cada edição.
 
-## Fast Refresh and Hooks
+## Fast Refresh e Hooks
 
-When possible, Fast Refresh attempts to preserve the state of your component between edits. In particular, `useState` and `useRef` preserve their previous values as long as you don't change their arguments or the order of the Hook calls.
+Quando possível, Fast Refresh tenta preservar o state de seu componente entre edições. Em particular, `useState` e `useRef` preservam seus valores anteriores desde que você não mude seus argumentos ou a ordem das chamadas de Hook.
 
-Hooks with dependencies—such as `useEffect`, `useMemo`, and `useCallback`—will _always_ update during Fast Refresh. Their list of dependencies will be ignored while Fast Refresh is happening.
+Hooks com dependências—como `useEffect`, `useMemo` e `useCallback`—_sempre_ atualizarão durante Fast Refresh. Sua lista de dependências será ignorada enquanto Fast Refresh estiver acontecendo.
 
-For example, when you edit `useMemo(() => x * 2, [x])` to `useMemo(() => x * 10, [x])`, it will re-run even though `x` (the dependency) has not changed. If React didn't do that, your edit wouldn't reflect on the screen!
+Por exemplo, quando você edita `useMemo(() => x * 2, [x])` para `useMemo(() => x * 10, [x])`, ele re-executará mesmo que `x` (a dependência) não tenha mudado. Se React não fizesse isso, sua edição não se refletiria na tela!
 
-Sometimes, this can lead to unexpected results. For example, even a `useEffect` with an empty array of dependencies would still re-run once during Fast Refresh. However, writing code resilient to an occasional re-running of `useEffect` is a good practice even without Fast Refresh. This makes it easier for you to later introduce new dependencies to it.
+Às vezes, isso pode levar a resultados inesperados. Por exemplo, até mesmo um `useEffect` com um array vazio de dependências ainda re-executaria uma vez durante Fast Refresh. No entanto, escrever código resiliente à re-execução ocasional de `useEffect` é uma boa prática mesmo sem Fast Refresh. Isso torna mais fácil para você introduzir novas dependências nele mais tarde.

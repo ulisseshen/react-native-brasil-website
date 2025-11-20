@@ -1,27 +1,28 @@
 ---
 id: javascript-environment
-title: JavaScript Environment
+title: Ambiente JavaScript
+ia-translated: true
 ---
 
 import TableRow from '@site/core/TableRowWithCodeBlock';
 
 ## JavaScript Runtime
 
-When using React Native, you're going to be running your JavaScript code in up to three environments:
+Ao usar React Native, você estará executando seu código JavaScript em até três ambientes:
 
-- In most cases, React Native will use [Hermes](hermes), an open-source JavaScript engine optimized for React Native.
-- If Hermes is disabled, React Native will use [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore), the JavaScript engine that powers Safari. Note that on iOS, JavaScriptCore does not use JIT due to the absence of writable executable memory in iOS apps.
-- When using Chrome debugging, all JavaScript code runs within Chrome itself, communicating with native code via WebSockets. Chrome uses [V8](https://v8.dev/) as its JavaScript engine.
+- Na maioria dos casos, React Native usará [Hermes](hermes), um motor JavaScript de código aberto otimizado para React Native.
+- Se Hermes estiver desabilitado, React Native usará [JavaScriptCore](https://trac.webkit.org/wiki/JavaScriptCore), o motor JavaScript que alimenta o Safari. Note que no iOS, JavaScriptCore não usa JIT devido à ausência de memória executável gravável em aplicativos iOS.
+- Ao usar Chrome debugging, todo código JavaScript é executado dentro do próprio Chrome, comunicando-se com código nativo via WebSockets. Chrome usa [V8](https://v8.dev/) como seu motor JavaScript.
 
-While these environments are very similar, you may end up hitting some inconsistencies. It is best to avoid relying on specifics of any runtime.
+Embora esses ambientes sejam muito semelhantes, você pode acabar encontrando algumas inconsistências. É melhor evitar depender de especificidades de qualquer runtime.
 
 ## JavaScript Syntax Transformers
 
-Syntax transformers make writing code more enjoyable by allowing you to use new JavaScript syntax without having to wait for support on all interpreters.
+Syntax transformers tornam a escrita de código mais agradável, permitindo que você use a nova sintaxe JavaScript sem ter que esperar pelo suporte em todos os interpretadores.
 
-React Native ships with the [Babel JavaScript compiler](https://babeljs.io). Check [Babel documentation](https://babeljs.io/docs/plugins/#transform-plugins) on its supported transformations for more details.
+React Native vem com o [compilador JavaScript Babel](https://babeljs.io). Confira a [documentação do Babel](https://babeljs.io/docs/plugins/#transform-plugins) sobre suas transformações suportadas para mais detalhes.
 
-A full list of React Native's enabled transformations can be found in [@react-native/babel-preset](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset).
+Uma lista completa das transformações habilitadas do React Native pode ser encontrada em [@react-native/babel-preset](https://github.com/facebook/react-native/tree/main/packages/react-native-babel-preset).
 
 <table>
 <thead>
@@ -80,7 +81,7 @@ A full list of React Native's enabled transformations can be found in [@react-na
 
 ## Polyfills
 
-Many standard functions are also available on all the supported JavaScript runtimes.
+Muitas funções padrão também estão disponíveis em todos os runtimes JavaScript suportados.
 
 #### Browser
 

@@ -1,8 +1,9 @@
 ---
+ia-translated: true
 id: datepickerios
 title: '❌ DatePickerIOS'
 ---
 
-:::danger Removed from React Native
-Use one of the [community packages](https://reactnative.directory/?search=datepicker) instead.
+:::danger Removido do React Native
+Use um dos [pacotes da comunidade](https://reactnative.directory/?search=datepicker) ao invés disso.
 :::

@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: typescript
 title: Using TypeScript
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-[TypeScript][ts] is a language which extends JavaScript by adding type definitions. New React Native projects target TypeScript by default, but also support JavaScript and Flow.
+[TypeScript][ts] é uma linguagem que estende JavaScript adicionando definições de tipo. Novos projetos React Native têm TypeScript como padrão, mas também suportam JavaScript e Flow.
 
 ## Getting Started with TypeScript
 
-New projects created by the [React Native CLI](getting-started-without-a-framework#step-1-creating-a-new-application) or popular templates like [Ignite][ignite] will use TypeScript by default.
+Novos projetos criados pela [React Native CLI](getting-started-without-a-framework#step-1-creating-a-new-application) ou templates populares como [Ignite][ignite] usarão TypeScript por padrão.
 
-TypeScript may also be used with [Expo][expo], which maintains TypeScript templates, or will prompt you to automatically install and configure TypeScript when a `.ts` or `.tsx` file is added to your project.
+TypeScript também pode ser usado com [Expo][expo], que mantém templates TypeScript, ou solicitará que você instale e configure automaticamente o TypeScript quando um arquivo `.ts` ou `.tsx` for adicionado ao seu projeto.
 
 ```shell
 npx create-expo-app --template
@@ -19,7 +20,7 @@ npx create-expo-app --template
 
 ## Adding TypeScript to an Existing Project
 
-1. Add TypeScript, types, and ESLint plugins to your project.
+1. Adicione TypeScript, types e plugins ESLint ao seu projeto.
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -39,10 +40,10 @@ yarn add --dev typescript @react-native/typescript-config @types/jest @types/rea
 </Tabs>
 
 :::note
-This command adds the latest version of every dependency. The versions may need to be changed to match the existing packages used by your project. You can use a tool like [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) to see the versions shipped by React Native.
+Este comando adiciona a versão mais recente de cada dependência. As versões podem precisar ser alteradas para corresponder aos pacotes existentes usados pelo seu projeto. Você pode usar uma ferramenta como [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para ver as versões fornecidas pelo React Native.
 :::
 
-2. Add a TypeScript config file. Create a `tsconfig.json` in the root of your project:
+2. Adicione um arquivo de configuração TypeScript. Crie um `tsconfig.json` na raiz do seu projeto:
 
 ```json title="tsconfig.json"
 {
@@ -50,13 +51,13 @@ This command adds the latest version of every dependency. The versions may need 
 }
 ```
 
-3. Rename a JavaScript file to be `*.tsx`
+3. Renomeie um arquivo JavaScript para ser `*.tsx`
 
 :::warning
-You should leave the `./index.js` entrypoint file as it is otherwise you may run into an issue when it comes to bundling a production build.
+Você deve deixar o arquivo entrypoint `./index.js` como está, caso contrário você pode encontrar um problema ao fazer bundle de um build de produção.
 :::
 
-4. Run `tsc` to type-check your new TypeScript files.
+4. Execute `tsc` para verificar os tipos dos seus novos arquivos TypeScript.
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -77,15 +78,15 @@ yarn tsc
 
 ## Using JavaScript Instead of TypeScript
 
-React Native defaults new applications to TypeScript, but JavaScript may still be used. Files with a `.jsx` extension are treated as JavaScript instead of TypeScript, and will not be typechecked. JavaScript modules may still be imported by TypeScript modules, along with the reverse.
+React Native define novos aplicativos para TypeScript por padrão, mas JavaScript ainda pode ser usado. Arquivos com extensão `.jsx` são tratados como JavaScript em vez de TypeScript, e não terão verificação de tipo. Módulos JavaScript ainda podem ser importados por módulos TypeScript, junto com o inverso.
 
 ## How TypeScript and React Native works
 
-Out of the box, TypeScript sources are transformed by [Babel][babel] during bundling. We recommend that you use the TypeScript compiler only for type checking. This is the default behavior of `tsc` for newly created applications. If you have existing TypeScript code being ported to React Native, there are [one or two caveats][babel-7-caveats] to using Babel instead of TypeScript.
+Por padrão, fontes TypeScript são transformadas pelo [Babel][babel] durante o bundling. Recomendamos que você use o compilador TypeScript apenas para verificação de tipo. Este é o comportamento padrão do `tsc` para aplicativos recém-criados. Se você tiver código TypeScript existente sendo portado para React Native, há [uma ou duas ressalvas][babel-7-caveats] ao usar Babel em vez de TypeScript.
 
 ## What does React Native + TypeScript look like
 
-You can provide an interface for a React Component's [Props](props) and [State](state) via `React.Component<Props, State>` which will provide type-checking and editor auto-completing when working with that component in JSX.
+Você pode fornecer uma interface para as [Props](props) e [State](state) de um React Component via `React.Component<Props, State>` que fornecerá verificação de tipo e auto-completar do editor ao trabalhar com esse componente em JSX.
 
 ```tsx title="components/Hello.tsx"
 import {useState} from 'react';
@@ -151,19 +152,19 @@ const styles = StyleSheet.create({
 export default Hello;
 ```
 
-You can explore the syntax more in the [TypeScript playground][tsplay].
+Você pode explorar a sintaxe mais no [TypeScript playground][tsplay].
 
 ## Where to Find Useful Advice
 
 - [TypeScript Handbook][ts-handbook]
 - [React's documentation on TypeScript][react-ts]
-- [React + TypeScript Cheatsheets][cheat] has a good overview on how to use React with TypeScript
+- [React + TypeScript Cheatsheets][cheat] tem uma boa visão geral sobre como usar React com TypeScript
 
 ## Using Custom Path Aliases with TypeScript
 
-To use custom path aliases with TypeScript, you need to set the path aliases to work from both Babel and TypeScript. Here's how:
+Para usar aliases de caminho customizados com TypeScript, você precisa configurar os aliases de caminho para funcionar tanto do Babel quanto do TypeScript. Veja como:
 
-1. Edit your `tsconfig.json` to have your [custom path mappings][path-map]. Set anything in the root of `src` to be available with no preceding path reference, and allow any test file to be accessed by using `tests/File.tsx`:
+1. Edite seu `tsconfig.json` para ter seus [mapeamentos de caminho customizados][path-map]. Configure qualquer coisa na raiz de `src` para estar disponível sem referência de caminho anterior, e permita que qualquer arquivo de teste seja acessado usando `tests/File.tsx`:
 
 ```diff
 {
@@ -180,7 +181,7 @@ To use custom path aliases with TypeScript, you need to set the path aliases to 
 }
 ```
 
-2. Add [`babel-plugin-module-resolver`][bpmr] as a development package to your project:
+2. Adicione [`babel-plugin-module-resolver`][bpmr] como um pacote de desenvolvimento ao seu projeto:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -199,11 +200,11 @@ yarn add --dev babel-plugin-module-resolver
 </TabItem>
 </Tabs>
 
-3. Finally, configure your `babel.config.js` (note that the syntax for your `babel.config.js` is different from your `tsconfig.json`):
+3. Finalmente, configure seu `babel.config.js` (observe que a sintaxe para seu `babel.config.js` é diferente do seu `tsconfig.json`):
 
 ```diff
 {
-   presets: ['module:metro-react-native-babel-preset'],
+  presets: ['module:metro-react-native-babel-preset'],
 +  plugins: [
 +    [
 +       'module-resolver',
@@ -233,3 +234,5 @@ yarn add --dev babel-plugin-module-resolver
 [expo]: https://expo.io
 [ignite]: https://github.com/infinitered/ignite
 [tsplay]: https://www.typescriptlang.org/play?strictNullChecks=false&jsx=3#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wG4BYAKFEljgG8AhAVxhggDsAaOAZRgCeAGyS8AFkiQweAFSQAPaXABqwJAHcAvnGy4CRdDAC0HFDGAA3JGSpUFteILBI4ABRxgAznAC8DKnBwpiBIAFxwnjBQwBwA5hSUgQBGKJ5IAKIcMGLMnsCpIAAySFZCAPzhHMwgSUhQCZq2lGickXAAEkhCQhDhyIYAdABiAMIAPO4QXgB8vnAAFPRBKCE8KWmZ2bn5nkUlXXMADHCaAJS+s-QBcC0cbQDaSFk5eQXFpTxpMJsvO3ulAF05v0MANcqIYGYkPN1hlnts3vshKcEtdbm1OABJDhoIghLJzebnHyzL4-BG7d5deZPLavSlIuAAajgAEYUWjWvBOAARJC4pD4+B+IkXCJScn0-7U2m-RGlOCzY5lOCyinSoRwIxsuDhQ4cyicu7wWIS+RoIQrMzATgAWRQUAA1t4RVUQCMxA7PJVqrUoMTZm6PV7FXBlXAAIJQKAoATzIOeqDeFnsgYAKwgMXm+AAhPhzuF8DZDYk4EQYMwoBwFtdAmNVBoIoIRD56JFhEhPANbpCYnVNNNa4E4GM5Iomx3W+2RF3YkQpDFYgOh8OOl0evR8ARGqXV4F6MEkDu98P6KbvubLSBrXaHc6afCpVTkce92MAPRjmCD3fD+tqdQfxPOsWDYTgVz3cwYBbAAibEBVSFw1SlGCINXdA0E7PIkmAIRgEEQoUFqIQfBgmIBSFVDfxPTh3Cw1ssRxPFaVfYCbggHooFIpIhGYJAqLY98gOAsZQPYDg0OHKDYL5BC0lVR8-gEti4AwrDgBwvCCKIrpSIAE35ZismUtjaKITxPAYjhZKMmBWOAlpONIog9JMvchIgj8G0AocvIA4SDU0VFmi5CcZzmfgO3ESQYG7AwYGhK5Sx7FA+ygcIktXTARHkcJWS4IcUDw2IOExBKQG9OAYMwrI6hggrfzTXJzEwAQRk4BKsnCaraTq65NAawI5xixcMqHTAOt4YAAC8wjgAAmQ5BuHCasgAdSQYBYjEGBCySDi9PwZbAmvKBYhiPKADZloGqgzmC+xoHgAzMBQZghHgTpuggBIgA
+```
+
