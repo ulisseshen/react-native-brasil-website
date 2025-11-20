@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-Response
 title: Response
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Response) for more information.
+🚧 Esta página está em construção, então consulte a [documentação do MDN](https://developer.mozilla.org/en-US/docs/Web/API/Response) para mais informações.
 :::
 
-The global `Response` class, as defined in Web specifications.
+A classe global `Response`, conforme definida nas especificações Web.

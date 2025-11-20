@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-Request
 title: Request
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Request) for more information.
+🚧 Esta página está em construção, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Request) para mais informações.
 :::
 
-The global `Request` class, as defined in Web specifications.
+A classe global `Request`, conforme definida nas especificações Web.

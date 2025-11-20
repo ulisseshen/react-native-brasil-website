@@ -1,8 +1,9 @@
 ---
+ia-translated: true
 id: global-self
 title: self
 ---
 
-[`self`](https://developer.mozilla.org/en-US/docs/Web/API/Window/self) is an alias for [`globalThis`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis), as defined in Web specifications.
+[`self`](https://developer.mozilla.org/en-US/docs/Web/API/Window/self) é um alias para [`globalThis`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis), como definido nas especificações da Web.
 
-The use of `globalThis` is recommended over `self`.
+O uso de `globalThis` é recomendado em vez de `self`.

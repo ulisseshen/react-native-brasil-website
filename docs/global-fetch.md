@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-fetch
 title: fetch
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) for more information.
+🚧 Esta página está em construção, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) para mais informações.
 :::
 
-The global `fetch` function, as defined in Web specifications.
+A função global `fetch`, conforme definida nas especificações Web.

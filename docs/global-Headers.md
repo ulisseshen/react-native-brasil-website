@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-Headers
 title: Headers
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Headers) for more information.
+🚧 Esta página está em desenvolvimento, então por favor consulte a [documentação da MDN](https://developer.mozilla.org/en-US/docs/Web/API/Headers) para mais informações.
 :::
 
-The global `Headers` class, as defined in Web specifications.
+A classe global `Headers`, conforme definida nas especificações Web.

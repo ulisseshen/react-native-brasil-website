@@ -10,48 +10,48 @@
 
 APIs globais JavaScript/Web disponíveis no React Native:
 
-- [ ] docs/global-AbortController.md
-- [ ] docs/global-AbortSignal.md
-- [ ] docs/global-Blob.md
-- [ ] docs/global-EventCounts.md
-- [ ] docs/global-File.md
-- [ ] docs/global-FileReader.md
-- [ ] docs/global-FormData.md
-- [ ] docs/global-Headers.md
-- [ ] docs/global-PerformanceEntry.md
-- [ ] docs/global-PerformanceEventTiming.md
-- [ ] docs/global-PerformanceLongTaskTiming.md
-- [ ] docs/global-PerformanceMark.md
-- [ ] docs/global-PerformanceMeasure.md
-- [ ] docs/global-PerformanceObserver.md
-- [ ] docs/global-PerformanceObserverEntryList.md
-- [ ] docs/global-Request.md
-- [ ] docs/global-Response.md
-- [ ] docs/global-URL.md
-- [ ] docs/global-URLSearchParams.md
-- [ ] docs/global-WebSocket.md
-- [ ] docs/global-XMLHttpRequest.md
-- [ ] docs/global-__DEV__.md
-- [ ] docs/global-alert.md
-- [ ] docs/global-cancelAnimationFrame.md
-- [ ] docs/global-cancelIdleCallback.md
-- [ ] docs/global-clearInterval.md
-- [ ] docs/global-clearTimeout.md
-- [ ] docs/global-console.md
-- [ ] docs/global-fetch.md
-- [ ] docs/global-global.md
-- [ ] docs/global-intersectionobserver.md
-- [ ] docs/global-intersectionobserverentry.md
-- [ ] docs/global-navigator.md
-- [ ] docs/global-performance.md
-- [ ] docs/global-process.md
-- [ ] docs/global-queueMicrotask.md
-- [ ] docs/global-requestAnimationFrame.md
-- [ ] docs/global-requestIdleCallback.md
-- [ ] docs/global-self.md
-- [ ] docs/global-setInterval.md
-- [ ] docs/global-setTimeout.md
-- [ ] docs/global-window.md
+- [x] docs/global-AbortController.md
+- [x] docs/global-AbortSignal.md
+- [x] docs/global-Blob.md
+- [x] docs/global-EventCounts.md
+- [x] docs/global-File.md
+- [x] docs/global-FileReader.md
+- [x] docs/global-FormData.md
+- [x] docs/global-Headers.md
+- [x] docs/global-PerformanceEntry.md
+- [x] docs/global-PerformanceEventTiming.md
+- [x] docs/global-PerformanceLongTaskTiming.md
+- [x] docs/global-PerformanceMark.md
+- [x] docs/global-PerformanceMeasure.md
+- [x] docs/global-PerformanceObserver.md
+- [x] docs/global-PerformanceObserverEntryList.md
+- [x] docs/global-Request.md
+- [x] docs/global-Response.md
+- [x] docs/global-URL.md
+- [x] docs/global-URLSearchParams.md
+- [x] docs/global-WebSocket.md
+- [x] docs/global-XMLHttpRequest.md
+- [x] docs/global-__DEV__.md
+- [x] docs/global-alert.md
+- [x] docs/global-cancelAnimationFrame.md
+- [x] docs/global-cancelIdleCallback.md
+- [x] docs/global-clearInterval.md
+- [x] docs/global-clearTimeout.md
+- [x] docs/global-console.md
+- [x] docs/global-fetch.md
+- [x] docs/global-global.md
+- [x] docs/global-intersectionobserver.md
+- [x] docs/global-intersectionobserverentry.md
+- [x] docs/global-navigator.md
+- [x] docs/global-performance.md
+- [x] docs/global-process.md
+- [x] docs/global-queueMicrotask.md
+- [x] docs/global-requestAnimationFrame.md
+- [x] docs/global-requestIdleCallback.md
+- [x] docs/global-self.md
+- [x] docs/global-setInterval.md
+- [x] docs/global-setTimeout.md
+- [x] docs/global-window.md
 
 ---
 
@@ -168,14 +168,14 @@ Documentação da nova arquitetura:
 
 ## 📊 Progresso
 
-- **APIs Globais:** 0/42 (0%)
+- **APIs Globais:** 42/42 (100%) ✅
 - **Componentes e APIs:** 0/51 (0%)
 - **Guias:** 0/13 (0%)
 - **Legacy:** 0/8 (0%)
 - **Releases:** 0/3 (0%)
 - **The New Architecture:** 0/1 (0%)
 
-**Total:** 0/118 (0%)
+**Total:** 42/118 (36%)
 
 ---
 

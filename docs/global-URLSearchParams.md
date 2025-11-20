@@ -1,10 +1,11 @@
 ---
 id: global-URLSearchParams
 title: URLSearchParams
+ia-translated: true
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) for more information.\
+🚧 Esta página está em construção, então consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) para mais informações.
 :::
 
-The global `URLSearchParams` class, as defined in Web specifications.
+A classe global `URLSearchParams`, conforme definida nas especificações Web.

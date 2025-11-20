@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-Blob
 title: Blob
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Blob) for more information.
+🚧 Esta página está em desenvolvimento, então, por favor, consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Blob) para mais informações.
 :::
 
-The global `Blob` class, as defined in Web specifications.
+A classe global `Blob`, conforme definida nas especificações Web.

@@ -1,11 +1,12 @@
 ---
 id: global-PerformanceObserver
 title: PerformanceObserver
+ia-translated: true
 ---
 
-The global [`PerformanceObserver`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver) class, as defined in Web specifications.
+A classe global [`PerformanceObserver`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver), conforme definida nas especificações Web.
 
-## Example
+## Exemplo
 
 ```ts
 const observer = new PerformanceObserver(
@@ -31,28 +32,28 @@ observer.observe({entryTypes: ['mark', 'measure']});
 
 ---
 
-# Reference
+# Referência
 
 ## Constructor
 
 ### `PerformanceObserver()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/PerformanceObserver).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/PerformanceObserver).
 
 ## Static properties
 
 ### `supportedEntryTypes`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/supportedEntryTypes).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/supportedEntryTypes).
 
-Returns `['mark', 'measure', 'event', 'longtask']`.
+Retorna `['mark', 'measure', 'event', 'longtask']`.
 
 ## Instance methods
 
 ### `observe()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/observe).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/observe).
 
 ### `disconnect()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/disconnect).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver/disconnect).

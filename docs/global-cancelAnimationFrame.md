@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-cancelAnimationFrame
 title: cancelAnimationFrame
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelAnimationFrame) for more information.
+🚧 Esta página está em construção, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelAnimationFrame) para mais informações.
 :::
 
-The global `cancelAnimationFrame` function, as defined in Web specifications.
+A função global `cancelAnimationFrame`, conforme definida nas especificações Web.

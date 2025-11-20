@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-FileReader
 title: FileReader
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) for more information.
+🚧 Esta página está em desenvolvimento, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) para mais informações.
 :::
 
-The global `FileReader` class, as defined in Web specifications.
+A classe global `FileReader`, conforme definida nas especificações da Web.

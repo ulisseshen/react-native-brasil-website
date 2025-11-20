@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: global-intersectionobserver
 title: IntersectionObserver 🧪
 ---
@@ -7,7 +8,7 @@ import CanaryAPIWarning from './\_canary-channel-api-warning.mdx';
 
 <CanaryAPIWarning />
 
-The global [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) interface, as defined in Web specifications. It provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+A interface global [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver), conforme definida nas especificações Web. Ela fornece uma maneira de observar de forma assíncrona mudanças na interseção de um elemento alvo com um elemento ancestral ou com a viewport de um documento de nível superior.
 
 ---
 
@@ -17,9 +18,9 @@ The global [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web
 
 ### `IntersectionObserver()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver).
 
-Creates a new `IntersectionObserver` object which will execute a specified callback function when it detects that a target element's visibility has crossed one or more `threshold` or `rnRootThreshold` values.
+Cria um novo objeto `IntersectionObserver` que executará uma função callback especificada quando detectar que a visibilidade de um elemento alvo cruzou um ou mais valores de `threshold` ou `rnRootThreshold`.
 
 ```ts
 new IntersectionObserver(callback, options?)
@@ -29,45 +30,45 @@ new IntersectionObserver(callback, options?)
 
 **`callback`**
 
-A function which is called when the percentage of the target element is visible crosses a threshold. The callback receives two parameters:
+Uma função que é chamada quando a porcentagem do elemento alvo visível cruza um threshold. O callback recebe dois parâmetros:
 
-- `entries`: An array of [`IntersectionObserverEntry`](global-intersectionobserverentry) objects, each representing one threshold which was crossed, either becoming more or less visible than the percentage specified by that threshold.
-- `observer`: The `IntersectionObserver` instance which invoked the callback.
+- `entries`: Um array de objetos [`IntersectionObserverEntry`](global-intersectionobserverentry), cada um representando um threshold que foi cruzado, ficando mais ou menos visível do que a porcentagem especificada por esse threshold.
+- `observer`: A instância `IntersectionObserver` que invocou o callback.
 
-**`options`** (optional)
+**`options`** (opcional)
 
-An optional object with the following properties:
+Um objeto opcional com as seguintes propriedades:
 
-| Name                 | Type                             | Description                                                                                                                                                                                                       |
-| -------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `root`               | [Element](element-nodes) \| null | An element that is an ancestor of the target, whose bounding rectangle will be considered the viewport. Defaults to the root viewport if not specified or if `null`.                                              |
-| `rootMargin`         | string                           | A string which specifies a set of offsets to add to the root's bounding box when calculating intersections. Defaults to `"0px 0px 0px 0px"`.                                                                      |
-| `threshold`          | number \| number[]               | Either a single number or an array of numbers between 0.0 and 1.0, specifying a ratio of intersection area to total bounding box area for the observed target. Defaults to `[0]` if `rnRootThreshold` is not set. |
-| `rnRootThreshold` ⚠️ | number \| number[]               | **React Native specific.** Either a single number or an array of numbers between 0.0 and 1.0, specifying a ratio of intersection area to the total root area.                                                     |
+| Name                 | Type                             | Description                                                                                                                                                                                                                                |
+| -------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `root`               | [Element](element-nodes) \| null | Um elemento que é um ancestral do alvo, cujo retângulo delimitador será considerado a viewport. O padrão é a viewport raiz se não for especificado ou se for `null`.                                                                      |
+| `rootMargin`         | string                           | Uma string que especifica um conjunto de deslocamentos a serem adicionados à caixa delimitadora da raiz ao calcular interseções. O padrão é `"0px 0px 0px 0px"`.                                                                           |
+| `threshold`          | number \| number[]               | Ou um único número ou um array de números entre 0.0 e 1.0, especificando uma proporção da área de interseção em relação à área total da caixa delimitadora para o alvo observado. O padrão é `[0]` se `rnRootThreshold` não estiver definido. |
+| `rnRootThreshold` ⚠️ | number \| number[]               | **Específico do React Native.** Ou um único número ou um array de números entre 0.0 e 1.0, especificando uma proporção da área de interseção em relação à área total da raiz.                                                             |
 
 ## Instance properties
 
 ### `root`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/root).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/root).
 
-The element or document whose bounds are used as the bounding box when testing for intersection.
+O elemento ou documento cujos limites são usados como a caixa delimitadora ao testar a interseção.
 
 ### `rootMargin`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin).
 
-An offset rectangle applied to the root's bounding box when calculating intersections.
+Um retângulo de deslocamento aplicado à caixa delimitadora da raiz ao calcular interseções.
 
 ### `rnRootThresholds` ⚠️
 
 :::warning Non-standard
-This is a React Native specific extension.
+Esta é uma extensão específica do React Native.
 :::
 
-A list of root thresholds, sorted in increasing numeric order, where each threshold is a ratio of intersection area to bounding box area of the specified root view, which defaults to the viewport.
+Uma lista de thresholds de raiz, ordenada em ordem numérica crescente, onde cada threshold é uma proporção da área de interseção em relação à área da caixa delimitadora da view raiz especificada, que tem como padrão a viewport.
 
-Notifications for a target are generated when any of the thresholds specified in `rnRootThresholds` or `thresholds` are crossed for that target.
+As notificações para um alvo são geradas quando qualquer um dos thresholds especificados em `rnRootThresholds` ou `thresholds` é cruzado para esse alvo.
 
 ```ts
 get rnRootThresholds(): ReadonlyArray<number> | null;
@@ -75,34 +76,34 @@ get rnRootThresholds(): ReadonlyArray<number> | null;
 
 ### `thresholds`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds).
 
-A list of thresholds, sorted in increasing numeric order, where each threshold is a ratio of intersection area to bounding box area of an observed target.
+Uma lista de thresholds, ordenada em ordem numérica crescente, onde cada threshold é uma proporção da área de interseção em relação à área da caixa delimitadora de um alvo observado.
 
-Notifications for a target are generated when any of the thresholds specified in `rnRootThresholds` or `thresholds` are crossed for that target.
+As notificações para um alvo são geradas quando qualquer um dos thresholds especificados em `rnRootThresholds` ou `thresholds` é cruzado para esse alvo.
 
 ## Instance methods
 
 ### `disconnect()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/disconnect).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/disconnect).
 
-Stops the `IntersectionObserver` object from observing any target.
+Para o objeto `IntersectionObserver` de observar qualquer alvo.
 
 ### `observe()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/observe).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/observe).
 
-Tells the `IntersectionObserver` to begin observing a target element.
+Instrui o `IntersectionObserver` a começar a observar um elemento alvo.
 
 ### `takeRecords()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/takeRecords).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/takeRecords).
 
-Returns an array of `IntersectionObserverEntry` objects for all observed targets.
+Retorna um array de objetos `IntersectionObserverEntry` para todos os alvos observados.
 
 ### `unobserve()`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/unobserve).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/unobserve).
 
-Tells the `IntersectionObserver` to stop observing a particular target element.
+Instrui o `IntersectionObserver` a parar de observar um elemento alvo específico.
