@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import type * as PluginContentDocs from '@docusaurus/plugin-content-docs';
 import type * as Preset from '@docusaurus/preset-classic';
 import type {Config} from '@docusaurus/types';
@@ -40,15 +42,15 @@ const commonDocsOptions: PluginContentDocs.Options = {
     const isNextRelease = options.version === 'current';
     const buttons: EditUrlButton[] = [
       {
-        label: isNextRelease ? 'Edit this page' : 'Edit page for next release',
+        label: isNextRelease ? 'Editar esta página' : 'Editar página para próxima versão',
         href: `${baseUrl}/${nextReleasePath}`,
       },
     ];
     if (!isNextRelease) {
       const label =
         options.version === lastVersion
-          ? 'Edit page for current release'
-          : `Edit page for ${options.version} release`;
+          ? 'Editar página para versão atual'
+          : `Editar página para versão ${options.version}`;
       const thisVersionPath = path.posix.join(
         'website',
         options.versionDocsDirPath,
@@ -189,7 +191,7 @@ const config: Config = {
         blog: {
           path: 'blog',
           blogSidebarCount: 'ALL',
-          blogSidebarTitle: 'All Blog Posts',
+          blogSidebarTitle: 'Todos os Posts do Blog',
           feedOptions: {
             type: 'all',
             copyright,
@@ -324,7 +326,7 @@ const config: Config = {
     announcementBar: {
       id: 'react-conf',
       content:
-        'Join us for React Conf on Oct 7-8. <a target="_blank" rel="noopener noreferrer" href="https://conf.react.dev">Learn more</a>.',
+        'Junte-se a nós na React Conf nos dias 7 e 8 de outubro. <a target="_blank" rel="noopener noreferrer" href="https://conf.react.dev">Saiba mais</a>.',
       backgroundColor: '#20232a',
       textColor: '#fff',
       isCloseable: false,
@@ -374,17 +376,17 @@ const config: Config = {
       style: 'dark',
       items: [
         {
-          label: 'Development',
+          label: 'Desenvolvimento',
           type: 'dropdown',
           position: 'right',
           items: [
             {
-              label: 'Guides',
+              label: 'Guias',
               type: 'doc',
               docId: 'getting-started',
             },
             {
-              label: 'Components',
+              label: 'Componentes',
               type: 'doc',
               docId: 'components-and-apis',
             },
@@ -394,7 +396,7 @@ const config: Config = {
               docId: 'accessibilityinfo',
             },
             {
-              label: 'Architecture',
+              label: 'Arquitetura',
               type: 'doc',
               docId: 'architecture-overview',
               docsPluginId: 'architecture',
@@ -404,14 +406,14 @@ const config: Config = {
         {
           type: 'doc',
           docId: 'overview',
-          label: 'Contributing',
+          label: 'Contribuindo',
           position: 'right',
           docsPluginId: 'contributing',
         },
         {
           type: 'doc',
           docId: 'overview',
-          label: 'Community',
+          label: 'Comunidade',
           position: 'right',
           docsPluginId: 'community',
         },
@@ -432,7 +434,7 @@ const config: Config = {
           dropdownItemsAfter: [
             {
               to: '/versions',
-              label: 'All versions',
+              label: 'Todas as versões',
             },
           ],
         },
@@ -449,14 +451,14 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Develop',
+          title: 'Desenvolver',
           items: [
             {
-              label: 'Guides',
+              label: 'Guias',
               to: 'docs/getting-started',
             },
             {
-              label: 'Components',
+              label: 'Componentes',
               to: 'docs/components-and-apis',
             },
             {
@@ -464,28 +466,28 @@ const config: Config = {
               to: 'docs/accessibilityinfo',
             },
             {
-              label: 'Architecture',
+              label: 'Arquitetura',
               to: 'architecture/overview',
             },
           ],
         },
         {
-          title: 'Participate',
+          title: 'Participar',
           items: [
             {
               label: 'Showcase',
               to: 'showcase',
             },
             {
-              label: 'Contributing',
+              label: 'Contribuindo',
               to: 'contributing/overview',
             },
             {
-              label: 'Community',
+              label: 'Comunidade',
               to: 'community/overview',
             },
             {
-              label: 'Directory',
+              label: 'Diretório',
               href: 'https://reactnative.directory/',
             },
             {
@@ -495,7 +497,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'Find us',
+          title: 'Encontre-nos',
           items: [
             {
               label: 'Blog',
@@ -516,18 +518,18 @@ const config: Config = {
           ],
         },
         {
-          title: 'Explore More',
+          title: 'Explorar Mais',
           items: [
             {
               label: 'ReactJS',
               href: 'https://react.dev/',
             },
             {
-              label: 'Privacy Policy',
+              label: 'Política de Privacidade',
               href: 'https://opensource.fb.com/legal/privacy/',
             },
             {
-              label: 'Terms of Service',
+              label: 'Termos de Serviço',
               href: 'https://opensource.fb.com/legal/terms/',
             },
           ],
