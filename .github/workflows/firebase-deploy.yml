@@ -80,25 +80,11 @@ jobs:
             exit 1
           fi
 
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
-
-      - name: Write Firebase Service Account
-        run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > /tmp/firebase-key.json
-
       - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: transliteradu
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-key.json
-        run: |
-          echo "Deploying to Firebase Hosting..."
-          firebase deploy \
-            --only hosting \
-            --project transliteradu \
-            --non-interactive
-
-      - name: Check deployment status
-        run: echo "✅ Firebase deployment completed successfully"
-
-      - name: Cleanup credentials
-        if: always()
-        run: rm -f /tmp/firebase-key.json
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
