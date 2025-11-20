@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: statusbarios
 title: '❌ StatusBarIOS'
 ---
 
-:::danger Removed from React Native
-Use [`StatusBar`](statusbar.md) for mutating the status bar.
+:::danger Removido do React Native
+Use [`StatusBar`](statusbar.md) para mutar a status bar.
 :::
 
 ---

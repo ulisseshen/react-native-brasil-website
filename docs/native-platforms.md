@@ -1,26 +1,27 @@
 ---
 id: native-platform
 title: Native Platform
+ia-translated: true
 ---
 
-Your application may need access to platform features that aren’t directly available from react-native or one of the hundreds of [third-party libraries](https://reactnative.directory/) maintained by the community. Maybe you want to reuse some existing Objective-C, Swift, Java, Kotlin or C++ code from the JavaScript runtime. Whatever your reason, React Native exposes a powerful set of API to connect your native code to your JavaScript application code.
+Seu aplicativo pode precisar de acesso a recursos de plataforma que não estão diretamente disponíveis no react-native ou em uma das centenas de [bibliotecas de terceiros](https://reactnative.directory/) mantidas pela comunidade. Talvez você queira reutilizar algum código Objective-C, Swift, Java, Kotlin ou C++ existente do runtime JavaScript. Qualquer que seja sua razão, React Native expõe um conjunto poderoso de API para conectar seu código nativo ao código JavaScript do seu aplicativo.
 
-This guide introduces:
+Este guia apresenta:
 
-- **Native Modules:** native libraries that have no User Interface (UI) for the user. Examples would be persistent storage, notifications, network events. These are accessible to your user as JavaScript functions and objects.
-- **Native Component:** native platform views, widgets and controllers that are available to your application's JavaScript code through React Components.
+- **Native Modules:** bibliotecas nativas que não têm Interface de Usuário (UI) para o usuário. Exemplos seriam armazenamento persistente, notificações, eventos de rede. Eles são acessíveis ao seu usuário como funções e objetos JavaScript.
+- **Native Component:** views, widgets e controllers de plataforma nativa que estão disponíveis para o código JavaScript do seu aplicativo através de React Components.
 
 :::note
-You might have previously been familiar with:
+Você pode ter se familiarizado anteriormente com:
 
 - [Legacy Native Modules](./legacy/native-modules-intro);
 - [Legacy Native Components](./legacy/native-components-android);
 
-These are our deprecated native module and component API. You can still use many of these legacy libraries with the New Architecture thanks to our interop layers. You should consider:
+Estas são nossas API deprecadas de módulo nativo e componente. Você ainda pode usar muitas dessas bibliotecas legadas com a New Architecture graças às nossas camadas de interop. Você deve considerar:
 
-- using alternative libraries,
-- upgrading to newer library versions that have first-class support for the New Architecture, or
-- port these libraries yourself to Turbo Native Modules or Fabric Native Components.
+- usar bibliotecas alternativas,
+- atualizar para versões mais recentes de biblioteca que têm suporte de primeira classe para a New Architecture, ou
+- portar essas bibliotecas você mesmo para Turbo Native Modules ou Fabric Native Components.
 
 :::
 

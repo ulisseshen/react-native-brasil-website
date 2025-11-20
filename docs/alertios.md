@@ -1,8 +1,9 @@
 ---
+ia-translated: true
 id: alertios
 title: '❌ AlertIOS'
 ---
 
-:::danger Removed from React Native
-Use [`Alert`](alert) instead.
+:::danger Removido do React Native
+Use [`Alert`](alert) ao invés disso.
 :::

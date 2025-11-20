@@ -1,6 +1,7 @@
 ---
+ia-translated: true
 id: hermes
-title: Using Hermes
+title: Usando Hermes
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
@@ -9,37 +10,37 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
   <img width={300} height={300} className="hermes-logo" src="/docs/assets/HermesLogo.svg" style={{height: "auto"}}/>
 </a>
 
-[Hermes](https://hermesengine.dev) is an open-source JavaScript engine optimized for React Native. For many apps, using Hermes will result in improved start-up time, decreased memory usage, and smaller app size when compared to JavaScriptCore.
-Hermes is used by default by React Native and no additional configuration is required to enable it.
+[Hermes](https://hermesengine.dev) é um motor JavaScript de código aberto otimizado para React Native. Para muitos apps, usar Hermes resultará em tempo de inicialização melhorado, uso de memória reduzido e tamanho de app menor quando comparado ao JavaScriptCore.
+Hermes é usado por padrão pelo React Native e nenhuma configuração adicional é necessária para habilitá-lo.
 
-## Bundled Hermes
+## Hermes Empacotado
 
-React Native comes with a **bundled version** of Hermes.
-We are building a version of Hermes for you whenever we release a new version of React Native. This will make sure you're consuming a version of Hermes which is fully compatible with the version of React Native you're using.
+React Native vem com uma **versão empacotada** do Hermes.
+Estamos construindo uma versão do Hermes para você sempre que lançamos uma nova versão do React Native. Isso garantirá que você está consumindo uma versão do Hermes que é totalmente compatível com a versão do React Native que você está usando.
 
-This change is fully transparent to users of React Native. You can still disable Hermes using the command described in this page.
-You can [read more about the technical implementation on this page](/architecture/bundled-hermes).
+Esta mudança é totalmente transparente para usuários do React Native. Você ainda pode desabilitar Hermes usando o comando descrito nesta página.
+Você pode [ler mais sobre a implementação técnica nesta página](/architecture/bundled-hermes).
 
-## Confirming Hermes is in use
+## Confirmando que Hermes está em uso
 
-If you've recently created a new app from scratch, you should see if Hermes is enabled in the welcome view:
+Se você criou recentemente um novo app do zero, você deve ver se Hermes está habilitado na tela de boas-vindas:
 
 <figure>
 <img src="/docs/assets/HermesApp.png" height="600" alt="Where to find JS engine status in the new project?" />
 </figure>
 
-A `HermesInternal` global variable will be available in JavaScript that can be used to verify that Hermes is in use:
+Uma variável global `HermesInternal` estará disponível em JavaScript que pode ser usada para verificar se Hermes está em uso:
 
 ```jsx
 const isHermes = () => !!global.HermesInternal;
 ```
 
 :::caution
-If you are using a non-standard way of loading the JS bundle, it is possible that the `HermesInternal` variable is available but you aren't using the highly optimised pre-compiled bytecode.
-Confirm that you are using the `.hbc` file and also benchmark the before/after as detailed below.
+Se você está usando uma maneira não padrão de carregar o bundle JS, é possível que a variável `HermesInternal` esteja disponível mas você não esteja usando o bytecode pré-compilado altamente otimizado.
+Confirme que você está usando o arquivo `.hbc` e também faça um benchmark do antes/depois como detalhado abaixo.
 :::
 
-To see the benefits of Hermes, try making a release build/deployment of your app to compare. For example; from the root of your project:
+Para ver os benefícios do Hermes, tente fazer um build/deployment de release do seu app para comparar. Por exemplo; a partir da raiz do seu projeto:
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
 <TabItem value="android">
@@ -88,8 +89,8 @@ yarn ios --mode Release
 </TabItem>
 </Tabs>
 
-This will compile JavaScript to Hermes Bytecode during build time which will improve your app's startup speed on device.
+Isso compilará JavaScript para Hermes Bytecode durante o tempo de build, o que melhorará a velocidade de inicialização do seu app no dispositivo.
 
-## Switching back to JavaScriptCore
+## Voltando para JavaScriptCore
 
-React Native also supports using JavaScriptCore as the [JavaScript engine](javascript-environment). Follow the instructions [from the community repository](https://github.com/react-native-community/javascriptcore) to opt-out of Hermes.
+React Native também suporta usar JavaScriptCore como o [motor JavaScript](javascript-environment). Siga as instruções [do repositório da comunidade](https://github.com/react-native-community/javascriptcore) para optar por não usar Hermes.

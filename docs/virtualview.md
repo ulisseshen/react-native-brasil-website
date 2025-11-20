@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: virtualview
 title: VirtualView 🧪
 ---
@@ -7,9 +8,9 @@ import ExperimentalAPIWarning from './\_experimental-api-warning.mdx';
 
 <ExperimentalAPIWarning />
 
-`VirtualView` is a core component that behaves similar to [`View`](view).
+`VirtualView` é um componente principal que se comporta de forma similar a [`View`](view).
 
-When it is the descendent of a [`ScrollView`](scrollview), it gains additional virtualization capabilities to reduce its memory footprint when obscured by the scroll viewport.
+Quando é descendente de um [`ScrollView`](scrollview), ele ganha capacidades adicionais de virtualização para reduzir seu consumo de memória quando obscurecido pelo viewport de scroll.
 
 ```tsx
 <ScrollView>
@@ -19,42 +20,42 @@ When it is the descendent of a [`ScrollView`](scrollview), it gains additional v
 </ScrollView>
 ```
 
-A `VirtualView` without an ancestor[`ScrollView`](scrollview) does not have any virtualization capabilities.
+Um `VirtualView` sem um ancestral [`ScrollView`](scrollview) não possui nenhuma capacidade de virtualização.
 
 ## Virtualization
 
-When a `VirtualView` leaves the visible region of a [`ScrollView`](scrollview), it becomes hidden. When hidden, a `VirtualView` will cache its most recent layout and may unmount its children — a process called virtualization.
+Quando um `VirtualView` sai da região visível de um [`ScrollView`](scrollview), ele se torna oculto. Quando oculto, um `VirtualView` armazenará em cache seu layout mais recente e pode desmontar seus filhos — um processo chamado virtualização.
 
-When a `VirtualView` returns to the visible region of a [`ScrollView`](scrollview), it becomes visible. When visible, its children are _guaranteed_ to be rendered. This guarantee is maintained by blocking the main thread from rendering the next frame that would reveal the `VirtualView` until its children can be rendered.
+Quando um `VirtualView` retorna à região visível de um [`ScrollView`](scrollview), ele se torna visível. Quando visível, seus filhos são _garantidamente_ renderizados. Esta garantia é mantida bloqueando a thread principal de renderizar o próximo frame que revelaria o `VirtualView` até que seus filhos possam ser renderizados.
 
 <img src="/docs/assets/d_virtualview_modes.svg" width="700" alt="Diagram of VirtualView modes and thresholds." />
 
 :::note
-In future developments, a hidden `VirtualView` may instead render its children in an [`<Activity mode="hidden">`](https://react.dev/reference/react/Activity) to preserve state for as long as possible while balancing memory overhead.
+Em desenvolvimentos futuros, um `VirtualView` oculto pode em vez disso renderizar seus filhos em um [`<Activity mode="hidden">`](https://react.dev/reference/react/Activity) para preservar o estado pelo maior tempo possível enquanto equilibra a sobrecarga de memória.
 :::
 
 ### Blocking the Main Thread
 
-This is the first time in React Native’s feature set where rendering a React component can block the main thread. This is a new capability enabled by the [New Architecture](/architecture/landing-page)!
+Esta é a primeira vez no conjunto de recursos do React Native onde renderizar um componente React pode bloquear a thread principal. Esta é uma nova capacidade habilitada pela [New Architecture](/architecture/landing-page)!
 
-Blocking the main thread can provide a better user experience by preventing flashes of blank frames that sometimes occur when using components like [`FlatList`](flatlist). It can also enable better performance by using main thread priority, which is also typically run on higher performance cores.
+Bloquear a thread principal pode fornecer uma melhor experiência do usuário prevenindo flashes de frames em branco que às vezes ocorrem ao usar componentes como [`FlatList`](flatlist). Também pode habilitar melhor desempenho usando prioridade de thread principal, que também é tipicamente executada em cores de maior desempenho.
 
-However, blocking the main thread also comes with tradeoffs. If an update operation, such as mounting the children of a `VirtualView`, takes too long to finish, it can now drop frames. Dropping more than a couple frames can lead to a worse user experience by making the app feel sluggish and non-responsive. Dropping too many frames may cause the operating system to display a modal indicating the app is not responsive, or it may even terminate your app!
+No entanto, bloquear a thread principal também vem com trade-offs. Se uma operação de atualização, como montar os filhos de um `VirtualView`, levar muito tempo para terminar, agora pode perder frames. Perder mais de alguns frames pode levar a uma pior experiência do usuário tornando o app lento e não responsivo. Perder muitos frames pode fazer com que o sistema operacional exiba um modal indicando que o app não está respondendo, ou pode até terminar seu app!
 
 :::warning
-DevTools does not currently support debugging JavaScript on the main thread. This means if you are using breakpoints to debug code called from `onModeChange`, that is executed on the main thread, your debugger may freeze.
+DevTools atualmente não suporta debugging de JavaScript na thread principal. Isso significa que se você estiver usando breakpoints para debugar código chamado de `onModeChange`, que é executado na thread principal, seu debugger pode congelar.
 
-Debugging all other parts of your JavaScript code should work as expected. We are working on closing this gap before releasing `VirtualView` to stable channels of React Native.
+Debugar todas as outras partes do seu código JavaScript deve funcionar como esperado. Estamos trabalhando para fechar esta lacuna antes de lançar `VirtualView` para canais estáveis do React Native.
 :::
 
 ### Prerendering
 
-`VirtualView` enables you to benefit from main thread rendering while mitigating the disadvantages of dropped frames by rendering earlier before it is needed. This is called “prerendering”.
+`VirtualView` permite que você se beneficie da renderização de thread principal enquanto mitiga as desvantagens de frames perdidos renderizando mais cedo antes de ser necessário. Isso é chamado de "prerendering".
 
-By default, each `VirtualView` will prerender its children when it approaches the visible region of a [`ScrollView`](scrollview). When this happens, its children will be rendered on a background thread at a lower priority (using a [transition](https://react.dev/reference/react/startTransition)). This ensures that the main thread and React are available to handle other critical user interactions at a higher priority.
+Por padrão, cada `VirtualView` irá pré-renderizar seus filhos quando se aproximar da região visível de um [`ScrollView`](scrollview). Quando isso acontece, seus filhos serão renderizados em uma thread de background com prioridade menor (usando uma [transition](https://react.dev/reference/react/startTransition)). Isso garante que a thread principal e o React estejam disponíveis para lidar com outras interações críticas do usuário com maior prioridade.
 
 :::note
-`VirtualView`'s prerender logic is not currently configurable. The algorithm for determining this is undergoing active design iteration and is likely to change in a future release.
+A lógica de prerender do `VirtualView` atualmente não é configurável. O algoritmo para determinar isso está passando por iteração de design ativa e provavelmente mudará em uma versão futura.
 :::
 
 ---
@@ -63,7 +64,7 @@ By default, each `VirtualView` will prerender its children when it approaches th
 
 ### `children`
 
-Content to render inside this `VirtualView`.
+Conteúdo a ser renderizado dentro deste `VirtualView`.
 
 | Type                     |
 | ------------------------ |
@@ -73,14 +74,14 @@ Content to render inside this `VirtualView`.
 
 ### `onModeChange`
 
-Invoked when the `VirtualView` changes how it renders its children.
+Invocado quando o `VirtualView` muda como renderiza seus filhos.
 
-If a callback is supplied, it may be invoked from different threads and priorities depending on the internal state change. This can be detected by checking the `mode` property on the event:
+Se um callback for fornecido, ele pode ser invocado de diferentes threads e prioridades dependendo da mudança de estado interno. Isso pode ser detectado verificando a propriedade `mode` no evento:
 
-- If `mode` is [`VirtualViewMode.Visible`](#virtualviewmode), the callback is being invoked from the main thread with immediate priority.
-- If `mode` is [`VirtualViewMode.Prerender`](#virtualviewmode) or [`VirtualViewMode.Hidden`](#virtualviewmode), the callback is being invoked from a background thread with transition priority.
+- Se `mode` for [`VirtualViewMode.Visible`](#virtualviewmode), o callback está sendo invocado da thread principal com prioridade imediata.
+- Se `mode` for [`VirtualViewMode.Prerender`](#virtualviewmode) ou [`VirtualViewMode.Hidden`](#virtualviewmode), o callback está sendo invocado de uma thread de background com prioridade de transition.
 
-The callback will never be invoked consecutively with the same `mode` value. However, there are few guarantees about sequencing of events. Also, the callback may never be invoked with [`VirtualViewMode.Visible`](#virtualviewmode) even if it becomes visible, if the children were successfully prerendered.
+O callback nunca será invocado consecutivamente com o mesmo valor de `mode`. No entanto, há poucas garantias sobre o sequenciamento de eventos. Além disso, o callback pode nunca ser invocado com [`VirtualViewMode.Visible`](#virtualviewmode) mesmo se se tornar visível, se os filhos foram pré-renderizados com sucesso.
 
 | Type                                               |
 | -------------------------------------------------- |
@@ -90,7 +91,7 @@ The callback will never be invoked consecutively with the same `mode` value. How
 
 ### `nativeID`
 
-An identifier for locating this view from native classes.
+Um identificador para localizar esta view de classes nativas.
 
 | Type   |
 | ------ |
@@ -110,7 +111,7 @@ An identifier for locating this view from native classes.
 
 ### `ModeChangeEvent`
 
-Argument supplied to [`onModeChange`](#onmodechange).
+Argumento fornecido para [`onModeChange`](#onmodechange).
 
 | Type   |
 | ------ |
@@ -118,31 +119,31 @@ Argument supplied to [`onModeChange`](#onmodechange).
 
 **Properties:**
 
-| Name          | Type                                | Description                                                                                       |
-| ------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------- |
-| mode          | [VirtualViewMode](#virtualviewmode) | New mode of the `VirtualView`.                                                                    |
-| target        | element                             | `VirtualView` emitting this event.                                                                |
-| targetRect    | [Rect](rect)                        | Layout of `target` relative to the nearest ancestor `ScrollView`.                                 |
-| thresholdRect | [Rect](rect)                        | Layout of the threshold that triggered this event, relative to the nearest ancestor `ScrollView`. |
+| Name          | Type                                | Description                                                                                                |
+| ------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| mode          | [VirtualViewMode](#virtualviewmode) | Novo modo do `VirtualView`.                                                                                |
+| target        | element                             | `VirtualView` emitindo este evento.                                                                        |
+| targetRect    | [Rect](rect)                        | Layout de `target` relativo ao ancestral `ScrollView` mais próximo.                                        |
+| thresholdRect | [Rect](rect)                        | Layout do threshold que disparou este evento, relativo ao ancestral `ScrollView` mais próximo.             |
 
 :::note
-For example, if a `VirtualView` enters the visible region of a [`ScrollView`](scrollview)...
+Por exemplo, se um `VirtualView` entrar na região visível de um [`ScrollView`](scrollview)...
 
-- `mode` would be [`VirtualViewMode.Visible`](#virtualviewmode)
-- `thresholdRect` would describe the visible viewport of the nearest ancestor [`ScrollView`](scrollview)
-- `targetRect` would be the layout of `target` that overlaps with `thresholdRect` (i.e. it is within the visible region of the [`ScrollView`](scrollview))
+- `mode` seria [`VirtualViewMode.Visible`](#virtualviewmode)
+- `thresholdRect` descreveria o viewport visível do ancestral [`ScrollView`](scrollview) mais próximo
+- `targetRect` seria o layout de `target` que sobrepõe com `thresholdRect` (ou seja, está dentro da região visível do [`ScrollView`](scrollview))
 
 :::
 
 ### `VirtualViewMode`
 
-Possible modes of a `VirtualView`.
+Modos possíveis de um `VirtualView`.
 
-| Name      | Value | Description                                    |
-| --------- | ----- | ---------------------------------------------- |
-| Visible   | `0`   | Target view is visible.                        |
-| Prerender | `1`   | Target view is hidden, but can be prerendered. |
-| Hidden    | `2`   | Target view is hidden.                         |
+| Name      | Value | Description                                       |
+| --------- | ----- | ------------------------------------------------- |
+| Visible   | `0`   | View alvo está visível.                           |
+| Prerender | `1`   | View alvo está oculta, mas pode ser pré-renderizada. |
+| Hidden    | `2`   | View alvo está oculta.                            |
 
 ---
 
@@ -154,9 +155,9 @@ Possible modes of a `VirtualView`.
 static createHiddenVirtualView(height: number): typeof VirtualView;
 ```
 
-`VirtualView` initially renders its children as visible, even if it is initially obscured by an ancestor [`ScrollView`](scrollview). This is because when a component is initially rendered, the presence of an ancestor [`ScrollView`](scrollview) — let alone its size and scroll position — are unknown.
+`VirtualView` inicialmente renderiza seus filhos como visíveis, mesmo se estiver inicialmente obscurecido por um ancestral [`ScrollView`](scrollview). Isso ocorre porque quando um componente é inicialmente renderizado, a presença de um ancestral [`ScrollView`](scrollview) — muito menos seu tamanho e posição de scroll — são desconhecidos.
 
-For advanced use cases, `createHiddenVirtualView()` creates a component that renders an initially hidden `VirtualView` with the supplied estimated layout.
+Para casos de uso avançados, `createHiddenVirtualView()` cria um componente que renderiza um `VirtualView` inicialmente oculto com o layout estimado fornecido.
 
 ```tsx
 const HiddenVirtualView = createHiddenVirtualView(100);
@@ -170,6 +171,6 @@ const HiddenVirtualView = createHiddenVirtualView(100);
 
 **Parameters:**
 
-| Name                                                        | Type   | Description                                            |
-| ----------------------------------------------------------- | ------ | ------------------------------------------------------ |
-| height <div className="label basic required">Required</div> | number | Estimated height of initially rendering `VirtualView`. |
+| Name                                                        | Type   | Description                                                   |
+| ----------------------------------------------------------- | ------ | ------------------------------------------------------------- |
+| height <div className="label basic required">Required</div> | number | Altura estimada da renderização inicial de `VirtualView`.    |

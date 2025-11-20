@@ -1,21 +1,22 @@
 ---
 id: improvingux
-title: Improving User Experience
+title: Melhorando a Experiência do Usuário
+ia-translated: true
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 ## Configure text inputs
 
-Entering text on touch phone is a challenge - small screen, software keyboard. But based on what kind of data you need, you can make it easier by properly configuring the text inputs:
+Inserir texto em telefones touch é um desafio - tela pequena, teclado de software. Mas com base no tipo de dados que você precisa, você pode facilitar isso configurando adequadamente os text inputs:
 
-- Focus the first field automatically
-- Use placeholder text as an example of expected data format
-- Enable or disable autocapitalization and autocorrect
-- Choose keyboard type (e.g. email, numeric)
-- Make sure the return button focuses the next field or submits the form
+- Foque o primeiro campo automaticamente
+- Use placeholder text como exemplo do formato esperado dos dados
+- Ative ou desative autocapitalization e autocorrect
+- Escolha o tipo de teclado (por exemplo, email, numérico)
+- Certifique-se de que o botão de retorno foca o próximo campo ou envia o formulário
 
-Check out [`TextInput` docs](textinput.md) for more configuration options.
+Confira a [documentação do `TextInput`](textinput.md) para mais opções de configuração.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -208,9 +209,9 @@ export default App;
 </TabItem>
 </Tabs>
 
-## Manage layout when keyboard is visible
+## Gerencie o layout quando o teclado está visível
 
-Software keyboard takes almost half of the screen. If you have interactive elements that can get covered by the keyboard, make sure they are still accessible by using the [`KeyboardAvoidingView` component](keyboardavoidingview.md).
+O teclado de software ocupa quase metade da tela. Se você tiver elementos interativos que podem ser cobertos pelo teclado, certifique-se de que eles ainda estejam acessíveis usando o [componente `KeyboardAvoidingView`](keyboardavoidingview.md).
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -409,9 +410,9 @@ export default App;
 </TabItem>
 </Tabs>
 
-## Make tappable areas larger
+## Torne áreas tocáveis maiores
 
-On mobile phones it's hard to be very precise when pressing buttons. Make sure all interactive elements are 44x44 or larger. One way to do this is to leave enough space for the element, `padding`, `minWidth` and `minHeight` style values can be useful for that. Alternatively, you can use [`hitSlop` prop](touchablewithoutfeedback.md#hitslop) to increase interactive area without affecting the layout. Here's a demo:
+Em telefones celulares é difícil ser muito preciso ao pressionar botões. Certifique-se de que todos os elementos interativos tenham 44x44 ou mais. Uma maneira de fazer isso é deixar espaço suficiente para o elemento, os valores de estilo `padding`, `minWidth` e `minHeight` podem ser úteis para isso. Alternativamente, você pode usar a [prop `hitSlop`](touchablewithoutfeedback.md#hitslop) para aumentar a área interativa sem afetar o layout. Aqui está uma demonstração:
 
 ```SnackPlayer name=HitSlop%20example
 import React from 'react';
@@ -490,7 +491,7 @@ export default App;
 
 ## Use Android Ripple
 
-Android API 21+ uses the material design ripple to provide user with feedback when they touch an interactable area on the screen. React Native exposes this through the [`TouchableNativeFeedback` component](touchablenativefeedback.md). Using this touchable effect instead of opacity or highlight will often make your app feel much more fitting on the platform. That said, you need to be careful when using it because it doesn't work on iOS or on Android API < 21, so you will need to fallback to using one of the other Touchable components on iOS. You can use a library like [react-native-platform-touchable](https://github.com/react-community/react-native-platform-touchable) to handle the platform differences for you.
+Android API 21+ usa o material design ripple para fornecer feedback ao usuário quando ele toca em uma área interativa na tela. React Native expõe isso através do [componente `TouchableNativeFeedback`](touchablenativefeedback.md). Usar esse efeito touchable em vez de opacity ou highlight geralmente fará com que seu aplicativo pareça muito mais adequado à plataforma. Dito isso, você precisa ter cuidado ao usá-lo porque ele não funciona no iOS ou no Android API < 21, então você precisará fazer um fallback para usar um dos outros componentes Touchable no iOS. Você pode usar uma biblioteca como [react-native-platform-touchable](https://github.com/react-community/react-native-platform-touchable) para lidar com as diferenças de plataforma para você.
 
 ```SnackPlayer name=Android%20Ripple%20example&supportedPlatforms=android
 import React from 'react';
@@ -585,12 +586,12 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Screen orientation lock
+## Bloqueio de orientação de tela
 
-Multiple screen orientations should work fine by default unless you're using `Dimensions` API and don't handle orientation changes. If you don't want to support multiple screen orientations, you can lock the screen orientation to either portrait or landscape.
+Múltiplas orientações de tela devem funcionar bem por padrão, a menos que você esteja usando a API `Dimensions` e não lide com mudanças de orientação. Se você não quiser suportar múltiplas orientações de tela, você pode bloquear a orientação da tela para retrato ou paisagem.
 
-On iOS, in the General tab and Deployment Info section of Xcode enable the Device Orientation you want to support (ensure you have selected iPhone from the Devices menu when making the changes). For Android, open the AndroidManifest.xml file and within the activity element add `'android:screenOrientation="portrait"'` to lock to portrait or `'android:screenOrientation="landscape"'` to lock to landscape.
+No iOS, na aba General e na seção Deployment Info do Xcode, ative a Device Orientation que você deseja suportar (certifique-se de ter selecionado iPhone no menu Devices ao fazer as alterações). Para Android, abra o arquivo AndroidManifest.xml e dentro do elemento activity adicione `'android:screenOrientation="portrait"'` para bloquear em retrato ou `'android:screenOrientation="landscape"'` para bloquear em paisagem.
 
-# Learn more
+# Saiba mais
 
-[Material Design](https://material.io/) and [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines) are great resources for learning more about designing for mobile platforms.
+[Material Design](https://material.io/) e [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines) são ótimos recursos para aprender mais sobre design para plataformas móveis.

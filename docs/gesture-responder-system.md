@@ -1,66 +1,67 @@
 ---
+ia-translated: true
 id: gesture-responder-system
-title: Gesture Responder System
+title: Sistema Gesture Responder
 ---
 
-The gesture responder system manages the lifecycle of gestures in your app. A touch can go through several phases as the app determines what the user's intention is. For example, the app needs to determine if the touch is scrolling, sliding on a widget, or tapping. This can even change during the duration of a touch. There can also be multiple simultaneous touches.
+O sistema gesture responder gerencia o ciclo de vida dos gestos em seu app. Um toque pode passar por várias fases à medida que o app determina qual é a intenção do usuário. Por exemplo, o app precisa determinar se o toque é uma rolagem, deslizando em um widget ou tocando. Isso pode até mudar durante a duração de um toque. Também pode haver múltiplos toques simultâneos.
 
-The touch responder system is needed to allow components to negotiate these touch interactions without any additional knowledge about their parent or child components.
+O sistema touch responder é necessário para permitir que componentes negociem essas interações de toque sem qualquer conhecimento adicional sobre seus componentes pai ou filho.
 
-### Best Practices
+### Melhores Práticas
 
-To make your app feel great, every action should have the following attributes:
+Para fazer seu app parecer ótimo, toda ação deve ter os seguintes atributos:
 
-- Feedback/highlighting- show the user what is handling their touch, and what will happen when they release the gesture
-- Cancel-ability- when making an action, the user should be able to abort it mid-touch by dragging their finger away
+- Feedback/destaque - mostrar ao usuário o que está manipulando seu toque e o que acontecerá quando ele liberar o gesto
+- Cancelabilidade - ao fazer uma ação, o usuário deve ser capaz de abortá-la no meio do toque arrastando o dedo para longe
 
-These features make users more comfortable while using an app, because it allows people to experiment and interact without fear of making mistakes.
+Esses recursos fazem os usuários se sentirem mais confortáveis ao usar um app, porque permite que as pessoas experimentem e interajam sem medo de cometer erros.
 
-### TouchableHighlight and Touchable\*
+### TouchableHighlight e Touchable\*
 
-The responder system can be complicated to use. So we have provided an abstract `Touchable` implementation for things that should be "tappable". This uses the responder system and allows you to configure tap interactions declaratively. Use `TouchableHighlight` anywhere where you would use a button or link on web.
+O sistema responder pode ser complicado de usar. Então fornecemos uma implementação abstrata de `Touchable` para coisas que devem ser "tocáveis". Isso usa o sistema responder e permite que você configure interações de toque declarativamente. Use `TouchableHighlight` em qualquer lugar onde você usaria um button ou link na web.
 
-## Responder Lifecycle
+## Ciclo de Vida do Responder
 
-A view can become the touch responder by implementing the correct negotiation methods. There are two methods to ask the view if it wants to become responder:
+Uma view pode se tornar o touch responder implementando os métodos de negociação corretos. Existem dois métodos para perguntar à view se ela quer se tornar responder:
 
-- `View.props.onStartShouldSetResponder: evt => true,` - Does this view want to become responder on the start of a touch?
-- `View.props.onMoveShouldSetResponder: evt => true,` - Called for every touch move on the View when it is not the responder: does this view want to "claim" touch responsiveness?
+- `View.props.onStartShouldSetResponder: evt => true,` - Esta view quer se tornar responder no início de um toque?
+- `View.props.onMoveShouldSetResponder: evt => true,` - Chamado para cada movimento de toque na View quando ela não é o responder: esta view quer "reivindicar" responsividade ao toque?
 
-If the View returns true and attempts to become the responder, one of the following will happen:
+Se a View retorna true e tenta se tornar o responder, um dos seguintes acontecerá:
 
-- `View.props.onResponderGrant: evt => {}` - The View is now responding for touch events. This is the time to highlight and show the user what is happening
-- `View.props.onResponderReject: evt => {}` - Something else is the responder right now and will not release it
+- `View.props.onResponderGrant: evt => {}` - A View está agora respondendo a eventos de toque. Este é o momento de destacar e mostrar ao usuário o que está acontecendo
+- `View.props.onResponderReject: evt => {}` - Algo mais é o responder agora e não o liberará
 
-If the view is responding, the following handlers can be called:
+Se a view está respondendo, os seguintes manipuladores podem ser chamados:
 
-- `View.props.onResponderMove: evt => {}` - The user is moving their finger
-- `View.props.onResponderRelease: evt => {}` - Fired at the end of the touch, ie "touchUp"
-- `View.props.onResponderTerminationRequest: evt => true` - Something else wants to become responder. Should this view release the responder? Returning true allows release
-- `View.props.onResponderTerminate: evt => {}` - The responder has been taken from the View. Might be taken by other views after a call to `onResponderTerminationRequest`, or might be taken by the OS without asking (happens with control center/ notification center on iOS)
+- `View.props.onResponderMove: evt => {}` - O usuário está movendo seu dedo
+- `View.props.onResponderRelease: evt => {}` - Disparado no final do toque, ou seja, "touchUp"
+- `View.props.onResponderTerminationRequest: evt => true` - Algo mais quer se tornar responder. Esta view deve liberar o responder? Retornar true permite a liberação
+- `View.props.onResponderTerminate: evt => {}` - O responder foi tirado da View. Pode ser tirado por outras views após uma chamada para `onResponderTerminationRequest`, ou pode ser tirado pelo OS sem perguntar (acontece com o control center/notification center no iOS)
 
-`evt` is a synthetic touch event with the following form:
+`evt` é um evento de toque sintético com a seguinte forma:
 
 - `nativeEvent`
-  - `changedTouches` - Array of all touch events that have changed since the last event
-  - `identifier` - The ID of the touch
-  - `locationX` - The X position of the touch, relative to the element
-  - `locationY` - The Y position of the touch, relative to the element
-  - `pageX` - The X position of the touch, relative to the root element
-  - `pageY` - The Y position of the touch, relative to the root element
-  - `target` - The node id of the element receiving the touch event
-  - `timestamp` - A time identifier for the touch, useful for velocity calculation
-  - `touches` - Array of all current touches on the screen
+  - `changedTouches` - Array de todos os eventos de toque que mudaram desde o último evento
+  - `identifier` - O ID do toque
+  - `locationX` - A posição X do toque, relativa ao elemento
+  - `locationY` - A posição Y do toque, relativa ao elemento
+  - `pageX` - A posição X do toque, relativa ao elemento raiz
+  - `pageY` - A posição Y do toque, relativa ao elemento raiz
+  - `target` - O id do node do elemento que recebe o evento de toque
+  - `timestamp` - Um identificador de tempo para o toque, útil para cálculo de velocidade
+  - `touches` - Array de todos os toques atuais na tela
 
-### Capture ShouldSet Handlers
+### Manipuladores ShouldSet de Captura
 
-`onStartShouldSetResponder` and `onMoveShouldSetResponder` are called with a bubbling pattern, where the deepest node is called first. That means that the deepest component will become responder when multiple Views return true for `*ShouldSetResponder` handlers. This is desirable in most cases, because it makes sure all controls and buttons are usable.
+`onStartShouldSetResponder` e `onMoveShouldSetResponder` são chamados com um padrão de bubbling, onde o node mais profundo é chamado primeiro. Isso significa que o componente mais profundo se tornará responder quando múltiplas Views retornam true para os manipuladores `*ShouldSetResponder`. Isso é desejável na maioria dos casos, porque garante que todos os controles e botões sejam usáveis.
 
-However, sometimes a parent will want to make sure that it becomes responder. This can be handled by using the capture phase. Before the responder system bubbles up from the deepest component, it will do a capture phase, firing `on*ShouldSetResponderCapture`. So if a parent View wants to prevent the child from becoming responder on a touch start, it should have a `onStartShouldSetResponderCapture` handler which returns true.
+No entanto, às vezes um pai vai querer ter certeza de que se torne responder. Isso pode ser tratado usando a fase de captura. Antes que o sistema responder borbulhe do componente mais profundo, ele fará uma fase de captura, disparando `on*ShouldSetResponderCapture`. Então, se uma View pai quiser impedir que o filho se torne responder em um início de toque, ela deve ter um manipulador `onStartShouldSetResponderCapture` que retorna true.
 
 - `View.props.onStartShouldSetResponderCapture: evt => true,`
 - `View.props.onMoveShouldSetResponderCapture: evt => true,`
 
 ### PanResponder
 
-For higher-level gesture interpretation, check out [PanResponder](panresponder.md).
+Para interpretação de gestos de nível superior, confira [PanResponder](panresponder.md).

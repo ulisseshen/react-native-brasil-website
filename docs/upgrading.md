@@ -1,29 +1,30 @@
 ---
+ia-translated: true
 id: upgrading
 title: Upgrading to new versions
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Upgrading to new versions of React Native will give you access to more APIs, views, developer tools and other goodies. Upgrading requires a small amount of effort, but we try to make it straightforward for you.
+Atualizar para novas versões do React Native lhe dará acesso a mais APIs, views, ferramentas de desenvolvedor e outras novidades. Atualizar requer uma pequena quantidade de esforço, mas tentamos torná-lo direto para você.
 
 ## Expo projects
 
-Upgrading your Expo project to a new version of React Native requires updating the `react-native`, `react`, and `expo` package versions in your `package.json` file. Expo recommends upgrading SDK versions incrementally, one at a time. Doing so will help you pinpoint breakages and issues that arise during the upgrade process. See the [Upgrading Expo SDK Walkthrough](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/) for up-to-date information about upgrading your project.
+Atualizar seu projeto Expo para uma nova versão do React Native requer atualizar as versões dos pacotes `react-native`, `react` e `expo` em seu arquivo `package.json`. O Expo recomenda atualizar versões SDK incrementalmente, uma de cada vez. Fazer isso ajudará você a identificar quebras e problemas que surgem durante o processo de atualização. Veja o [Upgrading Expo SDK Walkthrough](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/) para informações atualizadas sobre como atualizar seu projeto.
 
 ## React Native projects
 
-Because typical React Native projects are essentially made up of an Android project, an iOS project, and a JavaScript project, upgrading can be rather tricky. The [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) is a web tool to help you out when upgrading your apps by providing the full set of changes happening between any two versions. It also shows comments on specific files to help understanding why that change is needed.
+Como projetos típicos React Native são essencialmente compostos por um projeto Android, um projeto iOS e um projeto JavaScript, atualizar pode ser bastante complicado. O [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) é uma ferramenta web para ajudá-lo ao atualizar seus apps, fornecendo o conjunto completo de mudanças que acontecem entre quaisquer duas versões. Ele também mostra comentários em arquivos específicos para ajudar a entender por que aquela mudança é necessária.
 
 ### 1. Select the versions
 
-You first need to select from and to which version you wish to upgrade, by default the latest major versions are selected. After selecting you can click the button "Show me how to upgrade".
+Primeiro você precisa selecionar de e para qual versão você deseja atualizar, por padrão as últimas versões principais são selecionadas. Após selecionar, você pode clicar no botão "Show me how to upgrade".
 
-💡 Major updates will show a "useful content" section on the top with links to help you out when upgrading.
+💡 Atualizações principais mostrarão uma seção "useful content" no topo com links para ajudá-lo ao atualizar.
 
 ### 2. Upgrade dependencies
 
-The first file that is shown is the `package.json`, it's good to update the dependencies that are showing in there. For example, if `react-native` and `react` appears as changes then you can install it in your project by running following commands:
+O primeiro arquivo que é mostrado é o `package.json`, é bom atualizar as dependências que estão aparecendo lá. Por exemplo, se `react-native` e `react` aparecem como mudanças, então você pode instalá-los em seu projeto executando os seguintes comandos:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -48,10 +49,10 @@ yarn add react@{{REACT_VERSION}}
 
 ### 3. Upgrade your project files
 
-The new release may contain updates to other files that are generated when you run `npx react-native init`, those files are listed after the `package.json` in the [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) page. If there aren't other changes then you only need to rebuild the project to continue developing. In case there are changes you need to manually apply them into your project.
+A nova versão pode conter atualizações para outros arquivos que são gerados quando você executa `npx react-native init`, esses arquivos são listados após o `package.json` na página do [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/). Se não houver outras mudanças, então você só precisa recompilar o projeto para continuar desenvolvendo. Caso haja mudanças, você precisa aplicá-las manualmente em seu projeto.
 
 ### Troubleshooting
 
 #### I have done all the changes but my app is still using an old version
 
-These sort of errors are usually related to caching, it's recommended to install [react-native-clean-project](https://github.com/pmadruga/react-native-clean-project) to clear all your project's cache and then you can run it again.
+Esses tipos de erros geralmente estão relacionados ao cache, é recomendado instalar [react-native-clean-project](https://github.com/pmadruga/react-native-clean-project) para limpar todo o cache do seu projeto e então você pode executá-lo novamente.

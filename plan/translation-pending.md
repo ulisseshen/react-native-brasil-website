@@ -59,57 +59,57 @@ APIs globais JavaScript/Web disponíveis no React Native:
 
 Componentes do React Native e APIs principais:
 
-- [ ] docs/accessibility.md
-- [ ] docs/alertios.md
-- [ ] docs/asyncstorage.md
-- [ ] docs/checkbox.md
-- [ ] docs/clipboard.md
-- [ ] docs/colors.md
-- [ ] docs/datepickerandroid.md
-- [ ] docs/datepickerios.md
-- [ ] docs/fabric-native-components-android.md
-- [ ] docs/fabric-native-components-ios.md
-- [ ] docs/fabric-native-components.md
-- [ ] docs/fast-refresh.md
-- [ ] docs/flexbox.md
-- [ ] docs/gesture-responder-system.md
-- [ ] docs/get-started-without-a-framework.md
-- [ ] docs/handling-touches.md
-- [ ] docs/height-and-width.md
-- [ ] docs/hermes.md
-- [ ] docs/imagepickerios.md
-- [ ] docs/images.md
-- [ ] docs/improvingux.md
-- [ ] docs/integration-with-android-fragment.md
-- [ ] docs/integration-with-existing-apps.md
-- [ ] docs/javascript-environment.md
-- [ ] docs/libraries.md
-- [ ] docs/linking-libraries-ios.md
-- [ ] docs/metro.md
-- [ ] docs/native-platforms.md
-- [ ] docs/navigation.md
-- [ ] docs/network.md
-- [ ] docs/out-of-tree-platforms.md
-- [ ] docs/progressbarandroid.md
-- [ ] docs/publishing-to-app-store.md
-- [ ] docs/pushnotificationios.md
-- [ ] docs/react-native-devtools.md
-- [ ] docs/react-native-gradle-plugin.md
-- [ ] docs/security.md
-- [ ] docs/segmentedcontrolios.md
-- [ ] docs/signed-apk-android.md
-- [ ] docs/statusbarios.md
-- [ ] docs/strict-typescript-api.md
-- [ ] docs/style.md
-- [ ] docs/text-nodes.md
-- [ ] docs/timepickerandroid.md
-- [ ] docs/timers.md
-- [ ] docs/turbo-native-modules-android.md
-- [ ] docs/turbo-native-modules-ios.md
-- [ ] docs/turbo-native-modules.md
-- [ ] docs/typescript.md
-- [ ] docs/upgrading.md
-- [ ] docs/virtualview.md
+- [x] docs/accessibility.md
+- [x] docs/alertios.md
+- [x] docs/asyncstorage.md
+- [x] docs/checkbox.md
+- [x] docs/clipboard.md
+- [x] docs/colors.md
+- [x] docs/datepickerandroid.md
+- [x] docs/datepickerios.md
+- [x] docs/fabric-native-components-android.md
+- [x] docs/fabric-native-components-ios.md
+- [x] docs/fabric-native-components.md
+- [x] docs/fast-refresh.md
+- [x] docs/flexbox.md
+- [x] docs/gesture-responder-system.md
+- [x] docs/get-started-without-a-framework.md
+- [x] docs/handling-touches.md
+- [x] docs/height-and-width.md
+- [x] docs/hermes.md
+- [x] docs/imagepickerios.md
+- [x] docs/images.md
+- [x] docs/improvingux.md
+- [x] docs/integration-with-android-fragment.md
+- [x] docs/integration-with-existing-apps.md
+- [x] docs/javascript-environment.md
+- [x] docs/libraries.md
+- [x] docs/linking-libraries-ios.md
+- [x] docs/metro.md
+- [x] docs/native-platforms.md
+- [x] docs/navigation.md
+- [x] docs/network.md
+- [x] docs/out-of-tree-platforms.md
+- [x] docs/progressbarandroid.md
+- [x] docs/publishing-to-app-store.md
+- [x] docs/pushnotificationios.md
+- [x] docs/react-native-devtools.md
+- [x] docs/react-native-gradle-plugin.md
+- [x] docs/security.md
+- [x] docs/segmentedcontrolios.md
+- [x] docs/signed-apk-android.md
+- [x] docs/statusbarios.md
+- [x] docs/strict-typescript-api.md
+- [x] docs/style.md
+- [x] docs/text-nodes.md
+- [x] docs/timepickerandroid.md
+- [x] docs/timers.md
+- [x] docs/turbo-native-modules-android.md
+- [x] docs/turbo-native-modules-ios.md
+- [x] docs/turbo-native-modules.md
+- [x] docs/typescript.md
+- [x] docs/upgrading.md
+- [x] docs/virtualview.md
 
 ---
 
@@ -169,13 +169,13 @@ Documentação da nova arquitetura:
 ## 📊 Progresso
 
 - **APIs Globais:** 42/42 (100%) ✅
-- **Componentes e APIs:** 0/51 (0%)
+- **Componentes e APIs:** 51/51 (100%) ✅
 - **Guias:** 0/13 (0%)
 - **Legacy:** 0/8 (0%)
 - **Releases:** 0/3 (0%)
 - **The New Architecture:** 0/1 (0%)
 
-**Total:** 42/118 (36%)
+**Total:** 93/118 (79%)
 
 ---
 
