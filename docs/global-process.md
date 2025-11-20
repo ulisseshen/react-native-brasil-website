@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-process
 title: process
 ---
 
 :::warning
-🚧 This page is work in progress.
+🚧 Esta página está em desenvolvimento.
 :::
 
-The global `process` object, as defined in Node.js.
+O objeto global `process`, conforme definido no Node.js.

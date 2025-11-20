@@ -1,8 +1,9 @@
 ---
+ia-translated: true
 id: global-__DEV__
 title: ✨ __DEV__
 ---
 
-You can use the `__DEV__` pseudo-global variable in the codebase to guard development-only blocks of code.
+Você pode usar a variável pseudo-global `__DEV__` no código para proteger blocos de código exclusivos de desenvolvimento.
 
-It is inlined during compilation and gets completely stripped out with the `if` blocks it guards in the minified build.
+Ela é incorporada durante a compilação e é completamente removida junto com os blocos `if` que ela protege na build minificada.

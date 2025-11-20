@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: global-console
 title: console
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/console) for more information.
+🚧 Esta página está em desenvolvimento, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/console) para mais informações.
 :::
 
-The global `console` object, as defined in Web specifications.
+O objeto global `console`, conforme definido nas especificações Web.
 
 ---
 
@@ -26,18 +27,18 @@ console.timeStamp(
 ): void;
 ```
 
-The `console.timeStamp` API allows you to add custom timing entries in the Performance panel timeline.
+A API `console.timeStamp` permite que você adicione entradas de tempo customizadas na linha do tempo do painel Performance.
 
 **Parameters:**
 
-| Name       | Type               | Required | Description                                                                                                                                                                                                                                                                                                   |
-| ---------- | ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| label      | `string`           | Yes      | The label for the timing entry.                                                                                                                                                                                                                                                                               |
-| start      | `string \| number` | No       | <ul><li>If string, the name of a previously recorded timestamp with `console.timeStamp`.</li><li>If number, the [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp). For example, from `performance.now()`.</li><li>If undefined, the current time is used.</li></ul> |
-| end        | `string \| number` | No       | <ul><li>If string, the name of a previously recorded timestamp with `console.timeStamp`.</li><li>If number, the [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp). For example, from `performance.now()`.</li><li>If undefined, the current time is used.</li></ul> |
-| trackName  | `string`           | No       | The name of the custom track.                                                                                                                                                                                                                                                                                 |
-| trackGroup | `string`           | No       | The name of the track group.                                                                                                                                                                                                                                                                                  |
-| color      | `DevToolsColor`    | No       | The color of the entry.                                                                                                                                                                                                                                                                                       |
+| Name       | Type               | Required | Description                                                                                                                                                                                                                                                                                   |
+| ---------- | ------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| label      | `string`           | Yes      | O label para a entrada de tempo.                                                                                                                                                                                                                                                              |
+| start      | `string \| number` | No       | <ul><li>Se string, o nome de um timestamp previamente gravado com `console.timeStamp`.</li><li>Se number, o [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp). Por exemplo, de `performance.now()`.</li><li>Se undefined, o tempo atual é usado.</li></ul> |
+| end        | `string \| number` | No       | <ul><li>Se string, o nome de um timestamp previamente gravado com `console.timeStamp`.</li><li>Se number, o [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp). Por exemplo, de `performance.now()`.</li><li>Se undefined, o tempo atual é usado.</li></ul> |
+| trackName  | `string`           | No       | O nome da track customizada.                                                                                                                                                                                                                                                                  |
+| trackGroup | `string`           | No       | O nome do grupo de track.                                                                                                                                                                                                                                                                     |
+| color      | `DevToolsColor`    | No       | A cor da entrada.                                                                                                                                                                                                                                                                             |
 
 ```tsx
 type DevToolsColor =

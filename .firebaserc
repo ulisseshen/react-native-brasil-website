@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "transliteradu"
+  },
+  "targets": {
+    "transliteradu": {
+      "hosting": {
+        "reactnativebrasil": [
+          "reactnativebrasil"
+        ]
+      }
+    }
   }
 }

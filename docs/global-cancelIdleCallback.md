@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-cancelIdleCallback
 title: cancelIdleCallback
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback) for more information.
+🚧 Esta página está em construção, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback) para mais informações.
 :::
 
-The global `cancelIdleCallback` function, as defined in Web specifications.
+A função global `cancelIdleCallback`, conforme definida nas especificações Web.

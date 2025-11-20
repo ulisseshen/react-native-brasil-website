@@ -1,6 +1,7 @@
 ---
+ia-translated: true
 id: global-PerformanceEntry
 title: PerformanceEntry
 ---
 
-The global [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry) class, as defined in Web specifications.
+A classe global [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry), conforme definida nas especificações Web.

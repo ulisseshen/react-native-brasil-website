@@ -13,6 +13,8 @@ import TagsListInline, {
 import type {EditUrlButton} from '../../../../docusaurus.config';
 import styles from './styles.module.css';
 import DocsRating from '../../../../core/DocsRating';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 function TagsRow(props: TagsListInlineProps) {
   return (
@@ -66,30 +68,58 @@ function EditMetaRow({editUrl, lastUpdatedAt, lastUpdatedBy}) {
     </div>
   );
 }
+
+function TranslationIssueMessage() {
+  const isBrowser = useIsBrowser();
+  const {siteConfig} = useDocusaurusContext();
+
+  const getIssueUrl = () => {
+    if (!isBrowser) return '#';
+
+    const currentUrl = encodeURIComponent(window.location.href);
+    const repoUrl = 'https://github.com/ulisseshen/react-native-brasil-website';
+    const issueTitle = encodeURIComponent('[Tradução] Problema encontrado na página');
+    const issueBody = encodeURIComponent(`## URL da Página\n\n${window.location.href}\n\n## Tipo de Problema\n\n- [ ] Erro de tradução (tradução incorreta ou confusa)\n- [ ] Conteúdo não traduzido (ainda em inglês)\n- [ ] Conteúdo desatualizado (tradução antiga que precisa atualização)\n- [ ] Outro (descreva abaixo)\n\n## Descrição\n\n<!-- Descreva o problema aqui -->\n`);
+
+    return `${repoUrl}/issues/new?template=translation_issue.md&title=${issueTitle}&body=${issueBody}&labels=tradução`;
+  };
+
+  return (
+    <div className={clsx(styles.translationIssue, 'margin-top--md')}>
+      <p className={styles.translationIssueText}>
+        Encontrou erro de tradução ou conteúdo não traduzido?{' '}
+        <Link to={getIssueUrl()} className={styles.translationIssueLink}>
+          Abra uma issue no GitHub
+        </Link>{' '}
+        para nos alertar e ajudar a corrigir. Ajude pessoas como você! 🇧🇷
+      </p>
+    </div>
+  );
+}
 export default function DocItemFooter() {
   const {metadata} = useDoc();
   const {editUrl, lastUpdatedAt, lastUpdatedBy, tags} = metadata;
   const canDisplayTagsRow = tags.length > 0;
   const canDisplayEditMetaRow = !!(editUrl || lastUpdatedAt || lastUpdatedBy);
   const canDisplayFooter = canDisplayTagsRow || canDisplayEditMetaRow;
-  if (!canDisplayFooter) {
-    return null;
-  }
 
   return (
     <>
       <DocsRating label={metadata.id} />
-      <footer
-        className={clsx(ThemeClassNames.docs.docFooter, 'docusaurus-mt-lg')}>
-        {canDisplayTagsRow && <TagsRow tags={tags} />}
-        {canDisplayEditMetaRow && (
-          <EditMetaRow
-            editUrl={editUrl}
-            lastUpdatedAt={lastUpdatedAt}
-            lastUpdatedBy={lastUpdatedBy}
-          />
-        )}
-      </footer>
+      {canDisplayFooter && (
+        <footer
+          className={clsx(ThemeClassNames.docs.docFooter, 'docusaurus-mt-lg')}>
+          {canDisplayTagsRow && <TagsRow tags={tags} />}
+          {canDisplayEditMetaRow && (
+            <EditMetaRow
+              editUrl={editUrl}
+              lastUpdatedAt={lastUpdatedAt}
+              lastUpdatedBy={lastUpdatedBy}
+            />
+          )}
+        </footer>
+      )}
+      <TranslationIssueMessage />
     </>
   );
 }

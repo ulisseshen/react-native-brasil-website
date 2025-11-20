@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-URL
 title: URL
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/URL) for more information.
+🚧 Esta página está em desenvolvimento, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/URL) para mais informações.
 :::
 
-The global `URL` class, as defined in Web specifications.
+A classe global `URL`, conforme definida nas especificações Web.

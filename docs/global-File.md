@@ -1,10 +1,11 @@
 ---
 id: global-File
 title: File
+ia-translated: true
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/File) for more information.
+🚧 Esta página está em desenvolvimento, então consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/File) para mais informações.
 :::
 
-The global `File` class, as defined in Web specifications.
+A classe global `File`, conforme definida nas especificações Web.

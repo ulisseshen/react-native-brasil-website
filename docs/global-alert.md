@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-alert
 title: alert
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) for more information.
+🚧 Esta página está em construção, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) para mais informações.
 :::
 
-The global `alert` function, as defined in Web specifications.
+A função global `alert`, conforme definida nas especificações Web.
