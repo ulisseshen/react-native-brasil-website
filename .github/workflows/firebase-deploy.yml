@@ -13,6 +13,7 @@ on:
       - '.firebaserc'
       - 'package.json'
       - 'yarn.lock'
+      - '.github/workflows/firebase-deploy.yml'
   workflow_dispatch:
 
 env:
@@ -87,5 +88,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           projectId: transliteradu
           channelId: live
+          target: reactnativebrasil
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
