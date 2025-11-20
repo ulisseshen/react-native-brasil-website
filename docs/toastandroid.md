@@ -7,14 +7,14 @@ title: ToastAndroid
 A API ToastAndroid do React Native expõe o módulo ToastAndroid da plataforma Android como um módulo JS. Ela fornece o método `show(message, duration)` que recebe os seguintes parâmetros:
 
 - _message_ Uma string com o texto do toast
-- _duration_ A duração do toast—ou `ToastAndroid.SHORT` ou `ToastAndroid.LONG`
+- _duration_ A duração do toast—pode ser `ToastAndroid.SHORT` ou `ToastAndroid.LONG`
 
-Você pode alternativamente usar `showWithGravity(message, duration, gravity)` para especificar onde o toast aparece no layout da tela. Pode ser `ToastAndroid.TOP`, `ToastAndroid.BOTTOM` ou `ToastAndroid.CENTER`.
+Você também pode usar `showWithGravity(message, duration, gravity)` para especificar onde o toast aparece no layout da tela. Pode ser `ToastAndroid.TOP`, `ToastAndroid.BOTTOM` ou `ToastAndroid.CENTER`.
 
-O método `showWithGravityAndOffset(message, duration, gravity, xOffset, yOffset)` adiciona a capacidade de especificar um offset em pixels.
+O método `showWithGravityAndOffset(message, duration, gravity, xOffset, yOffset)` adiciona a capacidade de especificar um deslocamento em pixels.
 
 :::note
-Começando no Android 11 (API level 30), configurar a gravidade não tem efeito em toasts de texto. Leia sobre as mudanças [here](https://developer.android.com/about/versions/11/behavior-changes-11#text-toast-api-changes).
+A partir do Android 11 (API level 30), definir a gravidade não tem efeito em toasts de texto. Leia sobre as mudanças [aqui](https://developer.android.com/about/versions/11/behavior-changes-11#text-toast-api-changes).
 :::
 
 ```SnackPlayer name=Toast%20Android%20API%20Example&supportedPlatforms=android
@@ -79,7 +79,7 @@ export default App;
 
 # Referência
 
-## Métodos
+## Methods
 
 ### `show()`
 
@@ -91,7 +91,7 @@ static show(message: string, duration: number);
 
 ### `showWithGravity()`
 
-Esta propriedade só funcionará no Android API 29 e abaixo. Para funcionalidade similar em APIs Android superiores, considere usar snackbar ou notification.
+Esta propriedade funcionará apenas no Android API 29 e inferiores. Para funcionalidade similar em APIs Android superiores, considere usar snackbar ou notificação.
 
 ```tsx
 static showWithGravity(message: string, duration: number, gravity: number);
@@ -101,7 +101,7 @@ static showWithGravity(message: string, duration: number, gravity: number);
 
 ### `showWithGravityAndOffset()`
 
-Esta propriedade só funcionará no Android API 29 e abaixo. Para funcionalidade similar em APIs Android superiores, considere usar snackbar ou notification.
+Esta propriedade funcionará apenas no Android API 29 e inferiores. Para funcionalidade similar em APIs Android superiores, considere usar snackbar ou notificação.
 
 ```tsx
 static showWithGravityAndOffset(
@@ -113,7 +113,7 @@ static showWithGravityAndOffset(
 );
 ```
 
-## Propriedades
+## Properties
 
 ### `SHORT`
 

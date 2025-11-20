@@ -1,10 +1,10 @@
 ---
 ia-translated: true
 id: document-nodes
-title: Document nodes
+title: Nós de documento
 ---
 
-Document nodes representam uma árvore de view nativa completa. Aplicações usando navegação nativa forneceriam um document node separado para cada tela. Aplicações que não usam navegação nativa geralmente forneceriam um único document para todo o aplicativo (similar a single-page apps na Web).
+Nós de documento representam uma árvore completa de views nativas. Aplicativos que usam navegação nativa forneceriam um nó de documento separado para cada tela. Aplicativos que não usam navegação nativa geralmente forneceriam um único documento para todo o aplicativo (similar aos aplicativos de página única na Web).
 
 ```SnackPlayer ext=js&name=Document%20instance%20example
 import * as React from 'react';
@@ -23,7 +23,7 @@ export default function AccessingDocument() {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
-    // Obtém o text input principal na tela e foca nele após o carregamento inicial.
+    // Get the main text input in the screen and focus it after initial load.
     const element = ref.current;
     const doc = element.ownerDocument;
     const textInput = doc.getElementById('main-text-input');
@@ -38,24 +38,24 @@ export default function AccessingDocument() {
 
 ---
 
-## Reference
+## Referência
 
-### API compatível com Web
+### API compatível com a Web
 
 De [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
 
-- Properties
+- Propriedades
   - [`childElementCount`](https://developer.mozilla.org/en-US/docs/Web/API/Document/childElementCount)
   - [`children`](https://developer.mozilla.org/en-US/docs/Web/API/Document/children)
   - [`documentElement`](https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement)
   - [`firstElementChild`](https://developer.mozilla.org/en-US/docs/Web/API/Document/firstElementChild)
   - [`lastElementChild`](https://developer.mozilla.org/en-US/docs/Web/API/Document/lastElementChild)
-- Methods
+- Métodos
   - [`getElementById()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
 
 De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
 
-- Properties
+- Propriedades
   - [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes)
   - [`firstChild`](https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild)
   - [`isConnected`](https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected)
@@ -69,7 +69,7 @@ De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`parentNode`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode)
   - [`previousSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Node/previousSibling)
   - [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
-- Methods
+- Métodos
   - [`compareDocumentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition)
   - [`contains()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/contains)
   - [`getRootNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode)

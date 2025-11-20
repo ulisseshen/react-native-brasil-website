@@ -6,7 +6,7 @@ title: DynamicColorIOS
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-A função `DynamicColorIOS` é um tipo de cor de plataforma específico para iOS.
+A função `DynamicColorIOS` é um tipo de platform color específico para iOS.
 
 ```tsx
 DynamicColorIOS({
@@ -17,18 +17,18 @@ DynamicColorIOS({
 });
 ```
 
-`DynamicColorIOS` recebe um único argumento como um objeto com duas chaves obrigatórias: `dark` e `light`, e duas chaves opcionais `highContrastLight` e `highContrastDark`. Estas correspondem às cores que você deseja usar para "light mode" e "dark mode" no iOS, e quando o modo de acessibilidade de alto contraste está habilitado, suas versões de alto contraste.
+`DynamicColorIOS` recebe um único argumento como um objeto com duas chaves obrigatórias: `dark` e `light`, e duas chaves opcionais `highContrastLight` e `highContrastDark`. Estas correspondem às cores que você deseja usar para "light mode" e "dark mode" no iOS, e quando o modo de acessibilidade de alto contraste está habilitado, a versão de alto contraste delas.
 
-Em tempo de execução, o sistema escolherá qual das cores exibir dependendo da aparência atual do sistema e das configurações de acessibilidade. Cores dinâmicas são úteis para cores de marca ou outras cores específicas do aplicativo que ainda respondem automaticamente às mudanças nas configurações do sistema.
+Em runtime, o sistema escolherá qual das cores exibir dependendo da aparência atual do sistema e das configurações de acessibilidade. Cores dinâmicas são úteis para cores de marca ou outras cores específicas do aplicativo que ainda respondem automaticamente às mudanças de configuração do sistema.
 
-#### Notas para desenvolvedores
+#### Notas do desenvolvedor
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["ios", "web"])}>
 
 <TabItem value="web">
 
 :::info
-Se você está familiarizado com `@media (prefers-color-scheme: dark)` em CSS, isso é similar! Só que ao invés de definir todas as cores em uma media query, você define qual cor usar sob quais circunstâncias exatamente onde você a está usando. Legal!
+Se você está familiarizado com `@media (prefers-color-scheme: dark)` em CSS, isso é similar! Só que ao invés de definir todas as cores em uma media query, você define qual cor usar sob quais circunstâncias exatamente onde você está usando ela. Incrível!
 :::
 
 </TabItem>

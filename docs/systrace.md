@@ -1,14 +1,14 @@
 ---
+ia-translated: true
 id: systrace
 title: Systrace
-ia-translated: true
 ---
 
-`Systrace` é uma ferramenta de profiling baseada em marcadores padrão do Android (e é instalada quando você instala o pacote Android platform-tools). Blocos de código com profiling são cercados por marcadores de início/fim que são então visualizados em um formato de gráfico colorido. Tanto o Android SDK quanto o framework React Native fornecem marcadores padrão que você pode visualizar.
+`Systrace` é uma ferramenta de profiling padrão do Android baseada em marcadores (e é instalada quando você instala o pacote Android platform-tools). Blocos de código com profiling são cercados por marcadores de início/fim que são então visualizados em um formato de gráfico colorido. Tanto o Android SDK quanto o React Native framework fornecem marcadores padrão que você pode visualizar.
 
 ## Exemplo
 
-`Systrace` permite que você marque eventos JavaScript (JS) com uma tag e um valor inteiro. Capture os eventos JS não cronometrados no EasyProfiler.
+`Systrace` permite que você marque eventos JavaScript (JS) com uma tag e um valor inteiro. Capture os eventos JS não-cronometrados no EasyProfiler.
 
 ```SnackPlayer name=Systrace%20Example
 import React from 'react';
@@ -94,7 +94,7 @@ static isEnabled(): boolean;
 static beginEvent(eventName: string | (() => string), args?: EventArgs);
 ```
 
-beginEvent/endEvent para iniciar e então encerrar um profile dentro do mesmo frame de pilha de chamadas.
+beginEvent/endEvent para iniciar e depois encerrar um profile dentro do mesmo call stack frame.
 
 ---
 
@@ -115,7 +115,7 @@ static beginAsyncEvent(
 ): number;
 ```
 
-beginAsyncEvent/endAsyncEvent para iniciar e então encerrar um profile onde o fim pode ocorrer em outra thread ou fora do frame de pilha atual, por exemplo, await. A variável cookie retornada deve ser usada como entrada na chamada endAsyncEvent para encerrar o profile.
+beginAsyncEvent/endAsyncEvent para iniciar e depois encerrar um profile onde o fim pode ocorrer em outra thread ou fora do call stack frame atual, por exemplo, await. A variável cookie retornada deve ser usada como entrada na chamada endAsyncEvent para encerrar o profile.
 
 ---
 

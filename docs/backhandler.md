@@ -4,15 +4,15 @@ id: backhandler
 title: BackHandler
 ---
 
-A API BackHandler detecta pressões de botões físicos para navegação de retorno, permite que você registre event listeners para a ação de voltar do sistema e permite que você controle como sua aplicação responde. É exclusiva para Android.
+A API Backhandler detecta pressionamentos do botão físico de voltar para navegação, permite que você registre event listeners para a ação de voltar do sistema e permite que você controle como sua aplicação responde. É exclusiva para Android.
 
-As subscriptions de eventos são chamadas em ordem reversa (ou seja, a última subscription registrada é chamada primeiro).
+As subscrições de eventos são chamadas em ordem reversa (ou seja, a última subscrição registrada é chamada primeiro).
 
-- **Se uma subscription retornar true,** então as subscriptions registradas anteriormente não serão chamadas.
-- **Se nenhuma subscription retornar true ou nenhuma estiver registrada,** ela invoca programaticamente a funcionalidade padrão do botão de voltar para sair do aplicativo.
+- **Se uma subscrição retornar true,** então as subscrições registradas anteriormente não serão chamadas.
+- **Se nenhuma subscrição retornar true ou nenhuma estiver registrada,** ela invoca programaticamente a funcionalidade padrão do botão de voltar para sair da aplicação.
 
-:::warning Aviso para usuários de Modal
-Se seu aplicativo mostrar um `Modal` aberto, `BackHandler` não publicará nenhum evento ([veja a documentação de `Modal`](modal#onrequestclose)).
+:::warning Aviso para usuários de modal
+Se sua aplicação mostrar um `Modal` aberto, o `BackHandler` não publicará nenhum evento ([consulte a documentação do `Modal`](modal#onrequestclose)).
 :::
 
 ## Pattern
@@ -50,7 +50,7 @@ subscription.remove();
 
 ## Example
 
-O exemplo a seguir implementa um cenário onde você confirma se o usuário deseja sair do aplicativo:
+O exemplo a seguir implementa um cenário onde você confirma se o usuário quer sair da aplicação:
 
 ```SnackPlayer name=BackHandler&supportedPlatforms=android
 import React, {useEffect} from 'react';
@@ -107,11 +107,11 @@ export default App;
 
 ## Usage with React Navigation
 
-Se você está usando React Navigation para navegar entre diferentes telas, você pode seguir o guia deles sobre [Comportamento customizado do botão de voltar no Android](https://reactnavigation.org/docs/custom-android-back-button-handling/)
+Se você está usando React Navigation para navegar entre diferentes telas, você pode seguir o guia deles sobre [Custom Android back button behaviour](https://reactnavigation.org/docs/custom-android-back-button-handling/)
 
 ## Backhandler hook
 
-[React Native Hooks](https://github.com/react-native-community/hooks#usebackhandler) tem um hook `useBackHandler` muito útil que simplificará o processo de configurar event listeners.
+[React Native Hooks](https://github.com/react-native-community/hooks#usebackhandler) tem um hook `useBackHandler` muito útil que vai simplificar o processo de configurar event listeners.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
+ia-translated: true
 id: settings
 title: Settings
-ia-translated: true
 ---
 
 `Settings` serve como um wrapper para [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/nsuserdefaults), um armazenamento persistente de chave-valor disponível apenas no iOS.
@@ -100,5 +100,5 @@ static watchKeys(keys: string | array<string>, callback: () => void): number;
 Inscreve-se para ser notificado quando o valor de qualquer uma das chaves especificadas pelo parâmetro `keys` for alterado em `NSUserDefaults`. Retorna um número `watchId` que pode ser usado com `clearWatch()` para cancelar a inscrição.
 
 :::note
-`watchKeys()` por design ignora chamadas internas de `set()` e dispara o callback apenas em mudanças realizadas fora do código React Native.
+`watchKeys()` por design ignora chamadas internas de `set()` e dispara o callback apenas em alterações realizadas fora do código React Native.
 :::

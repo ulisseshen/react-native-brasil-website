@@ -1,10 +1,10 @@
 ---
-ia-translated: true
 id: devsettings
 title: DevSettings
+ia-translated: true
 ---
 
-O módulo `DevSettings` expõe métodos para customizar configurações de desenvolvedores em desenvolvimento.
+O módulo `DevSettings` expõe métodos para personalizar configurações para desenvolvedores em desenvolvimento.
 
 ---
 
@@ -18,7 +18,7 @@ O módulo `DevSettings` expõe métodos para customizar configurações de desen
 static addMenuItem(title: string, handler: () => any);
 ```
 
-Adiciona um item de menu customizado ao Dev Menu.
+Adiciona um item de menu personalizado ao Dev Menu.
 
 **Parâmetros:**
 
@@ -43,7 +43,7 @@ DevSettings.addMenuItem('Show Secret Dev Screen', () => {
 static reload(reason?: string): void;
 ```
 
-Recarrega a aplicação. Pode ser invocado diretamente ou através da interação do usuário.
+Recarrega a aplicação. Pode ser invocado diretamente ou por interação do usuário.
 
 **Exemplo:**
 

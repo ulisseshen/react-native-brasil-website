@@ -1,6 +1,6 @@
 ---
-id: usewindowdimensions
 ia-translated: true
+id: usewindowdimensions
 title: useWindowDimensions
 ---
 
@@ -58,7 +58,7 @@ export default App;
 useWindowDimensions().fontScale;
 ```
 
-A escala da fonte atualmente usada. Alguns sistemas operacionais permitem que os usuários aumentem ou diminuam o tamanho de suas fontes para maior conforto de leitura. Esta propriedade informará o que está em vigor.
+A escala da fonte atualmente usada. Alguns sistemas operacionais permitem que os usuários aumentem ou diminuam suas fontes para maior conforto de leitura. Esta propriedade informará o que está em vigor.
 
 ---
 
@@ -78,10 +78,10 @@ A altura em pixels da janela ou tela que sua aplicação ocupa.
 useWindowDimensions().scale;
 ```
 
-A proporção de pixels do dispositivo em que sua aplicação está rodando. Os valores podem ser:
+A proporção de pixels do dispositivo no qual sua aplicação está sendo executada. Os valores podem ser:
 
 - `1` que indica que um ponto é igual a um pixel (geralmente PPI/DPI de 96, 76 em algumas plataformas).
-- `2` ou `3` que indica uma tela Retina ou de alta DPI.
+- `2` ou `3` que indica uma tela Retina ou de alto DPI.
 
 ---
 

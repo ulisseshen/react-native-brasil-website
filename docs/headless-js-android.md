@@ -7,11 +7,11 @@ title: Headless JS
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 import constants from '@site/core/TabsConstants';
 
-Headless JS é uma forma de executar tarefas em JavaScript enquanto seu aplicativo está em segundo plano. Pode ser usado, por exemplo, para sincronizar dados atualizados, lidar com notificações push ou reproduzir música.
+Headless JS é uma forma de executar tarefas em JavaScript enquanto seu aplicativo está em segundo plano. Pode ser usado, por exemplo, para sincronizar dados atualizados, lidar com notificações push ou tocar música.
 
 ## A API JS
 
-Uma tarefa é uma função assíncrona que você registra no `AppRegistry`, semelhante ao registro de aplicações React:
+Uma task é uma função async que você registra no `AppRegistry`, similar a registrar aplicações React:
 
 ```tsx
 import {AppRegistry} from 'react-native';
@@ -28,11 +28,11 @@ module.exports = async taskData => {
 };
 ```
 
-Você pode fazer qualquer coisa em sua tarefa, como requisições de rede, timers e assim por diante, desde que não toque na UI. Uma vez que sua tarefa é concluída (ou seja, a promise é resolvida), o React Native entrará em modo "pausado" (a menos que existam outras tarefas em execução, ou haja um aplicativo em primeiro plano).
+Você pode fazer qualquer coisa em sua task, como requisições de rede, timers e assim por diante, desde que não toque na UI. Uma vez que sua task for concluída (ou seja, a promise for resolvida), o React Native entrará no modo "pausado" (a menos que haja outras tasks em execução ou um aplicativo em primeiro plano).
 
-## A API de Plataforma
+## A API da Plataforma
 
-Sim, isso ainda requer algum código nativo, mas é bastante simples. Você precisa estender `HeadlessJsTaskService` e sobrescrever `getTaskConfig`, por exemplo:
+Sim, isso ainda requer algum código nativo, mas é bem simples. Você precisa estender `HeadlessJsTaskService` e sobrescrever `getTaskConfig`, por exemplo:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -101,7 +101,7 @@ Então adicione o service ao seu arquivo `AndroidManifest.xml` dentro da tag `ap
 <service android:name="com.example.MyTaskService" />
 ```
 
-Agora, sempre que você [iniciar seu service][0], por exemplo, como uma tarefa periódica ou em resposta a algum evento do sistema / broadcast, o JS irá inicializar, executar sua tarefa e então desligar.
+Agora, sempre que você [iniciar seu service][0], por exemplo, como uma tarefa periódica ou em resposta a algum evento do sistema / broadcast, o JS será iniciado, executará sua task e então será encerrado.
 
 Exemplo:
 
@@ -135,11 +135,11 @@ applicationContext.startForegroundService(service)
 </TabItem>
 </Tabs>
 
-## Retentativas
+## Tentativas
 
-Por padrão, a tarefa headless JS não realizará nenhuma retentativa. Para fazer isso, você precisa criar um `HeadlessJsRetryPolicy` e lançar um `Error` específico.
+Por padrão, a task headless JS não realizará nenhuma tentativa. Para fazer isso, você precisa criar um `HeadlessJsRetryPolicy` e lançar um `Error` específico.
 
-`LinearCountingRetryPolicy` é uma implementação de `HeadlessJsRetryPolicy` que permite que você especifique um número máximo de retentativas com um atraso fixo entre cada tentativa. Se isso não atender às suas necessidades, você pode implementar seu próprio `HeadlessJsRetryPolicy`. Essas políticas podem ser passadas como um argumento extra para o construtor `HeadlessJsTaskConfig`, por exemplo:
+`LinearCountingRetryPolicy` é uma implementação de `HeadlessJsRetryPolicy` que permite especificar um número máximo de tentativas com um atraso fixo entre cada tentativa. Se isso não atender às suas necessidades, você pode implementar seu próprio `HeadlessJsRetryPolicy`. Essas políticas podem ser passadas como um argumento extra para o construtor `HeadlessJsTaskConfig`, por exemplo:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -175,7 +175,7 @@ return HeadlessJsTaskConfig("SomeTaskName", Arguments.fromBundle(extras), 5000, 
 </TabItem>
 </Tabs>
 
-Uma tentativa de retentativa só será feita quando um `Error` específico for lançado. Dentro de uma tarefa headless JS, você pode importar o erro e lançá-lo quando uma tentativa de retentativa for necessária.
+Uma tentativa será feita apenas quando um `Error` específico for lançado. Dentro de uma task headless JS, você pode importar o erro e lançá-lo quando uma tentativa for necessária.
 
 Exemplo:
 
@@ -190,18 +190,18 @@ module.exports = async taskData => {
 };
 ```
 
-Se você deseja que todos os erros causem uma tentativa de retentativa, você precisará capturá-los e lançar o erro acima.
+Se você deseja que todos os erros causem uma tentativa, você precisará capturá-los e lançar o erro acima.
 
 ## Ressalvas
 
-- Por padrão, seu aplicativo falhará se você tentar executar uma tarefa enquanto o aplicativo está em primeiro plano. Isso é para evitar que os desenvolvedores se prejudiquem fazendo muito trabalho em uma tarefa e tornando a UI lenta. Você pode passar um quarto argumento `boolean` para controlar esse comportamento.
+- Por padrão, seu aplicativo travará se você tentar executar uma task enquanto o aplicativo estiver em primeiro plano. Isso é para evitar que desenvolvedores se prejudiquem fazendo muito trabalho em uma task e deixando a UI lenta. Você pode passar um quarto argumento `boolean` para controlar esse comportamento.
 - Se você iniciar seu service a partir de um `BroadcastReceiver`, certifique-se de chamar `HeadlessJsTaskService.acquireWakeLockNow()` antes de retornar de `onReceive()`.
 
 ## Exemplo de Uso
 
-O service pode ser iniciado a partir da API Java. Primeiro você precisa decidir quando o service deve ser iniciado e implementar sua solução de acordo. Aqui está um exemplo que reage à mudança de conexão de rede.
+O service pode ser iniciado a partir da API Java. Primeiro você precisa decidir quando o service deve ser iniciado e implementar sua solução adequadamente. Aqui está um exemplo que reage a mudanças na conexão de rede.
 
-As linhas a seguir mostram parte do arquivo manifest do Android para registrar o broadcast receiver.
+As linhas a seguir mostram parte do arquivo de manifesto Android para registrar o broadcast receiver.
 
 ```xml
 <receiver android:name=".NetworkChangeReceiver" >
@@ -211,7 +211,7 @@ As linhas a seguir mostram parte do arquivo manifest do Android para registrar o
 </receiver>
 ```
 
-O broadcast receiver então lida com o intent que foi transmitido na função onReceive. Este é um ótimo lugar para verificar se seu aplicativo está em primeiro plano ou não. Se o aplicativo não estiver em primeiro plano, podemos preparar nosso intent para ser iniciado, sem informações ou com informações adicionais empacotadas usando `putExtra` (tenha em mente que o bundle só pode lidar com valores parcelable). No final, o service é iniciado e o wakelock é adquirido.
+O broadcast receiver então lida com o intent que foi transmitido na função onReceive. Este é um ótimo lugar para verificar se seu aplicativo está em primeiro plano ou não. Se o aplicativo não estiver em primeiro plano, podemos preparar nosso intent para ser iniciado, sem informações ou com informações adicionais empacotadas usando `putExtra` (tenha em mente que bundle pode lidar apenas com valores parcelable). No final, o service é iniciado e o wakelock é adquirido.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">

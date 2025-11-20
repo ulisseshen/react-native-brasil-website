@@ -4,7 +4,7 @@ id: animatedvaluexy
 title: Animated.ValueXY
 ---
 
-Valor 2D para controlar animações 2D, como pan gestures. API quase idêntica ao [`Animated.Value`](animatedvalue) normal, mas multiplexado. Contém dois `Animated.Value`s regulares internamente.
+Value 2D para conduzir animações 2D, como gestos de pan. API quase idêntica ao [`Animated.Value`](animatedvalue) normal, mas multiplexado. Contém dois `Animated.Value`s regulares internamente.
 
 ## Exemplo
 
@@ -74,7 +74,7 @@ export default DraggableView;
 setValue(value: {x: number; y: number});
 ```
 
-Define diretamente o valor. Isso irá parar qualquer animação em execução no valor e atualizar todas as propriedades vinculadas.
+Define o valor diretamente. Isso irá parar quaisquer animações em execução no valor e atualizar todas as propriedades vinculadas.
 
 **Parâmetros:**
 
@@ -90,7 +90,7 @@ Define diretamente o valor. Isso irá parar qualquer animação em execução no
 setOffset(offset: {x: number; y: number});
 ```
 
-Define um offset que é aplicado sobre qualquer valor definido, seja via `setValue`, uma animação, ou `Animated.event`. Útil para compensar coisas como o início de um pan gesture.
+Define um offset que é aplicado sobre qualquer valor que esteja definido, seja via `setValue`, uma animação ou `Animated.event`. Útil para compensar coisas como o início de um gesto de pan.
 
 **Parâmetros:**
 
@@ -106,7 +106,7 @@ Define um offset que é aplicado sobre qualquer valor definido, seja via `setVal
 flattenOffset();
 ```
 
-Mescla o valor offset no valor base e redefine o offset para zero. O resultado final do valor permanece inalterado.
+Mescla o valor offset no valor base e redefine o offset para zero. A saída final do valor permanece inalterada.
 
 ---
 
@@ -116,7 +116,7 @@ Mescla o valor offset no valor base e redefine o offset para zero. O resultado f
 extractOffset();
 ```
 
-Define o valor offset como o valor base, e redefine o valor base para zero. O resultado final do valor permanece inalterado.
+Define o valor offset para o valor base e redefine o valor base para zero. A saída final do valor permanece inalterada.
 
 ---
 
@@ -126,15 +126,15 @@ Define o valor offset como o valor base, e redefine o valor base para zero. O re
 addListener(callback: (value: {x: number; y: number}) => void);
 ```
 
-Adiciona um listener assíncrono ao valor para que você possa observar atualizações das animações. Isso é útil porque não há maneira de ler o valor de forma síncrona, já que ele pode ser controlado nativamente.
+Adiciona um listener assíncrono ao valor para que você possa observar atualizações de animações. Isso é útil porque não há como ler o valor de forma síncrona, já que ele pode ser conduzido nativamente.
 
 Retorna uma string que serve como identificador para o listener.
 
 **Parâmetros:**
 
-| Nome     | Tipo     | Obrigatório | Descrição                                                                            |
-| -------- | -------- | ----------- | ------------------------------------------------------------------------------------ |
-| callback | function | Sim         | A função callback que receberá um objeto com uma chave `value` definida com o novo valor. |
+| Nome     | Tipo     | Obrigatório | Descrição                                                                                   |
+| -------- | -------- | ----------- | ------------------------------------------------------------------------------------------- |
+| callback | function | Sim         | A função callback que receberá um objeto com uma chave `value` definida para o novo valor.  |
 
 ---
 
@@ -148,9 +148,9 @@ Remove o registro de um listener. O parâmetro `id` deve corresponder ao identif
 
 **Parâmetros:**
 
-| Nome | Tipo   | Obrigatório | Descrição                           |
-| ---- | ------ | ----------- | ----------------------------------- |
-| id   | string | Sim         | Id do listener sendo removido.      |
+| Nome | Tipo   | Obrigatório | Descrição                          |
+| ---- | ------ | ----------- | ---------------------------------- |
+| id   | string | Sim         | Id do listener sendo removido.     |
 
 ---
 
@@ -186,7 +186,7 @@ Para qualquer animação ou rastreamento em execução. O `callback` é invocado
 resetAnimation(callback?: (value: {x: number; y: number}) => void);
 ```
 
-Para qualquer animação e redefine o valor para seu original.
+Para qualquer animação e redefine o valor para o seu original.
 
 **Parâmetros:**
 

@@ -1,83 +1,85 @@
-# Phase 1 - Step 5: Animation APIs, Hooks & Platform-Specific APIs
+<!-- ia-translated: true -->
 
-**Target:** 20 files
-**Category:** Animation, Hooks, Platform-Specific APIs
-**Estimated Time:** 3-4 hours
-**Agent:** `.claude/agents/translator.md`
+# Fase 1 - Passo 5: APIs de Animation, Hooks e APIs Específicas de Platform
 
-## Objective
-Translate advanced animation APIs, React hooks, and platform-specific APIs.
+**Alvo:** 20 arquivos
+**Categoria:** Animation, Hooks, APIs Específicas de Platform
+**Tempo Estimado:** 3-4 horas
+**Agente:** `.claude/agents/translator.md`
 
-## Files to Translate (20 files)
+## Objetivo
+Traduzir APIs avançadas de animation, React hooks e APIs específicas de platform.
 
-### Animation APIs (4 files)
+## Arquivos para Traduzir (20 arquivos)
+
+### APIs de Animation (4 arquivos)
 1. `docs/animated.md`
 2. `docs/animatedvalue.md`
 3. `docs/animatedvaluexy.md`
 4. `docs/animations.md`
 
-### React Hooks (2 files)
+### React Hooks (2 arquivos)
 5. `docs/usecolorscheme.md`
 6. `docs/usewindowdimensions.md`
 
-### Android-Specific APIs (5 files)
+### APIs Específicas do Android (5 arquivos)
 7. `docs/backhandler.md`
 8. `docs/permissionsandroid.md`
 9. `docs/toastandroid.md`
 10. `docs/headless-js-android.md`
 11. `docs/communication-android.md`
 
-### iOS-Specific APIs (5 files)
+### APIs Específicas do iOS (5 arquivos)
 12. `docs/actionsheetios.md`
 13. `docs/dynamiccolorios.md`
 14. `docs/settings.md`
 15. `docs/communication-ios.md`
 16. `docs/app-extensions.md`
 
-### Development & Debugging (4 files)
+### Desenvolvimento e Depuração (4 arquivos)
 17. `docs/devsettings.md`
 18. `docs/systrace.md`
 19. `docs/i18nmanager.md`
 20. `docs/document-nodes.md`
 
-## Translation Instructions
+## Instruções de Tradução
 
-### Animation-Specific Guidelines
+### Diretrizes Específicas de Animation
 
-1. **Animated API Methods** - Keep in English:
+1. **Métodos da API Animated** - Manter em inglês:
    - `Animated.timing()`, `Animated.spring()`, `Animated.sequence()`
    - `interpolate()`, `setValue()`, `addListener()`
 
-2. **Easing Functions** - Keep names:
+2. **Funções Easing** - Manter nomes:
    - `Easing.linear`, `Easing.ease`, `Easing.bezier()`
 
-3. **Animation Values** - Keep property names:
+3. **Valores de Animation** - Manter nomes de propriedades:
    - `toValue`, `duration`, `delay`, `useNativeDriver`
 
-### Platform-Specific Guidelines
+### Diretrizes Específicas de Platform
 
-1. **Native Modules** - Keep module names:
+1. **Módulos Nativos** - Manter nomes dos módulos:
    - `PermissionsAndroid`, `ToastAndroid`, `ActionSheetIOS`
 
-2. **Platform Constants** - Keep as-is:
+2. **Constantes de Platform** - Manter como está:
    - `Platform.OS`, `Platform.Version`
-   - Platform values: `'ios'`, `'android'`, `'web'`
+   - Valores de platform: `'ios'`, `'android'`, `'web'`
 
-3. **Permission Strings** - Keep unchanged:
+3. **Strings de Permissão** - Manter inalterado:
    - `PERMISSIONS.CAMERA`, `'android.permission.CAMERA'`
 
-## Quality Checklist
+## Lista de Verificação de Qualidade
 
-- [ ] Animation method names unchanged
-- [ ] Hook names unchanged (useColorScheme, etc.)
-- [ ] Platform module names unchanged
-- [ ] Permission strings unchanged
-- [ ] Native method calls preserved
-- [ ] Platform indicators correct
-- [ ] Code examples working
-- [ ] Consistent platform terminology
+- [ ] Nomes de métodos de Animation inalterados
+- [ ] Nomes de Hooks inalterados (useColorScheme, etc.)
+- [ ] Nomes de módulos de Platform inalterados
+- [ ] Strings de permissão inalteradas
+- [ ] Chamadas de métodos nativos preservadas
+- [ ] Indicadores de platform corretos
+- [ ] Exemplos de código funcionando
+- [ ] Terminologia de platform consistente
 
-## Progress Tracking
+## Acompanhamento de Progresso
 
 - [ ] docs/animated.md
 - [ ] docs/animatedvalue.md
@@ -100,5 +102,5 @@ Translate advanced animation APIs, React hooks, and platform-specific APIs.
 - [ ] docs/i18nmanager.md
 - [ ] docs/document-nodes.md
 
-## Next Step
-After completing this step, proceed to **step06.md** (Global APIs - Part 1)
+## Próximo Passo
+Após completar este passo, prossiga para **step06.md** (APIs Globais - Parte 1)
