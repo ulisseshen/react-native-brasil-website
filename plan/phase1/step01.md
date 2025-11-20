@@ -1,36 +1,38 @@
-# Phase 1 - Step 1: Getting Started & Basics
+<!-- ia-translated: true -->
 
-**Target:** 20 files
-**Category:** Getting Started, Introduction, Environment Setup
-**Estimated Time:** 3-4 hours
-**Agent:** `.claude/agents/translator.md`
+# Fase 1 - Etapa 1: Começando e Fundamentos
 
-## Objective
-Translate the foundational documentation that helps developers get started with React Native. These are the most critical files for new users.
+**Meta:** 20 arquivos
+**Categoria:** Começando, Introdução, Configuração de Ambiente
+**Tempo Estimado:** 3-4 horas
+**Agente:** `.claude/agents/translator.md`
 
-## Files to Translate (20 files)
+## Objetivo
+Traduzir a documentação fundamental que ajuda desenvolvedores a começar com React Native. Estes são os arquivos mais críticos para novos usuários.
 
-### Getting Started (5 files)
+## Arquivos para Traduzir (20 arquivos)
+
+### Getting Started (5 arquivos)
 1. `docs/getting-started.md`
 2. `docs/introduction.md`
 3. `docs/set-up-your-environment.md`
 4. `docs/environment-setup.md`
 5. `docs/troubleshooting.md`
 
-### React Basics (4 files)
+### React Basics (4 arquivos)
 6. `docs/intro-react-native-components.md`
 7. `docs/intro-react.md`
 8. `docs/handling-text-input.md`
 9. `docs/state.md`
 
-### Core Concepts (5 files)
+### Core Concepts (5 arquivos)
 10. `docs/using-a-scrollview.md`
 11. `docs/using-a-listview.md`
 12. `docs/platform-specific-code.md`
 13. `docs/more-resources.md`
 14. `docs/tutorial.md`
 
-### Partial/Include Files (6 files)
+### Arquivos Parciais/Include (6 arquivos)
 15. `docs/_getting-started-linux-android.md`
 16. `docs/_getting-started-macos-android.md`
 17. `docs/_getting-started-macos-ios.md`
@@ -38,11 +40,11 @@ Translate the foundational documentation that helps developers get started with 
 19. `docs/_remove-global-cli.md`
 20. `docs/props.md`
 
-## Translation Instructions
+## Instruções de Tradução
 
-### Using the Translator Agent
+### Usando o Agente Tradutor
 
-For each file, use the following approach:
+Para cada arquivo, use a seguinte abordagem:
 
 ```bash
 # Example command to translate a file
@@ -51,46 +53,46 @@ claude task translate --agent=.claude/agents/translator.md \
   --output=website/i18n/pt-BR/docusaurus-plugin-content-docs/current/getting-started.md
 ```
 
-Or use the Task tool with this prompt:
+Ou use a ferramenta Task com este prompt:
 ```
 Using the translator agent at .claude/agents/translator.md, translate the file docs/getting-started.md to Brazilian Portuguese (PT-BR). Follow all guidelines for technical terms, code preservation, and natural Portuguese phrasing.
 ```
 
-### Special Considerations for This Step
+### Considerações Especiais para Esta Etapa
 
-1. **Getting Started files** - These are the MOST important files:
-   - Ensure the tone is welcoming and encouraging
-   - Keep installation commands exactly as-is
-   - Translate UI instructions clearly
+1. **Arquivos Getting Started** - Estes são os arquivos MAIS importantes:
+   - Certifique-se de que o tom seja acolhedor e encorajador
+   - Mantenha os comandos de instalação exatamente como estão
+   - Traduza as instruções de UI claramente
 
-2. **Environment Setup files** - Highly technical:
-   - Keep all commands, paths, and tool names in English
-   - Translate explanatory text only
-   - Be extra careful with platform-specific instructions
+2. **Arquivos Environment Setup** - Altamente técnicos:
+   - Mantenha todos os comandos, caminhos e nomes de ferramentas em inglês
+   - Traduza apenas o texto explicativo
+   - Tenha cuidado extra com instruções específicas de plataforma
 
-3. **Partial files (starting with `_`)** - These are included in other docs:
-   - Maintain exact same structure
-   - These will be embedded in other pages
-   - Consistency is critical
+3. **Arquivos parciais (começando com `_`)** - Estes são incluídos em outros documentos:
+   - Mantenha exatamente a mesma estrutura
+   - Estes serão incorporados em outras páginas
+   - Consistência é crítica
 
-## Quality Checklist
+## Lista de Verificação de Qualidade
 
-After translating all 20 files:
+Após traduzir todos os 20 arquivos:
 
-- [ ] All file names remain unchanged (only content translated)
-- [ ] All code blocks preserved exactly
-- [ ] Commands and CLI syntax unchanged
-- [ ] Internal links working (../other-doc.md format)
-- [ ] Frontmatter properly handled (id unchanged, title translated)
-- [ ] Technical terms kept in English (React Native, npm, etc.)
-- [ ] Natural Brazilian Portuguese prose
-- [ ] Consistent terminology across all 20 files
-- [ ] No spelling or grammar errors
-- [ ] Special characters properly encoded (UTF-8)
+- [ ] Todos os nomes de arquivos permanecem inalterados (apenas o conteúdo foi traduzido)
+- [ ] Todos os blocos de código preservados exatamente
+- [ ] Comandos e sintaxe CLI inalterados
+- [ ] Links internos funcionando (formato ../other-doc.md)
+- [ ] Frontmatter manipulado adequadamente (id inalterado, title traduzido)
+- [ ] Termos técnicos mantidos em inglês (React Native, npm, etc.)
+- [ ] Prosa em português brasileiro natural
+- [ ] Terminologia consistente em todos os 20 arquivos
+- [ ] Sem erros de ortografia ou gramática
+- [ ] Caracteres especiais adequadamente codificados (UTF-8)
 
-## Testing
+## Testes
 
-After translation:
+Após a tradução:
 
 ```bash
 # Build the docs to verify no errors
@@ -101,16 +103,16 @@ yarn build --locale pt-BR
 yarn start --locale pt-BR
 ```
 
-## Output Location
+## Localização de Saída
 
-All translated files should be placed in:
+Todos os arquivos traduzidos devem ser colocados em:
 ```
 website/i18n/pt-BR/docusaurus-plugin-content-docs/current/
 ```
 
-Maintaining the same directory structure as the source.
+Mantendo a mesma estrutura de diretórios da origem.
 
-## Progress Tracking
+## Acompanhamento de Progresso
 
 - [ ] docs/getting-started.md
 - [ ] docs/introduction.md
@@ -133,5 +135,5 @@ Maintaining the same directory structure as the source.
 - [ ] docs/_remove-global-cli.md
 - [ ] docs/props.md
 
-## Next Step
-After completing this step, proceed to **step02.md** (Core Components - Part 1)
+## Próxima Etapa
+Após completar esta etapa, prossiga para **step02.md** (Core Components - Parte 1)

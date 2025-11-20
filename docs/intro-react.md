@@ -1,25 +1,26 @@
 ---
+ia-translated: true
 id: intro-react
-title: React Fundamentals
-description: To understand React Native fully, you need a solid foundation in React. This short introduction to React can help you get started or get refreshed.
+title: Fundamentos do React
+description: Para entender completamente o React Native, você precisa de uma base sólida em React. Esta breve introdução ao React pode ajudá-lo a começar ou relembrar os conceitos.
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-React Native runs on [React](https://react.dev/), a popular open source library for building user interfaces with JavaScript. To make the most of React Native, it helps to understand React itself. This section can get you started or can serve as a refresher course.
+React Native é executado sobre [React](https://react.dev/), uma biblioteca popular de código aberto para construir interfaces de usuário com JavaScript. Para aproveitar ao máximo o React Native, é útil entender o React em si. Esta seção pode ajudá-lo a começar ou servir como um curso de atualização.
 
-We’re going to cover the core concepts behind React:
+Vamos cobrir os conceitos fundamentais por trás do React:
 
 - components
 - JSX
 - props
 - state
 
-If you want to dig deeper, we encourage you to check out [React’s official documentation](https://react.dev/learn).
+Se você quiser se aprofundar, recomendamos que consulte a [documentação oficial do React](https://react.dev/learn).
 
-## Your first component
+## Seu primeiro component
 
-The rest of this introduction to React uses cats in its examples: friendly, approachable creatures that need names and a cafe to work in. Here is your very first Cat component:
+O restante desta introdução ao React usa gatos em seus exemplos: criaturas amigáveis e acessíveis que precisam de nomes e um café para trabalhar. Aqui está seu primeiro component Cat:
 
 ```SnackPlayer name=Your%20Cat
 import React from 'react';
@@ -32,22 +33,22 @@ const Cat = () => {
 export default Cat;
 ```
 
-Here is how you do it: To define your `Cat` component, first use JavaScript’s [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) to import React and React Native’s [`Text`](/docs/next/text) Core Component:
+Veja como fazer isso: Para definir seu component `Cat`, primeiro use o [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) do JavaScript para importar o React e o Core Component [`Text`](/docs/next/text) do React Native:
 
 ```tsx
 import React from 'react';
 import {Text} from 'react-native';
 ```
 
-Your component starts as a function:
+Seu component começa como uma função:
 
 ```tsx
 const Cat = () => {};
 ```
 
-You can think of components as blueprints. Whatever a function component returns is rendered as a **React element.** React elements let you describe what you want to see on the screen.
+Você pode pensar nos components como plantas. O que quer que um function component retorne é renderizado como um **React element.** React elements permitem que você descreva o que deseja ver na tela.
 
-Here the `Cat` component will render a `<Text>` element:
+Aqui o component `Cat` renderizará um elemento `<Text>`:
 
 ```tsx
 const Cat = () => {
@@ -55,7 +56,7 @@ const Cat = () => {
 };
 ```
 
-You can export your function component with JavaScript’s [`export default`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) for use throughout your app like so:
+Você pode exportar seu function component com o [`export default`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) do JavaScript para uso em todo o seu aplicativo assim:
 
 ```tsx
 const Cat = () => {
@@ -66,14 +67,14 @@ export default Cat;
 ```
 
 :::tip
-This is one of many ways to export your component. This kind of export works well with the Snack Player. However, depending on your app’s file structure, you might need to use a different convention. This [handy cheatsheet on JavaScript imports and exports](https://medium.com/dailyjs/javascript-module-cheatsheet-7bd474f1d829) can help.
+Esta é uma das muitas maneiras de exportar seu component. Este tipo de exportação funciona bem com o Snack Player. No entanto, dependendo da estrutura de arquivos do seu aplicativo, você pode precisar usar uma convenção diferente. Esta [folha de dicas útil sobre imports e exports do JavaScript](https://medium.com/dailyjs/javascript-module-cheatsheet-7bd474f1d829) pode ajudar.
 :::
 
-Now take a closer look at that `return` statement. `<Text>Hello, I am your cat!</Text>` is using a kind of JavaScript syntax that makes writing elements convenient: JSX.
+Agora dê uma olhada mais de perto nessa instrução `return`. `<Text>Hello, I am your cat!</Text>` está usando um tipo de sintaxe JavaScript que torna conveniente escrever elementos: JSX.
 
 ## JSX
 
-React and React Native use **JSX,** a syntax that lets you write elements inside JavaScript like so: `<Text>Hello, I am your cat!</Text>`. The React docs have [a comprehensive guide to JSX](https://react.dev/learn/writing-markup-with-jsx) you can refer to learn even more. Because JSX is JavaScript, you can use variables inside it. Here you are declaring a name for the cat, `name`, and embedding it with curly braces inside `<Text>`.
+React e React Native usam **JSX,** uma sintaxe que permite escrever elementos dentro do JavaScript assim: `<Text>Hello, I am your cat!</Text>`. A documentação do React tem [um guia abrangente sobre JSX](https://react.dev/learn/writing-markup-with-jsx) que você pode consultar para aprender ainda mais. Como JSX é JavaScript, você pode usar variáveis dentro dele. Aqui você está declarando um nome para o gato, `name`, e incorporando-o com chaves dentro de `<Text>`.
 
 ```SnackPlayer name=Curly%20Braces
 import React from 'react';
@@ -87,7 +88,7 @@ const Cat = () => {
 export default Cat;
 ```
 
-Any JavaScript expression will work between curly braces, including function calls like `{getFullName("Rum", "Tum", "Tugger")}`:
+Qualquer expressão JavaScript funcionará entre chaves, incluindo chamadas de função como `{getFullName("Rum", "Tum", "Tugger")}`:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -132,17 +133,17 @@ export default Cat;
 </TabItem>
 </Tabs>
 
-You can think of curly braces as creating a portal into JS functionality in your JSX!
+Você pode pensar nas chaves como criando um portal para a funcionalidade JS no seu JSX!
 
 :::tip
-Because JSX is included in the React library, it won’t work if you don’t have `import React from 'react'` at the top of your file!
+Como JSX está incluído na biblioteca React, ele não funcionará se você não tiver `import React from 'react'` no topo do seu arquivo!
 :::
 
 ## Custom Components
 
-You’ve already met [React Native’s Core Components](intro-react-native-components). React lets you nest these components inside each other to create new components. These nestable, reusable components are at the heart of the React paradigm.
+Você já conheceu os [Core Components do React Native](intro-react-native-components). React permite que você aninhe esses components dentro uns dos outros para criar novos components. Esses components aninhados e reutilizáveis estão no coração do paradigma do React.
 
-For example, you can nest [`Text`](text) and [`TextInput`](textinput) inside a [`View`](view) below, and React Native will render them together:
+Por exemplo, você pode aninhar [`Text`](text) e [`TextInput`](textinput) dentro de um [`View`](view) abaixo, e o React Native irá renderizá-los juntos:
 
 ```SnackPlayer name=Custom%20Components
 import React from 'react';
@@ -174,20 +175,20 @@ export default Cat;
 <TabItem value="web">
 
 :::info
-If you’re familiar with web development, `<View>` and `<Text>` might remind you of HTML! You can think of them as the `<div>` and `<p>` tags of application development.
+Se você está familiarizado com desenvolvimento web, `<View>` e `<Text>` podem lembrá-lo de HTML! Você pode pensar neles como as tags `<div>` e `<p>` do desenvolvimento de aplicações.
 :::
 
 </TabItem>
 <TabItem value="android">
 
 :::info
-On Android, you usually put your views inside `LinearLayout`, `FrameLayout`, `RelativeLayout`, etc. to define how the view’s children will be arranged on the screen. In React Native, `View` uses Flexbox for its children’s layout. You can learn more in [our guide to layout with Flexbox](flexbox).
+No Android, você geralmente coloca suas views dentro de `LinearLayout`, `FrameLayout`, `RelativeLayout`, etc. para definir como os filhos da view serão organizados na tela. No React Native, `View` usa Flexbox para o layout de seus filhos. Você pode aprender mais no [nosso guia sobre layout com Flexbox](flexbox).
 :::
 
 </TabItem>
 </Tabs>
 
-You can render this component multiple times and in multiple places without repeating your code by using `<Cat>`:
+Você pode renderizar este component várias vezes e em vários lugares sem repetir seu código usando `<Cat>`:
 
 ```SnackPlayer name=Multiple%20Components
 import React from 'react';
@@ -215,13 +216,13 @@ const Cafe = () => {
 export default Cafe;
 ```
 
-Any component that renders other components is a **parent component.** Here, `Cafe` is the parent component and each `Cat` is a **child component.**
+Qualquer component que renderiza outros components é um **parent component.** Aqui, `Cafe` é o parent component e cada `Cat` é um **child component.**
 
-You can put as many cats in your cafe as you like. Each `<Cat>` renders a unique element—which you can customize with props.
+Você pode colocar quantos gatos quiser no seu café. Cada `<Cat>` renderiza um elemento único—que você pode customizar com props.
 
 ## Props
 
-**Props** is short for “properties”. Props let you customize React components. For example, here you pass each `<Cat>` a different `name` for `Cat` to render:
+**Props** é a abreviação de "properties". Props permitem que você customize components React. Por exemplo, aqui você passa para cada `<Cat>` um `name` diferente para o `Cat` renderizar:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -286,7 +287,7 @@ export default Cafe;
 </TabItem>
 </Tabs>
 
-Most of React Native’s Core Components can be customized with props, too. For example, when using [`Image`](image), you pass it a prop named [`source`](image#source) to define what image it shows:
+A maioria dos Core Components do React Native também pode ser customizada com props. Por exemplo, ao usar [`Image`](image), você passa a ele um prop chamado [`source`](image#source) para definir qual imagem ele mostra:
 
 ```SnackPlayer name=Props
 import React from 'react';
@@ -309,25 +310,25 @@ const CatApp = () => {
 export default CatApp;
 ```
 
-`Image` has [many different props](image#props), including [`style`](image#style), which accepts a JS object of design and layout related property-value pairs.
+`Image` tem [muitos props diferentes](image#props), incluindo [`style`](image#style), que aceita um objeto JS de pares propriedade-valor relacionados a design e layout.
 
 :::note
-Notice the double curly braces `{{ }}` surrounding `style`‘s width and height. In JSX, JavaScript values are referenced with `{}`. This is handy if you are passing something other than a string as props, like an array or number: `<Cat food={["fish", "kibble"]} age={2} />`. However, JS objects are **_also_** denoted with curly braces: `{width: 200, height: 200}`. Therefore, to pass a JS object in JSX, you must wrap the object in **another pair** of curly braces: `{{width: 200, height: 200}}`
+Observe as chaves duplas `{{ }}` ao redor de `style`'s width e height. No JSX, valores JavaScript são referenciados com `{}`. Isso é útil se você está passando algo diferente de uma string como props, como um array ou número: `<Cat food={["fish", "kibble"]} age={2} />`. No entanto, objetos JS **_também_** são indicados com chaves: `{width: 200, height: 200}`. Portanto, para passar um objeto JS no JSX, você deve envolver o objeto em **outro par** de chaves: `{{width: 200, height: 200}}`
 :::
 
-You can build many things with props and the Core Components [`Text`](text), [`Image`](image), and [`View`](view)! But to build something interactive, you’ll need state.
+Você pode construir muitas coisas com props e os Core Components [`Text`](text), [`Image`](image) e [`View`](view)! Mas para construir algo interativo, você precisará de state.
 
 ## State
 
-While you can think of props as arguments you use to configure how components render, **state** is like a component’s personal data storage. State is useful for handling data that changes over time or that comes from user interaction. State gives your components memory!
+Enquanto você pode pensar em props como argumentos que você usa para configurar como os components renderizam, **state** é como o armazenamento de dados pessoal de um component. State é útil para lidar com dados que mudam ao longo do tempo ou que vêm da interação do usuário. State dá aos seus components memória!
 
 :::info
-As a general rule, use props to configure a component when it renders. Use state to keep track of any component data that you expect to change over time.
+Como regra geral, use props para configurar um component quando ele renderiza. Use state para rastrear quaisquer dados do component que você espera que mudem ao longo do tempo.
 :::
 
-The following example takes place in a cat cafe where two hungry cats are waiting to be fed. Their hunger, which we expect to change over time (unlike their names), is stored as state. To feed the cats, press their buttons—which will update their state.
+O exemplo a seguir ocorre em um café de gatos onde dois gatos famintos estão esperando para serem alimentados. A fome deles, que esperamos que mude ao longo do tempo (ao contrário de seus nomes), é armazenada como state. Para alimentar os gatos, pressione seus botões—o que atualizará seu state.
 
-You can add state to a component by calling [React’s `useState` Hook](https://react.dev/learn/state-a-components-memory). A Hook is a kind of function that lets you “hook into” React features. For example, `useState` is a Hook that lets you add state to function components. You can learn more about [other kinds of Hooks in the React documentation.](https://react.dev/reference/react)
+Você pode adicionar state a um component chamando o [Hook `useState` do React](https://react.dev/learn/state-a-components-memory). Um Hook é um tipo de função que permite que você se "conecte" aos recursos do React. Por exemplo, `useState` é um Hook que permite adicionar state a function components. Você pode aprender mais sobre [outros tipos de Hooks na documentação do React.](https://react.dev/reference/react)
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -412,13 +413,13 @@ export default Cafe;
 </TabItem>
 </Tabs>
 
-First, you will want to import `useState` from React like so:
+Primeiro, você vai querer importar `useState` do React assim:
 
 ```tsx
 import React, {useState} from 'react';
 ```
 
-Then you declare the component’s state by calling `useState` inside its function. In this example, `useState` creates an `isHungry` state variable:
+Então você declara o state do component chamando `useState` dentro de sua função. Neste exemplo, `useState` cria uma variável de state `isHungry`:
 
 ```tsx
 const Cat = (props: CatProps) => {
@@ -428,17 +429,17 @@ const Cat = (props: CatProps) => {
 ```
 
 :::tip
-You can use `useState` to track any kind of data: strings, numbers, Booleans, arrays, objects. For example, you can track the number of times a cat has been petted with `const [timesPetted, setTimesPetted] = useState(0)`!
+Você pode usar `useState` para rastrear qualquer tipo de dado: strings, números, Booleans, arrays, objetos. Por exemplo, você pode rastrear o número de vezes que um gato foi acariciado com `const [timesPetted, setTimesPetted] = useState(0)`!
 :::
 
-Calling `useState` does two things:
+Chamar `useState` faz duas coisas:
 
-- it creates a “state variable” with an initial value—in this case the state variable is `isHungry` and its initial value is `true`
-- it creates a function to set that state variable’s value—`setIsHungry`
+- cria uma "variável de state" com um valor inicial—neste caso a variável de state é `isHungry` e seu valor inicial é `true`
+- cria uma função para definir o valor dessa variável de state—`setIsHungry`
 
-It doesn’t matter what names you use. But it can be handy to think of the pattern as `[<getter>, <setter>] = useState(<initialValue>)`.
+Não importa quais nomes você usa. Mas pode ser útil pensar no padrão como `[<getter>, <setter>] = useState(<initialValue>)`.
 
-Next you add the [`Button`](button) Core Component and give it an `onPress` prop:
+Em seguida, você adiciona o Core Component [`Button`](button) e dá a ele um prop `onPress`:
 
 ```tsx
 <Button
@@ -449,7 +450,7 @@ Next you add the [`Button`](button) Core Component and give it an `onPress` prop
 />
 ```
 
-Now, when someone presses the button, `onPress` will fire, calling the `setIsHungry(false)`. This sets the state variable `isHungry` to `false`. When `isHungry` is false, the `Button`’s `disabled` prop is set to `true` and its `title` also changes:
+Agora, quando alguém pressiona o botão, `onPress` será disparado, chamando `setIsHungry(false)`. Isso define a variável de state `isHungry` como `false`. Quando `isHungry` é false, o prop `disabled` do `Button` é definido como `true` e seu `title` também muda:
 
 ```tsx
 <Button
@@ -460,10 +461,10 @@ Now, when someone presses the button, `onPress` will fire, calling the `setIsHun
 ```
 
 :::info
-You might’ve noticed that although `isHungry` is a [const](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/const), it is seemingly reassignable! What is happening is when a state-setting function like `setIsHungry` is called, its component will re-render. In this case the `Cat` function will run again—and this time, `useState` will give us the next value of `isHungry`.
+Você pode ter notado que, embora `isHungry` seja uma [const](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/const), ela é aparentemente reatribuível! O que está acontecendo é que quando uma função de definição de state como `setIsHungry` é chamada, seu component será re-renderizado. Neste caso, a função `Cat` será executada novamente—e desta vez, `useState` nos dará o próximo valor de `isHungry`.
 :::
 
-Finally, put your cats inside a `Cafe` component:
+Finalmente, coloque seus gatos dentro de um component `Cafe`:
 
 ```tsx
 const Cafe = () => {
@@ -477,9 +478,9 @@ const Cafe = () => {
 ```
 
 :::info
-See the `<>` and `</>` above? These bits of JSX are [fragments](https://react.dev/reference/react/Fragment). Adjacent JSX elements must be wrapped in an enclosing tag. Fragments let you do that without nesting an extra, unnecessary wrapping element like `View`.
+Vê o `<>` e `</>` acima? Esses pedaços de JSX são [fragments](https://react.dev/reference/react/Fragment). Elementos JSX adjacentes devem ser envolvidos em uma tag delimitadora. Fragments permitem que você faça isso sem aninhar um elemento envolvente extra e desnecessário como `View`.
 :::
 
 ---
 
-Now that you’ve covered both React and React Native’s Core Components, let’s dive deeper on some of these core components by looking at [handling `<TextInput>`](handling-text-input).
+Agora que você cobriu tanto o React quanto os Core Components do React Native, vamos nos aprofundar em alguns desses core components observando o [tratamento de `<TextInput>`](handling-text-input).
