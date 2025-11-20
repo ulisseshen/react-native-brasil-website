@@ -1,3 +1,4 @@
+<!-- ia-translated: true -->
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import constants from '@site/core/TabsConstants';
@@ -5,41 +6,41 @@ import CodeBlock from '@theme/CodeBlock';
 import RNTemplateRepoLink from '@site/core/RNTemplateRepoLink';
 import {getTemplateBranchNameForCurrentVersion} from '@site/src/getTemplateBranchNameForCurrentVersion';
 
-## Key Concepts
+## Conceitos Chave
 
-The keys to integrating React Native components into your Android application are to:
+As chaves para integrar componentes React Native em sua aplicação Android são:
 
-1. Set up the correct directory structure.
-2. Install the necessary NPM dependencies.
-3. Adding React Native to your Gradle configuration.
-4. Writing the TypeScript code for your first React Native screen.
-5. Integrate React Native with your Android code using a ReactActivity.
-6. Testing your integration by running the bundler and seeing your app in action.
+1. Configurar a estrutura de diretórios correta.
+2. Instalar as dependências NPM necessárias.
+3. Adicionar React Native à sua configuração Gradle.
+4. Escrever o código TypeScript para sua primeira tela React Native.
+5. Integrar React Native com seu código Android usando uma ReactActivity.
+6. Testar sua integração executando o bundler e vendo sua aplicação em ação.
 
-## Using the Community Template
+## Usando o Template da Comunidade
 
-While you follow this guide, we suggest you to use the [React Native Community Template](https://github.com/react-native-community/template/) as reference. The template contains a **minimal Android app** and will help you understanding how to integrate React Native into an existing Android app.
+Enquanto você segue este guia, sugerimos que você use o [React Native Community Template](https://github.com/react-native-community/template/) como referência. O template contém uma **aplicação Android mínima** e ajudará você a entender como integrar React Native em uma aplicação Android existente.
 
-## Prerequisites
+## Pré-requisitos
 
-Follow the guide on [setting up your development environment](set-up-your-environment) and using [React Native without a framework](getting-started-without-a-framework) to configure your development environment for building React Native apps for Android.
-This guide also assumes you're familiar with the basics of Android development such as creating Activities and editing the `AndroidManifest.xml` file.
+Siga o guia sobre [configuração do seu ambiente de desenvolvimento](set-up-your-environment) e usando [React Native sem um framework](getting-started-without-a-framework) para configurar seu ambiente de desenvolvimento para construir aplicações React Native para Android.
+Este guia também assume que você está familiarizado com o básico do desenvolvimento Android, como criar Activities e editar o arquivo `AndroidManifest.xml`.
 
-## 1. Set up directory structure
+## 1. Configurar a estrutura de diretórios
 
-To ensure a smooth experience, create a new folder for your integrated React Native project, then **move your existing Android project** to the `/android` subfolder.
+Para garantir uma experiência tranquila, crie uma nova pasta para seu projeto React Native integrado e, em seguida, **mova seu projeto Android existente** para a subpasta `/android`.
 
-## 2. Install NPM dependencies
+## 2. Instalar dependências NPM
 
-Go to the root directory and run the following command:
+Vá para o diretório raiz e execute o seguinte comando:
 
 <CodeBlock language="bash" title="shell">
 {`curl -O https://raw.githubusercontent.com/react-native-community/template/refs/heads/${getTemplateBranchNameForCurrentVersion()}/template/package.json`}
 </CodeBlock>
 
-This will copy the `package.json` <RNTemplateRepoLink href="template/package.json">file from the Community template</RNTemplateRepoLink> to your project.
+Isso copiará o <RNTemplateRepoLink href="template/package.json">arquivo `package.json` do template da Comunidade</RNTemplateRepoLink> para o seu projeto.
 
-Next, install the NPM packages by running:
+Em seguida, instale os pacotes NPM executando:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -58,17 +59,17 @@ yarn install
 </TabItem>
 </Tabs>
 
-Installation process has created a new `node_modules` folder. This folder stores all the JavaScript dependencies required to build your project.
+O processo de instalação criou uma nova pasta `node_modules`. Esta pasta armazena todas as dependências JavaScript necessárias para construir seu projeto.
 
-Add `node_modules/` to your `.gitignore` file (here the <RNTemplateRepoLink href="template/_gitignore">Community default one</RNTemplateRepoLink>).
+Adicione `node_modules/` ao seu arquivo `.gitignore` (aqui está o <RNTemplateRepoLink href="template/_gitignore">padrão da Comunidade</RNTemplateRepoLink>).
 
-## 3. Adding React Native to your app
+## 3. Adicionando React Native à sua aplicação
 
-### Configuring Gradle
+### Configurando o Gradle
 
-React Native uses the React Native Gradle Plugin to configure your dependencies and project setup.
+React Native usa o React Native Gradle Plugin para configurar suas dependências e configuração do projeto.
 
-First, let's edit your `settings.gradle` file by adding those lines (as suggested from the <RNTemplateRepoLink href="template/android/settings.gradle">Community template</RNTemplateRepoLink>):
+Primeiro, vamos editar seu arquivo `settings.gradle` adicionando essas linhas (conforme sugerido no <RNTemplateRepoLink href="template/android/settings.gradle">template da Comunidade</RNTemplateRepoLink>):
 
 ```groovy
 // Configures the React Native Gradle Settings plugin used for autolinking
@@ -83,7 +84,7 @@ includeBuild("../node_modules/@react-native/gradle-plugin")
 // include(":app")
 ```
 
-Then you need to open your top level `build.gradle` and include this line (as suggested from the <RNTemplateRepoLink href="template/android/build.gradle">Community template</RNTemplateRepoLink>):
+Em seguida, você precisa abrir seu `build.gradle` de nível superior e incluir esta linha (conforme sugerido no <RNTemplateRepoLink href="template/android/build.gradle">template da Comunidade</RNTemplateRepoLink>):
 
 ```diff
 buildscript {
@@ -98,8 +99,8 @@ buildscript {
 }
 ```
 
-This makes sure the React Native Gradle Plugin (RNGP) is available inside your project.
-Finally, add those lines inside your Applications's `build.gradle` file (it's a different `build.gradle` file usually inside your `app` folder - you can use the <RNTemplateRepoLink href="template/android/build.gradle">Community template file as reference</RNTemplateRepoLink>):
+Isso garante que o React Native Gradle Plugin (RNGP) esteja disponível dentro do seu projeto.
+Finalmente, adicione essas linhas dentro do arquivo `build.gradle` da sua aplicação (é um arquivo `build.gradle` diferente, geralmente dentro da sua pasta `app` - você pode usar o <RNTemplateRepoLink href="template/android/build.gradle">arquivo do template da Comunidade como referência</RNTemplateRepoLink>):
 
 ```diff
 apply plugin: "com.android.application"
@@ -123,7 +124,7 @@ dependencies {
 +}
 ```
 
-Finally, open your application `gradle.properties` files and add the following line (here the <RNTemplateRepoLink href="template/android/gradle.properties">Community template file as reference</RNTemplateRepoLink>):
+Finalmente, abra o arquivo `gradle.properties` da sua aplicação e adicione a seguinte linha (aqui está o <RNTemplateRepoLink href="template/android/gradle.properties">arquivo do template da Comunidade como referência</RNTemplateRepoLink>):
 
 ```diff
 +reactNativeArchitectures=armeabi-v7a,arm64-v8a,x86,x86_64
@@ -131,9 +132,9 @@ Finally, open your application `gradle.properties` files and add the following l
 +hermesEnabled=true
 ```
 
-### Configuring your manifest
+### Configurando seu manifest
 
-First, make sure you have the Internet permission in your `AndroidManifest.xml`:
+Primeiro, certifique-se de que você tem a permissão de Internet em seu `AndroidManifest.xml`:
 
 ```diff
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -146,7 +147,7 @@ First, make sure you have the Internet permission in your `AndroidManifest.xml`:
 </manifest>
 ```
 
-Then you need to enable [cleartext traffic](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted) in your **debug** `AndroidManifest.xml`:
+Em seguida, você precisa habilitar [cleartext traffic](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted) em seu `AndroidManifest.xml` de **debug**:
 
 ```diff
 <?xml version="1.0" encoding="utf-8"?>
@@ -160,25 +161,25 @@ Then you need to enable [cleartext traffic](https://developer.android.com/traini
 </manifest>
 ```
 
-As usual, here the AndroidManifest.xml file from the Community template to use as a reference: <RNTemplateRepoLink href="template/android/app/src/main/AndroidManifest.xml">main</RNTemplateRepoLink> and <RNTemplateRepoLink href="template/android/app/src/debug/AndroidManifest.xml">debug</RNTemplateRepoLink>.
+Como de costume, aqui está o arquivo AndroidManifest.xml do template da Comunidade para usar como referência: <RNTemplateRepoLink href="template/android/app/src/main/AndroidManifest.xml">main</RNTemplateRepoLink> e <RNTemplateRepoLink href="template/android/app/src/debug/AndroidManifest.xml">debug</RNTemplateRepoLink>.
 
-This is needed as your application will communicate with your local bundler, [Metro](https://metrobundler.dev/), via HTTP.
+Isso é necessário pois sua aplicação se comunicará com seu bundler local, [Metro](https://metrobundler.dev/), via HTTP.
 
-Make sure you add this only to your **debug** manifest.
+Certifique-se de adicionar isso apenas ao seu manifest de **debug**.
 
-## 4. Writing the TypeScript Code
+## 4. Escrevendo o Código TypeScript
 
-Now we will actually modify the native Android application to integrate React Native.
+Agora vamos realmente modificar a aplicação Android nativa para integrar React Native.
 
-The first bit of code we will write is the actual React Native code for the new screen that will be integrated into our application.
+O primeiro pedaço de código que escreveremos é o código React Native real para a nova tela que será integrada em nossa aplicação.
 
-### Create a `index.js` file
+### Criar um arquivo `index.js`
 
-First, create an empty `index.js` file in the root of your React Native project.
+Primeiro, crie um arquivo vazio `index.js` na raiz do seu projeto React Native.
 
-`index.js` is the starting point for React Native applications, and it is always required. It can be a small file that `import`s other file that are part of your React Native component or application, or it can contain all the code that is needed for it.
+`index.js` é o ponto de partida para aplicações React Native e é sempre necessário. Pode ser um arquivo pequeno que faz `import` de outros arquivos que fazem parte do seu componente ou aplicação React Native, ou pode conter todo o código necessário para isso.
 
-Our index.js should look as follows (here the <RNTemplateRepoLink href="template/index.js">Community template file as reference</RNTemplateRepoLink>):
+Nosso index.js deve ficar assim (aqui está o <RNTemplateRepoLink href="template/index.js">arquivo do template da Comunidade como referência</RNTemplateRepoLink>):
 
 ```js
 import {AppRegistry} from 'react-native';
@@ -187,9 +188,9 @@ import App from './App';
 AppRegistry.registerComponent('HelloWorld', () => App);
 ```
 
-### Create a `App.tsx` file
+### Criar um arquivo `App.tsx`
 
-Let's create an `App.tsx` file. This is a [TypeScript](https://www.typescriptlang.org/) file that can have [JSX](<https://en.wikipedia.org/wiki/JSX_(JavaScript)>) expressions. It contains the root React Native component that we will integrate into our Android application (<RNTemplateRepoLink href="template/App.tsx">link</RNTemplateRepoLink>):
+Vamos criar um arquivo `App.tsx`. Este é um arquivo [TypeScript](https://www.typescriptlang.org/) que pode ter expressões [JSX](<https://en.wikipedia.org/wiki/JSX_(JavaScript)>). Ele contém o componente raiz React Native que integraremos em nossa aplicação Android (<RNTemplateRepoLink href="template/App.tsx">link</RNTemplateRepoLink>):
 
 ```tsx
 import React from 'react';
@@ -262,15 +263,15 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-Here is the <RNTemplateRepoLink href="template/App.tsx">Community template file as reference</RNTemplateRepoLink>.
+Aqui está o <RNTemplateRepoLink href="template/App.tsx">arquivo do template da Comunidade como referência</RNTemplateRepoLink>.
 
-## 5. Integrating with your Android code
+## 5. Integrando com seu código Android
 
-We now need to add some native code in order to start the React Native runtime and tell it to render our React components.
+Agora precisamos adicionar algum código nativo para iniciar o runtime React Native e instruí-lo a renderizar nossos componentes React.
 
-### Updating your Application class
+### Atualizando sua classe Application
 
-First, we need to update your `Application` class to properly initialize React Native as follows:
+Primeiro, precisamos atualizar sua classe `Application` para inicializar corretamente React Native da seguinte forma:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 
@@ -373,11 +374,11 @@ import android.app.Application
 </TabItem>
 </Tabs>
 
-As usual, here the <RNTemplateRepoLink href="template/android/app/src/main/java/com/helloworld/MainApplication.kt">`MainApplication.kt` Community template file as reference</RNTemplateRepoLink>.
+Como de costume, aqui está o <RNTemplateRepoLink href="template/android/app/src/main/java/com/helloworld/MainApplication.kt">arquivo do template da Comunidade `MainApplication.kt` como referência</RNTemplateRepoLink>.
 
-#### Creating a `ReactActivity`
+#### Criando uma `ReactActivity`
 
-Finally, we need to create a new `Activity` that will extend `ReactActivity` and host the React Native code. This activity will be responsible for starting the React Native runtime and rendering the React component.
+Finalmente, precisamos criar uma nova `Activity` que estenderá `ReactActivity` e hospedará o código React Native. Esta activity será responsável por iniciar o runtime React Native e renderizar o componente React.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 
@@ -429,9 +430,9 @@ class MyReactActivity : ReactActivity() {
 </TabItem>
 </Tabs>
 
-As usual, here the <RNTemplateRepoLink href="template/android/app/src/main/java/com/helloworld/MainActivity.kt">`MainActivity.kt` Community template file as reference</RNTemplateRepoLink>.
+Como de costume, aqui está o <RNTemplateRepoLink href="template/android/app/src/main/java/com/helloworld/MainActivity.kt">arquivo do template da Comunidade `MainActivity.kt` como referência</RNTemplateRepoLink>.
 
-Whenever you create a new Activity, you need to add it to your `AndroidManifest.xml` file. You also need set the theme of `MyReactActivity` to `Theme.AppCompat.Light.NoActionBar` (or to any non-ActionBar theme) as otherwise your application will render an ActionBar on top of your React Native screen:
+Sempre que você criar uma nova Activity, você precisa adicioná-la ao seu arquivo `AndroidManifest.xml`. Você também precisa definir o tema de `MyReactActivity` para `Theme.AppCompat.Light.NoActionBar` (ou para qualquer tema sem ActionBar), caso contrário sua aplicação renderizará uma ActionBar no topo da sua tela React Native:
 
 ```diff
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -450,22 +451,22 @@ Whenever you create a new Activity, you need to add it to your `AndroidManifest.
 </manifest>
 ```
 
-Now your activity is ready to run some JavaScript code.
+Agora sua activity está pronta para executar algum código JavaScript.
 
-## 6. Test your integration
+## 6. Testar sua integração
 
-You have completed all the basic steps to integrate React Native with your application. Now we will start the [Metro bundler](https://metrobundler.dev/) to build your TypeScript application code into a bundle. Metro's HTTP server shares the bundle from `localhost` on your developer environment to a simulator or device. This allows for [hot reloading](https://reactnative.dev/blog/2016/03/24/introducing-hot-reloading).
+Você completou todos os passos básicos para integrar React Native com sua aplicação. Agora vamos iniciar o [Metro bundler](https://metrobundler.dev/) para construir seu código de aplicação TypeScript em um bundle. O servidor HTTP do Metro compartilha o bundle de `localhost` no seu ambiente de desenvolvimento para um simulador ou dispositivo. Isso permite [hot reloading](https://reactnative.dev/blog/2016/03/24/introducing-hot-reloading).
 
-First, you need to create a `metro.config.js` file in the root of your project as follows:
+Primeiro, você precisa criar um arquivo `metro.config.js` na raiz do seu projeto da seguinte forma:
 
 ```js
 const {getDefaultConfig} = require('@react-native/metro-config');
 module.exports = getDefaultConfig(__dirname);
 ```
 
-You can checkout the <RNTemplateRepoLink href="template/metro.config.js">`metro.config.js` file</RNTemplateRepoLink> from the Community template file as reference.
+Você pode verificar o <RNTemplateRepoLink href="template/metro.config.js">arquivo `metro.config.js`</RNTemplateRepoLink> do template da Comunidade como referência.
 
-Once you have the configuration file in place, you can run the bundler. Run the following command in the root directory of your project:
+Uma vez que você tenha o arquivo de configuração em vigor, você pode executar o bundler. Execute o seguinte comando no diretório raiz do seu projeto:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -484,19 +485,19 @@ yarn start
 </TabItem>
 </Tabs>
 
-Now build and run your Android app as normal.
+Agora construa e execute sua aplicação Android normalmente.
 
-Once you reach your React-powered Activity inside the app, it should load the JavaScript code from the development server and display:
+Uma vez que você alcance sua Activity alimentada por React dentro da aplicação, ela deve carregar o código JavaScript do servidor de desenvolvimento e exibir:
 
 <center><img src="/docs/assets/EmbeddedAppAndroidVideo.gif" width="300" /></center>
 
-### Creating a release build in Android Studio
+### Criando um build de release no Android Studio
 
-You can use Android Studio to create your release builds too! It’s as quick as creating release builds of your previously-existing native Android app.
+Você pode usar o Android Studio para criar seus builds de release também! É tão rápido quanto criar builds de release da sua aplicação Android nativa previamente existente.
 
-The React Native Gradle Plugin will take care of bundling the JS code inside your APK/App Bundle.
+O React Native Gradle Plugin cuidará de fazer o bundle do código JS dentro do seu APK/App Bundle.
 
-If you're not using Android Studio, you can create a release build with:
+Se você não está usando Android Studio, você pode criar um build de release com:
 
 ```
 cd android
@@ -506,6 +507,6 @@ cd android
 ./gradlew :app:bundleRelease
 ```
 
-### Now what?
+### E agora?
 
-At this point you can continue developing your app as usual. Refer to our [debugging](debugging) and [deployment](running-on-device) docs to learn more about working with React Native.
+Neste ponto, você pode continuar desenvolvendo sua aplicação normalmente. Consulte nossa documentação de [debugging](debugging) e [deployment](running-on-device) para saber mais sobre trabalhar com React Native.

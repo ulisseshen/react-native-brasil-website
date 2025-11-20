@@ -1,34 +1,35 @@
+<!-- ia-translated: true -->
 import CodeBlock from '@theme/CodeBlock';
 import {getCurrentVersion} from '@site/src/getCurrentVersion';
 
-# Using Codegen
+# Usando o Codegen
 
-This guide teaches how to:
+Este guia ensina como:
 
-- Configure **Codegen**.
-- Invoke it manually for each platform.
+- Configurar o **Codegen**.
+- Invocá-lo manualmente para cada plataforma.
 
-It also describes the generated code.
+Ele também descreve o código gerado.
 
-## Prerequisites
+## Pré-requisitos
 
-You always need a React Native app to generate the code properly, even when invoking the **Codegen** manually.
+Você sempre precisa de um app React Native para gerar o código adequadamente, mesmo ao invocar o **Codegen** manualmente.
 
-The **Codegen** process is tightly coupled with the build of the app, and the scripts are located in the `react-native` NPM package.
+O processo do **Codegen** está fortemente acoplado com a compilação do app, e os scripts estão localizados no pacote NPM `react-native`.
 
-For the sake of this guide, create a project using the React Native CLI as follows:
+Para fins deste guia, crie um projeto usando o React Native CLI da seguinte forma:
 
 <CodeBlock language="bash" title="shell">
 {`npx @react-native-community/cli@latest init SampleApp --version ${getCurrentVersion()}`}
 </CodeBlock>
 
-**Codegen** is used to generate the glue-code for your custom modules or components. See the guides for Turbo Native Modules and Fabric Native Components for more details on how to create them.
+O **Codegen** é usado para gerar o código de integração (glue-code) para seus módulos ou componentes personalizados. Veja os guias para Turbo Native Modules e Fabric Native Components para mais detalhes sobre como criá-los.
 
 <!-- TODO: add links -->
 
-## Configuring **Codegen**
+## Configurando o **Codegen**
 
-**Codegen** can be configured in your app by modifying the `package.json` file. **Codegen** is controlled by a custom field called `codegenConfig`.
+O **Codegen** pode ser configurado no seu app modificando o arquivo `package.json`. O **Codegen** é controlado por um campo customizado chamado `codegenConfig`.
 
 ```json title="package.json"
   "codegenConfig": {
@@ -55,46 +56,46 @@ For the sake of this guide, create a project using the React Native CLI as follo
   },
 ```
 
-You can add this snippet to your app and customize the various fields:
+Você pode adicionar este trecho ao seu app e personalizar os vários campos:
 
-- `name:` Name of the codegen config. This will customize the codegen output: the filenames, and the code.
+- `name:` Nome da configuração do codegen. Isso personalizará a saída do codegen: os nomes de arquivo e o código.
 - `type:`
-  - `modules:` Only generate code for modules.
-  - `components:` Only generate code for components.
-  - `all`: Generate code for everything.
-- `jsSrcsDir`: The root folder where all your specs live.
-- `android`: Codegen configuration for Android (all optional):
-  - `.javaPackageName`: Configure the package name of the Android Java codegen output.
-- `ios`: Codegen configuration for iOS (all optional):
+  - `modules:` Gerar código apenas para módulos.
+  - `components:` Gerar código apenas para componentes.
+  - `all`: Gerar código para tudo.
+- `jsSrcsDir`: A pasta raiz onde todas as suas specs vivem.
+- `android`: Configuração do Codegen para Android (tudo opcional):
+  - `.javaPackageName`: Configurar o nome do pacote da saída do codegen Java do Android.
+- `ios`: Configuração do Codegen para iOS (tudo opcional):
   - `.modules[moduleName]:`
-    - `.className`: This module's ObjC class. Or, if it's a [C++-only module](/docs/next/the-new-architecture/pure-cxx-modules), its `RCTModuleProvider` class.
-    - `.unstableRequiresMainQueueSetup`: Initialize this module on the UI Thread, before running any JavaScript.
-    - `.conformsToProtocols`: Annotate which of these protocols this module conforms to any of the following protocols: [`RCTImageURLLoader`](https://github.com/facebook/react-native/blob/00d5caee9921b6c10be8f7d5b3903c6afe8dbefa/packages/react-native/Libraries/Image/RCTImageURLLoader.h#L26-L81), [`RCTURLRequestHandler`](https://github.com/facebook/react-native/blob/00d5caee9921b6c10be8f7d5b3903c6afe8dbefa/packages/react-native/React/Base/RCTURLRequestHandler.h#L11-L52), [`RCTImageDataDecoder`](https://github.com/facebook/react-native/blob/00d5caee9921b6c10be8f7d5b3903c6afe8dbefa/packages/react-native/Libraries/Image/RCTImageDataDecoder.h#L15-L53).
+    - `.className`: A classe ObjC deste módulo. Ou, se for um [módulo somente C++](/docs/next/the-new-architecture/pure-cxx-modules), sua classe `RCTModuleProvider`.
+    - `.unstableRequiresMainQueueSetup`: Inicializar este módulo na UI Thread, antes de executar qualquer JavaScript.
+    - `.conformsToProtocols`: Anotar a quais destes protocolos este módulo está em conformidade com qualquer um dos seguintes protocolos: [`RCTImageURLLoader`](https://github.com/facebook/react-native/blob/00d5caee9921b6c10be8f7d5b3903c6afe8dbefa/packages/react-native/Libraries/Image/RCTImageURLLoader.h#L26-L81), [`RCTURLRequestHandler`](https://github.com/facebook/react-native/blob/00d5caee9921b6c10be8f7d5b3903c6afe8dbefa/packages/react-native/React/Base/RCTURLRequestHandler.h#L11-L52), [`RCTImageDataDecoder`](https://github.com/facebook/react-native/blob/00d5caee9921b6c10be8f7d5b3903c6afe8dbefa/packages/react-native/Libraries/Image/RCTImageDataDecoder.h#L15-L53).
   - `.components[componentName]`:
-    - `.className`: This component's ObjC class (e.g: `TextInput` -> `RCTTextInput`).
+    - `.className`: A classe ObjC deste componente (ex: `TextInput` -> `RCTTextInput`).
 
-When **Codegen** runs, it searches among all the dependencies of the app, looking for JS files that respects some specific conventions, and it generates the required code:
+Quando o **Codegen** executa, ele busca entre todas as dependências do app, procurando por arquivos JS que respeitam algumas convenções específicas, e gera o código necessário:
 
-- Turbo Native Modules require that the spec files are prefixed with `Native`. For example, `NativeLocalStorage.ts` is a valid name for a spec file.
-- Native Fabric Components require that the spec files are suffixed with `NativeComponent`. For example, `WebViewNativeComponent.ts` is a valid name for a spec file.
+- Turbo Native Modules requerem que os arquivos de spec sejam prefixados com `Native`. Por exemplo, `NativeLocalStorage.ts` é um nome válido para um arquivo de spec.
+- Native Fabric Components requerem que os arquivos de spec sejam sufixados com `NativeComponent`. Por exemplo, `WebViewNativeComponent.ts` é um nome válido para um arquivo de spec.
 
-## Running **Codegen**
+## Executando o **Codegen**
 
-The rest of this guide assumes that you have a Native Turbo Module, a Native Fabric Component or both already set up in your project. We also assume that you have valid specification files in the `jsSrcsDir` specified in the `package.json`.
+O restante deste guia assume que você já tem um Native Turbo Module, um Native Fabric Component ou ambos configurados no seu projeto. Também assumimos que você tem arquivos de especificação válidos no `jsSrcsDir` especificado no `package.json`.
 
 ### Android
 
-**Codegen** for Android is integrated with the React Native Gradle Plugin (RNGP). The RNGP contains a task that can be invoked that reads the configurations defined in the `package.json` file and execute **Codegen**. To run the gradle task, first navigate inside the `android` folder of your project. Then run:
+O **Codegen** para Android está integrado com o React Native Gradle Plugin (RNGP). O RNGP contém uma tarefa que pode ser invocada e que lê as configurações definidas no arquivo `package.json` e executa o **Codegen**. Para executar a tarefa gradle, primeiro navegue dentro da pasta `android` do seu projeto. Então execute:
 
 ```bash
 ./gradlew generateCodegenArtifactsFromSchema
 ```
 
-This task invokes the `generateCodegenArtifactsFromSchema` command on all the imported projects of the app (the app and all the node modules which are linked to it). It generates the code in the corresponding `node_modules/<dependency>` folder. For example, if you have a Fabric Native Component whose Node module is called `my-fabric-component`, the generated code is located in the `SampleApp/node_modules/my-fabric-component/android/build/generated/source/codegen` path. For the app, the code is generated in the `android/app/build/generated/source/codegen` folder.
+Esta tarefa invoca o comando `generateCodegenArtifactsFromSchema` em todos os projetos importados do app (o app e todos os módulos node que estão vinculados a ele). Ela gera o código na pasta `node_modules/<dependency>` correspondente. Por exemplo, se você tem um Fabric Native Component cujo módulo Node é chamado `my-fabric-component`, o código gerado está localizado no caminho `SampleApp/node_modules/my-fabric-component/android/build/generated/source/codegen`. Para o app, o código é gerado na pasta `android/app/build/generated/source/codegen`.
 
-#### The Generated Code
+#### O Código Gerado
 
-After running the gradle command above, you will find the codegen code in the `SampleApp/android/app/build` folder. The structure will look like this:
+Após executar o comando gradle acima, você encontrará o código do codegen na pasta `SampleApp/android/app/build`. A estrutura ficará assim:
 
 ```
 build
@@ -133,31 +134,31 @@ build
             └── schema.json
 ```
 
-The generated code is split in two folders:
+O código gerado é dividido em duas pastas:
 
-- `java` which contains the platform specific code
-- `jni` which contains the C++ code required to let JS and Java interact correctly.
+- `java` que contém o código específico da plataforma
+- `jni` que contém o código C++ necessário para permitir que JS e Java interajam corretamente.
 
-In the `java` folder, you can find the Fabric Native component generated code in the `com/facebook/viewmanagers` subfolder.
+Na pasta `java`, você pode encontrar o código gerado do Fabric Native component na subpasta `com/facebook/viewmanagers`.
 
-- the `<nativeComponent>ManagerDelegate.java` contains the methods that the `ViewManager` can call on the custom Native Component
-- the `<nativeComponent>ManagerInterface.java` contains the interface of the `ViewManager`.
+- o `<nativeComponent>ManagerDelegate.java` contém os métodos que o `ViewManager` pode chamar no Native Component customizado
+- o `<nativeComponent>ManagerInterface.java` contém a interface do `ViewManager`.
 
-In the folder whose name was set up in the `codegenConfig.android.javaPackageName`, instead, you can find the abstract class that a Turbo Native Module has to implement to carry out its tasks.
+Na pasta cujo nome foi definido no `codegenConfig.android.javaPackageName`, por outro lado, você pode encontrar a classe abstrata que um Turbo Native Module deve implementar para realizar suas tarefas.
 
-In the `jni` folder, finally, there is all the boilerplate code to connect JS to Android.
+Na pasta `jni`, finalmente, há todo o código boilerplate para conectar JS ao Android.
 
-- `<codegenConfig.name>.h` this contains the interface of your custom C++ Turbo Native Modules.
-- `<codegenConfig.name>-generated.cpp` this contains the glue code of your custom C++ Turbo Native Modules.
-- `react/renderer/components/<codegenConfig.name>`: this folder contains all the glue-code required by your custom component.
+- `<codegenConfig.name>.h` contém a interface dos seus Turbo Native Modules C++ customizados.
+- `<codegenConfig.name>-generated.cpp` contém o código de integração dos seus Turbo Native Modules C++ customizados.
+- `react/renderer/components/<codegenConfig.name>`: esta pasta contém todo o código de integração necessário pelo seu componente customizado.
 
-This structure has been generated by using the value `all` for the `codegenConfig.type` field. If you use the value `modules`, expect to see no `react/renderer/components/` folder. If you use the value `components`, expect not to see any of the other files.
+Esta estrutura foi gerada usando o valor `all` para o campo `codegenConfig.type`. Se você usar o valor `modules`, espere não ver nenhuma pasta `react/renderer/components/`. Se você usar o valor `components`, espere não ver nenhum dos outros arquivos.
 
 ### iOS
 
-**Codegen** for iOS relies on some Node scripts that are invoked during the build process. The scripts are located in the `SampleApp/node_modules/react-native/scripts/` folder.
+O **Codegen** para iOS depende de alguns scripts Node que são invocados durante o processo de compilação. Os scripts estão localizados na pasta `SampleApp/node_modules/react-native/scripts/`.
 
-The main script is the `generate-codegen-artifacts.js` script. To invoke the script, you can run this command from the root folder of your app:
+O script principal é o `generate-codegen-artifacts.js`. Para invocar o script, você pode executar este comando a partir da pasta raiz do seu app:
 
 ```bash
 node node_modules/react-native/scripts/generate-codegen-artifacts.js
@@ -173,15 +174,15 @@ Options:
   -o, --outputPath      Path where generated artifacts will be output to.
 ```
 
-where:
+onde:
 
-- `--path` is the path to the root folder of your app.
-- `--outputPath` is the destination where **Codegen** will write the generated files.
-- `--targetPlatform` is the platform you'd like to generate the code for.
+- `--path` é o caminho para a pasta raiz do seu app.
+- `--outputPath` é o destino onde o **Codegen** escreverá os arquivos gerados.
+- `--targetPlatform` é a plataforma para a qual você gostaria de gerar o código.
 
-#### The Generated Code
+#### O Código Gerado
 
-Running the script with these arguments:
+Executando o script com estes argumentos:
 
 ```shell
 node node_modules/react-native/scripts/generate-codegen-artifacts.js \
@@ -190,7 +191,7 @@ node node_modules/react-native/scripts/generate-codegen-artifacts.js \
     --targetPlatform ios
 ```
 
-Will generate these files in the `ios/build` folder:
+Irá gerar estes arquivos na pasta `ios/build`:
 
 ```
 build
@@ -225,12 +226,12 @@ build
                         └── States.h
 ```
 
-Part of these generated files are used by React Native in the Core. Then there is a set of files which contains the same name you specified in the package.json `codegenConfig.name` field.
+Parte desses arquivos gerados são usados pelo React Native no Core. Depois há um conjunto de arquivos que contêm o mesmo nome que você especificou no campo `codegenConfig.name` do package.json.
 
-- `<codegenConfig.name>/<codegenConfig.name>.h`: this contains the interface of your custom iOS Turbo Native Modules.
-- `<codegenConfig.name>/<codegenConfig.name>-generated.mm`: this contains the glue code of your custom iOS Turbo Native Modules.
-- `<codegenConfig.name>JSI.h`: this contains the interface of your custom C++ Turbo Native Modules.
-- `<codegenConfig.name>JSI-generated.h`: this contains the glue code of your custom C++ Turbo Native Modules.
-- `react/renderer/components/<codegenConfig.name>`: this folder contains all the glue-code required by your custom component.
+- `<codegenConfig.name>/<codegenConfig.name>.h`: contém a interface dos seus Turbo Native Modules iOS customizados.
+- `<codegenConfig.name>/<codegenConfig.name>-generated.mm`: contém o código de integração dos seus Turbo Native Modules iOS customizados.
+- `<codegenConfig.name>JSI.h`: contém a interface dos seus Turbo Native Modules C++ customizados.
+- `<codegenConfig.name>JSI-generated.h`: contém o código de integração dos seus Turbo Native Modules C++ customizados.
+- `react/renderer/components/<codegenConfig.name>`: esta pasta contém todo o código de integração necessário pelo seu componente customizado.
 
-This structure has been generated by using the value `all` for the `codegenConfig.type` field. If you use the value `modules`, expect to see no `react/renderer/components/` folder. If you use the value `components`, expect not to see any of the other files.
+Esta estrutura foi gerada usando o valor `all` para o campo `codegenConfig.type`. Se você usar o valor `modules`, espere não ver nenhuma pasta `react/renderer/components/`. Se você usar o valor `components`, espere não ver nenhum dos outros arquivos.

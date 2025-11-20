@@ -1,113 +1,114 @@
 ---
-title: 'React Native Core Contributor Summit 2024 Recap'
+ia-translated: true
+title: 'Resumo da Cúpula de Contribuidores do React Native Core 2024'
 authors: [thymikee, szymonrybczak, mojavad, stmoy]
 image: https://raw.githubusercontent.com/facebook/react-native-website/9915d9c0b32ef348958c8119f6e83e571c1c0ba3/website/static/blog/assets/react-native-core-contributor-summit-2024-1.jpeg
 tags: [engineering]
 date: 2025-02-03
 ---
 
-Every year, the core contributors in the React Native Community get together with the React Native team to collaboratively shape the direction of this project.
+Todos os anos, os principais contribuidores da Comunidade React Native se reúnem com a equipe do React Native para moldar colaborativamente a direção deste projeto.
 
-Last year was no different—with small exception. We usually meet a day before [React Universe Conf](https://www.reactuniverseconf.com) (formerly React Native EU) at [Callstack](https://www.callstack.com/open-source) HQ in Wrocław. In 2024, learning from past experiences, we hosted the Summit for two consecutive days, so that we can have more unstructured time together.
+O ano passado não foi diferente—com uma pequena exceção. Normalmente nos reunimos um dia antes da [React Universe Conf](https://www.reactuniverseconf.com) (anteriormente React Native EU) no escritório da [Callstack](https://www.callstack.com/open-source) em Wrocław. Em 2024, aprendendo com experiências passadas, hospedamos a Cúpula por dois dias consecutivos, para que pudéssemos ter mais tempo não estruturado juntos.
 
 ![all-participants](../static/blog/assets/react-native-core-contributor-summit-2024-1.jpeg)
 
 <!--truncate-->
 
-This annual tradition has become a valuable opportunity for contributors to share insights and voice their concerns, and for the core team to share their plans and gather feedback from key contributors to the React Native ecosystem—including partner companies, individual library authors and friends.
+Esta tradição anual se tornou uma oportunidade valiosa para os contribuidores compartilharem insights e expressarem suas preocupações, e para a equipe central compartilhar seus planos e coletar feedback de contribuidores-chave para o ecossistema React Native—incluindo empresas parceiras, autores individuais de bibliotecas e amigos.
 
-We divided the Summit into two tracks covering following topics:
+Dividimos a Cúpula em duas trilhas cobrindo os seguintes tópicos:
 
 - [Releases](#releases)
-- [What's next after the New Architecture?](#whats-next-after-the-new-architecture)
-- [Web APIs spec for Native Modules](#web-apis-for-native-modules)
+- [O que vem depois da New Architecture?](#whats-next-after-the-new-architecture)
+- [Especificação de Web APIs para Native Modules](#web-apis-for-native-modules)
 - [LeanCore 2.0](#leancore-20)
-- [Nitro Modules - Unblocking View Components by exposing props as jsi::Values](#nitro-modules---unblocking-view-components-by-exposing-props-as-jsivalues)
+- [Nitro Modules - Desbloqueando View Components ao expor props como jsi::Values](#nitro-modules---unblocking-view-components-by-exposing-props-as-jsivalues)
 - [Out Of Tree Platforms & CocoaPods](#out-of-tree-platforms--cocoapods)
-- [React Native on Desktop](#react-native-on-desktop)
+- [React Native em Desktop](#react-native-on-desktop)
 
-In this blog post, we’d like to give you a sneak peek of the results of this gathering.
+Neste post do blog, gostaríamos de dar a você uma prévia dos resultados deste encontro.
 
 ## Releases
 
-We had an extensive discussion about the release process for React Native. Core Team appreciates the value of having contributors from outside Meta involved in releases and emphasizes the importance of having nightly releases, which are particularly beneficial for Out-of-Tree platforms like React Native visionOS, library maintainers (Reanimated) and frameworks (Expo). We discussed the frequency of releases, with some folks asking for more frequent releases to ship fixes faster, while others expressed concerns about the impact on 3rd party libraries and upgrading efforts.
+Tivemos uma discussão extensa sobre o processo de release do React Native. A Equipe Central aprecia o valor de ter contribuidores de fora da Meta envolvidos nos releases e enfatiza a importância de ter nightly releases, que são particularmente benéficos para plataformas Out-of-Tree como React Native visionOS, mantenedores de bibliotecas (Reanimated) e frameworks (Expo). Discutimos a frequência de releases, com algumas pessoas pedindo releases mais frequentes para enviar correções mais rapidamente, enquanto outras expressaram preocupações sobre o impacto em bibliotecas de terceiros e esforços de atualização.
 
-We also brainstormed ways to reduce unintentional breaking changes and improve communication about compatibility between React Native and 3rd party dependencies.
+Também fizemos brainstorming de maneiras de reduzir breaking changes não intencionais e melhorar a comunicação sobre compatibilidade entre React Native e dependências de terceiros.
 
-This session showed how complex it is to manage releases for React Native, and how delicate this topic is, given all the different parts of the ecosystem that need to be considered.
+Esta sessão mostrou como é complexo gerenciar releases para React Native, e como este tópico é delicado, dados todas as diferentes partes do ecossistema que precisam ser consideradas.
 
-## What's next after the New Architecture?
+## O que vem depois da New Architecture?
 
-Now that the New Architecture has shipped as stable, we discussed what we should focus on next. What could be the next big thing? The topics revolved around:
+Agora que a New Architecture foi lançada como estável, discutimos no que devemos focar em seguida. Qual poderia ser a próxima grande coisa? Os tópicos giraram em torno de:
 
-- **Web compatibility** – concluded in the discussion around direction of the React Strict DOM project, which should be treated as a temporary polyfill, while the Xplat team implements proper cross-platform functionality into the core of React Native.
-- **Stabilizing the core API** – turned out we need more consensus on what this means for app developers, library authors, Out-of-Tree platforms. E.g. it may be necessary to extract platform-native logic for iOS and Android from the shared C++ codebase. Part of which was covered by the LeanCore 2.0 discussion.
-- **Old architecture support** – as expected, the team confirmed that new React 19 features based on concurrent rendering, won’t work in old architecture. New features are primarily targeted for the new architecture. Due to blockers in React 19 release schedule it’s still not clear where to draw the line between functionality supported by both new and old architecture.
-- **3rd party libraries for React Native** – today we library authors can use TurboModules, ExpoModules, recently NitroModules to achieve the same goal of bridging native platform functionality. We need better documentation on how to make it well.
-- **Brownfield docs** – at the time of the summit, the official documentation for integrating React Native into native apps was quite dated. Since then the team has followed through with up-to-date and simpler docs for Android and iOS.
-- **Tree-shaking for Metro web** – core Metro team is open to merge the work from the Expo team in this area.
+- **Compatibilidade Web** – concluído na discussão sobre a direção do projeto React Strict DOM, que deve ser tratado como um polyfill temporário, enquanto a equipe Xplat implementa funcionalidade cross-platform adequada no núcleo do React Native.
+- **Estabilização da API central** – descobrimos que precisamos de mais consenso sobre o que isso significa para desenvolvedores de aplicativos, autores de bibliotecas, plataformas Out-of-Tree. Por exemplo, pode ser necessário extrair a lógica nativa da plataforma para iOS e Android da base de código C++ compartilhada. Parte disso foi coberto pela discussão do LeanCore 2.0.
+- **Suporte à old architecture** – como esperado, a equipe confirmou que os novos recursos do React 19 baseados em renderização concorrente não funcionarão na old architecture. Novos recursos são direcionados principalmente para a new architecture. Devido a bloqueios no cronograma de lançamento do React 19, ainda não está claro onde traçar a linha entre funcionalidades suportadas por ambas as arquiteturas nova e antiga.
+- **Bibliotecas de terceiros para React Native** – hoje nós autores de bibliotecas podemos usar TurboModules, ExpoModules, recentemente NitroModules para alcançar o mesmo objetivo de fazer a ponte com funcionalidades nativas da plataforma. Precisamos de melhor documentação sobre como fazer isso bem.
+- **Documentação Brownfield** – no momento da cúpula, a documentação oficial para integrar React Native em aplicativos nativos estava bastante desatualizada. Desde então, a equipe seguiu adiante com documentação atualizada e mais simples para Android e iOS.
+- **Tree-shaking para Metro web** – a equipe central do Metro está aberta para fazer merge do trabalho da equipe Expo nesta área.
 
-## Web APIs for Native Modules
+## Web APIs para Native Modules
 
-This session was dedicated to Microsoft's RFC revolving around the idea of bringing a subset of Web APIs to React Native. It aims to enhance React Native’s scalability and attract more web developers by leveraging familiar APIs. Opening access to a wealth of existing open-source web libraries that don't have explicit React Native support.
+Esta sessão foi dedicada ao RFC da Microsoft girando em torno da ideia de trazer um subconjunto de Web APIs para o React Native. Visa melhorar a escalabilidade do React Native e atrair mais desenvolvedores web aproveitando APIs familiares. Abrindo acesso a uma riqueza de bibliotecas web open-source existentes que não têm suporte explícito para React Native.
 
 ![web-apis](../static/blog/assets/react-native-core-contributor-summit-2024-2.jpeg)
 
-Standardizing on Web API specifications is not only beneficial but also essential for React Native growth, and aligns well with our Many Platforms vision and react-strict-dom project. The web offers a unified interface through its specifications, which React Native community modules currently lack. Microsoft has identified around 200 essential Web APIs that could be implemented first for platforms they support: iOS, Android, Windows and macOS.
+Padronizar em especificações de Web API não é apenas benéfico, mas também essencial para o crescimento do React Native, e se alinha bem com nossa visão de Muitas Plataformas e o projeto react-strict-dom. A web oferece uma interface unificada através de suas especificações, que os módulos da comunidade React Native atualmente não têm. A Microsoft identificou cerca de 200 Web APIs essenciais que poderiam ser implementadas primeiro para as plataformas que eles suportam: iOS, Android, Windows e macOS.
 
-We encourage library developers to align their APIs with web specifications whenever possible, as this standardization will improve code portability and developer experience across platforms.
+Encorajamos desenvolvedores de bibliotecas a alinhar suas APIs com especificações web sempre que possível, pois essa padronização melhorará a portabilidade do código e a experiência do desenvolvedor entre plataformas.
 
-While the proposal seems beneficial for the future of React Native, we're still brainstorming the next steps forward. One concern we noticed is governance of the APIs, and whether they’d need to live in a separate repository from the platform implementations. Another around diverging from the official specification in case a specific platform allows for behaviors not specified by the W3C. We would need to figure out how to avoid bundling unnecessary modules, e.g. with a Babel plugin. Not to mention the scope of such initiative is quite large.
+Embora a proposta pareça benéfica para o futuro do React Native, ainda estamos fazendo brainstorming dos próximos passos adiante. Uma preocupação que notamos é a governança das APIs, e se elas precisariam viver em um repositório separado das implementações da plataforma. Outra em torno de divergir da especificação oficial no caso de uma plataforma específica permitir comportamentos não especificados pelo W3C. Precisaríamos descobrir como evitar empacotar módulos desnecessários, por exemplo, com um plugin Babel. Sem mencionar que o escopo de tal iniciativa é bastante grande.
 
-The session conclusion reinforced two key points: First, there is strong alignment across the React Native community on adopting web-compatible specifications where possible. Second, we need to establish a clear technical strategy for how these Web API implementations can be maintained separately for different platforms. Microsoft together with Callstack could work on refining the original RFC and produce a proof of concept implementation for a smaller number of APIs as a community initiative. This incremental approach will help us validate the design and developer experience before expanding the scope.
+A conclusão da sessão reforçou dois pontos-chave: Primeiro, há um forte alinhamento em toda a comunidade React Native sobre a adoção de especificações compatíveis com a web onde possível. Segundo, precisamos estabelecer uma estratégia técnica clara para como essas implementações de Web API podem ser mantidas separadamente para diferentes plataformas. A Microsoft juntamente com a Callstack poderiam trabalhar em refinar o RFC original e produzir uma prova de conceito de implementação para um número menor de APIs como uma iniciativa da comunidade. Esta abordagem incremental nos ajudará a validar o design e a experiência do desenvolvedor antes de expandir o escopo.
 
 ## LeanCore 2.0
 
-In 2019, the React Native team started the Lean Core initiative. The goal was to tackle the surface area of React Native’s core and reduce APIs and components that were outdated and legacy. Since then, the React Native components and API surfaces have been long overdue another round of clean up.
+Em 2019, a equipe do React Native iniciou a iniciativa Lean Core. O objetivo era abordar a área de superfície do núcleo do React Native e reduzir APIs e componentes que estavam desatualizados e legados. Desde então, os componentes e superfícies de API do React Native estão há muito tempo atrasados para outra rodada de limpeza.
 
-Today, there are many components that are not actively being maintained with better community alternatives. Additionally, there are components that have duplicates that should eventually be consolidated for maintainability.
+Hoje, existem muitos componentes que não estão sendo mantidos ativamente com melhores alternativas da comunidade. Além disso, existem componentes que têm duplicatas que eventualmente devem ser consolidadas para manutenibilidade.
 
-On the API side, a lot of the JS layer APIs are tied to native iOS & Android implementations, rather than being truly platform agnostic. For example, with Pressable, we have props like `android_disableSound` and `android_ripple`. Ideally, React Native components should have the smallest possible API surface that is not tied to any specific platform.
+No lado da API, muitas das APIs da camada JS estão vinculadas a implementações nativas de iOS e Android, em vez de serem verdadeiramente agnósticas de plataforma. Por exemplo, com Pressable, temos props como `android_disableSound` e `android_ripple`. Idealmente, os componentes React Native devem ter a menor superfície de API possível que não esteja vinculada a nenhuma plataforma específica.
 
-As Out-of-Tree platforms are growing and being adopted more by the ecosystem, there needs to be a path to reduce the component and API surface of React Native core, reducing the load on the React Native core team, and also making it significantly easier for Out-of-Tree platform & library maintainers to stay up-to-date.
+À medida que as plataformas Out-of-Tree estão crescendo e sendo mais adotadas pelo ecossistema, precisa haver um caminho para reduzir a superfície de componentes e API do núcleo do React Native, reduzindo a carga na equipe central do React Native, e também tornando significativamente mais fácil para mantenedores de plataformas e bibliotecas Out-of-Tree se manterem atualizados.
 
-As an added bonus, this would make it easier for beginner app developers to pick up React Native, as there are less duplicated components and "gotchas" for them to learn. Where there is a better community alternative, developers can be signposted and encouraged to use the community alternatives available.
+Como um bônus adicional, isso tornaria mais fácil para desenvolvedores iniciantes de aplicativos aprender React Native, pois há menos componentes duplicados e "pegadinhas" para eles aprenderem. Onde há uma melhor alternativa da comunidade, os desenvolvedores podem ser orientados e encorajados a usar as alternativas da comunidade disponíveis.
 
-During the session, we discussed:
+Durante a sessão, discutimos:
 
-- The high level motivations of Lean Core and the benefits to the parties involved (developers, library maintainers, Meta)
-- An aggregated view of what components are being used in some real-world production React Native apps
-- The criteria of what is a candidate to be removed from core
-- A clear action plan for executing Lean Core 2.0 with:
-  - The high-level process for deprecation
-  - Handling cases where Meta is using components internally that have better community alternatives,
+- As motivações de alto nível do Lean Core e os benefícios para as partes envolvidas (desenvolvedores, mantenedores de bibliotecas, Meta)
+- Uma visão agregada de quais componentes estão sendo usados em alguns aplicativos React Native de produção do mundo real
+- Os critérios do que é um candidato a ser removido do núcleo
+- Um plano de ação claro para executar o Lean Core 2.0 com:
+  - O processo de alto nível para depreciação
+  - Tratamento de casos onde a Meta está usando componentes internamente que têm melhores alternativas da comunidade,
 
-As a next step, a group of the core contributors will look at collecting more telemetry and data, assessing community alternatives, and putting together an RFC detailing the proposed changes.
+Como próximo passo, um grupo dos principais contribuidores examinará a coleta de mais telemetria e dados, avaliando alternativas da comunidade, e montando um RFC detalhando as mudanças propostas.
 
-## Nitro Modules - Unblocking View Components by exposing props as jsi::Values
+## Nitro Modules - Desbloqueando View Components ao expor props como jsi::Values
 
-Recently, Marc Rousavy introduced Nitro Modules as an alternative approach to creating Native Modules. Nitro Modules utilize experimental C++ Swift Interop and incorporate a bunch of enhancements that can lead to improved performance in certain scenarios. However, during this session, we discussed the various trade-offs involved between Nitro Modules and existing TurboModules.
+Recentemente, Marc Rousavy introduziu Nitro Modules como uma abordagem alternativa para criar Native Modules. Nitro Modules utilizam C++ Swift Interop experimental e incorporam um monte de melhorias que podem levar a desempenho aprimorado em certos cenários. No entanto, durante esta sessão, discutimos as várias compensações envolvidas entre Nitro Modules e TurboModules existentes.
 
-While Nitro Modules offer some performance benefits, they also have limitations and considerations that need to be addressed. For example, the use of experimental interop features might introduce complexity or compatibility issues that are not present in TurboModules. Our discussion focused on these trade-offs and the potential for upstreaming some of Nitro Modules' improvements into React Native Core, which could allow developers to benefit from more performant modules for everyone.
+Embora os Nitro Modules ofereçam alguns benefícios de desempenho, eles também têm limitações e considerações que precisam ser abordadas. Por exemplo, o uso de recursos de interop experimental pode introduzir complexidade ou problemas de compatibilidade que não estão presentes nos TurboModules. Nossa discussão se concentrou nessas compensações e no potencial de fazer upstream de algumas melhorias dos Nitro Modules para o React Native Core, o que poderia permitir que os desenvolvedores se beneficiassem de módulos mais performáticos para todos.
 
 ## Out-of-Tree Platforms & CocoaPods
 
-Out-of-Tree Platforms presents the full power of React Native, where we can share one JS codebase between different platforms running on our mobile devices, desktops or even on VR/XR devices. Creating such a platform currently isn’t the easiest process, actually there are no guidelines on how things should be created, developed and maintained. Also React Native Core in a way is tied to Android and iOS platforms. In the future we could aim for a scenario where all the platforms are treated equally and integrate with a C++/JS core through the same APIs.
+Out-of-Tree Platforms apresenta todo o poder do React Native, onde podemos compartilhar uma base de código JS entre diferentes plataformas rodando em nossos dispositivos móveis, desktops ou até mesmo em dispositivos VR/XR. Criar tal plataforma atualmente não é o processo mais fácil, na verdade não há diretrizes sobre como as coisas devem ser criadas, desenvolvidas e mantidas. Também o React Native Core de certa forma está vinculado às plataformas Android e iOS. No futuro, poderíamos almejar um cenário onde todas as plataformas sejam tratadas igualmente e se integrem com um núcleo C++/JS através das mesmas APIs.
 
 ![oot-platforms](../static/blog/assets/react-native-core-contributor-summit-2024-3.jpeg)
 
-During this session maintainers of different platforms discussed what are the problems, what they struggle with and what should be the solution to unify the process of creating and maintaining new Out-of-Tree platforms.
+Durante esta sessão, mantenedores de diferentes plataformas discutiram quais são os problemas, com o que eles lutam e qual deveria ser a solução para unificar o processo de criar e manter novas plataformas Out-of-Tree.
 
-Another aspect of this session was to discuss CocoaPods and future plans related to managing native dependencies. Recently the CocoaPods team announced that they’ve moved to maintenance mode and new major improvements or features won’t be shipped. There are various alternatives that could be used and during this session we discussed their pros and cons, and what migration would look like.
+Outro aspecto desta sessão foi discutir CocoaPods e planos futuros relacionados ao gerenciamento de dependências nativas. Recentemente a equipe CocoaPods anunciou que mudou para modo de manutenção e novas melhorias ou recursos importantes não serão enviados. Existem várias alternativas que poderiam ser usadas e durante esta sessão discutimos seus prós e contras, e como seria a migração.
 
-## React Native on Desktop
+## React Native em Desktop
 
-Steven and Saad from Microsoft, maintainers of react-native-windows and react-native-macos, hosted a session to listen and gather feedback from contributors related to Desktop platforms. Topics discussed included exploring how to increase adoption of React Native for Desktop (such as having a dedicated workflow in Visual Studio, or exposing desktop as part of Nx), as well as how to support Expo, which is a continual pain point for more adoption.
+Steven e Saad da Microsoft, mantenedores do react-native-windows e react-native-macos, hospedaram uma sessão para ouvir e coletar feedback de contribuidores relacionados a plataformas Desktop. Os tópicos discutidos incluíram explorar como aumentar a adoção do React Native para Desktop (como ter um workflow dedicado no Visual Studio, ou expor desktop como parte do Nx), bem como como suportar Expo, que é um ponto de dor contínuo para mais adoção.
 
-There’s a big discrepancy in availability of community modules between macOS and Windows, largely due to the fact that iOS code is mostly compatible with macOS, while RNW needs bespoke implementations. While working on the New Architecture for React Native for Windows, the team sees potential in C++ modules allowing for even more code sharing across platforms which will hopefully ease the burden of targeting desktop platforms. It’s worth noting that on the community side Software Mansion is working on adding desktop support for their most popular modules, such as React Native Screens, Gesture Handler and Reanimated.
+Há uma grande discrepância na disponibilidade de módulos da comunidade entre macOS e Windows, em grande parte devido ao fato de que o código iOS é principalmente compatível com macOS, enquanto RNW precisa de implementações sob medida. Ao trabalhar na New Architecture para React Native para Windows, a equipe vê potencial em módulos C++ permitindo ainda mais compartilhamento de código entre plataformas, o que esperamos facilite o fardo de ter como alvo plataformas desktop. Vale notar que no lado da comunidade a Software Mansion está trabalhando em adicionar suporte para desktop para seus módulos mais populares, como React Native Screens, Gesture Handler e Reanimated.
 
 ---
 
-We’re still impressed by how spending several hours together for a couple of days resulted in so much knowledge-sharing and cross-pollination of ideas. During this summit, we planted the seeds for initiatives that will help us improve and re-shape the React Native ecosystem.
+Ainda estamos impressionados com como passar várias horas juntos por alguns dias resultou em tanto compartilhamento de conhecimento e polinização cruzada de ideias. Durante esta cúpula, plantamos as sementes para iniciativas que nos ajudarão a melhorar e remodelar o ecossistema React Native.
 
-If you’re interested in joining the development of React Native, make sure you join our open initiatives and read the [contribution guide](https://reactnative.dev/contributing/overview) we have on our website. We hope to meet you in person as well in the future!
+Se você está interessado em participar do desenvolvimento do React Native, certifique-se de participar de nossas iniciativas abertas e leia o [guia de contribuição](https://reactnative.dev/contributing/overview) que temos em nosso site. Esperamos te encontrar pessoalmente também no futuro!

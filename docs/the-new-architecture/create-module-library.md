@@ -1,53 +1,55 @@
-# Create a Library for Your Module
+<!-- ia-translated: true -->
 
-React Native has a rich ecosystem of libraries to solve common problems. We collect React Native libraries in the [reactnative.directory](https://reactnative.directory) website, and this is a great resource to bookmark for every React Native developer.
+# Crie uma Biblioteca para Seu Módulo
 
-Sometimes, you might be working on a module that is worth extracting in a separate library for code reuse. This can be a library that you want to reuse in all your apps, a library that you want to distribute to the ecosystem as an open source component, or even a library you'd like to sell.
+React Native tem um ecossistema rico de bibliotecas para resolver problemas comuns. Coletamos bibliotecas React Native no site [reactnative.directory](https://reactnative.directory), e este é um ótimo recurso para marcar para todo desenvolvedor React Native.
 
-In this guide, you'll learn:
+Às vezes, você pode estar trabalhando em um módulo que vale a pena extrair em uma biblioteca separada para reutilização de código. Isso pode ser uma biblioteca que você quer reutilizar em todos os seus apps, uma biblioteca que você quer distribuir para o ecossistema como um componente open source, ou até mesmo uma biblioteca que você gostaria de vender.
 
-- how to extract a module into a library
-- how to distribute the library using NPM
+Neste guia, você aprenderá:
 
-## Extract the Module into a Library
+- como extrair um módulo em uma biblioteca
+- como distribuir a biblioteca usando NPM
 
-You can use the [`create-react-native-library`](https://callstack.github.io/react-native-builder-bob/create) tool to create a new library. This tool sets up a new library with all the boilerplate code that is needed: all the configuration files and all files required by the various platforms. It also comes with a nice interactive menu to guide you through the creation of the library.
+## Extraia o Módulo em uma Biblioteca
 
-To extract a module into a separate library, you can follow these steps:
+Você pode usar a ferramenta [`create-react-native-library`](https://callstack.github.io/react-native-builder-bob/create) para criar uma nova biblioteca. Esta ferramenta configura uma nova biblioteca com todo o código boilerplate necessário: todos os arquivos de configuração e todos os arquivos exigidos pelas várias plataformas. Ela também vem com um menu interativo agradável para guiá-lo através da criação da biblioteca.
 
-1. Create the new library
-2. Move the code from the App to the Library
-3. Update the code to reflect the new structure
-4. Publish it.
+Para extrair um módulo em uma biblioteca separada, você pode seguir estes passos:
 
-### 1. Create a Library
+1. Crie a nova biblioteca
+2. Mova o código do App para a Biblioteca
+3. Atualize o código para refletir a nova estrutura
+4. Publique-o.
 
-1. Start the creation process by running the command:
+### 1. Crie uma Biblioteca
+
+1. Inicie o processo de criação executando o comando:
 
 ```sh
 npx create-react-native-library@latest <Name of Your Library>
 ```
 
-2. Add a name for your module. It must be a valid npm name, so it should be all lowercase. You can use `-` to separate words.
-3. Add a description for the package.
-4. Continue filling the form until you reach the question _"What type of library do you want to develop?"_
+2. Adicione um nome para seu módulo. Deve ser um nome npm válido, então deve ser todo em minúsculas. Você pode usar `-` para separar palavras.
+3. Adicione uma descrição para o pacote.
+4. Continue preenchendo o formulário até chegar à pergunta _"What type of library do you want to develop?"_
    ![What type of Library](/docs/assets/what-library.png)
-5. For the sake of this guide, select the _Turbo module_ option. Notice that you can create libraries for both New Architecture and Legacy Architecture.
-6. Then, you can choose whether you want a library that access the platform (Kotlin & Objective-C) or a shared C++ library (C++ for Android and iOS).
-7. Finally, select the `Test App` as last option. This option creates the library with a separate app already configured within the library folder.
+5. Para o propósito deste guia, selecione a opção _Turbo module_. Note que você pode criar bibliotecas tanto para New Architecture quanto para Legacy Architecture.
+6. Então, você pode escolher se quer uma biblioteca que acessa a plataforma (Kotlin & Objective-C) ou uma biblioteca C++ compartilhada (C++ para Android e iOS).
+7. Finalmente, selecione o `Test App` como última opção. Esta opção cria a biblioteca com um app separado já configurado dentro da pasta da biblioteca.
 
-Once the interactive prompt is done, the tool creates a folder whose structure looks like this in Visual Studio Code:
+Uma vez que o prompt interativo termine, a ferramenta cria uma pasta cuja estrutura se parece com isto no Visual Studio Code:
 
 <img className="half-size" alt="Folder structure after initializing a new library." src="/docs/assets/turbo-native-modules/c++visualstudiocode.webp" />
 
-Feel free to explore the code that has been created for you. However, the most important parts:
+Sinta-se livre para explorar o código que foi criado para você. No entanto, as partes mais importantes:
 
-- The `android` folder: this is where the Android code lives
-- The `cpp` folder: this is where the c++ code lives
-- The `ios` folder: this is where the iOS code lives
-- The `src` folder: this is where the JS code lives.
+- A pasta `android`: é aqui que o código Android vive
+- A pasta `cpp`: é aqui que o código c++ vive
+- A pasta `ios`: é aqui que o código iOS vive
+- A pasta `src`: é aqui que o código JS vive.
 
-The `package.json` is already configured with all the information that we provided to the `create-react-native-library` tool, including the name and the description of the package. Notice that the `package.json` is also already configured to run Codegen.
+O `package.json` já está configurado com todas as informações que fornecemos à ferramenta `create-react-native-library`, incluindo o nome e a descrição do pacote. Note que o `package.json` também já está configurado para executar Codegen.
 
 ```json
   "codegenConfig": {
@@ -64,16 +66,16 @@ The `package.json` is already configured with all the information that we provid
   },
 ```
 
-Finally, the library contains already all the infrastructure to let the library be linked with iOS and Android.
+Finalmente, a biblioteca já contém toda a infraestrutura para permitir que a biblioteca seja linkada com iOS e Android.
 
-### 2. Copy the Code over from Your App
+### 2. Copie o Código do Seu App
 
-The rest of the guide assumes that you have a local Turbo Native Module in your app, created following the guidelines shown in the other guides in the website: platform specific Turbo Native Modules, or [cross-platform Turbo Native Modules](./pure-cxx-modules). But it works also for Components and legacy architecture modules and components. You'll have to adapt the files you need to copy and update.
+O resto do guia assume que você tem um Turbo Native Module local no seu app, criado seguindo as diretrizes mostradas nos outros guias no site: Turbo Native Modules específicos de plataforma, ou [Turbo Native Modules multiplataforma](./pure-cxx-modules). Mas funciona também para Components e módulos e componentes de legacy architecture. Você terá que adaptar os arquivos que precisa copiar e atualizar.
 
 <!-- TODO: add links for Turbo Native Modules -->
 
-1. **[Not required for legacy architecture modules and components]** Move the code you have in the `specs` folder in your app into the `src` folder created by the `create-react-native-library` folder.
-2. Update the `index.ts` file to properly export the Turbo Native Module spec so that it is accessible from the library. For example:
+1. **[Não necessário para módulos e componentes de legacy architecture]** Mova o código que você tem na pasta `specs` no seu app para a pasta `src` criada pela pasta `create-react-native-library`.
+2. Atualize o arquivo `index.ts` para exportar adequadamente a spec do Turbo Native Module para que seja acessível da biblioteca. Por exemplo:
 
 ```ts
 import NativeSampleModule from './NativeSampleModule';
@@ -81,34 +83,34 @@ import NativeSampleModule from './NativeSampleModule';
 export default NativeSampleModule;
 ```
 
-3. Copy the native module over:
-   - Replace the code in the `android/src/main/java/com/<name-of-the-module>` with the code you wrote in the app for your native module, if any.
-   - Replace the code in the `ios` folder with the code you wrote in your app for your native module, if any.
-   - Replace the code in the `cpp` folder with the code you wrote in your app for your native module, if any.
+3. Copie o native module:
+   - Substitua o código em `android/src/main/java/com/<name-of-the-module>` com o código que você escreveu no app para seu native module, se houver.
+   - Substitua o código na pasta `ios` com o código que você escreveu no seu app para seu native module, se houver.
+   - Substitua o código na pasta `cpp` com o código que você escreveu no seu app para seu native module, se houver.
 
-4. **[Not required for legacy architecture modules and components]** Update all the references from the previous spec name to the new spec name, the one that is defined in the `codegenConfig` field of the library's `package.json`. For example, if in the app `package.json` you set `AppSpecs` as `codegenConfig.name` and in the library it is called `RNNativeSampleModuleSpec`, you have to replace every occurrence of `AppSpecs` with `RNNativeSampleModuleSpec`.
+4. **[Não necessário para módulos e componentes de legacy architecture]** Atualize todas as referências do nome da spec anterior para o novo nome da spec, aquele que está definido no campo `codegenConfig` do `package.json` da biblioteca. Por exemplo, se no `package.json` do app você definiu `AppSpecs` como `codegenConfig.name` e na biblioteca é chamado `RNNativeSampleModuleSpec`, você tem que substituir cada ocorrência de `AppSpecs` com `RNNativeSampleModuleSpec`.
 
-That's it! You have moved all the required code out of your app and in a separate library.
+É isso! Você moveu todo o código necessário para fora do seu app e em uma biblioteca separada.
 
-## Testing your Library
+## Testando sua Biblioteca
 
-The `create-react-native-library` comes with a useful example application that is already configured to work properly with the library. This is a great way to test it!
+O `create-react-native-library` vem com uma aplicação de exemplo útil que já está configurada para funcionar adequadamente com a biblioteca. Esta é uma ótima maneira de testá-la!
 
-If you look at the `example` folder, you can find the same structure of a new React Native application that you can create from the [`react-native-community/template`](https://github.com/react-native-community/template).
+Se você olhar para a pasta `example`, pode encontrar a mesma estrutura de uma nova aplicação React Native que você pode criar do [`react-native-community/template`](https://github.com/react-native-community/template).
 
-To test your library:
+Para testar sua biblioteca:
 
-1. Navigate to the `example` folder.
-2. Run `yarn install` to install all the dependencies.
-3. For iOS only, you need to install CocoaPods: `cd ios && pod install`.
-4. Build and run Android with `yarn android` from the `example` folder.
-5. Build and run iOS with `yarn ios` from the `example` folder.
+1. Navegue para a pasta `example`.
+2. Execute `yarn install` para instalar todas as dependências.
+3. Apenas para iOS, você precisa instalar CocoaPods: `cd ios && pod install`.
+4. Compile e execute Android com `yarn android` da pasta `example`.
+5. Compile e execute iOS com `yarn ios` da pasta `example`.
 
-## Use your library as a Local Module
+## Use sua Biblioteca como um Module Local
 
-There are some scenario where you might want to reuse your library as a local module for your applications, without publishing it to NPM.
+Existem alguns cenários onde você pode querer reutilizar sua biblioteca como um módulo local para suas aplicações, sem publicá-la no NPM.
 
-In this case, you might end up in a scenario where you have your library sitting as a sibling of your apps.
+Neste caso, você pode acabar em um cenário onde você tem sua biblioteca situada como irmã dos seus apps.
 
 ```shell
 Development
@@ -116,17 +118,17 @@ Development
 └── Library
 ```
 
-You can use the library created with `create-react-native-library` also in this case.
+Você pode usar a biblioteca criada com `create-react-native-library` também neste caso.
 
-1. add you library to your app by navigating into the `App` folder and running `yarn add ../Library`.
-2. For iOS only, navigate in the `App/ios` folder and run `bundle exec pod install` to install your dependencies.
-3. Update the `App.tsx` code to import the code in your library. For example:
+1. adicione sua biblioteca ao seu app navegando para a pasta `App` e executando `yarn add ../Library`.
+2. Apenas para iOS, navegue na pasta `App/ios` e execute `bundle exec pod install` para instalar suas dependências.
+3. Atualize o código `App.tsx` para importar o código na sua biblioteca. Por exemplo:
 
 ```tsx
 import NativeSampleModule from '../Library/src/index';
 ```
 
-If you run your app right now, Metro would not find the JS files that it needs to serve to the app. That's because metro will be running starting from the `App` folder and it would not have access to the JS files located in the `Library` folder. To fix this, let's update the `metro.config.js` file as it follows
+Se você executar seu app agora, Metro não encontraria os arquivos JS que precisa servir para o app. Isso é porque metro estará executando a partir da pasta `App` e não teria acesso aos arquivos JS localizados na pasta `Library`. Para corrigir isso, vamos atualizar o arquivo `metro.config.js` como segue
 
 ```diff
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
@@ -155,38 +157,38 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
 ```
 
-The `watchFolders` configs tells Metro to watch for files and changes in some additional paths, in this case to the `../Library` path, which contains the `src/index` file you need.
-The `resolver`property is required to feed to the library the React Native code used by the app. The library might refer and import code from React Native: without the additional resolver, the imports in the library will fail.
+A configuração `watchFolders` diz ao Metro para observar arquivos e mudanças em alguns caminhos adicionais, neste caso para o caminho `../Library`, que contém o arquivo `src/index` que você precisa.
+A propriedade `resolver` é necessária para alimentar a biblioteca com o código React Native usado pelo app. A biblioteca pode referenciar e importar código do React Native: sem o resolver adicional, as importações na biblioteca falharão.
 
-At this point, you can build and run your app as usual:
+Neste ponto, você pode compilar e executar seu app como de costume:
 
-- Build and run Android with `yarn android` from the `example` folder.
-- Build and run iOS with `yarn ios` from the `example` folder.
+- Compile e execute Android com `yarn android` da pasta `example`.
+- Compile e execute iOS com `yarn ios` da pasta `example`.
 
-## Publish the Library on NPM
+## Publique a Biblioteca no NPM
 
-The setup to publish everything on NPM is already in place, thanks to `create-react-native-library`.
+A configuração para publicar tudo no NPM já está no lugar, graças ao `create-react-native-library`.
 
-1. Install the dependencies in your module `yarn install`.
-2. Build the library running `yarn prepare`.
-3. Release it with `yarn release`.
+1. Instale as dependências no seu módulo `yarn install`.
+2. Compile a biblioteca executando `yarn prepare`.
+3. Lance-a com `yarn release`.
 
-After a while, you'll find your library on NPM. To verify that, run:
+Depois de um tempo, você encontrará sua biblioteca no NPM. Para verificar isso, execute:
 
 ```bash
 npm view <package.name>
 ```
 
-where `package.name` is the `name` you set up in the `package.json` file during the initialization of the library.
+onde `package.name` é o `name` que você configurou no arquivo `package.json` durante a inicialização da biblioteca.
 
-Now, you can install the library in your application by running:
+Agora, você pode instalar a biblioteca na sua aplicação executando:
 
 ```bash
 yarn add <package.name>
 ```
 
 :::note
-For iOS only, whenever you install a new module with some native code, you have to reinstall CocoaPods, by running `bundle exec pod install` (recommended) or `pod install` if you are not using Ruby's Bundler (not recommended).
+Apenas para iOS, sempre que você instalar um novo módulo com algum código nativo, você tem que reinstalar CocoaPods, executando `bundle exec pod install` (recomendado) ou `pod install` se você não estiver usando Ruby's Bundler (não recomendado).
 :::
 
-Congratulations! You published your first React Native library.
+Parabéns! Você publicou sua primeira biblioteca React Native.

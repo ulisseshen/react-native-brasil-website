@@ -1,8 +1,9 @@
-# The Codegen CLI
+<!-- ia-translated: true -->
+# O CLI Codegen
 
-Calling Gradle or manually calling a script might be hard to remember and it requires a lot of ceremony.
+Chamar o Gradle ou chamar manualmente um script pode ser difícil de lembrar e requer muita cerimônia.
 
-To simplify it, we created a CLI tool that can help you running those tasks: the **Codegen** cli. This command runs [@react-native/codegen](https://www.npmjs.com/package/@react-native/codegen) for your project. The following options are available:
+Para simplificar, criamos uma ferramenta CLI que pode ajudá-lo a executar essas tarefas: o cli **Codegen**. Este comando executa [@react-native/codegen](https://www.npmjs.com/package/@react-native/codegen) para o seu projeto. As seguintes opções estão disponíveis:
 
 ```sh
 npx @react-native-community/cli codegen --help
@@ -16,21 +17,21 @@ Options:
   -h, --help           display help for command
 ```
 
-## Examples
+## Exemplos
 
-- Read `package.json` from the current working directory, generate code based on its codegenConfig.
+- Leia `package.json` do diretório de trabalho atual, gere código baseado no seu codegenConfig.
 
 ```shell
 npx @react-native-community/cli codegen
 ```
 
-- Read `package.json` from the current working directory, generate iOS code in the location defined in the codegenConfig.
+- Leia `package.json` do diretório de trabalho atual, gere código iOS no local definido no codegenConfig.
 
 ```shell
 npx @react-native-community/cli codegen --platform ios
 ```
 
-- Read `package.json` from `third-party/some-library`, generate Android code in `third-party/some-library/android/generated`.
+- Leia `package.json` de `third-party/some-library`, gere código Android em `third-party/some-library/android/generated`.
 
 ```shell
 npx @react-native-community/cli codegen \
@@ -39,31 +40,31 @@ npx @react-native-community/cli codegen \
     --outputPath third-party/some-library/android/generated
 ```
 
-## Including Generated Code into Libraries
+## Incluindo Código Gerado em Bibliotecas
 
-The Codegen CLI is a great tool for library developers. It can be used to take a sneak-peek at the generated code to see which interfaces you need to implement.
+O CLI Codegen é uma ótima ferramenta para desenvolvedores de bibliotecas. Ele pode ser usado para dar uma prévia do código gerado para ver quais interfaces você precisa implementar.
 
-Normally the generated code is not included in the library, and the app that uses the library is responsible for running the Codegen at build time.
-This is a good setup for most cases, but Codegen also offers a mechanism to include the generated code in the library itself via the `includesGeneratedCode` property.
+Normalmente o código gerado não é incluído na biblioteca, e o app que usa a biblioteca é responsável por executar o Codegen em tempo de build.
+Essa é uma boa configuração para a maioria dos casos, mas o Codegen também oferece um mecanismo para incluir o código gerado na própria biblioteca através da propriedade `includesGeneratedCode`.
 
-It's important to understand what are the implications of using `includesGeneratedCode = true`. Including the generated code comes with several benefits such as:
+É importante entender quais são as implicações de usar `includesGeneratedCode = true`. Incluir o código gerado vem com vários benefícios, como:
 
-- No need to rely on the app to run **Codegen** for you, the generated code is always there.
-- The implementation files are always consistent with the generated interfaces (this makes your library code more resilient against API changes in codegen).
-- No need to include two sets of files to support both architectures on Android. You can only keep the New Architecture one, and it is guaranteed to be backwards compatible.
-- Since all native code is there, it is possible to ship the native part of the library as a prebuild.
+- Não há necessidade de depender do app para executar o **Codegen** para você, o código gerado está sempre lá.
+- Os arquivos de implementação estão sempre consistentes com as interfaces geradas (isso torna o código da sua biblioteca mais resiliente contra mudanças de API no codegen).
+- Não há necessidade de incluir dois conjuntos de arquivos para suportar ambas as arquiteturas no Android. Você pode manter apenas a New Architecture, e é garantido que seja retrocompatível.
+- Como todo o código nativo está lá, é possível entregar a parte nativa da biblioteca como um prebuild.
 
-On the other hand, you also need to be aware of one drawback:
+Por outro lado, você também precisa estar ciente de uma desvantagem:
 
-- The generated code will use the React Native version defined inside your library. So if your library is shipping with React Native 0.76, the generated code will be based on that version. This could mean that the generated code is not compatible with apps using **previous** React Native version used by the app (e.g. an App running on React Native 0.75).
+- O código gerado usará a versão do React Native definida dentro da sua biblioteca. Então, se sua biblioteca está sendo entregue com React Native 0.76, o código gerado será baseado nessa versão. Isso pode significar que o código gerado não é compatível com apps usando versões **anteriores** do React Native usadas pelo app (por exemplo, um App rodando no React Native 0.75).
 
-## Enabling `includesGeneratedCode`
+## Habilitando `includesGeneratedCode`
 
-To enable this setup:
+Para habilitar essa configuração:
 
-- Add the `includesGeneratedCode` property into your library's `codegenConfig` field in the `package.json` file. Set its value to `true`.
-- Run **Codegen** locally with the codegen CLI.
-- Update your `package.json` to include the generated code.
-- Update your `podspec` to include the generated code.
-- Update your `build.Gradle` file to include the generated code.
-- Update `cmakeListsPath` in `react-native.config.js` so that Gradle doesn't look for CMakeLists file in the build directory but instead in your outputDir.
+- Adicione a propriedade `includesGeneratedCode` no campo `codegenConfig` do arquivo `package.json` da sua biblioteca. Defina seu valor como `true`.
+- Execute o **Codegen** localmente com o CLI codegen.
+- Atualize seu `package.json` para incluir o código gerado.
+- Atualize seu `podspec` para incluir o código gerado.
+- Atualize seu arquivo `build.Gradle` para incluir o código gerado.
+- Atualize `cmakeListsPath` em `react-native.config.js` para que o Gradle não procure pelo arquivo CMakeLists no diretório de build, mas sim no seu outputDir.

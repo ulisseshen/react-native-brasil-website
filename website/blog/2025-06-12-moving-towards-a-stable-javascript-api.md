@@ -1,60 +1,61 @@
 ---
-title: 'Moving Towards a Stable JavaScript API (New Changes in 0.80)'
+ia-translated: true
+title: 'Avançando Rumo a uma API JavaScript Estável (Novas Mudanças na 0.80)'
 authors: [huntie, iwoplaza, jpiasecki, coado]
 tags: [announcement]
 date: 2025-06-12T16:00
 ---
 
-In React Native 0.80, we're introducing two significant changes to React Native's JavaScript API — the deprecation of deep imports, and our new Strict TypeScript API. These are part of an ongoing effort to accurately define our API and offer dependable type safety to users and frameworks.
+No React Native 0.80, estamos introduzindo duas mudanças significativas na API JavaScript do React Native — a depreciação de deep imports e nossa nova Strict TypeScript API. Estas fazem parte de um esforço contínuo para definir com precisão nossa API e oferecer segurança de tipos confiável aos usuários e frameworks.
 
-**Quick takeaways:**
+**Principais destaques:**
 
-- **Deep imports deprecation**: From 0.80, we're introducing deprecation warnings for deep imports from the `react-native` package.
-- **Opt-in Strict TypeScript API**: We are moving to from-source TypeScript types and a new public API baseline under TypeScript. These enable stronger and more futureproof type accuracy, and will be a one-time breaking change. [Opt in](/blog/2025/06/12/moving-towards-a-stable-javascript-api#strict-typescript-api) via `compilerOptions` in your project's `tsconfig.json`.
-- We'll work with the community over time to ensure that these changes work for everyone, before enabling the Strict TypeScript API by default in a future React Native release.
+- **Depreciação de deep imports**: A partir da 0.80, estamos introduzindo avisos de depreciação para deep imports do pacote `react-native`.
+- **Strict TypeScript API opt-in**: Estamos migrando para tipos TypeScript a partir do código-fonte e uma nova baseline de API pública sob TypeScript. Estes permitem maior precisão de tipos e mais resistência a mudanças futuras, e será uma mudança breaking de uma única vez. [Ative](/blog/2025/06/12/moving-towards-a-stable-javascript-api#strict-typescript-api) via `compilerOptions` no `tsconfig.json` do seu projeto.
+- Trabalharemos com a comunidade ao longo do tempo para garantir que essas mudanças funcionem para todos, antes de habilitar a Strict TypeScript API por padrão em uma futura versão do React Native.
 
 <!--truncate-->
 
-## What's changing and why
+## O que está mudando e por quê
 
-We are moving to improve and stabilise React Native's public JavaScript API — i.e. what you get when you import `'react-native'`.
+Estamos nos movendo para melhorar e estabilizar a API JavaScript pública do React Native — ou seja, o que você obtém quando importa `'react-native'`.
 
-Historically, we've approximated this. React Native is authored in [Flow](https://flow.org/), but the community has long since moved to TypeScript in open source, which is how the public API is consumed and validated for compatibility. Our types have been (lovingly) [community-contributed](https://www.npmjs.com/package/@types/react-native), and since merged and aligned in our codebase. However, these have relied on manual maintenance and no automated tooling, introducing correctness gaps.
+Historicamente, temos aproximado isso. O React Native é escrito em [Flow](https://flow.org/), mas a comunidade há muito tempo migrou para TypeScript em open source, que é como a API pública é consumida e validada para compatibilidade. Nossos tipos têm sido (carinhosamente) [contribuídos pela comunidade](https://www.npmjs.com/package/@types/react-native), e desde então mesclados e alinhados em nossa base de código. No entanto, estes têm dependido de manutenção manual e nenhuma ferramenta automatizada, introduzindo lacunas de correção.
 
-Additionally, our public JS API has been poorly defined in terms of module boundaries — e.g. internal `'react-native/Libraries/'` deep imports were reachable by app code, but could frequently change as we updated these internals.
+Além disso, nossa API JS pública tem sido mal definida em termos de limites de módulos — por exemplo, deep imports internos `'react-native/Libraries/'` eram acessíveis pelo código do aplicativo, mas podiam mudar frequentemente conforme atualizávamos esses internals.
 
-In 0.80, we're addressing these issues by deprecating deep imports, and introducing a user opt-in to a new, generated API baseline in TypeScript. We're calling this our **Strict TypeScript API**. Ultimately, this is the groundwork to offer a stable React Native API in the future.
+Na 0.80, estamos abordando essas questões depreciando deep imports e introduzindo um opt-in do usuário para uma nova baseline de API gerada em TypeScript. Estamos chamando isso de nossa **Strict TypeScript API**. Em última análise, esta é a base para oferecer uma API React Native estável no futuro.
 
-## Deprecating deep imports from `react-native`
+## Depreciando deep imports do `react-native`
 
-The main change we're making to our API today is deprecating the use of deep imports ([RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894)), with warnings in ESLint and the JS console. Deep imports of values and types should be updated to `react-native`'s root import.
+A principal mudança que estamos fazendo em nossa API hoje é depreciar o uso de deep imports ([RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894)), com avisos no ESLint e no console JS. Deep imports de valores e tipos devem ser atualizados para o import raiz do `react-native`.
 
 ```js title=""
-// Before - import from subpath
+// Antes - import de subpath
 import {Alert} from 'react-native/Libraries/Alert/Alert';
 
-// After - import from `react-native`
+// Depois - import de `react-native`
 import {Alert} from 'react-native';
 ```
 
-This change reduces the total surface area of our JavaScript API into a fixed set of exports which we can control and make stable in a future release. We're targeting a removal of these import paths in 0.82.
+Esta mudança reduz a área de superfície total de nossa API JavaScript em um conjunto fixo de exports que podemos controlar e tornar estável em uma versão futura. Estamos visando a remoção desses caminhos de import na 0.82.
 
-:::info API feedback
+:::info Feedback da API
 
-Some APIs are not exported at root, and will become unavailable without deep imports. We have an **[open feedback thread](https://github.com/react-native-community/discussions-and-proposals/discussions/893)** and will be working with the community to finalize the exports in our public API. Please share your feedback!
+Algumas APIs não são exportadas na raiz e se tornarão indisponíveis sem deep imports. Temos uma **[thread de feedback aberta](https://github.com/react-native-community/discussions-and-proposals/discussions/893)** e trabalharemos com a comunidade para finalizar os exports em nossa API pública. Por favor, compartilhe seu feedback!
 
 :::
 
-**Opting out**
+**Desativando**
 
-Please bear in mind that we aim to remove deep imports from React Native's API in a future release, and these should instead be updated to the root import.
+Por favor, tenha em mente que pretendemos remover deep imports da API do React Native em uma versão futura, e estes devem ser atualizados para o import raiz.
 
 <details>
-<summary>**Opting out of warnings**</summary>
+<summary>**Desativando avisos**</summary>
 
 #### ESLint
 
-Disable the `no-deep-imports` rule using `overrides`.
+Desabilite a regra `no-deep-imports` usando `overrides`.
 
 <!-- prettier-ignore -->
 ```js title=".eslintrc.js"
@@ -68,9 +69,9 @@ Disable the `no-deep-imports` rule using `overrides`.
   ]
 ```
 
-#### Console warnings
+#### Avisos do console
 
-Pass the `disableDeepImportWarnings` option to `@react-native/babel-preset`.
+Passe a opção `disableDeepImportWarnings` para `@react-native/babel-preset`.
 
 <!-- prettier-ignore -->
 ```js title="babel.config.js"
@@ -81,7 +82,7 @@ module.exports = {
 };
 ```
 
-Restart your app with `--reset-cache` to clear the Metro cache.
+Reinicie seu aplicativo com `--reset-cache` para limpar o cache do Metro.
 
 ```sh title=""
 npx @react-native-community/cli start --reset-cache
@@ -89,11 +90,11 @@ npx @react-native-community/cli start --reset-cache
 
 </details>
 <details>
-<summary>**Opting out of warnings (Expo)**</summary>
+<summary>**Desativando avisos (Expo)**</summary>
 
 #### ESLint
 
-Disable the `no-deep-imports` rule using `overrides`.
+Desabilite a regra `no-deep-imports` usando `overrides`.
 
 <!-- prettier-ignore -->
 ```js title=".eslintrc.js"
@@ -107,9 +108,9 @@ overrides: [
 ];
 ```
 
-#### Console warnings
+#### Avisos do console
 
-Pass the `disableDeepImportWarnings` option to `babel-preset-expo`.
+Passe a opção `disableDeepImportWarnings` para `babel-preset-expo`.
 
 <!-- prettier-ignore -->
 ```js title="babel.config.js"
@@ -121,7 +122,7 @@ module.exports = function (api) {
 };
 ```
 
-Restart your app with `--clear` to clear the Metro cache.
+Reinicie seu aplicativo com `--clear` para limpar o cache do Metro.
 
 ```sh name=""
 npx expo start --clear
@@ -131,14 +132,14 @@ npx expo start --clear
 
 ## Strict TypeScript API (opt-in)
 
-The Strict TypeScript API is a new set of TypeScript types in the `react-native` package, which can be opted into via your `tsconfig.json`. We're shipping these alongside our existing TS types, meaning you can choose to migrate when ready.
+A Strict TypeScript API é um novo conjunto de tipos TypeScript no pacote `react-native`, que pode ser ativado via seu `tsconfig.json`. Estamos disponibilizando estes junto com nossos tipos TS existentes, o que significa que você pode escolher migrar quando estiver pronto.
 
-The new types are:
+Os novos tipos são:
 
-1. **Generated directly from our source code** — improving coverage and correctness, so you can expect stronger compatibility guarantees.
-2. **Restricted to `react-native`'s index file** — more tightly defining our public API, and meaning we won't break the API when making internal file changes.
+1. **Gerados diretamente do nosso código-fonte** — melhorando cobertura e correção, para que você possa esperar garantias de compatibilidade mais fortes.
+2. **Restritos ao arquivo index do `react-native`** — definindo mais rigorosamente nossa API pública, e significando que não quebraremos a API ao fazer mudanças em arquivos internos.
 
-When the community is ready, the Strict TypeScript API will become our default API in future — synchronized with deep imports removal. This means it's a **good idea** to begin opting in, as you'll be ready for React Native's future stable JS API.
+Quando a comunidade estiver pronta, a Strict TypeScript API se tornará nossa API padrão no futuro — sincronizada com a remoção de deep imports. Isso significa que é uma **boa ideia** começar a ativar, pois você estará pronto para a futura API JS estável do React Native.
 
 ```json title="tsconfig.json"
 {
@@ -150,165 +151,165 @@ When the community is ready, the Strict TypeScript API will become our default A
 }
 ```
 
-:::note Under the hood
+:::note Por baixo dos panos
 
-This will instruct TypeScript to resolve `react-native` types from our new [`types_generated/`](https://www.npmjs.com/package/react-native?activeTab=code) dir, instead of the previous [`types/`](https://www.npmjs.com/package/react-native?activeTab=code) dir (manually maintained). No restart of TypeScript or your editor is required.
+Isso instruirá o TypeScript a resolver os tipos de `react-native` do nosso novo diretório [`types_generated/`](https://www.npmjs.com/package/react-native?activeTab=code), em vez do diretório anterior [`types/`](https://www.npmjs.com/package/react-native?activeTab=code) (mantido manualmente). Nenhum reinício do TypeScript ou do seu editor é necessário.
 
 :::
 
-### Breaking: Deep imports are disallowed
+### Breaking: Deep imports não são permitidos
 
-As above, types under the Strict TypeScript API are now only resolvable from the main `'react-native'` import path, enforcing [package encapsulation](/blog/2023/06/21/package-exports-support), per our above deprecation.
+Como acima, os tipos sob a Strict TypeScript API agora só podem ser resolvidos a partir do caminho de import principal `'react-native'`, aplicando [encapsulamento de pacote](/blog/2023/06/21/package-exports-support), conforme nossa depreciação acima.
 
 ```tsx
-// Before - import from subpath
+// Antes - import de subpath
 import {Alert} from 'react-native/Libraries/Alert/Alert';
 
-// After - MUST import from `react-native`
+// Depois - DEVE importar de `react-native`
 import {Alert} from 'react-native';
 ```
 
-:::tip Key win
+:::tip Vitória chave
 
-We've scoped our public API to the exports of React Native's `index.js` file, which we carefully maintain. This means that file changes elsewhere in our codebase will no longer be breaking changes.
-
-:::
-
-### Breaking: Some type names / shapes have changed
-
-Types are now generated from source, rather than manually maintained. In doing this:
-
-- We've aligned differences that had built up from the community contributed types — and also increased the type coverage of our source code.
-- We've intentionally updated some type names and type shapes, where there was scope to simplify or reduce ambiguity.
-
-:::tip Key win
-
-Because types are now generated from React Native's source code, you can be confident that the typechecker is **always accurate** for a given version of `react-native`.
+Nós delimitamos nossa API pública aos exports do arquivo `index.js` do React Native, que mantemos cuidadosamente. Isso significa que mudanças de arquivo em outros lugares em nossa base de código não serão mais mudanças breaking.
 
 :::
 
-#### Example: Stricter exported symbols
+### Breaking: Alguns nomes / formas de tipos mudaram
 
-The `Linking` API is now a single `interface`, rather than two exports. This follows for a number of other APIs ([see docs](/docs/strict-typescript-api)).
+Os tipos agora são gerados a partir do código-fonte, em vez de mantidos manualmente. Ao fazer isso:
+
+- Alinhamos diferenças que se acumularam a partir dos tipos contribuídos pela comunidade — e também aumentamos a cobertura de tipos do nosso código-fonte.
+- Intencionalmente atualizamos alguns nomes e formas de tipos, onde havia espaço para simplificar ou reduzir ambiguidade.
+
+:::tip Vitória chave
+
+Como os tipos agora são gerados do código-fonte do React Native, você pode confiar que o verificador de tipos é **sempre preciso** para uma determinada versão de `react-native`.
+
+:::
+
+#### Exemplo: Símbolos exportados mais rigorosos
+
+A API `Linking` agora é uma única `interface`, em vez de dois exports. Isso se aplica a várias outras APIs ([veja a documentação](/docs/strict-typescript-api)).
 
 ```tsx
-// Before
+// Antes
 import {Linking, LinkingStatic} from 'react-native';
 
 function foo(linking: LinkingStatic) {}
 foo(Linking);
 
-// After
+// Depois
 import {Linking} from 'react-native';
 
 function foo(linking: Linking) {}
 foo(Linking);
 ```
 
-#### Example: Fixed / more complete types
+#### Exemplo: Tipos corrigidos / mais completos
 
-Previous manual type definitions left the opportunity for type gaps. Under generated Flow → TypeScript, these are no longer present (and at source, benefit from Flow's additional type validation for multi-platform code).
+As definições de tipos manuais anteriores deixavam oportunidade para lacunas de tipos. Sob Flow → TypeScript gerado, estas não estão mais presentes (e na origem, se beneficiam da validação de tipo adicional do Flow para código multi-plataforma).
 
 ```tsx
 import {Dimensions} from 'react-native';
 
-// Before - Type error
-// After - number | undefined
+// Antes - Erro de tipo
+// Depois - number | undefined
 const {densityDpi} = Dimensions.get();
 ```
 
-### Other breaking changes
+### Outras mudanças breaking
 
-Please refer to our [dedicated guide](/docs/strict-typescript-api) in the docs which details all breaking types changes and how to update your code.
+Por favor, consulte nosso [guia dedicado](/docs/strict-typescript-api) na documentação que detalha todas as mudanças de tipos breaking e como atualizar seu código.
 
-## Rollout
+## Lançamento
 
-We appreciate that any breaking change to React Native will take time for developers to update to in their apps.
+Apreciamos que qualquer mudança breaking no React Native levará tempo para os desenvolvedores atualizarem em seus aplicativos.
 
-#### Now — Opt-in launch (0.80)
+#### Agora — Lançamento opt-in (0.80)
 
-The `"react-native-strict-api"` opt-in is stable in the 0.80 release.
+O opt-in `"react-native-strict-api"` está estável na versão 0.80.
 
-- This is a one-time migration. We aim for apps and libraries to opt in at their own pace over the next couple of releases.
-- Under either mode, nothing will change for your app at runtime — this affects TypeScript analysis only.
-- **And**, we will take feedback on missing APIs, via our [dedicated feedback thread](https://github.com/react-native-community/discussions-and-proposals/discussions/893).
+- Esta é uma migração única. Pretendemos que aplicativos e bibliotecas ativem em seu próprio ritmo ao longo das próximas versões.
+- Em qualquer modo, nada mudará para seu aplicativo em runtime — isso afeta apenas a análise TypeScript.
+- **E**, receberemos feedback sobre APIs ausentes, via nossa [thread de feedback dedicada](https://github.com/react-native-community/discussions-and-proposals/discussions/893).
 
-:::tip Recommended
+:::tip Recomendado
 
-The Strict TypeScript API will become our default API in the future.
+A Strict TypeScript API se tornará nossa API padrão no futuro.
 
-If you have time, it's worth testing the opt-in now in your `tsconfig.json`, to futureproof your app or library. This will immediately evaluate if there are any type errors introduced in your app under the Strict API. **There may be none(!)** — in which case, you're good to go.
+Se você tiver tempo, vale a pena testar o opt-in agora em seu `tsconfig.json`, para preparar seu aplicativo ou biblioteca para o futuro. Isso avaliará imediatamente se há algum erro de tipo introduzido em seu aplicativo sob a Strict API. **Pode não haver nenhum(!)** — nesse caso, você está pronto para usar.
 
 :::
 
-#### Future — Strict TypeScript API by default
+#### Futuro — Strict TypeScript API por padrão
 
-In the future, we will require all codebases to use our Strict API, and will remove the legacy types.
+No futuro, exigiremos que todas as bases de código usem nossa Strict API, e removeremos os tipos legados.
 
-The timeline for this will be based on community feedback. For at least the next two React Native releases, the Strict API will remain an opt-in.
+O cronograma para isso será baseado no feedback da comunidade. Por pelo menos as próximas duas versões do React Native, a Strict API permanecerá opt-in.
 
 ## FAQs
 
 <details>
 <summary>
-**I'm using subpath imports today. What should I do?**
+**Estou usando subpath imports hoje. O que devo fazer?**
 </summary>
 
-Please migrate to the root `'react-native'` import path.
+Por favor, migre para o caminho de import raiz `'react-native'`.
 
-- Subpath imports (e.g. `'react-native/Libraries/Alert/Alert'`) are becoming private APIs. Without preventing access to implementation files inside React Native, we can’t offer a stable JavaScript API.
-- We want our deprecation warnings to motivate community feedback, which can be raised via our [centralized discussion thread](https://github.com/react-native-community/discussions-and-proposals/discussions/893), if you believe we are not exposing code paths that are crucial for your app. Where justified, we may promote APIs to the index export.
+- Subpath imports (por exemplo, `'react-native/Libraries/Alert/Alert'`) estão se tornando APIs privadas. Sem prevenir o acesso a arquivos de implementação dentro do React Native, não podemos oferecer uma API JavaScript estável.
+- Queremos que nossos avisos de depreciação motivem feedback da comunidade, que pode ser levantado via nossa [thread de discussão centralizada](https://github.com/react-native-community/discussions-and-proposals/discussions/893), se você acredita que não estamos expondo caminhos de código que são cruciais para seu aplicativo. Quando justificado, podemos promover APIs para o export index.
 
 </details>
 
 <details>
 <summary>
-**I'm a library maintainer. How does this change impact me?**
+**Sou mantenedor de biblioteca. Como essa mudança me impacta?**
 </summary>
 
-Both apps and libraries can opt in at their own pace, since `tsconfig.json` will only affect the immediate codebase.
+Tanto aplicativos quanto bibliotecas podem ativar em seu próprio ritmo, já que o `tsconfig.json` afetará apenas a base de código imediata.
 
-- Typically, `node_modules` is excluded from validation by the TypeScript server in a React Native project. Therefore, your package's exported type definitions are the source of truth.
+- Tipicamente, `node_modules` é excluído da validação pelo servidor TypeScript em um projeto React Native. Portanto, as definições de tipos exportadas do seu pacote são a fonte da verdade.
 
-**💡 We want feedback!** As with changed subpath imports, if you encounter any integration issues with the Strict API, please let us know [on GitHub](https://github.com/react-native-community/discussions-and-proposals/discussions/893).
+**💡 Queremos feedback!** Assim como com subpath imports alterados, se você encontrar algum problema de integração com a Strict API, por favor nos informe [no GitHub](https://github.com/react-native-community/discussions-and-proposals/discussions/893).
 
 </details>
 
 <details>
 <summary>
-**Does this guarantee a final API for React Native yet?**
+**Isso garante uma API final para o React Native ainda?**
 </summary>
 
-Sadly, not yet. In 0.80, we've made a tooling investment so that React Native's existing JS API baseline can be accurately consumed via TypeScript — enabling future stable changes. We're formalizing the existing API you know and love.
+Infelizmente, ainda não. Na 0.80, fizemos um investimento em ferramentas para que a baseline da API JS existente do React Native possa ser consumida com precisão via TypeScript — permitindo futuras mudanças estáveis. Estamos formalizando a API existente que você conhece e ama.
 
-In the future, we will take action to finalise the APIs we currently offer in core — across each language surface. API changes will be communicated via RFCs/announcements, and typically a deprecation cycle.
+No futuro, tomaremos medidas para finalizar as APIs que atualmente oferecemos no core — em cada superfície de linguagem. Mudanças de API serão comunicadas via RFCs/anúncios, e tipicamente um ciclo de depreciação.
 
 </details>
 
 <details>
 <summary>
-**Why isn't React Native written in TypeScript?**
+**Por que o React Native não é escrito em TypeScript?**
 </summary>
 
-React Native is core infrastructure at Meta. We test every merged change across our Family of Apps, before they hit general open source availability.
+O React Native é infraestrutura core no Meta. Testamos cada mudança mesclada em nossa Família de Aplicativos, antes de chegarem à disponibilidade geral open source.
 
-At this scale and sensitivity, correctness matters. The bottom line is that Flow offers us greater performance and greater strictness than TypeScript, including specific [multi-platform support for React Native](https://flow.org/en/docs/react/multiplatform/).
+Nesta escala e sensibilidade, correção importa. A linha de fundo é que o Flow nos oferece maior desempenho e maior rigor do que o TypeScript, incluindo [suporte multi-plataforma específico para React Native](https://flow.org/en/docs/react/multiplatform/).
 
 </details>
 
-## Thanks
+## Agradecimentos
 
-These changes were made possible by [Iwo Plaza](https://x.com/iwoplaza), [Jakub Piasecki](https://x.com/breskin67), [Dawid Małecki](https://github.com/coado), [Alex Hunt](https://x.com/huntie), and [Riccardo Cipolleschi](https://x.com/CipolleschiR).
+Essas mudanças foram possíveis por [Iwo Plaza](https://x.com/iwoplaza), [Jakub Piasecki](https://x.com/breskin67), [Dawid Małecki](https://github.com/coado), [Alex Hunt](https://x.com/huntie), e [Riccardo Cipolleschi](https://x.com/CipolleschiR).
 
-Thanks also to [Pieter Vanderwerff](https://github.com/pieterv), [Rubén Norte](https://github.com/rubennorte), and [Rob Hogan](https://x.com/robjhogan) for their additional help and input.
+Agradecemos também a [Pieter Vanderwerff](https://github.com/pieterv), [Rubén Norte](https://github.com/rubennorte), e [Rob Hogan](https://x.com/robjhogan) por sua ajuda e contribuição adicionais.
 
-:::note Learn more
+:::note Saiba mais
 
 <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
   <div style={{ flex: 1 }}>
-    <strong style={{ display: 'block', marginTop: 8, marginBottom: 8 }}>Watch the talk!</strong>
-    <span style={{ display: 'block', marginBottom: 8 }}>We shared a deep dive into our motivations and the work behind the Strict TypeScript API at <strong>App.js 2025</strong>.</span>
-    <p style={{ marginBottom: 8 }}>**[View on YouTube](https://www.youtube.com/live/UTaJlqhTk2g?si=SDRmj80kss7hXuGG&t=6520)**</p>
+    <strong style={{ display: 'block', marginTop: 8, marginBottom: 8 }}>Assista a palestra!</strong>
+    <span style={{ display: 'block', marginBottom: 8 }}>Compartilhamos um mergulho profundo em nossas motivações e o trabalho por trás da Strict TypeScript API no <strong>App.js 2025</strong>.</span>
+    <p style={{ marginBottom: 8 }}>**[Ver no YouTube](https://www.youtube.com/live/UTaJlqhTk2g?si=SDRmj80kss7hXuGG&t=6520)**</p>
   </div>
   <img
     src="/blog/assets/0.80-js-stable-api-appjs.jpg"

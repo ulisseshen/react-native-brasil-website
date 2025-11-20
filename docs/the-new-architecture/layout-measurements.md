@@ -1,12 +1,13 @@
-# Measuring the Layout
+<!-- ia-translated: true -->
+# Medindo o Layout
 
-Sometimes, you need to measure the current layout to apply some changes to the overall layout or to make decisions and call some specific logic.
+Às vezes, você precisa medir o layout atual para aplicar algumas mudanças no layout geral ou para tomar decisões e chamar alguma lógica específica.
 
-React Native provides some native methods to know what are the measurements of the views.
+React Native fornece alguns métodos nativos para saber quais são as medidas das views.
 
-The best way to invoke those methods is in a `useLayoutEffect` hook: this will give you the most recent values for those measurements and it will let you apply changes in the same frame when the measurements are computed.
+A melhor maneira de invocar esses métodos é em um hook `useLayoutEffect`: isso lhe dará os valores mais recentes para essas medidas e permitirá que você aplique mudanças no mesmo frame em que as medidas são computadas.
 
-Typical code will look like this:
+Um código típico será assim:
 
 ```tsx
 function AComponent(children) {
@@ -27,27 +28,27 @@ function AComponent(children) {
 ```
 
 :::note
-The methods described here are available on most of the default components provided by React Native. However, they are _not_ available on composite components that aren't directly backed by a native view. This will generally include most components that you define in your own app.
+Os métodos descritos aqui estão disponíveis na maioria dos componentes padrão fornecidos pelo React Native. No entanto, eles _não_ estão disponíveis em componentes compostos que não são diretamente suportados por uma view nativa. Isso geralmente incluirá a maioria dos componentes que você define em seu próprio app.
 :::
 
 ## measure(callback)
 
-Determines the location on screen (`x` and `y`), `width`, and `height` in the viewport of the given view. Returns the values via an async callback. If successful, the callback will be called with the following arguments:
+Determina a localização na tela (`x` e `y`), `width` e `height` no viewport da view fornecida. Retorna os valores via um callback assíncrono. Se bem-sucedido, o callback será chamado com os seguintes argumentos:
 
-- `x`: the `x` coordinate of the origin (top-left corner) of the measured view in the viewport.
-- `y`: the `y` coordinate of the origin (top-left corner) of the measured view in the viewport.
-- `width`: the `width` of the view.
-- `height`: the `height` of the view.
-- `pageX`: the `x` coordinate of the view in the viewport (typically the whole screen).
-- `pageY`: the `y` coordinate of the view in the viewport (typically the whole screen).
+- `x`: a coordenada `x` da origem (canto superior esquerdo) da view medida no viewport.
+- `y`: a coordenada `y` da origem (canto superior esquerdo) da view medida no viewport.
+- `width`: a largura da view.
+- `height`: a altura da view.
+- `pageX`: a coordenada `x` da view no viewport (tipicamente a tela inteira).
+- `pageY`: a coordenada `y` da view no viewport (tipicamente a tela inteira).
 
-Also the `width` and `height` returned by `measure()` are the `width` and `height` of the component in the viewport.
+Além disso, o `width` e `height` retornados por `measure()` são o `width` e `height` do componente no viewport.
 
 ## measureInWindow(callback)
 
-Determines the location (`x` and `y`) of the given view in the window and returns the values via an async callback. If the React root view is embedded in another native view, this will give you the absolute coordinates. If successful, the callback will be called with the following arguments:
+Determina a localização (`x` e `y`) da view fornecida na janela e retorna os valores via um callback assíncrono. Se a React root view estiver incorporada em outra view nativa, isso fornecerá as coordenadas absolutas. Se bem-sucedido, o callback será chamado com os seguintes argumentos:
 
-- `x`: the `x` coordinate of the view in the current window.
-- `y`: the `y` coordinate of the view in the current window.
-- `width`: the `width` of the view.
-- `height`: the `height` of the view.
+- `x`: a coordenada `x` da view na janela atual.
+- `y`: a coordenada `y` da view na janela atual.
+- `width`: a largura da view.
+- `height`: a altura da view.
