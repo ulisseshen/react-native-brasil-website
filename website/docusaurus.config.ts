@@ -81,7 +81,7 @@ const config: Config = {
 
   title: 'React Native',
   tagline:
-    'A framework for building native apps for Android, iOS, and more using React',
+    'Um framework para construir apps nativos para Android, iOS e mais usando React',
   organizationName: 'Meta Platforms, Inc.',
   projectName: 'react-native',
   url: 'https://reactnative.dev',
@@ -125,11 +125,11 @@ const config: Config = {
         '@type': 'WebPage',
         '@id': 'https://reactnative.dev/',
         url: 'https://reactnative.dev/',
-        name: 'React Native · Learn once, write anywhere',
+        name: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
         description:
-          'A framework for building native apps for Android, iOS, and more using React',
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
         logo: 'https://reactnative.dev/img/pwa/manifest-icon-192.png',
-        inLanguage: 'en-US',
+        inLanguage: 'pt-BR',
       }),
     },
     {
@@ -141,9 +141,9 @@ const config: Config = {
         '@type': 'WebSite',
         '@id': 'https://reactnative.dev/',
         url: 'https://reactnative.dev/',
-        name: 'React Native · Learn once, write anywhere',
+        name: 'React Native · Aprenda uma vez, escreva em qualquer lugar',
         description:
-          'A framework for building native apps for Android, iOS, and more using React',
+          'Um framework para construir apps nativos para Android, iOS e mais usando React',
         publisher: 'Meta Platforms, Inc.',
         potentialAction: [
           {
@@ -159,7 +159,7 @@ const config: Config = {
             },
           },
         ],
-        inLanguage: 'en-US',
+        inLanguage: 'pt-BR',
       }),
     },
     {
@@ -419,7 +419,7 @@ const config: Config = {
         },
         {
           to: '/showcase',
-          label: 'Showcase',
+          label: 'Vitrine',
           position: 'right',
         },
         {
@@ -440,7 +440,7 @@ const config: Config = {
         },
         {
           href: 'https://github.com/facebook/react-native',
-          'aria-label': 'GitHub repository',
+          'aria-label': 'Repositório no GitHub',
           position: 'right',
           className: 'navbar-github-link',
         },
@@ -475,7 +475,7 @@ const config: Config = {
           title: 'Participar',
           items: [
             {
-              label: 'Showcase',
+              label: 'Vitrine',
               to: 'showcase',
             },
             {

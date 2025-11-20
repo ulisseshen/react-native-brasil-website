@@ -4,7 +4,7 @@ export default {
   community: [
     {
       type: 'category',
-      label: 'Community',
+      label: 'Comunidade',
       collapsed: false,
       collapsible: false,
       items: ['overview', 'staying-updated', 'communities', 'support'],
