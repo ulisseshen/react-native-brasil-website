@@ -49,7 +49,7 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'
+          projectId: transliteradu
           expires: 7d
           channelId: pr-${{ github.event.number }}
         env:
@@ -68,6 +68,6 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'
+          projectId: transliteradu
           channelId: pr-${{ github.event.number }}
           expires: 1s

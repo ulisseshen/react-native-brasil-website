@@ -93,7 +93,7 @@ jobs:
           echo "Deploying to Firebase Hosting..."
           firebase deploy \
             --only hosting \
-            --project reactnativebrasil \
+            --project transliteradu \
             --non-interactive
 
       - name: Check deployment status
