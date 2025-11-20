@@ -181,7 +181,7 @@ Documentação da nova arquitetura:
 
 ## 🔧 Instruções de Uso
 
-1. Use o agente `doc-translator-pt-br` para traduzir os arquivos
+1. Use o agente `doc-translator-pt-br` (`.claude/agents/translator.md`) para traduzir os arquivos
 2. Marque com `[x]` os arquivos traduzidos
 3. Atualize o progresso na seção **📊 Progresso**
 4. Commit após cada arquivo ou grupo de arquivos relacionados
