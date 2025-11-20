@@ -1,29 +1,30 @@
 ---
-title: The GAAD Pledge - Improving React Native Accessibility
+ia-translated: true
+title: O Compromisso GAAD - Melhorando a Acessibilidade do React Native
 authors: [alexmarlette]
 tags: [announcement]
 ---
 
-## Hello React Native Community,
+## Olá Comunidade React Native,
 
-In May 2020 Facebook was the first company to take the [GAAD pledge](https://diamond.la/GAADPledge/), by doing so they committed to making accessibility a core part of the React Native open source project. Since May, Facebook has spent that time thoughtfully reviewing and documenting accessibility gaps within React Native. So far the gap analysis has surfaced 90 issues, all of which have been translated to [GitHub issues](https://github.com/facebook/react-native/projects/15).
+Em maio de 2020, o Facebook foi a primeira empresa a aceitar o [compromisso GAAD](https://diamond.la/GAADPledge/), comprometendo-se a tornar a acessibilidade uma parte central do projeto open source React Native. Desde maio, o Facebook passou esse tempo revisando e documentando cuidadosamente as lacunas de acessibilidade no React Native. Até agora, a análise de lacunas identificou 90 problemas, todos os quais foram convertidos em [issues no GitHub](https://github.com/facebook/react-native/projects/15).
 
-Overall, we found that React Native APIs provide strong support for accessibility. However, we also found many core components do not yet fully utilize platform accessibility APIs and support is missing for some platform specific features.
+No geral, descobrimos que as APIs do React Native fornecem forte suporte para acessibilidade. No entanto, também descobrimos que muitos componentes principais ainda não utilizam completamente as APIs de acessibilidade da plataforma e falta suporte para alguns recursos específicos da plataforma.
 
-The enthusiasm and diversity of contributors have always played a critical role in the development of React Native and these gaps in accessibility are great opportunities for current and new contributors. If you have been interested in contributing to React Native, we encourage you to join us in making React Native more accessible.
+O entusiasmo e a diversidade de contribuidores sempre desempenharam um papel crítico no desenvolvimento do React Native e essas lacunas de acessibilidade são ótimas oportunidades para contribuidores atuais e novos. Se você está interessado em contribuir para o React Native, encorajamos você a se juntar a nós para tornar o React Native mais acessível.
 
-To recognize contributors for their effort, when an accessibility issue is closed and attached to a pull request, contributors will get a shout out on Twitter from our community manager. Contributors whose pull requests are accepted into the codebase will be highlighted in our monthly issues update on the React Native blog.
+Para reconhecer os contribuidores por seu esforço, quando uma issue de acessibilidade for fechada e anexada a um pull request, os contribuidores receberão uma menção no Twitter de nosso gerente de comunidade. Contribuidores cujos pull requests forem aceitos na base de código serão destacados em nossa atualização mensal de issues no blog do React Native.
 
-Please join us in making React Native more accessible for everyone.
+Por favor, junte-se a nós para tornar o React Native mais acessível para todos.
 
-### How you can help:
+### Como você pode ajudar:
 
-- New contributors should read the [contribution guide](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) and browse the list of 46 [good first issues](https://github.com/facebook/react-native/issues?q=is%3Aopen+is%3Aissue+label%3A%22Good+first+issue%22+label%3AAccessibility) in the React Native GitHub.
+- Novos contribuidores devem ler o [guia de contribuição](https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md) e navegar pela lista de 46 [good first issues](https://github.com/facebook/react-native/issues?q=is%3Aopen+is%3Aissue+label%3A%22Good+first+issue%22+label%3AAccessibility) no GitHub do React Native.
 
-- Contributors interested in issues requiring a bit more effort should visit [the project page for Improved React Native Accessibility](https://github.com/facebook/react-native/projects/15) to see the GitHub issues that need their knowledge of React Native.
+- Contribuidores interessados em issues que requerem um pouco mais de esforço devem visitar [a página do projeto para Acessibilidade Melhorada do React Native](https://github.com/facebook/react-native/projects/15) para ver as issues no GitHub que precisam do seu conhecimento de React Native.
 
-- Technical writers interested in updating React Native's documentation to reflect the accessibility gaps being closed should visit the [React Native Docs](https://github.com/facebook/react-native-website#-overview).
+- Escritores técnicos interessados em atualizar a documentação do React Native para refletir as lacunas de acessibilidade que estão sendo fechadas devem visitar a [Documentação do React Native](https://github.com/facebook/react-native-website#-overview).
 
-- Share this initiative with anyone who may be able to help!
+- Compartilhe esta iniciativa com qualquer pessoa que possa ajudar!
 
-- Follow the GAAD Pledge Open Source Accessibility Community Manager for React Native on [Twitter](https://twitter.com/alexmarlette) or [Facebook](https://www.facebook.com/React-Native-Open-Source-Accessibility-Community-Manager-102732258549941) to keep up to date on progress.
+- Siga o Gerente de Comunidade de Acessibilidade Open Source do Compromisso GAAD para React Native no [Twitter](https://twitter.com/alexmarlette) ou [Facebook](https://www.facebook.com/React-Native-Open-Source-Accessibility-Community-Manager-102732258549941) para se manter atualizado sobre o progresso.
