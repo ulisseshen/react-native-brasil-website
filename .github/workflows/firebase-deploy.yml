@@ -4,15 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'website/**'
-      - 'docs/**'
-      - 'packages/**'
-      - 'plugins/**'
-      - 'firebase.json'
-      - '.firebaserc'
-      - 'package.json'
-      - 'yarn.lock'
   workflow_dispatch:
 
 env:
