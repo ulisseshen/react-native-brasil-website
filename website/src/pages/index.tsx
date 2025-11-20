@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 
 import Head from '@docusaurus/Head';
@@ -15,17 +17,17 @@ import Home from '../components/Home';
 const Index = () => {
   return (
     <Layout
-      description="A framework for building native apps for Android, iOS, and more using React"
+      description="Um framework para construir apps nativos para Android, iOS e mais usando React"
       wrapperClassName="homepage">
       <Head>
-        <title>React Native · Learn once, write anywhere</title>
+        <title>React Native · Aprenda uma vez, escreva em qualquer lugar</title>
         <meta
           property="og:title"
-          content="React Native · Learn once, write anywhere"
+          content="React Native · Aprenda uma vez, escreva em qualquer lugar"
         />
         <meta
           property="twitter:title"
-          content="React Native · Learn once, write anywhere"
+          content="React Native · Aprenda uma vez, escreva em qualquer lugar"
         />
       </Head>
       <Home />
