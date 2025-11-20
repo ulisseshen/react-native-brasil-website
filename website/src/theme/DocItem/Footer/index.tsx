@@ -76,12 +76,37 @@ function TranslationIssueMessage() {
   const getIssueUrl = () => {
     if (!isBrowser) return '#';
 
-    const currentUrl = encodeURIComponent(window.location.href);
     const repoUrl = 'https://github.com/ulisseshen/react-native-brasil-website';
     const issueTitle = encodeURIComponent('[Tradução] Problema encontrado na página');
-    const issueBody = encodeURIComponent(`## URL da Página\n\n${window.location.href}\n\n## Tipo de Problema\n\n- [ ] Erro de tradução (tradução incorreta ou confusa)\n- [ ] Conteúdo não traduzido (ainda em inglês)\n- [ ] Conteúdo desatualizado (tradução antiga que precisa atualização)\n- [ ] Outro (descreva abaixo)\n\n## Descrição\n\n<!-- Descreva o problema aqui -->\n`);
+    const issueBody = encodeURIComponent(`## URL da Página
 
-    return `${repoUrl}/issues/new?template=translation_issue.md&title=${issueTitle}&body=${issueBody}&labels=tradução`;
+${window.location.href}
+
+## Tipo de Problema
+
+Marque todas as opções que se aplicam:
+
+- [ ] Erro de tradução (tradução incorreta ou confusa)
+- [ ] Conteúdo não traduzido (ainda em inglês)
+- [ ] Conteúdo desatualizado (tradução antiga que precisa atualização)
+- [ ] Outro (descreva abaixo)
+
+## Descrição
+
+<!-- Por favor, descreva o problema encontrado. Se possível, inclua:
+- O texto atual (em português ou inglês)
+- A tradução sugerida ou correção
+- Screenshots se ajudar a explicar o problema
+-->
+
+
+## Informações Adicionais
+
+<!-- Qualquer contexto adicional que possa ajudar a resolver o problema -->
+`);
+    const labels = encodeURIComponent('tradução');
+
+    return `${repoUrl}/issues/new?title=${issueTitle}&body=${issueBody}&labels=${labels}`;
   };
 
   return (
