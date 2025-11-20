@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: document-nodes
 title: Document nodes
 ---
 
-Document nodes represent a complete native view tree. Apps using native navigation would provide a separate document node for each screen. Apps not using native navigation would generally provide a single document for the whole app (similar to single-page apps on Web).
+Document nodes representam uma árvore de view nativa completa. Aplicações usando navegação nativa forneceriam um document node separado para cada tela. Aplicações que não usam navegação nativa geralmente forneceriam um único document para todo o aplicativo (similar a single-page apps na Web).
 
 ```SnackPlayer ext=js&name=Document%20instance%20example
 import * as React from 'react';
@@ -22,7 +23,7 @@ export default function AccessingDocument() {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
-    // Get the main text input in the screen and focus it after initial load.
+    // Obtém o text input principal na tela e foca nele após o carregamento inicial.
     const element = ref.current;
     const doc = element.ownerDocument;
     const textInput = doc.getElementById('main-text-input');
@@ -39,9 +40,9 @@ export default function AccessingDocument() {
 
 ## Reference
 
-### Web-compatible API
+### API compatível com Web
 
-From [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
+De [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
 
 - Properties
   - [`childElementCount`](https://developer.mozilla.org/en-US/docs/Web/API/Document/childElementCount)
@@ -52,7 +53,7 @@ From [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
 - Methods
   - [`getElementById()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
 
-From [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
+De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
 
 - Properties
   - [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes)

@@ -1,25 +1,26 @@
 ---
+ia-translated: true
 id: communication-android
-title: Communication between native and React Native
+title: Comunicação entre nativo e React Native
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-In [Integrating with Existing Apps guide](integration-with-existing-apps) and [Native UI Components guide](legacy/native-components-android) we learn how to embed React Native in a native component and vice versa. When we mix native and React Native components, we'll eventually find a need to communicate between these two worlds. Some ways to achieve that have been already mentioned in other guides. This article summarizes available techniques.
+No [guia de Integração com Apps Existentes](integration-with-existing-apps) e no [guia de Componentes de UI Nativos](legacy/native-components-android), aprendemos como incorporar React Native em um componente nativo e vice-versa. Quando misturamos componentes nativos e React Native, eventualmente encontraremos a necessidade de comunicação entre esses dois mundos. Algumas formas de alcançar isso já foram mencionadas em outros guias. Este artigo resume as técnicas disponíveis.
 
-## Introduction
+## Introdução
 
-React Native is inspired by React, so the basic idea of the information flow is similar. The flow in React is one-directional. We maintain a hierarchy of components, in which each component depends only on its parent and its own internal state. We do this with properties: data is passed from a parent to its children in a top-down manner. If an ancestor component relies on the state of its descendant, one should pass down a callback to be used by the descendant to update the ancestor.
+React Native é inspirado em React, então a ideia básica do fluxo de informação é similar. O fluxo em React é unidirecional. Mantemos uma hierarquia de componentes, na qual cada componente depende apenas de seu pai e de seu próprio estado interno. Fazemos isso com propriedades: os dados são passados de um pai para seus filhos de maneira top-down. Se um componente ancestral depende do estado de seu descendente, deve-se passar um callback para ser usado pelo descendente para atualizar o ancestral.
 
-The same concept applies to React Native. As long as we are building our application purely within the framework, we can drive our app with properties and callbacks. But, when we mix React Native and native components, we need some specific, cross-language mechanisms that would allow us to pass information between them.
+O mesmo conceito se aplica ao React Native. Enquanto estamos construindo nossa aplicação puramente dentro do framework, podemos conduzir nosso app com propriedades e callbacks. Mas, quando misturamos React Native e componentes nativos, precisamos de alguns mecanismos específicos, cross-language, que nos permitam passar informações entre eles.
 
-## Properties
+## Propriedades
 
-Properties are the most straightforward way of cross-component communication. So we need a way to pass properties both from native to React Native, and from React Native to native.
+Propriedades são a forma mais direta de comunicação entre componentes. Portanto, precisamos de uma maneira de passar propriedades tanto de nativo para React Native, quanto de React Native para nativo.
 
-### Passing properties from native to React Native
+### Passando propriedades de nativo para React Native
 
-You can pass properties down to the React Native app by providing a custom implementation of `ReactActivityDelegate` in your main activity. This implementation should override `getLaunchOptions` to return a `Bundle` with the desired properties.
+Você pode passar propriedades para o app React Native fornecendo uma implementação customizada de `ReactActivityDelegate` em sua activity principal. Esta implementação deve sobrescrever `getLaunchOptions` para retornar um `Bundle` com as propriedades desejadas.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 
@@ -80,7 +81,7 @@ export default class ImageBrowserApp extends React.Component {
 }
 ```
 
-`ReactRootView` provides a read-write property `appProperties`. After `appProperties` is set, the React Native app is re-rendered with new properties. The update is only performed when the new updated properties differ from the previous ones.
+`ReactRootView` fornece uma propriedade de leitura-escrita `appProperties`. Depois que `appProperties` é definida, o app React Native é re-renderizado com novas propriedades. A atualização só é realizada quando as novas propriedades atualizadas diferem das anteriores.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 
@@ -110,44 +111,44 @@ var imageList = arrayListOf("https://dummyimage.com/600x400/ff0000/000000.png", 
 
 </Tabs>
 
-It is fine to update properties anytime. However, updates have to be performed on the main thread. You use the getter on any thread.
+É aceitável atualizar propriedades a qualquer momento. No entanto, as atualizações devem ser realizadas na thread principal. Você pode usar o getter em qualquer thread.
 
-There is no way to update only a few properties at a time. We suggest that you build it into your own wrapper instead.
+Não há uma forma de atualizar apenas algumas propriedades por vez. Sugerimos que você construa isso em seu próprio wrapper.
 
 :::info
-Currently, JS function `componentWillUpdateProps` of the top level RN component will not be called after a prop update. However, you can access the new props in `componentDidMount` function.
+Atualmente, a função JS `componentWillUpdateProps` do componente RN de nível superior não será chamada após uma atualização de prop. No entanto, você pode acessar as novas props na função `componentDidMount`.
 :::
 
-### Passing properties from React Native to native
+### Passando propriedades de React Native para nativo
 
-The problem exposing properties of native components is covered in detail in [this article](legacy/native-components-android#3-expose-view-property-setters-using-reactprop-or-reactpropgroup-annotation). In short, properties that are to be reflected in JavaScript needs to be exposed as setter method annotated with `@ReactProp`, then use them in React Native as if the component was an ordinary React Native component.
+O problema de expor propriedades de componentes nativos é coberto em detalhes [neste artigo](legacy/native-components-android#3-expose-view-property-setters-using-reactprop-or-reactpropgroup-annotation). Em resumo, propriedades que devem ser refletidas em JavaScript precisam ser expostas como métodos setter anotados com `@ReactProp`, e então usá-las em React Native como se o componente fosse um componente React Native comum.
 
-### Limits of properties
+### Limitações das propriedades
 
-The main drawback of cross-language properties is that they do not support callbacks, which would allow us to handle bottom-up data bindings. Imagine you have a small RN view that you want to be removed from the native parent view as a result of a JS action. There is no way to do that with props, as the information would need to go bottom-up.
+A principal desvantagem das propriedades cross-language é que elas não suportam callbacks, que nos permitiriam lidar com bindings de dados bottom-up. Imagine que você tem uma pequena view RN que deseja remover da view pai nativa como resultado de uma ação JS. Não há como fazer isso com props, pois a informação precisaria ir bottom-up.
 
-Although we have a flavor of cross-language callbacks ([described here](legacy/native-modules-android#callbacks)), these callbacks are not always the thing we need. The main problem is that they are not intended to be passed as properties. Rather, this mechanism allows us to trigger a native action from JS, and handle the result of that action in JS.
+Embora tenhamos um tipo de callbacks cross-language ([descrito aqui](legacy/native-modules-android#callbacks)), esses callbacks nem sempre são o que precisamos. O problema principal é que eles não são destinados a serem passados como propriedades. Em vez disso, este mecanismo nos permite disparar uma ação nativa a partir do JS, e lidar com o resultado dessa ação em JS.
 
-## Other ways of cross-language interaction (events and native modules)
+## Outras formas de interação cross-language (eventos e módulos nativos)
 
-As stated in the previous chapter, using properties comes with some limitations. Sometimes properties are not enough to drive the logic of our app and we need a solution that gives more flexibility. This chapter covers other communication techniques available in React Native. They can be used for internal communication (between JS and native layers in RN) as well as for external communication (between RN and the 'pure native' part of your app).
+Como afirmado no capítulo anterior, usar propriedades vem com algumas limitações. Às vezes, propriedades não são suficientes para conduzir a lógica de nosso app e precisamos de uma solução que ofereça mais flexibilidade. Este capítulo cobre outras técnicas de comunicação disponíveis em React Native. Elas podem ser usadas para comunicação interna (entre as camadas JS e nativa no RN) bem como para comunicação externa (entre RN e a parte 'puramente nativa' do seu app).
 
-React Native enables you to perform cross-language function calls. You can execute custom native code from JS and vice versa. Unfortunately, depending on the side we are working on, we achieve the same goal in different ways. For native - we use events mechanism to schedule an execution of a handler function in JS, while for React Native we directly call methods exported by native modules.
+React Native permite que você execute chamadas de função cross-language. Você pode executar código nativo customizado a partir do JS e vice-versa. Infelizmente, dependendo do lado em que estamos trabalhando, alcançamos o mesmo objetivo de formas diferentes. Para nativo - usamos o mecanismo de eventos para agendar uma execução de uma função handler em JS, enquanto para React Native chamamos diretamente métodos exportados por módulos nativos.
 
-### Calling React Native functions from native (events)
+### Chamando funções React Native a partir do nativo (eventos)
 
-Events are described in detail in [this article](legacy/native-components-android#events). Note that using events gives us no guarantees about execution time, as the event is handled on a separate thread.
+Eventos são descritos em detalhes [neste artigo](legacy/native-components-android#events). Note que usar eventos não nos dá garantias sobre o tempo de execução, pois o evento é tratado em uma thread separada.
 
-Events are powerful, because they allow us to change React Native components without needing a reference to them. However, there are some pitfalls that you can fall into while using them:
+Eventos são poderosos, porque nos permitem mudar componentes React Native sem precisar de uma referência a eles. No entanto, existem algumas armadilhas nas quais você pode cair ao usá-los:
 
-- As events can be sent from anywhere, they can introduce spaghetti-style dependencies into your project.
-- Events share namespace, which means that you may encounter some name collisions. Collisions will not be detected statically, which makes them hard to debug.
-- If you use several instances of the same React Native component and you want to distinguish them from the perspective of your event, you'll likely need to introduce identifiers and pass them along with events (you can use the native view's `reactTag` as an identifier).
+- Como eventos podem ser enviados de qualquer lugar, eles podem introduzir dependências estilo espaguete em seu projeto.
+- Eventos compartilham namespace, o que significa que você pode encontrar algumas colisões de nomes. Colisões não serão detectadas estaticamente, o que as torna difíceis de debugar.
+- Se você usa várias instâncias do mesmo componente React Native e deseja distingui-las da perspectiva de seu evento, você provavelmente precisará introduzir identificadores e passá-los junto com os eventos (você pode usar o `reactTag` da view nativa como identificador).
 
-### Calling native functions from React Native (native modules)
+### Chamando funções nativas a partir do React Native (módulos nativos)
 
-Native modules are Java/Kotlin classes that are available in JS. Typically one instance of each module is created per JS bridge. They can export arbitrary functions and constants to React Native. They have been covered in detail in [this article](legacy/native-modules-android).
+Módulos nativos são classes Java/Kotlin que estão disponíveis em JS. Tipicamente, uma instância de cada módulo é criada por JS bridge. Eles podem exportar funções e constantes arbitrárias para React Native. Eles foram cobertos em detalhes [neste artigo](legacy/native-modules-android).
 
 :::warning
-All native modules share the same namespace. Watch out for name collisions when creating new ones.
+Todos os módulos nativos compartilham o mesmo namespace. Fique atento a colisões de nomes ao criar novos.
 :::

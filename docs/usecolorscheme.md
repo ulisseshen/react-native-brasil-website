@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: usecolorscheme
 title: useColorScheme
 ---
@@ -7,17 +8,17 @@ title: useColorScheme
 import {useColorScheme} from 'react-native';
 ```
 
-The `useColorScheme` React hook provides and subscribes to color scheme updates from the [`Appearance`](appearance) module. The return value indicates the current user preferred color scheme. The value may be updated later, either through direct user action (e.g. theme selection in device settings) or on a schedule (e.g. light and dark themes that follow the day/night cycle).
+O Hook React `useColorScheme` fornece e se inscreve para atualizações de esquema de cores do módulo [`Appearance`](appearance). O valor de retorno indica o esquema de cores preferido atual do usuário. O valor pode ser atualizado posteriormente, seja através de ação direta do usuário (por exemplo, seleção de tema nas configurações do dispositivo) ou em um cronograma (por exemplo, temas claro e escuro que seguem o ciclo dia/noite).
 
-### Supported color schemes
+### Esquemas de cores suportados
 
-- `"light"`: The user prefers a light color theme.
-- `"dark"`: The user prefers a dark color theme.
-- `null`: The user has not indicated a preferred color theme.
+- `"light"`: O usuário prefere um tema de cores claro.
+- `"dark"`: O usuário prefere um tema de cores escuro.
+- `null`: O usuário não indicou um tema de cores preferido.
 
 ---
 
-## Example
+## Exemplo
 
 ```SnackPlayer
 import React from 'react';
@@ -46,4 +47,4 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-You can find a complete example that demonstrates the use of this hook alongside a React context to add support for light and dark themes to your application in [`AppearanceExample.js`](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/Appearance/AppearanceExample.js).
+Você pode encontrar um exemplo completo que demonstra o uso deste hook juntamente com um contexto React para adicionar suporte a temas claro e escuro à sua aplicação em [`AppearanceExample.js`](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/Appearance/AppearanceExample.js).
