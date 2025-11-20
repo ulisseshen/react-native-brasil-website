@@ -1,111 +1,112 @@
 ---
-title: Versioning Policy
+ia-translated: true
+title: Política de Versionamento
 ---
 
-This page describes the versioning policy we follow for the `react-native` package.
+Esta página descreve a política de versionamento que seguimos para o pacote `react-native`.
 
-We test each version of React Native thoroughly, both with manual and automated tests, to ensure the quality doesn't regress.
+Testamos cada versão do React Native minuciosamente, tanto com testes manuais quanto automatizados, para garantir que a qualidade não regrida.
 
-The `stable` channel of React Native follows the 0.x.y release policy described below.
+O canal `stable` do React Native segue a política de release 0.x.y descrita abaixo.
 
-React Native also offers a `nightly` release channel to encourage early feedback on experimental features.
+React Native também oferece um canal de release `nightly` para encorajar feedback antecipado sobre recursos experimentais.
 
-This page describes our approach to version numbers for `react-native` and for packages under the `@react-native` scope.
+Esta página descreve nossa abordagem para números de versão para `react-native` e para pacotes sob o escopo `@react-native`.
 
-## Stable Release Versions
+## Versões de Release Estável
 
-React Native releases stable versions at a regular cadence.
+React Native lança versões estáveis em uma cadência regular.
 
-We follow the 0.x.y versioning schema:
+Seguimos o esquema de versionamento 0.x.y:
 
-- Breaking changes will be shipped in a new minor version, i.e. we increment the x number (e.g.: 0.78.0 to 0.79.0).
-- New features and APIs will also be shipped in a new minor version, i.e. we increment the x number (e.g.: 0.78.0 to 0.79.0).
-- Critical bug fixes will be shipped in a new patch version, i.e. we increment the y number (e.g.: 0.78.1 to 0.78.2).
+- Breaking changes serão lançadas em uma nova versão menor, ou seja, incrementamos o número x (por exemplo: 0.78.0 para 0.79.0).
+- Novos recursos e APIs também serão lançados em uma nova versão menor, ou seja, incrementamos o número x (por exemplo: 0.78.0 para 0.79.0).
+- Correções de bugs críticos serão lançadas em uma nova versão de patch, ou seja, incrementamos o número y (por exemplo: 0.78.1 para 0.78.2).
 
-Stable releases are shipped regularly, with the latest tagged as `latest` on NPM.
+Releases estáveis são lançados regularmente, com o mais recente marcado como `latest` no NPM.
 
-A series of releases under the same minor number is called a **minor series** (e.g. 0.76.x is the minor series for 0.76.0, 0.76.1, 0.76.2, etc.).
+Uma série de releases sob o mesmo número menor é chamada de **série menor** (minor series) (por exemplo, 0.76.x é a série menor para 0.76.0, 0.76.1, 0.76.2, etc.).
 
-You can read more about our **commitment to stability** in [the releases page](./).
+Você pode ler mais sobre nosso **compromisso com a estabilidade** na [página de releases](./).
 
 ### Breaking changes
 
-Breaking changes are inconvenient for everyone, and we’re trying to minimize them to the bare minimum. All the breaking changes we ship in each stable release will be highlighted in:
+Breaking changes são inconvenientes para todos, e estamos tentando minimizá-las ao mínimo possível. Todas as breaking changes que lançamos em cada release estável serão destacadas em:
 
-- The _Breaking_ and the _Removed_ section of [the React Native Changelog](https://github.com/facebook/react-native/blob/main/CHANGELOG.md)
-- Each release blogpost in the _Breaking Changes_ section
+- A seção _Breaking_ e _Removed_ do [React Native Changelog](https://github.com/facebook/react-native/blob/main/CHANGELOG.md)
+- Cada blogpost de release na seção _Breaking Changes_
 
-For each breaking change we’re committed to explaining the reasoning behind it, provide a replacement API if possible, and minimize the impact on final users.
+Para cada breaking change, estamos comprometidos em explicar o raciocínio por trás dela, fornecer uma API de substituição se possível, e minimizar o impacto nos usuários finais.
 
-### What is a breaking change?
+### O que é uma breaking change?
 
-We consider a breaking change for React Native:
+Consideramos uma breaking change para React Native:
 
-- An incompatible API change (i.e. an API that is changed or removed so that your code won’t compile/run anymore due to that change). Examples:
-  - Changes of any JS/Java/Kotlin/Obj-c/C++ APIs that would require your code to be changed in order to compile.
-  - Changes inside `@react-native/codegen` that are not backward compatible.
-- A significant behavior/runtime change. Example:
-  - The layout logic of a prop is changed drastically.
-- A significant change in the development experience. Example:
-  - A debugging feature is entirely removed.
-- A major bump of any of our transitive dependencies. Examples:
-  - Bumping React from 18.x to 19.x
-  - Bumping the Target SDK on Android from 34 to 35).
-- A reduction of any of our supported platform versions. Examples:
-  - Bumping min SDK on Android from 21 to 23
-  - Bumping the min iOS version to 15.1.
+- Uma mudança incompatível de API (ou seja, uma API que é alterada ou removida de forma que seu código não compilará/executará mais devido a essa mudança). Exemplos:
+  - Mudanças de quaisquer APIs JS/Java/Kotlin/Obj-c/C++ que exigiriam que seu código fosse alterado para compilar.
+  - Mudanças dentro de `@react-native/codegen` que não são retrocompatíveis.
+- Uma mudança significativa de comportamento/runtime. Exemplo:
+  - A lógica de layout de uma prop é alterada drasticamente.
+- Uma mudança significativa na experiência de desenvolvimento. Exemplo:
+  - Um recurso de debugging é completamente removido.
+- Um bump maior de qualquer uma de nossas dependências transitivas. Exemplos:
+  - Fazer bump do React de 18.x para 19.x
+  - Fazer bump do Target SDK no Android de 34 para 35).
+- Uma redução de qualquer uma de nossas versões de plataforma suportadas. Exemplos:
+  - Fazer bump do min SDK no Android de 21 para 23
+  - Fazer bump da versão mínima do iOS para 15.1.
 
-We don’t consider those changes to be breaking:
+Não consideramos essas mudanças como breaking:
 
-- Modifying APIs starting with `unstable_` prefix: These APIs expose experimental features, and we are not confident on their final shape. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-- Changes to private or internal APIs: These APIs are often prefixed with either `internal_` , `private_` or living inside a `internal/` or `private/` folder/package. While some of those APIs might have public visibility due to tooling constraints, we don’t consider them part of our public API, so we’ll be changing them without previous notice.
-  - Similarly, If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there are no guarantees. You are on your own.
-  - Classes annotated with `@FrameworkAPI` are also considered internal
-- Changes to tooling/development APIs: Some public APIs of React Native are reserved for integration with frameworks and other tools. For example, some of the Metro APIs or React Native DevTools APIs are supposed to be used only by other frameworks or tools. Changes to those APIs are discussed directly with the affected tools and are not considered breaking changes (we won’t be communicating them broadly in the release blogposts).
-- Development warnings: Since warnings don’t affect runtime behavior, we may add new warnings or modify existing warnings in between any versions.
+- Modificar APIs que começam com prefixo `unstable_`: Essas APIs expõem recursos experimentais, e não estamos confiantes em sua forma final. Ao lançar essas com um prefixo `unstable_`, podemos iterar mais rápido e chegar a uma API estável mais cedo.
+- Mudanças em APIs privadas ou internas: Essas APIs são frequentemente prefixadas com `internal_`, `private_` ou vivem dentro de uma pasta/pacote `internal/` ou `private/`. Embora algumas dessas APIs possam ter visibilidade pública devido a restrições de ferramentas, não as consideramos parte de nossa API pública, então as alteraremos sem aviso prévio.
+  - Da mesma forma, se você acessar nomes de propriedades internas como `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` ou `__reactInternalInstance$uk43rzhitjg`, não há garantias. Você está por sua conta.
+  - Classes anotadas com `@FrameworkAPI` também são consideradas internas
+- Mudanças em APIs de ferramentas/desenvolvimento: Algumas APIs públicas do React Native são reservadas para integração com frameworks e outras ferramentas. Por exemplo, algumas das APIs do Metro ou APIs do React Native DevTools devem ser usadas apenas por outros frameworks ou ferramentas. Mudanças nessas APIs são discutidas diretamente com as ferramentas afetadas e não são consideradas breaking changes (não as comunicaremos amplamente nos blogposts de release).
+- Avisos de desenvolvimento: Como avisos não afetam o comportamento de runtime, podemos adicionar novos avisos ou modificar avisos existentes entre quaisquer versões.
 
-If we expect a change to cause broad problems in the community, we will still do our best to provide a gradual migration path for the ecosystem.
+Se esperamos que uma mudança cause problemas amplos na comunidade, ainda faremos o nosso melhor para fornecer um caminho de migração gradual para o ecossistema.
 
-### Deprecation Cycles
+### Ciclos de Deprecação
 
-As we keep on developing and evolving React Native, we write new APIs and sometimes we need to deprecate existing ones. Those APIs will go through a deprecation cycle.
+À medida que continuamos desenvolvendo e evoluindo o React Native, escrevemos novas APIs e às vezes precisamos depreciar APIs existentes. Essas APIs passarão por um ciclo de deprecação.
 
-Once an API is deprecated, it will remain available **also** for the **following** stable releases.
+Uma vez que uma API é depreciada, ela permanecerá disponível **também** para os **próximos** releases estáveis.
 
-For example: if an API is deprecated in React Native 0.76.x, it will still be available in 0.77.x and won’t be removed sooner than React Native 0.78.x.
+Por exemplo: se uma API é depreciada no React Native 0.76.x, ela ainda estará disponível em 0.77.x e não será removida antes do React Native 0.78.x.
 
-Sometimes we decide to keep a deprecated API for a longer time, if we feel that the ecosystem needs more time to migrate away from it. For those APIs we generally provide warnings to help users migrate away from them.
+Às vezes decidimos manter uma API depreciada por mais tempo, se sentimos que o ecossistema precisa de mais tempo para migrar dela. Para essas APIs, geralmente fornecemos avisos para ajudar os usuários a migrarem delas.
 
-## Release channels
+## Canais de release
 
-React Native relies on a thriving open source community to file bug reports, open pull requests, and submit RFCs. To encourage feedback we do support several release channels.
+React Native depende de uma próspera comunidade open source para registrar relatórios de bugs, abrir pull requests e enviar RFCs. Para encorajar feedback, suportamos vários canais de release.
 
 :::note
-This section will be most relevant to developers who work on frameworks, libraries, or developer tooling. Developers who use React Native primarily to build user-facing applications should not need to worry about release channels other than latest.
+Esta seção será mais relevante para desenvolvedores que trabalham em frameworks, bibliotecas ou ferramentas de desenvolvedor. Desenvolvedores que usam React Native principalmente para construir aplicativos voltados ao usuário não devem precisar se preocupar com canais de release além de latest.
 :::
 
 ### latest
 
-`latest` is for stable, semver React Native releases. It’s what you get when you install React Native from npm. This is the channel you’re already using today. User-facing applications that consume React Native directly use this channel.
+`latest` é para releases estáveis e semver do React Native. É o que você obtém quando instala React Native do npm. Este é o canal que você já está usando hoje. Aplicativos voltados ao usuário que consomem React Native diretamente usam este canal.
 
-We publish a newer minor series of React Native regularly, and we update the `latest` tag to reflect the latest stable version.
+Publicamos uma nova série menor do React Native regularmente, e atualizamos a tag `latest` para refletir a versão estável mais recente.
 
 ### next
 
-Before we declare a new React Native release stable, we publish a series of **release candidate**, starting from RC0. Those versions are pre-release versions (following the versioning schema `0.79.0-rc.0`) and are tagged as `next` on NPM.
+Antes de declararmos um novo release do React Native estável, publicamos uma série de **release candidate**, começando do RC0. Essas versões são versões de pré-lançamento (seguindo o esquema de versionamento `0.79.0-rc.0`) e são marcadas como `next` no NPM.
 
-When a new branch cut happens, and RCs start to get published on NPM and GitHub, it’s a good idea to test your library/framework against a `next` version of React Native.
+Quando um novo branch cut acontece e os RCs começam a ser publicados no NPM e GitHub, é uma boa ideia testar sua biblioteca/framework contra uma versão `next` do React Native.
 
-That will ensure that your project will keep on working well with the upcoming versions of React Native.
+Isso garantirá que seu projeto continuará funcionando bem com as próximas versões do React Native.
 
-However, do not use prereleases/RCs in user-facing applications directly as they’re not considered production ready.
+No entanto, não use prereleases/RCs em aplicativos voltados ao usuário diretamente, pois eles não são considerados prontos para produção.
 
 ### nightly
 
-We also publish a `nightly` release channel. Nightlies are published every day starting from the `main` branch of [facebook/react-native](https://github.com/facebook/react-native). Nightlies are considered unstable versions of React Native and are not recommended for production use.
+Também publicamos um canal de release `nightly`. Nightlies são publicados todos os dias a partir do branch `main` de [facebook/react-native](https://github.com/facebook/react-native). Nightlies são considerados versões instáveis do React Native e não são recomendados para uso em produção.
 
-Nightlies follow the versioning schema as `0.80.0-nightly-<DATE>-<SHA>` where `<DATE>` is the date of the nightly and `<SHA>` is the SHA of the commit that was used to publish this nightly.
+Nightlies seguem o esquema de versionamento como `0.80.0-nightly-<DATE>-<SHA>` onde `<DATE>` é a data do nightly e `<SHA>` é o SHA do commit que foi usado para publicar este nightly.
 
-The nightly releases are provided for testing purposes only, and we provide no guarantees that behavior won’t change between nightlies. They do not follow the semver protocol that we use for releases from latest/next.
+Os releases nightly são fornecidos apenas para fins de teste, e não fornecemos garantias de que o comportamento não mudará entre nightlies. Eles não seguem o protocolo semver que usamos para releases de latest/next.
 
-It is a good idea to set up a CI workflow to test your library against a react-native@nightly version every day, to make sure your library will keep on working with future releases.
+É uma boa ideia configurar um workflow de CI para testar sua biblioteca contra uma versão react-native@nightly todos os dias, para garantir que sua biblioteca continuará funcionando com releases futuros.

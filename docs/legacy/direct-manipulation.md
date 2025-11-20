@@ -1,24 +1,25 @@
 ---
+ia-translated: true
 id: direct-manipulation
 title: Direct Manipulation
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-It is sometimes necessary to make changes directly to a component without using state/props to trigger a re-render of the entire subtree. When using React in the browser for example, you sometimes need to directly modify a DOM node, and the same is true for views in mobile apps. `setNativeProps` is the React Native equivalent to setting properties directly on a DOM node.
+Às vezes é necessário fazer alterações diretamente em um componente sem usar state/props para disparar uma re-renderização de toda a subárvore. Ao usar React no navegador, por exemplo, às vezes você precisa modificar diretamente um nó DOM, e o mesmo é verdadeiro para views em aplicativos mobile. `setNativeProps` é o equivalente no React Native para definir propriedades diretamente em um nó DOM.
 
 :::caution
-Use `setNativeProps` when frequent re-rendering creates a performance bottleneck!
+Use `setNativeProps` quando re-renderizações frequentes criam um gargalo de performance!
 
-Direct manipulation will not be a tool that you reach for frequently. You will typically only be using it for creating continuous animations to avoid the overhead of rendering the component hierarchy and reconciling many views.
-`setNativeProps` is imperative and stores state in the native layer (DOM, UIView, etc.) and not within your React components, which makes your code more difficult to reason about.
+Direct manipulation não será uma ferramenta que você usará frequentemente. Você normalmente só a usará para criar animações contínuas para evitar a sobrecarga de renderizar a hierarquia de componentes e reconciliar muitas views.
+`setNativeProps` é imperativo e armazena estado na camada nativa (DOM, UIView, etc.) e não dentro de seus componentes React, o que torna seu código mais difícil de raciocinar.
 
-Before you use it, try to solve your problem with `setState` and [`shouldComponentUpdate`](https://react.dev/reference/react/Component#shouldcomponentupdate).
+Antes de usá-lo, tente resolver seu problema com `setState` e [`shouldComponentUpdate`](https://react.dev/reference/react/Component#shouldcomponentupdate).
 :::
 
 ## setNativeProps with TouchableOpacity
 
-[TouchableOpacity](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Components/Touchable/TouchableOpacity.js) uses `setNativeProps` internally to update the opacity of its child component:
+[TouchableOpacity](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Components/Touchable/TouchableOpacity.js) usa `setNativeProps` internamente para atualizar a opacidade de seu componente filho:
 
 ```tsx
 const viewRef = useRef<View>();
@@ -30,7 +31,7 @@ const setOpacityTo = useCallback(value => {
 }, []);
 ```
 
-This allows us to write the following code and know that the child will have its opacity updated in response to taps, without the child having any knowledge of that fact or requiring any changes to its implementation:
+Isso nos permite escrever o seguinte código e saber que o filho terá sua opacidade atualizada em resposta a toques, sem que o filho tenha qualquer conhecimento desse fato ou exija quaisquer alterações em sua implementação:
 
 ```tsx
 <TouchableOpacity onPress={handlePress}>
@@ -40,7 +41,7 @@ This allows us to write the following code and know that the child will have its
 </TouchableOpacity>
 ```
 
-Let's imagine that `setNativeProps` was not available. One way that we might implement it with that constraint is to store the opacity value in the state, then update that value whenever `onPress` is fired:
+Vamos imaginar que `setNativeProps` não estivesse disponível. Uma maneira de implementá-lo com essa restrição seria armazenar o valor da opacidade no estado, e então atualizar esse valor sempre que `onPress` for disparado:
 
 ```tsx
 const [buttonOpacity, setButtonOpacity] = useState(1);
@@ -55,13 +56,13 @@ return (
 );
 ```
 
-This is computationally intensive compared to the original example - React needs to re-render the component hierarchy each time the opacity changes, even though other properties of the view and its children haven't changed. Usually this overhead isn't a concern but when performing continuous animations and responding to gestures, judiciously optimizing your components can improve your animations' fidelity.
+Isso é computacionalmente intensivo comparado ao exemplo original - React precisa re-renderizar a hierarquia de componentes cada vez que a opacidade muda, mesmo que outras propriedades da view e seus filhos não tenham mudado. Geralmente essa sobrecarga não é uma preocupação, mas ao realizar animações contínuas e responder a gestos, otimizar criteriosamente seus componentes pode melhorar a fidelidade de suas animações.
 
-If you look at the implementation of `setNativeProps` in [NativeMethodsMixin](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod.js) you will notice that it is a wrapper around `RCTUIManager.updateView` - this is the exact same function call that results from re-rendering - see [receiveComponent in ReactNativeBaseComponent](https://github.com/facebook/react-native/blob/fb2ec1ea47c53c2e7b873acb1cb46192ac74274e/Libraries/Renderer/oss/ReactNativeRenderer-prod.js#L5793-L5813).
+Se você olhar a implementação de `setNativeProps` em [NativeMethodsMixin](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod.js) você notará que é um wrapper ao redor de `RCTUIManager.updateView` - esta é exatamente a mesma chamada de função que resulta de re-renderizar - veja [receiveComponent in ReactNativeBaseComponent](https://github.com/facebook/react-native/blob/fb2ec1ea47c53c2e7b873acb1cb46192ac74274e/Libraries/Renderer/oss/ReactNativeRenderer-prod.js#L5793-L5813).
 
 ## Composite components and setNativeProps
 
-Composite components are not backed by a native view, so you cannot call `setNativeProps` on them. Consider this example:
+Composite components não são apoiados por uma view nativa, então você não pode chamar `setNativeProps` neles. Considere este exemplo:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -110,11 +111,11 @@ export default App;
 </TabItem>
 </Tabs>
 
-If you run this you will immediately see this error: `Touchable child must either be native or forward setNativeProps to a native component`. This occurs because `MyButton` isn't directly backed by a native view whose opacity should be set. You can think about it like this: if you define a component with `createReactClass` you would not expect to be able to set a style prop on it and have that work - you would need to pass the style prop down to a child, unless you are wrapping a native component. Similarly, we are going to forward `setNativeProps` to a native-backed child component.
+Se você executar isso, você verá imediatamente este erro: `Touchable child must either be native or forward setNativeProps to a native component`. Isso ocorre porque `MyButton` não é diretamente apoiado por uma view nativa cuja opacidade deve ser definida. Você pode pensar sobre isso assim: se você definir um componente com `createReactClass` você não esperaria poder definir uma prop de estilo nele e que isso funcionasse - você precisaria passar a prop de estilo para um filho, a menos que você esteja envolvendo um componente nativo. Da mesma forma, vamos encaminhar `setNativeProps` para um componente filho apoiado nativamente.
 
 #### Forward setNativeProps to a child
 
-Since the `setNativeProps` method exists on any ref to a `View` component, it is enough to forward a ref on your custom component to one of the `<View />` components that it renders. This means that a call to `setNativeProps` on the custom component will have the same effect as if you called `setNativeProps` on the wrapped `View` component itself.
+Como o método `setNativeProps` existe em qualquer ref para um componente `View`, é suficiente encaminhar uma ref em seu componente customizado para um dos componentes `<View />` que ele renderiza. Isso significa que uma chamada para `setNativeProps` no componente customizado terá o mesmo efeito como se você chamasse `setNativeProps` no componente `View` envolvido em si.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -163,13 +164,13 @@ export default App;
 </TabItem>
 </Tabs>
 
-You can now use `MyButton` inside of `TouchableOpacity`!
+Agora você pode usar `MyButton` dentro de `TouchableOpacity`!
 
-You may have noticed that we passed all of the props down to the child view using `{...props}`. The reason for this is that `TouchableOpacity` is actually a composite component, and so in addition to depending on `setNativeProps` on its child, it also requires that the child perform touch handling. To do this, it passes on [various props](view.md#onmoveshouldsetresponder) that call back to the `TouchableOpacity` component. `TouchableHighlight`, in contrast, is backed by a native view and only requires that we implement `setNativeProps`.
+Você pode ter notado que passamos todas as props para a view filho usando `{...props}`. A razão para isso é que `TouchableOpacity` é na verdade um composite component, e então além de depender de `setNativeProps` em seu filho, também requer que o filho execute tratamento de toque. Para fazer isso, ele passa [várias props](view.md#onmoveshouldsetresponder) que fazem callback para o componente `TouchableOpacity`. `TouchableHighlight`, em contraste, é apoiado por uma view nativa e só requer que implementemos `setNativeProps`.
 
 ## setNativeProps to edit TextInput value
 
-Another very common use case of `setNativeProps` is to edit the value of the TextInput. The `controlled` prop of TextInput can sometimes drop characters when the `bufferDelay` is low and the user types very quickly. Some developers prefer to skip this prop entirely and instead use `setNativeProps` to directly manipulate the TextInput value when necessary. For example, the following code demonstrates editing the input when you tap a button:
+Outro caso de uso muito comum de `setNativeProps` é editar o valor do TextInput. A prop `controlled` do TextInput pode às vezes descartar caracteres quando o `bufferDelay` é baixo e o usuário digita muito rápido. Alguns desenvolvedores preferem pular essa prop inteiramente e em vez disso usar `setNativeProps` para manipular diretamente o valor do TextInput quando necessário. Por exemplo, o seguinte código demonstra edição do input quando você toca em um botão:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -270,23 +271,23 @@ export default App;
 </TabItem>
 </Tabs>
 
-You can use the [`clear`](../textinput#clear) method to clear the `TextInput` which clears the current input text using the same approach.
+Você pode usar o método [`clear`](../textinput#clear) para limpar o `TextInput` que limpa o texto de entrada atual usando a mesma abordagem.
 
 ## Avoiding conflicts with the render function
 
-If you update a property that is also managed by the render function, you might end up with some unpredictable and confusing bugs because anytime the component re-renders and that property changes, whatever value was previously set from `setNativeProps` will be completely ignored and overridden.
+Se você atualizar uma propriedade que também é gerenciada pela função render, você pode acabar com alguns bugs imprevisíveis e confusos porque sempre que o componente re-renderizar e essa propriedade mudar, qualquer valor que foi previamente definido de `setNativeProps` será completamente ignorado e sobrescrito.
 
 ## setNativeProps & shouldComponentUpdate
 
-By [intelligently applying `shouldComponentUpdate`](https://react.dev/reference/react/Component#shouldcomponentupdate) you can avoid the unnecessary overhead involved in reconciling unchanged component subtrees, to the point where it may be performant enough to use `setState` instead of `setNativeProps`.
+Ao [aplicar inteligentemente `shouldComponentUpdate`](https://react.dev/reference/react/Component#shouldcomponentupdate) você pode evitar a sobrecarga desnecessária envolvida em reconciliar subárvores de componentes inalteradas, ao ponto onde pode ser performático o suficiente para usar `setState` em vez de `setNativeProps`.
 
 ## Other native methods
 
-The methods described here are available on most of the default components provided by React Native. Note, however, that they are _not_ available on composite components that aren't directly backed by a native view. This will generally include most components that you define in your own app.
+Os métodos descritos aqui estão disponíveis na maioria dos componentes padrão fornecidos pelo React Native. Observe, no entanto, que eles _não_ estão disponíveis em composite components que não são diretamente apoiados por uma view nativa. Isso geralmente incluirá a maioria dos componentes que você define em seu próprio aplicativo.
 
 ### measure(callback)
 
-Determines the location on screen, width, and height in the viewport of the given view and returns the values via an async callback. If successful, the callback will be called with the following arguments:
+Determina a localização na tela, largura e altura no viewport da view fornecida e retorna os valores via um callback assíncrono. Se bem-sucedido, o callback será chamado com os seguintes argumentos:
 
 - x
 - y
@@ -295,13 +296,13 @@ Determines the location on screen, width, and height in the viewport of the give
 - pageX
 - pageY
 
-Note that these measurements are not available until after the rendering has been completed in native. If you need the measurements as soon as possible and you don't need `pageX` and `pageY`, consider using the [`onLayout`](view.md#onlayout) property instead.
+Observe que essas medições não estão disponíveis até que a renderização tenha sido concluída no nativo. Se você precisa das medições o mais rápido possível e não precisa de `pageX` e `pageY`, considere usar a propriedade [`onLayout`](view.md#onlayout) em vez disso.
 
-Also the width and height returned by `measure()` are the width and height of the component in the viewport. If you need the actual size of the component, consider using the [`onLayout`](view.md#onlayout) property instead.
+Além disso, a largura e altura retornadas por `measure()` são a largura e altura do componente no viewport. Se você precisa do tamanho real do componente, considere usar a propriedade [`onLayout`](view.md#onlayout) em vez disso.
 
 ### measureInWindow(callback)
 
-Determines the location of the given view in the window and returns the values via an async callback. If the React root view is embedded in another native view, this will give you the absolute coordinates. If successful, the callback will be called with the following arguments:
+Determina a localização da view fornecida na janela e retorna os valores via um callback assíncrono. Se a view raiz do React está incorporada em outra view nativa, isso lhe dará as coordenadas absolutas. Se bem-sucedido, o callback será chamado com os seguintes argumentos:
 
 - x
 - y
@@ -310,10 +311,10 @@ Determines the location of the given view in the window and returns the values v
 
 ### measureLayout(relativeToNativeComponentRef, onSuccess, onFail)
 
-Like `measure()`, but measures the view relative to an ancestor, specified with `relativeToNativeComponentRef` reference. This means that the returned coordinates are relative to the origin `x`, `y` of the ancestor view.
+Como `measure()`, mas mede a view relativa a um ancestral, especificado com a referência `relativeToNativeComponentRef`. Isso significa que as coordenadas retornadas são relativas à origem `x`, `y` da view ancestral.
 
 :::note
-This method can also be called with a `relativeToNativeNode` handler (instead of reference), but this variant is obsolete with the new architecture.
+Este método também pode ser chamado com um handler `relativeToNativeNode` (em vez de referência), mas esta variante está obsoleta com a nova arquitetura.
 :::
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
@@ -437,8 +438,8 @@ export default App;
 
 ### focus()
 
-Requests focus for the given input or view. The exact behavior triggered will depend on the platform and type of view.
+Solicita foco para o input ou view fornecido. O comportamento exato disparado dependerá da plataforma e tipo de view.
 
 ### blur()
 
-Removes focus from an input or view. This is the opposite of `focus()`.
+Remove o foco de um input ou view. Este é o oposto de `focus()`.

@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: building-for-tv
-title: Building For TV Devices
+title: Construindo para Dispositivos de TV
 hide_table_of_contents: true
 ---
 
-TV devices support has been implemented with the intention of making existing React Native applications work on Apple TV and Android TV, with few or no changes needed in the JavaScript code for the applications.
+O suporte a dispositivos de TV foi implementado com a intenção de fazer com que aplicativos React Native existentes funcionem em Apple TV e Android TV, com poucas ou nenhuma alteração necessária no código JavaScript dos aplicativos.
 
-:::warning Deprecated
-TV support has moved to the [React Native for TV](https://github.com/react-native-tvos/react-native-tvos#readme) repository. Please see the **README** there for information on projects for Apple TV or Android TV.
+:::warning Descontinuado
+O suporte para TV foi movido para o repositório [React Native for TV](https://github.com/react-native-tvos/react-native-tvos#readme). Consulte o **README** lá para informações sobre projetos para Apple TV ou Android TV.
 :::

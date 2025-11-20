@@ -1,101 +1,102 @@
 ---
+ia-translated: true
 id: debugging
-title: Debugging Basics
+title: Fundamentos de Depuração
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 :::note
-Debugging features, such as the Dev Menu, LogBox, and React Native DevTools are disabled in release (production) builds.
+Recursos de depuração, como o Dev Menu, LogBox e React Native DevTools são desabilitados em builds de release (produção).
 :::
 
-## Opening the Dev Menu
+## Abrindo o Dev Menu
 
-React Native provides an in-app developer menu providing access to debugging features. You can access the Dev Menu by shaking your device or via keyboard shortcuts:
+React Native fornece um menu de desenvolvedor no aplicativo que fornece acesso a recursos de depuração. Você pode acessar o Dev Menu balançando seu dispositivo ou através de atalhos de teclado:
 
-- iOS Simulator: <kbd>Ctrl</kbd> + <kbd>Cmd ⌘</kbd> + <kbd>Z</kbd> (or Device > Shake)
-- Android emulators: <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS) or <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows and Linux)
+- iOS Simulator: <kbd>Ctrl</kbd> + <kbd>Cmd ⌘</kbd> + <kbd>Z</kbd> (ou Device > Shake)
+- Android emulators: <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS) ou <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows e Linux)
 
-Alternative (Android): `adb shell input keyevent 82`.
+Alternativa (Android): `adb shell input keyevent 82`.
 
 ![The React Native Dev Menu](/docs/assets/debugging-dev-menu-076.jpg)
 
-## Opening DevTools
+## Abrindo o DevTools
 
-[React Native DevTools](./react-native-devtools) is our built-in debugger for React Native. It allows you to inspect and understand how your JavaScript code is running, similar to a web browser.
+[React Native DevTools](./react-native-devtools) é nosso debugger integrado para React Native. Ele permite que você inspecione e entenda como seu código JavaScript está sendo executado, semelhante a um navegador web.
 
-To open DevTools, either:
+Para abrir o DevTools, você pode:
 
-- Select "Open DevTools" in the Dev Menu.
-- Press <kbd>j</kbd> from the CLI (`npx react-native start`).
+- Selecionar "Open DevTools" no Dev Menu.
+- Pressionar <kbd>j</kbd> no CLI (`npx react-native start`).
 
-On first launch, DevTools will open to a welcome panel, along with an open console drawer where you can view logs and interact with the JavaScript runtime. From the top of the window, you can navigate to other panels, including the integrated React Components Inspector and Profiler.
+No primeiro lançamento, o DevTools abrirá em um painel de boas-vindas, junto com uma gaveta de console aberta onde você pode visualizar logs e interagir com o runtime JavaScript. No topo da janela, você pode navegar para outros painéis, incluindo o React Components Inspector e Profiler integrados.
 
 ![React Native DevTools opened to the "Welcome" pane](/docs/assets/debugging-rndt-welcome.jpg)
 
-React Native DevTools is powered by a dedicated debugging architecture built into React Native and uses a customized build of the [Chrome DevTools](https://developer.chrome.com/docs/devtools) frontend. This enables us to offer familiar, browser-aligned debugging features that are deeply integrated and built for end-to-end reliability.
+React Native DevTools é alimentado por uma arquitetura de depuração dedicada integrada ao React Native e usa uma build customizada do frontend do [Chrome DevTools](https://developer.chrome.com/docs/devtools). Isso nos permite oferecer recursos de depuração familiares, alinhados com o navegador, que são profundamente integrados e construídos para confiabilidade de ponta a ponta.
 
-Learn more in our [React Native DevTools guide](./react-native-devtools).
+Saiba mais em nosso [guia do React Native DevTools](./react-native-devtools).
 
 :::note
-React Native DevTools is only available with the Hermes engine, and requires either Google Chrome or Microsoft Edge installed.
+React Native DevTools está disponível apenas com o mecanismo Hermes e requer Google Chrome ou Microsoft Edge instalado.
 :::
 
 :::info
 
-#### Flipper and alternative debugging tools
+#### Flipper e ferramentas de depuração alternativas
 
-React Native DevTools replaces the previous Flipper, Experimental Debugger, and Hermes debugger (Chrome) frontends. If you are on an older version of React Native, please go to the docs [for your version](/versions).
+React Native DevTools substitui o Flipper anterior, Experimental Debugger e os frontends do debugger Hermes (Chrome). Se você está em uma versão mais antiga do React Native, por favor vá para a documentação [da sua versão](/versions).
 
-For apps using JavaScriptCore instead of Hermes, Direct JSC Debugging is still available (see [Other Debugging Methods](./other-debugging-methods)).
+Para aplicativos que usam JavaScriptCore em vez de Hermes, Direct JSC Debugging ainda está disponível (veja [Outros Métodos de Depuração](./other-debugging-methods)).
 
-React Native DevTools is designed for debugging React app concerns, and not to replace native tools. If you want to inspect React Native’s underlying platform layers (for example, while developing a Native Module), please use the debugging tools available in Xcode and Android Studio (see [Debugging Native Code](/docs/next/debugging-native-code)).
+React Native DevTools é projetado para depurar preocupações de aplicativos React, e não para substituir ferramentas nativas. Se você quiser inspecionar as camadas de plataforma subjacentes do React Native (por exemplo, ao desenvolver um Native Module), por favor use as ferramentas de depuração disponíveis no Xcode e Android Studio (veja [Depuração de Código Nativo](/docs/next/debugging-native-code)).
 
-Other useful links:
+Outros links úteis:
 
-- <a href="https://shift.infinite.red/why-you-dont-need-flipper-in-your-react-native-app-and-how-to-get-by-without-it-3af461955109" target="_blank">Why you don’t need Flipper in your React Native app … and how to get by without&nbsp;it&nbsp;↗</a>
+- <a href="https://shift.infinite.red/why-you-dont-need-flipper-in-your-react-native-app-and-how-to-get-by-without-it-3af461955109" target="_blank">Why you don't need Flipper in your React Native app … and how to get by without&nbsp;it&nbsp;↗</a>
 
 :::
 
 ## LogBox
 
-LogBox is an in-app tool that displays when warnings or errors are logged by your app.
+LogBox é uma ferramenta no aplicativo que é exibida quando avisos ou erros são registrados pelo seu aplicativo.
 
 ![A LogBox warning and an expanded LogBox syntax error](/docs/assets/debugging-logbox-076.jpg)
 
-### Fatal Errors
+### Erros Fatais
 
-When an unrecoverable error occurs, such as a JavaScript syntax error, LogBox will open with the location of the error. In this state, LogBox is not dismissable since your code cannot be executed. LogBox will automatically dismiss once the syntax error is fixed — either via Fast Refresh or after a manual reload.
+Quando ocorre um erro irrecuperável, como um erro de sintaxe JavaScript, LogBox abrirá com a localização do erro. Neste estado, LogBox não pode ser descartado, pois seu código não pode ser executado. LogBox será descartado automaticamente assim que o erro de sintaxe for corrigido — seja via Fast Refresh ou após um reload manual.
 
-### Console Errors and Warnings
+### Erros e Avisos do Console
 
-Console errors and warnings are displayed as on-screen notifications with a red or yellow badge.
+Erros e avisos do console são exibidos como notificações na tela com um badge vermelho ou amarelo.
 
-- **Errors** will display with a notification count. Tap the notification to see an expanded view and to paginate through other logs.
-- **Warnings** will display a notification banner without details, prompting you to open React Native DevTools.
+- **Errors** serão exibidos com uma contagem de notificações. Toque na notificação para ver uma visualização expandida e para paginar através de outros logs.
+- **Warnings** exibirão um banner de notificação sem detalhes, solicitando que você abra o React Native DevTools.
 
-When React Native DevTools is open, all errors except fatal errors will be hidden to LogBox. We recommend using the Console panel within React Native DevTools as a source of truth, due to various LogBox options which can hide or adjust the level of certain logs.
+Quando o React Native DevTools está aberto, todos os erros, exceto erros fatais, serão ocultados do LogBox. Recomendamos usar o painel Console dentro do React Native DevTools como fonte da verdade, devido às várias opções do LogBox que podem ocultar ou ajustar o nível de certos logs.
 
 <details>
-<summary>**💡 Ignoring logs**</summary>
+<summary>**💡 Ignorando logs**</summary>
 
-LogBox can be configured via the `LogBox` API.
+LogBox pode ser configurado via a API `LogBox`.
 
 ```js
 import {LogBox} from 'react-native';
 ```
 
-#### Ignore all logs
+#### Ignorar todos os logs
 
-LogBox notifications can be disabled using `LogBox.ignoreAllLogs()`. This can be useful in situations such as giving product demos.
+Notificações do LogBox podem ser desabilitadas usando `LogBox.ignoreAllLogs()`. Isso pode ser útil em situações como demonstrações de produtos.
 
 ```js
 LogBox.ignoreAllLogs();
 ```
 
-#### Ignore specific logs
+#### Ignorar logs específicos
 
-Notifications can be disabled on a per-log basis via `LogBox.ignoreLogs()`. This can be useful for noisy warnings or those that cannot be fixed, e.g. in a third-party dependency.
+Notificações podem ser desabilitadas em uma base por log via `LogBox.ignoreLogs()`. Isso pode ser útil para avisos barulhentos ou aqueles que não podem ser corrigidos, por exemplo, em uma dependência de terceiros.
 
 ```js
 LogBox.ignoreLogs([
@@ -109,7 +110,7 @@ LogBox.ignoreLogs([
 
 :::note
 
-LogBox will treat certain errors from React as warnings, which will mean they don't display as an in-app error notification. Advanced users can change this behaviour by customising LogBox's warning filter using [`LogBoxData.setWarningFilter()`](https://github.com/facebook/react-native/blob/d334f4d77eea538dff87fdcf2ebc090246cfdbb0/packages/react-native/Libraries/LogBox/Data/LogBoxData.js#L338).
+LogBox tratará certos erros do React como avisos, o que significa que eles não serão exibidos como uma notificação de erro no aplicativo. Usuários avançados podem alterar esse comportamento personalizando o filtro de avisos do LogBox usando [`LogBoxData.setWarningFilter()`](https://github.com/facebook/react-native/blob/d334f4d77eea538dff87fdcf2ebc090246cfdbb0/packages/react-native/Libraries/LogBox/Data/LogBoxData.js#L338).
 
 :::
 
@@ -117,10 +118,10 @@ LogBox will treat certain errors from React as warnings, which will mean they do
 
 ## Performance Monitor
 
-On Android and iOS, an in-app performance overlay can be toggled during development by selecting **"Perf Monitor"** in the Dev Menu. Learn more about this feature [here](/docs/performance).
+No Android e iOS, uma sobreposição de desempenho no aplicativo pode ser alternada durante o desenvolvimento selecionando **"Perf Monitor"** no Dev Menu. Saiba mais sobre este recurso [aqui](/docs/performance).
 
 ![The Performance Monitor overlay on iOS and Android](/docs/assets/debugging-performance-monitor.jpg)
 
 :::info
-The Performance Monitor runs in-app and is a guide. We recommend investigating the native tooling under Android Studio and Xcode for accurate performance measurements.
+O Performance Monitor é executado no aplicativo e é um guia. Recomendamos investigar as ferramentas nativas no Android Studio e Xcode para medições de desempenho precisas.
 :::

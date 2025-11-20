@@ -1,37 +1,38 @@
 ---
+ia-translated: true
 id: optimizing-flatlist-configuration
-title: Optimizing FlatList Configuration
+title: Otimizando a Configuração do FlatList
 ---
 
-## Terms
+## Termos
 
-- **VirtualizedList:** The component behind `FlatList` (React Native's implementation of the [`Virtual List`](https://bvaughn.github.io/react-virtualized/#/components/List) concept.)
+- **VirtualizedList:** O componente por trás do `FlatList` (implementação do React Native do conceito [`Virtual List`](https://bvaughn.github.io/react-virtualized/#/components/List).)
 
-- **Memory consumption:** How much information about your list is being stored in memory, which could lead to an app crash.
+- **Consumo de memória:** Quanta informação sobre sua lista está sendo armazenada na memória, o que pode levar a uma falha do aplicativo.
 
-- **Responsiveness:** Application ability to respond to interactions. Low responsiveness, for instance, is when you touch on a component and it waits a bit to respond, instead of responding immediately as expected.
+- **Responsividade:** Capacidade do aplicativo de responder a interações. Baixa responsividade, por exemplo, é quando você toca em um componente e ele espera um pouco para responder, em vez de responder imediatamente como esperado.
 
-- **Blank areas:** When `VirtualizedList` can't render your items fast enough, you may enter a part of your list with non-rendered components that appear as blank space.
+- **Áreas em branco:** Quando `VirtualizedList` não consegue renderizar seus itens rápido o suficiente, você pode entrar em uma parte da sua lista com componentes não renderizados que aparecem como espaço em branco.
 
-- **Viewport:** The visible area of content that is rendered to pixels.
+- **Viewport:** A área visível de conteúdo que é renderizada em pixels.
 
-- **Window:** The area in which items should be mounted, which is generally much larger than the viewport.
+- **Window:** A área em que os itens devem ser montados, que geralmente é muito maior que o viewport.
 
 ## Props
 
-Here are a list of props that can help to improve `FlatList` performance:
+Aqui está uma lista de props que podem ajudar a melhorar o desempenho do `FlatList`:
 
 ### `removeClippedSubviews`
 
 | Type    | Default                              |
 | ------- | ------------------------------------ |
-| Boolean | `true` on Android, otherwise `false` |
+| Boolean | `true` no Android, caso contrário `false` |
 
-If `true`, views that are outside of the viewport are automatically detached from the native view hierarchy.
+Se `true`, views que estão fora do viewport são automaticamente desacopladas da hierarquia de view nativa.
 
-**Pros:** This reduces time spent on the main thread, and thus reduces the risk of dropped frames, by excluding views outside of the viewport from the native rendering and drawing traversals.
+**Prós:** Isso reduz o tempo gasto na thread principal e, portanto, reduz o risco de frames descartados, excluindo views fora do viewport das travessias de renderização e desenho nativos.
 
-**Cons:** Be aware that this implementation can have bugs, such as missing content (mainly observed on iOS), especially if you are doing complex things with transforms and/or absolute positioning. Also note this does not save significant memory because the views are not deallocated, only detached.
+**Contras:** Esteja ciente de que esta implementação pode ter bugs, como conteúdo faltando (principalmente observado no iOS), especialmente se você está fazendo coisas complexas com transforms e/ou posicionamento absoluto. Observe também que isso não economiza memória significativa porque as views não são desalocadas, apenas desacopladas.
 
 ### `maxToRenderPerBatch`
 
@@ -39,11 +40,11 @@ If `true`, views that are outside of the viewport are automatically detached fro
 | ------ | ------- |
 | Number | 10      |
 
-It is a `VirtualizedList` prop that can be passed through `FlatList`. This controls the amount of items rendered per batch, which is the next chunk of items rendered on every scroll.
+É uma prop do `VirtualizedList` que pode ser passada através do `FlatList`. Isso controla a quantidade de itens renderizados por lote, que é o próximo conjunto de itens renderizados a cada rolagem.
 
-**Pros:** Setting a bigger number means less visual blank areas when scrolling (increases the fill rate).
+**Prós:** Definir um número maior significa menos áreas em branco visual ao rolar (aumenta a taxa de preenchimento).
 
-**Cons:** More items per batch means longer periods of JavaScript execution potentially blocking other event processing, like presses, hurting responsiveness.
+**Contras:** Mais itens por lote significa períodos mais longos de execução JavaScript potencialmente bloqueando outro processamento de eventos, como toques, prejudicando a responsividade.
 
 ### `updateCellsBatchingPeriod`
 
@@ -51,11 +52,11 @@ It is a `VirtualizedList` prop that can be passed through `FlatList`. This contr
 | ------ | ------- |
 | Number | 50      |
 
-While `maxToRenderPerBatch` tells the amount of items rendered per batch, setting `updateCellsBatchingPeriod` tells your `VirtualizedList` the delay in milliseconds between batch renders (how frequently your component will be rendering the windowed items).
+Enquanto `maxToRenderPerBatch` diz a quantidade de itens renderizados por lote, definir `updateCellsBatchingPeriod` diz ao seu `VirtualizedList` o atraso em milissegundos entre renderizações de lote (com que frequência seu componente renderizará os itens em janela).
 
-**Pros:** Combining this prop with `maxToRenderPerBatch` gives you the power to, for example, render more items in a less frequent batch, or less items in a more frequent batch.
+**Prós:** Combinar esta prop com `maxToRenderPerBatch` dá a você o poder de, por exemplo, renderizar mais itens em um lote menos frequente, ou menos itens em um lote mais frequente.
 
-**Cons:** Less frequent batches may cause blank areas, More frequent batches may cause responsiveness issues.
+**Contras:** Lotes menos frequentes podem causar áreas em branco, Lotes mais frequentes podem causar problemas de responsividade.
 
 ### initialNumToRender
 
@@ -63,11 +64,11 @@ While `maxToRenderPerBatch` tells the amount of items rendered per batch, settin
 | ------ | ------- |
 | Number | 10      |
 
-The initial amount of items to render.
+A quantidade inicial de itens a renderizar.
 
-**Pros:** Define precise number of items that would cover the screen for every device. This can be a big performance boost for the initial render.
+**Prós:** Defina um número preciso de itens que cobririam a tela para cada dispositivo. Isso pode ser um grande impulso de desempenho para a renderização inicial.
 
-**Cons:** Setting a low `initialNumToRender` may cause blank areas, especially if it's too small to cover the viewport on initial render.
+**Contras:** Definir um `initialNumToRender` baixo pode causar áreas em branco, especialmente se for muito pequeno para cobrir o viewport na renderização inicial.
 
 ### `windowSize`
 
@@ -75,27 +76,27 @@ The initial amount of items to render.
 | ------ | ------- |
 | Number | 21      |
 
-The number passed here is a measurement unit where 1 is equivalent to your viewport height. The default value is 21 (10 viewports above, 10 below, and one in between).
+O número passado aqui é uma unidade de medida onde 1 é equivalente à altura do seu viewport. O valor padrão é 21 (10 viewports acima, 10 abaixo e um no meio).
 
-**Pros:** Bigger `windowSize` will result in less chance of seeing blank space while scrolling. On the other hand, smaller `windowSize` will result in fewer items mounted simultaneously, saving memory.
+**Prós:** Um `windowSize` maior resultará em menos chance de ver espaço em branco durante a rolagem. Por outro lado, um `windowSize` menor resultará em menos itens montados simultaneamente, economizando memória.
 
-**Cons:** For a bigger `windowSize`, you will have more memory consumption. For a lower `windowSize`, you will have a bigger chance of seeing blank areas.
+**Contras:** Para um `windowSize` maior, você terá mais consumo de memória. Para um `windowSize` menor, você terá uma chance maior de ver áreas em branco.
 
-## List items
+## Itens da lista
 
-Below are some tips about list item components. They are the core of your list, so they need to be fast.
+Abaixo estão algumas dicas sobre componentes de itens de lista. Eles são o núcleo da sua lista, então eles precisam ser rápidos.
 
-### Use basic components
+### Use componentes básicos
 
-The more complex your components are, the slower they will render. Try to avoid a lot of logic and nesting in your list items. If you are reusing this list item component a lot in your app, create a component only for your big lists and make them with as little logic and nesting as possible.
+Quanto mais complexos seus componentes forem, mais lenta será a renderização. Tente evitar muita lógica e aninhamento em seus itens de lista. Se você está reutilizando este componente de item de lista muito em seu aplicativo, crie um componente apenas para suas grandes listas e faça-os com o mínimo de lógica e aninhamento possível.
 
-### Use light components
+### Use componentes leves
 
-The heavier your components are, the slower they render. Avoid heavy images (use a cropped version or thumbnail for list items, as small as possible). Talk to your design team, use as little effects and interactions and information as possible in your list. Show them in your item's detail.
+Quanto mais pesados seus componentes forem, mais lenta será a renderização. Evite imagens pesadas (use uma versão cortada ou miniatura para itens de lista, tão pequena quanto possível). Fale com sua equipe de design, use o mínimo possível de efeitos, interações e informações em sua lista. Mostre-os nos detalhes do seu item.
 
 ### Use `memo()`
 
-`React.memo()` creates a memoized component that will be re-rendered only when the props passed to the component change. We can use this function to optimize the components in the FlatList.
+`React.memo()` cria um componente memoizado que será re-renderizado apenas quando as props passadas para o componente mudarem. Podemos usar esta função para otimizar os componentes no FlatList.
 
 ```tsx
 import React, {memo} from 'react';
@@ -115,29 +116,29 @@ const MyListItem = memo(
 export default MyListItem;
 ```
 
-In this example, we have determined that MyListItem should be re-rendered only when the title changes. We passed the comparison function as the second argument to React.memo() so that the component is re-rendered only when the specified prop is changed. If the comparison function returns true, the component will not be re-rendered.
+Neste exemplo, determinamos que MyListItem deve ser re-renderizado apenas quando o título mudar. Passamos a função de comparação como o segundo argumento para React.memo() para que o componente seja re-renderizado apenas quando a prop especificada for alterada. Se a função de comparação retornar true, o componente não será re-renderizado.
 
-### Use cached optimized images
+### Use imagens otimizadas em cache
 
-You can use the community packages (such as [@d11/react-native-fast-image](https://github.com/ds-horizon/react-native-fast-image) from [Dream11](https://github.com/ds-horizon)) for more performant images. Every image in your list is a `new Image()` instance. The faster it reaches the `loaded` hook, the faster your JavaScript thread will be free again.
+Você pode usar os pacotes da comunidade (como [@d11/react-native-fast-image](https://github.com/ds-horizon/react-native-fast-image) da [Dream11](https://github.com/ds-horizon)) para imagens com melhor desempenho. Cada imagem em sua lista é uma instância `new Image()`. Quanto mais rápido ela atinge o hook `loaded`, mais rápido sua thread JavaScript estará livre novamente.
 
 ### Use `getItemLayout`
 
-If all your list item components have the same height (or width, for a horizontal list), providing the [getItemLayout](flatlist#getitemlayout) prop removes the need for your `FlatList` to manage async layout calculations. This is a very desirable optimization technique.
+Se todos os componentes de item da sua lista tiverem a mesma altura (ou largura, para uma lista horizontal), fornecer a prop [getItemLayout](flatlist#getitemlayout) remove a necessidade de seu `FlatList` gerenciar cálculos de layout assíncronos. Esta é uma técnica de otimização muito desejável.
 
-If your components have dynamic size and you really need performance, consider asking your design team if they may think of a redesign in order to perform better.
+Se seus componentes tiverem tamanho dinâmico e você realmente precisar de desempenho, considere perguntar à sua equipe de design se eles podem pensar em um redesign para ter um melhor desempenho.
 
-### Use `keyExtractor` or `key`
+### Use `keyExtractor` ou `key`
 
-You can set the [`keyExtractor`](flatlist#keyextractor) to your `FlatList` component. This prop is used for caching and as the React `key` to track item re-ordering.
+Você pode definir o [`keyExtractor`](flatlist#keyextractor) para seu componente `FlatList`. Esta prop é usada para cache e como a `key` do React para rastrear a reordenação de itens.
 
-You can also use a `key` prop in your item component.
+Você também pode usar uma prop `key` no seu componente de item.
 
-### Avoid anonymous function on `renderItem`
+### Evite função anônima em `renderItem`
 
-For functional components, move the `renderItem` function outside of the returned JSX. Also, ensure that it is wrapped in a `useCallback` hook to prevent it from being recreated each render.
+Para componentes funcionais, mova a função `renderItem` para fora do JSX retornado. Além disso, certifique-se de que ela está envolvida em um hook `useCallback` para evitar que seja recriada a cada renderização.
 
-For class components, move the `renderItem` function outside of the render function, so it won't recreate itself each time the render function is called.
+Para componentes de classe, mova a função `renderItem` para fora da função render, para que ela não se recrie cada vez que a função render for chamada.
 
 ```tsx
 const renderItem = useCallback(({item}) => (

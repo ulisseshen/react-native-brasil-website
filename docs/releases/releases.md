@@ -1,33 +1,34 @@
 ---
+ia-translated: true
 id: releases
-title: Releases Overview
+title: Visão Geral de Releases
 ---
 
 import ReleasesTable from '@site/src/components/releases/ReleasesTable';
 
-New React Native releases are shipped **every two months**, usually resulting in six (6) new minors per year.
+Novos releases do React Native são lançados **a cada dois meses**, geralmente resultando em seis (6) novas versões menores por ano.
 
-Below is the schedule and current status of recent and upcoming React Native releases:
+Abaixo está o cronograma e status atual dos releases recentes e futuros do React Native:
 
 <ReleasesTable />
 
-The different support level presented in the table are defined as such:
+Os diferentes níveis de suporte apresentados na tabela são definidos da seguinte forma:
 
 - **Future**
-  - After a new version branch gets cut, creating new Release Candidates to allow the community to test the upcoming version is very important. New RC releases are done at a high pace, as soon as viable.
+  - Depois que um novo branch de versão é cortado, criar novos Release Candidates para permitir que a comunidade teste a versão futura é muito importante. Novos releases RC são feitos em ritmo acelerado, assim que viável.
 - **Active**
-  - Stable releases in active support receive frequent updates. Latest stable has the highest priority, and at the start of its stable cycle (right after .0 is released) multiple patches will be done as soon as possible to stabilize the version and ensure a good upgrade experience to the community.
+  - Releases estáveis em suporte ativo recebem atualizações frequentes. A versão estável mais recente tem a maior prioridade, e no início de seu ciclo estável (logo após .0 ser lançado) múltiplos patches serão feitos o mais rápido possível para estabilizar a versão e garantir uma boa experiência de atualização para a comunidade.
 - **End of Cycle**
-  - A version in this support bracket will receive less patches, unless some important regressions need to be addressed. Once a next version becomes the new latest stable, before the version in EoC moves over into Unsupported one last patch released will be produced with the latest receive pick requests.
+  - Uma versão neste nível de suporte receberá menos patches, a menos que algumas regressões importantes precisem ser abordadas. Uma vez que uma próxima versão se torna a nova versão estável mais recente, antes que a versão em EoC mova para Unsupported, um último patch released será produzido com as últimas solicitações de pick recebidas.
 - **Unsupported**
-  - When a version is in the unsupported stage, no new released are to be expected. Only very important regressions might create exceptions to this rule; it is recommended that codebases using an unsupported version upgrade as soon as possible.
+  - Quando uma versão está no estágio unsupported, nenhum novo release é esperado. Apenas regressões muito importantes podem criar exceções a esta regra; é recomendado que bases de código usando uma versão unsupported façam upgrade o mais rápido possível.
 
-## Commitment to Stability
+## Compromisso com a Estabilidade
 
-In order to support users upgrading React Native versions, we’re committed to maintain the **latest 3 minor series** (e.g. 0.78.x, 0.77.x and 0.76.x when 0.78 is the latest release).
+Para suportar usuários atualizando versões do React Native, estamos comprometidos em manter as **últimas 3 séries menores** (por exemplo, 0.78.x, 0.77.x e 0.76.x quando 0.78 é o release mais recente).
 
-For those releases we’ll be publishing regular updates and bug fixes.
+Para esses releases, publicaremos atualizações regulares e correções de bugs.
 
-You can read more about our support policy on [the react-native-releases working group](https://github.com/reactwg/react-native-releases/blob/main/docs/support.md).
+Você pode ler mais sobre nossa política de suporte no [grupo de trabalho react-native-releases](https://github.com/reactwg/react-native-releases/blob/main/docs/support.md).
 
-More information on our versioning, and what we consider a breaking change is available in our [versioning policy](./releases/versioning-policy) page.
+Mais informações sobre nosso versionamento, e o que consideramos uma breaking change estão disponíveis em nossa página de [política de versionamento](./releases/versioning-policy).

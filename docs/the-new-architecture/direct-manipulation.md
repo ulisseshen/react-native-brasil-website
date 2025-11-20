@@ -1,26 +1,27 @@
 ---
+ia-translated: true
 id: direct-manipulation-new-architecture
 title: Direct Manipulation
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-It is sometimes necessary to make changes directly to a component without using state/props to trigger a re-render of the entire subtree. When using React in the browser for example, you sometimes need to directly modify a DOM node, and the same is true for views in mobile apps. `setNativeProps` is the React Native equivalent to setting properties directly on a DOM node.
+Às vezes é necessário fazer mudanças diretamente em um componente sem usar state/props para disparar uma re-renderização de toda a subárvore. Ao usar React no browser, por exemplo, às vezes você precisa modificar diretamente um node DOM, e o mesmo é verdadeiro para views em aplicativos mobile. `setNativeProps` é o equivalente React Native de definir propriedades diretamente em um node DOM.
 
 :::caution
-Use `setNativeProps` when frequent re-rendering creates a performance bottleneck!
+Use `setNativeProps` quando a re-renderização frequente cria um gargalo de performance!
 
-Direct manipulation will not be a tool that you reach for frequently. You will typically only be using it for creating continuous animations to avoid the overhead of rendering the component hierarchy and reconciling many views.
-`setNativeProps` is imperative and stores state in the native layer (DOM, UIView, etc.) and not within your React components, which makes your code more difficult to reason about.
+Direct manipulation não será uma ferramenta que você usará com frequência. Você normalmente só a usará para criar animações contínuas para evitar a sobrecarga de renderizar a hierarquia de componentes e reconciliar muitas views.
+`setNativeProps` é imperativo e armazena estado na camada nativa (DOM, UIView, etc.) e não dentro de seus componentes React, o que torna seu código mais difícil de raciocinar.
 
-Before you use it, try to solve your problem with `setState` and [`shouldComponentUpdate`](https://react.dev/reference/react/Component#shouldcomponentupdate).
+Antes de usá-lo, tente resolver seu problema com `setState` e [`shouldComponentUpdate`](https://react.dev/reference/react/Component#shouldcomponentupdate).
 :::
 
-## setNativeProps to edit TextInput value
+## setNativeProps para editar o valor do TextInput
 
-Another very common use case of `setNativeProps` is to edit the value of the TextInput. The `controlled` prop of TextInput can sometimes drop characters when the `bufferDelay` is low and the user types very quickly. Some developers prefer to skip this prop entirely and instead use `setNativeProps` to directly manipulate the TextInput value when necessary.
+Outro caso de uso muito comum de `setNativeProps` é editar o valor do TextInput. A prop `controlled` do TextInput às vezes pode perder caracteres quando o `bufferDelay` é baixo e o usuário digita muito rapidamente. Alguns desenvolvedores preferem pular esta prop inteiramente e, em vez disso, usar `setNativeProps` para manipular diretamente o valor do TextInput quando necessário.
 
-For example, the following code demonstrates editing the input when you tap a button:
+Por exemplo, o código a seguir demonstra a edição do input quando você toca em um botão:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -121,8 +122,8 @@ export default App;
 </TabItem>
 </Tabs>
 
-You can use the [`clear`](../textinput#clear) method to clear the `TextInput` which clears the current input text using the same approach.
+Você pode usar o método [`clear`](../textinput#clear) para limpar o `TextInput` que limpa o texto de entrada atual usando a mesma abordagem.
 
-## Avoiding conflicts with the render function
+## Evitando conflitos com a função render
 
-If you update a property that is also managed by the render function, you might end up with some unpredictable and confusing bugs because anytime the component re-renders and that property changes, whatever value was previously set from `setNativeProps` will be completely ignored and overridden.
+Se você atualizar uma propriedade que também é gerenciada pela função render, você pode acabar com alguns bugs imprevisíveis e confusos porque sempre que o componente re-renderizar e aquela propriedade mudar, qualquer valor que foi previamente definido por `setNativeProps` será completamente ignorado e substituído.

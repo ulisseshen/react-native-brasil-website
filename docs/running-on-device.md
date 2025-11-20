@@ -1,21 +1,22 @@
 ---
+ia-translated: true
 id: running-on-device
-title: Running On Device
+title: Executando em Dispositivo
 hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-It's always a good idea to test your app on an actual device before releasing it to your users. This document will guide you through the necessary steps to run your React Native app on a device and to get it ready for production.
+É sempre uma boa ideia testar seu app em um dispositivo real antes de lançá-lo para seus usuários. Este documento irá guiá-lo através das etapas necessárias para executar seu app React Native em um dispositivo e prepará-lo para produção.
 
 :::tip
-If you used `create-expo-app` to set up your project, you can run your app on a device in Expo Go by scanning the QR code that is displayed when you run `npm start`. Refer to the Expo guide for [running your project on your device](https://docs.expo.dev/get-started/expo-go/) for more information.
+Se você usou `create-expo-app` para configurar seu projeto, você pode executar seu app em um dispositivo no Expo Go escaneando o código QR que é exibido quando você executa `npm start`. Consulte o guia Expo para [executar seu projeto em seu dispositivo](https://docs.expo.dev/get-started/expo-go/) para mais informações.
 :::
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
 <TabItem value="android">
 
-## Running your app on Android devices
+## Executando seu app em dispositivos Android
 
 #### Development OS
 
@@ -24,17 +25,17 @@ If you used `create-expo-app` to set up your project, you can run your app on a 
 
 [//]: # 'macOS, Android'
 
-### 1. Enable Debugging over USB
+### 1. Habilite a depuração via USB
 
-Most Android devices can only install and run apps downloaded from Google Play, by default. You will need to enable USB Debugging on your device in order to install your app during development.
+A maioria dos dispositivos Android só pode instalar e executar apps baixados da Google Play, por padrão. Você precisará habilitar a depuração USB em seu dispositivo para instalar seu app durante o desenvolvimento.
 
-To enable USB debugging on your device, you will first need to enable the "Developer options" menu by going to **Settings** → **About phone** → **Software information** and then tapping the `Build number` row at the bottom seven times. You can then go back to **Settings** → **Developer options** to enable "USB debugging".
+Para habilitar a depuração USB em seu dispositivo, você primeiro precisará habilitar o menu "Developer options" indo em **Settings** → **About phone** → **Software information** e então tocando na linha `Build number` na parte inferior sete vezes. Você pode então voltar para **Settings** → **Developer options** para habilitar "USB debugging".
 
-### 2. Plug in your device via USB
+### 2. Conecte seu dispositivo via USB
 
-Let's now set up an Android device to run our React Native projects. Go ahead and plug in your device via USB to your development machine.
+Agora vamos configurar um dispositivo Android para executar nossos projetos React Native. Vá em frente e conecte seu dispositivo via USB à sua máquina de desenvolvimento.
 
-Now check that your device is properly connecting to ADB, the Android Debug Bridge, by running `adb devices`.
+Agora verifique se seu dispositivo está se conectando corretamente ao ADB, o Android Debug Bridge, executando `adb devices`.
 
 ```shell
 $ adb devices
@@ -43,15 +44,15 @@ emulator-5554 offline   # Google emulator
 14ed2fcc device         # Physical device
 ```
 
-Seeing `device` in the right column means the device is connected. You must have **only one device connected** at a time.
+Ver `device` na coluna da direita significa que o dispositivo está conectado. Você deve ter **apenas um dispositivo conectado** por vez.
 
 :::note
-If you see `unauthorized` in the list you will need to run `adb reverse tcp:8081 tcp:8081` and press allow USB debugging on the device.
+Se você ver `unauthorized` na lista, você precisará executar `adb reverse tcp:8081 tcp:8081` e pressionar allow USB debugging no dispositivo.
 :::
 
-### 3. Run your app
+### 3. Execute seu app
 
-From the root of your project; type the following in your command prompt to install and launch your app on the device:
+Na raiz do seu projeto, digite o seguinte no seu prompt de comando para instalar e iniciar seu app no dispositivo:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -71,71 +72,71 @@ yarn android
 </Tabs>
 
 :::note
-If you get a "bridge configuration isn't available" error, see [Using adb reverse](running-on-device.md#method-1-using-adb-reverse-recommended).
+Se você receber um erro "bridge configuration isn't available", consulte [Using adb reverse](running-on-device.md#method-1-using-adb-reverse-recommended).
 :::
 
 :::tip
-You can also use the `React Native CLI` to generate and run a `release` build (e.g. from the root of your project: `yarn android --mode release`).
+Você também pode usar o `React Native CLI` para gerar e executar uma compilação `release` (por exemplo, da raiz do seu projeto: `yarn android --mode release`).
 :::
 
-<h2>Connecting to the development server</h2>
+<h2>Conectando ao servidor de desenvolvimento</h2>
 
-You can also iterate quickly on a device by connecting to the development server running on your development machine. There are several ways of accomplishing this, depending on whether you have access to a USB cable or a Wi-Fi network.
+Você também pode iterar rapidamente em um dispositivo conectando-se ao servidor de desenvolvimento executando em sua máquina de desenvolvimento. Existem várias maneiras de fazer isso, dependendo se você tem acesso a um cabo USB ou uma rede Wi-Fi.
 
 ### Method 1: Using adb reverse (recommended)
 
-You can use this method if your device is running Android 5.0 (Lollipop) or newer, it has USB debugging enabled, and it is connected via USB to your development machine.
+Você pode usar este método se seu dispositivo estiver executando Android 5.0 (Lollipop) ou mais recente, tiver a depuração USB habilitada e estiver conectado via USB à sua máquina de desenvolvimento.
 
-Run the following in a command prompt:
+Execute o seguinte em um prompt de comando:
 
 ```shell
 $ adb -s <device name> reverse tcp:8081 tcp:8081
 ```
 
-To find the device name, run the following adb command:
+Para encontrar o nome do dispositivo, execute o seguinte comando adb:
 
 ```shell
 $ adb devices
 ```
 
-You can now enable Fast Refresh from the [Dev Menu](debugging.md#opening-the-dev-menu). Your app will reload whenever your JavaScript code has changed.
+Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
 ### Method 2: Connect via Wi-Fi
 
-You can also connect to the development server over Wi-Fi. You'll first need to install the app on your device using a USB cable, but once that has been done you can debug wirelessly by following these instructions. You'll need your development machine's current IP address before proceeding.
+Você também pode se conectar ao servidor de desenvolvimento via Wi-Fi. Primeiro, você precisará instalar o app em seu dispositivo usando um cabo USB, mas uma vez feito isso, você pode depurar sem fio seguindo estas instruções. Você precisará do endereço IP atual da sua máquina de desenvolvimento antes de prosseguir.
 
-You can find the IP address in **System Settings (or System Preferences)** → **Network**.
+Você pode encontrar o endereço IP em **System Settings (or System Preferences)** → **Network**.
 
-1. Make sure your laptop and your phone are on the **same** Wi-Fi network.
-2. Open your React Native app on your device.
-3. You'll see a [red screen with an error](debugging.md#logbox). This is OK. The following steps will fix that.
-4. Open the in-app [Dev Menu](debugging.md#opening-the-dev-menu).
-5. Go to **Dev Settings** → **Debug server host & port for device**.
-6. Type in your machine's IP address and the port of the local dev server (e.g. `10.0.1.1:8081`).
-7. Go back to the **Dev Menu** and select **Reload JS**.
+1. Certifique-se de que seu laptop e seu telefone estejam na **mesma** rede Wi-Fi.
+2. Abra seu app React Native no seu dispositivo.
+3. Você verá uma [tela vermelha com um erro](debugging.md#logbox). Está tudo bem. Os próximos passos irão corrigir isso.
+4. Abra o [Dev Menu](debugging.md#opening-the-dev-menu) no app.
+5. Vá para **Dev Settings** → **Debug server host & port for device**.
+6. Digite o endereço IP da sua máquina e a porta do servidor de desenvolvimento local (por exemplo, `10.0.1.1:8081`).
+7. Volte para o **Dev Menu** e selecione **Reload JS**.
 
-You can now enable Fast Refresh from the [Dev Menu](debugging.md#opening-the-dev-menu). Your app will reload whenever your JavaScript code has changed.
+Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
 ## Building your app for production
 
-You have built a great app using React Native, and you are now itching to release it in the Play Store. The process is the same as any other native Android app, with some additional considerations to take into account. Follow the guide for [generating a signed APK](signed-apk-android.md) to learn more.
+Você construiu um ótimo app usando React Native e agora está ansioso para lançá-lo na Play Store. O processo é o mesmo de qualquer outro app Android nativo, com algumas considerações adicionais a serem levadas em conta. Siga o guia para [gerar um APK assinado](signed-apk-android.md) para saber mais.
 
 </TabItem>
 <TabItem value="windows">
 
 [//]: # 'Windows, Android'
 
-### 1. Enable Debugging over USB
+### 1. Habilite a depuração via USB
 
-Most Android devices can only install and run apps downloaded from Google Play, by default. You will need to enable USB Debugging on your device in order to install your app during development.
+A maioria dos dispositivos Android só pode instalar e executar apps baixados da Google Play, por padrão. Você precisará habilitar a depuração USB em seu dispositivo para instalar seu app durante o desenvolvimento.
 
-To enable USB debugging on your device, you will first need to enable the "Developer options" menu by going to **Settings** → **About phone** → **Software information** and then tapping the `Build number` row at the bottom seven times. You can then go back to **Settings** → **Developer options** to enable "USB debugging".
+Para habilitar a depuração USB em seu dispositivo, você primeiro precisará habilitar o menu "Developer options" indo em **Settings** → **About phone** → **Software information** e então tocando na linha `Build number` na parte inferior sete vezes. Você pode então voltar para **Settings** → **Developer options** para habilitar "USB debugging".
 
-### 2. Plug in your device via USB
+### 2. Conecte seu dispositivo via USB
 
-Let's now set up an Android device to run our React Native projects. Go ahead and plug in your device via USB to your development machine.
+Agora vamos configurar um dispositivo Android para executar nossos projetos React Native. Vá em frente e conecte seu dispositivo via USB à sua máquina de desenvolvimento.
 
-Now check that your device is properly connecting to ADB, the Android Debug Bridge, by running `adb devices`.
+Agora verifique se seu dispositivo está se conectando corretamente ao ADB, o Android Debug Bridge, executando `adb devices`.
 
 ```shell
 $ adb devices
@@ -144,11 +145,11 @@ emulator-5554 offline   # Google emulator
 14ed2fcc device         # Physical device
 ```
 
-Seeing `device` in the right column means the device is connected. You must have **only one device connected** at a time.
+Ver `device` na coluna da direita significa que o dispositivo está conectado. Você deve ter **apenas um dispositivo conectado** por vez.
 
-### 3. Run your app
+### 3. Execute seu app
 
-From the root of your project, run the following in your command prompt to install and launch your app on the device:
+Na raiz do seu projeto, execute o seguinte no seu prompt de comando para instalar e iniciar seu app no dispositivo:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -168,67 +169,67 @@ yarn android
 </Tabs>
 
 :::tip
-You can also use the `React Native CLI` to generate and run a `release` build (e.g. from the root of your project: `yarn android --mode release`).
+Você também pode usar o `React Native CLI` para gerar e executar uma compilação `release` (por exemplo, da raiz do seu projeto: `yarn android --mode release`).
 :::
 
-<h2>Connecting to the development server</h2>
+<h2>Conectando ao servidor de desenvolvimento</h2>
 
-You can also iterate quickly on a device by connecting to the development server running on your development machine. There are several ways of accomplishing this, depending on whether you have access to a USB cable or a Wi-Fi network.
+Você também pode iterar rapidamente em um dispositivo conectando-se ao servidor de desenvolvimento executando em sua máquina de desenvolvimento. Existem várias maneiras de fazer isso, dependendo se você tem acesso a um cabo USB ou uma rede Wi-Fi.
 
 ### Method 1: Using adb reverse (recommended)
 
-You can use this method if your device is running Android 5.0 (Lollipop) or newer, it has USB debugging enabled, and it is connected via USB to your development machine.
+Você pode usar este método se seu dispositivo estiver executando Android 5.0 (Lollipop) ou mais recente, tiver a depuração USB habilitada e estiver conectado via USB à sua máquina de desenvolvimento.
 
-Run the following in a command prompt:
+Execute o seguinte em um prompt de comando:
 
 ```shell
 $ adb -s <device name> reverse tcp:8081 tcp:8081
 ```
 
-To find the device name, run the following adb command:
+Para encontrar o nome do dispositivo, execute o seguinte comando adb:
 
 ```shell
 $ adb devices
 ```
 
-You can now enable Fast Refresh from the [Dev Menu](debugging.md#opening-the-dev-menu). Your app will reload whenever your JavaScript code has changed.
+Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
 ### Method 2: Connect via Wi-Fi
 
-You can also connect to the development server over Wi-Fi. You'll first need to install the app on your device using a USB cable, but once that has been done you can debug wirelessly by following these instructions. You'll need your development machine's current IP address before proceeding.
+Você também pode se conectar ao servidor de desenvolvimento via Wi-Fi. Primeiro, você precisará instalar o app em seu dispositivo usando um cabo USB, mas uma vez feito isso, você pode depurar sem fio seguindo estas instruções. Você precisará do endereço IP atual da sua máquina de desenvolvimento antes de prosseguir.
 
-Open the command prompt and type `ipconfig` to find your machine's IP address ([more info](https://windows.microsoft.com/en-us/windows/using-command-line-tools-networking-information)).
+Abra o prompt de comando e digite `ipconfig` para encontrar o endereço IP da sua máquina ([mais informações](https://windows.microsoft.com/en-us/windows/using-command-line-tools-networking-information)).
 
-1. Make sure your laptop and your phone are on the **same** Wi-Fi network.
-2. Open your React Native app on your device.
-3. You'll see a [red screen with an error](debugging.md#logbox). This is OK. The following steps will fix that.
-4. Open the in-app [Dev Menu](debugging.md#opening-the-dev-menu).
-5. Go to **Dev Settings** → **Debug server host & port for device**.
-6. Type in your machine's IP address and the port of the local dev server (e.g. `10.0.1.1:8081`).
-7. Go back to the **Dev Menu** and select **Reload JS**.
+1. Certifique-se de que seu laptop e seu telefone estejam na **mesma** rede Wi-Fi.
+2. Abra seu app React Native no seu dispositivo.
+3. Você verá uma [tela vermelha com um erro](debugging.md#logbox). Está tudo bem. Os próximos passos irão corrigir isso.
+4. Abra o [Dev Menu](debugging.md#opening-the-dev-menu) no app.
+5. Vá para **Dev Settings** → **Debug server host & port for device**.
+6. Digite o endereço IP da sua máquina e a porta do servidor de desenvolvimento local (por exemplo, `10.0.1.1:8081`).
+7. Volte para o **Dev Menu** e selecione **Reload JS**.
 
-You can now enable Fast Refresh from the [Dev Menu](debugging.md#opening-the-dev-menu). Your app will reload whenever your JavaScript code has changed.
+Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
 ## Building your app for production
 
-You have built a great app using React Native, and you are now itching to release it in the Play Store. The process is the same as any other native Android app, with some additional considerations to take into account. Follow the guide for [generating a signed APK](signed-apk-android.md) to learn more.
+Você construiu um ótimo app usando React Native e agora está ansioso para lançá-lo na Play Store. O processo é o mesmo de qualquer outro app Android nativo, com algumas considerações adicionais a serem levadas em conta. Siga o guia para [gerar um APK assinado](signed-apk-android.md) para saber mais.
 
 </TabItem>
 <TabItem value="linux">
 
 [//]: # 'Linux, Android'
 
-### 1. Enable Debugging over USB
+### 1. Habilite a depuração via USB
 
-Most Android devices can only install and run apps downloaded from Google Play, by default. You will need to enable USB Debugging on your device in order to install your app during development.
+A maioria dos dispositivos Android só pode instalar e executar apps baixados da Google Play, por padrão. Você precisará habilitar a depuração USB em seu dispositivo para instalar seu app durante o desenvolvimento.
 
-To enable USB debugging on your device, you will first need to enable the "Developer options" menu by going to **Settings** → **About phone** → **Software information** and then tapping the `Build number` row at the bottom seven times. You can then go back to **Settings** → **Developer options** to enable "USB debugging".
+Para habilitar a depuração USB em seu dispositivo, você primeiro precisará habilitar o menu "Developer options" indo em **Settings** → **About phone** → **Software information** e então tocando na linha `Build number` na parte inferior sete vezes. Você pode então voltar para **Settings** → **Developer options** para habilitar "USB debugging".
 
-### 2. Plug in your device via USB
+### 2. Conecte seu dispositivo via USB
 
-Let's now set up an Android device to run our React Native projects. Go ahead and plug in your device via USB to your development machine.
+Agora vamos configurar um dispositivo Android para executar nossos projetos React Native. Vá em frente e conecte seu dispositivo via USB à sua máquina de desenvolvimento.
 
-Next, check the manufacturer code by using `lsusb` (on mac, you must first [install lsusb](https://github.com/jlhonora/lsusb)). `lsusb` should output something like this:
+Em seguida, verifique o código do fabricante usando `lsusb` (no mac, você deve primeiro [instalar lsusb](https://github.com/jlhonora/lsusb)). `lsusb` deve mostrar algo assim:
 
 ```bash
 $ lsusb
@@ -241,9 +242,9 @@ Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
-These lines represent the USB devices currently connected to your machine.
+Essas linhas representam os dispositivos USB atualmente conectados à sua máquina.
 
-You want the line that represents your phone. If you're in doubt, try unplugging your phone and running the command again:
+Você quer a linha que representa seu telefone. Se estiver em dúvida, tente desconectar seu telefone e executar o comando novamente:
 
 ```bash
 $ lsusb
@@ -255,25 +256,25 @@ Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
-You'll see that after removing the phone, the line which has the phone model ("Motorola PCS" in this case) disappeared from the list. This is the line that we care about.
+Você verá que após remover o telefone, a linha que tem o modelo do telefone ("Motorola PCS" neste caso) desapareceu da lista. Esta é a linha que nos interessa.
 
 `Bus 001 Device 003: ID 22b8:2e76 Motorola PCS`
 
-From the above line, you want to grab the first four digits from the device ID:
+Da linha acima, você quer pegar os primeiros quatro dígitos do ID do dispositivo:
 
 `22b8:2e76`
 
-In this case, it's `22b8`. That's the identifier for Motorola.
+Neste caso, é `22b8`. Esse é o identificador da Motorola.
 
-You'll need to input this into your udev rules in order to get up and running:
+Você precisará inserir isso nas suas regras udev para começar a funcionar:
 
 ```shell
 echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="22b8", MODE="0666", GROUP="plugdev"' | sudo tee /etc/udev/rules.d/51-android-usb.rules
 ```
 
-Make sure that you replace `22b8` with the identifier you get in the above command.
+Certifique-se de substituir `22b8` pelo identificador que você obteve no comando acima.
 
-Now check that your device is properly connecting to ADB, the Android Debug Bridge, by running `adb devices`.
+Agora verifique se seu dispositivo está se conectando corretamente ao ADB, o Android Debug Bridge, executando `adb devices`.
 
 ```shell
 $ adb devices
@@ -282,11 +283,11 @@ emulator-5554 offline   # Google emulator
 14ed2fcc device         # Physical device
 ```
 
-Seeing `device` in the right column means the device is connected. You must have **only one device connected** at a time.
+Ver `device` na coluna da direita significa que o dispositivo está conectado. Você deve ter **apenas um dispositivo conectado** por vez.
 
-### 3. Run your app
+### 3. Execute seu app
 
-From the root of your project, type the following in your command prompt to install and launch your app on the device:
+Na raiz do seu projeto, digite o seguinte no seu prompt de comando para instalar e iniciar seu app no dispositivo:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -306,54 +307,54 @@ yarn android
 </Tabs>
 
 :::note
-If you get a "bridge configuration isn't available" error, see [Using adb reverse](running-on-device.md#method-1-using-adb-reverse-recommended).
+Se você receber um erro "bridge configuration isn't available", consulte [Using adb reverse](running-on-device.md#method-1-using-adb-reverse-recommended).
 :::
 
 :::tip
-You can also use the `React Native CLI` to generate and run a `release` build (e.g. from the root of your project: `yarn android --mode release`).
+Você também pode usar o `React Native CLI` para gerar e executar uma compilação `release` (por exemplo, da raiz do seu projeto: `yarn android --mode release`).
 :::
 
-<h2>Connecting to the development server</h2>
+<h2>Conectando ao servidor de desenvolvimento</h2>
 
-You can also iterate quickly on a device by connecting to the development server running on your development machine. There are several ways of accomplishing this, depending on whether you have access to a USB cable or a Wi-Fi network.
+Você também pode iterar rapidamente em um dispositivo conectando-se ao servidor de desenvolvimento executando em sua máquina de desenvolvimento. Existem várias maneiras de fazer isso, dependendo se você tem acesso a um cabo USB ou uma rede Wi-Fi.
 
 ### Method 1: Using adb reverse (recommended)
 
-You can use this method if your device is running Android 5.0 (Lollipop) or newer, it has USB debugging enabled, and it is connected via USB to your development machine.
+Você pode usar este método se seu dispositivo estiver executando Android 5.0 (Lollipop) ou mais recente, tiver a depuração USB habilitada e estiver conectado via USB à sua máquina de desenvolvimento.
 
-Run the following in a command prompt:
+Execute o seguinte em um prompt de comando:
 
 ```shell
 $ adb -s <device name> reverse tcp:8081 tcp:8081
 ```
 
-To find the device name, run the following adb command:
+Para encontrar o nome do dispositivo, execute o seguinte comando adb:
 
 ```shell
 $ adb devices
 ```
 
-You can now enable Fast Refresh from the [Dev Menu](debugging.md#opening-the-dev-menu). Your app will reload whenever your JavaScript code has changed.
+Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
 ### Method 2: Connect via Wi-Fi
 
-You can also connect to the development server over Wi-Fi. You'll first need to install the app on your device using a USB cable, but once that has been done you can debug wirelessly by following these instructions. You'll need your development machine's current IP address before proceeding.
+Você também pode se conectar ao servidor de desenvolvimento via Wi-Fi. Primeiro, você precisará instalar o app em seu dispositivo usando um cabo USB, mas uma vez feito isso, você pode depurar sem fio seguindo estas instruções. Você precisará do endereço IP atual da sua máquina de desenvolvimento antes de prosseguir.
 
-Open a terminal and type `/sbin/ifconfig` to find your machine's IP address.
+Abra um terminal e digite `/sbin/ifconfig` para encontrar o endereço IP da sua máquina.
 
-1. Make sure your laptop and your phone are on the **same** Wi-Fi network.
-2. Open your React Native app on your device.
-3. You'll see a [red screen with an error](debugging.md#logbox). This is OK. The following steps will fix that.
-4. Open the in-app [Dev Menu](debugging.md#opening-the-dev-menu).
-5. Go to **Dev Settings** → **Debug server host & port for device**.
-6. Type in your machine's IP address and the port of the local dev server (e.g. `10.0.1.1:8081`).
-7. Go back to the **Dev Menu** and select **Reload JS**.
+1. Certifique-se de que seu laptop e seu telefone estejam na **mesma** rede Wi-Fi.
+2. Abra seu app React Native no seu dispositivo.
+3. Você verá uma [tela vermelha com um erro](debugging.md#logbox). Está tudo bem. Os próximos passos irão corrigir isso.
+4. Abra o [Dev Menu](debugging.md#opening-the-dev-menu) no app.
+5. Vá para **Dev Settings** → **Debug server host & port for device**.
+6. Digite o endereço IP da sua máquina e a porta do servidor de desenvolvimento local (por exemplo, `10.0.1.1:8081`).
+7. Volte para o **Dev Menu** e selecione **Reload JS**.
 
-You can now enable Fast Refresh from the [Dev Menu](debugging.md#opening-the-dev-menu). Your app will reload whenever your JavaScript code has changed.
+Agora você pode habilitar o Fast Refresh no [Dev Menu](debugging.md#opening-the-dev-menu). Seu app será recarregado sempre que seu código JavaScript for alterado.
 
 ## Building your app for production
 
-You have built a great app using React Native, and you are now itching to release it in the Play Store. The process is the same as any other native Android app, with some additional considerations to take into account. Follow the guide for [generating a signed APK](signed-apk-android.md) to learn more.
+Você construiu um ótimo app usando React Native e agora está ansioso para lançá-lo na Play Store. O processo é o mesmo de qualquer outro app Android nativo, com algumas considerações adicionais a serem levadas em conta. Siga o guia para [gerar um APK assinado](signed-apk-android.md) para saber mais.
 
 </TabItem>
 </Tabs>
@@ -361,7 +362,7 @@ You have built a great app using React Native, and you are now itching to releas
 </TabItem>
 <TabItem value="ios">
 
-## Running your app on iOS devices
+## Executando seu app em dispositivos iOS
 
 #### Development OS
 
@@ -370,67 +371,67 @@ You have built a great app using React Native, and you are now itching to releas
 
 [//]: # 'macOS, iOS'
 
-### 1. Plug in your device via USB
+### 1. Conecte seu dispositivo via USB
 
-Connect your iOS device to your Mac using a USB to Lightning or USB-C cable. Navigate to the `ios` folder in your project, then open the `.xcodeproj` file, or if you are using CocoaPods open `.xcworkspace`, within it using Xcode.
+Conecte seu dispositivo iOS ao seu Mac usando um cabo USB para Lightning ou USB-C. Navegue até a pasta `ios` no seu projeto e abra o arquivo `.xcodeproj`, ou se você estiver usando CocoaPods abra `.xcworkspace`, dentro dele usando Xcode.
 
-If this is your first time running an app on your iOS device, you may need to register your device for development. Open the **Product** menu from Xcode's menubar, then go to **Destination**. Look for and select your device from the list. Xcode will then register your device for development.
+Se esta é a primeira vez que você executa um app em seu dispositivo iOS, pode ser necessário registrar seu dispositivo para desenvolvimento. Abra o menu **Product** na barra de menus do Xcode e vá para **Destination**. Procure e selecione seu dispositivo na lista. O Xcode irá então registrar seu dispositivo para desenvolvimento.
 
-### 2. Configure code signing
+### 2. Configure a assinatura de código
 
-Register for an [Apple developer account](https://developer.apple.com/) if you don't have one yet.
+Registre-se para uma [conta de desenvolvedor Apple](https://developer.apple.com/) se você ainda não tiver uma.
 
-Select your project in the Xcode Project Navigator, then select your main target (it should share the same name as your project). Look for the "General" tab. Go to "Signing" and make sure your Apple developer account or team is selected under the Team dropdown. Do the same for the tests target (it ends with Tests, and is below your main target).
+Selecione seu projeto no Xcode Project Navigator e selecione seu target principal (ele deve compartilhar o mesmo nome que seu projeto). Procure a aba "General". Vá para "Signing" e certifique-se de que sua conta de desenvolvedor Apple ou team esteja selecionada no dropdown Team. Faça o mesmo para o target de testes (ele termina com Tests e está abaixo do seu target principal).
 
-**Repeat** this step for the **Tests** target in your project.
+**Repita** este passo para o target **Tests** no seu projeto.
 
 ![](/docs/assets/RunningOnDeviceCodeSigning.png)
 
 ### 3. Build and Run your app
 
-If everything is set up correctly, your device will be listed as the build target in the Xcode toolbar, and it will also appear in the Devices pane (<kbd>Shift ⇧</kbd> + <kbd>Cmd ⌘</kbd> + <kbd>2</kbd>). You can now press the **Build and run** button (<kbd>Cmd ⌘</kbd> + <kbd>R</kbd>) or select **Run** from the **Product** menu. Your app will launch on your device shortly.
+Se tudo estiver configurado corretamente, seu dispositivo será listado como o target de build na barra de ferramentas do Xcode, e também aparecerá no painel Devices (<kbd>Shift ⇧</kbd> + <kbd>Cmd ⌘</kbd> + <kbd>2</kbd>). Agora você pode pressionar o botão **Build and run** (<kbd>Cmd ⌘</kbd> + <kbd>R</kbd>) ou selecionar **Run** no menu **Product**. Seu app será iniciado no seu dispositivo em breve.
 
 ![](/docs/assets/RunningOnDeviceReady.png)
 
 :::note
-If you run into any issues, please take a look at Apple's [Launching Your App on a Device](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4) docs.
+Se você encontrar algum problema, consulte a documentação da Apple sobre [Launching Your App on a Device](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4).
 :::
 
-<h2>Connecting to the development server</h2>
+<h2>Conectando ao servidor de desenvolvimento</h2>
 
-You can also iterate quickly on a device using the development server. You only have to be on the same Wi-Fi network as your computer. Shake your device to open the [Dev Menu](debugging.md#opening-the-dev-menu), then enable Fast Refresh. Your app will reload whenever your JavaScript code has changed.
+Você também pode iterar rapidamente em um dispositivo usando o servidor de desenvolvimento. Você só precisa estar na mesma rede Wi-Fi que seu computador. Agite seu dispositivo para abrir o [Dev Menu](debugging.md#opening-the-dev-menu) e então habilite o Fast Refresh. Seu app será recarregado sempre que seu código JavaScript for alterado.
 
 ![](/docs/assets/debugging-dev-menu-076.jpg)
 
 ### Troubleshooting
 
 :::tip
-If you have any issues, ensure that your Mac and device are on the same network and can reach each other. Many open wireless networks with captive portals are configured to prevent devices from reaching other devices on the network. You may use your device's Personal Hotspot feature in this case. You may also share your internet (Wi-Fi/Ethernet) connection from your Mac to your device via USB and connect to the bundler through this tunnel for very high transfer speeds.
+Se você tiver algum problema, certifique-se de que seu Mac e dispositivo estejam na mesma rede e possam se alcançar. Muitas redes sem fio abertas com portais cativos são configuradas para impedir que dispositivos alcancem outros dispositivos na rede. Você pode usar o recurso Personal Hotspot do seu dispositivo neste caso. Você também pode compartilhar sua conexão de internet (Wi-Fi/Ethernet) do seu Mac para seu dispositivo via USB e se conectar ao bundler através deste túnel para velocidades de transferência muito altas.
 :::
 
-When trying to connect to the development server you might get a [red screen with an error](debugging.md#logbox) saying:
+Ao tentar se conectar ao servidor de desenvolvimento, você pode receber uma [tela vermelha com um erro](debugging.md#logbox) dizendo:
 
 :::note
 Connection to `http://localhost:8081/debugger-proxy?role=client` timed out. Are you running node proxy? If you are running on the device, check if you have the right IP address in `RCTWebSocketExecutor.m`.
 :::
 
-To solve this issue check the following points.
+Para resolver este problema, verifique os seguintes pontos.
 
 #### 1. Wi-Fi network.
 
-Make sure your laptop and your phone are on the **same** Wi-Fi network.
+Certifique-se de que seu laptop e seu telefone estejam na **mesma** rede Wi-Fi.
 
 #### 2. IP address
 
-Make sure that the build script detected the IP address of your machine correctly (e.g. `10.0.1.123`).
+Certifique-se de que o script de build detectou o endereço IP da sua máquina corretamente (por exemplo, `10.0.1.123`).
 
 ![](/docs/assets/XcodeBuildIP.png)
 
-Open the **Report navigator** tab, select the last **Build** and search for `IP=` followed by an IP address. The IP address which gets embedded in the app should match your machines IP address.
+Abra a aba **Report navigator**, selecione o último **Build** e procure por `IP=` seguido de um endereço IP. O endereço IP que é incorporado no app deve corresponder ao endereço IP da sua máquina.
 
 ## Building your app for production
 
-You have built a great app using React Native, and you are now itching to release it in the App Store. The process is the same as any other native iOS app, with some additional considerations to take into account. Follow the guide for [publishing to the Apple App Store](publishing-to-app-store.md) to learn more.
+Você construiu um ótimo app usando React Native e agora está ansioso para lançá-lo na App Store. O processo é o mesmo de qualquer outro app iOS nativo, com algumas considerações adicionais a serem levadas em conta. Siga o guia para [publicar na Apple App Store](publishing-to-app-store.md) para saber mais.
 
 </TabItem>
 <TabItem value="windows">
@@ -438,7 +439,7 @@ You have built a great app using React Native, and you are now itching to releas
 [//]: # 'Windows, iOS'
 
 :::info
-A Mac is required in order to build your app for iOS devices. Alternatively, you can refer to our [environment setup guide](environment-setup) to learn how to build your app using Expo CLI, which will allow you to run your app using the Expo client app.
+Um Mac é necessário para fazer build do seu app para dispositivos iOS. Alternativamente, você pode consultar nosso [guia de configuração de ambiente](environment-setup) para aprender como fazer build do seu app usando Expo CLI, que permitirá que você execute seu app usando o app cliente Expo.
 :::
 
 </TabItem>
@@ -447,7 +448,7 @@ A Mac is required in order to build your app for iOS devices. Alternatively, you
 [//]: # 'Linux, iOS'
 
 :::info
-A Mac is required in order to build your app for iOS devices. Alternatively, you can refer to our [environment setup guide](environment-setup) to learn how to build your app using Expo CLI, which will allow you to run your app using the Expo client app.
+Um Mac é necessário para fazer build do seu app para dispositivos iOS. Alternativamente, você pode consultar nosso [guia de configuração de ambiente](environment-setup) para aprender como fazer build do seu app usando Expo CLI, que permitirá que você execute seu app usando o app cliente Expo.
 :::
 
 </TabItem>

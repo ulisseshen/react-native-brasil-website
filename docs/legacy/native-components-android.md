@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: native-components-android
 title: Android Native UI Components
 ---
@@ -8,33 +9,33 @@ import NativeDeprecated from '../the-new-architecture/\_markdown_native_deprecat
 
 <NativeDeprecated />
 
-There are tons of native UI widgets out there ready to be used in the latest apps - some of them are part of the platform, others are available as third-party libraries, and still more might be in use in your very own portfolio. React Native has several of the most critical platform components already wrapped, like `ScrollView` and `TextInput`, but not all of them, and certainly not ones you might have written yourself for a previous app. Fortunately, we can wrap up these existing components for seamless integration with your React Native application.
+Existem toneladas de widgets de UI nativos prontos para serem usados nos aplicativos mais recentes - alguns deles fazem parte da plataforma, outros estão disponíveis como bibliotecas de terceiros, e ainda mais podem estar em uso em seu próprio portfólio. React Native já possui vários dos componentes de plataforma mais críticos encapsulados, como `ScrollView` e `TextInput`, mas não todos eles, e certamente não aqueles que você possa ter escrito para um aplicativo anterior. Felizmente, podemos encapsular esses componentes existentes para integração perfeita com sua aplicação React Native.
 
-Like the native module guide, this too is a more advanced guide that assumes you are somewhat familiar with Android SDK programming. This guide will show you how to build a native UI component, walking you through the implementation of a subset of the existing `ImageView` component available in the core React Native library.
+Como o guia de native module, este também é um guia mais avançado que assume que você está um pouco familiarizado com programação Android SDK. Este guia mostrará como construir um componente de UI nativo, guiando você através da implementação de um subconjunto do componente `ImageView` existente disponível na biblioteca principal do React Native.
 
 :::info
-You can also setup local library containing native component with one command. Read the guide to [Local libraries setup](local-library-setup) for more details.
+Você também pode configurar uma biblioteca local contendo componente nativo com um comando. Leia o guia [Local libraries setup](local-library-setup) para mais detalhes.
 :::
 
 ## ImageView example
 
-For this example we are going to walk through the implementation requirements to allow the use of ImageViews in JavaScript.
+Para este exemplo vamos percorrer os requisitos de implementação para permitir o uso de ImageViews em JavaScript.
 
-Native views are created and manipulated by extending `ViewManager` or more commonly `SimpleViewManager` . A `SimpleViewManager` is convenient in this case because it applies common properties such as background color, opacity, and Flexbox layout.
+Views nativas são criadas e manipuladas estendendo `ViewManager` ou mais comumente `SimpleViewManager`. Um `SimpleViewManager` é conveniente neste caso porque aplica propriedades comuns como background color, opacity e Flexbox layout.
 
-These subclasses are essentially singletons - only one instance of each is created by the bridge. They send native views to the `NativeViewHierarchyManager`, which delegates back to them to set and update the properties of the views as necessary. The `ViewManagers` are also typically the delegates for the views, sending events back to JavaScript via the bridge.
+Essas subclasses são essencialmente singletons - apenas uma instância de cada é criada pela bridge. Elas enviam views nativas para o `NativeViewHierarchyManager`, que delega de volta para elas para definir e atualizar as propriedades das views conforme necessário. Os `ViewManagers` também são tipicamente os delegates para as views, enviando eventos de volta para JavaScript via a bridge.
 
-To send a view:
+Para enviar uma view:
 
-1. Create the ViewManager subclass.
-2. Implement the `createViewInstance` method
-3. Expose view property setters using `@ReactProp` (or `@ReactPropGroup`) annotation
-4. Register the manager in `createViewManagers` of the applications package.
-5. Implement the JavaScript module
+1. Criar a subclasse ViewManager.
+2. Implementar o método `createViewInstance`
+3. Expor setters de propriedade de view usando anotação `@ReactProp` (ou `@ReactPropGroup`)
+4. Registrar o manager em `createViewManagers` do package da aplicação.
+5. Implementar o módulo JavaScript
 
 ### 1. Create the `ViewManager` subclass
 
-In this example we create view manager class `ReactImageManager` that extends `SimpleViewManager` of type `ReactImageView`. `ReactImageView` is the type of object managed by the manager, this will be the custom native view. Name returned by `getName` is used to reference the native view type from JavaScript.
+Neste exemplo criamos a classe view manager `ReactImageManager` que estende `SimpleViewManager` do tipo `ReactImageView`. `ReactImageView` é o tipo de objeto gerenciado pelo manager, esta será a view nativa customizada. O nome retornado por `getName` é usado para referenciar o tipo de view nativa do JavaScript.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -77,7 +78,7 @@ public class ReactImageManager extends SimpleViewManager<ReactImageView> {
 
 ### 2. Implement method `createViewInstance`
 
-Views are created in the `createViewInstance` method, the view should initialize itself in its default state, any properties will be set via a follow up call to `updateView.`
+Views são criadas no método `createViewInstance`, a view deve se inicializar em seu estado padrão, quaisquer propriedades serão definidas via uma chamada de acompanhamento para `updateView.`
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -102,13 +103,13 @@ Views are created in the `createViewInstance` method, the view should initialize
 
 ### 3. Expose view property setters using `@ReactProp` (or `@ReactPropGroup`) annotation
 
-Properties that are to be reflected in JavaScript needs to be exposed as setter method annotated with `@ReactProp` (or `@ReactPropGroup`). Setter method should take view to be updated (of the current view type) as a first argument and property value as a second argument. Setter should be public and not return a value (i.e. return type should be `void` in Java or `Unit` in Kotlin). Property type sent to JS is determined automatically based on the type of value argument of the setter. The following type of values are currently supported (in Java): `boolean`, `int`, `float`, `double`, `String`, `Boolean`, `Integer`, `ReadableArray`, `ReadableMap`. The corresponding types in Kotlin are `Boolean`, `Int`, `Float`, `Double`, `String`, `ReadableArray`, `ReadableMap`.
+Propriedades que devem ser refletidas em JavaScript precisam ser expostas como método setter anotado com `@ReactProp` (ou `@ReactPropGroup`). O método setter deve receber a view a ser atualizada (do tipo de view atual) como primeiro argumento e o valor da propriedade como segundo argumento. O setter deve ser público e não retornar um valor (ou seja, o tipo de retorno deve ser `void` em Java ou `Unit` em Kotlin). O tipo de propriedade enviado para JS é determinado automaticamente com base no tipo do argumento de valor do setter. Os seguintes tipos de valores são atualmente suportados (em Java): `boolean`, `int`, `float`, `double`, `String`, `Boolean`, `Integer`, `ReadableArray`, `ReadableMap`. Os tipos correspondentes em Kotlin são `Boolean`, `Int`, `Float`, `Double`, `String`, `ReadableArray`, `ReadableMap`.
 
-Annotation `@ReactProp` has one obligatory argument `name` of type `String`. Name assigned to the `@ReactProp` annotation linked to the setter method is used to reference the property on JS side.
+A anotação `@ReactProp` tem um argumento obrigatório `name` do tipo `String`. O nome atribuído à anotação `@ReactProp` vinculado ao método setter é usado para referenciar a propriedade no lado JS.
 
-Except from `name`, `@ReactProp` annotation may take following optional arguments: `defaultBoolean`, `defaultInt`, `defaultFloat`. Those arguments should be of the corresponding type (accordingly `boolean`, `int`, `float` in Java and `Boolean`, `Int`, `Float` in Kotlin) and the value provided will be passed to the setter method in case when the property that the setter is referencing has been removed from the component. Note that "default" values are only provided for primitive types, in case when setter is of some complex type, `null` will be provided as a default value in case when corresponding property gets removed.
+Exceto de `name`, a anotação `@ReactProp` pode receber os seguintes argumentos opcionais: `defaultBoolean`, `defaultInt`, `defaultFloat`. Esses argumentos devem ser do tipo correspondente (respectivamente `boolean`, `int`, `float` em Java e `Boolean`, `Int`, `Float` em Kotlin) e o valor fornecido será passado para o método setter no caso em que a propriedade que o setter está referenciando foi removida do componente. Note que valores "padrão" são fornecidos apenas para tipos primitivos, no caso em que o setter é de algum tipo complexo, `null` será fornecido como valor padrão no caso em que a propriedade correspondente for removida.
 
-Setter declaration requirements for methods annotated with `@ReactPropGroup` are different than for `@ReactProp`, please refer to the `@ReactPropGroup` annotation class docs for more information about it. **IMPORTANT!** in ReactJS updating the property value will result in setter method call. Note that one of the ways we can update component is by removing properties that have been set before. In that case setter method will be called as well to notify view manager that property has changed. In that case "default" value will be provided (for primitive types "default" value can be specified using `defaultBoolean`, `defaultFloat`, etc. arguments of `@ReactProp` annotation, for complex types setter will be called with value set to `null`).
+Os requisitos de declaração de setter para métodos anotados com `@ReactPropGroup` são diferentes dos de `@ReactProp`, consulte a documentação da classe de anotação `@ReactPropGroup` para mais informações sobre isso. **IMPORTANTE!** no ReactJS atualizar o valor da propriedade resultará em chamada do método setter. Note que uma das maneiras de atualizar o componente é removendo propriedades que foram definidas antes. Nesse caso o método setter também será chamado para notificar o view manager que a propriedade mudou. Nesse caso o valor "padrão" será fornecido (para tipos primitivos o valor "padrão" pode ser especificado usando argumentos `defaultBoolean`, `defaultFloat`, etc. da anotação `@ReactProp`, para tipos complexos o setter será chamado com valor definido como `null`).
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -155,7 +156,7 @@ Setter declaration requirements for methods annotated with `@ReactPropGroup` are
 
 ### 4. Register the `ViewManager`
 
-The final step is to register the ViewManager to the application, this happens in a similar way to [Native Modules](native-modules-android.md), via the applications package member function `createViewManagers`.
+O passo final é registrar o ViewManager para a aplicação, isso acontece de maneira similar aos [Native Modules](native-modules-android.md), via a função membro do package da aplicação `createViewManagers`.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -184,7 +185,7 @@ The final step is to register the ViewManager to the application, this happens i
 
 ### 5. Implement the JavaScript module
 
-The very final step is to create the JavaScript module that defines the interface layer between Java/Kotlin and JavaScript for the users of your new view. It is recommended for you to document the component interface in this module (e.g. using TypeScript, Flow, or plain old comments).
+O passo final é criar o módulo JavaScript que define a camada de interface entre Java/Kotlin e JavaScript para os usuários de sua nova view. É recomendado que você documente a interface do componente neste módulo (por exemplo, usando TypeScript, Flow, ou comentários simples).
 
 ```tsx title="ImageView.tsx"
 import {requireNativeComponent} from 'react-native';
@@ -199,11 +200,11 @@ import {requireNativeComponent} from 'react-native';
 export default requireNativeComponent('RCTImageView');
 ```
 
-The `requireNativeComponent` function takes the name of the native view. Note that if your component needs to do anything more sophisticated (e.g. custom event handling), you should wrap the native component in another React component. This is illustrated in the `MyCustomView` example below.
+A função `requireNativeComponent` recebe o nome da view nativa. Note que se seu componente precisa fazer algo mais sofisticado (por exemplo, tratamento de evento customizado), você deve envolver o componente nativo em outro componente React. Isso é ilustrado no exemplo `MyCustomView` abaixo.
 
 ## Events
 
-So now we know how to expose native view components that we can control freely from JS, but how do we deal with events from the user, like pinch-zooms or panning? When a native event occurs the native code should issue an event to the JavaScript representation of the View, and the two views are linked with the value returned from the `getId()` method.
+Então agora sabemos como expor componentes de view nativos que podemos controlar livremente do JS, mas como lidamos com eventos do usuário, como pinch-zooms ou panning? Quando um evento nativo ocorre, o código nativo deve emitir um evento para a representação JavaScript da View, e as duas views são vinculadas com o valor retornado do método `getId()`.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -243,7 +244,7 @@ class MyCustomView extends View {
 </TabItem>
 </Tabs>
 
-To map the `topChange` event name to the `onChange` callback prop in JavaScript, register it by overriding the `getExportedCustomBubblingEventTypeConstants` method in your `ViewManager`:
+Para mapear o nome do evento `topChange` para a prop de callback `onChange` em JavaScript, registre-o sobrescrevendo o método `getExportedCustomBubblingEventTypeConstants` em seu `ViewManager`:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -284,7 +285,7 @@ public class ReactImageManager extends SimpleViewManager<MyCustomView> {
 </TabItem>
 </Tabs>
 
-This callback is invoked with the raw event, which we typically process in the wrapper component to make a simpler API:
+Este callback é invocado com o evento bruto, que normalmente processamos no componente wrapper para tornar a API mais simples:
 
 ```tsx {8-11,13-17} title="MyCustomView.tsx"
 import {useCallback} from 'react';
@@ -312,11 +313,11 @@ export default function MyCustomView(props: {
 
 ## Integration with an Android Fragment example
 
-In order to integrate existing Native UI elements to your React Native app, you might need to use Android Fragments to give you a more granular control over your native component than returning a `View` from your `ViewManager`. You will need this if you want to add custom logic that is tied to your view with the help of [lifecycle methods](https://developer.android.com/guide/fragments/lifecycle), such as `onViewCreated`, `onPause`, `onResume`. The following steps will show you how to do it:
+Para integrar elementos de UI Nativos existentes ao seu aplicativo React Native, você pode precisar usar Android Fragments para lhe dar um controle mais granular sobre seu componente nativo do que retornar uma `View` de seu `ViewManager`. Você precisará disso se quiser adicionar lógica customizada que está vinculada à sua view com a ajuda de [lifecycle methods](https://developer.android.com/guide/fragments/lifecycle), como `onViewCreated`, `onPause`, `onResume`. Os passos a seguir mostrarão como fazer isso:
 
 ### 1. Create an example custom view
 
-First, let's create a `CustomView` class which extends `FrameLayout` (the content of this view can be any view that you'd like to render)
+Primeiro, vamos criar uma classe `CustomView` que estende `FrameLayout` (o conteúdo desta view pode ser qualquer view que você gostaria de renderizar)
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="kotlin">
@@ -819,7 +820,7 @@ protected List<ReactPackage> getPackages() {
 
 ### 6. Implement the JavaScript module
 
-I. Start with custom View manager:
+I. Comece com o custom View manager:
 
 ```tsx title="MyViewManager.tsx"
 import {requireNativeComponent} from 'react-native';
@@ -828,7 +829,7 @@ export const MyViewManager =
   requireNativeComponent('MyViewManager');
 ```
 
-II. Then implement custom View calling the `create` method:
+II. Em seguida implemente a custom View chamando o método `create`:
 
 ```tsx title="MyView.tsx"
 import React, {useEffect, useRef} from 'react';
@@ -870,4 +871,4 @@ export const MyView = () => {
 };
 ```
 
-If you want to expose property setters using `@ReactProp` (or `@ReactPropGroup`) annotation see the [ImageView example](#imageview-example) above.
+Se você quiser expor setters de propriedade usando anotação `@ReactProp` (ou `@ReactPropGroup`) veja o [ImageView example](#imageview-example) acima.

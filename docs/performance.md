@@ -1,41 +1,42 @@
 ---
+ia-translated: true
 id: performance
-title: Performance Overview
+title: Visão Geral de Desempenho
 ---
 
-A compelling reason to use React Native instead of WebView-based tools is to achieve at least 60 frames per second and provide a native look and feel to your apps. Whenever feasible, we aim for React Native to handle optimizations automatically, allowing you to focus on your app without worrying about performance. However, there are certain areas where we haven't quite reached that level yet, and others where React Native (similar to writing native code directly) cannot determine the best optimization approach for you. In such cases, manual intervention becomes necessary. We strive to deliver buttery-smooth UI performance by default, but there may be instances where that isn't possible.
+Uma razão convincente para usar React Native em vez de ferramentas baseadas em WebView é alcançar pelo menos 60 quadros por segundo e fornecer uma aparência e sensação nativas aos seus aplicativos. Sempre que possível, visamos que o React Native lide com otimizações automaticamente, permitindo que você se concentre em seu aplicativo sem se preocupar com desempenho. No entanto, existem certas áreas onde ainda não chegamos a esse nível, e outras onde o React Native (semelhante a escrever código nativo diretamente) não pode determinar a melhor abordagem de otimização para você. Nesses casos, a intervenção manual torna-se necessária. Nós nos esforçamos para oferecer desempenho de UI extremamente suave por padrão, mas pode haver casos em que isso não seja possível.
 
-This guide is intended to teach you some basics to help you to [troubleshoot performance issues](profiling.md), as well as discuss [common sources of problems and their suggested solutions](performance.md#common-sources-of-performance-problems).
+Este guia pretende ensiná-lo alguns conceitos básicos para ajudá-lo a [solucionar problemas de desempenho](profiling.md), bem como discutir [fontes comuns de problemas e suas soluções sugeridas](performance.md#common-sources-of-performance-problems).
 
-## What you need to know about frames
+## O que você precisa saber sobre frames
 
-Your grandparents' generation called movies ["moving pictures"](https://www.youtube.com/watch?v=F1i40rnpOsA) for a reason: realistic motion in video is an illusion created by quickly changing static images at a consistent speed. We refer to each of these images as frames. The number of frames that is displayed each second has a direct impact on how smooth and ultimately life-like a video (or user interface) seems to be. iOS and Android devices display at least 60 frames per second, which gives you and the UI system at most 16.67ms to do all of the work needed to generate the static image (frame) that the user will see on the screen for that interval. If you are unable to do the work necessary to generate that frame within the allotted time slot, then you will "drop a frame" and the UI will appear unresponsive.
+A geração dos seus avós chamava os filmes de ["imagens em movimento"](https://www.youtube.com/watch?v=F1i40rnpOsA) por uma razão: movimento realista em vídeo é uma ilusão criada pela mudança rápida de imagens estáticas em uma velocidade consistente. Nos referimos a cada uma dessas imagens como frames. O número de frames que é exibido a cada segundo tem um impacto direto em quão suave e, em última análise, realista um vídeo (ou interface de usuário) parece ser. Dispositivos iOS e Android exibem pelo menos 60 frames por segundo, o que lhe dá e ao sistema de UI no máximo 16.67ms para fazer todo o trabalho necessário para gerar a imagem estática (frame) que o usuário verá na tela para esse intervalo. Se você não conseguir fazer o trabalho necessário para gerar esse frame dentro do tempo alocado, então você irá "descartar um frame" e a UI parecerá não responsiva.
 
-Now to confuse the matter a little bit, open up the [Dev Menu](debugging.md#opening-the-dev-menu) in your app and toggle `Show Perf Monitor`. You will notice that there are two different frame rates.
+Agora, para confundir um pouco o assunto, abra o [Dev Menu](debugging.md#opening-the-dev-menu) no seu aplicativo e alterne `Show Perf Monitor`. Você notará que há duas taxas de frames diferentes.
 
 ![Performance Monitor screenshot](/docs/assets/PerfUtil.png)
 
-### JS frame rate (JavaScript thread)
+### Taxa de frames JS (thread JavaScript)
 
-For most React Native applications, your business logic will run on the JavaScript thread. This is where your React application lives, API calls are made, touch events are processed, and more. Updates to native-backed views are batched and sent over to the native side at the end of each iteration of the event loop, before the frame deadline (if all goes well). If the JavaScript thread is unresponsive for a frame, it will be considered a dropped frame. For example, if you were to set a new state on the root component of a complex application and it resulted in re-rendering computationally expensive component subtrees, it's conceivable that this might take 200ms and result in 12 frames being dropped. Any animations controlled by JavaScript would appear to freeze during that time. If enough frames are dropped, the user will feel it.
+Para a maioria dos aplicativos React Native, sua lógica de negócios será executada na thread JavaScript. Este é o lugar onde seu aplicativo React vive, chamadas de API são feitas, eventos de toque são processados e muito mais. Atualizações para views com suporte nativo são agrupadas em lote e enviadas para o lado nativo no final de cada iteração do event loop, antes do prazo do frame (se tudo correr bem). Se a thread JavaScript não responder por um frame, será considerado um frame descartado. Por exemplo, se você fosse definir um novo state no componente raiz de um aplicativo complexo e isso resultasse em re-renderização de subárvores de componentes computacionalmente caras, é concebível que isso possa levar 200ms e resultar em 12 frames sendo descartados. Qualquer animação controlada por JavaScript pareceria congelar durante esse tempo. Se frames suficientes forem descartados, o usuário sentirá.
 
-An example is responding to touches: if you are doing work across multiple frames on the JavaScript thread, you might notice a delay in responding to `TouchableOpacity`, for example. This is because the JavaScript thread is busy and cannot process the raw touch events sent over from the main thread. As a result, `TouchableOpacity` cannot react to the touch events and command the native view to adjust its opacity.
+Um exemplo é responder a toques: se você está fazendo trabalho em múltiplos frames na thread JavaScript, você pode notar um atraso ao responder a `TouchableOpacity`, por exemplo. Isso ocorre porque a thread JavaScript está ocupada e não pode processar os eventos de toque brutos enviados da thread principal. Como resultado, `TouchableOpacity` não pode reagir aos eventos de toque e comandar a view nativa para ajustar sua opacidade.
 
-### UI frame rate (main thread)
+### Taxa de frames UI (thread principal)
 
-You may have noticed that performance of native stack navigators (such as the [@react-navigation/native-stack](https://reactnavigation.org/docs/native-stack-navigator) provided by React Navigation) is better out of the box than JavaScript-based stack navigators. This is because the transition animations are executed on the native main UI thread, so they are not interrupted by frame drops on the JavaScript thread.
+Você pode ter notado que o desempenho dos navegadores de pilha nativos (como o [@react-navigation/native-stack](https://reactnavigation.org/docs/native-stack-navigator) fornecido pelo React Navigation) é melhor pronto para uso do que os navegadores de pilha baseados em JavaScript. Isso ocorre porque as animações de transição são executadas na thread principal de UI nativa, então elas não são interrompidas por frames descartados na thread JavaScript.
 
-Similarly, you can happily scroll up and down through a `ScrollView` when the JavaScript thread is locked up because the `ScrollView` lives on the main thread. The scroll events are dispatched to the JS thread, but their receipt is not necessary for the scroll to occur.
+Da mesma forma, você pode rolar para cima e para baixo através de um `ScrollView` quando a thread JavaScript está travada porque o `ScrollView` vive na thread principal. Os eventos de rolagem são despachados para a thread JS, mas sua recepção não é necessária para que a rolagem ocorra.
 
-## Common sources of performance problems
+## Fontes comuns de problemas de desempenho
 
-### Running in development mode (`dev=true`)
+### Executando em modo de desenvolvimento (`dev=true`)
 
-JavaScript thread performance suffers greatly when running in dev mode. This is unavoidable: a lot more work needs to be done at runtime to provide you with good warnings and error messages. Always make sure to test performance in [release builds](running-on-device.md#building-your-app-for-production).
+O desempenho da thread JavaScript sofre muito ao executar em modo de desenvolvimento. Isso é inevitável: muito mais trabalho precisa ser feito em runtime para fornecer bons avisos e mensagens de erro. Sempre certifique-se de testar o desempenho em [builds de release](running-on-device.md#building-your-app-for-production).
 
-### Using `console.log` statements
+### Usando declarações `console.log`
 
-When running a bundled app, these statements can cause a big bottleneck in the JavaScript thread. This includes calls from debugging libraries such as [redux-logger](https://github.com/evgenyrodionov/redux-logger), so make sure to remove them before bundling. You can also use this [babel plugin](https://babeljs.io/docs/plugins/transform-remove-console/) that removes all the `console.*` calls. You need to install it first with `npm i babel-plugin-transform-remove-console --save-dev`, and then edit the `.babelrc` file under your project directory like this:
+Ao executar um aplicativo empacotado, essas declarações podem causar um grande gargalo na thread JavaScript. Isso inclui chamadas de bibliotecas de depuração, como [redux-logger](https://github.com/evgenyrodionov/redux-logger), então certifique-se de removê-las antes de empacotar. Você também pode usar este [plugin babel](https://babeljs.io/docs/plugins/transform-remove-console/) que remove todas as chamadas `console.*`. Você precisa instalá-lo primeiro com `npm i babel-plugin-transform-remove-console --save-dev`, e então editar o arquivo `.babelrc` no diretório do seu projeto assim:
 
 ```json
 {
@@ -47,41 +48,41 @@ When running a bundled app, these statements can cause a big bottleneck in the J
 }
 ```
 
-This will automatically remove all `console.*` calls in the release (production) versions of your project.
+Isso removerá automaticamente todas as chamadas `console.*` nas versões de release (produção) do seu projeto.
 
-It is recommended to use the plugin even if no `console.*` calls are made in your project. A third party library could also call them.
+É recomendado usar o plugin mesmo se nenhuma chamada `console.*` for feita em seu projeto. Uma biblioteca de terceiros também poderia chamá-las.
 
-### `FlatList` rendering is too slow or scroll performance is bad for large lists
+### Renderização do `FlatList` está muito lenta ou desempenho de rolagem está ruim para listas grandes
 
-If your [`FlatList`](flatlist.md) is rendering slowly, be sure that you've implemented [`getItemLayout`](flatlist.md#getitemlayout) to optimize rendering speed by skipping measurement of the rendered items.
+Se seu [`FlatList`](flatlist.md) está renderizando lentamente, certifique-se de ter implementado [`getItemLayout`](flatlist.md#getitemlayout) para otimizar a velocidade de renderização pulando a medição dos itens renderizados.
 
-There are also other third-party list libraries that are optimized for performance, including [FlashList](https://github.com/shopify/flash-list) and [Legend List](https://github.com/legendapp/legend-list).
+Existem também outras bibliotecas de lista de terceiros que são otimizadas para desempenho, incluindo [FlashList](https://github.com/shopify/flash-list) e [Legend List](https://github.com/legendapp/legend-list).
 
-### Dropping JS thread FPS because of doing a lot of work on the JavaScript thread at the same time
+### Descartando FPS da thread JS porque está fazendo muito trabalho na thread JavaScript ao mesmo tempo
 
-"Slow Navigator transitions" is the most common manifestation of this, but there are other times this can happen. Using [`InteractionManager`](interactionmanager.md) can be a good approach, but if the user experience cost is too high to delay work during an animation, then you might want to consider [`LayoutAnimation`](layoutanimation.md).
+"Transições lentas do Navigator" é a manifestação mais comum disso, mas há outros momentos em que isso pode acontecer. Usar [`InteractionManager`](interactionmanager.md) pode ser uma boa abordagem, mas se o custo da experiência do usuário for muito alto para atrasar o trabalho durante uma animação, então você pode querer considerar [`LayoutAnimation`](layoutanimation.md).
 
-The [`Animated API`](animated.md) currently calculates each keyframe on-demand on the JavaScript thread unless you [set `useNativeDriver: true`](/blog/2017/02/14/using-native-driver-for-animated#how-do-i-use-this-in-my-app), while [`LayoutAnimation`](layoutanimation.md) leverages Core Animation and is unaffected by JS thread and main thread frame drops.
+A [`API Animated`](animated.md) atualmente calcula cada keyframe sob demanda na thread JavaScript, a menos que você [defina `useNativeDriver: true`](/blog/2017/02/14/using-native-driver-for-animated#how-do-i-use-this-in-my-app), enquanto [`LayoutAnimation`](layoutanimation.md) aproveita o Core Animation e não é afetado por frames descartados na thread JS e thread principal.
 
-One case for using this is animating in a modal (sliding down from top and fading in a translucent overlay) while initializing and perhaps receiving responses for several network requests, rendering the contents of the modal, and updating the view where the modal was opened from. See the [Animations guide](animations.md) for more information about how to use `LayoutAnimation`.
+Um caso para usar isso é animar em um modal (deslizando para baixo do topo e aparecendo em uma sobreposição translúcida) enquanto inicializa e talvez recebendo respostas para várias solicitações de rede, renderizando o conteúdo do modal e atualizando a view de onde o modal foi aberto. Veja o [guia de Animações](animations.md) para mais informações sobre como usar `LayoutAnimation`.
 
-**Caveats:**
+**Advertências:**
 
-- `LayoutAnimation` only works for fire-and-forget animations ("static" animations) -- if it must be interruptible, you will need to use [`Animated`](animated.md).
+- `LayoutAnimation` funciona apenas para animações fire-and-forget ("estáticas") -- se ela deve ser interrompível, você precisará usar [`Animated`](animated.md).
 
-### Moving a view on the screen (scrolling, translating, rotating) drops UI thread FPS
+### Mover uma view na tela (rolando, transladando, rotacionando) descarta FPS da thread UI
 
-This is especially true on Android when you have text with a transparent background positioned on top of an image, or any other situation where alpha compositing would be required to re-draw the view on each frame. You will find that enabling `renderToHardwareTextureAndroid` can help with this significantly. For iOS, `shouldRasterizeIOS` is already enabled by default.
+Isso é especialmente verdadeiro no Android quando você tem texto com um fundo transparente posicionado em cima de uma imagem, ou qualquer outra situação onde a composição alfa seria necessária para re-desenhar a view em cada frame. Você descobrirá que habilitar `renderToHardwareTextureAndroid` pode ajudar significativamente com isso. Para iOS, `shouldRasterizeIOS` já está habilitado por padrão.
 
-Be careful not to overuse this or your memory usage could go through the roof. Profile your performance and memory usage when using these props. If you don't plan to move a view anymore, turn this property off.
+Tenha cuidado para não usar isso em excesso ou seu uso de memória pode ir para o teto. Faça profile do seu desempenho e uso de memória ao usar essas props. Se você não planeja mover uma view mais, desative essa propriedade.
 
-### Animating the size of an image drops UI thread FPS
+### Animar o tamanho de uma imagem descarta FPS da thread UI
 
-On iOS, each time you adjust the width or height of an [`Image` component](image.md) it is re-cropped and scaled from the original image. This can be very expensive, especially for large images. Instead, use the `transform: [{scale}]` style property to animate the size. An example of when you might do this is when you tap an image and zoom it in to full screen.
+No iOS, cada vez que você ajusta a largura ou altura de um componente [`Image`](image.md), ele é re-cortado e redimensionado da imagem original. Isso pode ser muito caro, especialmente para imagens grandes. Em vez disso, use a propriedade de estilo `transform: [{scale}]` para animar o tamanho. Um exemplo de quando você pode fazer isso é quando você toca em uma imagem e faz zoom para tela cheia.
 
-### My TouchableX view isn't very responsive
+### Minha view TouchableX não é muito responsiva
 
-Sometimes, if we do an action in the same frame that we are adjusting the opacity or highlight of a component that is responding to a touch, we won't see that effect until after the `onPress` function has returned. This may occur if `onPress` sets a state that results in a heavy re-render and a few frames are dropped as a result. A solution to this is to wrap any action inside of your `onPress` handler in `requestAnimationFrame`:
+Às vezes, se fizermos uma ação no mesmo frame em que estamos ajustando a opacidade ou realce de um componente que está respondendo a um toque, não veremos esse efeito até depois que a função `onPress` retornar. Isso pode ocorrer se `onPress` definir um state que resulta em uma re-renderização pesada e alguns frames forem descartados como resultado. Uma solução para isso é envolver qualquer ação dentro do seu manipulador `onPress` em `requestAnimationFrame`:
 
 ```tsx
 function handleOnPress() {
