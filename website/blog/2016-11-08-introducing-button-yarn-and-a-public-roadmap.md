@@ -1,24 +1,25 @@
 ---
-title: Introducing Button, Faster Installs with Yarn, and a Public Roadmap
+ia-translated: true
+title: Introduzindo Button, Instalações Mais Rápidas com Yarn e um Roadmap Público
 authors: [hectorramos]
 tags: [announcement]
 ---
 
-We have heard from many people that there is so much work happening with React Native, it can be tough to keep track of what's going on. To help communicate what work is in progress, we are now publishing a [roadmap for React Native](https://github.com/facebook/react-native/wiki/Roadmap). At a high level, this work can be broken down into three priorities:
+Ouvimos de muitas pessoas que há tanto trabalho acontecendo com React Native, pode ser difícil acompanhar o que está acontecendo. Para ajudar a comunicar qual trabalho está em andamento, agora estamos publicando um [roadmap para React Native](https://github.com/facebook/react-native/wiki/Roadmap). Em alto nível, este trabalho pode ser dividido em três prioridades:
 
-- **Core Libraries**. Adding more functionality to the most useful components and APIs.
-- **Stability**. Improve the underlying infrastructure to reduce bugs and improve code quality.
-- **Developer Experience**. Help React Native developers move faster
+- **Bibliotecas Core**. Adicionar mais funcionalidade aos componentes e APIs mais úteis.
+- **Estabilidade**. Melhorar a infraestrutura subjacente para reduzir bugs e melhorar a qualidade do código.
+- **Experiência do Desenvolvedor**. Ajudar os desenvolvedores React Native a se moverem mais rápido
 
-If you have suggestions for features that you think would be valuable on the roadmap, check out [Canny](https://react-native.canny.io/feature-requests), where you can suggest new features and discuss existing proposals.
+Se você tem sugestões de recursos que acha que seriam valiosos no roadmap, confira o [Canny](https://react-native.canny.io/feature-requests), onde você pode sugerir novos recursos e discutir propostas existentes.
 
-## What's new in React Native
+## O que há de novo no React Native
 
-[Version 0.37 of React Native](https://github.com/facebook/react-native/releases/tag/v0.37.0), released today, introduces a new core component to make it really easy to add a touchable Button to any app. We're also introducing support for the new [Yarn](https://yarnpkg.com/) package manager, which should speed up the whole process of updating your app's dependencies.
+[Versão 0.37 do React Native](https://github.com/facebook/react-native/releases/tag/v0.37.0), lançada hoje, introduz um novo componente core para facilitar muito a adição de um Button tocável a qualquer aplicativo. Também estamos introduzindo suporte para o novo gerenciador de pacotes [Yarn](https://yarnpkg.com/), que deve acelerar todo o processo de atualização das dependências do seu aplicativo.
 
-## Introducing Button
+## Introduzindo Button
 
-Today we're introducing a basic `<Button />` component that looks great on every platform. This addresses one of the most common pieces of feedback we get: React Native is one of the only mobile development toolkits without a button ready to use out of the box.
+Hoje estamos introduzindo um componente básico `<Button />` que fica ótimo em todas as plataformas. Isso aborda um dos feedbacks mais comuns que recebemos: React Native é um dos únicos kits de desenvolvimento mobile sem um botão pronto para usar imediatamente.
 
 ![Simple Button on Android, iOS](/blog/assets/button-android-ios.png)
 
@@ -30,24 +31,24 @@ Today we're introducing a basic `<Button />` component that looks great on every
 />
 ```
 
-Experienced React Native developers know how to make a button: use TouchableOpacity for the default look on iOS, TouchableNativeFeedback for the ripple effect on Android, then apply a few styles. Custom buttons aren't particularly hard to build or install, but we aim to make React Native radically easy to learn. With the addition of a basic button into core, newcomers will be able to develop something awesome in their first day, rather than spending that time formatting a Button and learning about Touchable nuances.
+Desenvolvedores React Native experientes sabem como fazer um botão: use TouchableOpacity para o visual padrão no iOS, TouchableNativeFeedback para o efeito ripple no Android, depois aplique alguns estilos. Botões customizados não são particularmente difíceis de construir ou instalar, mas nosso objetivo é tornar React Native radicalmente fácil de aprender. Com a adição de um botão básico no core, os recém-chegados serão capazes de desenvolver algo incrível em seu primeiro dia, em vez de gastar esse tempo formatando um Button e aprendendo sobre as nuances dos Touchable.
 
-Button is meant to work great and look native on every platform, so it won't support all the bells and whistles that custom buttons do. It is a great starting point, but is not meant to replace all your existing buttons. To learn more, check out the [new Button documentation](/docs/button), complete with a runnable example!
+Button foi feito para funcionar muito bem e parecer nativo em todas as plataformas, então não suportará todos os recursos extras que botões customizados têm. É um ótimo ponto de partida, mas não foi feito para substituir todos os seus botões existentes. Para saber mais, confira a [nova documentação do Button](/docs/button), completa com um exemplo executável!
 
-## Speed up `react-native init` using Yarn
+## Acelere o `react-native init` usando Yarn
 
-You can now use [Yarn](https://yarnpkg.com/), the new package manager for JavaScript, to speed up `react-native init` significantly. To see the speedup please [install yarn](https://yarnpkg.com/en/docs/install) and upgrade your `react-native-cli` to 1.2.0:
+Agora você pode usar [Yarn](https://yarnpkg.com/), o novo gerenciador de pacotes para JavaScript, para acelerar significativamente o `react-native init`. Para ver a aceleração, por favor [instale o yarn](https://yarnpkg.com/en/docs/install) e atualize seu `react-native-cli` para 1.2.0:
 
 ```sh
 $ npm install -g react-native-cli
 ```
 
-You should now see “Using yarn” when setting up new apps:
+Agora você deve ver "Using yarn" ao configurar novos aplicativos:
 
 ![Using yarn](/blog/assets/yarn-rncli.png)
 
-In simple local testing `react-native init` finished in **about 1 minute on a good network** (vs around 3 minutes when using npm 3.10.8). Installing yarn is optional but highly recommended.
+Em testes locais simples, `react-native init` terminou em **cerca de 1 minuto em uma boa rede** (vs cerca de 3 minutos ao usar npm 3.10.8). Instalar yarn é opcional, mas altamente recomendado.
 
-## Thank you!
+## Obrigado!
 
-We'd like to thank everyone who contributed to this release. The full [release notes](https://github.com/facebook/react-native/releases/tag/v0.37.0) are now available on GitHub. With over two dozen bug fixes and new features, React Native just keeps getting better thanks to you.
+Gostaríamos de agradecer a todos que contribuíram para este lançamento. As [notas de lançamento](https://github.com/facebook/react-native/releases/tag/v0.37.0) completas agora estão disponíveis no GitHub. Com mais de duas dúzias de correções de bugs e novos recursos, React Native continua melhorando graças a você.

@@ -1,5 +1,6 @@
 ---
-title: Toward Better Documentation
+ia-translated: true
+title: Rumo a uma Melhor Documentação
 author: Kevin Lacker
 authorTitle: Engineering Manager at Facebook
 authorURL: 'https://twitter.com/lacker'
@@ -8,11 +9,11 @@ authorTwitter: lacker
 tags: [announcement]
 ---
 
-Part of having a great developer experience is having great documentation. A lot goes into creating good docs - the ideal documentation is concise, helpful, accurate, complete, and delightful. Recently we've been working hard to make the docs better based on your feedback, and we wanted to share some of the improvements we've made.
+Parte de ter uma ótima experiência de desenvolvedor é ter uma ótima documentação. Muitas coisas fazem parte da criação de bons documentos - a documentação ideal é concisa, útil, precisa, completa e encantadora. Recentemente temos trabalhado duro para melhorar os documentos com base no seu feedback, e queríamos compartilhar algumas das melhorias que fizemos.
 
-## Inline Examples
+## Exemplos Inline
 
-When you learn a new library, a new programming language, or a new framework, there's a beautiful moment when you first write a bit of code, try it out, see if it works... and it _does_ work. You created something real. We wanted to put that visceral experience right into our docs. Like this:
+Quando você aprende uma nova biblioteca, uma nova linguagem de programação ou um novo framework, há um momento lindo quando você primeiro escreve um pouco de código, testa, vê se funciona... e _funciona_. Você criou algo real. Queríamos colocar essa experiência visceral direto em nossos documentos. Assim:
 
 ```ReactNativeWebPlayer
 import React, { Component } from 'react';
@@ -36,34 +37,34 @@ class ScratchPad extends Component {
 AppRegistry.registerComponent('ScratchPad', () => ScratchPad);
 ```
 
-We think these inline examples, using the [`react-native-web-player`](https://github.com/dabbott/react-native-web-player) module with help from [Devin Abbott](https://twitter.com/devinaabbott), are a great way to learn the basics of React Native, and we have updated our [tutorial for new React Native developers](/docs/tutorial) to use these wherever possible. Check it out - if you have ever been curious to see what would happen if you modified just one little bit of sample code, this is a really nice way to poke around. Also, if you're building developer tools and you want to show a live React Native sample on your own site, [`react-native-web-player`](https://github.com/dabbott/react-native-web-player) can make that straightforward.
+Achamos que esses exemplos inline, usando o módulo [`react-native-web-player`](https://github.com/dabbott/react-native-web-player) com ajuda de [Devin Abbott](https://twitter.com/devinaabbott), são uma ótima maneira de aprender o básico do React Native, e atualizamos nosso [tutorial para novos desenvolvedores React Native](/docs/tutorial) para usá-los sempre que possível. Confira - se você já teve curiosidade de ver o que aconteceria se você modificasse apenas um pequeno pedaço do código de exemplo, esta é uma maneira realmente boa de explorar.
 
-The core simulation engine is provided by [Nicolas Gallagher](https://twitter.com/necolas)'s [`react-native-web`](https://github.com/necolas/react-native-web) project, which provides a way to display React Native components like `Text` and `View` on the web. Check out [`react-native-web`](https://github.com/necolas/react-native-web) if you're interested in building mobile and web experiences that share a large chunk of the codebase.
+O motor de simulação principal é fornecido pelo projeto [`react-native-web`](https://github.com/necolas/react-native-web) de [Nicolas Gallagher](https://twitter.com/necolas), que fornece uma maneira de exibir componentes React Native como `Text` e `View` na web. Confira o [`react-native-web`](https://github.com/necolas/react-native-web) se você está interessado em construir experiências mobile e web que compartilham uma grande parte da base de código.
 
-## Better Guides
+## Melhores Guias
 
-In some parts of React Native, there are multiple ways to do things, and we've heard feedback that we could provide better guidance.
+Em algumas partes do React Native, existem várias maneiras de fazer as coisas, e ouvimos feedback de que poderíamos fornecer uma melhor orientação.
 
-We have a new [guide to Navigation](/docs/navigation) that compares the different approaches and advises on what you should use - `Navigator`, `NavigatorIOS`, `NavigationExperimental`. In the medium term, we're working towards improving and consolidating those interfaces. In the short term, we hope that a better guide will make your life easier.
+Temos um novo [guia de Navegação](/docs/navigation) que compara as diferentes abordagens e aconselha sobre o que você deve usar - `Navigator`, `NavigatorIOS`, `NavigationExperimental`. A médio prazo, estamos trabalhando para melhorar e consolidar essas interfaces. A curto prazo, esperamos que um guia melhor torne sua vida mais fácil.
 
-We also have a new [guide to handling touches](/docs/handling-touches) that explains some of the basics of making button-like interfaces, and a brief summary of the different ways to handle touch events.
+Também temos um novo [guia para lidar com toques](/docs/handling-touches) que explica alguns dos conceitos básicos de criação de interfaces semelhantes a botões e um breve resumo das diferentes maneiras de lidar com eventos de toque.
 
-Another area we worked on is Flexbox. This includes tutorials on how to [handle layout with Flexbox](/docs/flexbox) and how to control [the size of components](/docs/height-and-width). It also includes an unsexy but hopefully-useful [list of all the props that control layout in React Native](/docs/layout-props).
+Outra área em que trabalhamos é Flexbox. Isso inclui tutoriais sobre como [lidar com layout com Flexbox](/docs/flexbox) e como controlar [o tamanho dos componentes](/docs/height-and-width). Também inclui uma [lista não tão atraente mas esperamos útil de todos os props que controlam layout no React Native](/docs/layout-props).
 
-## Getting Started
+## Começando
 
-When you start getting a React Native development environment set up on your machine, you do have to do a bunch of installing and configuring things. It's hard to make installation a really fun and exciting experience, but we can at least make it as quick and painless as possible.
+Quando você começa a configurar um ambiente de desenvolvimento React Native em sua máquina, você tem que fazer um monte de instalação e configuração de coisas. É difícil tornar a instalação uma experiência realmente divertida e emocionante, mas podemos pelo menos torná-la o mais rápida e indolor possível.
 
-We built a [new Getting Started workflow](/docs/next/getting-started) that lets you select your development operating system and your mobile operating system up front, to provide one concise place with all the setup instructions. We also went through the installation process to make sure everything worked and to make sure that every decision point had a clear recommendation. After testing it out on our innocent coworkers, we're pretty sure this is an improvement.
+Construímos um [novo fluxo de trabalho de Começando](/docs/next/getting-started) que permite selecionar seu sistema operacional de desenvolvimento e seu sistema operacional móvel antecipadamente, para fornecer um lugar conciso com todas as instruções de configuração. Também passamos pelo processo de instalação para ter certeza de que tudo funcionou e garantir que cada ponto de decisão tivesse uma recomendação clara. Depois de testar em nossos colegas inocentes, temos bastante certeza de que isso é uma melhoria.
 
-We also worked on the [guide to integrating React Native into an existing app](/docs/integration-with-existing-apps). Many of the largest apps that use React Native, like the Facebook app itself, actually build part of the app in React Native, and part of it using regular development tools. We hope this guide makes it easier for more people to build apps this way.
+Também trabalhamos no [guia para integrar React Native em um aplicativo existente](/docs/integration-with-existing-apps). Muitos dos maiores aplicativos que usam React Native, como o próprio aplicativo do Facebook, na verdade constroem parte do aplicativo em React Native e parte usando ferramentas de desenvolvimento regulares. Esperamos que este guia torne mais fácil para mais pessoas construir aplicativos desta maneira.
 
-## We Need Your Help
+## Precisamos da Sua Ajuda
 
-Your feedback lets us know what we should prioritize. I know some people will read this blog post and think "Better docs? Pffft. The documentation for X is still garbage!". That's great - we need that energy. The best way to give us feedback depends on the sort of feedback.
+Seu feedback nos permite saber o que devemos priorizar. Sei que algumas pessoas lerão este post do blog e pensarão "Melhor documentação? Pffft. A documentação para X ainda está péssima!". Isso é ótimo - precisamos dessa energia. A melhor maneira de nos dar feedback depende do tipo de feedback.
 
-If you find a mistake in the documentation, like inaccurate descriptions or code that doesn't actually work, [file an issue](https://github.com/facebook/react-native/issues). Tag it with "Documentation", so that it's easier to route it to the right people.
+Se você encontrar um erro na documentação, como descrições imprecisas ou código que não funciona de fato, [registre um issue](https://github.com/facebook/react-native/issues). Marque-o com "Documentation", para que seja mais fácil encaminhá-lo para as pessoas certas.
 
-If there isn't a specific mistake, but something in the documentation is fundamentally confusing, it's not a great fit for a GitHub issue. Instead, post on [Canny](https://react-native.canny.io/feature-requests) about the area of the docs that could use help. This helps us prioritize when we are doing more general work like guide-writing.
+Se não houver um erro específico, mas algo na documentação é fundamentalmente confuso, não é uma boa opção para um issue do GitHub. Em vez disso, poste no [Canny](https://react-native.canny.io/feature-requests) sobre a área dos documentos que poderia usar ajuda. Isso nos ajuda a priorizar quando estamos fazendo trabalhos mais gerais, como escrever guias.
 
-Thanks for reading this far, and thanks for using React Native!
+Obrigado por ler até aqui, e obrigado por usar React Native!

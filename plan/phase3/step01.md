@@ -1,40 +1,42 @@
-# Phase 3 - Step 1: Blog Posts 2015-2017
+<!-- ia-translated: true -->
 
-**Target:** ~15 files
-**Category:** Early React Native Blog Posts (2015-2017)
-**Estimated Time:** 3-4 hours
-**Agent:** `.claude/agents/translator.md`
+# Fase 3 - Etapa 1: Posts do Blog 2015-2017
 
-## Objective
-Translate early React Native blog posts from 2015-2017, covering the initial launch and first major milestones.
+**Alvo:** ~15 arquivos
+**Categoria:** Posts Iniciais do Blog React Native (2015-2017)
+**Tempo Estimado:** 3-4 horas
+**Agente:** `.claude/agents/translator.md`
 
-## Translation Instructions
+## Objetivo
+Traduzir os posts iniciais do blog React Native de 2015-2017, cobrindo o lançamento inicial e os primeiros marcos importantes.
 
-### Blog Post Guidelines
+## Instruções de Tradução
 
-1. **Historical Context** - Preserve dates and timeline:
-   - Keep dates in original format
-   - Historical version numbers unchanged (e.g., "React Native 0.36")
-   - Event names and dates preserved
+### Diretrizes para Posts do Blog
 
-2. **Author Information** - Keep unchanged:
-   - Author names
-   - Author handles/usernames
-   - Company affiliations
+1. **Contexto Histórico** - Preservar datas e linha do tempo:
+   - Manter datas no formato original
+   - Números de versão históricos inalterados (ex.: "React Native 0.36")
+   - Nomes de eventos e datas preservados
 
-3. **Code Examples** - Same as documentation:
-   - Keep all code unchanged
-   - Translate comments if helpful
-   - Keep command-line examples
+2. **Informações do Autor** - Manter inalterado:
+   - Nomes dos autores
+   - Handles/usernames dos autores
+   - Afiliações de empresa
 
-4. **Links** - Preserve all links:
-   - External references
-   - Documentation links (may need updating for i18n)
-   - GitHub links
+3. **Exemplos de Código** - Mesmo que documentação:
+   - Manter todo código inalterado
+   - Traduzir comentários se útil
+   - Manter exemplos de linha de comando
 
-### Blog-Specific Translations
+4. **Links** - Preservar todos os links:
+   - Referências externas
+   - Links de documentação (podem precisar de atualização para i18n)
+   - Links do GitHub
 
-| English | Portuguese |
+### Traduções Específicas para Blog
+
+| Inglês | Português |
 |---------|-----------|
 | Announcement | Anúncio |
 | Release | Lançamento |
@@ -44,16 +46,16 @@ Translate early React Native blog posts from 2015-2017, covering the initial lau
 | Contributors | Contribuidores |
 | Thank you | Obrigado |
 
-## Files to Translate
+## Arquivos para Traduzir
 
-Translate all blog posts from 2015-2017 (approximately 15 files):
+Traduzir todos os posts do blog de 2015-2017 (aproximadamente 15 arquivos):
 
-### 2015 Posts
+### Posts de 2015
 - `2015-03-26-react-native-bringing-modern-web-techniques-to-mobile.md`
 - `2015-09-14-react-native-for-android.md`
 - `2015-11-23-making-react-native-apps-accessible.md`
 
-### 2016 Posts
+### Posts de 2016
 - `2016-03-24-introducing-hot-reloading.md`
 - `2016-03-28-dive-into-react-native-performance.md`
 - `2016-04-13-react-native-a-year-in-review.md`
@@ -65,12 +67,12 @@ Translate all blog posts from 2015-2017 (approximately 15 files):
 - `2016-11-08-introducing-button-yarn-and-a-public-roadmap.md`
 - `2016-12-05-easier-upgrades.md`
 
-### 2017 Posts (first half)
+### Posts de 2017 (primeira metade)
 - `2017-01-07-monthly-release-cadence.md`
 - `2017-02-14-using-native-driver-for-animated.md`
-- ...and any others from early 2017
+- ...e quaisquer outros do início de 2017
 
-## Frontmatter Example
+## Exemplo de Frontmatter
 
 ```markdown
 ---
@@ -86,33 +88,33 @@ tags: [engineering]
 <!-- Translate from here -->
 ```
 
-Keep frontmatter mostly unchanged, only translate `title` if it makes sense.
+Manter o frontmatter praticamente inalterado, traduzir apenas o `title` se fizer sentido.
 
-## Quality Checklist
+## Checklist de Qualidade
 
-- [ ] Historical dates preserved
-- [ ] Version numbers unchanged
-- [ ] Author information intact
-- [ ] Code examples preserved
-- [ ] Links functional
-- [ ] Titles appropriately handled
-- [ ] Natural Portuguese prose
-- [ ] Technical terminology consistent
+- [ ] Datas históricas preservadas
+- [ ] Números de versão inalterados
+- [ ] Informações do autor intactas
+- [ ] Exemplos de código preservados
+- [ ] Links funcionais
+- [ ] Títulos tratados apropriadamente
+- [ ] Prosa natural em português
+- [ ] Terminologia técnica consistente
 
-## Output Location
+## Localização de Saída
 
 ```
 website/i18n/pt-BR/docusaurus-plugin-content-blog/
 ```
 
-## Progress Tracking
+## Acompanhamento de Progresso
 
-Use this command to list all 2015-2017 blog posts:
+Use este comando para listar todos os posts do blog de 2015-2017:
 ```bash
 find website/blog -name "2015-*.md" -o -name "2016-*.md" -o -name "2017-*.md" | head -15 | sort
 ```
 
-Mark each file as you complete it.
+Marque cada arquivo conforme você o completar.
 
-## Next Step
-After completing this step, proceed to **step02.md** (Blog Posts 2017-2018)
+## Próxima Etapa
+Após completar esta etapa, prossiga para **step02.md** (Posts do Blog 2017-2018)

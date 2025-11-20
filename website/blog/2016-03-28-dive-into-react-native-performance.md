@@ -1,5 +1,6 @@
 ---
-title: Dive into React Native Performance
+ia-translated: true
+title: Mergulhe na Performance do React Native
 author: Pieter De Baets
 authorTitle: Software Engineer at Facebook
 authorURL: 'https://github.com/javache'
@@ -8,18 +9,18 @@ authorTwitter: javache
 tags: [engineering]
 ---
 
-React Native allows you to build Android and iOS apps in JavaScript using React and Relay's declarative programming model. This leads to more concise, easier-to-understand code; fast iteration without a compile cycle; and easy sharing of code across multiple platforms. You can ship faster and focus on details that really matter, making your app look and feel fantastic. Optimizing performance is a big part of this. Here is the story of how we made React Native app startup twice as fast.
+React Native permite que você construa aplicativos Android e iOS em JavaScript usando o modelo de programação declarativa do React e Relay. Isso leva a código mais conciso e fácil de entender; iteração rápida sem um ciclo de compilação; e fácil compartilhamento de código entre múltiplas plataformas. Você pode enviar mais rápido e se concentrar em detalhes que realmente importam, fazendo seu aplicativo parecer e funcionar fantasticamente. Otimizar a performance é uma grande parte disso. Aqui está a história de como tornamos a inicialização do aplicativo React Native duas vezes mais rápida.
 
-## Why the hurry?
+## Por que a pressa?
 
-With an app that runs faster, content loads quickly, which means people get more time to interact with it, and smooth animations make the app enjoyable to use. In emerging markets, where [2011 class phones](https://code.facebook.com/posts/952628711437136/classes-performance-and-network-segmentation-on-android/) on [2G networks](https://newsroom.fb.com/news/2015/10/news-feed-fyi-building-for-all-connectivity/) are the majority, a focus on performance can make the difference between an app that is usable and one that isn't.
+Com um aplicativo que roda mais rápido, o conteúdo carrega rapidamente, o que significa que as pessoas têm mais tempo para interagir com ele, e animações suaves tornam o aplicativo agradável de usar. Em mercados emergentes, onde [telefones classe 2011](https://code.facebook.com/posts/952628711437136/classes-performance-and-network-segmentation-on-android/) em [redes 2G](https://newsroom.fb.com/news/2015/10/news-feed-fyi-building-for-all-connectivity/) são a maioria, um foco em performance pode fazer a diferença entre um aplicativo que é utilizável e um que não é.
 
-Since releasing React Native on [iOS](https://reactjs.org/blog/2015/03/26/introducing-react-native.html) and on [Android](https://code.facebook.com/posts/1189117404435352/react-native-for-android-how-we-built-the-first-cross-platform-react-native-app/), we have been improving list view scrolling performance, memory efficiency, UI responsiveness, and app startup time. Startup sets the first impression of an app and stresses all parts of the framework, so it is the most rewarding and challenging problem to tackle.
+Desde o lançamento do React Native no [iOS](https://reactjs.org/blog/2015/03/26/introducing-react-native.html) e no [Android](https://code.facebook.com/posts/1189117404435352/react-native-for-android-how-we-built-the-first-cross-platform-react-native-app/), temos melhorado a performance de rolagem de listas, eficiência de memória, responsividade da UI e tempo de inicialização do aplicativo. A inicialização define a primeira impressão de um aplicativo e estressa todas as partes do framework, então é o problema mais gratificante e desafiador de enfrentar.
 
 <footer>
   <a
     href="https://code.facebook.com/posts/895897210527114/dive-into-react-native-performance/"
-    className="btn">Read more</a>
+    className="btn">Leia mais</a>
 </footer>
 
-> This is an excerpt. Read the rest of the post on [Facebook Code](https://code.facebook.com/posts/895897210527114/dive-into-react-native-performance/).
+> Este é um trecho. Leia o restante do post no [Facebook Code](https://code.facebook.com/posts/895897210527114/dive-into-react-native-performance/).

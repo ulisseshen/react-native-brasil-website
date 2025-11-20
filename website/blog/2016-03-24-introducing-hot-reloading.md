@@ -1,5 +1,6 @@
 ---
-title: Introducing Hot Reloading
+ia-translated: true
+title: Introduzindo Hot Reloading
 author: Martín Bigio
 authorTitle: Software Engineer at Instagram
 authorURL: 'https://twitter.com/martinbigio'
@@ -8,21 +9,21 @@ authorTwitter: martinbigio
 tags: [engineering]
 ---
 
-React Native's goal is to give you the best possible developer experience. A big part of it is the time it takes between you save a file and be able to see the changes. Our goal is to get this feedback loop to be under 1 second, even as your app grows.
+O objetivo do React Native é fornecer a melhor experiência possível para desenvolvedores. Uma grande parte disso é o tempo que leva entre você salvar um arquivo e ser capaz de ver as alterações. Nosso objetivo é fazer com que esse ciclo de feedback fique abaixo de 1 segundo, mesmo à medida que seu aplicativo cresce.
 
-We got close to this ideal via three main features:
+Chegamos perto desse ideal através de três recursos principais:
 
-- Use JavaScript as the language doesn't have a long compilation cycle time.
-- Implement a tool called Packager that transforms es6/flow/jsx files into normal JavaScript that the VM can understand. It was designed as a server that keeps intermediate state in memory to enable fast incremental changes and uses multiple cores.
-- Build a feature called Live Reload that reloads the app on save.
+- Usar JavaScript como linguagem que não tem um longo ciclo de tempo de compilação.
+- Implementar uma ferramenta chamada Packager que transforma arquivos es6/flow/jsx em JavaScript normal que a VM pode entender. Foi projetada como um servidor que mantém o estado intermediário na memória para permitir mudanças incrementais rápidas e usa vários núcleos.
+- Construir um recurso chamado Live Reload que recarrega o aplicativo ao salvar.
 
-At this point, the bottleneck for developers is no longer the time it takes to reload the app but losing the state of your app. A common scenario is to work on a feature that is multiple screens away from the launch screen. Every time you reload, you've got to click on the same path again and again to get back to your feature, making the cycle multiple-seconds long.
+Neste ponto, o gargalo para os desenvolvedores não é mais o tempo que leva para recarregar o aplicativo, mas perder o estado do seu aplicativo. Um cenário comum é trabalhar em um recurso que está a várias telas de distância da tela inicial. Toda vez que você recarrega, você tem que clicar no mesmo caminho repetidas vezes para voltar ao seu recurso, tornando o ciclo de vários segundos.
 
 ## Hot Reloading
 
-The idea behind hot reloading is to keep the app running and to inject new versions of the files that you edited at runtime. This way, you don't lose any of your state which is especially useful if you are tweaking the UI.
+A ideia por trás do hot reloading é manter o aplicativo rodando e injetar novas versões dos arquivos que você editou em tempo de execução. Dessa forma, você não perde nenhum estado, o que é especialmente útil se você está ajustando a UI.
 
-A video is worth a thousand words. Check out the difference between Live Reload (current) and Hot Reload (new).
+Um vídeo vale mais que mil palavras. Confira a diferença entre Live Reload (atual) e Hot Reload (novo).
 
 <iframe
   width="100%"
@@ -31,26 +32,26 @@ A video is worth a thousand words. Check out the difference between Live Reload 
   frameborder="0"
   allowfullscreen></iframe>
 
-If you look closely, you can notice that it is possible to recover from a red box and you can also start importing modules that were not previously there without having to do a full reload.
+Se você olhar atentamente, pode notar que é possível se recuperar de uma tela vermelha e você também pode começar a importar módulos que não estavam lá anteriormente sem ter que fazer um reload completo.
 
-**Word of warning:** because JavaScript is a very stateful language, hot reloading cannot be perfectly implemented. In practice, we found out that the current setup is working well for a large amount of usual use cases and a full reload is always available in case something gets messed up.
+**Aviso:** porque JavaScript é uma linguagem muito stateful, hot reloading não pode ser perfeitamente implementado. Na prática, descobrimos que a configuração atual está funcionando bem para uma grande quantidade de casos de uso comuns e um reload completo está sempre disponível caso algo dê errado.
 
-Hot reloading is available as of 0.22, you can enable it:
+Hot reloading está disponível a partir da versão 0.22, você pode habilitá-lo:
 
-- Open the developer menu
-- Tap on "Enable Hot Reloading"
+- Abra o menu de desenvolvedor
+- Toque em "Enable Hot Reloading"
 
-## Implementation in a nutshell
+## Implementação em resumo
 
-Now that we've seen why we want it and how to use it, the fun part begins: how it actually works.
+Agora que vimos por que queremos isso e como usá-lo, a parte divertida começa: como realmente funciona.
 
-Hot Reloading is built on top of a feature [Hot Module Replacement](https://webpack.js.org/guides/hot-module-replacement/), or HMR. It was first introduced by webpack and we implemented it inside of React Native Packager. HMR makes the Packager watch for file changes and send HMR updates to a thin HMR runtime included on the app.
+Hot Reloading é construído em cima de um recurso [Hot Module Replacement](https://webpack.js.org/guides/hot-module-replacement/), ou HMR. Foi introduzido pela primeira vez pelo webpack e nós o implementamos dentro do React Native Packager. HMR faz o Packager observar mudanças de arquivos e enviar atualizações HMR para um runtime HMR fino incluído no aplicativo.
 
-In a nutshell, the HMR update contains the new code of the JS modules that changed. When the runtime receives them, it replaces the old modules' code with the new one:
+Em resumo, a atualização HMR contém o novo código dos módulos JS que mudaram. Quando o runtime os recebe, ele substitui o código dos módulos antigos pelo novo:
 
 ![](/blog/assets/hmr-architecture.png)
 
-The HMR update contains a bit more than just the module's code we want to change because replacing it, it's not enough for the runtime to pick up the changes. The problem is that the module system may have already cached the _exports_ of the module we want to update. For instance, say you have an app composed of these two modules:
+A atualização HMR contém um pouco mais do que apenas o código do módulo que queremos alterar porque substituí-lo não é suficiente para o runtime captar as mudanças. O problema é que o sistema de módulos pode já ter armazenado em cache as _exports_ do módulo que queremos atualizar. Por exemplo, digamos que você tenha um aplicativo composto por esses dois módulos:
 
 ```
 // log.js
@@ -71,9 +72,9 @@ function time() {
 module.exports = time;
 ```
 
-The module `log`, prints out the provided message including the current date provided by the module `time`.
+O módulo `log` imprime a mensagem fornecida incluindo a data atual fornecida pelo módulo `time`.
 
-When the app is bundled, React Native registers each module on the module system using the `__d` function. For this app, among many `__d` definitions, there will one for `log`:
+Quando o aplicativo é empacotado, React Native registra cada módulo no sistema de módulos usando a função `__d`. Para este aplicativo, entre muitas definições `__d`, haverá uma para `log`:
 
 ```
 __d('log', function() {
@@ -81,9 +82,9 @@ __d('log', function() {
 });
 ```
 
-This invocation wraps each module's code into an anonymous function which we generally refer to as the factory function. The module system runtime keeps track of each module's factory function, whether it has already been executed, and the result of such execution (exports). When a module is required, the module system either provides the already cached exports or executes the module's factory function for the first time and saves the result.
+Esta invocação envolve o código de cada módulo em uma função anônima que geralmente chamamos de factory function. O runtime do sistema de módulos mantém o controle da factory function de cada módulo, se ela já foi executada e o resultado de tal execução (exports). Quando um módulo é requerido, o sistema de módulos fornece as exports já armazenadas em cache ou executa a factory function do módulo pela primeira vez e salva o resultado.
 
-So say you start your app and require `log`. At this point, neither `log` nor `time`'s factory functions have been executed so no exports have been cached. Then, the user modifies `time` to return the date in `MM/DD`:
+Então, digamos que você inicie seu aplicativo e requeira `log`. Neste ponto, nem as factory functions de `log` nem de `time` foram executadas, então nenhum export foi armazenado em cache. Então, o usuário modifica `time` para retornar a data em `MM/DD`:
 
 ```js
 // time.js
@@ -95,11 +96,11 @@ function bar() {
 module.exports = bar;
 ```
 
-The Packager will send time's new code to the runtime (step 1), and when `log` gets eventually required the exported function gets executed it will do so with `time`'s changes (step 2):
+O Packager enviará o novo código de time para o runtime (passo 1), e quando `log` for eventualmente requerido, a função exportada será executada com as mudanças de `time` (passo 2):
 
 ![](/blog/assets/hmr-step.png)
 
-Now say the code of `log` requires `time` as a top level require:
+Agora digamos que o código de `log` requeira `time` como um require de nível superior:
 
 ```
 const time = require('./time'); // top level require
@@ -112,15 +113,15 @@ function log(message) {
 module.exports = log;
 ```
 
-When `log` is required, the runtime will cache its exports and `time`'s one. (step 1). Then, when `time` is modified, the HMR process cannot simply finish after replacing `time`'s code. If it did, when `log` gets executed, it would do so with a cached copy of `time` (old code).
+Quando `log` é requerido, o runtime armazenará em cache suas exports e as de `time`. (passo 1). Então, quando `time` é modificado, o processo HMR não pode simplesmente terminar depois de substituir o código de `time`. Se o fizesse, quando `log` fosse executado, ele o faria com uma cópia em cache de `time` (código antigo).
 
-For `log` to pick up `time` changes, we'll need to clear its cached exports because one of the modules it depends on was hot swapped (step 3). Finally, when `log` gets required again, its factory function will get executed requiring `time` and getting its new code.
+Para `log` captar as mudanças de `time`, precisaremos limpar suas exports em cache porque um dos módulos dos quais ele depende foi hot swapped (passo 3). Finalmente, quando `log` for requerido novamente, sua factory function será executada requerendo `time` e obtendo seu novo código.
 
 ![](/blog/assets/hmr-log.png)
 
 ## HMR API
 
-HMR in React Native extends the module system by introducing the `hot` object. This API is based on [webpack](https://webpack.github.io/hot-module-replacement.md)'s one. The `hot` object exposes a function called `accept` which allows you to define a callback that will be executed when the module needs to be hot swapped. For instance, if we would change `time`'s code as follows, every time we save time, we'll see “time changed” in the console:
+HMR no React Native estende o sistema de módulos introduzindo o objeto `hot`. Esta API é baseada na do [webpack](https://webpack.github.io/hot-module-replacement.md). O objeto `hot` expõe uma função chamada `accept` que permite definir um callback que será executado quando o módulo precisar ser hot swapped. Por exemplo, se alterássemos o código de `time` da seguinte forma, toda vez que salvássemos time, veríamos "time changed" no console:
 
 ```
 // time.js
@@ -135,17 +136,17 @@ module.hot.accept(() => {
 module.exports = time;
 ```
 
-Note that only in rare cases you would need to use this API manually. Hot Reloading should work out of the box for the most common use cases.
+Note que apenas em casos raros você precisaria usar esta API manualmente. Hot Reloading deve funcionar imediatamente para os casos de uso mais comuns.
 
 ## HMR Runtime
 
-As we've seen before, sometimes it's not enough only accepting the HMR update because a module that uses the one being hot swapped may have been already executed and its imports cached. For instance, suppose the dependency tree for the movies app example had a top-level `MovieRouter` that depended on the `MovieSearch` and `MovieScreen` views, which depended on the `log` and `time` modules from the previous examples:
+Como vimos antes, às vezes não é suficiente apenas aceitar a atualização HMR porque um módulo que usa aquele que está sendo hot swapped pode já ter sido executado e suas imports armazenadas em cache. Por exemplo, suponha que a árvore de dependências para o exemplo do aplicativo de filmes tivesse um `MovieRouter` de nível superior que dependesse das views `MovieSearch` e `MovieScreen`, que dependiam dos módulos `log` e `time` dos exemplos anteriores:
 
 ![](/blog/assets/hmr-diamond.png)
 
-If the user accesses the movies' search view but not the other one, all the modules except for `MovieScreen` would have cached exports. If a change is made to module `time`, the runtime will have to clear the exports of `log` for it to pick up `time`'s changes. The process wouldn't finish there: the runtime will repeat this process recursively up until all the parents have been accepted. So, it'll grab the modules that depend on `log` and try to accept them. For `MovieScreen` it can bail, as it hasn't been required yet. For `MovieSearch`, it will have to clear its exports and process its parents recursively. Finally, it will do the same thing for `MovieRouter` and finish there as no modules depends on it.
+Se o usuário acessar a view de busca de filmes mas não a outra, todos os módulos exceto `MovieScreen` teriam exports em cache. Se uma mudança for feita no módulo `time`, o runtime terá que limpar as exports de `log` para que ele capte as mudanças de `time`. O processo não terminaria aí: o runtime repetirá este processo recursivamente até que todos os pais tenham sido aceitos. Então, ele pegará os módulos que dependem de `log` e tentará aceitá-los. Para `MovieScreen` ele pode pular, pois ainda não foi requerido. Para `MovieSearch`, ele terá que limpar suas exports e processar seus pais recursivamente. Finalmente, ele fará a mesma coisa para `MovieRouter` e terminará lá, pois nenhum módulo depende dele.
 
-In order to walk the dependency tree, the runtime receives the inverse dependency tree from the Packager on the HMR update. For this example the runtime will receive a JSON object like this one:
+Para percorrer a árvore de dependências, o runtime recebe a árvore de dependências inversa do Packager na atualização HMR. Para este exemplo, o runtime receberá um objeto JSON como este:
 
 ```
 {
@@ -167,17 +168,17 @@ In order to walk the dependency tree, the runtime receives the inverse dependenc
 
 ## React Components
 
-React components are a bit harder to get to work with Hot Reloading. The problem is that we can't simply replace the old code with the new one as we'd loose the component's state. For React web applications, [Dan Abramov](https://twitter.com/dan_abramov) implemented a babel [transform](https://gaearon.github.io/react-hot-loader/) that uses webpack's HMR API to solve this issue. In a nutshell, his solution works by creating a proxy for every single React component on _transform time_. The proxies hold the component's state and delegate the lifecycle methods to the actual components, which are the ones we hot reload:
+React components são um pouco mais difíceis de fazer funcionar com Hot Reloading. O problema é que não podemos simplesmente substituir o código antigo pelo novo, pois perderíamos o estado do componente. Para aplicações web React, [Dan Abramov](https://twitter.com/dan_abramov) implementou uma [transform](https://gaearon.github.io/react-hot-loader/) babel que usa a API HMR do webpack para resolver este problema. Em resumo, sua solução funciona criando um proxy para cada componente React no _transform time_. Os proxies mantêm o estado do componente e delegam os métodos de ciclo de vida aos componentes reais, que são os que fazemos hot reload:
 
 ![](/blog/assets/hmr-proxy.png)
 
-Besides creating the proxy component, the transform also defines the `accept` function with a piece of code to force React to re-render the component. This way, we can hot reload rendering code without losing any of the app's state.
+Além de criar o componente proxy, a transform também define a função `accept` com um pedaço de código para forçar o React a re-renderizar o componente. Dessa forma, podemos fazer hot reload do código de renderização sem perder nenhum estado do aplicativo.
 
-The default [transformer](https://github.com/facebook/react-native/blob/master/packager/transformer.js#L92-L95) that comes with React Native uses the `babel-preset-react-native`, which is [configured](https://github.com/facebook/react-native/blob/master/babel-preset/configs/hmr.js#L24-L31) to use `react-transform` the same way you'd use it on a React web project that uses webpack.
+O [transformer](https://github.com/facebook/react-native/blob/master/packager/transformer.js#L92-L95) padrão que vem com React Native usa o `babel-preset-react-native`, que está [configurado](https://github.com/facebook/react-native/blob/master/babel-preset/configs/hmr.js#L24-L31) para usar `react-transform` da mesma forma que você usaria em um projeto web React que usa webpack.
 
 ## Redux Stores
 
-To enable Hot Reloading on [Redux](https://redux.js.org/) stores you will just need to use the HMR API similarly to what you'd do on a web project that uses webpack:
+Para habilitar Hot Reloading em stores [Redux](https://redux.js.org/), você precisará apenas usar a API HMR de forma semelhante ao que faria em um projeto web que usa webpack:
 
 ```
 // configureStore.js
@@ -203,10 +204,10 @@ export default function configureStore(initialState) {
 };
 ```
 
-When you change a reducer, the code to accept that reducer will be sent to the client. Then the client will realize that the reducer doesn't know how to accept itself, so it will look for all the modules that refer it and try to accept them. Eventually, the flow will get to the single store, the `configureStore` module, which will accept the HMR update.
+Quando você altera um reducer, o código para aceitar esse reducer será enviado ao cliente. Então o cliente perceberá que o reducer não sabe como se aceitar, então ele procurará todos os módulos que se referem a ele e tentará aceitá-los. Eventualmente, o fluxo chegará à store única, o módulo `configureStore`, que aceitará a atualização HMR.
 
-## Conclusion
+## Conclusão
 
-If you are interested in helping making hot reloading better, I encourage you to read [Dan Abramov's post around the future of hot reloading](https://medium.com/@dan_abramov/hot-reloading-in-react-1140438583bf#.jmivpvmz4) and to contribute. For example, Johny Days is going to [make it work with multiple connected clients](https://github.com/facebook/react-native/pull/6179). We're relying on you all to maintain and improve this feature.
+Se você está interessado em ajudar a melhorar o hot reloading, eu encorajo você a ler [o post de Dan Abramov sobre o futuro do hot reloading](https://medium.com/@dan_abramov/hot-reloading-in-react-1140438583bf#.jmivpvmz4) e a contribuir. Por exemplo, Johny Days vai [fazê-lo funcionar com vários clientes conectados](https://github.com/facebook/react-native/pull/6179). Estamos contando com todos vocês para manter e melhorar este recurso.
 
-With React Native, we have the opportunity to rethink the way we build apps in order to make it a great developer experience. Hot reloading is only one piece of the puzzle, what other crazy hacks can we do to make it better?
+Com React Native, temos a oportunidade de repensar a maneira como construímos aplicativos para tornar isso uma ótima experiência para desenvolvedores. Hot reloading é apenas uma peça do quebra-cabeça, que outros hacks malucos podemos fazer para melhorar?
