@@ -1,26 +1,27 @@
 ---
+ia-translated: true
 id: strict-typescript-api
 title: Strict TypeScript API (opt in)
 ---
 
 import RNRepoLink from '@site/core/RNRepoLink';
 
-The Strict TypeScript API is a preview of our future, stable JavaScript API for React Native.
+A Strict TypeScript API é uma prévia da nossa futura API JavaScript estável para React Native.
 
-Specifically, this is a new set of TypeScript types for the `react-native` npm package, available from 0.80 onwards. These provide stronger and more futureproof type accuracy, and will allow us to confidently evolve React Native's API into a stable shape. Opting in to the Strict TypeScript API brings some structural type differences, and is therefore a one-time breaking change.
+Especificamente, este é um novo conjunto de tipos TypeScript para o pacote npm `react-native`, disponível a partir da versão 0.80. Eles fornecem maior precisão de tipos e maior prova de futuro, e nos permitirão evoluir com confiança a API do React Native para uma forma estável. Optar pela Strict TypeScript API traz algumas diferenças estruturais de tipos e, portanto, é uma mudança breaking de uma só vez.
 
-The new types are:
+Os novos tipos são:
 
-1. **Generated directly from our source code** — improving coverage and correctness, so you can expect stronger compatibility guarantees.
-2. **Restricted to `react-native`'s index file** — more tightly defining our public API, and meaning we won't break the API when making internal file changes.
+1. **Gerados diretamente do nosso código-fonte** — melhorando a cobertura e correção, para que você possa esperar garantias de compatibilidade mais fortes.
+2. **Restritos ao arquivo index do `react-native`** — definindo mais rigorosamente nossa API pública, e significando que não quebraremos a API ao fazer mudanças internas nos arquivos.
 
-When the community is ready, the Strict TypeScript API will become our default API in future — synchronized with deep imports removal.
+Quando a comunidade estiver pronta, a Strict TypeScript API se tornará nossa API padrão no futuro — sincronizada com a remoção de deep imports.
 
 ## Opting in
 
-We're shipping these new types alongside our existing types, meaning you can choose to migrate when ready. We encourage early adopters and newly created apps to opt in via your `tsconfig.json` file.
+Estamos fornecendo esses novos tipos ao lado de nossos tipos existentes, o que significa que você pode escolher migrar quando estiver pronto. Encorajamos early adopters e aplicativos recém-criados a optar através do seu arquivo `tsconfig.json`.
 
-Opting in is a **breaking change**, since some of our new types have updated names and shapes, although many apps won't be affected. You can learn about each breaking change in the next section.
+Optar é uma **breaking change**, já que alguns de nossos novos tipos têm nomes e formas atualizados, embora muitos aplicativos não sejam afetados. Você pode aprender sobre cada breaking change na próxima seção.
 
 ```json title="tsconfig.json"
 {
@@ -34,17 +35,17 @@ Opting in is a **breaking change**, since some of our new types have updated nam
 
 :::note Under the hood
 
-This will instruct TypeScript to resolve `react-native` types from our new [`types_generated/`](https://www.npmjs.com/package/react-native?activeTab=code) dir, instead of the previous [`types/`](https://www.npmjs.com/package/react-native?activeTab=code) dir (manually maintained). No restart of TypeScript or your editor is required.
+Isso instruirá o TypeScript a resolver os tipos do `react-native` a partir do nosso novo diretório [`types_generated/`](https://www.npmjs.com/package/react-native?activeTab=code), em vez do diretório anterior [`types/`](https://www.npmjs.com/package/react-native?activeTab=code) (mantido manualmente). Nenhum restart do TypeScript ou do seu editor é necessário.
 
 :::
 
-The Strict TypeScript API follows our [RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894) to remove deep imports from React Native. Therefore, some APIs are no longer exported at root. This is intentional, in order to reduce the overall surface area of React Native's API.
+A Strict TypeScript API segue nossa [RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894) para remover deep imports do React Native. Portanto, algumas APIs não são mais exportadas na raiz. Isso é intencional, para reduzir a superfície geral da API do React Native.
 
 :::tip API feedback
 
-**Sending feedback**: We will be working with the community to finalize which APIs we export over (at least) the next two React Native releases. Please share your feedback in our [feedback thread](https://github.com/react-native-community/discussions-and-proposals/discussions/893).
+**Enviando feedback**: Trabalharemos com a comunidade para finalizar quais APIs exportamos ao longo de (pelo menos) as próximas duas versões do React Native. Por favor, compartilhe seu feedback em nossa [feedback thread](https://github.com/react-native-community/discussions-and-proposals/discussions/893).
 
-See also our [announcement blog post](/blog/2025/06/12/moving-towards-a-stable-javascript-api) for more info on our motivation and timelines.
+Veja também nossa [announcement blog post](/blog/2025/06/12/moving-towards-a-stable-javascript-api) para mais informações sobre nossa motivação e cronogramas.
 
 :::
 
@@ -52,9 +53,9 @@ See also our [announcement blog post](/blog/2025/06/12/moving-towards-a-stable-j
 
 ### Codegen types should now be imported from the `react-native` package
 
-Types used for codegen, like `Int32`, `Double`, `WithDefault` etc. are now available under a single `CodegenTypes` namespace. Similarly, `codegenNativeComponent` and `codegenNativeCommands` are now available to import from the react-native package instead of using the deep import.
+Tipos usados para codegen, como `Int32`, `Double`, `WithDefault`, etc., agora estão disponíveis sob um único namespace `CodegenTypes`. Da mesma forma, `codegenNativeComponent` e `codegenNativeCommands` agora estão disponíveis para importar do pacote react-native em vez de usar o deep import.
 
-Namespaced `CodegenTypes` as well as `codegenNativeCommands` and `codegenNativeComponent` are also available from `react-native` package when the Strict API is not enabled to make the adoption easier for third-party libraries.
+O `CodegenTypes` com namespace, bem como `codegenNativeCommands` e `codegenNativeComponent`, também estão disponíveis no pacote `react-native` quando a Strict API não está habilitada para facilitar a adoção para bibliotecas de terceiros.
 
 **Before**
 
@@ -110,9 +111,9 @@ function foo(linking: Linking) {}
 foo(Linking);
 ```
 
-The following APIs were previously named as `*Static` plus a variable declaration of said type. In most cases there was an alias so that value and the type were exported under the same identifier, but some were missing.
+As seguintes APIs eram anteriormente nomeadas como `*Static` mais uma declaração de variável desse tipo. Na maioria dos casos havia um alias para que o valor e o tipo fossem exportados sob o mesmo identificador, mas alguns estavam faltando.
 
-(For example there was an `AlertStatic` type, `Alert` variable of type `AlertStatic` and type `Alert` which was an alias for `AlertStatic`. But in the case of `PixelRatio` there was a `PixelRatioStatic` type and a `PixelRatio` variable of that type without additional type aliases.)
+(Por exemplo, havia um tipo `AlertStatic`, variável `Alert` do tipo `AlertStatic` e tipo `Alert` que era um alias para `AlertStatic`. Mas no caso de `PixelRatio` havia um tipo `PixelRatioStatic` e uma variável `PixelRatio` desse tipo sem aliases de tipo adicionais.)
 
 **Affected APIs**
 
@@ -160,7 +161,7 @@ The following APIs were previously named as `*Static` plus a variable declaratio
 - `Button`
 - `SafeAreaView`
 
-Due to this change, accessing ref types of these views requires using `React.ComponentRef<typeof View>` pattern which works as expected for both class and function components, e.g.:
+Devido a essa mudança, acessar tipos de ref dessas views requer usar o padrão `React.ComponentRef<typeof View>`, que funciona conforme esperado para componentes de classe e de função, por exemplo:
 
 ```ts title=""
 const ref = useRef<React.ComponentRef<typeof View>>(null);
@@ -170,24 +171,24 @@ const ref = useRef<React.ComponentRef<typeof View>>(null);
 
 ### Changes to Animated types
 
-Animated nodes were previously generic types based on their interpolation output. Now, they are non-generic types with a generic `interpolate` method.
+Animated nodes eram anteriormente tipos genéricos baseados em sua saída de interpolação. Agora, eles são tipos não genéricos com um método `interpolate` genérico.
 
-`Animated.LegacyRef` is no longer available.
+`Animated.LegacyRef` não está mais disponível.
 
 ### Unified types for optional props
 
-In the new types, every optional prop will be typed as `type | undefined`.
+Nos novos tipos, toda prop opcional será tipada como `type | undefined`.
 
 ### Removal of some deprecated types
 
-All types listed in <RNRepoLink href="/packages/react-native/types/public/DeprecatedPropertiesAlias.d.ts">`DeprecatedPropertiesAlias.d.ts`</RNRepoLink> are inaccessible under the Strict API.
+Todos os tipos listados em <RNRepoLink href="/packages/react-native/types/public/DeprecatedPropertiesAlias.d.ts">`DeprecatedPropertiesAlias.d.ts`</RNRepoLink> estão inacessíveis sob a Strict API.
 
 ### Removal of leftover component props
 
-Some properties that were defined in type definitions but were not used by the component or were lacking a definition were removed (for example: `lineBreakMode` on `Text`, `scrollWithoutAnimationTo` on `ScrollView`, transform styles defined outside of transform array).
+Algumas propriedades que foram definidas nas definições de tipo mas não foram usadas pelo componente ou estavam sem definição foram removidas (por exemplo: `lineBreakMode` em `Text`, `scrollWithoutAnimationTo` em `ScrollView`, estilos transform definidos fora do array transform).
 
 ### Previously accessible private type helpers may now be removed
 
-Due to the configuration of the previous type definitions, every defined type was accessible from the `react-native` package. This included types that were not explicitly exported and helper types that were only supposed to be used internally.
+Devido à configuração das definições de tipo anteriores, todo tipo definido era acessível a partir do pacote `react-native`. Isso incluía tipos que não foram explicitamente exportados e tipos helper que deveriam ser usados apenas internamente.
 
-Notable examples of this are types related to StyleSheet (like `RecursiveArray`, `RegisteredStyle` and `Falsy`) and Animated (like `WithAnimatedArray` and `WithAnimatedObject`).
+Exemplos notáveis disso são tipos relacionados ao StyleSheet (como `RecursiveArray`, `RegisteredStyle` e `Falsy`) e Animated (como `WithAnimatedArray` e `WithAnimatedObject`).

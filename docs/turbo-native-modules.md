@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: turbo-native-modules-introduction
 title: 'Native Modules: Introduction'
 ---
@@ -12,16 +13,16 @@ import {TurboNativeModulesAndroid, TurboNativeModulesIOS} from './\_turbo-native
 
 # Native Modules
 
-Your React Native application code may need to interact with native platform APIs that aren't provided by React Native or an existing library. You can write the integration code yourself using a **Turbo Native Module**. This guide will show you how to write one.
+O código do seu aplicativo React Native pode precisar interagir com APIs da plataforma nativa que não são fornecidas pelo React Native ou por uma biblioteca existente. Você pode escrever o código de integração você mesmo usando um **Turbo Native Module**. Este guia mostrará como escrever um.
 
-The basic steps are:
+Os passos básicos são:
 
-1. **define a typed JavaScript specification** using one of the most popular JavaScript type annotation languages: Flow or TypeScript;
-2. **configure your dependency management system to run Codegen**, which converts the specification into native language interfaces;
-3. **write your application code** using your specification; and
-4. **write your native platform code using the generated interfaces** to write and hook your native code into the React Native runtime environment.
+1. **definir uma especificação JavaScript tipada** usando uma das linguagens de anotação de tipo JavaScript mais populares: Flow ou TypeScript;
+2. **configurar seu sistema de gerenciamento de dependências para executar o Codegen**, que converte a especificação em interfaces de linguagem nativa;
+3. **escrever o código do seu aplicativo** usando sua especificação; e
+4. **escrever o código da plataforma nativa usando as interfaces geradas** para escrever e conectar seu código nativo ao ambiente de runtime React Native.
 
-Lets work through each of these steps by building an example Turbo Native Module. The rest of this guide assume that you have created your application running the command:
+Vamos trabalhar em cada um desses passos construindo um exemplo de Turbo Native Module. O restante deste guia assume que você criou seu aplicativo executando o comando:
 
 <CodeBlock language="bash" title="shell">
 {`npx @react-native-community/cli@latest init TurboModuleExample --version ${getCurrentVersion()}`}
@@ -29,27 +30,27 @@ Lets work through each of these steps by building an example Turbo Native Module
 
 ## Native Persistent Storage
 
-This guide will show you how to write an implementation of the [Web Storage API](https://html.spec.whatwg.org/multipage/webstorage.html#dom-localstorage-dev): `localStorage`. The API is relatable to a React developer who might be writing application code on your project.
+Este guia mostrará como escrever uma implementação da [Web Storage API](https://html.spec.whatwg.org/multipage/webstorage.html#dom-localstorage-dev): `localStorage`. A API é relacionável a um desenvolvedor React que pode estar escrevendo código de aplicativo em seu projeto.
 
-To make this work on mobile, we need to use Android and iOS APIs:
+Para fazer isso funcionar em mobile, precisamos usar APIs Android e iOS:
 
-- Android: [SharedPreferences](https://developer.android.com/reference/android/content/SharedPreferences), and
+- Android: [SharedPreferences](https://developer.android.com/reference/android/content/SharedPreferences), e
 - iOS: [NSUserDefaults](https://developer.apple.com/documentation/foundation/nsuserdefaults).
 
 ### 1. Declare Typed Specification
 
-React Native provides a tool called [Codegen](/docs/the-new-architecture/what-is-codegen), which takes a specification written in TypeScript or Flow and generates platform specific code for Android and iOS. The specification declares the methods and data types that will pass back and forth between your native code and the React Native JavaScript runtime. A Turbo Native Module is both your specification, the native code you write, and the Codegen interfaces generated from your specification.
+React Native fornece uma ferramenta chamada [Codegen](/docs/the-new-architecture/what-is-codegen), que pega uma especificação escrita em TypeScript ou Flow e gera código específico da plataforma para Android e iOS. A especificação declara os métodos e tipos de dados que passarão de um lado para outro entre seu código nativo e o runtime JavaScript React Native. Um Turbo Native Module é sua especificação, o código nativo que você escreve e as interfaces Codegen geradas a partir de sua especificação.
 
-To create a specs file:
+Para criar um arquivo de specs:
 
-1. Inside the root folder of your app, create a new folder called `specs`.
-2. Create a new file called `NativeLocalStorage.ts`.
+1. Dentro da pasta raiz do seu app, crie uma nova pasta chamada `specs`.
+2. Crie um novo arquivo chamado `NativeLocalStorage.ts`.
 
 :::info
-You can see all of the types you can use in your specification and the native types that are generated in the [Appendix](/docs/appendix) documentation.
+Você pode ver todos os tipos que você pode usar em sua especificação e os tipos nativos que são gerados na documentação do [Appendix](/docs/appendix).
 :::
 
-Here is an implementation of the `localStorage` specification:
+Aqui está uma implementação da especificação `localStorage`:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultJavaScriptSpecLanguage} values={constants.javaScriptSpecLanguages}>
 <TabItem value="typescript">
@@ -90,7 +91,7 @@ export interface Spec extends TurboModule {
 
 ### 2. Configure Codegen to run
 
-The specification is used by the React Native Codegen tools to generate platform specific interfaces and boilerplate for us. To do this, Codegen needs to know where to find our specification and what to do with it. Update your `package.json` to include:
+A especificação é usada pelas ferramentas React Native Codegen para gerar interfaces e boilerplate específicos da plataforma para nós. Para fazer isso, o Codegen precisa saber onde encontrar nossa especificação e o que fazer com ela. Atualize seu `package.json` para incluir:
 
 ```json title="package.json"
      "start": "react-native start",
@@ -109,11 +110,11 @@ The specification is used by the React Native Codegen tools to generate platform
    "dependencies": {
 ```
 
-With everything wired up for Codegen, we need to prepare our native code to hook into our generated code.
+Com tudo configurado para o Codegen, precisamos preparar nosso código nativo para se conectar ao nosso código gerado.
 
 <Tabs groupId="platforms" queryString defaultValue={constants.defaultPlatform}>
 <TabItem value="android" label="Android">
-Codegen is executed through the `generateCodegenArtifactsFromSchema` Gradle task:
+O Codegen é executado através da task Gradle `generateCodegenArtifactsFromSchema`:
 
 ```bash
 cd android
@@ -123,10 +124,10 @@ BUILD SUCCESSFUL in 837ms
 14 actionable tasks: 3 executed, 11 up-to-date
 ```
 
-This is automatically run when you build your Android application.
+Isso é executado automaticamente quando você compila seu aplicativo Android.
 </TabItem>
 <TabItem value="ios" label="iOS">
-Codegen is run as part of the script phases that's automatically added to the project generated by CocoaPods.
+O Codegen é executado como parte das fases de script que são automaticamente adicionadas ao projeto gerado pelo CocoaPods.
 
 ```bash
 cd ios
@@ -134,7 +135,7 @@ bundle install
 bundle exec pod install
 ```
 
-The output will look like this:
+A saída ficará assim:
 
 ```shell
 ...
@@ -154,12 +155,12 @@ Framework build type is static library
 
 ### 3. Write Application Code using the Turbo Native Module
 
-Using `NativeLocalStorage`, here’s a modified `App.tsx` that includes some text we want persisted, an input field and some buttons to update this value.
+Usando `NativeLocalStorage`, aqui está um `App.tsx` modificado que inclui algum texto que queremos persistir, um campo de entrada e alguns botões para atualizar este valor.
 
-The `TurboModuleRegistry` supports 2 modes of retrieving a Turbo Native Module:
+O `TurboModuleRegistry` suporta 2 modos de recuperar um Turbo Native Module:
 
-- `get<T>(name: string): T | null` which will return `null` if the Turbo Native Module is unavailable.
-- `getEnforcing<T>(name: string): T` which will throw an exception if the Turbo Native Module is unavailable. This assumes the module is always available.
+- `get<T>(name: string): T | null` que retornará `null` se o Turbo Native Module estiver indisponível.
+- `getEnforcing<T>(name: string): T` que lançará uma exceção se o Turbo Native Module estiver indisponível. Isso assume que o módulo está sempre disponível.
 
 ```tsx title="App.tsx"
 import React from 'react';
@@ -240,10 +241,10 @@ export default App;
 
 ### 4. Write your Native Platform code
 
-With everything prepared, we're going to start writing native platform code. We do this in 2 parts:
+Com tudo preparado, vamos começar a escrever código da plataforma nativa. Fazemos isso em 2 partes:
 
 :::note
-This guide shows you how to create a Turbo Native Module that only works with the New Architecture. If you need to support both the New Architecture and the Legacy Architecture, please refer to our [backwards compatibility guide](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/backwards-compat.md).
+Este guia mostra como criar um Turbo Native Module que funciona apenas com a New Architecture. Se você precisar suportar tanto a New Architecture quanto a Legacy Architecture, consulte nosso [guia de compatibilidade com versões anteriores](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/backwards-compat.md).
 :::
 
 <Tabs groupId="platforms" queryString defaultValue={constants.defaultPlatform}>

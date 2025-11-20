@@ -1,60 +1,61 @@
 ---
+ia-translated: true
 id: signed-apk-android
-title: Publishing to Google Play Store
+title: Publicando na Google Play Store
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Android requires that all apps be digitally signed with a certificate before they can be installed. In order to distribute your Android application via [Google Play store](https://play.google.com/store) it needs to be signed with a release key that then needs to be used for all future updates. Since 2017 it is possible for Google Play to manage signing releases automatically thanks to [App Signing by Google Play](https://developer.android.com/studio/publish/app-signing#app-signing-google-play) functionality. However, before your application binary is uploaded to Google Play it needs to be signed with an upload key. The [Signing Your Applications](https://developer.android.com/tools/publishing/app-signing.html) page on Android Developers documentation describes the topic in detail. This guide covers the process in brief, as well as lists the steps required to package the JavaScript bundle.
+Android requer que todos os aplicativos sejam assinados digitalmente com um certificado antes que possam ser instalados. Para distribuir seu aplicativo Android via [Google Play store](https://play.google.com/store) ele precisa ser assinado com uma chave de release que então precisa ser usada para todas as atualizações futuras. Desde 2017 é possível para o Google Play gerenciar assinatura de releases automaticamente graças à funcionalidade [App Signing by Google Play](https://developer.android.com/studio/publish/app-signing#app-signing-google-play). No entanto, antes que o binário do seu aplicativo seja enviado para o Google Play ele precisa ser assinado com uma chave de upload. A página [Signing Your Applications](https://developer.android.com/tools/publishing/app-signing.html) na documentação do Android Developers descreve o tópico em detalhes. Este guia cobre o processo brevemente, bem como lista os passos necessários para empacotar o JavaScript bundle.
 
 :::info
-If you are using Expo, read the Expo guide for [Deploying to App Stores](https://docs.expo.dev/distribution/app-stores/) to build and submit your app for the Google Play Store. This guide works with any React Native app to automate the deployment process.
+Se você está usando Expo, leia o guia do Expo para [Deploying to App Stores](https://docs.expo.dev/distribution/app-stores/) para compilar e enviar seu aplicativo para a Google Play Store. Este guia funciona com qualquer aplicativo React Native para automatizar o processo de implantação.
 :::
 
-## Generating an upload key
+## Gerando uma chave de upload
 
-You can generate a private signing key using `keytool`.
+Você pode gerar uma chave de assinatura privada usando `keytool`.
 
 ### Windows
 
-On Windows `keytool` must be run from `C:\Program Files\Java\jdkx.x.x_x\bin`, as administrator.
+No Windows, `keytool` deve ser executado de `C:\Program Files\Java\jdkx.x.x_x\bin`, como administrador.
 
 ```shell
 keytool -genkeypair -v -storetype PKCS12 -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
 ```
 
-This command prompts you for passwords for the keystore and key and for the Distinguished Name fields for your key. It then generates the keystore as a file called `my-upload-key.keystore`.
+Este comando solicita senhas para o keystore e chave e para os campos Distinguished Name para sua chave. Ele então gera o keystore como um arquivo chamado `my-upload-key.keystore`.
 
-The keystore contains a single key, valid for 10000 days. The alias is a name that you will use later when signing your app, so remember to take note of the alias.
+O keystore contém uma única chave, válida por 10000 dias. O alias é um nome que você usará posteriormente ao assinar seu aplicativo, então lembre-se de anotar o alias.
 
 ### macOS
 
-On macOS, if you're not sure where your JDK bin folder is, then perform the following command to find it:
+No macOS, se você não tem certeza onde está a pasta bin do seu JDK, execute o seguinte comando para encontrá-la:
 
 ```shell
 /usr/libexec/java_home
 ```
 
-It will output the directory of the JDK, which will look something like this:
+Ele retornará o diretório do JDK, que se parecerá com isto:
 
 ```shell
 /Library/Java/JavaVirtualMachines/jdkX.X.X_XXX.jdk/Contents/Home
 ```
 
-Navigate to that directory by using the command `cd /your/jdk/path` and use the keytool command with sudo permission as shown below.
+Navegue até esse diretório usando o comando `cd /your/jdk/path` e use o comando keytool com permissão sudo conforme mostrado abaixo.
 
 ```shell
 sudo keytool -genkey -v -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
 ```
 
 :::caution
-Remember to keep the keystore file private. In case you've lost upload key or it's been compromised you should [follow these instructions](https://support.google.com/googleplay/android-developer/answer/7384423#reset).
+Lembre-se de manter o arquivo keystore privado. Caso você tenha perdido a chave de upload ou ela foi comprometida, você deve [seguir estas instruções](https://support.google.com/googleplay/android-developer/answer/7384423#reset).
 :::
 
-## Setting up Gradle variables
+## Configurando variáveis do Gradle
 
-1. Place the `my-upload-key.keystore` file under the `android/app` directory in your project folder.
-2. Edit the file `~/.gradle/gradle.properties` or `android/gradle.properties`, and add the following (replace `*****` with the correct keystore password, alias and key password),
+1. Coloque o arquivo `my-upload-key.keystore` sob o diretório `android/app` na pasta do seu projeto.
+2. Edite o arquivo `~/.gradle/gradle.properties` ou `android/gradle.properties`, e adicione o seguinte (substitua `*****` com a senha correta do keystore, alias e senha da chave),
 
 ```
 MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore
@@ -63,19 +64,19 @@ MYAPP_UPLOAD_STORE_PASSWORD=*****
 MYAPP_UPLOAD_KEY_PASSWORD=*****
 ```
 
-These are going to be global Gradle variables, which we can later use in our Gradle config to sign our app.
+Essas serão variáveis globais do Gradle, que podemos usar posteriormente em nossa config do Gradle para assinar nosso aplicativo.
 
-:::note Note about using git
-Saving the above Gradle variables in `~/.gradle/gradle.properties` instead of `android/gradle.properties` prevents them from being checked in to git. You may have to create the `~/.gradle/gradle.properties` file in your user's home directory before you can add the variables.
+:::note Nota sobre uso do git
+Salvar as variáveis do Gradle acima em `~/.gradle/gradle.properties` em vez de `android/gradle.properties` as impede de serem verificadas no git. Você pode ter que criar o arquivo `~/.gradle/gradle.properties` no diretório home do seu usuário antes de poder adicionar as variáveis.
 :::
 
-:::note Note about security
-If you are not keen on storing your passwords in plaintext, and you are running macOS, you can also [store your credentials in the Keychain Access app](https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/). Then you can skip the two last rows in `~/.gradle/gradle.properties`.
+:::note Nota sobre segurança
+Se você não quer armazenar suas senhas em texto simples, e está executando macOS, você também pode [armazenar suas credenciais no aplicativo Keychain Access](https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/). Então você pode pular as duas últimas linhas em `~/.gradle/gradle.properties`.
 :::
 
-## Adding signing config to your app's Gradle config
+## Adicionando config de assinatura ao Gradle config do seu aplicativo
 
-The last configuration step that needs to be done is to setup release builds to be signed using upload key. Edit the file `android/app/build.gradle` in your project folder, and add the signing config,
+O último passo de configuração que precisa ser feito é configurar builds de release para serem assinadas usando a chave de upload. Edite o arquivo `android/app/build.gradle` na pasta do seu projeto, e adicione a config de assinatura,
 
 ```groovy
 ...
@@ -102,27 +103,27 @@ android {
 ...
 ```
 
-## Generating the release AAB
+## Gerando o AAB de release
 
-Run the following command in a terminal:
+Execute o seguinte comando em um terminal:
 
 ```shell
 npx react-native build-android --mode=release
 ```
 
-This command uses Gradle's `bundleRelease` under the hood that bundles all the JavaScript needed to run your app into the AAB ([Android App Bundle](https://developer.android.com/guide/app-bundle)). If you need to change the way the JavaScript bundle and/or drawable resources are bundled (e.g. if you changed the default file/folder names or the general structure of the project), have a look at `android/app/build.gradle` to see how you can update it to reflect these changes.
+Este comando usa o `bundleRelease` do Gradle nos bastidores que empacota todo o JavaScript necessário para executar seu aplicativo no AAB ([Android App Bundle](https://developer.android.com/guide/app-bundle)). Se você precisa mudar a maneira como o JavaScript bundle e/ou recursos drawable são empacotados (por exemplo, se você mudou os nomes padrão de arquivo/pasta ou a estrutura geral do projeto), dê uma olhada em `android/app/build.gradle` para ver como você pode atualizá-lo para refletir essas mudanças.
 
 :::note
-Make sure `gradle.properties` does not include `org.gradle.configureondemand=true` as that will make the release build skip bundling JS and assets into the app binary.
+Certifique-se de que `gradle.properties` não inclua `org.gradle.configureondemand=true` pois isso fará a build de release pular o bundling de JS e assets no binário do aplicativo.
 :::
 
-The generated AAB can be found under `android/app/build/outputs/bundle/release/app-release.aab`, and is ready to be uploaded to Google Play.
+O AAB gerado pode ser encontrado em `android/app/build/outputs/bundle/release/app-release.aab`, e está pronto para ser enviado para o Google Play.
 
-In order for Google Play to accept AAB format the App Signing by Google Play needs to be configured for your application on the Google Play Console. If you are updating an existing app that doesn't use App Signing by Google Play, please check our [migration section](#migrating-old-android-react-native-apps-to-use-app-signing-by-google-play) to learn how to perform that configuration change.
+Para que o Google Play aceite o formato AAB, o App Signing by Google Play precisa ser configurado para seu aplicativo no Google Play Console. Se você está atualizando um aplicativo existente que não usa App Signing by Google Play, consulte nossa [seção de migração](#migrating-old-android-react-native-apps-to-use-app-signing-by-google-play) para aprender como executar essa mudança de configuração.
 
-## Testing the release build of your app
+## Testando a build de release do seu aplicativo
 
-Before uploading the release build to the Play Store, make sure you test it thoroughly. First uninstall any previous version of the app you already have installed. Install it on the device using the following command in the project root:
+Antes de enviar a build de release para a Play Store, certifique-se de testá-la completamente. Primeiro desinstale qualquer versão anterior do aplicativo que você já tenha instalado. Instale-a no dispositivo usando o seguinte comando na raiz do projeto:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -141,15 +142,15 @@ yarn android --mode release
 </TabItem>
 </Tabs>
 
-Note that `--mode release` is only available if you've set up signing as described above.
+Note que `--mode release` só está disponível se você configurou a assinatura conforme descrito acima.
 
-You can terminate any running bundler instances, since all your framework and JavaScript code is bundled in the APK's assets.
+Você pode terminar quaisquer instâncias de bundler em execução, pois todo o seu código framework e JavaScript está empacotado nos assets do APK.
 
-## Publishing to other stores
+## Publicando em outras lojas
 
-By default, the generated APK has the native code for both `x86`, `x86_64`, `ARMv7a` and `ARM64-v8a` CPU architectures. This makes it easier to share APKs that run on almost all Android devices. However, this has the downside that there will be some unused native code on any device, leading to unnecessarily bigger APKs.
+Por padrão, o APK gerado tem o código nativo para arquiteturas de CPU `x86`, `x86_64`, `ARMv7a` e `ARM64-v8a`. Isso torna mais fácil compartilhar APKs que rodam em quase todos os dispositivos Android. No entanto, isso tem a desvantagem de que haverá algum código nativo não utilizado em qualquer dispositivo, levando a APKs desnecessariamente maiores.
 
-You can create an APK for each CPU by adding the following line in your `android/app/build.gradle` file:
+Você pode criar um APK para cada CPU adicionando a seguinte linha em seu arquivo `android/app/build.gradle`:
 
 ```diff
 android {
@@ -166,19 +167,19 @@ android {
 }
 ```
 
-Upload these files to markets which support device targeting, such as [Amazon AppStore](https://developer.amazon.com/docs/app-submission/device-filtering-and-compatibility.html) or [F-Droid](https://f-droid.org/en/), and the users will automatically get the appropriate APK. If you want to upload to other markets, such as [APKFiles](https://www.apkfiles.com/), which do not support multiple APKs for a single app, change the `universalApk false` line to `true` to create the default universal APK with binaries for both CPUs.
+Envie esses arquivos para mercados que suportam segmentação de dispositivos, como [Amazon AppStore](https://developer.amazon.com/docs/app-submission/device-filtering-and-compatibility.html) ou [F-Droid](https://f-droid.org/en/), e os usuários receberão automaticamente o APK apropriado. Se você quiser enviar para outros mercados, como [APKFiles](https://www.apkfiles.com/), que não suportam múltiplos APKs para um único aplicativo, mude a linha `universalApk false` para `true` para criar o APK universal padrão com binários para ambas CPUs.
 
-Please note that you will also have to configure distinct version codes, as [suggested in this page](https://developer.android.com/studio/build/configure-apk-splits#configure-APK-versions) from the official Android documentation.
+Observe que você também terá que configurar códigos de versão distintos, conforme [sugerido nesta página](https://developer.android.com/studio/build/configure-apk-splits#configure-APK-versions) da documentação oficial do Android.
 
-## Enabling Proguard to reduce the size of the APK (optional)
+## Habilitando Proguard para reduzir o tamanho do APK (opcional)
 
-Proguard is a tool that can slightly reduce the size of the APK. It does this by stripping parts of the React Native Java bytecode (and its dependencies) that your app is not using.
+Proguard é uma ferramenta que pode reduzir ligeiramente o tamanho do APK. Faz isso removendo partes do bytecode Java do React Native (e suas dependências) que seu aplicativo não está usando.
 
-:::caution Important
-Make sure to thoroughly test your app if you've enabled Proguard. Proguard often requires configuration specific to each native library you're using. See `app/proguard-rules.pro`.
+:::caution Importante
+Certifique-se de testar seu aplicativo completamente se você habilitou o Proguard. Proguard frequentemente requer configuração específica para cada biblioteca nativa que você está usando. Veja `app/proguard-rules.pro`.
 :::
 
-To enable Proguard, edit `android/app/build.gradle`:
+Para habilitar o Proguard, edite `android/app/build.gradle`:
 
 ```groovy
 /**
@@ -187,10 +188,10 @@ To enable Proguard, edit `android/app/build.gradle`:
 def enableProguardInReleaseBuilds = true
 ```
 
-## Migrating old Android React Native apps to use App Signing by Google Play
+## Migrando aplicativos React Native Android antigos para usar App Signing by Google Play
 
-If you are migrating from previous version of React Native chances are your app does not use App Signing by Google Play feature. We recommend you enable that in order to take advantage from things like automatic app splitting. In order to migrate from the old way of signing you need to start by [generating new upload key](#generating-an-upload-key) and then replacing release signing config in `android/app/build.gradle` to use the upload key instead of the release one (see section about [adding signing config to gradle](#adding-signing-config-to-your-apps-gradle-config)). Once that's done you should follow the [instructions from Google Play Help website](https://support.google.com/googleplay/android-developer/answer/7384423) in order to send your original release key to Google Play.
+Se você está migrando de versão anterior do React Native, há chances de seu aplicativo não usar o recurso App Signing by Google Play. Recomendamos que você habilite isso para tirar vantagem de coisas como divisão automática de aplicativo. Para migrar da maneira antiga de assinar, você precisa começar [gerando nova chave de upload](#generating-an-upload-key) e então substituir a config de assinatura de release em `android/app/build.gradle` para usar a chave de upload em vez da de release (veja seção sobre [adicionar config de assinatura ao gradle](#adding-signing-config-to-your-apps-gradle-config)). Uma vez feito isso, você deve seguir as [instruções do site de Ajuda do Google Play](https://support.google.com/googleplay/android-developer/answer/7384423) para enviar sua chave de release original para o Google Play.
 
-## Default Permissions
+## Permissões Padrão
 
-By default, `INTERNET` permission is added to your Android app as pretty much all apps use it. `SYSTEM_ALERT_WINDOW` permission is added to your Android APK in debug mode but it will be removed in production.
+Por padrão, a permissão `INTERNET` é adicionada ao seu aplicativo Android, pois praticamente todos os aplicativos a usam. A permissão `SYSTEM_ALERT_WINDOW` é adicionada ao seu APK Android no modo debug, mas será removida em produção.

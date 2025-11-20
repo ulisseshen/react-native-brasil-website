@@ -1,57 +1,58 @@
 ---
 id: linking-libraries-ios
 title: Linking Libraries
+ia-translated: true
 ---
 
-Not every app uses all the native capabilities, and including the code to support all those features would impact the binary size... But we still want to support adding these features whenever you need them.
+Nem todos os aplicativos usam todas as capacidades nativas, e incluir o código para suportar todos esses recursos impactaria o tamanho do binário... Mas ainda queremos suportar a adição desses recursos sempre que você precisar deles.
 
-With that in mind we exposed many of these features as independent static libraries.
+Com isso em mente, expusemos muitos desses recursos como bibliotecas estáticas independentes.
 
-For most of the libs it will be as quick as dragging two files, sometimes a third step will be necessary, but no more than that.
+Para a maioria das libs, será tão rápido quanto arrastar dois arquivos, às vezes um terceiro passo será necessário, mas não mais do que isso.
 
 :::note
-All the libraries we ship with React Native live in the `Libraries` folder in the root of the repository. Some of them are pure JavaScript, and you only need to `require` it.
-Other libraries also rely on some native code, in that case you'll have to add these files to your app, otherwise the app will throw an error as soon as you try to use the library.
+Todas as bibliotecas que enviamos com React Native ficam na pasta `Libraries` na raiz do repositório. Algumas delas são JavaScript puro, e você só precisa fazer `require` delas.
+Outras bibliotecas também dependem de algum código nativo, nesse caso você terá que adicionar esses arquivos ao seu aplicativo, caso contrário o aplicativo lançará um erro assim que você tentar usar a biblioteca.
 :::
 
-## Here are the few steps to link your libraries that contain native code
+## Aqui estão os poucos passos para vincular suas bibliotecas que contêm código nativo
 
 ### Automatic linking
 
-Install a library with native dependencies:
+Instale uma biblioteca com dependências nativas:
 
 ```shell
 npm install <library-with-native-dependencies> --save
 ```
 
 :::info
-`--save` or `--save-dev` flag is very important for this step. React Native will link your libs based on `dependencies` and `devDependencies` in your `package.json` file.
+A flag `--save` ou `--save-dev` é muito importante para este passo. React Native vinculará suas libs com base em `dependencies` e `devDependencies` no seu arquivo `package.json`.
 :::
 
-That's it! Next time you build your app the native code will be linked thanks to the [autolinking](https://github.com/react-native-community/cli/blob/main/docs/autolinking.md) mechanism.
+É isso! Da próxima vez que você compilar seu aplicativo, o código nativo será vinculado graças ao mecanismo de [autolinking](https://github.com/react-native-community/cli/blob/main/docs/autolinking.md).
 
 ### Manual linking
 
 #### Step 1
 
-If the library has native code, there must be an `.xcodeproj` file inside its folder. Drag this file to your project on Xcode (usually under the `Libraries` group on Xcode);
+Se a biblioteca tiver código nativo, deve haver um arquivo `.xcodeproj` dentro de sua pasta. Arraste este arquivo para seu projeto no Xcode (geralmente sob o grupo `Libraries` no Xcode);
 
 ![](/docs/assets/AddToLibraries.png)
 
 #### Step 2
 
-Click on your main project file (the one that represents the `.xcodeproj`) select `Build Phases` and drag the static library from the `Products` folder inside the Library you are importing to `Link Binary With Libraries`
+Clique no arquivo principal do seu projeto (aquele que representa o `.xcodeproj`) selecione `Build Phases` e arraste a biblioteca estática da pasta `Products` dentro da Library que você está importando para `Link Binary With Libraries`
 
 ![](/docs/assets/AddToBuildPhases.png)
 
 #### Step 3
 
-Not every library will need this step, what you need to consider is:
+Nem toda biblioteca precisará deste passo, o que você precisa considerar é:
 
-_Do I need to know the contents of the library at compile time?_
+_Preciso conhecer o conteúdo da biblioteca em tempo de compilação?_
 
-What that means is, are you using this library on the native side or only in JavaScript? If you are only using it in JavaScript, you are good to go!
+O que isso significa é, você está usando esta biblioteca no lado nativo ou apenas em JavaScript? Se você está usando apenas em JavaScript, você está pronto para ir!
 
-If you do need to call it from native, then we need to know the library's headers. To achieve that you have to go to your project's file, select `Build Settings` and search for `Header Search Paths`. There you should include the path to your library. (This documentation used to recommend using `recursive`, but this is no longer recommended, as it can cause subtle build failures, especially with CocoaPods.)
+Se você precisa chamá-la do nativo, então precisamos conhecer os headers da biblioteca. Para conseguir isso, você tem que ir para o arquivo do seu projeto, selecionar `Build Settings` e procurar por `Header Search Paths`. Lá você deve incluir o caminho para sua biblioteca. (Esta documentação costumava recomendar usar `recursive`, mas isso não é mais recomendado, pois pode causar falhas sutis de compilação, especialmente com CocoaPods.)
 
 ![](/docs/assets/AddToSearchPaths.png)

@@ -1,34 +1,35 @@
 ---
+ia-translated: true
 id: fabric-native-components-android
 title: 'Fabric Native Modules: Android'
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Now it's time to write some Android platform code to be able to render the web view. The steps you need to follow are:
+Agora é hora de escrever algum código de plataforma Android para poder renderizar a web view. Os passos que você precisa seguir são:
 
-- Running Codegen
-- Write the code for the `ReactWebView`
-- Write the code for the `ReactWebViewManager`
-- Write the code for the `ReactWebViewPackage`
-- Register the `ReactWebViewPackage` in the application
+- Executar o Codegen
+- Escrever o código para o `ReactWebView`
+- Escrever o código para o `ReactWebViewManager`
+- Escrever o código para o `ReactWebViewPackage`
+- Registrar o `ReactWebViewPackage` na aplicação
 
-### 1. Run Codegen through Gradle
+### 1. Executar o Codegen através do Gradle
 
-Run this once to generate boilerplate that your IDE of choice can use.
+Execute isso uma vez para gerar o código boilerplate que sua IDE de escolha pode usar.
 
 ```bash title="Demo/"
 cd android
 ./gradlew generateCodegenArtifactsFromSchema
 ```
 
-Codegen will generate the `ViewManager` interface you need to implement and the `ViewManager` delegate for the web view.
+O Codegen gerará a interface `ViewManager` que você precisa implementar e o delegate `ViewManager` para a web view.
 
-### 2. Write the `ReactWebView`
+### 2. Escrever o `ReactWebView`
 
-The `ReactWebView` is the component that wraps the Android native view that React Native will render when using our custom Component.
+O `ReactWebView` é o componente que envolve a view nativa do Android que o React Native renderizará ao usar nosso Component personalizado.
 
-Create a `ReactWebView.java` or a `ReactWebView.kt` file in the `android/src/main/java/com/webview` folder with this code:
+Crie um arquivo `ReactWebView.java` ou `ReactWebView.kt` na pasta `android/src/main/java/com/webview` com este código:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -183,31 +184,31 @@ class ReactWebView: WebView {
 </TabItem>
 </Tabs>
 
-The `ReactWebView` extends the Android `WebView` so you can reuse all the properties already defined by the platform with ease.
+O `ReactWebView` estende o `WebView` do Android para que você possa reutilizar todas as propriedades já definidas pela plataforma com facilidade.
 
-The class defines the three Android constructors but defers their actual implementation to the private `configureComponent` function. This function takes care of initializing all the components specific properties: in this case you are setting the layout of the `WebView` and you are defining the `WebClient` that you use to customize the behavior of the `WebView`. In this code, the `ReactWebView` emits an event when the page finishes loading, by implementing the `WebClient`'s `onPageFinished` method.
+A classe define os três construtores do Android, mas delega sua implementação real à função privada `configureComponent`. Esta função cuida de inicializar todas as propriedades específicas do componente: neste caso, você está definindo o layout do `WebView` e está definindo o `WebClient` que você usa para customizar o comportamento do `WebView`. Neste código, o `ReactWebView` emite um evento quando a página termina de carregar, implementando o método `onPageFinished` do `WebClient`.
 
-The code then defines a helper function to actually emit an event. To emit an event, you have to:
+O código então define uma função auxiliar para realmente emitir um evento. Para emitir um evento, você precisa:
 
-- grab a reference to the `ReactContext`;
-- retrieve the `surfaceId` of the view that you are presenting;
-- grab a reference to the `eventDispatcher` associated with the view;
-- build the payload for the event using a `WritableMap` object;
-- create the event object that you need to send to JavaScript;
-- call the `eventDispatcher.dispatchEvent` to send the event.
+- pegar uma referência ao `ReactContext`;
+- recuperar o `surfaceId` da view que você está apresentando;
+- pegar uma referência ao `eventDispatcher` associado à view;
+- construir o payload para o evento usando um objeto `WritableMap`;
+- criar o objeto de evento que você precisa enviar ao JavaScript;
+- chamar o `eventDispatcher.dispatchEvent` para enviar o evento.
 
-The last part of the file contains the definition of the data types you need to send the event:
+A última parte do arquivo contém a definição dos tipos de dados que você precisa para enviar o evento:
 
-- The `OnScriptLoadedEventResult`, with the possible outcomes of the `OnScriptLoaded` event.
-- The actual `OnScriptLoadedEvent` that needs to extend the React Native's `Event` class.
+- O `OnScriptLoadedEventResult`, com os possíveis resultados do evento `OnScriptLoaded`.
+- O `OnScriptLoadedEvent` real que precisa estender a classe `Event` do React Native.
 
-### 3. Write the `WebViewManager`
+### 3. Escrever o `WebViewManager`
 
-The `WebViewManager` is the class that connects the React Native runtime with the native view.
+O `WebViewManager` é a classe que conecta o runtime do React Native com a view nativa.
 
-When React receives the instruction from the app to render a specific component, React uses the registered view manager to create the view and to pass all the required properties.
+Quando o React recebe a instrução do app para renderizar um componente específico, o React usa o view manager registrado para criar a view e passar todas as propriedades necessárias.
 
-This is the code of the `ReactWebViewManager`.
+Este é o código do `ReactWebViewManager`.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -327,23 +328,23 @@ class ReactWebViewManager(context: ReactApplicationContext) : SimpleViewManager<
 </TabItem>
 </Tabs>
 
-The `ReactWebViewManager` extends the `SimpleViewManager` class from React and implements the `CustomWebViewManagerInterface`, generated by Codegen.
+O `ReactWebViewManager` estende a classe `SimpleViewManager` do React e implementa a `CustomWebViewManagerInterface`, gerada pelo Codegen.
 
-It holds a reference of the `CustomWebViewManagerDelegate`, another element generated by Codegen.
+Ele mantém uma referência do `CustomWebViewManagerDelegate`, outro elemento gerado pelo Codegen.
 
-It then overrides the `getName` function, which must return the same name used in the spec's `codegenNativeComponent` function call.
+Em seguida, sobrescreve a função `getName`, que deve retornar o mesmo nome usado na chamada da função `codegenNativeComponent` da spec.
 
-The `createViewInstance` function is responsible to instantiate a new `ReactWebView`.
+A função `createViewInstance` é responsável por instanciar um novo `ReactWebView`.
 
-Then, the ViewManager needs to define how all the React's components props will update the native view. In the example, you need to decide how to handle the `sourceURL` property that React will set on the `WebView`.
+Então, o ViewManager precisa definir como todas as props do componente React atualizarão a view nativa. No exemplo, você precisa decidir como lidar com a propriedade `sourceURL` que o React definirá no `WebView`.
 
-Finally, if the component can emit an event, you need to map the event name by overriding the `getExportedCustomBubblingEventTypeConstants` for bubbling events, or the `getExportedCustomDirectEventTypeConstants` for direct events.
+Finalmente, se o componente pode emitir um evento, você precisa mapear o nome do evento sobrescrevendo o `getExportedCustomBubblingEventTypeConstants` para eventos bubbling, ou o `getExportedCustomDirectEventTypeConstants` para eventos diretos.
 
-### 4. Write the `ReactWebViewPackage`
+### 4. Escrever o `ReactWebViewPackage`
 
-As you do with Native Modules, Native Components also need to implement the `ReactPackage` class. This is an object that you can use to register the component in the React Native runtime.
+Assim como você faz com Native Modules, Native Components também precisam implementar a classe `ReactPackage`. Este é um objeto que você pode usar para registrar o componente no runtime do React Native.
 
-This is the code for the `ReactWebViewPackage`:
+Este é o código para o `ReactWebViewPackage`:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -440,15 +441,15 @@ class ReactWebViewPackage : BaseReactPackage() {
 </TabItem>
 </Tabs>
 
-The `ReactWebViewPackage` extends the `BaseReactPackage` and implements all the methods required to properly register our component.
+O `ReactWebViewPackage` estende o `BaseReactPackage` e implementa todos os métodos necessários para registrar adequadamente nosso componente.
 
-- the `createViewManagers` method is the factory method that creates the `ViewManager` that manage the custom views.
-- the `getModule` method returns the proper ViewManager depending on the View that React Native needs to render.
-- the `getReactModuleInfoProvider` provides all the information required when registering the module in the runtime,
+- o método `createViewManagers` é o método factory que cria o `ViewManager` que gerencia as views customizadas.
+- o método `getModule` retorna o ViewManager adequado dependendo da View que o React Native precisa renderizar.
+- o `getReactModuleInfoProvider` fornece todas as informações necessárias ao registrar o módulo no runtime,
 
-### 5. Register the `ReactWebViewPackage` in the application
+### 5. Registrar o `ReactWebViewPackage` na aplicação
 
-Finally, you need to register the `ReactWebViewPackage` in the application. We do that by modifying the `MainApplication` file by adding the `ReactWebViewPackage` to the list of packages returned by the `getPackages` function.
+Finalmente, você precisa registrar o `ReactWebViewPackage` na aplicação. Fazemos isso modificando o arquivo `MainApplication` adicionando o `ReactWebViewPackage` à lista de packages retornados pela função `getPackages`.
 
 ```kotlin title="Demo/app/src/main/java/com/demo/MainApplication.kt"
 package com.demo

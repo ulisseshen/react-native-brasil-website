@@ -1,26 +1,27 @@
 ---
+ia-translated: true
 id: accessibility
-title: Accessibility
-description: Create mobile apps accessible to assistive technology with React Native's suite of APIs designed to work with Android and iOS.
+title: Acessibilidade
+description: Crie apps mobile acessíveis a tecnologias assistivas com a suíte de APIs do React Native projetadas para funcionar com Android e iOS.
 ---
 
 import ExperimentalAPIWarning from './\_experimental-api-warning.mdx';
 
-Both Android and iOS provide APIs for integrating apps with assistive technologies like the bundled screen readers VoiceOver (iOS) and TalkBack (Android). React Native has complementary APIs that let your app accommodate all users.
+Tanto o Android quanto o iOS fornecem APIs para integrar apps com tecnologias assistivas como os leitores de tela integrados VoiceOver (iOS) e TalkBack (Android). O React Native possui APIs complementares que permitem que seu app acomode todos os usuários.
 
 :::info
-Android and iOS differ slightly in their approaches, and thus the React Native implementations may vary by platform.
+Android e iOS diferem ligeiramente em suas abordagens, e portanto as implementações do React Native podem variar por plataforma.
 :::
 
-## Accessibility properties
+## Propriedades de acessibilidade
 
 ### `accessible`
 
-When `true`, indicates that the view is discoverable by assistive technologies such as screen readers and hardware keyboards. Note that this does not necessarily mean that the view will be focused by VoiceOver or TalkBack. There are a number of reasons for this, such as VoiceOver disallowing nested accessibility elements, or TalkBack opting to focus some parent element instead.
+Quando `true`, indica que a view é descobrível por tecnologias assistivas como leitores de tela e teclados de hardware. Note que isso não significa necessariamente que a view será focada pelo VoiceOver ou TalkBack. Existem várias razões para isso, como o VoiceOver não permitir elementos de acessibilidade aninhados, ou o TalkBack optar por focar algum elemento pai.
 
-By default, all touchable elements are accessible.
+Por padrão, todos os elementos tocáveis são acessíveis.
 
-On Android, `accessible` will be translated into native [`focusable`](<https://developer.android.com/reference/android/view/View#setFocusable(boolean)>). On iOS, it translates into native [`isAccessibilityElement`](https://developer.apple.com/documentation/uikit/uiaccessibilityelement/isaccessibilityelement?language=objc).
+No Android, `accessible` será traduzido para o [`focusable`](<https://developer.android.com/reference/android/view/View#setFocusable(boolean)>) nativo. No iOS, ele se traduz para o [`isAccessibilityElement`](https://developer.apple.com/documentation/uikit/uiaccessibilityelement/isaccessibilityelement?language=objc) nativo.
 
 ```tsx
 <View>
@@ -29,13 +30,13 @@ On Android, `accessible` will be translated into native [`focusable`](<https://d
 </View>
 ```
 
-In the above example, accessibility focus is only available on the first child view with the `accessible` property, and not for the parent or sibling without `accessible`.
+No exemplo acima, o foco de acessibilidade está disponível apenas na primeira view filha com a propriedade `accessible`, e não para o pai ou irmão sem `accessible`.
 
 ### `accessibilityLabel`
 
-When a view is marked as accessible, it is a good practice to set an `accessibilityLabel` on the view, so that people who use VoiceOver or TalkBack know what element they have selected. A screen reader will verbalize this string when the associated element is selected.
+Quando uma view é marcada como acessível, é uma boa prática definir um `accessibilityLabel` na view, para que pessoas que usam VoiceOver ou TalkBack saibam qual elemento selecionaram. Um leitor de tela verbalizará essa string quando o elemento associado for selecionado.
 
-To use, set the `accessibilityLabel` property to a custom string on your View, Text, or Touchable:
+Para usar, defina a propriedade `accessibilityLabel` com uma string personalizada em sua View, Text ou Touchable:
 
 ```tsx
 <TouchableOpacity
@@ -48,12 +49,12 @@ To use, set the `accessibilityLabel` property to a custom string on your View, T
 </TouchableOpacity>
 ```
 
-In the above example, the `accessibilityLabel` on the TouchableOpacity element would default to "Press me!". The label is constructed by concatenating all Text node children separated by spaces.
+No exemplo acima, o `accessibilityLabel` no elemento TouchableOpacity seria por padrão "Press me!". O label é construído concatenando todos os filhos Text node separados por espaços.
 
 ### `accessibilityLabelledBy` <div className="label android">Android</div>
 
-A reference to another element [nativeID](view.md#nativeid) used to build complex forms.
-The value of `accessibilityLabelledBy` should match the `nativeID` of the related element:
+Uma referência a outro elemento [nativeID](view.md#nativeid) usado para construir formulários complexos.
+O valor de `accessibilityLabelledBy` deve corresponder ao `nativeID` do elemento relacionado:
 
 ```tsx
 <View>
@@ -65,13 +66,13 @@ The value of `accessibilityLabelledBy` should match the `nativeID` of the relate
 </View>
 ```
 
-In the above example, the screen reader announces `Input, Edit Box for Label for Input Field` when focusing on the TextInput.
+No exemplo acima, o leitor de tela anuncia `Input, Edit Box for Label for Input Field` ao focar no TextInput.
 
 ### `accessibilityHint`
 
-An accessibility hint can be used to provide additional context to the user on the result of the action when it is not clear from the accessibility label alone.
+Uma dica de acessibilidade pode ser usada para fornecer contexto adicional ao usuário sobre o resultado da ação quando não está claro apenas pelo label de acessibilidade.
 
-Provide the `accessibilityHint` property a custom string on your View, Text, or Touchable:
+Forneça à propriedade `accessibilityHint` uma string personalizada em sua View, Text ou Touchable:
 
 ```tsx
 <TouchableOpacity
@@ -87,15 +88,15 @@ Provide the `accessibilityHint` property a custom string on your View, Text, or 
 
 <div className="label ios basic">iOS</div>
 
-In the above example, VoiceOver will read the hint after the label, if the user has hints enabled in the device's VoiceOver settings. Read more about guidelines for `accessibilityHint` in the [iOS Developer Docs](https://developer.apple.com/documentation/objectivec/nsobject/1615093-accessibilityhint)
+No exemplo acima, o VoiceOver lerá a dica após o label, se o usuário tiver dicas habilitadas nas configurações do VoiceOver do dispositivo. Leia mais sobre diretrizes para `accessibilityHint` nos [iOS Developer Docs](https://developer.apple.com/documentation/objectivec/nsobject/1615093-accessibilityhint)
 
 <div className="label android basic">Android</div>
 
-In the above example, TalkBack will read the hint after the label. At this time, hints cannot be turned off on Android.
+No exemplo acima, o TalkBack lerá a dica após o label. Neste momento, dicas não podem ser desativadas no Android.
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-By using the `accessibilityLanguage` property, the screen reader will understand which language to use while reading the element's **label**, **value**, and **hint**. The provided string value must follow the [BCP 47 specification](https://www.rfc-editor.org/info/bcp47).
+Ao usar a propriedade `accessibilityLanguage`, o leitor de tela entenderá qual idioma usar ao ler o **label**, **value** e **hint** do elemento. O valor de string fornecido deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47).
 
 ```tsx
 <View
@@ -108,15 +109,15 @@ By using the `accessibilityLanguage` property, the screen reader will understand
 
 ### `accessibilityIgnoresInvertColors` <div className="label ios">iOS</div>
 
-Inverting screen colors is an accessibility feature available in iOS and iPadOS for people with color blindness, low vision, or vision impairment. If there's a view you don't want to invert when this setting is on, possibly a photo, set this property to `true`.
+Inverter cores da tela é um recurso de acessibilidade disponível no iOS e iPadOS para pessoas com daltonismo, baixa visão ou deficiência visual. Se houver uma view que você não deseja inverter quando essa configuração estiver ativada, possivelmente uma foto, defina esta propriedade como `true`.
 
 ### `accessibilityLiveRegion` <div className="label android">Android</div>
 
-When components dynamically change, we want TalkBack to alert the end user. This is made possible by the `accessibilityLiveRegion` property. It can be set to `none`, `polite`, and `assertive`:
+Quando componentes mudam dinamicamente, queremos que o TalkBack alerte o usuário final. Isso é possível através da propriedade `accessibilityLiveRegion`. Ela pode ser definida como `none`, `polite` e `assertive`:
 
-- **none** Accessibility services should not announce changes to this view.
-- **polite** Accessibility services should announce changes to this view.
-- **assertive** Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
+- **none** Serviços de acessibilidade não devem anunciar mudanças nesta view.
+- **polite** Serviços de acessibilidade devem anunciar mudanças nesta view.
+- **assertive** Serviços de acessibilidade devem interromper a fala em andamento para anunciar imediatamente mudanças nesta view.
 
 ```tsx
 <TouchableWithoutFeedback onPress={addOne}>
@@ -129,55 +130,55 @@ When components dynamically change, we want TalkBack to alert the end user. This
 </Text>
 ```
 
-In the above example method `addOne` changes the state variable `count`. When the TouchableWithoutFeedback is triggered, TalkBack reads the text in the Text view because of its `accessibilityLiveRegion="polite"` property.
+No exemplo acima, o método `addOne` muda a variável de estado `count`. Quando o TouchableWithoutFeedback é acionado, o TalkBack lê o texto na view Text por causa de sua propriedade `accessibilityLiveRegion="polite"`.
 
 ### `accessibilityRole`
 
-`accessibilityRole` communicates the purpose of a component to the user of assistive technology.
+`accessibilityRole` comunica o propósito de um componente ao usuário de tecnologia assistiva.
 
-`accessibilityRole` can be one of the following:
+`accessibilityRole` pode ser um dos seguintes:
 
-- **adjustable** Used when an element can be "adjusted" (e.g. a slider).
-- **alert** Used when an element contains important text to be presented to the user.
-- **button** Used when the element should be treated as a button.
-- **checkbox** Used when an element represents a checkbox that can be checked, unchecked, or have a mixed checked state.
-- **combobox** Used when an element represents a combo box, which allows the user to select among several choices.
-- **header** Used when an element acts as a header for a content section (e.g. the title of a navigation bar).
-- **image** Used when the element should be treated as an image. Can be combined with a button or link.
-- **imagebutton** Used when the element should be treated as a button and is also an image.
-- **keyboardkey** Used when the element acts as a keyboard key.
-- **link** Used when the element should be treated as a link.
-- **menu** Used when the component is a menu of choices.
-- **menubar** Used when a component is a container of multiple menus.
-- **menuitem** Used to represent an item within a menu.
-- **none** Used when the element has no role.
-- **progressbar** Used to represent a component that indicates the progress of a task.
-- **radio** Used to represent a radio button.
-- **radiogroup** Used to represent a group of radio buttons.
-- **scrollbar** Used to represent a scroll bar.
-- **search** Used when a text field element should also be treated as a search field.
-- **spinbutton** Used to represent a button that opens a list of choices.
-- **summary** Used when an element can be used to provide a quick summary of current conditions in the app when the app first launches.
-- **switch** Used to represent a switch that can be turned on and off.
-- **tab** Used to represent a tab.
-- **tablist** Used to represent a list of tabs.
-- **text** Used when the element should be treated as static text that cannot change.
-- **timer** Used to represent a timer.
-- **togglebutton** Used to represent a toggle button. Should be used with accessibilityState checked to indicate if the button is toggled on or off.
-- **toolbar** Used to represent a toolbar (a container of action buttons or components).
-- **grid** Used with ScrollView, VirtualizedList, FlatList, or SectionList to represent a grid. Adds the in/out of grid announcements to Android's GridView.
+- **adjustable** Usado quando um elemento pode ser "ajustado" (por exemplo, um slider).
+- **alert** Usado quando um elemento contém texto importante a ser apresentado ao usuário.
+- **button** Usado quando o elemento deve ser tratado como um botão.
+- **checkbox** Usado quando um elemento representa uma checkbox que pode ser marcada, desmarcada ou ter um estado misto.
+- **combobox** Usado quando um elemento representa uma combo box, que permite ao usuário selecionar entre várias opções.
+- **header** Usado quando um elemento atua como cabeçalho para uma seção de conteúdo (por exemplo, o título de uma barra de navegação).
+- **image** Usado quando o elemento deve ser tratado como uma imagem. Pode ser combinado com um botão ou link.
+- **imagebutton** Usado quando o elemento deve ser tratado como um botão e também é uma imagem.
+- **keyboardkey** Usado quando o elemento atua como uma tecla de teclado.
+- **link** Usado quando o elemento deve ser tratado como um link.
+- **menu** Usado quando o componente é um menu de opções.
+- **menubar** Usado quando um componente é um contêiner de múltiplos menus.
+- **menuitem** Usado para representar um item dentro de um menu.
+- **none** Usado quando o elemento não tem função.
+- **progressbar** Usado para representar um componente que indica o progresso de uma tarefa.
+- **radio** Usado para representar um botão de rádio.
+- **radiogroup** Usado para representar um grupo de botões de rádio.
+- **scrollbar** Usado para representar uma barra de rolagem.
+- **search** Usado quando um elemento de campo de texto também deve ser tratado como um campo de busca.
+- **spinbutton** Usado para representar um botão que abre uma lista de opções.
+- **summary** Usado quando um elemento pode ser usado para fornecer um resumo rápido das condições atuais no app quando o app é iniciado pela primeira vez.
+- **switch** Usado para representar um switch que pode ser ligado e desligado.
+- **tab** Usado para representar uma aba.
+- **tablist** Usado para representar uma lista de abas.
+- **text** Usado quando o elemento deve ser tratado como texto estático que não pode mudar.
+- **timer** Usado para representar um timer.
+- **togglebutton** Usado para representar um botão de alternância. Deve ser usado com accessibilityState checked para indicar se o botão está ativado ou desativado.
+- **toolbar** Usado para representar uma barra de ferramentas (um contêiner de botões de ação ou componentes).
+- **grid** Usado com ScrollView, VirtualizedList, FlatList ou SectionList para representar uma grade. Adiciona os anúncios de entrada/saída de grade ao GridView do Android.
 
 ### `accessibilityShowsLargeContentViewer` <div className="label ios">iOS</div>
 
-A boolean value that determines whether the large content viewer is shown when the user performs a long press on the element.
+Um valor booleano que determina se o visualizador de conteúdo grande é mostrado quando o usuário executa um pressionamento longo no elemento.
 
-Available in iOS 13.0 and later.
+Disponível no iOS 13.0 e posterior.
 
 ### `accessibilityLargeContentTitle` <div className="label ios">iOS</div>
 
-A string that will be used as the title of the large content viewer when it is shown.
+Uma string que será usada como título do visualizador de conteúdo grande quando ele for mostrado.
 
-Requires `accessibilityShowsLargeContentViewer` to be set to `true`.
+Requer que `accessibilityShowsLargeContentViewer` seja definido como `true`.
 
 ```tsx
 <View
@@ -189,64 +190,64 @@ Requires `accessibilityShowsLargeContentViewer` to be set to `true`.
 
 ### `accessibilityState`
 
-Describes the current state of a component to the assistive technology user.
+Descreve o estado atual de um componente para o usuário de tecnologia assistiva.
 
-`accessibilityState` is an object. It contains the following fields:
+`accessibilityState` é um objeto. Ele contém os seguintes campos:
 
-| Name     | Description                                                                                                                           | Type               | Required |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | -------- |
-| disabled | Indicates whether the element is disabled or not.                                                                                     | boolean            | No       |
-| selected | Indicates whether a selectable element is currently selected or not.                                                                  | boolean            | No       |
-| checked  | Indicates the state of a checkable element. This field can either take a boolean or the "mixed" string to represent mixed checkboxes. | boolean or 'mixed' | No       |
-| busy     | Indicates whether an element is currently busy or not.                                                                                | boolean            | No       |
-| expanded | Indicates whether an expandable element is currently expanded or collapsed.                                                           | boolean            | No       |
+| Name     | Description                                                                                                                                  | Type               | Required |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | -------- |
+| disabled | Indica se o elemento está desabilitado ou não.                                                                                               | boolean            | No       |
+| selected | Indica se um elemento selecionável está atualmente selecionado ou não.                                                                       | boolean            | No       |
+| checked  | Indica o estado de um elemento marcável. Este campo pode receber um booleano ou a string "mixed" para representar checkboxes mistas.        | boolean or 'mixed' | No       |
+| busy     | Indica se um elemento está atualmente ocupado ou não.                                                                                        | boolean            | No       |
+| expanded | Indica se um elemento expansível está atualmente expandido ou recolhido.                                                                     | boolean            | No       |
 
-To use, set the `accessibilityState` to an object with a specific definition.
+Para usar, defina `accessibilityState` como um objeto com uma definição específica.
 
 ### `accessibilityValue`
 
-Represents the current value of a component. It can be a textual description of a component's value, or for range-based components, such as sliders and progress bars, it contains range information (minimum, current, and maximum).
+Representa o valor atual de um componente. Pode ser uma descrição textual do valor de um componente ou, para componentes baseados em intervalo, como sliders e barras de progresso, contém informações de intervalo (mínimo, atual e máximo).
 
-`accessibilityValue` is an object. It contains the following fields:
+`accessibilityValue` é um objeto. Ele contém os seguintes campos:
 
-| Name | Description                                                                                    | Type    | Required                  |
-| ---- | ---------------------------------------------------------------------------------------------- | ------- | ------------------------- |
-| min  | The minimum value of this component's range.                                                   | integer | Required if `now` is set. |
-| max  | The maximum value of this component's range.                                                   | integer | Required if `now` is set. |
-| now  | The current value of this component's range.                                                   | integer | No                        |
-| text | A textual description of this component's value. Will override `min`, `now`, and `max` if set. | string  | No                        |
+| Name | Description                                                                                                          | Type    | Required                  |
+| ---- | -------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------- |
+| min  | O valor mínimo do intervalo deste componente.                                                                        | integer | Required if `now` is set. |
+| max  | O valor máximo do intervalo deste componente.                                                                        | integer | Required if `now` is set. |
+| now  | O valor atual do intervalo deste componente.                                                                         | integer | No                        |
+| text | Uma descrição textual do valor deste componente. Substituirá `min`, `now` e `max` se definido.                      | string  | No                        |
 
 ### `accessibilityViewIsModal` <div className="label ios">iOS</div>
 
-A boolean value that indicates whether VoiceOver should ignore the elements within views that are siblings of the receiver.
+Um valor booleano que indica se o VoiceOver deve ignorar os elementos dentro de views que são irmãs do receptor.
 
-For example, in a window that contains sibling views `A` and `B`, setting `accessibilityViewIsModal` to `true` on view `B` causes VoiceOver to ignore the elements in view `A`. On the other hand, if view `B` contains a child view `C` and you set `accessibilityViewIsModal` to `true` on view `C`, VoiceOver does not ignore the elements in view `A`.
+Por exemplo, em uma janela que contém views irmãs `A` e `B`, definir `accessibilityViewIsModal` como `true` na view `B` faz com que o VoiceOver ignore os elementos na view `A`. Por outro lado, se a view `B` contém uma view filha `C` e você define `accessibilityViewIsModal` como `true` na view `C`, o VoiceOver não ignora os elementos na view `A`.
 
 ### `accessibilityElementsHidden` <div className="label ios">iOS</div>
 
-A boolean value indicating whether the given accessibility element, and any accessibility elements it contains, are hidden.
+Um valor booleano indicando se o elemento de acessibilidade fornecido, e quaisquer elementos de acessibilidade que ele contém, estão ocultos.
 
-For example, in a window that contains sibling views `A` and `B`, setting `accessibilityElementsHidden` to `true` on view `B` causes VoiceOver to ignore the `B` view and any elements it contains. This is similar to the Android property `importantForAccessibility="no-hide-descendants"`.
+Por exemplo, em uma janela que contém views irmãs `A` e `B`, definir `accessibilityElementsHidden` como `true` na view `B` faz com que o VoiceOver ignore a view `B` e quaisquer elementos que ela contém. Isso é similar à propriedade Android `importantForAccessibility="no-hide-descendants"`.
 
 ### `aria-valuemax`
 
-Represents the maximum value for range-based components, such as sliders and progress bars.
+Representa o valor máximo para componentes baseados em intervalo, como sliders e barras de progresso.
 
 ### `aria-valuemin`
 
-Represents the minimum value for range-based components, such as sliders and progress bars.
+Representa o valor mínimo para componentes baseados em intervalo, como sliders e barras de progresso.
 
 ### `aria-valuenow`
 
-Represents the current value for range-based components, such as sliders and progress bars.
+Representa o valor atual para componentes baseados em intervalo, como sliders e barras de progresso.
 
 ### `aria-valuetext`
 
-Represents the textual description of the component.
+Representa a descrição textual do componente.
 
 ### `aria-busy`
 
-Indicates an element is being modified and that assistive technologies may want to wait until the changes are complete before informing the user about the update.
+Indica que um elemento está sendo modificado e que tecnologias assistivas podem querer esperar até que as mudanças estejam completas antes de informar o usuário sobre a atualização.
 
 | Type    | Default |
 | ------- | ------- |
@@ -254,7 +255,7 @@ Indicates an element is being modified and that assistive technologies may want 
 
 ### `aria-checked`
 
-Indicates the state of a checkable element. This field can either take a boolean or the "mixed" string to represent mixed checkboxes.
+Indica o estado de um elemento marcável. Este campo pode receber um booleano ou a string "mixed" para representar checkboxes mistas.
 
 | Type             | Default |
 | ---------------- | ------- |
@@ -262,7 +263,7 @@ Indicates the state of a checkable element. This field can either take a boolean
 
 ### `aria-disabled`
 
-Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.
+Indica que o elemento é perceptível mas desabilitado, então não é editável ou operável de outra forma.
 
 | Type    | Default |
 | ------- | ------- |
@@ -270,7 +271,7 @@ Indicates that the element is perceivable but disabled, so it is not editable or
 
 ### `aria-expanded`
 
-Indicates whether an expandable element is currently expanded or collapsed.
+Indica se um elemento expansível está atualmente expandido ou recolhido.
 
 | Type    | Default |
 | ------- | ------- |
@@ -278,9 +279,9 @@ Indicates whether an expandable element is currently expanded or collapsed.
 
 ### `aria-hidden`
 
-Indicates whether the element is hidden from assistive technologies.
+Indica se o elemento está oculto das tecnologias assistivas.
 
-For example, in a window that contains sibling views `A` and `B`, setting `aria-hidden` to `true` on view `B` causes VoiceOver to ignore the `B` element and its children.
+Por exemplo, em uma janela que contém views irmãs `A` e `B`, definir `aria-hidden` como `true` na view `B` faz com que o VoiceOver ignore o elemento `B` e seus filhos.
 
 | Type    | Default |
 | ------- | ------- |
@@ -288,7 +289,7 @@ For example, in a window that contains sibling views `A` and `B`, setting `aria-
 
 ### `aria-label`
 
-Defines a string value that can be used to name an element.
+Define um valor de string que pode ser usado para nomear um elemento.
 
 | Type   |
 | ------ |
@@ -296,7 +297,7 @@ Defines a string value that can be used to name an element.
 
 ### `aria-labelledby` <div className="label android">Android</div>
 
-Identifies the element that labels the element it is applied to. The value of `aria-labelledby` should match the [`nativeID`](view.md#nativeid) of the related element:
+Identifica o elemento que rotula o elemento ao qual é aplicado. O valor de `aria-labelledby` deve corresponder ao [`nativeID`](view.md#nativeid) do elemento relacionado:
 
 ```tsx
 <View>
@@ -311,11 +312,11 @@ Identifies the element that labels the element it is applied to. The value of `a
 
 ### `aria-live` <div className="label android">Android</div>
 
-Indicates that an element will be updated and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
+Indica que um elemento será atualizado e descreve os tipos de atualizações que os agentes de usuário, tecnologias assistivas e usuário podem esperar da região ao vivo.
 
-- **off** Accessibility services should not announce changes to this view.
-- **polite** Accessibility services should announce changes to this view.
-- **assertive** Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
+- **off** Serviços de acessibilidade não devem anunciar mudanças nesta view.
+- **polite** Serviços de acessibilidade devem anunciar mudanças nesta view.
+- **assertive** Serviços de acessibilidade devem interromper a fala em andamento para anunciar imediatamente mudanças nesta view.
 
 | Type                                     | Default |
 | ---------------------------------------- | ------- |
@@ -325,7 +326,7 @@ Indicates that an element will be updated and describes the types of updates the
 
 ### `aria-modal` <div className="label ios">iOS</div>
 
-Boolean value indicating whether VoiceOver should ignore the elements within views that are siblings of the receiver.
+Valor booleano indicando se o VoiceOver deve ignorar os elementos dentro de views que são irmãs do receptor.
 
 | Type    | Default |
 | ------- | ------- |
@@ -333,7 +334,7 @@ Boolean value indicating whether VoiceOver should ignore the elements within vie
 
 ### `aria-selected`
 
-Indicates whether a selectable element is currently selected or not.
+Indica se um elemento selecionável está atualmente selecionado ou não.
 
 | Type    |
 | ------- |
@@ -344,10 +345,10 @@ Indicates whether a selectable element is currently selected or not.
 <ExperimentalAPIWarning />
 
 :::note
-For the sake of brevity, layout is excluded in the following examples even though it dictates the default focus order. Assume the document order matches the layout order.
+Por questões de brevidade, o layout é excluído nos exemplos seguintes, embora ele dite a ordem de foco padrão. Assuma que a ordem do documento corresponde à ordem do layout.
 :::
 
-`experimental_accessibilityOrder` lets you define the order in which assistive technologies focus descendant components. It is an array of [`nativeIDs`](view.md#nativeid) that are set on the components whose order you are controlling. For example:
+`experimental_accessibilityOrder` permite que você defina a ordem em que as tecnologias assistivas focam os componentes descendentes. É um array de [`nativeIDs`](view.md#nativeid) que são definidos nos componentes cuja ordem você está controlando. Por exemplo:
 
 ```
 <View experimental_accessibilityOrder={['B', 'C', 'A']}>
@@ -357,9 +358,9 @@ For the sake of brevity, layout is excluded in the following examples even thoug
 </View>
 ```
 
-Assistive technologies will focus the `View` with `nativeID` of `B`, then `C`, then `A`.
+Tecnologias assistivas focarão a `View` com `nativeID` de `B`, depois `C`, depois `A`.
 
-`experimental_accessibilityOrder` will not “turn on” accessibility for the components it references, that still needs to be done. So if we remove `accessible={true}` on `C` above like so
+`experimental_accessibilityOrder` não "ativará" a acessibilidade para os componentes que ele referencia, isso ainda precisa ser feito. Então, se removermos `accessible={true}` em `C` acima assim:
 
 ```
 <View experimental_accessibilityOrder={['B', 'C', 'A']}>
@@ -369,9 +370,9 @@ Assistive technologies will focus the `View` with `nativeID` of `B`, then `C`, t
 </View>
 ```
 
-then the new order will be `B` then `A`, even though `C` is still in `experimental_accessibilityOrder`.
+então a nova ordem será `B` depois `A`, mesmo que `C` ainda esteja em `experimental_accessibilityOrder`.
 
-`experimental_accessibilityOrder` will “turn off” accessibility of components it doesn’t reference, however.
+`experimental_accessibilityOrder` "desativará" a acessibilidade de componentes que ele não referencia, no entanto.
 
 ```
 <View experimental_accessibilityOrder={['B', 'C', 'A']}>
@@ -382,9 +383,9 @@ then the new order will be `B` then `A`, even though `C` is still in `experiment
 </View>
 ```
 
-The order of the above example would be `B`, `C`, `A`. `D` will never get focused. In this sense `experimental_accessibilityOrder` is _exhaustive_.
+A ordem do exemplo acima seria `B`, `C`, `A`. `D` nunca será focado. Neste sentido, `experimental_accessibilityOrder` é _exaustivo_.
 
-There are still valid reasons to include an non-accessible component in `experimental_accessibilityOrder`. Consider
+Ainda há razões válidas para incluir um componente não acessível em `experimental_accessibilityOrder`. Considere:
 
 ```
 <View experimental_accessibilityOrder={['B', 'C', 'A']}>
@@ -398,9 +399,9 @@ There are still valid reasons to include an non-accessible component in `experim
 </View>
 ```
 
-The focus order will be `B`, `D`, `E`, `F`, `A`. Even though `D`, `E`, and `F` are not directly referenced in `experimental_accessibilityOrder`, `C` is directly referenced. In this instance `C` in an _accessibility container_ - it contains accessible elements, but is not accessible itself. If an accessibility container is referenced in `experimental_accessibilityOrder` then the default order of the elements it contains is applied. In this sense `experimental_accessibilityOrder` is _nestable_.
+A ordem de foco será `B`, `D`, `E`, `F`, `A`. Embora `D`, `E` e `F` não sejam diretamente referenciados em `experimental_accessibilityOrder`, `C` é diretamente referenciado. Nesta instância, `C` é um _contêiner de acessibilidade_ - ele contém elementos acessíveis, mas não é acessível por si só. Se um contêiner de acessibilidade é referenciado em `experimental_accessibilityOrder`, então a ordem padrão dos elementos que ele contém é aplicada. Neste sentido, `experimental_accessibilityOrder` é _aninhável_.
 
-`experimental_accessibilityOrder` can also reference another component with `experimental_accessibilityOrder`
+`experimental_accessibilityOrder` também pode referenciar outro componente com `experimental_accessibilityOrder`:
 
 ```
 <View experimental_accessibilityOrder={['B', 'C', 'A']}>
@@ -414,9 +415,9 @@ The focus order will be `B`, `D`, `E`, `F`, `A`. Even though `D`, `E`, and `F` a
 </View>
 ```
 
-The focus order will be `B`, `F`, `E`, `D`, `A`.
+A ordem de foco será `B`, `F`, `E`, `D`, `A`.
 
-A component cannot be both an accessibility container and an accessibility element (`accessible={true}`). So if we have
+Um componente não pode ser ao mesmo tempo um contêiner de acessibilidade e um elemento de acessibilidade (`accessible={true}`). Então, se tivermos:
 
 ```
 <View experimental_accessibilityOrder={['B', 'C', 'A']}>
@@ -430,11 +431,11 @@ A component cannot be both an accessibility container and an accessibility eleme
 </View>
 ```
 
-The focus order would be `B`, `C`, `A`. `D`, `E`, and `F` are no longer in a container, so the exhaustive nature of `experimental_accessibilityOrder` means they will be excluded.
+A ordem de foco seria `B`, `C`, `A`. `D`, `E` e `F` não estão mais em um contêiner, então a natureza exaustiva de `experimental_accessibilityOrder` significa que eles serão excluídos.
 
 ### `importantForAccessibility` <div className="label android">Android</div>
 
-In the case of two overlapping UI components with the same parent, default accessibility focus can have unpredictable behavior. The `importantForAccessibility` property will resolve this by controlling if a view fires accessibility events and if it is reported to accessibility services. It can be set to `auto`, `yes`, `no` and `no-hide-descendants` (the last value will force accessibility services to ignore the component and all of its children).
+No caso de dois componentes de UI sobrepostos com o mesmo pai, o foco de acessibilidade padrão pode ter comportamento imprevisível. A propriedade `importantForAccessibility` resolverá isso controlando se uma view dispara eventos de acessibilidade e se é reportada aos serviços de acessibilidade. Pode ser definida como `auto`, `yes`, `no` e `no-hide-descendants` (o último valor forçará os serviços de acessibilidade a ignorar o componente e todos os seus filhos).
 
 ```tsx
 <View style={styles.container}>
@@ -451,85 +452,85 @@ In the case of two overlapping UI components with the same parent, default acces
 </View>
 ```
 
-In the above example, the `yellow` layout and its descendants are completely invisible to TalkBack and all other accessibility services. So we can use overlapping views with the same parent without confusing TalkBack.
+No exemplo acima, o layout `yellow` e seus descendentes são completamente invisíveis ao TalkBack e a todos os outros serviços de acessibilidade. Portanto, podemos usar views sobrepostas com o mesmo pai sem confundir o TalkBack.
 
 ### `onAccessibilityEscape` <div className="label ios">iOS</div>
 
-Assign this property to a custom function which will be called when someone performs the "escape" gesture, which is a two finger Z shaped gesture. An escape function should move back hierarchically in the user interface. This can mean moving up or back in a navigation hierarchy or dismissing a modal user interface. If the selected element does not have an `onAccessibilityEscape` function, the system will attempt to traverse up the view hierarchy until it finds a view that does or bonk to indicate it was unable to find one.
+Atribua esta propriedade a uma função personalizada que será chamada quando alguém executar o gesto de "escape", que é um gesto em forma de Z com dois dedos. Uma função de escape deve retroceder hierarquicamente na interface do usuário. Isso pode significar subir ou voltar em uma hierarquia de navegação ou dispensar uma interface de usuário modal. Se o elemento selecionado não tiver uma função `onAccessibilityEscape`, o sistema tentará percorrer a hierarquia de views até encontrar uma view que tenha ou emitir um som para indicar que não conseguiu encontrar uma.
 
 ### `onAccessibilityTap` <div className="label ios">iOS</div>
 
-Use this property to assign a custom function to be called when someone activates an accessible element by double tapping on it while it's selected.
+Use esta propriedade para atribuir uma função personalizada a ser chamada quando alguém ativa um elemento acessível tocando duas vezes nele enquanto está selecionado.
 
 ### `onMagicTap` <div className="label ios">iOS</div>
 
-Assign this property to a custom function which will be called when someone performs the "magic tap" gesture, which is a double-tap with two fingers. A magic tap function should perform the most relevant action a user could take on a component. In the Phone app on iPhone, a magic tap answers a phone call or ends the current one. If the selected element does not have an `onMagicTap` function, the system will traverse up the view hierarchy until it finds a view that does.
+Atribua esta propriedade a uma função personalizada que será chamada quando alguém executar o gesto de "toque mágico", que é um toque duplo com dois dedos. Uma função de toque mágico deve executar a ação mais relevante que um usuário poderia realizar em um componente. No app Telefone do iPhone, um toque mágico atende uma chamada telefônica ou encerra a atual. Se o elemento selecionado não tiver uma função `onMagicTap`, o sistema percorrerá a hierarquia de views até encontrar uma view que tenha.
 
 ### `role`
 
-`role` communicates the purpose of a component and has precedence over the [`accessibilityRole`](accessibility#accessibilityrole) prop.
+`role` comunica o propósito de um componente e tem precedência sobre a prop [`accessibilityRole`](accessibility#accessibilityrole).
 
-`role` can be one of the following:
+`role` pode ser um dos seguintes:
 
-- **alert** Used when an element contains important text to be presented to the user.
-- **button** Used when the element should be treated as a button.
-- **checkbox** Used when an element represents a checkbox that can be checked, unchecked, or have a mixed checked state.
-- **combobox** Used when an element represents a combo box, which allows the user to select among several choices.
-- **grid** Used with ScrollView, VirtualizedList, FlatList, or SectionList to represent a grid. Adds the in/out of grid announcements to the android GridView.
-- **heading** Used when an element acts as a header for a content section (e.g. the title of a navigation bar).
-- **img** Used when the element should be treated as an image. Can be combined with a button or link, for example.
-- **link** Used when the element should be treated as a link.
-- **list** Used to identify a list of items.
-- **listitem** Used to itentify an item in a list.
-- **menu** Used when the component is a menu of choices.
-- **menubar** Used when a component is a container of multiple menus.
-- **menuitem** Used to represent an item within a menu.
-- **none** Used when the element has no role.
-- **presentation** Used when the element has no role.
-- **progressbar** Used to represent a component that indicates the progress of a task.
-- **radio** Used to represent a radio button.
-- **radiogroup** Used to represent a group of radio buttons.
-- **scrollbar** Used to represent a scroll bar.
-- **searchbox** Used when the text field element should also be treated as a search field.
-- **slider** Used when an element can be "adjusted" (e.g. a slider).
-- **spinbutton** Used to represent a button that opens a list of choices.
-- **summary** Used when an element can be used to provide a quick summary of current conditions in the app when the app first launches.
-- **switch** Used to represent a switch that can be turned on and off.
-- **tab** Used to represent a tab.
-- **tablist** Used to represent a list of tabs.
-- **timer** Used to represent a timer.
-- **toolbar** Used to represent a toolbar (a container of action buttons or components).
+- **alert** Usado quando um elemento contém texto importante a ser apresentado ao usuário.
+- **button** Usado quando o elemento deve ser tratado como um botão.
+- **checkbox** Usado quando um elemento representa uma checkbox que pode ser marcada, desmarcada ou ter um estado misto.
+- **combobox** Usado quando um elemento representa uma combo box, que permite ao usuário selecionar entre várias opções.
+- **grid** Usado com ScrollView, VirtualizedList, FlatList ou SectionList para representar uma grade. Adiciona os anúncios de entrada/saída de grade ao GridView do Android.
+- **heading** Usado quando um elemento atua como cabeçalho para uma seção de conteúdo (por exemplo, o título de uma barra de navegação).
+- **img** Usado quando o elemento deve ser tratado como uma imagem. Pode ser combinado com um botão ou link, por exemplo.
+- **link** Usado quando o elemento deve ser tratado como um link.
+- **list** Usado para identificar uma lista de itens.
+- **listitem** Usado para identificar um item em uma lista.
+- **menu** Usado quando o componente é um menu de opções.
+- **menubar** Usado quando um componente é um contêiner de múltiplos menus.
+- **menuitem** Usado para representar um item dentro de um menu.
+- **none** Usado quando o elemento não tem função.
+- **presentation** Usado quando o elemento não tem função.
+- **progressbar** Usado para representar um componente que indica o progresso de uma tarefa.
+- **radio** Usado para representar um botão de rádio.
+- **radiogroup** Usado para representar um grupo de botões de rádio.
+- **scrollbar** Usado para representar uma barra de rolagem.
+- **searchbox** Usado quando o elemento de campo de texto também deve ser tratado como um campo de busca.
+- **slider** Usado quando um elemento pode ser "ajustado" (por exemplo, um slider).
+- **spinbutton** Usado para representar um botão que abre uma lista de opções.
+- **summary** Usado quando um elemento pode ser usado para fornecer um resumo rápido das condições atuais no app quando o app é iniciado pela primeira vez.
+- **switch** Usado para representar um switch que pode ser ligado e desligado.
+- **tab** Usado para representar uma aba.
+- **tablist** Usado para representar uma lista de abas.
+- **timer** Usado para representar um timer.
+- **toolbar** Usado para representar uma barra de ferramentas (um contêiner de botões de ação ou componentes).
 
-## Accessibility Actions
+## Ações de Acessibilidade
 
-Accessibility actions allow assistive technology to programmatically invoke the action(s) of a component. To support accessibility actions, a component must do two things:
+Ações de acessibilidade permitem que a tecnologia assistiva invoque programaticamente a(s) ação(ões) de um componente. Para suportar ações de acessibilidade, um componente deve fazer duas coisas:
 
-- Define the list of actions it supports via the `accessibilityActions` property.
-- Implement an `onAccessibilityAction` function to handle action requests.
+- Definir a lista de ações que ele suporta através da propriedade `accessibilityActions`.
+- Implementar uma função `onAccessibilityAction` para tratar solicitações de ação.
 
-The `accessibilityActions` property should contain a list of action objects. Each action object should contain the following fields:
+A propriedade `accessibilityActions` deve conter uma lista de objetos de ação. Cada objeto de ação deve conter os seguintes campos:
 
 | Name  | Type   | Required |
 | ----- | ------ | -------- |
 | name  | string | Yes      |
 | label | string | No       |
 
-Actions either represent standard actions, such as clicking a button or adjusting a slider, or custom actions specific to a given component such as deleting an email message. The `name` field is required for both standard and custom actions, but `label` is optional for standard actions.
+Ações representam tanto ações padrão, como clicar em um botão ou ajustar um slider, quanto ações personalizadas específicas de um determinado componente, como excluir uma mensagem de e-mail. O campo `name` é obrigatório tanto para ações padrão quanto personalizadas, mas `label` é opcional para ações padrão.
 
-When adding support for standard actions, `name` must be one of the following:
+Ao adicionar suporte para ações padrão, `name` deve ser um dos seguintes:
 
-- `'magicTap'` - iOS only - While VoiceOver focus is on or inside the component, the user double tapped with two fingers.
-- `'escape'` - iOS only - While VoiceOver focus is on or inside the component, the user performed a two-finger scrub gesture (left, right, left).
-- `'activate'` - Activate the component. This should perform the same action with, or without, assistive technology. Engaged when a screen reader user double taps the component.
-- `'increment'` - Increment an adjustable component. On iOS, VoiceOver generates this action when the component has a role of `'adjustable'` and the user places focus on it and swipes upward. On Android, TalkBack generates this action when the user places accessibility focus on the component and presses the volume-up button.
-- `'decrement'` - Decrement an adjustable component. On iOS, VoiceOver generates this action when the component has a role of `'adjustable'` and the user places focus on it and swipes downward. On Android, TalkBack generates this action when the user places accessibility focus on the component and presses the volume-down button.
-- `'longpress'` - Android only - This action is generated when the user places accessibility focus on the component, then double-taps and holds one finger on the screen. This should perform the same action with, or without, assistive technology.
-- `'expand'` - Android only - This action "expands" the component so that TalkBack will announce an "expanded" hint.
-- `'collapse'` - Android only - This action "collapses" the component so that TalkBack will announce a "collapsed" hint.
+- `'magicTap'` - Apenas iOS - Enquanto o foco do VoiceOver está no ou dentro do componente, o usuário tocou duas vezes com dois dedos.
+- `'escape'` - Apenas iOS - Enquanto o foco do VoiceOver está no ou dentro do componente, o usuário executou um gesto de esfregar com dois dedos (esquerda, direita, esquerda).
+- `'activate'` - Ativar o componente. Isso deve executar a mesma ação com ou sem tecnologia assistiva. Acionado quando um usuário de leitor de tela toca duas vezes no componente.
+- `'increment'` - Incrementar um componente ajustável. No iOS, o VoiceOver gera esta ação quando o componente tem uma função de `'adjustable'` e o usuário coloca o foco nele e desliza para cima. No Android, o TalkBack gera esta ação quando o usuário coloca o foco de acessibilidade no componente e pressiona o botão de aumentar volume.
+- `'decrement'` - Decrementar um componente ajustável. No iOS, o VoiceOver gera esta ação quando o componente tem uma função de `'adjustable'` e o usuário coloca o foco nele e desliza para baixo. No Android, o TalkBack gera esta ação quando o usuário coloca o foco de acessibilidade no componente e pressiona o botão de diminuir volume.
+- `'longpress'` - Apenas Android - Esta ação é gerada quando o usuário coloca o foco de acessibilidade no componente, depois toca duas vezes e segura um dedo na tela. Isso deve executar a mesma ação com ou sem tecnologia assistiva.
+- `'expand'` - Apenas Android - Esta ação "expande" o componente de modo que o TalkBack anunciará uma dica "expandido".
+- `'collapse'` - Apenas Android - Esta ação "recolhe" o componente de modo que o TalkBack anunciará uma dica "recolhido".
 
-The `label` field is optional for standard actions and is often unused by assistive technologies. For custom actions, it is a localized string containing a description of the action to be presented to the user.
+O campo `label` é opcional para ações padrão e geralmente não é usado por tecnologias assistivas. Para ações personalizadas, é uma string localizada contendo uma descrição da ação a ser apresentada ao usuário.
 
-To handle action requests, a component must implement an `onAccessibilityAction` function. The only argument to this function is an event containing the name of the action to perform. The below example from RNTester shows how to create a component that defines and handles several custom actions.
+Para tratar solicitações de ação, um componente deve implementar uma função `onAccessibilityAction`. O único argumento para esta função é um evento contendo o nome da ação a ser executada. O exemplo abaixo do RNTester mostra como criar um componente que define e trata várias ações personalizadas.
 
 ```tsx
 <View
@@ -555,13 +556,13 @@ To handle action requests, a component must implement an `onAccessibilityAction`
 />
 ```
 
-## Checking if a Screen Reader is Enabled
+## Verificando se um Leitor de Tela está Habilitado
 
-The `AccessibilityInfo` API allows you to determine whether or not a screen reader is currently active. See the [AccessibilityInfo documentation](accessibilityinfo) for details.
+A API `AccessibilityInfo` permite determinar se um leitor de tela está atualmente ativo ou não. Veja a [documentação do AccessibilityInfo](accessibilityinfo) para detalhes.
 
-## Sending Accessibility Events <div className="label android">Android</div>
+## Enviando Eventos de Acessibilidade <div className="label android">Android</div>
 
-Sometimes it is useful to trigger an accessibility event on a UI component (i.e. when a custom view appears on a screen or set accessibility focus to a view). Native UIManager module exposes a method ‘sendAccessibilityEvent’ for this purpose. It takes two arguments: a view tag and a type of event. The supported event types are `typeWindowStateChanged`, `typeViewFocused`, and `typeViewClicked`.
+Às vezes é útil acionar um evento de acessibilidade em um componente de UI (ou seja, quando uma view personalizada aparece em uma tela ou definir o foco de acessibilidade em uma view). O módulo UIManager nativo expõe um método 'sendAccessibilityEvent' para este propósito. Ele aceita dois argumentos: uma tag de view e um tipo de evento. Os tipos de evento suportados são `typeWindowStateChanged`, `typeViewFocused` e `typeViewClicked`.
 
 ```tsx
 import {Platform, UIManager, findNodeHandle} from 'react-native';
@@ -574,17 +575,17 @@ if (Platform.OS === 'android') {
 }
 ```
 
-## Testing TalkBack Support <div className="label android">Android</div>
+## Testando Suporte do TalkBack <div className="label android">Android</div>
 
-To enable TalkBack, go to the Settings app on your Android device or emulator. Tap Accessibility, then TalkBack. Toggle the "Use service" switch to enable or disable it.
+Para habilitar o TalkBack, vá para o app Configurações no seu dispositivo ou emulador Android. Toque em Acessibilidade, depois TalkBack. Alterne o switch "Usar serviço" para habilitar ou desabilitar.
 
-Android emulators don't have TalkBack installed by default. You can install TalkBack on your emulator via the Google Play Store. Make sure to choose an emulator with the Google Play store installed. These are available in Android Studio.
+Emuladores Android não vêm com o TalkBack instalado por padrão. Você pode instalar o TalkBack no seu emulador através da Google Play Store. Certifique-se de escolher um emulador com a Google Play Store instalada. Eles estão disponíveis no Android Studio.
 
-You can use the volume key shortcut to toggle TalkBack. To turn on the volume key shortcut, go to the Settings app, then Accessibility. At the top, turn on the volume key shortcut.
+Você pode usar o atalho de tecla de volume para alternar o TalkBack. Para ativar o atalho de tecla de volume, vá para o app Configurações, depois Acessibilidade. No topo, ative o atalho de tecla de volume.
 
-To use the volume key shortcut, press both volume keys for 3 seconds to start an accessibility tool.
+Para usar o atalho de tecla de volume, pressione ambas as teclas de volume por 3 segundos para iniciar uma ferramenta de acessibilidade.
 
-Additionally, if you prefer, you can toggle TalkBack via the command line with:
+Além disso, se preferir, você pode alternar o TalkBack através da linha de comando com:
 
 ```shell
 # disable
@@ -594,14 +595,14 @@ adb shell settings put secure enabled_accessibility_services com.android.talkbac
 adb shell settings put secure enabled_accessibility_services com.google.android.marvin.talkback/com.google.android.marvin.talkback.TalkBackService
 ```
 
-## Testing VoiceOver Support <div className="label ios">iOS</div>
+## Testando Suporte do VoiceOver <div className="label ios">iOS</div>
 
-To enable VoiceOver on your iOS or iPadOS device, go to the Settings app, tap General, then Accessibility. There you will find many tools available for people to enable their devices to be more usable, including VoiceOver. To enable VoiceOver, tap on VoiceOver under "Vision" and toggle the switch that appears at the top.
+Para habilitar o VoiceOver no seu dispositivo iOS ou iPadOS, vá para o app Configurações, toque em Geral, depois Acessibilidade. Lá você encontrará muitas ferramentas disponíveis para as pessoas habilitarem seus dispositivos a serem mais utilizáveis, incluindo VoiceOver. Para habilitar o VoiceOver, toque em VoiceOver em "Visão" e alterne o switch que aparece no topo.
 
-At the very bottom of the Accessibility settings, there is an "Accessibility Shortcut". You can use this to toggle VoiceOver by triple-clicking the Home button.
+Na parte inferior das configurações de Acessibilidade, há um "Atalho de Acessibilidade". Você pode usar isso para alternar o VoiceOver clicando três vezes no botão Home.
 
-VoiceOver isn't available via the simulator, but you can use Accessibility Inspector from Xcode to use the macOS VoiceOver through an application. Note it's always best to test with a device as macOS's VoiceOver may result in varied experiences.
+O VoiceOver não está disponível através do simulador, mas você pode usar o Accessibility Inspector do Xcode para usar o VoiceOver do macOS através de um aplicativo. Note que é sempre melhor testar com um dispositivo, pois o VoiceOver do macOS pode resultar em experiências variadas.
 
-## Additional Resources
+## Recursos Adicionais
 
 - [Making React Native Apps Accessible](https://engineering.fb.com/ios/making-react-native-apps-accessible/)

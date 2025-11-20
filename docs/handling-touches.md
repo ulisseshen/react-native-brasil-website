@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: handling-touches
-title: Handling Touches
+title: Manipulando Toques
 ---
 
-Users interact with mobile apps mainly through touch. They can use a combination of gestures, such as tapping on a button, scrolling a list, or zooming on a map. React Native provides components to handle all sorts of common gestures, as well as a comprehensive [gesture responder system](gesture-responder-system.md) to allow for more advanced gesture recognition, but the one component you will most likely be interested in is the basic Button.
+Os usuários interagem com apps mobile principalmente através do toque. Eles podem usar uma combinação de gestos, como tocar em um botão, rolar uma lista ou dar zoom em um mapa. React Native fornece componentes para manipular todos os tipos de gestos comuns, bem como um [sistema gesture responder](gesture-responder-system.md) abrangente para permitir um reconhecimento de gestos mais avançado, mas o componente que você provavelmente estará mais interessado é o Button básico.
 
-## Displaying a basic button
+## Exibindo um botão básico
 
-[Button](button.md) provides a basic button component that is rendered nicely on all platforms. The minimal example to display a button looks like this:
+[Button](button.md) fornece um componente de botão básico que é renderizado bem em todas as plataformas. O exemplo mínimo para exibir um botão se parece com isso:
 
 ```tsx
 <Button
@@ -18,11 +19,11 @@ Users interact with mobile apps mainly through touch. They can use a combination
 />
 ```
 
-This will render a blue label on iOS, and a blue rounded rectangle with light text on Android. Pressing the button will call the "onPress" function, which in this case displays an alert popup. If you like, you can specify a "color" prop to change the color of your button.
+Isso renderizará um label azul no iOS e um retângulo arredondado azul com texto claro no Android. Pressionar o botão chamará a função "onPress", que neste caso exibe um popup de alerta. Se você quiser, pode especificar uma prop "color" para alterar a cor do seu botão.
 
 ![](/docs/assets/Button.png)
 
-Go ahead and play around with the `Button` component using the example below. You can select which platform your app is previewed in by clicking on the toggle in the bottom right and then clicking on "Tap to Play" to preview the app.
+Vá em frente e brinque com o componente `Button` usando o exemplo abaixo. Você pode selecionar em qual plataforma seu app é visualizado clicando no toggle no canto inferior direito e então clicando em "Tap to Play" para visualizar o app.
 
 ```SnackPlayer name=Button%20Basics
 import React from 'react';
@@ -69,21 +70,21 @@ export default ButtonBasics;
 
 ## Touchables
 
-If the basic button doesn't look right for your app, you can build your own button using any of the "Touchable" components provided by React Native. These components provide the capability to capture tapping gestures and can display feedback when a gesture is recognized. However, these components do not provide any default styling, so you will need to do a bit of work to get them looking nice in your app.
+Se o botão básico não parecer certo para seu app, você pode construir seu próprio botão usando qualquer um dos componentes "Touchable" fornecidos pelo React Native. Esses componentes fornecem a capacidade de capturar gestos de toque e podem exibir feedback quando um gesto é reconhecido. No entanto, esses componentes não fornecem nenhum estilo padrão, então você precisará fazer um pouco de trabalho para deixá-los bonitos em seu app.
 
-Which "Touchable" component you use will depend on what kind of feedback you want to provide:
+Qual componente "Touchable" você usa dependerá de que tipo de feedback você quer fornecer:
 
-- Generally, you can use [**TouchableHighlight**](touchablehighlight.md) anywhere you would use a button or link on web. The view's background will be darkened when the user presses down on the button.
+- Geralmente, você pode usar [**TouchableHighlight**](touchablehighlight.md) em qualquer lugar onde você usaria um button ou link na web. O fundo da view ficará mais escuro quando o usuário pressionar o botão.
 
-- You may consider using [**TouchableNativeFeedback**](touchablenativefeedback.md) on Android to display ink surface reaction ripples that respond to the user's touch.
+- Você pode considerar usar [**TouchableNativeFeedback**](touchablenativefeedback.md) no Android para exibir ripples de reação de superfície de tinta que respondem ao toque do usuário.
 
-- [**TouchableOpacity**](touchableopacity.md) can be used to provide feedback by reducing the opacity of the button, allowing the background to be seen through while the user is pressing down.
+- [**TouchableOpacity**](touchableopacity.md) pode ser usado para fornecer feedback reduzindo a opacidade do botão, permitindo que o fundo seja visto através enquanto o usuário está pressionando.
 
-- If you need to handle a tap gesture but you don't want any feedback to be displayed, use [**TouchableWithoutFeedback**](touchablewithoutfeedback.md).
+- Se você precisa manipular um gesto de toque mas não quer que nenhum feedback seja exibido, use [**TouchableWithoutFeedback**](touchablewithoutfeedback.md).
 
-In some cases, you may want to detect when a user presses and holds a view for a set amount of time. These long presses can be handled by passing a function to the `onLongPress` props of any of the "Touchable" components.
+Em alguns casos, você pode querer detectar quando um usuário pressiona e segura uma view por um período de tempo definido. Esses pressionamentos longos podem ser manipulados passando uma função para as props `onLongPress` de qualquer um dos componentes "Touchable".
 
-Let's see all of these in action:
+Vamos ver todos eles em ação:
 
 ```SnackPlayer name=Touchables
 import React from 'react';
@@ -172,10 +173,10 @@ const styles = StyleSheet.create({
 export default Touchables;
 ```
 
-## Scrolling and swiping
+## Rolagem e deslizamento
 
-Gestures commonly used on devices with touchable screens include swipes and pans. These allow the user to scroll through a list of items, or swipe through pages of content. For these, check out the [ScrollView](scrollview.md) Core Component.
+Gestos comumente usados em dispositivos com telas tocáveis incluem swipes e pans. Esses permitem que o usuário role através de uma lista de itens ou deslize através de páginas de conteúdo. Para estes, confira o [ScrollView](scrollview.md) Core Component.
 
-## Known issues
+## Problemas conhecidos
 
-- [react-native#29308](https://github.com/facebook/react-native/issues/29308#issuecomment-792864162): The touch area never extends past the parent view bounds and on Android negative margin is not supported.
+- [react-native#29308](https://github.com/facebook/react-native/issues/29308#issuecomment-792864162): A área de toque nunca se estende além dos limites da view pai e no Android margem negativa não é suportada.

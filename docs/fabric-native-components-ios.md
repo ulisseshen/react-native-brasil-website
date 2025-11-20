@@ -1,19 +1,20 @@
 ---
+ia-translated: true
 id: fabric-native-components-ios
 title: 'Fabric Native Components: iOS'
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Now it's time to write some iOS platform code to be able to render the web view. The steps you need to follow are:
+Agora é hora de escrever algum código de plataforma iOS para poder renderizar a web view. Os passos que você precisa seguir são:
 
-- Run Codegen.
-- Write the code for the `RCTWebView`
-- Register the `RCTWebView` in the application
+- Executar o Codegen.
+- Escrever o código para o `RCTWebView`
+- Registrar o `RCTWebView` na aplicação
 
-### 1. Run Codegen
+### 1. Executar o Codegen
 
-You can [manually run](the-new-architecture/codegen-cli) the Codegen, however it's simpler to use the application you're going to demo the component in to do this for you.
+Você pode [executar manualmente](the-new-architecture/codegen-cli) o Codegen, no entanto, é mais simples usar a aplicação em que você vai demonstrar o componente para fazer isso por você.
 
 ```bash
 cd ios
@@ -21,17 +22,17 @@ bundle install
 bundle exec pod install
 ```
 
-Importantly you will see logging output from Codegen, which we're going to use in Xcode to build our WebView native component.
+É importante notar que você verá a saída de log do Codegen, que vamos usar no Xcode para construir nosso componente nativo WebView.
 
 :::warning
-You should be careful about committing generated code to your repository. Generated code is specific to each version of React Native. Use npm [peerDependencies](https://nodejs.org/en/blog/npm/peer-dependencies) to restrict compatibility with version of React Native.
+Você deve ter cuidado ao fazer commit de código gerado em seu repositório. Código gerado é específico para cada versão do React Native. Use [peerDependencies](https://nodejs.org/en/blog/npm/peer-dependencies) do npm para restringir a compatibilidade com a versão do React Native.
 :::
 
-### 3. Write the `RCTWebView`
+### 3. Escrever o `RCTWebView`
 
-We need to prepare your iOS project using Xcode by completing these **5 steps**:
+Precisamos preparar seu projeto iOS usando o Xcode completando estes **5 passos**:
 
-1. Open the CocoaPods generated Xcode Workspace:
+1. Abra o Xcode Workspace gerado pelo CocoaPods:
 
 ```bash
 cd ios
@@ -40,21 +41,21 @@ open Demo.xcworkspace
 
 <img className="half-size" alt="Open Xcode Workspace" src="/docs/assets/fabric-native-components/1.webp" />
 
-2. Right click on app and select <code>New Group</code>, call the new group `WebView`.
+2. Clique com o botão direito no app e selecione <code>New Group</code>, chame o novo grupo de `WebView`.
 
 <img className="half-size" alt="Right click on app and select New Group" src="/docs/assets/fabric-native-components/2.webp" />
 
-3. In the `WebView` group, create <code>New</code>→<code>File from Template</code>.
+3. No grupo `WebView`, crie <code>New</code>→<code>File from Template</code>.
 
 <img className="half-size" alt="Create a new file using the Cocoa Touch Class template" src="/docs/assets/fabric-native-components/3.webp" />
 
-4. Use the <code>Objective-C File</code> template, and name it <code>RCTWebView</code>.
+4. Use o template <code>Objective-C File</code>, e nomeie-o <code>RCTWebView</code>.
 
 <img className="half-size" alt="Create an Objective-C RCTWebView class" src="/docs/assets/fabric-native-components/4.webp" />
 
-5. Repeat step 4 and create a header file named `RCTWebView.h`.
+5. Repita o passo 4 e crie um arquivo de cabeçalho chamado `RCTWebView.h`.
 
-6. Rename <code>RCTWebView.m</code> → <code>RCTWebView.mm</code> making it an Objective-C++ file.
+6. Renomeie <code>RCTWebView.m</code> → <code>RCTWebView.mm</code> tornando-o um arquivo Objective-C++.
 
 ```text title="Demo/ios"
 Podfile
@@ -68,9 +69,9 @@ Demo
 // highlight-end
 ```
 
-After creating the header file and the implementation file, you can start implementing them.
+Depois de criar o arquivo de cabeçalho e o arquivo de implementação, você pode começar a implementá-los.
 
-This is the code for the `RCTWebView.h` file, which declares the component interface.
+Este é o código para o arquivo `RCTWebView.h`, que declara a interface do componente.
 
 ```objc title="Demo/RCTWebView/RCTWebView.h"
 #import <React/RCTViewComponentView.h>
@@ -87,9 +88,9 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 ```
 
-This class defines an `RCTWebView` which extends the `RCTViewComponentView` class. This is the base class for all the native components and it is provided by React Native.
+Esta classe define um `RCTWebView` que estende a classe `RCTViewComponentView`. Esta é a classe base para todos os componentes nativos e é fornecida pelo React Native.
 
-The code for the implementation file (`RCTWebView.mm`) is the following:
+O código para o arquivo de implementação (`RCTWebView.mm`) é o seguinte:
 
 ```objc title="Demo/RCTWebView/RCTWebView.mm"
 #import "RCTWebView.h"
@@ -184,39 +185,39 @@ using namespace facebook::react;
 @end
 ```
 
-This code is written in Objective-C++ and contains various details:
+Este código é escrito em Objective-C++ e contém vários detalhes:
 
-- the `@interface` implements two protocols:
-  - `RCTCustomWebViewViewProtocol`, generated by Codegen;
-  - `WKNavigationDelegate`, provided by the WebKit framework to handle the web view navigation events;
-- the `init` method that instantiates the `WKWebView`, adds it to the subviews and that sets the `navigationDelegate`;
-- the `updateProps` method that is called by React Native when the component's props change;
-- the `layoutSubviews` method that describes how the custom view needs to be laid out;
-- the `webView:didFinishNavigation:` method that lets you handle what to do when the `WKWebView` finishes loading the page;
-- the `urlIsValid:(std::string)propString` method that checks whether the URL received as prop is valid;
-- the `eventEmitter` method which is a utility to retrieve a strongly typed `eventEmitter` instance
-- the `componentDescriptorProvider` which returns the `ComponentDescriptor` generated by Codegen;
+- a `@interface` implementa dois protocolos:
+  - `RCTCustomWebViewViewProtocol`, gerado pelo Codegen;
+  - `WKNavigationDelegate`, fornecido pelo framework WebKit para lidar com os eventos de navegação da web view;
+- o método `init` que instancia o `WKWebView`, adiciona-o às subviews e define o `navigationDelegate`;
+- o método `updateProps` que é chamado pelo React Native quando as props do componente mudam;
+- o método `layoutSubviews` que descreve como a view personalizada precisa ser disposta;
+- o método `webView:didFinishNavigation:` que permite que você lide com o que fazer quando o `WKWebView` termina de carregar a página;
+- o método `urlIsValid:(std::string)propString` que verifica se a URL recebida como prop é válida;
+- o método `eventEmitter` que é um utilitário para recuperar uma instância `eventEmitter` fortemente tipada
+- o `componentDescriptorProvider` que retorna o `ComponentDescriptor` gerado pelo Codegen;
 
-#### Add WebKit framework
+#### Adicionar framework WebKit
 
 :::note
-This step is only required because we are creating a Web view. Web components on iOS needs to be linked against the WebKit framework provided by Apple. If your component doesn't need to access web-specific features, you can skip this step.
+Este passo é necessário apenas porque estamos criando uma Web view. Componentes web no iOS precisam ser vinculados ao framework WebKit fornecido pela Apple. Se seu componente não precisa acessar recursos específicos da web, você pode pular este passo.
 :::
 
-A web view requires access to some features that Apple provides through one of the frameworks shipped with Xcode and the devices: WebKit.
-You can see it in the native code by the `#import <WebKit/WebKit.h>` line added in the `RCTWebView.mm`.
+Uma web view requer acesso a alguns recursos que a Apple fornece através de um dos frameworks que acompanham o Xcode e os dispositivos: WebKit.
+Você pode vê-lo no código nativo pela linha `#import <WebKit/WebKit.h>` adicionada no `RCTWebView.mm`.
 
-To link the WebKit framework in your app, follow these steps:
+Para vincular o framework WebKit no seu app, siga estes passos:
 
-1. In Xcode, Click on your project
-2. Select the app target
-3. Select the General tab
-4. Scroll down until you find the _"Frameworks, Libraries, and Embedded Contents"_ section, and press the `+` button
+1. No Xcode, Clique no seu projeto
+2. Selecione o target do app
+3. Selecione a aba General
+4. Role para baixo até encontrar a seção _"Frameworks, Libraries, and Embedded Contents"_, e pressione o botão `+`
 
 <img className="half-size" alt="Add webkit framework to your app 1" src="/docs/assets/AddWebKitFramework1.png" />
 
-5. In the search bar, filter for WebKit
-6. Select the WebKit framework
-7. Click on Add.
+5. Na barra de pesquisa, filtre por WebKit
+6. Selecione o framework WebKit
+7. Clique em Add.
 
 <img className="half-size" alt="Add webkit framework to your app 2" src="/docs/assets/AddWebKitFramework2.png" />

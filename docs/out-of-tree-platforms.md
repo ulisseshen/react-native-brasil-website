@@ -1,37 +1,38 @@
 ---
+ia-translated: true
 id: out-of-tree-platforms
 title: Out-of-Tree Platforms
 ---
 
-React Native is not only for Android and iOS devices - our partners and the community maintain projects that bring React Native to other platforms, such as:
+React Native não é apenas para dispositivos Android e iOS - nossos parceiros e a comunidade mantêm projetos que trazem React Native para outras plataformas, tais como:
 
-**From Partners**
+**De Parceiros**
 
-- [React Native macOS](https://github.com/microsoft/react-native-macos) - React Native for macOS and Cocoa.
-- [React Native Windows](https://github.com/microsoft/react-native-windows) - React Native for Microsoft's Universal Windows Platform (UWP).
-- [React Native visionOS](https://github.com/callstack/react-native-visionos) - React Native for Apple's visionOS.
+- [React Native macOS](https://github.com/microsoft/react-native-macos) - React Native para macOS e Cocoa.
+- [React Native Windows](https://github.com/microsoft/react-native-windows) - React Native para Universal Windows Platform (UWP) da Microsoft.
+- [React Native visionOS](https://github.com/callstack/react-native-visionos) - React Native para visionOS da Apple.
 
-**From Community**
+**Da Comunidade**
 
-- [React Native tvOS](https://github.com/react-native-tvos/react-native-tvos) - React Native for Apple TV and Android TV devices.
-- [React Native Web](https://github.com/necolas/react-native-web) - React Native on the web using React DOM.
-- [React Native Skia](https://github.com/react-native-skia/react-native-skia) - React Native using [Skia](https://skia.org/) as a renderer. Currently supports Linux and macOS.
+- [React Native tvOS](https://github.com/react-native-tvos/react-native-tvos) - React Native para dispositivos Apple TV e Android TV.
+- [React Native Web](https://github.com/necolas/react-native-web) - React Native na web usando React DOM.
+- [React Native Skia](https://github.com/react-native-skia/react-native-skia) - React Native usando [Skia](https://skia.org/) como renderizador. Atualmente suporta Linux e macOS.
 
-## Creating your own React Native platform
+## Criando sua própria plataforma React Native
 
-Right now the process of creating a React Native platform from scratch is not very well documented - one of the goals of the upcoming re-architecture ([Fabric](/blog/2018/06/14/state-of-react-native-2018)) is to make maintaining a platform easier.
+No momento, o processo de criar uma plataforma React Native do zero não está muito bem documentado - um dos objetivos da próxima rearquitetura ([Fabric](/blog/2018/06/14/state-of-react-native-2018)) é tornar a manutenção de uma plataforma mais fácil.
 
 ### Bundling
 
-As of React Native 0.57 you can now register your React Native platform with React Native's JavaScript bundler, [Metro](https://metrobundler.dev/). This means you can pass `--platform example` to `npx react-native bundle`, and it will look for JavaScript files with the `.example.js` suffix.
+A partir do React Native 0.57, você pode agora registrar sua plataforma React Native com o bundler JavaScript do React Native, [Metro](https://metrobundler.dev/). Isso significa que você pode passar `--platform example` para `npx react-native bundle`, e ele procurará por arquivos JavaScript com o sufixo `.example.js`.
 
-To register your platform with RNPM, your module's name must match one of these patterns:
+Para registrar sua plataforma com RNPM, o nome do seu módulo deve corresponder a um desses padrões:
 
-- `react-native-example` - It will search all top-level modules that start with `react-native-`
-- `@org/react-native-example` - It will search for modules that start with `react-native-` under any scope
-- `@react-native-example/module` - It will search in all modules under scopes with names starting with `@react-native-`
+- `react-native-example` - Ele procurará todos os módulos de nível superior que começam com `react-native-`
+- `@org/react-native-example` - Ele procurará por módulos que começam com `react-native-` sob qualquer escopo
+- `@react-native-example/module` - Ele procurará em todos os módulos sob escopos com nomes começando com `@react-native-`
 
-You must also have an entry in your `package.json` like this:
+Você também deve ter uma entrada em seu `package.json` como esta:
 
 ```json
 {
@@ -44,4 +45,4 @@ You must also have an entry in your `package.json` like this:
 }
 ```
 
-`"providesModuleNodeModules"` is an array of modules that will get added to the Haste module search path, and `"platforms"` is an array of platform suffixes that will be added as valid platforms.
+`"providesModuleNodeModules"` é um array de módulos que serão adicionados ao caminho de busca do módulo Haste, e `"platforms"` é um array de sufixos de plataforma que serão adicionados como plataformas válidas.

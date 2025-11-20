@@ -1,24 +1,25 @@
 ---
 id: metro
 title: Metro
+ia-translated: true
 ---
 
-React Native uses [Metro](https://metrobundler.dev/) to build your JavaScript code and assets.
+React Native usa [Metro](https://metrobundler.dev/) para compilar seu código JavaScript e assets.
 
-## Configuring Metro
+## Configurando Metro
 
-Configuration options for Metro can be customized in your project's `metro.config.js` file. This can export either:
+Opções de configuração para Metro podem ser personalizadas no arquivo `metro.config.js` do seu projeto. Isso pode exportar:
 
-- **An object (recommended)** that will be merged on top of Metro's internal config defaults.
-- [**A function**](#advanced-using-a-config-function) that will be called with Metro's internal config defaults and should return a final config object.
+- **Um objeto (recomendado)** que será mesclado sobre as configurações padrão internas do Metro.
+- [**Uma função**](#advanced-using-a-config-function) que será chamada com as configurações padrão internas do Metro e deve retornar um objeto de configuração final.
 
 :::tip
-Please see [**Configuring Metro**](https://metrobundler.dev/docs/configuration) on the Metro website for documentation on all available config options.
+Consulte [**Configurando Metro**](https://metrobundler.dev/docs/configuration) no site do Metro para documentação sobre todas as opções de configuração disponíveis.
 :::
 
-In React Native, your Metro config should extend either [`@react-native/metro-config`](https://www.npmjs.com/package/@react-native/metro-config) or [`@expo/metro-config`](https://www.npmjs.com/package/@expo/metro-config). These packages contain essential defaults necessary to build and run React Native apps.
+No React Native, sua configuração do Metro deve estender [`@react-native/metro-config`](https://www.npmjs.com/package/@react-native/metro-config) ou [`@expo/metro-config`](https://www.npmjs.com/package/@expo/metro-config). Esses pacotes contêm padrões essenciais necessários para compilar e executar aplicativos React Native.
 
-Below is the default `metro.config.js` file in a React Native template project:
+Abaixo está o arquivo `metro.config.js` padrão em um projeto de template React Native:
 
 <!-- prettier-ignore -->
 ```js
@@ -35,14 +36,14 @@ const config = {};
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
 ```
 
-Metro options you wish to customize can be done so within the `config` object.
+Opções do Metro que você deseja personalizar podem ser feitas dentro do objeto `config`.
 
 ### Advanced: Using a config function
 
-Exporting a config function is an opt-in to managing the final config yourself — **Metro will not apply any internal defaults**. This pattern can be useful when needing to read the base default config object from Metro or to set options dynamically.
+Exportar uma função de configuração é um opt-in para gerenciar a configuração final você mesmo — **Metro não aplicará nenhum padrão interno**. Este padrão pode ser útil quando precisar ler o objeto de configuração base padrão do Metro ou para definir opções dinamicamente.
 
 :::info
-**From `@react-native/metro-config` 0.72.1**, it is no longer necessary to use a config function to access the complete default config. See the **Tip** section below.
+**A partir do `@react-native/metro-config` 0.72.1**, não é mais necessário usar uma função de configuração para acessar a configuração padrão completa. Veja a seção **Tip** abaixo.
 :::
 
 <!-- prettier-ignore -->
@@ -66,7 +67,7 @@ module.exports = function (baseConfig) {
 ```
 
 :::tip
-Using a config function is for advanced use cases. A simpler method than the above, e.g. for customising `sourceExts`, would be to read these defaults from `@react-native/metro-config`.
+Usar uma função de configuração é para casos de uso avançados. Um método mais simples do que o acima, por exemplo, para personalizar `sourceExts`, seria ler esses padrões de `@react-native/metro-config`.
 
 **Alternative**
 
@@ -83,7 +84,7 @@ const config = {
 module.exports = mergeConfig(defaultConfig, config);
 ```
 
-**However!**, we recommend copying and editing when overriding these config values — placing the source of truth in your config file.
+**However!**, recomendamos copiar e editar ao sobrescrever esses valores de configuração — colocando a fonte da verdade no seu arquivo de configuração.
 
 ✅ **Recommended**
 
@@ -98,7 +99,7 @@ const config = {
 
 :::
 
-## Learn more about Metro
+## Saiba mais sobre Metro
 
-- [Metro website](https://metrobundler.dev/)
+- [Site do Metro](https://metrobundler.dev/)
 - [Video: "Metro & React Native DevX" talk at App.js 2023](https://www.youtube.com/watch?v=c9D4pg0y9cI)

@@ -1,25 +1,26 @@
 ---
+ia-translated: true
 id: publishing-to-app-store
-title: Publishing to Apple App Store
+title: Publicando na Apple App Store
 ---
 
-The publishing process is the same as any other native iOS app, with some additional considerations to take into account.
+O processo de publicação é o mesmo de qualquer outro aplicativo iOS nativo, com algumas considerações adicionais a serem levadas em conta.
 
 :::info
-If you are using Expo, read the Expo guide for [Deploying to App Stores](https://docs.expo.dev/distribution/app-stores/) to build and submit your app for the Apple App Store. This guide works with any React Native app to automate the deployment process.
+Se você está usando Expo, leia o guia do Expo para [Deploying to App Stores](https://docs.expo.dev/distribution/app-stores/) para compilar e enviar seu aplicativo para a Apple App Store. Este guia funciona com qualquer aplicativo React Native para automatizar o processo de implantação.
 :::
 
-### 1. Configure release scheme
+### 1. Configurar scheme de release
 
-Building an app for distribution in the App Store requires using the `Release` scheme in Xcode. Apps built for `Release` will automatically disable the in-app Dev Menu, which will prevent your users from inadvertently accessing the menu in production. It will also bundle the JavaScript locally, so you can put the app on a device and test whilst not connected to the computer.
+Compilar um aplicativo para distribuição na App Store requer usar o scheme `Release` no Xcode. Aplicativos compilados para `Release` desabilitarão automaticamente o Dev Menu dentro do aplicativo, o que impedirá que seus usuários acessem inadvertidamente o menu em produção. Ele também empacotará o JavaScript localmente, para que você possa colocar o aplicativo em um dispositivo e testar enquanto não estiver conectado ao computador.
 
-To configure your app to be built using the `Release` scheme, go to **Product** → **Scheme** → **Edit Scheme**. Select the **Run** tab in the sidebar, then set the Build Configuration dropdown to `Release`.
+Para configurar seu aplicativo para ser compilado usando o scheme `Release`, vá em **Product** → **Scheme** → **Edit Scheme**. Selecione a aba **Run** na barra lateral, então defina o dropdown Build Configuration para `Release`.
 
 ![](/docs/assets/ConfigureReleaseScheme.png)
 
-#### Pro Tips
+#### Dicas Profissionais
 
-As your App Bundle grows in size, you may start to see a blank screen flash between your splash screen and the display of your root application view. If this is the case, you can add the following code to `AppDelegate.m` in order to keep your splash screen displayed during the transition.
+À medida que o tamanho do seu App Bundle cresce, você pode começar a ver uma tela em branco piscando entre sua splash screen e a exibição da view raiz do aplicativo. Se este for o caso, você pode adicionar o seguinte código ao `AppDelegate.m` para manter sua splash screen exibida durante a transição.
 
 ```objectivec
   // Place this code after "[self.window makeKeyAndVisible]" and before "return YES;"
@@ -28,7 +29,7 @@ As your App Bundle grows in size, you may start to see a blank screen flash betw
   rootView.loadingView = vc.view;
 ```
 
-The static bundle is built every time you target a physical device, even in Debug. If you want to save time, turn off bundle generation in Debug by adding the following to your shell script in the Xcode Build Phase `Bundle React Native code and images`:
+O bundle estático é compilado toda vez que você tem como alvo um dispositivo físico, mesmo em Debug. Se você quiser economizar tempo, desative a geração de bundle em Debug adicionando o seguinte ao seu shell script na Xcode Build Phase `Bundle React Native code and images`:
 
 ```shell
  if [ "${CONFIGURATION}" == "Debug" ]; then
@@ -36,33 +37,33 @@ The static bundle is built every time you target a physical device, even in Debu
  fi
 ```
 
-### 2. Build app for release
+### 2. Compilar aplicativo para release
 
-You can now build your app for release by tapping <kbd>Cmd ⌘</kbd> + <kbd>B</kbd> or selecting **Product** → **Build** from the menu bar. Once built for release, you'll be able to distribute the app to beta testers and submit the app to the App Store.
+Agora você pode compilar seu aplicativo para release tocando <kbd>Cmd ⌘</kbd> + <kbd>B</kbd> ou selecionando **Product** → **Build** na barra de menu. Uma vez compilado para release, você poderá distribuir o aplicativo para testadores beta e enviar o aplicativo para a App Store.
 
 :::info
-You can also use the `React Native CLI` to perform this operation using the option `--mode` with the value `Release` (e.g. from the root of your project: `npm run ios -- --mode="Release"` or `yarn ios --mode Release`).
+Você também pode usar o `React Native CLI` para executar esta operação usando a opção `--mode` com o valor `Release` (por exemplo, da raiz do seu projeto: `npm run ios -- --mode="Release"` ou `yarn ios --mode Release`).
 :::
 
-Once you are done with the testing and ready to publish to App Store, follow along with this guide.
+Depois de terminar os testes e estiver pronto para publicar na App Store, siga este guia.
 
-- Launch your terminal, and navigate into the iOS folder of your app and type `open .`.
-- Double click on YOUR_APP_NAME.xcworkspace. It should launch Xcode.
-- Click on `Product` → `Archive`. Make sure to set the device to "Any iOS Device (arm64)".
+- Abra seu terminal e navegue até a pasta iOS do seu aplicativo e digite `open .`.
+- Clique duas vezes em YOUR_APP_NAME.xcworkspace. Isso deve abrir o Xcode.
+- Clique em `Product` → `Archive`. Certifique-se de definir o dispositivo como "Any iOS Device (arm64)".
 
 :::note
-Check your Bundle Identifier and make sure it is exactly same as the one you have created in the Identifiers in Apple Developer Dashboard.
+Verifique seu Bundle Identifier e certifique-se de que seja exatamente o mesmo que você criou nos Identifiers no Apple Developer Dashboard.
 :::
 
-- After the archive is completed, in the archive window, click on `Distribute App`.
-- Click on `App Store Connect` now (if you want to publish in App Store).
-- Click `Upload` → Make sure all the check boxes are selected, hit `Next`.
-- Choose between `Automatically manage signing` and `Manually manage signing` based on your needs.
-- Click on `Upload`.
-- Now you can find it in the App Store Connect under TestFlight.
+- Depois que o archive for concluído, na janela de archive, clique em `Distribute App`.
+- Clique em `App Store Connect` agora (se você quiser publicar na App Store).
+- Clique em `Upload` → Certifique-se de que todas as caixas de seleção estejam marcadas, clique em `Next`.
+- Escolha entre `Automatically manage signing` e `Manually manage signing` com base em suas necessidades.
+- Clique em `Upload`.
+- Agora você pode encontrá-lo no App Store Connect em TestFlight.
 
-Now fill up the necessary information and in the Build Section, select the build of the app and click on `Save` → `Submit For Review`.
+Agora preencha as informações necessárias e na seção Build, selecione a build do aplicativo e clique em `Save` → `Submit For Review`.
 
 ### 4. Screenshots
 
-The Apple Store requires you have screenshots for the latest devices. The reference for such devices would be found [here](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/). Note that screenshots for some display sizes are not required if they are provided for other sizes.
+A Apple Store requer que você tenha screenshots para os dispositivos mais recentes. A referência para tais dispositivos seria encontrada [aqui](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/). Note que screenshots para alguns tamanhos de tela não são necessários se forem fornecidos para outros tamanhos.

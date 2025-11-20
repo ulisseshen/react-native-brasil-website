@@ -1,51 +1,52 @@
 ---
 id: navigation
-title: Navigating Between Screens
+title: Navegando Entre Telas
+ia-translated: true
 ---
 
-Mobile apps are rarely made up of a single screen. Managing the presentation of, and transition between, multiple screens is typically handled by what is known as a navigator.
+Aplicativos móveis raramente são compostos de uma única tela. Gerenciar a apresentação e a transição entre múltiplas telas é tipicamente tratado pelo que é conhecido como navigator.
 
-This guide covers the various navigation components available in React Native. If you are getting started with navigation, you will probably want to use [React Navigation](navigation.md#react-navigation). React Navigation provides a straightforward navigation solution, with the ability to present common stack navigation and tabbed navigation patterns on both Android and iOS.
+Este guia cobre os vários componentes de navegação disponíveis no React Native. Se você está começando com navegação, provavelmente vai querer usar [React Navigation](navigation.md#react-navigation). React Navigation fornece uma solução de navegação direta, com a capacidade de apresentar navegação em pilha comum e padrões de navegação em abas tanto no Android quanto no iOS.
 
-If you're integrating React Native into an app that already manages navigation natively, or looking for an alternative to React Navigation, the following library provides native navigation on both platforms: [react-native-navigation](https://github.com/wix/react-native-navigation).
+Se você está integrando React Native em um aplicativo que já gerencia navegação nativamente, ou procurando uma alternativa ao React Navigation, a seguinte biblioteca fornece navegação nativa em ambas as plataformas: [react-native-navigation](https://github.com/wix/react-native-navigation).
 
 ## React Navigation
 
-The community solution to navigation is a standalone library that allows developers to set up the screens of an app with a few lines of code.
+A solução da comunidade para navegação é uma biblioteca standalone que permite aos desenvolvedores configurar as telas de um aplicativo com algumas linhas de código.
 
 ### Starter template
 
-If you're starting a new project, you can use the React Navigation template to quickly set up a new project with [Expo](https://expo.dev/):
+Se você está iniciando um novo projeto, você pode usar o template React Navigation para configurar rapidamente um novo projeto com [Expo](https://expo.dev/):
 
 ```shell
 npx create-expo-app@latest --template react-navigation/template
 ```
 
-See the project's `README.md` for more information on how to get started.
+Veja o `README.md` do projeto para mais informações sobre como começar.
 
 ### Installation and setup
 
-First, you need to install them in your project:
+Primeiro, você precisa instalá-los no seu projeto:
 
 ```shell
 npm install @react-navigation/native @react-navigation/native-stack
 ```
 
-Next, install the required peer dependencies. You need to run different commands depending on whether your project is an Expo managed project or a bare React Native project.
+Em seguida, instale as dependências peer necessárias. Você precisa executar comandos diferentes dependendo se seu projeto é um projeto gerenciado Expo ou um projeto bare React Native.
 
-- If you have an Expo managed project, install the dependencies with `expo`:
+- Se você tem um projeto gerenciado Expo, instale as dependências com `expo`:
 
   ```shell
   npx expo install react-native-screens react-native-safe-area-context
   ```
 
-- If you have a bare React Native project, install the dependencies with `npm`:
+- Se você tem um projeto bare React Native, instale as dependências com `npm`:
 
   ```shell
   npm install react-native-screens react-native-safe-area-context
   ```
 
-  For iOS with bare React Native project, make sure you have [CocoaPods](https://cocoapods.org/) installed. Then install the pods to complete the installation:
+  Para iOS com projeto bare React Native, certifique-se de ter [CocoaPods](https://cocoapods.org/) instalado. Então instale os pods para completar a instalação:
 
   ```shell
   cd ios
@@ -53,15 +54,15 @@ Next, install the required peer dependencies. You need to run different commands
   cd ..
   ```
 
-Once you've installed and configured the dependencies, you can move on to setting up your project to use React Navigation.
+Uma vez que você instalou e configurou as dependências, você pode passar para configurar seu projeto para usar React Navigation.
 
-When using React Navigation, you configure [navigators](https://reactnavigation.org/docs/glossary-of-terms#navigator) in your app. Navigators handle the transition between screens in your app and provide UI such as header, tab bar etc.
+Ao usar React Navigation, você configura [navigators](https://reactnavigation.org/docs/glossary-of-terms#navigator) no seu aplicativo. Navigators lidam com a transição entre telas no seu aplicativo e fornecem UI como header, tab bar etc.
 
-Now you are ready to build and run your app on the device/simulator.
+Agora você está pronto para compilar e executar seu aplicativo no dispositivo/simulador.
 
 ### Usage
 
-Now you can create an app with a home screen and a profile screen:
+Agora você pode criar um aplicativo com uma tela inicial e uma tela de perfil:
 
 ```tsx
 import * as React from 'react';
@@ -87,11 +88,11 @@ export default function App() {
 }
 ```
 
-In this example, `RootStack` is a navigator with 2 screens (`Home` and `Profile`), defined in the `screens` property in `createNativeStackNavigator`. Similarly, you can define as many screens as you like.
+Neste exemplo, `RootStack` é um navigator com 2 telas (`Home` e `Profile`), definidas na propriedade `screens` em `createNativeStackNavigator`. Similarmente, você pode definir quantas telas quiser.
 
-You can specify options such as the screen title for each screen in the `options` property of each screen. Each screen definition also needs a `screen` property that is a React component or another navigator.
+Você pode especificar opções como o título da tela para cada tela na propriedade `options` de cada tela. Cada definição de tela também precisa de uma propriedade `screen` que é um React component ou outro navigator.
 
-Inside each screen component, you can use the `useNavigation` hook to get the `navigation` object, which has various methods to link to other screens. For example, you can use `navigation.navigate` to go to the `Profile` screen:
+Dentro de cada componente de tela, você pode usar o hook `useNavigation` para obter o objeto `navigation`, que tem vários métodos para vincular a outras telas. Por exemplo, você pode usar `navigation.navigate` para ir para a tela `Profile`:
 
 ```tsx
 import {useNavigation} from '@react-navigation/native';
@@ -114,8 +115,8 @@ function ProfileScreen({route}) {
 }
 ```
 
-This `native-stack` navigator uses the native APIs: `UINavigationController` on iOS and `Fragment` on Android so that navigation built with `createNativeStackNavigator` will behave the same and have the similar performance characteristics as apps built natively on top of those APIs.
+Este navigator `native-stack` usa as APIs nativas: `UINavigationController` no iOS e `Fragment` no Android, de modo que a navegação construída com `createNativeStackNavigator` se comportará da mesma forma e terá características de desempenho similares aos aplicativos construídos nativamente sobre essas APIs.
 
-React Navigation also has packages for different kind of navigators such as tabs and drawer. You can use them to implement various patterns in your app.
+React Navigation também tem pacotes para diferentes tipos de navigators, como tabs e drawer. Você pode usá-los para implementar vários padrões no seu aplicativo.
 
-For a complete intro to React Navigation, follow the [React Navigation Getting Started Guide](https://reactnavigation.org/docs/getting-started).
+Para uma introdução completa ao React Navigation, siga o [Guia de Introdução do React Navigation](https://reactnavigation.org/docs/getting-started).
