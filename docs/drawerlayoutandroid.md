@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: drawerlayoutandroid
 title: DrawerLayoutAndroid
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-React component that wraps the platform `DrawerLayout` (Android only). The Drawer (typically used for navigation) is rendered with `renderNavigationView` and direct children are the main view (where your content goes). The navigation view is initially not visible on the screen, but can be pulled in from the side of the window specified by the `drawerPosition` prop and its width can be set by the `drawerWidth` prop.
+Componente React que encapsula o `DrawerLayout` da plataforma (somente Android). O Drawer (normalmente usado para navegação) é renderizado com `renderNavigationView` e os filhos diretos são a view principal (onde seu conteúdo fica). A view de navegação inicialmente não está visível na tela, mas pode ser puxada da lateral da janela especificada pela prop `drawerPosition` e sua largura pode ser definida pela prop `drawerWidth`.
 
 ## Example
 
@@ -173,13 +174,13 @@ export default App;
 
 ### [View Props](view.md#props)
 
-Inherits [View Props](view.md#props).
+Herda [View Props](view.md#props).
 
 ---
 
 ### `drawerBackgroundColor`
 
-Specifies the background color of the drawer. The default value is `white`. If you want to set the opacity of the drawer, use rgba. Example:
+Especifica a cor de fundo do drawer. O valor padrão é `white`. Se você quiser definir a opacidade do drawer, use rgba. Exemplo:
 
 ```tsx
 return (
@@ -195,11 +196,11 @@ return (
 
 ### `drawerLockMode`
 
-Specifies the lock mode of the drawer. The drawer can be locked in 3 states:
+Especifica o modo de bloqueio do drawer. O drawer pode ser bloqueado em 3 estados:
 
-- unlocked (default), meaning that the drawer will respond (open/close) to touch gestures.
-- locked-closed, meaning that the drawer will stay closed and not respond to gestures.
-- locked-open, meaning that the drawer will stay opened and not respond to gestures. The drawer may still be opened and closed programmatically (`openDrawer`/`closeDrawer`).
+- unlocked (padrão), significando que o drawer responderá (abrir/fechar) a gestos de toque.
+- locked-closed, significando que o drawer permanecerá fechado e não responderá a gestos.
+- locked-open, significando que o drawer permanecerá aberto e não responderá a gestos. O drawer ainda pode ser aberto e fechado programaticamente (`openDrawer`/`closeDrawer`).
 
 | Type                                             | Required |
 | ------------------------------------------------ | -------- |
@@ -209,7 +210,7 @@ Specifies the lock mode of the drawer. The drawer can be locked in 3 states:
 
 ### `drawerPosition`
 
-Specifies the side of the screen from which the drawer will slide in. By default it is set to `left`.
+Especifica o lado da tela de onde o drawer deslizará. Por padrão, é definido como `left`.
 
 | Type                  | Required |
 | --------------------- | -------- |
@@ -219,7 +220,7 @@ Specifies the side of the screen from which the drawer will slide in. By default
 
 ### `drawerWidth`
 
-Specifies the width of the drawer, more precisely the width of the view that be pulled in from the edge of the window.
+Especifica a largura do drawer, mais precisamente a largura da view que pode ser puxada da borda da janela.
 
 | Type   | Required |
 | ------ | -------- |
@@ -229,10 +230,10 @@ Specifies the width of the drawer, more precisely the width of the view that be 
 
 ### `keyboardDismissMode`
 
-Determines whether the keyboard gets dismissed in response to a drag.
+Determina se o teclado é dispensado em resposta a um arrasto.
 
-- 'none' (the default), drags do not dismiss the keyboard.
-- 'on-drag', the keyboard is dismissed when a drag begins.
+- 'none' (o padrão), arrastos não dispensam o teclado.
+- 'on-drag', o teclado é dispensado quando um arrasto começa.
 
 | Type                    | Required |
 | ----------------------- | -------- |
@@ -242,7 +243,7 @@ Determines whether the keyboard gets dismissed in response to a drag.
 
 ### `onDrawerClose`
 
-Function called whenever the navigation view has been closed.
+Função chamada sempre que a view de navegação for fechada.
 
 | Type     | Required |
 | -------- | -------- |
@@ -252,7 +253,7 @@ Function called whenever the navigation view has been closed.
 
 ### `onDrawerOpen`
 
-Function called whenever the navigation view has been opened.
+Função chamada sempre que a view de navegação for aberta.
 
 | Type     | Required |
 | -------- | -------- |
@@ -262,7 +263,7 @@ Function called whenever the navigation view has been opened.
 
 ### `onDrawerSlide`
 
-Function called whenever there is an interaction with the navigation view.
+Função chamada sempre que houver uma interação com a view de navegação.
 
 | Type     | Required |
 | -------- | -------- |
@@ -272,11 +273,11 @@ Function called whenever there is an interaction with the navigation view.
 
 ### `onDrawerStateChanged`
 
-Function called when the drawer state has changed. The drawer can be in 3 states:
+Função chamada quando o estado do drawer mudou. O drawer pode estar em 3 estados:
 
-- idle, meaning there is no interaction with the navigation view happening at the time
-- dragging, meaning there is currently an interaction with the navigation view
-- settling, meaning that there was an interaction with the navigation view, and the navigation view is now finishing its closing or opening animation
+- idle, significando que não há interação com a view de navegação acontecendo no momento
+- dragging, significando que há atualmente uma interação com a view de navegação
+- settling, significando que houve uma interação com a view de navegação, e a view de navegação agora está finalizando sua animação de fechamento ou abertura
 
 | Type     | Required |
 | -------- | -------- |
@@ -286,7 +287,7 @@ Function called when the drawer state has changed. The drawer can be in 3 states
 
 ### `renderNavigationView`
 
-The navigation view that will be rendered to the side of the screen and can be pulled in.
+A view de navegação que será renderizada ao lado da tela e pode ser puxada.
 
 | Type     | Required |
 | -------- | -------- |
@@ -296,13 +297,13 @@ The navigation view that will be rendered to the side of the screen and can be p
 
 ### `statusBarBackgroundColor`
 
-Make the drawer take the entire screen and draw the background of the status bar to allow it to open over the status bar. It will only have an effect on API 21+.
+Faz o drawer ocupar a tela inteira e desenhar o fundo da barra de status para permitir que ele abra sobre a barra de status. Isso terá efeito somente em API 21+.
 
 | Type               | Required |
 | ------------------ | -------- |
 | [color](colors.md) | No       |
 
-## Methods
+## Métodos
 
 ### `closeDrawer()`
 
@@ -310,7 +311,7 @@ Make the drawer take the entire screen and draw the background of the status bar
 closeDrawer();
 ```
 
-Closes the drawer.
+Fecha o drawer.
 
 ---
 
@@ -320,4 +321,4 @@ Closes the drawer.
 openDrawer();
 ```
 
-Opens the drawer.
+Abre o drawer.

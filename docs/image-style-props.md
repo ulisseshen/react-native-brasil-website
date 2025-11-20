@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: image-style-props
-title: Image Style Props
+title: Propriedades de Estilo de Image
 ---
 
-## Examples
+## Exemplos
 
-### Image Resize Mode
+### Modo de Redimensionamento de Image
 
 ```SnackPlayer name=Image%20Resize%20Modes%20Example
 import React from 'react';
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-### Image Border
+### Borda de Image
 
 ```SnackPlayer name=Style%20BorderWidth%20and%20BorderColor%20Example
 import React from 'react';
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-### Image Border Radius
+### Raio de Borda de Image
 
 ```SnackPlayer name=Style%20Border%20Radius%20Example
 import React from 'react';
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-### Image Tint
+### Matiz de Image
 
 ```SnackPlayer name=Style%20tintColor%20Function%20Component
 import React from 'react';
@@ -216,15 +217,15 @@ const styles = StyleSheet.create({
 export default DisplayAnImageWithStyle;
 ```
 
-# Reference
+# Referência
 
-## Props
+## Propriedades
 
 ### `backfaceVisibility`
 
-The property defines whether or not the back face of a rotated image should be visible.
+A propriedade define se a face traseira de uma imagem rotacionada deve ou não ser visível.
 
-| Type                          | Default     |
+| Tipo                          | Padrão      |
 | ----------------------------- | ----------- |
 | enum(`'visible'`, `'hidden'`) | `'visible'` |
 
@@ -232,7 +233,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `backgroundColor`
 
-| Type               |
+| Tipo               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -240,7 +241,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `borderBottomLeftRadius`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -248,7 +249,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `borderBottomRightRadius`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -256,7 +257,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `borderColor`
 
-| Type               |
+| Tipo               |
 | ------------------ |
 | [color](colors.md) |
 
@@ -264,7 +265,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `borderRadius`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -272,7 +273,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `borderTopLeftRadius`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -280,7 +281,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `borderTopRightRadius`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -288,7 +289,7 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `borderWidth`
 
-| Type   |
+| Tipo   |
 | ------ |
 | number |
 
@@ -296,17 +297,17 @@ The property defines whether or not the back face of a rotated image should be v
 
 ### `opacity`
 
-Set an opacity value for the image. The number should be in the range from `0.0` to `1.0`.
+Define um valor de opacidade para a imagem. O número deve estar no intervalo de `0.0` a `1.0`.
 
-| Type   | Default |
-| ------ | ------- |
-| number | `1.0`   |
+| Tipo   | Padrão |
+| ------ | ------ |
+| number | `1.0`  |
 
 ---
 
 ### `overflow`
 
-| Type                          | Default     |
+| Tipo                          | Padrão      |
 | ----------------------------- | ----------- |
 | enum(`'visible'`, `'hidden'`) | `'visible'` |
 
@@ -314,16 +315,16 @@ Set an opacity value for the image. The number should be in the range from `0.0`
 
 ### `overlayColor` <div className="label android">Android</div>
 
-When the image has rounded corners, specifying an overlayColor will cause the remaining space in the corners to be filled with a solid color. This is useful in cases which are not supported by the Android implementation of rounded corners:
+Quando a imagem tem cantos arredondados, especificar um overlayColor fará com que o espaço restante nos cantos seja preenchido com uma cor sólida. Isso é útil em casos que não são suportados pela implementação Android de cantos arredondados:
 
-- Certain resize modes, such as `'contain'`
-- Animated GIFs
+- Certos modos de redimensionamento, como `'contain'`
+- GIFs animados
 
-A typical way to use this prop is with images displayed on a solid background and setting the `overlayColor` to the same color as the background.
+Uma maneira típica de usar esta propriedade é com imagens exibidas em um fundo sólido e definir o `overlayColor` para a mesma cor do fundo.
 
-For details of how this works under the hood, see [Fresco documentation](https://frescolib.org/docs/rounded-corners-and-circles.html).
+Para detalhes de como isso funciona internamente, consulte a [documentação do Fresco](https://frescolib.org/docs/rounded-corners-and-circles.html).
 
-| Type   |
+| Tipo   |
 | ------ |
 | string |
 
@@ -331,21 +332,21 @@ For details of how this works under the hood, see [Fresco documentation](https:/
 
 ### `resizeMode`
 
-Determines how to resize the image when the frame doesn't match the raw image dimensions. Defaults to `cover`.
+Determina como redimensionar a imagem quando o quadro não corresponde às dimensões da imagem bruta. O padrão é `cover`.
 
-- `cover`: Scale the image uniformly (maintain the image's aspect ratio) so that:
-  - Both dimensions (width and height) of the image will be equal to or larger than the corresponding dimension of the view (minus padding)
-  - At least one dimension of the scaled image will be equal to the corresponding dimension of the view (minus padding)
+- `cover`: Dimensiona a imagem uniformemente (mantém a proporção da imagem) de modo que:
+  - Ambas as dimensões (largura e altura) da imagem sejam iguais ou maiores que a dimensão correspondente da view (menos padding)
+  - Pelo menos uma dimensão da imagem dimensionada seja igual à dimensão correspondente da view (menos padding)
 
-- `contain`: Scale the image uniformly (maintain the image's aspect ratio) so that both dimensions (width and height) of the image will be equal to or less than the corresponding dimension of the view (minus padding).
+- `contain`: Dimensiona a imagem uniformemente (mantém a proporção da imagem) de modo que ambas as dimensões (largura e altura) da imagem sejam iguais ou menores que a dimensão correspondente da view (menos padding).
 
-- `stretch`: Scale width and height independently, This may change the aspect ratio of the src.
+- `stretch`: Dimensiona largura e altura independentemente. Isso pode alterar a proporção da imagem original.
 
-- `repeat`: Repeat the image to cover the frame of the view. The image will keep its size and aspect ratio, unless it is larger than the view, in which case it will be scaled down uniformly so that it is contained in the view.
+- `repeat`: Repete a imagem para cobrir o quadro da view. A imagem manterá seu tamanho e proporção, a menos que seja maior que a view, caso em que será reduzida uniformemente para que esteja contida na view.
 
-- `center`: Center the image in the view along both dimensions. If the image is larger than the view, scale it down uniformly so that it is contained in the view.
+- `center`: Centraliza a imagem na view ao longo de ambas as dimensões. Se a imagem for maior que a view, reduz uniformemente para que esteja contida na view.
 
-| Type                                                              | Default   |
+| Tipo                                                              | Padrão    |
 | ----------------------------------------------------------------- | --------- |
 | enum(`'cover'`, `'contain'`, `'stretch'`, `'repeat'`, `'center'`) | `'cover'` |
 
@@ -353,9 +354,9 @@ Determines how to resize the image when the frame doesn't match the raw image di
 
 ### `objectFit`
 
-Determines how to resize the image when the frame doesn't match the raw image dimensions.
+Determina como redimensionar a imagem quando o quadro não corresponde às dimensões da imagem bruta.
 
-| Type                                                   | Default   |
+| Tipo                                                   | Padrão    |
 | ------------------------------------------------------ | --------- |
 | enum(`'cover'`, `'contain'`, `'fill'`, `'scale-down'`) | `'cover'` |
 
@@ -363,8 +364,8 @@ Determines how to resize the image when the frame doesn't match the raw image di
 
 ### `tintColor`
 
-Changes the color of all the non-transparent pixels to the tintColor.
+Altera a cor de todos os pixels não transparentes para o tintColor.
 
-| Type               |
+| Tipo               |
 | ------------------ |
 | [color](colors.md) |
