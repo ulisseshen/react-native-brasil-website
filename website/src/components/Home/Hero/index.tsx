@@ -28,15 +28,15 @@ function Hero() {
           href={`https://twitter.com/reactnative?ref_src=twsrc%5Etfw`}
           data-show-count="false"
           data-size="large">
-          Follow @reactnative
+          Siga @reactnative
         </a>
         <GitHubButton
           href="https://github.com/facebook/react-native"
           data-icon="octicon-star"
           data-size="large"
           data-color-scheme={colorMode}
-          aria-label="Star facebook/react-native on GitHub">
-          Star
+          aria-label="Marque facebook/react-native como favorito no GitHub">
+          Favoritar
         </GitHubButton>
       </div>
       <div className={styles.backgroundContainer}>

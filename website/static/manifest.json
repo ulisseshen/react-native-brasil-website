@@ -1,7 +1,7 @@
 {
-  "name": "React Native · Learn once, write anywhere",
+  "name": "React Native · Aprenda uma vez, escreva em qualquer lugar",
   "short_name": "React Native",
-  "description": "A framework for building native apps for Android, iOS, and more using React",
+  "description": "Um framework para construir apps nativos para Android, iOS e mais usando React",
   "theme_color": "#20232a",
   "background_color": "#20232a",
   "display": "minimal-ui",
@@ -11,26 +11,26 @@
   "id": "./index.html",
   "shortcuts": [
     {
-      "name": "Docummentation",
-      "short_name": "Docs",
+      "name": "Documentação",
+      "short_name": "Documentação",
       "url": "/docs/getting-started",
       "icons": [{ "src": "img/pwa/manifest-icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Core Components",
-      "short_name": "Components",
+      "name": "Componentes Principais",
+      "short_name": "Componentes",
       "url": "/docs/components-and-apis",
       "icons": [{ "src": "img/pwa/manifest-icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Core APIs",
+      "name": "APIs Principais",
       "short_name": "APIs",
       "url": "/docs/accessibilityinfo",
       "icons": [{ "src": "img/pwa/manifest-icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Community",
-      "short_name": "Community",
+      "name": "Comunidade",
+      "short_name": "Comunidade",
       "url": "/community/overview",
       "icons": [{ "src": "img/pwa/manifest-icon-192.png", "sizes": "192x192" }]
     },

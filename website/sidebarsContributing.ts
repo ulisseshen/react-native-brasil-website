@@ -4,7 +4,7 @@ export default {
   contributing: [
     {
       type: 'category',
-      label: 'Contributing to React Native',
+      label: 'Contribuindo para o React Native',
       collapsed: false,
       collapsible: false,
       items: [
@@ -18,7 +18,7 @@ export default {
         'contribution-license-agreement',
         {
           type: 'category',
-          label: 'Managing repository',
+          label: 'Gerenciando repositório',
           collapsed: false,
           collapsible: false,
           items: [
