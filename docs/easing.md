@@ -1,49 +1,50 @@
 ---
+ia-translated: true
 id: easing
 title: Easing
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-The `Easing` module implements common easing functions. This module is used by [`Animated.timing()`](animated.md#timing) to convey physically believable motion in animations.
+O módulo `Easing` implementa funções de easing comuns. Este módulo é usado por [`Animated.timing()`](animated.md#timing) para transmitir movimento fisicamente plausível em animações.
 
-You can find a visualization of some common easing functions at https://easings.net/
+Você pode encontrar uma visualização de algumas funções de easing comuns em https://easings.net/
 
-### Predefined animations
+### Animações predefinidas
 
-The `Easing` module provides several predefined animations through the following methods:
+O módulo `Easing` fornece várias animações predefinidas através dos seguintes métodos:
 
-- [`back`](easing.md#back) provides a basic animation where the object goes slightly back before moving forward
-- [`bounce`](easing.md#bounce) provides a bouncing animation
-- [`ease`](easing.md#ease) provides a basic inertial animation
-- [`elastic`](easing.md#elastic) provides a basic spring interaction
+- [`back`](easing.md#back) fornece uma animação básica onde o objeto volta ligeiramente antes de se mover para frente
+- [`bounce`](easing.md#bounce) fornece uma animação de salto
+- [`ease`](easing.md#ease) fornece uma animação inercial básica
+- [`elastic`](easing.md#elastic) fornece uma interação de mola básica
 
-### Standard functions
+### Funções padrão
 
-Three standard easing functions are provided:
+Três funções de easing padrão são fornecidas:
 
 - [`linear`](easing.md#linear)
 - [`quad`](easing.md#quad)
 - [`cubic`](easing.md#cubic)
 
-The [`poly`](easing.md#poly) function can be used to implement quartic, quintic, and other higher power functions.
+A função [`poly`](easing.md#poly) pode ser usada para implementar funções quárticas, quínticas e outras funções de potência superior.
 
-### Additional functions
+### Funções adicionais
 
-Additional mathematical functions are provided by the following methods:
+Funções matemáticas adicionais são fornecidas pelos seguintes métodos:
 
-- [`bezier`](easing.md#bezier) provides a cubic bezier curve
-- [`circle`](easing.md#circle) provides a circular function
-- [`sin`](easing.md#sin) provides a sinusoidal function
-- [`exp`](easing.md#exp) provides an exponential function
+- [`bezier`](easing.md#bezier) fornece uma curva de Bézier cúbica
+- [`circle`](easing.md#circle) fornece uma função circular
+- [`sin`](easing.md#sin) fornece uma função senoidal
+- [`exp`](easing.md#exp) fornece uma função exponencial
 
-The following helpers are used to modify other easing functions.
+Os seguintes auxiliares são usados para modificar outras funções de easing.
 
-- [`in`](easing.md#in) runs an easing function forwards
-- [`inOut`](easing.md#inout) makes any easing function symmetrical
-- [`out`](easing.md#out) runs an easing function backwards
+- [`in`](easing.md#in) executa uma função de easing para frente
+- [`inOut`](easing.md#inout) torna qualquer função de easing simétrica
+- [`out`](easing.md#out) executa uma função de easing para trás
 
-## Example
+## Exemplo
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -371,9 +372,9 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `step0()`
 
@@ -381,7 +382,7 @@ export default App;
 static step0(n: number);
 ```
 
-A stepping function, returns 1 for any positive value of `n`.
+Uma função de passo, retorna 1 para qualquer valor positivo de `n`.
 
 ---
 
@@ -391,7 +392,7 @@ A stepping function, returns 1 for any positive value of `n`.
 static step1(n: number);
 ```
 
-A stepping function, returns 1 if `n` is greater than or equal to 1.
+Uma função de passo, retorna 1 se `n` for maior ou igual a 1.
 
 ---
 
@@ -401,7 +402,7 @@ A stepping function, returns 1 if `n` is greater than or equal to 1.
 static linear(t: number);
 ```
 
-A linear function, `f(t) = t`. Position correlates to elapsed time one to one.
+Uma função linear, `f(t) = t`. A posição se correlaciona com o tempo decorrido um para um.
 
 https://cubic-bezier.com/#0,0,1,1
 
@@ -413,7 +414,7 @@ https://cubic-bezier.com/#0,0,1,1
 static ease(t: number);
 ```
 
-A basic inertial interaction, similar to an object slowly accelerating to speed.
+Uma interação inercial básica, semelhante a um objeto acelerando lentamente até a velocidade.
 
 https://cubic-bezier.com/#.42,0,1,1
 
@@ -425,7 +426,7 @@ https://cubic-bezier.com/#.42,0,1,1
 static quad(t: number);
 ```
 
-A quadratic function, `f(t) = t * t`. Position equals the square of elapsed time.
+Uma função quadrática, `f(t) = t * t`. A posição é igual ao quadrado do tempo decorrido.
 
 https://easings.net/#easeInQuad
 
@@ -437,7 +438,7 @@ https://easings.net/#easeInQuad
 static cubic(t: number);
 ```
 
-A cubic function, `f(t) = t * t * t`. Position equals the cube of elapsed time.
+Uma função cúbica, `f(t) = t * t * t`. A posição é igual ao cubo do tempo decorrido.
 
 https://easings.net/#easeInCubic
 
@@ -449,7 +450,7 @@ https://easings.net/#easeInCubic
 static poly(n: number);
 ```
 
-A power function. Position is equal to the Nth power of elapsed time.
+Uma função de potência. A posição é igual à enésima potência do tempo decorrido.
 
 n = 4: https://easings.net/#easeInQuart n = 5: https://easings.net/#easeInQuint
 
@@ -461,7 +462,7 @@ n = 4: https://easings.net/#easeInQuart n = 5: https://easings.net/#easeInQuint
 static sin(t: number);
 ```
 
-A sinusoidal function.
+Uma função senoidal.
 
 https://easings.net/#easeInSine
 
@@ -473,7 +474,7 @@ https://easings.net/#easeInSine
 static circle(t: number);
 ```
 
-A circular function.
+Uma função circular.
 
 https://easings.net/#easeInCirc
 
@@ -485,7 +486,7 @@ https://easings.net/#easeInCirc
 static exp(t: number);
 ```
 
-An exponential function.
+Uma função exponencial.
 
 https://easings.net/#easeInExpo
 
@@ -497,9 +498,9 @@ https://easings.net/#easeInExpo
 static elastic(bounciness: number);
 ```
 
-A basic elastic interaction, similar to a spring oscillating back and forth.
+Uma interação elástica básica, semelhante a uma mola oscilando para frente e para trás.
 
-Default bounciness is 1, which overshoots a little bit once. 0 bounciness doesn't overshoot at all, and bounciness of N > 1 will overshoot about N times.
+O valor padrão de bounciness é 1, que ultrapassa um pouco uma vez. Bounciness 0 não ultrapassa de forma alguma, e bounciness de N > 1 ultrapassará cerca de N vezes.
 
 https://easings.net/#easeInElastic
 
@@ -511,7 +512,7 @@ https://easings.net/#easeInElastic
 static back(s)
 ```
 
-Use with `Animated.parallel()` to create a basic effect where the object animates back slightly as the animation starts.
+Use com `Animated.parallel()` para criar um efeito básico onde o objeto anima ligeiramente para trás quando a animação começa.
 
 ---
 
@@ -521,7 +522,7 @@ Use with `Animated.parallel()` to create a basic effect where the object animate
 static bounce(t: number);
 ```
 
-Provides a basic bouncing effect.
+Fornece um efeito básico de salto.
 
 https://easings.net/#easeInBounce
 
@@ -533,9 +534,9 @@ https://easings.net/#easeInBounce
 static bezier(x1: number, y1: number, x2: number, y2: number);
 ```
 
-Provides a cubic bezier curve, equivalent to CSS Transitions' `transition-timing-function`.
+Fornece uma curva de Bézier cúbica, equivalente ao `transition-timing-function` das Transições CSS.
 
-A useful tool to visualize cubic bezier curves can be found at https://cubic-bezier.com/
+Uma ferramenta útil para visualizar curvas de Bézier cúbicas pode ser encontrada em https://cubic-bezier.com/
 
 ---
 
@@ -545,7 +546,7 @@ A useful tool to visualize cubic bezier curves can be found at https://cubic-bez
 static in(easing: number);
 ```
 
-Runs an easing function forwards.
+Executa uma função de easing para frente.
 
 ---
 
@@ -555,7 +556,7 @@ Runs an easing function forwards.
 static out(easing: number);
 ```
 
-Runs an easing function backwards.
+Executa uma função de easing para trás.
 
 ---
 
@@ -565,4 +566,4 @@ Runs an easing function backwards.
 static inOut(easing: number);
 ```
 
-Makes any easing function symmetrical. The easing function will run forwards for half of the duration, then backwards for the rest of the duration.
+Torna qualquer função de easing simétrica. A função de easing será executada para frente durante metade da duração e depois para trás durante o restante da duração.

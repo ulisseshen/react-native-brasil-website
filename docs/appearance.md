@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: appearance
 title: Appearance
 ---
@@ -9,42 +10,42 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 import {Appearance} from 'react-native';
 ```
 
-The `Appearance` module exposes information about the user's appearance preferences, such as their preferred color scheme (light or dark).
+O módulo `Appearance` expõe informações sobre as preferências de aparência do usuário, como seu esquema de cores preferido (claro ou escuro).
 
-#### Developer notes
+#### Notas do desenvolvedor
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["android", "ios", "web"])}>
 
 <TabItem value="web">
 
 :::info
-The `Appearance` API is inspired by the [Media Queries draft](https://drafts.csswg.org/mediaqueries-5/) from the W3C. The color scheme preference is modeled after the [`prefers-color-scheme` CSS media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+A API `Appearance` é inspirada no [rascunho de Media Queries](https://drafts.csswg.org/mediaqueries-5/) do W3C. A preferência de esquema de cores é modelada após a [feature CSS `prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 :::
 
 </TabItem>
 <TabItem value="android">
 
 :::info
-The color scheme preference will map to the user's Light or [Dark theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) preference on Android 10 (API level 29) devices and higher.
+A preferência de esquema de cores mapeará para a preferência de tema Claro ou [Escuro](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) do usuário em dispositivos Android 10 (API level 29) e superiores.
 :::
 
 </TabItem>
 <TabItem value="ios">
 
 :::info
-The color scheme preference will map to the user's Light or [Dark Mode](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/dark-mode/) preference on iOS 13 devices and higher.
+A preferência de esquema de cores mapeará para a preferência de modo Claro ou [Escuro](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/dark-mode/) do usuário em dispositivos iOS 13 e superiores.
 :::
 
 :::note
-When taking a screenshot, by default, the color scheme may flicker between light and dark mode. It happens because the iOS takes snapshots on both color schemes and updating the user interface with color scheme is asynchronous.
+Ao tirar uma captura de tela, por padrão, o esquema de cores pode piscar entre modo claro e escuro. Isso acontece porque o iOS tira capturas em ambos os esquemas de cores e a atualização da interface do usuário com o esquema de cores é assíncrona.
 :::
 
 </TabItem>
 </Tabs>
 
-## Example
+## Exemplo
 
-You can use the `Appearance` module to determine if the user prefers a dark color scheme:
+Você pode usar o módulo `Appearance` para determinar se o usuário prefere um esquema de cores escuro:
 
 ```tsx
 const colorScheme = Appearance.getColorScheme();
@@ -53,13 +54,13 @@ if (colorScheme === 'dark') {
 }
 ```
 
-Although the color scheme is available immediately, this may change (e.g. scheduled color scheme change at sunrise or sunset). Any rendering logic or styles that depend on the user preferred color scheme should try to call this function on every render, rather than caching the value. For example, you may use the [`useColorScheme`](usecolorscheme) React hook as it provides and subscribes to color scheme updates, or you may use inline styles rather than setting a value in a `StyleSheet`.
+Embora o esquema de cores esteja disponível imediatamente, isso pode mudar (por exemplo, mudança programada de esquema de cores ao nascer ou pôr do sol). Qualquer lógica de renderização ou estilos que dependam do esquema de cores preferido do usuário devem tentar chamar esta função em cada renderização, em vez de armazenar o valor em cache. Por exemplo, você pode usar o hook React [`useColorScheme`](usecolorscheme), pois ele fornece e assina atualizações de esquema de cores, ou você pode usar estilos inline em vez de definir um valor em um `StyleSheet`.
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `getColorScheme()`
 
@@ -67,18 +68,18 @@ Although the color scheme is available immediately, this may change (e.g. schedu
 static getColorScheme(): 'light' | 'dark' | null;
 ```
 
-Indicates the current user preferred color scheme. The value may be updated later, either through direct user action (e.g. theme selection in device settings or application-level selected user interface style via `setColorScheme`) or on a schedule (e.g. light and dark themes that follow the day/night cycle).
+Indica o esquema de cores preferido atual do usuário. O valor pode ser atualizado posteriormente, seja através de ação direta do usuário (por exemplo, seleção de tema nas configurações do dispositivo ou estilo de interface do usuário selecionado no nível do aplicativo via `setColorScheme`) ou de forma programada (por exemplo, temas claro e escuro que seguem o ciclo dia/noite).
 
-Supported color schemes:
+Esquemas de cores suportados:
 
-- `'light'`: The user prefers a light color theme.
-- `'dark'`: The user prefers a dark color theme.
-- `null`: The user has not indicated a preferred color theme.
+- `'light'`: O usuário prefere um tema de cores claro.
+- `'dark'`: O usuário prefere um tema de cores escuro.
+- `null`: O usuário não indicou um tema de cores preferido.
 
-See also: `useColorScheme` hook.
+Veja também: hook `useColorScheme`.
 
 :::note
-`getColorScheme()` will always return `light` when debugging with Chrome.
+`getColorScheme()` sempre retornará `light` ao depurar com Chrome.
 :::
 
 ---
@@ -89,16 +90,16 @@ See also: `useColorScheme` hook.
 static setColorScheme('light' | 'dark' | null): void;
 ```
 
-Force the application to always adopt a light or dark interface style. The default value is `null` which causes the application to inherit the system's interface style. If you assign a different value, the new style applies to the application and all native elements within the application (Alerts, Pickers etc).
+Força o aplicativo a sempre adotar um estilo de interface claro ou escuro. O valor padrão é `null`, que faz com que o aplicativo herde o estilo de interface do sistema. Se você atribuir um valor diferente, o novo estilo se aplica ao aplicativo e a todos os elementos nativos dentro do aplicativo (Alerts, Pickers etc).
 
-Supported color schemes:
+Esquemas de cores suportados:
 
-- `light`: Apply light user interface style.
-- `dark`: Apply dark user interface style.
-- null: Follow the system's interface style.
+- `light`: Aplicar estilo de interface do usuário claro.
+- `dark`: Aplicar estilo de interface do usuário escuro.
+- null: Seguir o estilo de interface do sistema.
 
 :::note
-The change will not affect the system's selected interface style or any style set in other applications.
+A mudança não afetará o estilo de interface selecionado do sistema ou qualquer estilo definido em outros aplicativos.
 :::
 
 ---
@@ -111,4 +112,4 @@ static addChangeListener(
 ): NativeEventSubscription;
 ```
 
-Add an event handler that is fired when appearance preferences change.
+Adiciona um manipulador de evento que é disparado quando as preferências de aparência mudam.

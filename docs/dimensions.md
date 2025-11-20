@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: dimensions
 title: Dimensions
 ---
 
 :::info
-[`useWindowDimensions`](usewindowdimensions) is the preferred API for React components. Unlike `Dimensions`, it updates as the window's dimensions update. This works nicely with the React paradigm.
+[`useWindowDimensions`](usewindowdimensions) é a API preferida para componentes React. Diferentemente de `Dimensions`, ela atualiza conforme as dimensões da janela mudam. Isso funciona bem com o paradigma React.
 :::
 
 ```tsx
 import {Dimensions} from 'react-native';
 ```
 
-You can get the application window's width and height using the following code:
+Você pode obter a largura e altura da janela do aplicativo usando o seguinte código:
 
 ```tsx
 const windowWidth = Dimensions.get('window').width;
@@ -19,10 +20,10 @@ const windowHeight = Dimensions.get('window').height;
 ```
 
 :::note
-Although dimensions are available immediately, they may change (e.g due to device rotation, foldable devices etc) so any rendering logic or styles that depend on these constants should try to call this function on every render, rather than caching the value (for example, using inline styles rather than setting a value in a `StyleSheet`).
+Embora as dimensões estejam disponíveis imediatamente, elas podem mudar (por exemplo, devido à rotação do dispositivo, dispositivos dobráveis etc), portanto qualquer lógica de renderização ou estilos que dependam dessas constantes devem tentar chamar esta função a cada renderização, ao invés de armazenar o valor em cache (por exemplo, usando estilos inline ao invés de definir um valor em um `StyleSheet`).
 :::
 
-If you are targeting foldable devices or devices which can change the screen size or app window size, you can use the event listener available in the Dimensions module as shown in the below example.
+Se você está mirando dispositivos dobráveis ou dispositivos que podem mudar o tamanho da tela ou o tamanho da janela do aplicativo, você pode usar o event listener disponível no módulo Dimensions conforme mostrado no exemplo abaixo.
 
 ## Example
 
@@ -101,9 +102,9 @@ static addEventListener(
 ): EmitterSubscription;
 ```
 
-Add an event handler. Supported events:
+Adiciona um event handler. Eventos suportados:
 
-- `change`: Fires when a property within the `Dimensions` object changes. The argument to the event handler is a [`DimensionsValue`](#dimensionsvalue) type object.
+- `change`: Dispara quando uma propriedade dentro do objeto `Dimensions` muda. O argumento para o event handler é um objeto do tipo [`DimensionsValue`](#dimensionsvalue).
 
 ---
 
@@ -113,18 +114,18 @@ Add an event handler. Supported events:
 static get(dim: 'window' | 'screen'): ScaledSize;
 ```
 
-Initial dimensions are set before `runApplication` is called so they should be available before any other require's are run, but may be updated later.
+As dimensões iniciais são definidas antes de `runApplication` ser chamado, então elas devem estar disponíveis antes de qualquer outro require ser executado, mas podem ser atualizadas posteriormente.
 
-Example: `const {height, width} = Dimensions.get('window');`
+Exemplo: `const {height, width} = Dimensions.get('window');`
 
 **Parameters:**
 
-| Name                                                               | Type   | Description                                                                       |
-| ------------------------------------------------------------------ | ------ | --------------------------------------------------------------------------------- |
-| dim <div className="label basic required two-lines">Required</div> | string | Name of dimension as defined when calling `set`. Returns value for the dimension. |
+| Name                                                               | Type   | Description                                                                                    |
+| ------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------------------------------- |
+| dim <div className="label basic required two-lines">Required</div> | string | Nome da dimensão conforme definido ao chamar `set`. Retorna o valor para a dimensão. |
 
 :::note
-For Android the `window` dimension will be reduced by the size of status bar (if not translucent) and bottom navigation bar.
+No Android, a dimensão `window` será reduzida pelo tamanho da barra de status (se não for translúcida) e pela barra de navegação inferior.
 :::
 
 ## Type Definitions
@@ -133,10 +134,10 @@ For Android the `window` dimension will be reduced by the size of status bar (if
 
 **Properties:**
 
-| Name   | Type                                | Description                             |
-| ------ | ----------------------------------- | --------------------------------------- |
-| window | [ScaledSize](dimensions#scaledsize) | Size of the visible Application window. |
-| screen | [ScaledSize](dimensions#scaledsize) | Size of the device's screen.            |
+| Name   | Type                                | Description                                  |
+| ------ | ----------------------------------- | -------------------------------------------- |
+| window | [ScaledSize](dimensions#scaledsize) | Tamanho da janela do Application visível. |
+| screen | [ScaledSize](dimensions#scaledsize) | Tamanho da tela do dispositivo.            |
 
 ### ScaledSize
 

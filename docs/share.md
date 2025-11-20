@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: share
 title: Share
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## Example
+## Exemplo
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -90,9 +91,9 @@ export default ShareExample;
 </TabItem>
 </Tabs>
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `share()`
 
@@ -100,22 +101,22 @@ export default ShareExample;
 static share(content: ShareContent, options?: ShareOptions);
 ```
 
-Open a dialog to share text content.
+Abre um diálogo para compartilhar conteúdo de texto.
 
-In iOS, returns a Promise which will be invoked with an object containing `action` and `activityType`. If the user dismissed the dialog, the Promise will still be resolved with action being `Share.dismissedAction` and all the other keys being undefined. Note that some share options will not appear or work on the iOS simulator.
+No iOS, retorna uma Promise que será invocada com um objeto contendo `action` e `activityType`. Se o usuário dispensar o diálogo, a Promise ainda será resolvida com action sendo `Share.dismissedAction` e todas as outras chaves sendo undefined. Note que algumas opções de compartilhamento não aparecerão ou funcionarão no simulador iOS.
 
-In Android, returns a Promise which will always be resolved with action being `Share.sharedAction`.
+No Android, retorna uma Promise que sempre será resolvida com action sendo `Share.sharedAction`.
 
-**Properties:**
+**Propriedades:**
 
-| Name                                                         | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                  |
+| Nome                                                         | Tipo   | Descrição                                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| content <div className="label basic required">Required</div> | object | `message` - a message to share<br/>`url` - a URL to share <div className="label ios">iOS</div><br/>`title` - title of the message <div className="label android">Android</div><hr/>At least one of `url` and `message` is required.                                                                                                                                                          |
-| options                                                      | object | `dialogTitle` <div className="label android">Android</div><br/>`excludedActivityTypes` <div className="label ios">iOS</div><br/>`subject` - a subject to share via email <div className="label ios">iOS</div><br/>`tintColor` <div className="label ios">iOS</div><br/>`anchor` - the node to which the action sheet should be anchored (used for iPad) <div className="label ios">iOS</div> |
+| content <div className="label basic required">Obrigatório</div> | object | `message` - uma mensagem para compartilhar<br/>`url` - uma URL para compartilhar <div className="label ios">iOS</div><br/>`title` - título da mensagem <div className="label android">Android</div><hr/>Pelo menos um de `url` e `message` é obrigatório.                                                                                                                                          |
+| options                                                      | object | `dialogTitle` <div className="label android">Android</div><br/>`excludedActivityTypes` <div className="label ios">iOS</div><br/>`subject` - um assunto para compartilhar via email <div className="label ios">iOS</div><br/>`tintColor` <div className="label ios">iOS</div><br/>`anchor` - o nó ao qual a action sheet deve ser ancorada (usado para iPad) <div className="label ios">iOS</div> |
 
 ---
 
-## Properties
+## Propriedades
 
 ### `sharedAction`
 
@@ -123,7 +124,7 @@ In Android, returns a Promise which will always be resolved with action being `S
 static sharedAction: 'sharedAction';
 ```
 
-The content was successfully shared.
+O conteúdo foi compartilhado com sucesso.
 
 ---
 
@@ -133,4 +134,4 @@ The content was successfully shared.
 static dismissedAction: 'dismissedAction';
 ```
 
-The dialog has been dismissed.
+O diálogo foi dispensado.
