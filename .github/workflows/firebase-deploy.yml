@@ -1,0 +1,104 @@
+name: Firebase Production Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'website/**'
+      - 'docs/**'
+      - 'packages/**'
+      - 'plugins/**'
+      - 'firebase.json'
+      - '.firebaserc'
+      - 'package.json'
+      - 'yarn.lock'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 22
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build and Deploy to Firebase Hosting
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Verify Firebase config
+        run: |
+          if [ -f "firebase.json" ]; then
+            echo "✅ firebase.json found"
+          else
+            echo "❌ firebase.json not found"
+            exit 1
+          fi
+          if [ -f ".firebaserc" ]; then
+            echo "✅ .firebaserc found"
+          else
+            echo "❌ .firebaserc not found"
+            exit 1
+          fi
+
+      - name: Build production
+        run: yarn build
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+
+      - name: Verify build output
+        run: |
+          if [ -d "website/build" ]; then
+            echo "✅ Build directory found"
+            ls -lah website/build
+          else
+            echo "❌ Build directory not found"
+            exit 1
+          fi
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Write Firebase Service Account
+        run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > /tmp/firebase-key.json
+
+      - name: Deploy to Firebase Hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-key.json
+        run: |
+          echo "Deploying to Firebase Hosting..."
+          firebase deploy \
+            --only hosting \
+            --project transliteradu \
+            --non-interactive
+
+      - name: Check deployment status
+        run: echo "✅ Firebase deployment completed successfully"
+
+      - name: Cleanup credentials
+        if: always()
+        run: rm -f /tmp/firebase-key.json
