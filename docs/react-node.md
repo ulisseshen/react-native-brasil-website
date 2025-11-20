@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: react-node
 title: React Node Object Type
 ---
 
-A React Node is one of the following types:
+Um React Node é um dos seguintes tipos:
 
-- Boolean (which is ignored)
-- `null` or `undefined` (which is ignored)
+- Boolean (que é ignorado)
+- `null` ou `undefined` (que é ignorado)
 - Number
 - String
-- A React element (result of JSX)
-- An array of any of the above, possibly a nested one
+- Um elemento React (resultado de JSX)
+- Um array de qualquer um dos tipos acima, possivelmente aninhado

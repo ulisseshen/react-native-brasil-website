@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: document-nodes
-title: Document nodes
+title: Nós de documento
 ---
 
-Document nodes represent a complete native view tree. Apps using native navigation would provide a separate document node for each screen. Apps not using native navigation would generally provide a single document for the whole app (similar to single-page apps on Web).
+Nós de documento representam uma árvore completa de views nativas. Aplicativos que usam navegação nativa forneceriam um nó de documento separado para cada tela. Aplicativos que não usam navegação nativa geralmente forneceriam um único documento para todo o aplicativo (similar aos aplicativos de página única na Web).
 
 ```SnackPlayer ext=js&name=Document%20instance%20example
 import * as React from 'react';
@@ -37,24 +38,24 @@ export default function AccessingDocument() {
 
 ---
 
-## Reference
+## Referência
 
-### Web-compatible API
+### API compatível com a Web
 
-From [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
+De [`Document`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement):
 
-- Properties
+- Propriedades
   - [`childElementCount`](https://developer.mozilla.org/en-US/docs/Web/API/Document/childElementCount)
   - [`children`](https://developer.mozilla.org/en-US/docs/Web/API/Document/children)
   - [`documentElement`](https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement)
   - [`firstElementChild`](https://developer.mozilla.org/en-US/docs/Web/API/Document/firstElementChild)
   - [`lastElementChild`](https://developer.mozilla.org/en-US/docs/Web/API/Document/lastElementChild)
-- Methods
+- Métodos
   - [`getElementById()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
 
-From [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
+De [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
 
-- Properties
+- Propriedades
   - [`childNodes`](https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes)
   - [`firstChild`](https://developer.mozilla.org/en-US/docs/Web/API/Node/firstChild)
   - [`isConnected`](https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected)
@@ -68,7 +69,7 @@ From [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node):
   - [`parentNode`](https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode)
   - [`previousSibling`](https://developer.mozilla.org/en-US/docs/Web/API/Node/previousSibling)
   - [`textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
-- Methods
+- Métodos
   - [`compareDocumentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition)
   - [`contains()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/contains)
   - [`getRootNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode)

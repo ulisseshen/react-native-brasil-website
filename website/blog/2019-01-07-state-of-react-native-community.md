@@ -1,53 +1,54 @@
 ---
-title: The State of the React Native Community in 2018
+ia-translated: true
+title: O Estado da Comunidade React Native em 2018
 author: Lorenzo Sciandra
-authorTitle: Core Maintainer & React Native Developer
+authorTitle: Mantenedor Principal & Desenvolvedor React Native
 authorURL: 'https://github.com/kelset'
 authorImageURL: 'https://avatars2.githubusercontent.com/u/16104054?s=460&v=4'
 authorTwitter: kelset
 tags: [announcement]
 ---
 
-In 2018 the React Native Community made a number of changes to the way we develop and communicate about React Native. We believe that a few years from now we will look back and see that this shift was a turning point for React Native.
+Em 2018, a Comunidade React Native fez uma série de mudanças na forma como desenvolvemos e nos comunicamos sobre React Native. Acreditamos que daqui a alguns anos olharemos para trás e veremos que essa mudança foi um ponto de virada para o React Native.
 
-A lot of people are excited about the rewrite of React Native's architecture, widely known as [Fabric](https://github.com/react-native-community/discussions-and-proposals/issues/4). Among other things, this will fix fundamental limitations in React Native's architecture and will set up React Native for success in the future together with [JSI and TurboModules](https://github.com/react-native-community/discussions-and-proposals/issues/40).
+Muitas pessoas estão empolgadas com a reescrita da arquitetura do React Native, amplamente conhecida como [Fabric](https://github.com/react-native-community/discussions-and-proposals/issues/4). Entre outras coisas, isso corrigirá limitações fundamentais na arquitetura do React Native e preparará o React Native para o sucesso no futuro juntamente com [JSI and TurboModules](https://github.com/react-native-community/discussions-and-proposals/issues/40).
 
-The biggest shift in 2018 was to empower the React Native Community. From the beginning, Facebook encouraged developers from all around the world to participate in React Native's open source project. Since then, a number of core contributors emerged to handle, among other things, the release process.
+A maior mudança em 2018 foi capacitar a Comunidade React Native. Desde o início, o Facebook incentivou desenvolvedores de todo o mundo a participar do projeto open source do React Native. Desde então, vários colaboradores principais surgiram para lidar, entre outras coisas, com o processo de lançamento.
 
-These members took a few substantial steps towards making the whole community more empowered to shape the future of this project with the following resources:
+Esses membros deram alguns passos substanciais para tornar toda a comunidade mais capacitada para moldar o futuro deste projeto com os seguintes recursos:
 
 ## [`react-native-releases`](https://github.com/react-native-community/react-native-releases) 📬
 
-This repository, created in January, serves the dual purpose of allowing everyone to keep up the new releases in a more collaborative manner and opened the conversation of what would be part of a certain release to whomever wanted to suggest a cherry-pick (like for [0.57.8](https://github.com/react-native-community/react-native-releases/issues/71) and all its previous versions).
+Este repositório, criado em janeiro, serve o duplo propósito de permitir que todos acompanhem os novos lançamentos de uma maneira mais colaborativa e abriu a conversa sobre o que faria parte de um determinado lançamento para quem quisesse sugerir um cherry-pick (como para [0.57.8](https://github.com/react-native-community/react-native-releases/issues/71) e todas as suas versões anteriores).
 
-This has been the driving force behind moving away from a monthly release cycle, and the "long term support" approach currently used for version 0.57.x.
+Essa tem sido a força motriz por trás do afastamento de um ciclo de lançamento mensal, e da abordagem de "suporte de longo prazo" atualmente usada para a versão 0.57.x.
 
-Half of the credit for reaching these decisions goes to the other repository created this year:
+Metade do crédito por alcançar essas decisões vai para o outro repositório criado este ano:
 
 ## [`discussions-and-proposals`](https://github.com/react-native-community/discussions-and-proposals) 🗣
 
-This repository, created in July, expanded on the idea of a more open environment for conversations on React Native. Previously, this need was handled by issues labelled [`For Discussion`](https://github.com/facebook/react-native/labels/For%20Discussion) in the main repository, but we wanted to expand this strategy to an RFC approach that other libraries have (e.g. React).
+Este repositório, criado em julho, expandiu a ideia de um ambiente mais aberto para conversas sobre React Native. Anteriormente, essa necessidade era tratada por issues rotuladas como [`For Discussion`](https://github.com/facebook/react-native/labels/For%20Discussion) no repositório principal, mas queríamos expandir essa estratégia para uma abordagem RFC que outras bibliotecas têm (por exemplo, React).
 
-This experiment immediately found its role in the React Native lifecycle. The Facebook team is now using the community RFC process to discuss what could [be improved in React Native](https://github.com/react-native-community/discussions-and-proposals/issues/64), and coordinate the efforts around the [Lean Core project](https://github.com/react-native-community/discussions-and-proposals/issues/6) - among other interesting discussions.
+Este experimento imediatamente encontrou seu papel no ciclo de vida do React Native. A equipe do Facebook agora está usando o processo RFC da comunidade para discutir o que poderia [ser melhorado no React Native](https://github.com/react-native-community/discussions-and-proposals/issues/64), e coordenar os esforços em torno do [projeto Lean Core](https://github.com/react-native-community/discussions-and-proposals/issues/6) - entre outras discussões interessantes.
 
 ## [@ReactNativeComm](https://twitter.com/ReactNativeComm) 🐣
 
-We are aware that our approach to communicate these efforts has not been as effective as we would have liked, and in an attempt to give you all an easier time keeping up with everything going on in the React Native Community (from releases to active discussions) we created a new twitter account that you can rely on [@ReactNativeComm](https://twitter.com/ReactNativeComm).
+Estamos cientes de que nossa abordagem para comunicar esses esforços não tem sido tão eficaz quanto gostaríamos, e em uma tentativa de facilitar para todos vocês acompanharem tudo o que está acontecendo na Comunidade React Native (de lançamentos a discussões ativas), criamos uma nova conta no Twitter na qual vocês podem confiar [@ReactNativeComm](https://twitter.com/ReactNativeComm).
 
-If you are not on that social network, remember that you can always watch repositories via GitHub; this feature improved these past few months with the possibility of being notified only for releases, so you should consider using it anyway.
+Se você não está nessa rede social, lembre-se de que você sempre pode acompanhar repositórios via GitHub; este recurso melhorou nos últimos meses com a possibilidade de ser notificado apenas para lançamentos, então você deve considerar usá-lo de qualquer forma.
 
-## What awaits ahead 🎓
+## O que nos espera pela frente 🎓
 
-Over the past 7-8 months, core contributors enhanced the [React Native Community GitHub organization](https://github.com/react-native-community) to take more ownership over the development of React Native, and enhance collaboration with Facebook. But this always lacked the formal structure that similar projects may have in place.
+Nos últimos 7-8 meses, os colaboradores principais aprimoraram a [organização GitHub da Comunidade React Native](https://github.com/react-native-community) para assumir mais responsabilidade sobre o desenvolvimento do React Native, e melhorar a colaboração com o Facebook. Mas isso sempre careceu da estrutura formal que projetos similares podem ter em vigor.
 
-This organization can set the example for everyone in the larger developer community by enforcing a set of standards for all the packages/repos hosted in it, providing a single place for maintainers to help each other and contribute quality code that conforms to community-agreed standards.
+Esta organização pode dar o exemplo para todos na comunidade de desenvolvedores maior, aplicando um conjunto de padrões para todos os pacotes/repositórios hospedados nela, fornecendo um lugar único para mantenedores se ajudarem e contribuírem com código de qualidade que esteja em conformidade com os padrões acordados pela comunidade.
 
-In early 2019, we will have this new set of guidelines in place. Let us know what you think in the [dedicated discussion](https://github.com/react-native-community/discussions-and-proposals/issues/63).
+No início de 2019, teremos este novo conjunto de diretrizes em vigor. Deixe-nos saber o que você pensa na [discussão dedicada](https://github.com/react-native-community/discussions-and-proposals/issues/63).
 
-We are confident that with these changes, the community will become more collaborative so that when we reach 1.0, we will all continue to write (even more) awesome apps by leveraging this joint effort 🤗
+Estamos confiantes de que com essas mudanças, a comunidade se tornará mais colaborativa para que quando chegarmos à versão 1.0, todos nós continuaremos a escrever aplicativos (ainda mais) incríveis aproveitando este esforço conjunto 🤗
 
 ---
 
-I hope you are as excited as we are about the future of this community. We're excited to see all of you involved either in the conversations happening in the repositories listed above or via the awesome code you’ll produce.
+Espero que você esteja tão empolgado quanto nós sobre o futuro desta comunidade. Estamos empolgados para ver todos vocês envolvidos seja nas conversas acontecendo nos repositórios listados acima ou através do código incrível que vocês produzirão.
 
-Happy coding!
+Bom código!

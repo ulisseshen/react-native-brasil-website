@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: headless-js-android
 title: Headless JS
 ---
@@ -6,11 +7,11 @@ title: Headless JS
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 import constants from '@site/core/TabsConstants';
 
-Headless JS is a way to run tasks in JavaScript while your app is in the background. It can be used, for example, to sync fresh data, handle push notifications, or play music.
+Headless JS é uma forma de executar tarefas em JavaScript enquanto seu aplicativo está em segundo plano. Pode ser usado, por exemplo, para sincronizar dados atualizados, lidar com notificações push ou tocar música.
 
-## The JS API
+## A API JS
 
-A task is an async function that you register on `AppRegistry`, similar to registering React applications:
+Uma task é uma função async que você registra no `AppRegistry`, similar a registrar aplicações React:
 
 ```tsx
 import {AppRegistry} from 'react-native';
@@ -19,7 +20,7 @@ AppRegistry.registerHeadlessTask('SomeTaskName', () =>
 );
 ```
 
-Then, in `SomeTaskName.js`:
+Então, em `SomeTaskName.js`:
 
 ```tsx
 module.exports = async taskData => {
@@ -27,11 +28,11 @@ module.exports = async taskData => {
 };
 ```
 
-You can do anything in your task such as network requests, timers and so on, as long as it doesn't touch UI. Once your task completes (i.e. the promise is resolved), React Native will go into "paused" mode (unless there are other tasks running, or there is a foreground app).
+Você pode fazer qualquer coisa em sua task, como requisições de rede, timers e assim por diante, desde que não toque na UI. Uma vez que sua task for concluída (ou seja, a promise for resolvida), o React Native entrará no modo "pausado" (a menos que haja outras tasks em execução ou um aplicativo em primeiro plano).
 
-## The Platform API
+## A API da Plataforma
 
-Yes, this does still require some native code, but it's pretty thin. You need to extend `HeadlessJsTaskService` and override `getTaskConfig`, e.g.:
+Sim, isso ainda requer algum código nativo, mas é bem simples. Você precisa estender `HeadlessJsTaskService` e sobrescrever `getTaskConfig`, por exemplo:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -94,15 +95,15 @@ class MyTaskService : HeadlessJsTaskService() {
 </TabItem>
 </Tabs>
 
-Then add the service to your `AndroidManifest.xml` file inside the `application` tag:
+Então adicione o service ao seu arquivo `AndroidManifest.xml` dentro da tag `application`:
 
 ```xml
 <service android:name="com.example.MyTaskService" />
 ```
 
-Now, whenever you [start your service][0], e.g. as a periodic task or in response to some system event / broadcast, JS will spin up, run your task, then spin down.
+Agora, sempre que você [iniciar seu service][0], por exemplo, como uma tarefa periódica ou em resposta a algum evento do sistema / broadcast, o JS será iniciado, executará sua task e então será encerrado.
 
-Example:
+Exemplo:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -134,11 +135,11 @@ applicationContext.startForegroundService(service)
 </TabItem>
 </Tabs>
 
-## Retries
+## Tentativas
 
-By default, the headless JS task will not perform any retries. In order to do so, you need to create a `HeadlessJsRetryPolicy` and throw a specific `Error`.
+Por padrão, a task headless JS não realizará nenhuma tentativa. Para fazer isso, você precisa criar um `HeadlessJsRetryPolicy` e lançar um `Error` específico.
 
-`LinearCountingRetryPolicy` is an implementation of `HeadlessJsRetryPolicy` that allows you to specify a maximum number of retries with a fixed delay between each attempt. If that does not suit your needs then you can implement your own `HeadlessJsRetryPolicy`. These policies can be passed as an extra argument to the `HeadlessJsTaskConfig` constructor, e.g.
+`LinearCountingRetryPolicy` é uma implementação de `HeadlessJsRetryPolicy` que permite especificar um número máximo de tentativas com um atraso fixo entre cada tentativa. Se isso não atender às suas necessidades, você pode implementar seu próprio `HeadlessJsRetryPolicy`. Essas políticas podem ser passadas como um argumento extra para o construtor `HeadlessJsTaskConfig`, por exemplo:
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">
@@ -174,9 +175,9 @@ return HeadlessJsTaskConfig("SomeTaskName", Arguments.fromBundle(extras), 5000, 
 </TabItem>
 </Tabs>
 
-A retry attempt will only be made when a specific `Error` is thrown. Inside a headless JS task, you can import the error and throw it when a retry attempt is required.
+Uma tentativa será feita apenas quando um `Error` específico for lançado. Dentro de uma task headless JS, você pode importar o erro e lançá-lo quando uma tentativa for necessária.
 
-Example:
+Exemplo:
 
 ```tsx
 import {HeadlessJsTaskError} from 'HeadlessJsTask';
@@ -189,18 +190,18 @@ module.exports = async taskData => {
 };
 ```
 
-If you wish all errors to cause a retry attempt, you will need to catch them and throw the above error.
+Se você deseja que todos os erros causem uma tentativa, você precisará capturá-los e lançar o erro acima.
 
-## Caveats
+## Ressalvas
 
-- By default, your app will crash if you try to run a task while the app is in the foreground. This is to prevent developers from shooting themselves in the foot by doing a lot of work in a task and slowing the UI. You can pass a fourth `boolean` argument to control this behaviour.
-- If you start your service from a `BroadcastReceiver`, make sure to call `HeadlessJsTaskService.acquireWakeLockNow()` before returning from `onReceive()`.
+- Por padrão, seu aplicativo travará se você tentar executar uma task enquanto o aplicativo estiver em primeiro plano. Isso é para evitar que desenvolvedores se prejudiquem fazendo muito trabalho em uma task e deixando a UI lenta. Você pode passar um quarto argumento `boolean` para controlar esse comportamento.
+- Se você iniciar seu service a partir de um `BroadcastReceiver`, certifique-se de chamar `HeadlessJsTaskService.acquireWakeLockNow()` antes de retornar de `onReceive()`.
 
-## Example Usage
+## Exemplo de Uso
 
-Service can be started from Java API. First you need to decide when the service should be started and implement your solution accordingly. Here is an example that reacts to network connection change.
+O service pode ser iniciado a partir da API Java. Primeiro você precisa decidir quando o service deve ser iniciado e implementar sua solução adequadamente. Aqui está um exemplo que reage a mudanças na conexão de rede.
 
-Following lines shows part of Android manifest file for registering broadcast receiver.
+As linhas a seguir mostram parte do arquivo de manifesto Android para registrar o broadcast receiver.
 
 ```xml
 <receiver android:name=".NetworkChangeReceiver" >
@@ -210,7 +211,7 @@ Following lines shows part of Android manifest file for registering broadcast re
 </receiver>
 ```
 
-Broadcast receiver then handles intent that was broadcasted in onReceive function. This is a great place to check whether your app is on foreground or not. If app is not on foreground we can prepare our intent to be started, with no information or additional information bundled using `putExtra` (keep in mind bundle can handle only parcelable values). In the end service is started and wakelock is acquired.
+O broadcast receiver então lida com o intent que foi transmitido na função onReceive. Este é um ótimo lugar para verificar se seu aplicativo está em primeiro plano ou não. Se o aplicativo não estiver em primeiro plano, podemos preparar nosso intent para ser iniciado, sem informações ou com informações adicionais empacotadas usando `putExtra` (tenha em mente que bundle pode lidar apenas com valores parcelable). No final, o service é iniciado e o wakelock é adquirido.
 
 <Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 <TabItem value="java">

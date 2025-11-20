@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: transforms
-title: Transforms
+title: Transformações
 ---
 
-Transforms are style properties that will help you modify the appearance and position of your components using 2D or 3D transformations. However, once you apply transforms, the layouts remain the same around the transformed component hence it might overlap with the nearby components. You can apply margin to the transformed component, the nearby components or padding to the container to prevent such overlaps.
+Transformações são propriedades de estilo que ajudam você a modificar a aparência e a posição de seus components usando transformações 2D ou 3D. No entanto, uma vez que você aplica transformações, os layouts permanecem os mesmos ao redor do component transformado, o que pode fazer com que ele se sobreponha aos components próximos. Você pode aplicar margem ao component transformado, aos components próximos ou padding ao container para evitar tais sobreposições.
 
 ## Example
 
@@ -169,9 +170,9 @@ export default App;
 
 ## Transform
 
-`transform` accepts an array of transformation objects or space-separated string values. Each object specifies the property that will be transformed as the key, and the value to use in the transformation. Objects should not be combined. Use a single key/value pair per object.
+`transform` aceita um array de objetos de transformação ou valores em string separados por espaços. Cada objeto especifica a propriedade que será transformada como a chave, e o valor a ser usado na transformação. Os objetos não devem ser combinados. Use um único par chave/valor por objeto.
 
-The rotate transformations require a string so that the transform may be expressed in degrees (deg) or radians (rad). For example:
+As transformações de rotação requerem uma string para que a transformação possa ser expressa em graus (deg) ou radianos (rad). Por exemplo:
 
 ```js
 {
@@ -179,7 +180,7 @@ The rotate transformations require a string so that the transform may be express
 }
 ```
 
-The same could also be achieved using a space-separated string:
+O mesmo também pode ser alcançado usando uma string separada por espaços:
 
 ```js
 {
@@ -187,7 +188,7 @@ The same could also be achieved using a space-separated string:
 }
 ```
 
-The skew transformations require a string so that the transform may be expressed in degrees (deg). For example:
+As transformações de inclinação requerem uma string para que a transformação possa ser expressa em graus (deg). Por exemplo:
 
 ```js
 {
@@ -204,12 +205,12 @@ The skew transformations require a string so that the transform may be expressed
 ### `decomposedMatrix`, `rotation`, `scaleX`, `scaleY`, `transformMatrix`, `translateX`, `translateY`
 
 :::warning Deprecated
-Use the [`transform`](transforms#transform) prop instead.
+Use a prop [`transform`](transforms#transform) no lugar.
 :::
 
 ## Transform Origin
 
-The `transformOrigin` property sets the origin for a view's transformations. The transform origin is the point around which a transformation is applied. By default, the origin of a transform is `center`.
+A propriedade `transformOrigin` define a origem para as transformações de uma view. A origem da transformação é o ponto ao redor do qual uma transformação é aplicada. Por padrão, a origem de uma transformação é `center`.
 
 # Example
 
@@ -278,13 +279,13 @@ export default App;
 
 ### Values
 
-Transform origin supports `px`, `percentage` and keywords `top`, `left`, `right`, `bottom`, `center` values.
+Transform origin suporta valores em `px`, `percentage` e as palavras-chave `top`, `left`, `right`, `bottom`, `center`.
 
-The `transformOrigin` property may be specified using one, two, or three values, where each value represents an offset.
+A propriedade `transformOrigin` pode ser especificada usando um, dois ou três valores, onde cada valor representa um deslocamento.
 
 #### One-value syntax:
 
-- The value must be a `px`, a `percentage`, or one of the keywords `left`, `center`, `right`, `top`, and `bottom`.
+- O valor deve ser um `px`, uma `percentage`, ou uma das palavras-chave `left`, `center`, `right`, `top` e `bottom`.
 
 ```js
 {
@@ -295,8 +296,8 @@ The `transformOrigin` property may be specified using one, two, or three values,
 
 #### Two-value syntax:
 
-- First value (x-offset) must be a `px`, a `percentage`, or one of the keywords `left`, `center`, and `right`.
-- The second value (y-offset) must be a `px`, a `percentage`, or one of the keywords `top`, `center`, and `bottom`.
+- O primeiro valor (x-offset) deve ser um `px`, uma `percentage`, ou uma das palavras-chave `left`, `center` e `right`.
+- O segundo valor (y-offset) deve ser um `px`, uma `percentage`, ou uma das palavras-chave `top`, `center` e `bottom`.
 
 ```js
 {
@@ -308,8 +309,8 @@ The `transformOrigin` property may be specified using one, two, or three values,
 
 #### Three-value syntax:
 
-- The first two values are the same as for the two-value syntax.
-- The third value (z-offset) must be a `px`. It always represents the Z offset.
+- Os primeiros dois valores são os mesmos que para a sintaxe de dois valores.
+- O terceiro valor (z-offset) deve ser um `px`. Ele sempre representa o deslocamento Z.
 
 ```js
 {
@@ -320,7 +321,7 @@ The `transformOrigin` property may be specified using one, two, or three values,
 
 #### Array syntax
 
-`transformOrigin` also supports an array syntax. It makes it convenient to use it with Animated APIs. It also avoids string parsing, so should be more efficient.
+`transformOrigin` também suporta uma sintaxe de array. Isso torna conveniente usá-la com APIs Animated. Também evita análise de strings, então deve ser mais eficiente.
 
 ```js
 {
@@ -331,4 +332,4 @@ The `transformOrigin` property may be specified using one, two, or three values,
 }
 ```
 
-You may refer to MDN's guide on [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) for additional information.
+Você pode consultar o guia do MDN sobre [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) para informações adicionais.

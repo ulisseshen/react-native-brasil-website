@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: view-flattening
 title: View Flattening
 ---
@@ -7,15 +8,15 @@ import FabricWarning from './\_fabric-warning.mdx';
 
 <FabricWarning />
 
-#### View Flattening is an optimization by the React Native renderer to avoid deep layout trees.
+#### View Flattening é uma otimização pelo renderizador do React Native para evitar árvores de layout profundas.
 
-The React API is designed to be declarative and reusable through composition. This provides a great model for intuitive development. However, in implementation, these qualities of the API lead to the creation of deep [React Element Trees](architecture-glossary.md#react-element-tree-and-react-element), where a large majority of React Element Nodes only affect the layout of a View and don’t render anything on the screen. We call these types of nodes **“Layout-Only”** Nodes.
+A API React é projetada para ser declarativa e reutilizável através de composição. Isso fornece um ótimo modelo para desenvolvimento intuitivo. No entanto, na implementação, essas qualidades da API levam à criação de [React Element Trees](architecture-glossary.md#react-element-tree-and-react-element) profundas, onde uma grande maioria de React Element Nodes apenas afeta o layout de uma View e não renderiza nada na tela. Chamamos esses tipos de nós de nós **"Layout-Only"**.
 
-Conceptually, each of the Nodes of the React Element Tree have a 1:1 relationship with a view on the screen, therefore rendering a deep React Element Tree that is composed by a large amount of “Layout-Only” Node leads to poor performance during rendering.
+Conceitualmente, cada um dos Nodes da React Element Tree tem uma relação 1:1 com uma view na tela, portanto renderizar uma React Element Tree profunda que é composta por uma grande quantidade de Nodes "Layout-Only" leva a um desempenho ruim durante a renderização.
 
-Here is a common use case that is affected by the cost of "Layout Only" views.
+Aqui está um caso de uso comum que é afetado pelo custo de views "Layout Only".
 
-Imagine you want to render an image and a title that is handled by the `TitleComponent`, and you include this component as a child of the `ContainerComponent` that has some margin styles. After decomposing the components, the React code would look like this:
+Imagine que você queira renderizar uma imagem e um título que é manipulado pelo `TitleComponent`, e você inclui este componente como filho do `ContainerComponent` que tem alguns estilos de margem. Após decompor os componentes, o código React ficaria assim:
 
 ```jsx
 function MyComponent() {
@@ -32,18 +33,18 @@ function MyComponent() {
 }
 ```
 
-As part of the render process, React Native will produce the following trees:
+Como parte do processo de renderização, React Native produzirá as seguintes árvores:
 
 ![Diagram one](/docs/assets/Architecture/view-flattening/diagram-one.png)
 
-Note that the Views (2) and (3) are “Layout Only” views, because they are rendered on the screen but they only render a `margin` of `10 px` on top of their children.
+Note que as Views (2) e (3) são views "Layout Only", porque são renderizadas na tela mas apenas renderizam uma `margin` de `10 px` em cima de seus filhos.
 
-To improve the performance of these types of React Element Trees, the renderer implements a View Flattening mechanism that merges or flattens these types of Nodes, reducing the depth of the [host view](architecture-glossary.md#host-view-tree-and-host-view) hierarchy that is rendered on the screen. This algorithm takes into consideration props like: `margin`, `padding`, `backgroundColor`, `opacity`, etc.
+Para melhorar o desempenho desses tipos de React Element Trees, o renderizador implementa um mecanismo de View Flattening que mescla ou achata esses tipos de Nodes, reduzindo a profundidade da hierarquia de [host view](architecture-glossary.md#host-view-tree-and-host-view) que é renderizada na tela. Este algoritmo leva em consideração props como: `margin`, `padding`, `backgroundColor`, `opacity`, etc.
 
-The View Flattening algorithm is integrated by design as part of the diffing stage of the renderer, which means that we don’t use extra CPU cycles to optimize the React Element Tree flattening these types of views. As the rest of the core, the View flattening algorithm is implemented in C++ and its benefits are shared by default on all supported platforms.
+O algoritmo de View Flattening é integrado por design como parte do estágio de diffing do renderizador, o que significa que não usamos ciclos de CPU extras para otimizar o achatamento da React Element Tree desses tipos de views. Como o resto do núcleo, o algoritmo de view flattening é implementado em C++ e seus benefícios são compartilhados por padrão em todas as plataformas suportadas.
 
-In the case of the previous example, the Views (2) and (3) would be flattened as part of the “diffing algorithm” and as a result their styles will be merged into the View (1):
+No caso do exemplo anterior, as Views (2) e (3) seriam achatadas como parte do "algoritmo de diffing" e como resultado seus estilos serão mesclados na View (1):
 
 ![Diagram two](/docs/assets/Architecture/view-flattening/diagram-two.png)
 
-It is important to note that this optimization allows the renderer to avoid the creation and render of two host views. From the user’s perspective there are no visible changes on the screen.
+É importante notar que esta otimização permite que o renderizador evite a criação e renderização de duas host views. Da perspectiva do usuário não há mudanças visíveis na tela.

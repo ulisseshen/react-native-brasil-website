@@ -1,30 +1,31 @@
 ---
+ia-translated: true
 id: linking
 title: Linking
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-`Linking` gives you a general interface to interact with both incoming and outgoing app links.
+`Linking` fornece uma interface geral para interagir com links de aplicativos, tanto recebidos quanto enviados.
 
-Every Link (URL) has a URL Scheme, some websites are prefixed with `https://` or `http://` and the `http` is the URL Scheme. Let's call it scheme for short.
+Todo Link (URL) possui um URL Scheme, alguns sites são prefixados com `https://` ou `http://` e o `http` é o URL Scheme. Vamos chamá-lo de scheme de forma resumida.
 
-In addition to `https`, you're likely also familiar with the `mailto` scheme. When you open a link with the mailto scheme, your operating system will open an installed mail application. Similarly, there are schemes for making phone calls and sending SMS. Read more about [built-in URL](#built-in-url-schemes) schemes below.
+Além de `https`, você provavelmente também está familiarizado com o scheme `mailto`. Quando você abre um link com o scheme mailto, seu sistema operacional abrirá um aplicativo de e-mail instalado. Da mesma forma, existem schemes para fazer chamadas telefônicas e enviar SMS. Leia mais sobre [schemes de URL integrados](#built-in-url-schemes) abaixo.
 
-Like using the mailto scheme, it's possible to link to other applications by using custom url schemes. For example, when you get a **Magic Link** email from Slack, the **Launch Slack** button is an anchor tag with an href that looks something like: `slack://secret/magic-login/other-secret`. Like with Slack, you can tell the operating system that you want to handle a custom scheme. When the Slack app opens, it receives the URL that was used to open it. This is often referred to as deep linking. Read more about how to [get the deep link](#get-the-deep-link) into your app.
+Como ao usar o scheme mailto, é possível criar links para outros aplicativos usando schemes de URL personalizados. Por exemplo, quando você recebe um e-mail de **Magic Link** do Slack, o botão **Launch Slack** é uma âncora com um href que se parece com algo assim: `slack://secret/magic-login/other-secret`. Assim como com o Slack, você pode informar ao sistema operacional que deseja manipular um scheme personalizado. Quando o aplicativo Slack abre, ele recebe a URL que foi usada para abri-lo. Isso é frequentemente chamado de deep linking. Leia mais sobre como [obter o deep link](#get-the-deep-link) no seu aplicativo.
 
-A custom URL scheme isn't the only way to open your application on mobile. For example, if you want to email someone a link to be opened on mobile, using a custom URL scheme isn't ideal because the user might open the email on a desktop, where the link wouldn't work. Instead, you should use standard `https` links, such as `https://www.myapp.io/records/1234546`. On mobile, these links can be configured to open your app. On Android, this feature is called **Deep Links**, while on iOS, it is known as **Universal Links**.
+Um scheme de URL personalizado não é a única maneira de abrir seu aplicativo em dispositivos móveis. Por exemplo, se você quiser enviar um link por e-mail para alguém abrir no celular, usar um scheme de URL personalizado não é ideal porque o usuário pode abrir o e-mail em um desktop, onde o link não funcionaria. Em vez disso, você deve usar links `https` padrão, como `https://www.myapp.io/records/1234546`. Em dispositivos móveis, esses links podem ser configurados para abrir seu aplicativo. No Android, esse recurso é chamado de **Deep Links**, enquanto no iOS é conhecido como **Universal Links**.
 
 ### Built-in URL Schemes
 
-As mentioned in the introduction, there are some URL schemes for core functionality that exist on every platform. The following is a non-exhaustive list, but covers the most commonly used schemes.
+Conforme mencionado na introdução, existem alguns schemes de URL para funcionalidades principais que existem em todas as plataformas. A seguir está uma lista não exaustiva, mas que cobre os schemes mais comumente usados.
 
-| Scheme           | Description                                | iOS | Android |
-| ---------------- | ------------------------------------------ | --- | ------- |
-| `mailto`         | Open mail app, eg: mailto: hello@world.dev | ✅  | ✅      |
-| `tel`            | Open phone app, eg: tel:+123456789         | ✅  | ✅      |
-| `sms`            | Open SMS app, eg: sms:+123456789           | ✅  | ✅      |
-| `https` / `http` | Open web browser app, eg: https://expo.dev | ✅  | ✅      |
+| Scheme           | Description                                        | iOS | Android |
+| ---------------- | -------------------------------------------------- | --- | ------- |
+| `mailto`         | Abre o aplicativo de e-mail, ex: mailto: hello@world.dev | ✅  | ✅      |
+| `tel`            | Abre o aplicativo de telefone, ex: tel:+123456789  | ✅  | ✅      |
+| `sms`            | Abre o aplicativo de SMS, ex: sms:+123456789       | ✅  | ✅      |
+| `https` / `http` | Abre o aplicativo do navegador web, ex: https://expo.dev | ✅  | ✅      |
 
 ### Enabling Deep Links
 
@@ -33,16 +34,16 @@ As mentioned in the introduction, there are some URL schemes for core functional
   <p>The following section only applies to projects with native code exposed. If you are using the managed Expo workflow, see the guide on <a href="https://docs.expo.dev/guides/linking/">Linking</a> in the Expo documentation for the appropriate alternative.</p>
 </div>
 
-If you want to enable deep links in your app, please read the below guide:
+Se você deseja habilitar deep links no seu aplicativo, leia o guia abaixo:
 
 <Tabs groupId="syntax" queryString defaultValue={constants.defaultPlatform} values={constants.platforms}>
 <TabItem value="android">
 
 :::info
-For instructions on how to add support for deep linking on Android, refer to [Enabling Deep Links for App Content - Add Intent Filters for Your Deep Links](https://developer.android.com/training/app-indexing/deep-linking.html#adding-filters).
+Para obter instruções sobre como adicionar suporte para deep linking no Android, consulte [Enabling Deep Links for App Content - Add Intent Filters for Your Deep Links](https://developer.android.com/training/app-indexing/deep-linking.html#adding-filters).
 :::
 
-If you wish to receive the intent in an existing instance of MainActivity, you may set the `launchMode` of MainActivity to `singleTask` in `AndroidManifest.xml`. See [`<activity>`](https://developer.android.com/guide/topics/manifest/activity-element.html) documentation for more information.
+Se você deseja receber o intent em uma instância existente da MainActivity, pode definir o `launchMode` da MainActivity como `singleTask` no `AndroidManifest.xml`. Consulte a documentação de [`<activity>`](https://developer.android.com/guide/topics/manifest/activity-element.html) para mais informações.
 
 ```xml
 <activity
@@ -54,7 +55,7 @@ If you wish to receive the intent in an existing instance of MainActivity, you m
 <TabItem value="ios">
 
 :::note
-On iOS, you'll need to add the `LinkingIOS` folder into your header search paths as described in step 3 [here](linking-libraries-ios#step-3). If you also want to listen to incoming app links during your app's execution, you'll need to add the following lines to your `*AppDelegate.m`:
+No iOS, você precisará adicionar a pasta `LinkingIOS` aos seus caminhos de pesquisa de cabeçalho, conforme descrito na etapa 3 [aqui](linking-libraries-ios#step-3). Se você também quiser ouvir links de aplicativos recebidos durante a execução do seu aplicativo, precisará adicionar as seguintes linhas ao seu `*AppDelegate.m`:
 
 <Tabs groupId="ios-language" queryString defaultValue={constants.defaultAppleLanguage} values={constants.appleLanguages}>
 <TabItem value="objc">
@@ -71,7 +72,7 @@ On iOS, you'll need to add the `LinkingIOS` folder into your header search paths
 }
 ```
 
-If your app is using [Universal Links](https://developer.apple.com/ios/universal-links/), you'll need to add the following code as well:
+Se seu aplicativo estiver usando [Universal Links](https://developer.apple.com/ios/universal-links/), você precisará adicionar o seguinte código também:
 
 ```objc title="AppDelegate.mm"
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity
@@ -92,7 +93,7 @@ override func application(_ app: UIApplication, open url: URL, options: [UIAppli
 }
 ```
 
-If your app is using [Universal Links](https://developer.apple.com/ios/universal-links/), you'll need to add the following code as well:
+Se seu aplicativo estiver usando [Universal Links](https://developer.apple.com/ios/universal-links/), você precisará adicionar o seguinte código também:
 
 ```swift title="AppDelegate.swift"
 override func application(
@@ -117,15 +118,15 @@ override func application(
 
 ### Handling Deep Links
 
-There are two ways to handle URLs that open your app.
+Existem duas maneiras de manipular URLs que abrem seu aplicativo.
 
 #### 1. If the app is already open, the app is foregrounded and a Linking 'url' event is fired
 
-You can handle these events with `Linking.addEventListener('url', callback)` - it calls `callback({url})` with the linked URL
+Você pode manipular esses eventos com `Linking.addEventListener('url', callback)` - ele chama `callback({url})` com a URL vinculada
 
 #### 2. If the app is not already open, it is opened and the url is passed in as the initialURL
 
-You can handle these events with `Linking.getInitialURL()` - it returns a Promise that resolves to the URL, if there is one.
+Você pode manipular esses eventos com `Linking.getInitialURL()` - ele retorna uma Promise que resolve para a URL, se houver uma.
 
 ---
 
@@ -560,7 +561,7 @@ static addEventListener(
 ): EmitterSubscription;
 ```
 
-Add a handler to Linking changes by listening to the `url` event type and providing the handler.
+Adiciona um manipulador para mudanças de Linking ouvindo o tipo de evento `url` e fornecendo o manipulador.
 
 ---
 
@@ -570,33 +571,33 @@ Add a handler to Linking changes by listening to the `url` event type and provid
 static canOpenURL(url: string): Promise<boolean>;
 ```
 
-Determine whether or not an installed app can handle a given URL.
+Determina se um aplicativo instalado pode ou não manipular uma determinada URL.
 
-The method returns a `Promise` object. When it is determined whether or not the given URL can be handled, the promise is resolved and the first parameter is whether or not it can be opened.
+O método retorna um objeto `Promise`. Quando é determinado se a URL fornecida pode ou não ser manipulada, a promise é resolvida e o primeiro parâmetro indica se ela pode ou não ser aberta.
 
-The `Promise` will reject on Android if it was impossible to check if the URL can be opened or when targeting Android 11 (SDK 30) if you didn't specify the relevant intent queries in `AndroidManifest.xml`. Similarly on iOS, the promise will reject if you didn't add the specific scheme in the `LSApplicationQueriesSchemes` key inside `Info.plist` (see bellow).
+A `Promise` será rejeitada no Android se for impossível verificar se a URL pode ser aberta ou quando estiver visando o Android 11 (SDK 30) se você não especificou as consultas de intent relevantes no `AndroidManifest.xml`. Da mesma forma, no iOS, a promise será rejeitada se você não adicionou o scheme específico na chave `LSApplicationQueriesSchemes` dentro do `Info.plist` (veja abaixo).
 
 **Parameters:**
 
-| Name                                                     | Type   | Description      |
-| -------------------------------------------------------- | ------ | ---------------- |
-| url <div className="label basic required">Required</div> | string | The URL to open. |
+| Name                                                     | Type   | Description         |
+| -------------------------------------------------------- | ------ | ------------------- |
+| url <div className="label basic required">Required</div> | string | A URL para abrir.   |
 
 :::note
-For web URLs, the protocol (`"http://"`, `"https://"`) must be set accordingly!
+Para URLs web, o protocolo (`"http://"`, `"https://"`) deve ser definido de acordo!
 :::
 
 :::warning
-This method has limitations on iOS 9+. From [the official Apple documentation](https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl):
+Este método tem limitações no iOS 9+. Da [documentação oficial da Apple](https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl):
 
-- If your app is linked against an earlier version of iOS but is running in iOS 9.0 or later, you can call this method up to 50 times. After reaching that limit, subsequent calls always resolve to `false`. If the user reinstalls or upgrades the app, iOS resets the limit.
-- As of iOS 9, your app also needs to provide the `LSApplicationQueriesSchemes` key inside `Info.plist` or `canOpenURL()` will always resolve to `false`.
+- Se seu aplicativo está vinculado a uma versão anterior do iOS, mas está sendo executado no iOS 9.0 ou posterior, você pode chamar este método até 50 vezes. Após atingir esse limite, chamadas subsequentes sempre resolverão para `false`. Se o usuário reinstalar ou atualizar o aplicativo, o iOS redefine o limite.
+- A partir do iOS 9, seu aplicativo também precisa fornecer a chave `LSApplicationQueriesSchemes` dentro do `Info.plist` ou `canOpenURL()` sempre resolverá para `false`.
   :::
 
 :::info
-When targeting Android 11 (SDK 30) you must specify the intents for the schemes you want to handle in `AndroidManifest.xml`. A list of common intents can be found [here](https://developer.android.com/guide/components/intents-common).
+Ao visar o Android 11 (SDK 30), você deve especificar os intents para os schemes que deseja manipular no `AndroidManifest.xml`. Uma lista de intents comuns pode ser encontrada [aqui](https://developer.android.com/guide/components/intents-common).
 
-For example to handle `https` schemes the following needs to be added to your manifest:
+Por exemplo, para manipular schemes `https`, o seguinte precisa ser adicionado ao seu manifest:
 
 ```
 <manifest ...>
@@ -619,14 +620,14 @@ For example to handle `https` schemes the following needs to be added to your ma
 static getInitialURL(): Promise<string | null>;
 ```
 
-If the app launch was triggered by an app link, it will give the link url, otherwise it will give `null`.
+Se o lançamento do aplicativo foi acionado por um link de aplicativo, ele fornecerá a URL do link, caso contrário, fornecerá `null`.
 
 :::info
-To support deep linking on Android, refer https://developer.android.com/training/app-indexing/deep-linking.html#handling-intents.
+Para dar suporte a deep linking no Android, consulte https://developer.android.com/training/app-indexing/deep-linking.html#handling-intents.
 :::
 
 :::tip
-`getInitialURL` may return `null` when Remote JS Debugging is active. Disable the debugger to ensure it gets passed.
+`getInitialURL` pode retornar `null` quando a Depuração Remota de JS está ativa. Desative o depurador para garantir que seja passada.
 :::
 
 ---
@@ -637,7 +638,7 @@ To support deep linking on Android, refer https://developer.android.com/training
 static openSettings(): Promise<void>;
 ```
 
-Open the Settings app and displays the app’s custom settings, if it has any.
+Abre o aplicativo Settings e exibe as configurações personalizadas do aplicativo, se houver alguma.
 
 ---
 
@@ -647,24 +648,24 @@ Open the Settings app and displays the app’s custom settings, if it has any.
 static openURL(url: string): Promise<any>;
 ```
 
-Try to open the given `url` with any of the installed apps.
+Tenta abrir a `url` fornecida com qualquer um dos aplicativos instalados.
 
-You can use other URLs, like a location (e.g. "geo:37.484847,-122.148386" on Android or "https://maps.apple.com/?ll=37.484847,-122.148386" on iOS), a contact, or any other URL that can be opened with the installed apps.
+Você pode usar outras URLs, como uma localização (por exemplo, "geo:37.484847,-122.148386" no Android ou "https://maps.apple.com/?ll=37.484847,-122.148386" no iOS), um contato ou qualquer outra URL que possa ser aberta com os aplicativos instalados.
 
-The method returns a `Promise` object. If the user confirms the open dialog or the url automatically opens, the promise is resolved. If the user cancels the open dialog or there are no registered applications for the url, the promise is rejected.
+O método retorna um objeto `Promise`. Se o usuário confirmar a caixa de diálogo de abertura ou a URL abrir automaticamente, a promise é resolvida. Se o usuário cancelar a caixa de diálogo de abertura ou não houver aplicativos registrados para a URL, a promise é rejeitada.
 
 **Parameters:**
 
-| Name                                                     | Type   | Description      |
-| -------------------------------------------------------- | ------ | ---------------- |
-| url <div className="label basic required">Required</div> | string | The URL to open. |
+| Name                                                     | Type   | Description         |
+| -------------------------------------------------------- | ------ | ------------------- |
+| url <div className="label basic required">Required</div> | string | A URL para abrir.   |
 
 :::note
-This method will fail if the system doesn't know how to open the specified URL. If you're passing in a non-http(s) URL, it's best to check `canOpenURL()` first. For web URLs, the protocol (`"http://"`, `"https://"`) must be set accordingly!
+Este método falhará se o sistema não souber como abrir a URL especificada. Se você estiver passando uma URL que não seja http(s), é melhor verificar `canOpenURL()` primeiro. Para URLs web, o protocolo (`"http://"`, `"https://"`) deve ser definido de acordo!
 :::
 
 :::warning
-This method may behave differently in a simulator e.g. `"tel:"` links are not able to be handled in the iOS simulator as there's no access to the dialer app.
+Este método pode se comportar de maneira diferente em um simulador, por exemplo, links `"tel:"` não podem ser manipulados no simulador iOS, pois não há acesso ao aplicativo de discagem.
 :::
 
 ---
@@ -678,7 +679,7 @@ static sendIntent(
 ): Promise<void>;
 ```
 
-Launch an Android intent with extras.
+Inicia um intent do Android com extras.
 
 **Parameters:**
 

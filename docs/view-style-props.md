@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: view-style-props
-title: View Style Props
+title: Props de Estilo de View
 ---
 
-### Example
+### Exemplo
 
 ```SnackPlayer name=ViewStyleProps
 import React from 'react';
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-# Reference
+# Referência
 
 ## Props
 
@@ -185,7 +186,7 @@ export default App;
 
 ### `borderCurve` <div className="label ios">iOS</div>
 
-On iOS 13+, it is possible to change the corner curve of borders.
+No iOS 13+, é possível alterar a curvatura dos cantos das bordas.
 
 | Type                               |
 | ---------------------------------- |
@@ -219,7 +220,7 @@ On iOS 13+, it is possible to change the corner curve of borders.
 
 ### `borderRadius`
 
-If the rounded border is not visible, try applying `overflow: 'hidden'` as well.
+Se a borda arredondada não estiver visível, tente aplicar `overflow: 'hidden'` também.
 
 | Type                              |
 | --------------------------------- |
@@ -316,21 +317,21 @@ If the rounded border is not visible, try applying `overflow: 'hidden'` as well.
 ### `boxShadow`
 
 :::note
-`boxShadow` is only available on the [New Architecture](/architecture/landing-page). Outset shadows are only supported on **Android 9+**. Inset shadows are only supported on **Android 10+**.
+`boxShadow` está disponível apenas na [Nova Arquitetura](/architecture/landing-page). Sombras externas são suportadas apenas no **Android 9+**. Sombras internas são suportadas apenas no **Android 10+**.
 :::
 
-Adds a shadow effect to an element, with the ability to control the position, color, size, and blurriness of the shadow. This shadow either appears around the outside or inside of the border box of the element, depending on whether or not the shadow is _inset_. This is a spec-compliant implementation of the [web style prop of the same name](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow). Read more about all the arguments available in the [BoxShadowValue](./boxshadowvalue) documentation.
+Adiciona um efeito de sombra a um elemento, com a capacidade de controlar a posição, cor, tamanho e desfoque da sombra. Esta sombra aparece ao redor do lado externo ou interno da caixa de borda do elemento, dependendo se a sombra é _inset_ ou não. Esta é uma implementação compatível com a especificação da [propriedade de estilo web de mesmo nome](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow). Leia mais sobre todos os argumentos disponíveis na documentação de [BoxShadowValue](./boxshadowvalue).
 
-These shadows can be composed together so that a single `boxShadow` can be comprised of multiple different shadows.
+Essas sombras podem ser compostas juntas para que um único `boxShadow` possa ser composto de múltiplas sombras diferentes.
 
-`boxShadow` takes either a string which mimics the [web syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow#syntax) or an array of [BoxShadowValue](./boxshadowvalue) objects.
+`boxShadow` aceita uma string que imita a [sintaxe web](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow#syntax) ou um array de objetos [BoxShadowValue](./boxshadowvalue).
 | Type |
 | --------------------------- |
 | array of BoxShadowValue objects \| string |
 
 ### `cursor` <div className="label ios">iOS</div>
 
-On iOS 17+, Setting to `pointer` allows hover effects when a pointer (such as a trackpad or stylus on iOS, or the users' gaze on visionOS) is over the view.
+No iOS 17+, definir como `pointer` permite efeitos de hover quando um ponteiro (como um trackpad ou stylus no iOS, ou o olhar do usuário no visionOS) está sobre a view.
 
 | Type                        |
 | --------------------------- |
@@ -340,7 +341,7 @@ On iOS 17+, Setting to `pointer` allows hover effects when a pointer (such as a 
 
 ### `elevation` <div className="label android">Android</div>
 
-Sets the elevation of a view, using Android's underlying [elevation API](https://developer.android.com/training/material/shadows-clipping.html#Elevation). This adds a drop shadow to the item and affects z-order for overlapping views. Only supported on Android 5.0+, has no effect on earlier versions.
+Define a elevação de uma view, usando a [API de elevação](https://developer.android.com/training/material/shadows-clipping.html#Elevation) subjacente do Android. Isso adiciona uma sombra projetada ao item e afeta a ordem z para views sobrepostas. Suportado apenas no Android 5.0+, não tem efeito em versões anteriores.
 
 | Type   |
 | ------ |
@@ -351,38 +352,38 @@ Sets the elevation of a view, using Android's underlying [elevation API](https:/
 ### `filter`
 
 :::note
-`filter` is only available on the [New Architecture](/architecture/landing-page)
+`filter` está disponível apenas na [Nova Arquitetura](/architecture/landing-page)
 :::
 
-Adds a graphical filter to the `View`. This filter is comprised of any number of _filter functions_, which each represent some atomic change to the graphical composition of the `View`. The complete list of valid filter functions is defined below. `filter` will apply to descendants of the `View` as well as the `View` itself. `filter` implies `overflow: hidden`, so descendants will be clipped to fit the bounds of the `View`.
+Adiciona um filtro gráfico à `View`. Este filtro é composto por qualquer número de _funções de filtro_, cada uma representando alguma mudança atômica na composição gráfica da `View`. A lista completa de funções de filtro válidas é definida abaixo. `filter` será aplicado aos descendentes da `View` assim como à própria `View`. `filter` implica em `overflow: hidden`, então os descendentes serão cortados para caber nos limites da `View`.
 
-The following filter functions work across all platforms:
+As seguintes funções de filtro funcionam em todas as plataformas:
 
-- `brightness`: Changes the brightness of the `View`. Takes a non-negative number or percentage.
-- `opacity`: Changes the opacity, or alpha, of the `View`. Takes a non-negative number or percentage.
+- `brightness`: Altera o brilho da `View`. Aceita um número não negativo ou porcentagem.
+- `opacity`: Altera a opacidade, ou alfa, da `View`. Aceita um número não negativo ou porcentagem.
 
 :::note
-Due to issues with performance and spec compliance, these are the only two filter functions available on iOS. There are plans to explore some potential workarounds using SwiftUI instead of UIKit for this implementation.
+Devido a problemas com desempenho e conformidade com a especificação, essas são as únicas duas funções de filtro disponíveis no iOS. Há planos para explorar algumas soluções alternativas potenciais usando SwiftUI em vez de UIKit para esta implementação.
 :::
 
 <div className="label basic android">Android</div>
 
-The following filter functions work on Android only:
+As seguintes funções de filtro funcionam apenas no Android:
 
-- `blur`: Blurs the `View` with a [Guassian blur](https://en.wikipedia.org/wiki/Gaussian_blur), where the specified length represents the radius used in the blurring algorithm. Any non-negative DIP value is valid (no percents). The larger the value, the blurrier the result.
-- `contrast`: Changes the contrast of the `View`. Takes a non-negative number or percentage.
-- `dropShadow`: Adds a shadow around the alpha mask of the `View` (only non-zero alpha pixels in the `View` will cast a shadow). Takes an optional color representing the shadow color, and 2 or 3 lengths. If 2 lengths are specified they are interperted as `offsetX` and `offsetY` which will translate the shadow in the X and Y dimensions respectfully. If a 3rd length is given it is interpreted as the standard deviation of the Guassian blur used on the shadow - so a larger value will blur the shadow more. Read more about the arguments in [DropShadowValue](./dropshadowvalue.md).
-- `grayscale`: Converts the `View` to [grayscale](https://en.wikipedia.org/wiki/Grayscale) by the specified amount. Takes a non-negative number or percentage, where `1` or `100%` represents complete grayscale.
-- `hueRotate`: Changes the [hue](https://en.wikipedia.org/wiki/Hue) of the View. The argument of this function defines the angle of a color wheel around which the hue will be rotated, so e.g., `360deg` would have no effect. This angle can have either `deg` or `rad` units.
-- `invert`: Inverts the colors in the `View`. Takes a non-negative number or percentage, where `1` or `100%` represents complete inversion.
-- `sepia`: Converts the `View` to [sepia](<https://en.wikipedia.org/wiki/Sepia_(color)>). Takes a non-negative number or percentage, where `1` or `100%` represents complete sepia.
-- `saturate`: Changes the [saturation](https://en.wikipedia.org/wiki/Colorfulness) of the `View`. Takes a non-negative number or percentage.
+- `blur`: Desfoca a `View` com um [desfoque Gaussiano](https://en.wikipedia.org/wiki/Gaussian_blur), onde o comprimento especificado representa o raio usado no algoritmo de desfoque. Qualquer valor DIP não negativo é válido (sem porcentagens). Quanto maior o valor, mais desfocado o resultado.
+- `contrast`: Altera o contraste da `View`. Aceita um número não negativo ou porcentagem.
+- `dropShadow`: Adiciona uma sombra ao redor da máscara alfa da `View` (apenas pixels com alfa diferente de zero na `View` irão projetar uma sombra). Aceita uma cor opcional representando a cor da sombra e 2 ou 3 comprimentos. Se 2 comprimentos forem especificados, eles são interpretados como `offsetX` e `offsetY` que irão transladar a sombra nas dimensões X e Y respectivamente. Se um terceiro comprimento for fornecido, ele é interpretado como o desvio padrão do desfoque Gaussiano usado na sombra - então um valor maior irá desfocar a sombra mais. Leia mais sobre os argumentos em [DropShadowValue](./dropshadowvalue.md).
+- `grayscale`: Converte a `View` para [escala de cinza](https://en.wikipedia.org/wiki/Grayscale) pela quantidade especificada. Aceita um número não negativo ou porcentagem, onde `1` ou `100%` representa escala de cinza completa.
+- `hueRotate`: Altera a [matiz](https://en.wikipedia.org/wiki/Hue) da View. O argumento desta função define o ângulo de uma roda de cores ao redor da qual a matiz será rotacionada, então, por exemplo, `360deg` não teria efeito. Este ângulo pode ter unidades `deg` ou `rad`.
+- `invert`: Inverte as cores na `View`. Aceita um número não negativo ou porcentagem, onde `1` ou `100%` representa inversão completa.
+- `sepia`: Converte a `View` para [sépia](<https://en.wikipedia.org/wiki/Sepia_(color)>). Aceita um número não negativo ou porcentagem, onde `1` ou `100%` representa sépia completo.
+- `saturate`: Altera a [saturação](https://en.wikipedia.org/wiki/Colorfulness) da `View`. Aceita um número não negativo ou porcentagem.
 
 :::note
-`blur` and `dropShadow` are only supported on **Android 12+**
+`blur` e `dropShadow` são suportados apenas no **Android 12+**
 :::
 
-`filter` takes either an array of objects comprising of the above filter functions or a string which mimics the [web syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/filter#syntax).
+`filter` aceita um array de objetos compreendendo as funções de filtro acima ou uma string que imita a [sintaxe web](https://developer.mozilla.org/en-US/docs/Web/CSS/filter#syntax).
 | Type |
 | ------ |
 | array of objects: `{brightness: number\|string}`, `{opacity: number\|string}`, `{blur: number\|string}`, `{contrast: number\|string}`, `{dropShadow: DropShadowValue\|string}`, `{grayscale: number\|string}`, `{hueRotate: number\|string}`, `{invert: number\|string}`, `{sepia: number\|string}`, `{saturate: number\|string}` or string|
@@ -400,10 +401,10 @@ The following filter functions work on Android only:
 ### `outlineColor`
 
 :::note
-`outlineColor` is only available on the [New Architecture](/architecture/landing-page)
+`outlineColor` está disponível apenas na [Nova Arquitetura](/architecture/landing-page)
 :::
 
-Sets the color of an element's outline. See [web documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color) for more details.
+Define a cor do contorno de um elemento. Veja a [documentação web](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color) para mais detalhes.
 
 | Type               |
 | ------------------ |
@@ -414,10 +415,10 @@ Sets the color of an element's outline. See [web documentation](https://develope
 ### `outlineOffset`
 
 :::note
-`outlineOffset` is only available on the [New Architecture](/architecture/landing-page)
+`outlineOffset` está disponível apenas na [Nova Arquitetura](/architecture/landing-page)
 :::
 
-Sets the amount of space between an outline and the bounds of an element. Does not affect layout. See [web documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset) for more details.
+Define a quantidade de espaço entre um contorno e os limites de um elemento. Não afeta o layout. Veja a [documentação web](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset) para mais detalhes.
 
 | Type   |
 | ------ |
@@ -428,10 +429,10 @@ Sets the amount of space between an outline and the bounds of an element. Does n
 ### `outlineStyle`
 
 :::note
-`outlineStyle` is only available on the [New Architecture](/architecture/landing-page)
+`outlineStyle` está disponível apenas na [Nova Arquitetura](/architecture/landing-page)
 :::
 
-Sets the style of an element's outline. See [web documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style) for more details.
+Define o estilo do contorno de um elemento. Veja a [documentação web](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style) para mais detalhes.
 
 | Type                                    |
 | --------------------------------------- |
@@ -442,10 +443,10 @@ Sets the style of an element's outline. See [web documentation](https://develope
 ### `outlineWidth`
 
 :::note
-`outlineWidth` is only available on the [New Architecture](/architecture/landing-page)
+`outlineWidth` está disponível apenas na [Nova Arquitetura](/architecture/landing-page)
 :::
 
-The width of an outline which is drawn around an element, outside the border. Does not affect layout. See [web documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width) for more details.
+A largura de um contorno que é desenhado ao redor de um elemento, fora da borda. Não afeta o layout. Veja a [documentação web](https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width) para mais detalhes.
 
 | Type   |
 | ------ |
@@ -455,13 +456,15 @@ The width of an outline which is drawn around an element, outside the border. Do
 
 ### `pointerEvents`
 
-Controls whether the `View` can be the target of touch events.
+Controla se a `View` pode ser o alvo de eventos de toque.
 
-- `'auto'`: The View can be the target of touch events.
-- `'none'`: The View is never the target of touch events.
-- `'box-none'`: The View is never the target of touch events but its subviews can be.
-- `'box-only'`: The view can be the target of touch events but its subviews cannot be.
+- `'auto'`: A View pode ser o alvo de eventos de toque.
+- `'none'`: A View nunca é o alvo de eventos de toque.
+- `'box-none'`: A View nunca é o alvo de eventos de toque, mas suas subviews podem ser.
+- `'box-only'`: A view pode ser o alvo de eventos de toque, mas suas subviews não podem ser.
 
 | Type                                                  |
 | ----------------------------------------------------- |
 | enum(`'auto'`, `'box-none'`, `'box-only'`, `'none'` ) |
+
+---

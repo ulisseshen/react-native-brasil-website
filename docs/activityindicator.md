@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: activityindicator
 title: ActivityIndicator
 ---
 
-Displays a circular loading indicator.
+Exibe um indicador de carregamento circular.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=ActivityIndicator%20Example
 import React from 'react';
@@ -38,21 +39,21 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-# Reference
+# Referência
 
 ## Props
 
 ### [View Props](view#props)
 
-Inherits [View Props](view#props).
+Herda as [View Props](view#props).
 
 ---
 
 ### `animating`
 
-Whether to show the indicator (`true`) or hide it (`false`).
+Define se o indicador deve ser exibido (`true`) ou ocultado (`false`).
 
-| Type | Default |
+| Tipo | Padrão |
 | ---- | ------- |
 | bool | `true`  |
 
@@ -60,19 +61,19 @@ Whether to show the indicator (`true`) or hide it (`false`).
 
 ### `color`
 
-The foreground color of the spinner.
+A cor do primeiro plano do spinner.
 
-| Type            | Default                                                                                                                                                                                         |
+| Tipo            | Padrão                                                                                                                                                                                         |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [color](colors) | `null` (system accent default color)<div className="label android">Android</div><hr/><ins style={{background: '#999'}} className="color-box" />`'#999999'` <div className="label ios">iOS</div> |
+| [color](colors) | `null` (cor de destaque padrão do sistema)<div className="label android">Android</div><hr/><ins style={{background: '#999'}} className="color-box" />`'#999999'` <div className="label ios">iOS</div> |
 
 ---
 
 ### `hidesWhenStopped` <div className="label ios">iOS</div>
 
-Whether the indicator should hide when not animating.
+Define se o indicador deve ser ocultado quando não estiver animando.
 
-| Type | Default |
+| Tipo | Padrão |
 | ---- | ------- |
 | bool | `true`  |
 
@@ -80,14 +81,14 @@ Whether the indicator should hide when not animating.
 
 ### `ref`
 
-A ref setter that will be assigned an [element node](element-nodes) when mounted.
+Um setter de ref que será atribuído a um [element node](element-nodes) quando montado.
 
 ---
 
 ### `size`
 
-Size of the indicator.
+Tamanho do indicador.
 
-| Type                                                                               | Default   |
+| Tipo                                                                               | Padrão   |
 | ---------------------------------------------------------------------------------- | --------- |
 | enum(`'small'`, `'large'`)<hr/>number <div className="label android">Android</div> | `'small'` |

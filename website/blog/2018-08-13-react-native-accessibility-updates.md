@@ -1,5 +1,6 @@
 ---
-title: Accessibility API Updates
+ia-translated: true
+title: Atualizações da API de Acessibilidade
 author: Ziqi Chen
 authorTitle: Student at UC Berkeley
 authorURL: 'https://ziqichen.com/'
@@ -7,52 +8,52 @@ authorImageURL: 'https://avatars2.githubusercontent.com/u/13990087?s=400&u=5841d
 tags: [engineering]
 ---
 
-## Motivation
+## Motivação
 
-As technology advances and mobile apps become increasingly important to everyday life, the necessity of creating accessible applications has likewise grown in importance.
+À medida que a tecnologia avança e os apps móveis se tornam cada vez mais importantes para a vida cotidiana, a necessidade de criar aplicações acessíveis também cresceu em importância.
 
-React Native's limited Accessibility API has always been a huge pain point for developers, so we've made a few updates to the Accessibility API to make it easier to create inclusive mobile applications.
+A API de Acessibilidade limitada do React Native sempre foi um grande ponto de dor para os desenvolvedores, então fizemos algumas atualizações na API de Acessibilidade para tornar mais fácil criar aplicações móveis inclusivas.
 
-## Problems With the Existing API
+## Problemas com a API Existente
 
-### Problem One: Two Completely Different Yet Similar Props - accessibilityComponentType (Android) and accessibilityTraits (iOS)
+### Problema Um: Duas Props Completamente Diferentes Porém Similares - accessibilityComponentType (Android) e accessibilityTraits (iOS)
 
-`accessibilityComponentType` and `accessibilityTraits` are two properties that are used to tell TalkBack on Android and VoiceOver on iOS what kind of UI element the user is interacting with. The two biggest problems with these properties are that:
+`accessibilityComponentType` e `accessibilityTraits` são duas propriedades que são usadas para dizer ao TalkBack no Android e VoiceOver no iOS que tipo de elemento de UI o usuário está interagindo. Os dois maiores problemas com essas propriedades são que:
 
-1. **They are two different properties with different usage methods, yet have the same purpose.** In the previous API, these are two separate properties (one for each platform), which was not only inconvenient, but also confusing to many developers. `accessibilityTraits` on iOS allows 17 different values while `accessibilityComponentType` on Android allows only 4 values. Furthermore, the values for the most part had no overlap. Even the input types for these two properties are different. `accessibilityTraits` allows either an array of traits to be passed in or a single trait, while `accessibilityComponentType` allows only a single value.
-2. **There is very limited functionality on Android.** With the old property, the only UI elements that Talkback were able to recognize were “button,” “radiobutton_checked,” and “radiobutton_unchecked.”
+1. **Elas são duas propriedades diferentes com métodos de uso diferentes, mas têm o mesmo propósito.** Na API anterior, essas são duas propriedades separadas (uma para cada plataforma), o que não era apenas inconveniente, mas também confuso para muitos desenvolvedores. `accessibilityTraits` no iOS permite 17 valores diferentes enquanto `accessibilityComponentType` no Android permite apenas 4 valores. Além disso, os valores em sua maioria não tinham sobreposição. Até os tipos de entrada para essas duas propriedades são diferentes. `accessibilityTraits` permite que um array de traits seja passado ou um único trait, enquanto `accessibilityComponentType` permite apenas um único valor.
+2. **Há funcionalidade muito limitada no Android.** Com a antiga propriedade, os únicos elementos de UI que o Talkback era capaz de reconhecer eram "button," "radiobutton_checked," e "radiobutton_unchecked."
 
-### Problem Two: Non-existent Accessibility Hints:
+### Problema Dois: Hints de Acessibilidade Inexistentes:
 
-Accessibility Hints help users using TalkBack or VoiceOver understand what will happen when they perform an action on an accessibility element that is not apparent by only the accessibility label. These hints can be turned on and off in the settings panel. Previously, React Native's API did not support accessibility hints at all.
+Hints de Acessibilidade ajudam usuários usando TalkBack ou VoiceOver a entender o que acontecerá quando eles executarem uma ação em um elemento de acessibilidade que não é aparente apenas pelo label de acessibilidade. Esses hints podem ser ligados e desligados no painel de configurações. Anteriormente, a API do React Native não suportava hints de acessibilidade de forma alguma.
 
-### Problem Three: Ignoring Inverted Colors:
+### Problema Três: Ignorando Cores Invertidas:
 
-Some users with vision loss use inverted colors on their mobile phones to have greater screen contrast. Apple provided an API for iOS which allows developers to ignore certain views. This way, images and videos aren't distorted when a user has the inverted colors setting on. This API is currently unsupported by React Native.
+Alguns usuários com perda de visão usam cores invertidas em seus telefones celulares para ter maior contraste de tela. A Apple forneceu uma API para iOS que permite aos desenvolvedores ignorar certas views. Dessa forma, imagens e vídeos não são distorcidos quando um usuário tem a configuração de cores invertidas ativada. Esta API atualmente não é suportada pelo React Native.
 
-## Design of the New API
+## Design da Nova API
 
-### Solution One: Combining accessibilityComponentType (Android) and accessibilityTraits (iOS)
+### Solução Um: Combinando accessibilityComponentType (Android) e accessibilityTraits (iOS)
 
-In order to solve the confusion between `accessibilityComponentType` and `accessibilityTraits`, we decided to merge them into a single property. This made sense because they technically had the same intended functionality and by merging them, developers no longer had to worry about platform specific intricacies when building accessibility features.
+Para resolver a confusão entre `accessibilityComponentType` e `accessibilityTraits`, decidimos mesclá-las em uma única propriedade. Isso fazia sentido porque tecnicamente tinham a mesma funcionalidade pretendida e ao mesclá-las, os desenvolvedores não precisavam mais se preocupar com peculiaridades específicas da plataforma ao construir recursos de acessibilidade.
 
 **Background**
 
-On iOS, `UIAccessibilityTraits` is a property that can be set on any NSObject. Each of the 17 traits passed in through the javascript property to native is mapped to a `UIAccessibilityTraits` element in Objective-C. Traits are each represented by a long int, and every trait that is set is ORed together.
+No iOS, `UIAccessibilityTraits` é uma propriedade que pode ser definida em qualquer NSObject. Cada um dos 17 traits passados através da propriedade javascript para nativo é mapeado para um elemento `UIAccessibilityTraits` em Objective-C. Traits são cada um representados por um long int, e cada trait que é definido é feito OR juntos.
 
-On Android however, `AccessibilityComponentType` is a concept that was made up by React Native, and doesn't directly map to any properties in Android. Accessibility is handled by an accessibility delegate. Each view has a default accessibility delegate. If you want to customize any accessibility actions, you have to create a new accessibility delegate, override specific methods you want to customize, and then set the accessibility delegate of the view you are handling to be associated with the new delegate. When a developer set `AccessibilityComponentType`, the native code created a new delegate based off of the component that was passed in, and set the view to have that accessibility delegate.
+No Android, no entanto, `AccessibilityComponentType` é um conceito que foi inventado pelo React Native, e não mapeia diretamente para quaisquer propriedades no Android. Acessibilidade é tratada por um delegate de acessibilidade. Cada view tem um delegate de acessibilidade padrão. Se você quiser customizar quaisquer ações de acessibilidade, você tem que criar um novo delegate de acessibilidade, sobrescrever métodos específicos que você quer customizar, e então definir o delegate de acessibilidade da view que você está tratando para ser associado com o novo delegate. Quando um desenvolvedor definiu `AccessibilityComponentType`, o código nativo criou um novo delegate baseado no componente que foi passado, e definiu a view para ter aquele delegate de acessibilidade.
 
-**Changes Made**
+**Mudanças Feitas**
 
-For our new property, we wanted to create a superset of the two properties. We decided to keep the new property modeled mostly after the existing property `accessibilityTraits`, since `accessibilityTraits` has significantly more values. The functionality of Android for these traits would be polyfilled in by modifying the Accessibility Delegate.
+Para nossa nova propriedade, queríamos criar um superset das duas propriedades. Decidimos manter a nova propriedade modelada principalmente após a propriedade existente `accessibilityTraits`, já que `accessibilityTraits` tem significativamente mais valores. A funcionalidade do Android para esses traits seria polyfilled modificando o Accessibility Delegate.
 
-There are 17 values of UIAccessibilityTraits that `accessibilityTraits` on iOS can be set to. However, we didn't include all of them as possible values to our new property. This is because the effect of setting some of these traits is actually not very well known, and many of these values are virtually never used.
+Existem 17 valores de UIAccessibilityTraits para os quais `accessibilityTraits` no iOS pode ser definido. No entanto, não incluímos todos eles como valores possíveis para nossa nova propriedade. Isso porque o efeito de definir alguns desses traits na verdade não é muito bem conhecido, e muitos desses valores são virtualmente nunca usados.
 
-The values UIAccessibilityTraits were set to generally took on one of two purposes. They either described a role that UI element had, or they described the state a UI element was in. Most uses of the previous properties we observed usually used one value that represented a role and combined it with either “state selected,” “state disabled,” or both. Therefore, we decided to create two new accessibility properties: `accessibilityRole` and `accessibilityState`.
+Os valores para os quais UIAccessibilityTraits foram definidos geralmente assumiam um de dois propósitos. Eles descreviam um papel que o elemento de UI tinha, ou descreviam o estado em que um elemento de UI estava. A maioria dos usos das propriedades anteriores que observamos geralmente usava um valor que representava um papel e o combinava com "state selected," "state disabled," ou ambos. Portanto, decidimos criar duas novas propriedades de acessibilidade: `accessibilityRole` e `accessibilityState`.
 
 **`accessibilityRole`**
 
-The new property, `accessibilityRole`, is used to tell Talkback or Voiceover the role of a UI Element. This new property can take on one of the following values:
+A nova propriedade, `accessibilityRole`, é usada para dizer ao Talkback ou Voiceover o papel de um Elemento de UI. Esta nova propriedade pode assumir um dos seguintes valores:
 
 - `none`
 - `button`
@@ -66,79 +67,79 @@ The new property, `accessibilityRole`, is used to tell Talkback or Voiceover the
 - `summary`
 - `imagebutton`
 
-This property only allows one value to be passed in because UI elements generally don't logically take on more than one of these. The exception is image and button, so we've added a role imagebutton that is a combination of both.
+Esta propriedade permite apenas que um valor seja passado porque elementos de UI geralmente não assumem logicamente mais de um desses. A exceção é imagem e botão, então adicionamos um papel imagebutton que é uma combinação de ambos.
 
 **`accessibilityStates`**
 
-The new property, `accessibilityStates`, is used to tell Talkback or Voiceover the state a UI Element is in. This property takes on an Array containing one or both of the following values:
+A nova propriedade, `accessibilityStates`, é usada para dizer ao Talkback ou Voiceover o estado em que um Elemento de UI está. Esta propriedade assume um Array contendo um ou ambos os seguintes valores:
 
 - `selected`
 - `disabled`
 
-### Solution Two: Adding Accessibility Hints
+### Solução Dois: Adicionando Hints de Acessibilidade
 
-For this, we added a new property, `accessibilityHint`. Setting this property will allow Talkback or Voiceover to recite the hint to users.
+Para isso, adicionamos uma nova propriedade, `accessibilityHint`. Definir esta propriedade permitirá que o Talkback ou Voiceover recite o hint para os usuários.
 
 **`accessibilityHint`**
 
-This property takes in the accessibility hint to be read in the form of a String.
+Esta propriedade recebe o hint de acessibilidade a ser lido na forma de uma String.
 
-On iOS, setting this property will set the corresponding native property AccessibilityHint on the view. The hint will then be read by Voiceover if Accessibility Hints are turned on in the iPhone.
+No iOS, definir esta propriedade definirá a propriedade nativa correspondente AccessibilityHint na view. O hint será então lido pelo Voiceover se Accessibility Hints estiverem ativados no iPhone.
 
-On Android, setting this property appends the value of the hint to the end of the accessibility label. The upside to this implementation is that it mimics the behavior of hints on iOS, but the downside to this implementation is that these hints cannot be turned off in the settings on Android the way they can be on iOS.
+No Android, definir esta propriedade anexa o valor do hint ao final do label de acessibilidade. O lado positivo desta implementação é que ela imita o comportamento de hints no iOS, mas o lado negativo desta implementação é que esses hints não podem ser desligados nas configurações no Android da maneira que podem ser no iOS.
 
-The reason we made this decision on Android is because normally, accessibility hints correspond with a specific action (e.g. click), and we wanted to keep behaviors consistent across platforms.
+A razão pela qual tomamos esta decisão no Android é porque normalmente, hints de acessibilidade correspondem com uma ação específica (por exemplo, clique), e queríamos manter comportamentos consistentes entre plataformas.
 
-### Solution to Problem Three
+### Solução para o Problema Três
 
 **`accessibilityIgnoresInvertColors`**
 
-We exposed Apple's api AccessibilityIgnoresInvertColors to JavaScript, so now when you have a view where you don't want colors to be inverted (e.g image), you can set this property to true, and it won't be inverted.
+Expusemos a api AccessibilityIgnoresInvertColors da Apple para JavaScript, então agora quando você tem uma view onde não quer que as cores sejam invertidas (por exemplo, imagem), você pode definir esta propriedade como true, e ela não será invertida.
 
-## New Usage
+## Novo Uso
 
-These new properties will become available in the React Native 0.57 release.
+Essas novas propriedades estarão disponíveis no lançamento React Native 0.57.
 
-### How to Upgrade
+### Como Atualizar
 
-If you are currently using `accessibilityComponentType` and `accessibilityTraits`, here are the steps you can take to upgrade to the new properties.
+Se você está usando atualmente `accessibilityComponentType` e `accessibilityTraits`, aqui estão os passos que você pode tomar para atualizar para as novas propriedades.
 
-#### 1. Using jscodeshift
+#### 1. Usando jscodeshift
 
-The most simple use cases can be replaced by running a jscodeshift script.
+Os casos de uso mais simples podem ser substituídos executando um script jscodeshift.
 
-This [script](https://gist.github.com/ziqichen6/246e5778617224d2b4aff198dab0305d) replaces the following instances:
-
-```
-accessibilityTraits=“trait”
-accessibilityTraits={[“trait”]}
-```
-
-With
+Este [script](https://gist.github.com/ziqichen6/246e5778617224d2b4aff198dab0305d) substitui as seguintes instâncias:
 
 ```
-accessibilityRole= “trait”
+accessibilityTraits="trait"
+accessibilityTraits={["trait"]}
 ```
 
-This script also removes instances of `AccessibilityComponentType` (assuming everywhere you set `AccessibilityComponentType`, you would also set `AccessibilityTraits`).
+Com
 
-#### 2. Using a manual codemod
+```
+accessibilityRole= "trait"
+```
 
-For the cases that used `AccessibilityTraits` that don't have a corresponding value for `AccessibilityRole`, and the cases where multiple traits were passed into `AccessibilityTraits`, a manual codemod would have to be done.
+Este script também remove instâncias de `AccessibilityComponentType` (assumindo que em todos os lugares que você define `AccessibilityComponentType`, você também definiria `AccessibilityTraits`).
 
-In general,
+#### 2. Usando um codemod manual
+
+Para os casos que usaram `AccessibilityTraits` que não têm um valor correspondente para `AccessibilityRole`, e os casos onde múltiplos traits foram passados para `AccessibilityTraits`, um codemod manual teria que ser feito.
+
+Em geral,
 
 ```tsx
-accessibilityTraits= {[“button”, “selected”]}
+accessibilityTraits= {["button", "selected"]}
 ```
 
-would be manually replaced with
+seria manualmente substituído com
 
 ```tsx
-accessibilityRole=“button”
-accessibilityStates={[“selected”]}
+accessibilityRole="button"
+accessibilityStates={["selected"]}
 ```
 
-These properties are already being used in Facebook's codebase. The codemod for Facebook was surprisingly simple. The jscodeshift script fixed about half of our instances, and the other half was fixed manually. Overall, the entire process took less than a few hours.
+Essas propriedades já estão sendo usadas na base de código do Facebook. O codemod para o Facebook foi surpreendentemente simples. O script jscodeshift corrigiu cerca de metade de nossas instâncias, e a outra metade foi corrigida manualmente. No geral, todo o processo levou menos de algumas horas.
 
-Hopefully you will find the updated API useful! And please continue making apps accessible! #inclusion
+Esperamos que você ache a API atualizada útil! E por favor continue tornando apps acessíveis! #inclusion

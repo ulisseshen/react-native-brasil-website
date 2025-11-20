@@ -1,30 +1,31 @@
 ---
-title: How to Build from Source
+ia-translated: true
+title: Como Compilar a Partir do Código-Fonte
 ---
 
-You will need to build React Native from source if you want to work on a new feature/bug fix, try out the latest features which are not released yet, or maintain your own fork with patches that cannot be merged to the core.
+Você precisará compilar o React Native a partir do código-fonte se quiser trabalhar em uma nova funcionalidade/correção de bug, experimentar as funcionalidades mais recentes que ainda não foram lançadas, ou manter seu próprio fork com patches que não podem ser mesclados no núcleo.
 
 ## Android
 
-### Prerequisites
+### Pré-requisitos
 
-To build from source, you need to have the Android SDK installed. If you followed the [Setting up the development environment](/docs/environment-setup) guide, you should already be set up.
+Para compilar a partir do código-fonte, você precisa ter o Android SDK instalado. Se você seguiu o guia [Configurando o ambiente de desenvolvimento](/docs/environment-setup), você já deve estar configurado.
 
-There is no need to install other tools like specific version of NDK or CMake as the Android SDK will **automatically download** whatever is needed for the build from source.
+Não há necessidade de instalar outras ferramentas como versão específica do NDK ou CMake, pois o Android SDK irá **baixar automaticamente** o que for necessário para a compilação a partir do código-fonte.
 
-### Point your project to a nightly
+### Aponte seu projeto para um nightly
 
-To use the latest fixes and features of React Native, you can update your project to use a nightly version of React Native with:
+Para usar as correções e funcionalidades mais recentes do React Native, você pode atualizar seu projeto para usar uma versão nightly do React Native com:
 
 ```
 yarn add react-native@nightly
 ```
 
-This will update your project to use a nightly version of React Native that gets released every night with the latest changes.
+Isso atualizará seu projeto para usar uma versão nightly do React Native que é lançada toda noite com as últimas alterações.
 
-### Update your project to build from source
+### Atualize seu projeto para compilar a partir do código-fonte
 
-Both with stable releases and nightlies, you will be consuming **precompiled** artifacts. If instead you want to switch to building from source, so you can test your changes to the framework directly, you will have to edit the `android/settings.gradle` file as follows:
+Tanto com versões stable quanto nightlies, você estará consumindo artefatos **pré-compilados**. Se, em vez disso, você quiser mudar para compilar a partir do código-fonte, para que possa testar suas alterações no framework diretamente, você terá que editar o arquivo `android/settings.gradle` da seguinte forma:
 
 ```diff
   // ...
@@ -41,12 +42,12 @@ Both with stable releases and nightlies, you will be consuming **precompiled** a
 + }
 ```
 
-### Additional notes
+### Notas adicionais
 
-Building from source can take a long time, especially for the first build, as it needs to download ~200 MB of artifacts and compile the native code.
+Compilar a partir do código-fonte pode levar muito tempo, especialmente para a primeira compilação, pois precisa baixar ~200 MB de artefatos e compilar o código nativo.
 
-Every time you update the `react-native` version from your repo, the build directory may get deleted, and all the files are re-downloaded.
-To avoid this, you might want to change your build directory path by editing the `~/.gradle/init.gradle` file:
+Toda vez que você atualizar a versão do `react-native` do seu repositório, o diretório de build pode ser excluído, e todos os arquivos são baixados novamente.
+Para evitar isso, você pode querer alterar o caminho do seu diretório de build editando o arquivo `~/.gradle/init.gradle`:
 
 ```groovy
 gradle.projectsLoaded {
@@ -56,8 +57,8 @@ gradle.projectsLoaded {
 }
 ```
 
-## Rationale
+## Justificativa
 
-The recommended approach to working with React Native is to always update to the latest version. The support we provide for older versions is [described in our support policy](https://github.com/reactwg/react-native-releases/#releases-support-policy).
+A abordagem recomendada para trabalhar com React Native é sempre atualizar para a versão mais recente. O suporte que fornecemos para versões mais antigas está [descrito em nossa política de suporte](https://github.com/reactwg/react-native-releases/#releases-support-policy).
 
-The build from source approach should be used to end-to-end test a fix before submitting a pull request to React Native, and we're not encouraging its usages in the long run. Especially forking React Native or switching your setup to always use a build from source, will result in projects that are harder to update and generally a worse developer experience.
+A abordagem de compilar a partir do código-fonte deve ser usada para testar end-to-end uma correção antes de submeter um pull request para o React Native, e não encorajamos seu uso a longo prazo. Especialmente fazer fork do React Native ou mudar sua configuração para sempre usar uma compilação a partir do código-fonte, resultará em projetos que são mais difíceis de atualizar e geralmente uma pior developer experience.

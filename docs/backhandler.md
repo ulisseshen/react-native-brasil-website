@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: backhandler
 title: BackHandler
 ---
 
-The Backhandler API detects hardware button presses for back navigation, lets you register event listeners for the system's back action, and lets you control how your application responds. It is Android-only.
+A API Backhandler detecta pressionamentos do botão físico de voltar para navegação, permite que você registre event listeners para a ação de voltar do sistema e permite que você controle como sua aplicação responde. É exclusiva para Android.
 
-The event subscriptions are called in reverse order (i.e. the last registered subscription is called first).
+As subscrições de eventos são chamadas em ordem reversa (ou seja, a última subscrição registrada é chamada primeiro).
 
-- **If one subscription returns true,** then subscriptions registered earlier will not be called.
-- **If no subscription returns true or none are registered,** it programmatically invokes the default back button functionality to exit the app.
+- **Se uma subscrição retornar true,** então as subscrições registradas anteriormente não serão chamadas.
+- **Se nenhuma subscrição retornar true ou nenhuma estiver registrada,** ela invoca programaticamente a funcionalidade padrão do botão de voltar para sair da aplicação.
 
-:::warning Warning for modal users
-If your app shows an opened `Modal`, `BackHandler` will not publish any events ([see `Modal` docs](modal#onrequestclose)).
+:::warning Aviso para usuários de modal
+Se sua aplicação mostrar um `Modal` aberto, o `BackHandler` não publicará nenhum evento ([consulte a documentação do `Modal`](modal#onrequestclose)).
 :::
 
 ## Pattern
@@ -49,7 +50,7 @@ subscription.remove();
 
 ## Example
 
-The following example implements a scenario where you confirm if the user wants to exit the app:
+O exemplo a seguir implementa um cenário onde você confirma se o usuário quer sair da aplicação:
 
 ```SnackPlayer name=BackHandler&supportedPlatforms=android
 import React, {useEffect} from 'react';
@@ -102,15 +103,15 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-`BackHandler.addEventListener` creates an event listener & returns a `NativeEventSubscription` object which should be cleared using `NativeEventSubscription.remove` method.
+`BackHandler.addEventListener` cria um event listener e retorna um objeto `NativeEventSubscription` que deve ser limpo usando o método `NativeEventSubscription.remove`.
 
 ## Usage with React Navigation
 
-If you are using React Navigation to navigate across different screens, you can follow their guide on [Custom Android back button behaviour](https://reactnavigation.org/docs/custom-android-back-button-handling/)
+Se você está usando React Navigation para navegar entre diferentes telas, você pode seguir o guia deles sobre [Custom Android back button behaviour](https://reactnavigation.org/docs/custom-android-back-button-handling/)
 
 ## Backhandler hook
 
-[React Native Hooks](https://github.com/react-native-community/hooks#usebackhandler) has a nice `useBackHandler` hook which will simplify the process of setting up event listeners.
+[React Native Hooks](https://github.com/react-native-community/hooks#usebackhandler) tem um hook `useBackHandler` muito útil que vai simplificar o processo de configurar event listeners.
 
 ---
 

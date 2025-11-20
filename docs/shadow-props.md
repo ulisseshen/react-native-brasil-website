@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: shadow-props
 title: Shadow Props
 ---
@@ -216,39 +217,39 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
-There are 3 sets of shadow APIs in React Native:
+Existem 3 conjuntos de APIs de sombra no React Native:
 
-- `boxShadow`: A View style prop and a spec-compliant implementation of the [web style prop of the same name](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow).
-- `dropShadow`: A specific filter function available as part of the [`filter`](./view-style-props#filter) View style prop.
-- Various `shadow` props (`shadowColor`, `shadowOffset`, `shadowOpacity`, `shadowRadius`): These map directly to their native counterparts exposed by the platform-level APIs.
+- `boxShadow`: Uma prop de estilo do View e uma implementação compatível com a especificação da [prop de estilo web de mesmo nome](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow).
+- `dropShadow`: Uma função de filtro específica disponível como parte da prop de estilo [`filter`](./view-style-props#filter) do View.
+- Várias props `shadow` (`shadowColor`, `shadowOffset`, `shadowOpacity`, `shadowRadius`): Estas mapeiam diretamente para suas contrapartes nativas expostas pelas APIs de nível de plataforma.
 
-The difference between `dropShadow` and `boxShadow` are as follows:
+A diferença entre `dropShadow` e `boxShadow` são as seguintes:
 
-- `dropShadow` exists as part of `filter`, whereas `boxShadow` is a standalone style prop.
-- `dropShadow` is an alpha mask, so only pixels with a positive alpha value will "cast" a shadow. `boxShadow` will cast around the border box of the element no matter it's contents (unless it is inset).
-- `dropShadow` is only available on Android, `boxShadow` is available on iOS and Android.
-- `dropShadow` cannot be inset like `boxShadow`.
-- `dropShadow` does not have the `spreadDistance` argument like `boxShadow`.
+- `dropShadow` existe como parte de `filter`, enquanto `boxShadow` é uma prop de estilo independente.
+- `dropShadow` é uma máscara alpha, então apenas pixels com um valor alpha positivo irão "projetar" uma sombra. `boxShadow` irá projetar ao redor do border box do elemento independentemente de seu conteúdo (a menos que seja inset).
+- `dropShadow` está disponível apenas no Android, `boxShadow` está disponível no iOS e Android.
+- `dropShadow` não pode ser inset como `boxShadow`.
+- `dropShadow` não possui o argumento `spreadDistance` como `boxShadow`.
 
-Both `boxShadow` and `dropShadow` are generally more capable than the `shadow` props. The `shadow` props, however, map to native platform-level APIs, so if you only need a straightforward shadow these props are recommended. Note that only `shadowColor` works on both Android and iOS, all other `shadow` props only work on iOS.
+Tanto `boxShadow` quanto `dropShadow` são geralmente mais capazes do que as props `shadow`. As props `shadow`, no entanto, mapeiam para APIs nativas de nível de plataforma, então se você precisa apenas de uma sombra simples, essas props são recomendadas. Note que apenas `shadowColor` funciona tanto no Android quanto no iOS, todas as outras props `shadow` funcionam apenas no iOS.
 
 ## Props
 
 ### `boxShadow`
 
-See [View Style Props](./view-style-props#boxshadow) for documentation.
+Veja [View Style Props](./view-style-props#boxshadow) para documentação.
 
 ### `dropShadow` <div className="label android">Android</div>
 
-See [View Style Props](./view-style-props#filter) for documentation.
+Veja [View Style Props](./view-style-props#filter) para documentação.
 
 ### `shadowColor`
 
-Sets the drop shadow color.
+Define a cor da sombra projetada.
 
-This property will only work on Android API 28 and above. For similar functionality on lower Android APIs, use the [`elevation` property](view-style-props#elevation-android).
+Esta propriedade funcionará apenas no Android API 28 e superior. Para funcionalidade similar em APIs Android inferiores, use a [propriedade `elevation`](view-style-props#elevation-android).
 
 | Type               |
 | ------------------ |
@@ -258,7 +259,7 @@ This property will only work on Android API 28 and above. For similar functional
 
 ### `shadowOffset` <div className="label ios">iOS</div>
 
-Sets the drop shadow offset.
+Define o deslocamento da sombra projetada.
 
 | Type                                     |
 | ---------------------------------------- |
@@ -268,7 +269,7 @@ Sets the drop shadow offset.
 
 ### `shadowOpacity` <div className="label ios">iOS</div>
 
-Sets the drop shadow opacity (multiplied by the color's alpha component).
+Define a opacidade da sombra projetada (multiplicada pelo componente alpha da cor).
 
 | Type   |
 | ------ |
@@ -278,7 +279,7 @@ Sets the drop shadow opacity (multiplied by the color's alpha component).
 
 ### `shadowRadius` <div className="label ios">iOS</div>
 
-Sets the drop shadow blur radius.
+Define o raio de desfoque da sombra projetada.
 
 | Type   |
 | ------ |

@@ -1,14 +1,15 @@
 ---
-title: Changelogs in Pull Requests
+title: Changelogs em Pull Requests
+ia-translated: true
 ---
 
-The changelog entry in your pull request serves as a sort of "tl;dr:" for your changes: do they affect Android? are these breaking changes? is something new being added?
+A entrada de changelog em seu pull request serve como uma espécie de "resumo" das suas alterações: elas afetam o Android? são mudanças que quebram compatibilidade? algo novo está sendo adicionado?
 
-Providing a changelog using a standardized format helps release coordinators write release notes. Please include a changelog as part of your pull request description. Your pull request description will be used as the commit message should the pull request get merged.
+Fornecer um changelog usando um formato padronizado ajuda os coordenadores de release a escrever as notas de versão. Por favor, inclua um changelog como parte da descrição do seu pull request. A descrição do seu pull request será usada como mensagem de commit caso o pull request seja mesclado.
 
-### Format
+### Formato
 
-A changelog entry has the following format
+Uma entrada de changelog tem o seguinte formato
 
 ```
 ## Changelog:
@@ -16,28 +17,28 @@ A changelog entry has the following format
 [Category] [Type] - Message
 ```
 
-The "Category" field may be one of:
+O campo "Category" pode ser um dos seguintes:
 
-- **Android**, for changes that affect Android.
-- **iOS**, for changes that affect iOS.
-- **General**, for changes that do not fit any of the other categories.
-- **Internal**, for changes that would not be relevant to developers consuming the release notes.
+- **Android**, para mudanças que afetam o Android.
+- **iOS**, para mudanças que afetam o iOS.
+- **General**, para mudanças que não se encaixam em nenhuma das outras categorias.
+- **Internal**, para mudanças que não seriam relevantes para desenvolvedores consumindo as notas de versão.
 
-The "Type" field may be one of:
+O campo "Type" pode ser um dos seguintes:
 
-- **Breaking**, for breaking changes.
-- **Added**, for new features.
-- **Changed**, for changes in existing functionality.
-- **Deprecated**, for soon-to-be removed features.
-- **Removed**, for now removed features.
-- **Fixed**, for any bug fixes.
-- **Security**, in case of vulnerabilities.
+- **Breaking**, para mudanças que quebram compatibilidade.
+- **Added**, para novos recursos.
+- **Changed**, para mudanças em funcionalidades existentes.
+- **Deprecated**, para recursos que serão removidos em breve.
+- **Removed**, para recursos agora removidos.
+- **Fixed**, para quaisquer correções de bugs.
+- **Security**, em caso de vulnerabilidades.
 
-Finally, the "Message" field may answer "what and why" on a feature level. Use this to briefly tell React Native users about notable changes.
+Por fim, o campo "Message" pode responder "o quê e por quê" em nível de funcionalidade. Use isso para informar brevemente aos usuários do React Native sobre mudanças notáveis.
 
-For more detail, see [How do I make a good changelog?](https://keepachangelog.com/en/1.0.0/#how) and [Why keep a changelog?](https://keepachangelog.com/en/1.0.0/#why)
+Para mais detalhes, veja [How do I make a good changelog?](https://keepachangelog.com/en/1.0.0/#how) e [Why keep a changelog?](https://keepachangelog.com/en/1.0.0/#why)
 
-### Examples
+### Exemplos
 
 - `[General] [Added] - Add snapToOffsets prop to ScrollView component`
 - `[General] [Fixed] - Fix various issues in snapToInterval on ScrollView component`
@@ -45,22 +46,22 @@ For more detail, see [How do I make a good changelog?](https://keepachangelog.co
 
 ### FAQ
 
-#### What if my pull request contains changes to both Android and JavaScript?
+#### E se meu pull request contém mudanças tanto para Android quanto para JavaScript?
 
-Use the Android category.
+Use a categoria Android.
 
-#### What if my pull request contains changes to both Android and iOS?
+#### E se meu pull request contém mudanças tanto para Android quanto para iOS?
 
-Use the General category if the change is made in a single pull request.
+Use a categoria General se a mudança for feita em um único pull request.
 
-#### What if my pull request contains changes to Android, iOS, and JavaScript?
+#### E se meu pull request contém mudanças para Android, iOS e JavaScript?
 
-Use the General category if the change is made in a single pull request.
+Use a categoria General se a mudança for feita em um único pull request.
 
-#### What if...?
+#### E se...?
 
-Any changelog entry is better than none. If you are unsure if you have picked the right category, use the "message" field to succinctly describe your change.
+Qualquer entrada de changelog é melhor do que nenhuma. Se você não tem certeza se escolheu a categoria correta, use o campo "message" para descrever sucintamente sua mudança.
 
-These entries are used by the [`@rnx-kit/rn-changelog-generator`](https://github.com/microsoft/rnx-kit/tree/main/incubator/rn-changelog-generator) script to build a rough draft, which is then edited by a release coordinator.
+Essas entradas são usadas pelo script [`@rnx-kit/rn-changelog-generator`](https://github.com/microsoft/rnx-kit/tree/main/incubator/rn-changelog-generator) para construir um rascunho inicial, que é então editado por um coordenador de release.
 
-Your notes will be used to add your change to the correct location in the final release notes.
+Suas anotações serão usadas para adicionar sua mudança à localização correta nas notas de versão finais.

@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: usewindowdimensions
 title: useWindowDimensions
 ---
@@ -7,13 +8,13 @@ title: useWindowDimensions
 import {useWindowDimensions} from 'react-native';
 ```
 
-`useWindowDimensions` automatically updates all of its values when screen size or font scale changes. You can get your application window's width and height like so:
+`useWindowDimensions` atualiza automaticamente todos os seus valores quando o tamanho da tela ou a escala de fonte muda. Você pode obter a largura e altura da janela da sua aplicação assim:
 
 ```tsx
 const {height, width} = useWindowDimensions();
 ```
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=useWindowDimensions&supportedPlatforms=ios,android
 import React from 'react';
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-## Properties
+## Propriedades
 
 ### `fontScale`
 
@@ -57,7 +58,7 @@ export default App;
 useWindowDimensions().fontScale;
 ```
 
-The scale of the font currently used. Some operating systems allow users to scale their font sizes larger or smaller for reading comfort. This property will let you know what is in effect.
+A escala da fonte atualmente usada. Alguns sistemas operacionais permitem que os usuários aumentem ou diminuam suas fontes para maior conforto de leitura. Esta propriedade informará o que está em vigor.
 
 ---
 
@@ -67,7 +68,7 @@ The scale of the font currently used. Some operating systems allow users to scal
 useWindowDimensions().height;
 ```
 
-The height in pixels of the window or screen your app occupies.
+A altura em pixels da janela ou tela que sua aplicação ocupa.
 
 ---
 
@@ -77,10 +78,10 @@ The height in pixels of the window or screen your app occupies.
 useWindowDimensions().scale;
 ```
 
-The pixel ratio of the device your app is running on. The values can be:
+A proporção de pixels do dispositivo no qual sua aplicação está sendo executada. Os valores podem ser:
 
-- `1` which indicates that one point equals one pixel (usually PPI/DPI of 96, 76 on some platforms).
-- `2` or `3` which indicates a Retina or high DPI display.
+- `1` que indica que um ponto é igual a um pixel (geralmente PPI/DPI de 96, 76 em algumas plataformas).
+- `2` ou `3` que indica uma tela Retina ou de alto DPI.
 
 ---
 
@@ -90,4 +91,4 @@ The pixel ratio of the device your app is running on. The values can be:
 useWindowDimensions().width;
 ```
 
-The width in pixels of the window or screen your app occupies.
+A largura em pixels da janela ou tela que sua aplicação ocupa.

@@ -1,15 +1,16 @@
 ---
+ia-translated: true
 id: state
 title: State
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-There are two types of data that control a component: `props` and `state`. `props` are set by the parent and they are fixed throughout the lifetime of a component. For data that is going to change, we have to use `state`.
+Existem dois tipos de dados que controlam um componente: `props` e `state`. As `props` são definidas pelo componente pai e são fixas durante todo o tempo de vida de um componente. Para dados que vão mudar, temos que usar `state`.
 
-In general, you should initialize `state` in the constructor, and then call `setState` when you want to change it.
+Em geral, você deve inicializar o `state` no constructor, e então chamar `setState` quando quiser alterá-lo.
 
-For example, let's say we want to make text that blinks all the time. The text itself gets set once when the blinking component gets created, so the text itself is a `prop`. The "whether the text is currently on or off" changes over time, so that should be kept in `state`.
+Por exemplo, digamos que queremos fazer um texto que pisca o tempo todo. O texto em si é definido uma vez quando o componente piscante é criado, então o texto em si é um `prop`. O "se o texto está atualmente ligado ou desligado" muda com o tempo, então isso deve ser mantido no `state`.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -96,8 +97,8 @@ export default BlinkApp;
 </TabItem>
 </Tabs>
 
-In a real application, you probably won't be setting state with a timer. You might set state when you have new data from the server, or from user input. You can also use a state container like [Redux](https://redux.js.org/) or [MobX](https://mobx.js.org/) to control your data flow. In that case you would use Redux or MobX to modify your state rather than calling `setState` directly.
+Em uma aplicação real, você provavelmente não estará definindo state com um timer. Você pode definir state quando tiver novos dados do servidor, ou de entrada do usuário. Você também pode usar um container de state como [Redux](https://redux.js.org/) ou [MobX](https://mobx.js.org/) para controlar seu fluxo de dados. Nesse caso, você usaria Redux ou MobX para modificar seu state em vez de chamar `setState` diretamente.
 
-When setState is called, BlinkApp will re-render its Component. By calling setState within the Timer, the component will re-render every time the Timer ticks.
+Quando setState é chamado, BlinkApp irá re-renderizar seu Component. Ao chamar setState dentro do Timer, o componente irá re-renderizar toda vez que o Timer dispara.
 
-State works the same way as it does in React, so for more details on handling state, you can look at the [React.Component API](https://react.dev/reference/react/Component#setstate). At this point, you may have noticed that most of our examples use the default text color. To customize the text color, you will have to [learn about Style](style.md).
+State funciona da mesma forma que no React, então para mais detalhes sobre manipulação de state, você pode consultar a [React.Component API](https://react.dev/reference/react/Component#setstate). Neste ponto, você pode ter notado que a maioria dos nossos exemplos usa a cor de texto padrão. Para personalizar a cor do texto, você terá que [aprender sobre Style](style.md).

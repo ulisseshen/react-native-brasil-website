@@ -1,5 +1,6 @@
 ---
-title: Built with React Native - The Build.com app
+ia-translated: true
+title: Construído com React Native - O App Build.com
 author: Garrett McCullough
 authorTitle: Senior Mobile Engineer
 authorURL: 'https://twitter.com/gwmccull'
@@ -8,75 +9,75 @@ authorTwitter: gwmccull
 tags: [showcase]
 ---
 
-[Build.com](https://www.build.com/), headquartered in Chico, California, is one of the largest online retailers for home improvement items. The team has had a strong web-centric business for 18 years and began thinking about a mobile App in 2015. Building unique Android and iOS apps wasn’t practical due to our small team and limited native experience. Instead, we decided to take a risk on the very new React Native framework. Our initial commit was on August 12, 2015 using React Native v0.8.0! We were live in both App Stores on October 15, 2016. Over the last two years, we’ve continued to upgrade and expand the app. We are currently on React Native version 0.53.0.
+[Build.com](https://www.build.com/), com sede em Chico, Califórnia, é um dos maiores varejistas online de itens para melhorias residenciais. A equipe tem tido um negócio forte centrado na web por 18 anos e começou a pensar sobre um app móvel em 2015. Construir apps Android e iOS únicos não era prático devido à nossa pequena equipe e experiência nativa limitada. Em vez disso, decidimos arriscar no framework React Native muito novo. Nosso commit inicial foi em 12 de agosto de 2015 usando React Native v0.8.0! Estávamos ao vivo em ambas as App Stores em 15 de outubro de 2016. Nos últimos dois anos, continuamos a atualizar e expandir o app. Atualmente estamos no React Native versão 0.53.0.
 
-You can check out the app at [https://www.build.com/app](https://www.build.com/app).
+Você pode conferir o app em [https://www.build.com/app](https://www.build.com/app).
 
 <p align="center">
   <img src="/blog/assets/build-com-blog-image.jpg" />
 </p>
 
-## Features
+## Recursos
 
-Our app is full featured and includes everything that you’d expect from an e-commerce app: product listings, search and sorting, the ability to configure complex products, favorites, etc. We accept standard credit card payment methods as well as PayPal, and Apple Pay for our iOS users.
+Nosso app tem recursos completos e inclui tudo que você esperaria de um app de e-commerce: listagens de produtos, busca e ordenação, a capacidade de configurar produtos complexos, favoritos, etc. Aceitamos métodos de pagamento com cartão de crédito padrão, bem como PayPal e Apple Pay para nossos usuários iOS.
 
-A few standout features you might not expect include:
+Alguns recursos de destaque que você pode não esperar incluem:
 
-1. 3D models available for around 40 products with 90 finishes
-2. Augmented Reality (AR) to allow the user to see how lights and faucets will look in their home at 98% size accuracy. The Build.com React Native App is featured in the Apple App Store for AR Shopping! AR is now available for Android and iOS!
-3. Collaborative project management features that allow people to put together shopping lists for the different phases of their project and collaborate around selection
+1. Modelos 3D disponíveis para cerca de 40 produtos com 90 acabamentos
+2. Realidade Aumentada (AR) para permitir que o usuário veja como luminárias e torneiras ficarão em sua casa com 98% de precisão de tamanho. O App React Native da Build.com está em destaque na Apple App Store para AR Shopping! AR está agora disponível para Android e iOS!
+3. Recursos de gerenciamento de projeto colaborativo que permitem que as pessoas montem listas de compras para as diferentes fases de seu projeto e colaborem em torno da seleção
 
-We’re working on many new and exciting features that will continue to improve our app experience including the next phase of Immersive Shopping with AR.
+Estamos trabalhando em muitos recursos novos e empolgantes que continuarão a melhorar nossa experiência de app, incluindo a próxima fase de Compra Imersiva com AR.
 
-## Our Development Workflow
+## Nosso Fluxo de Trabalho de Desenvolvimento
 
-Build.com allows each dev to choose the tools that best suit them.
+Build.com permite que cada desenvolvedor escolha as ferramentas que melhor se adequam a ele.
 
-- IDEs include Atom, IntelliJ, VS Code, Sublime, Eclipse, etc.
-- For Unit testing, developers are responsible for creating Jest unit tests for any new components and we’re working to increase the coverage of older parts of the app using `jest-coverage-ratchet`.
-- We use Jenkins to build out our beta and release candidates. This process works well for us but still requires significant work to create the release notes and other artifacts.
-- Integration Testing include a shared pool of testers that work across desktop, mobile and web. Our automation engineer is building out our suite of automated integration tests using Java and Appium.
-- Other parts of the workflow include a detailed eslint configuration, custom rules that enforce properties needed for testing, and pre-push hooks that block offending changes.
+- IDEs incluem Atom, IntelliJ, VS Code, Sublime, Eclipse, etc.
+- Para testes unitários, os desenvolvedores são responsáveis por criar testes unitários Jest para quaisquer novos componentes e estamos trabalhando para aumentar a cobertura de partes mais antigas do app usando `jest-coverage-ratchet`.
+- Usamos Jenkins para construir nossas versões beta e release candidates. Este processo funciona bem para nós, mas ainda requer trabalho significativo para criar as notas de lançamento e outros artefatos.
+- Testes de integração incluem um pool compartilhado de testadores que trabalham em desktop, mobile e web. Nosso engenheiro de automação está construindo nossa suite de testes de integração automatizados usando Java e Appium.
+- Outras partes do fluxo de trabalho incluem uma configuração detalhada do eslint, regras customizadas que impõem propriedades necessárias para testes, e hooks pre-push que bloqueiam mudanças ofensivas.
 
-## Libraries Used in the App
+## Bibliotecas Usadas no App
 
-The Build.com app relies on a number of common open source libraries including: Redux, Moment, Numeral, Enzyme and a bunch of React Native bridge modules. We also use a number of forked open source libraries; forked either because they were abandoned or because we needed custom features. A quick count shows around 115 JavaScript and native dependencies. We would like to explore tools that remove unused libraries.
+O app Build.com depende de várias bibliotecas open source comuns, incluindo: Redux, Moment, Numeral, Enzyme e um monte de módulos bridge React Native. Também usamos várias bibliotecas open source com fork; com fork seja porque foram abandonadas ou porque precisávamos de recursos customizados. Uma contagem rápida mostra cerca de 115 dependências JavaScript e nativas. Gostaríamos de explorar ferramentas que removem bibliotecas não utilizadas.
 
-We're in the process of adding static typing via TypeScript and looking into optional chaining. These features could help us with solving a couple classes of bugs that we still see:
+Estamos no processo de adicionar tipagem estática via TypeScript e olhando para optional chaining. Esses recursos poderiam nos ajudar a resolver algumas classes de bugs que ainda vemos:
 
-- Data that is the wrong type
-- Data that is undefined because an object didn’t contain what we expected
+- Dados que são do tipo errado
+- Dados que são undefined porque um objeto não continha o que esperávamos
 
-## Open Source Contributions
+## Contribuições Open Source
 
-Since we rely so heavily on open source, our team is committed to contributing back to the community. Build.com allows the team to open source libraries that we've built and encourages us contribute back to the libraries that we use.
+Como dependemos tanto de open source, nossa equipe está comprometida em contribuir de volta para a comunidade. Build.com permite que a equipe faça open source de bibliotecas que construímos e nos encoraja a contribuir de volta para as bibliotecas que usamos.
 
-We’ve released and maintained a number of React Native libraries:
+Lançamos e mantemos várias bibliotecas React Native:
 
 - `react-native-polyfill`
 - `react-native-simple-store`
 - `react-native-contact-picker`
 
-We have also contributed to a long list of libraries including: React and React Native, `react-native-schemes-manager`, `react-native-swipeable`, `react-native-gallery`, `react-native-view-transformer`, `react-native-navigation`.
+Também contribuímos para uma longa lista de bibliotecas, incluindo: React e React Native, `react-native-schemes-manager`, `react-native-swipeable`, `react-native-gallery`, `react-native-view-transformer`, `react-native-navigation`.
 
-## Our Journey
+## Nossa Jornada
 
-We’ve seen a lot of growth in React Native and the ecosystem in the past couple years. Early on, it seemed that every version of React Native would fix some bugs but introduce several more. For example, Remote JS Debugging was broken on Android for several months. Thankfully, things became much more stable in 2017.
+Vimos muito crescimento em React Native e no ecossistema nos últimos dois anos. No início, parecia que cada versão do React Native corrigiria alguns bugs, mas introduziria vários mais. Por exemplo, Remote JS Debugging estava quebrado no Android por vários meses. Felizmente, as coisas se tornaram muito mais estáveis em 2017.
 
-### Navigation Libraries
+### Bibliotecas de Navegação
 
-One of our big recurring challenges has been with navigation libraries. For a long time, we were using Expo’s ex-nav library. It worked well for us but it was eventually deprecated. However, we were in heavy feature development at the time so taking time to change out a navigation library wasn’t feasible. That meant we had to fork the library and patch it to support React 16 and the iPhone X. Eventually, we were able to migrate to [`react-native-navigation`](https://github.com/wix/react-native-navigation) and hopefully that will see continued support.
+Um dos nossos grandes desafios recorrentes tem sido com bibliotecas de navegação. Por muito tempo, estávamos usando a biblioteca ex-nav do Expo. Funcionou bem para nós, mas acabou sendo descontinuada. No entanto, estávamos em desenvolvimento pesado de recursos na época, então tirar tempo para mudar uma biblioteca de navegação não era viável. Isso significou que tivemos que fazer fork da biblioteca e patcheá-la para suportar React 16 e o iPhone X. Eventualmente, conseguimos migrar para [`react-native-navigation`](https://github.com/wix/react-native-navigation) e esperamos que isso veja suporte contínuo.
 
-### Bridge Modules
+### Módulos Bridge
 
-Another big challenge has been with bridge modules. When we first started, a lot of critical bridges were missing. One of my teammates wrote `react-native-contact-picker` because we needed access to the Android contact picker in our app. We’ve also seen a lot of bridges that were broken by changes within React Native. For example, there was a breaking change within React Native v40 and when we upgraded our app, I had to submit PRs to fix 3 or 4 libraries that had not yet been updated.
+Outro grande desafio tem sido com módulos bridge. Quando começamos, muitas bridges críticas estavam faltando. Um dos meus colegas de equipe escreveu `react-native-contact-picker` porque precisávamos de acesso ao contact picker do Android em nosso app. Também vimos muitas bridges que foram quebradas por mudanças dentro do React Native. Por exemplo, houve uma mudança breaking dentro do React Native v40 e quando atualizamos nosso app, tive que enviar PRs para corrigir 3 ou 4 bibliotecas que ainda não haviam sido atualizadas.
 
-## Looking Forward
+## Olhando para o Futuro
 
-As React Native continues to grow, our wishlist to our community include:
+Conforme o React Native continua a crescer, nossa lista de desejos para nossa comunidade inclui:
 
-- Stabilize and improve the navigation libraries
-- Maintain support for libraries in the React Native ecosystem
-- Improve the experience for adding native libraries and bridge modules to a project
+- Estabilizar e melhorar as bibliotecas de navegação
+- Manter suporte para bibliotecas no ecossistema React Native
+- Melhorar a experiência de adicionar bibliotecas nativas e módulos bridge a um projeto
 
-Companies and individuals in the React Native community have been great about volunteering their time and effort to improve the tools that we all use. If you haven’t gotten involved in open source, I hope you’ll take a look at improving the code or documentation for some of the libraries that you use. There are a lot of articles to help you get started and it may be a lot easier than you think!
+Empresas e indivíduos na comunidade React Native têm sido ótimos em voluntariar seu tempo e esforço para melhorar as ferramentas que todos nós usamos. Se você ainda não se envolveu em open source, espero que você dê uma olhada em melhorar o código ou documentação de algumas das bibliotecas que você usa. Existem muitos artigos para ajudá-lo a começar e pode ser muito mais fácil do que você pensa!

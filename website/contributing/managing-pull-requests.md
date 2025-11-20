@@ -1,61 +1,62 @@
 ---
-title: Managing Pull Requests
+title: Gerenciando Pull Requests
+ia-translated: true
 ---
 
-Reviewing a pull request can take a considerable amount of time. In some cases, the review might require more time to perform than it took someone to write and submit their changes! It's therefore necessary to do some preliminary work to ensure each pull request is in a good state to be reviewed.
+Revisar um pull request pode levar um tempo considerável. Em alguns casos, a revisão pode exigir mais tempo para ser realizada do que alguém levou para escrever e enviar suas mudanças! Portanto, é necessário fazer algum trabalho preliminar para garantir que cada pull request esteja em bom estado para ser revisado.
 
-A pull request should consist of three main sections:
+Um pull request deve consistir em três seções principais:
 
-- A summary. This helps us understand the motivation behind the changes.
-- A changelog. This helps us write the release notes. It also serves as a brief summary of your changes.
-- A test plan. This might be the most important part of your pull request. A test plan should be a reproducible step-by-step guide so that a reviewer can verify your change is working as intended. It's also a good idea to attach screenshots or videos for user visible changes.
+- Um resumo. Isso nos ajuda a entender a motivação por trás das mudanças.
+- Um changelog. Isso nos ajuda a escrever as notas de versão. Também serve como um breve resumo das suas mudanças.
+- Um plano de teste. Esta pode ser a parte mais importante do seu pull request. Um plano de teste deve ser um guia passo a passo reproduzível para que um revisor possa verificar se sua mudança está funcionando conforme pretendido. Também é uma boa ideia anexar screenshots ou vídeos para mudanças visíveis ao usuário.
 
-Any pull request may require a deeper understanding of some area of React Native that you may not be familiar with. Even if you don't feel like you are the right person to review a pull request, you may still help by adding labels or asking the author for more information.
+Qualquer pull request pode exigir uma compreensão mais profunda de alguma área do React Native com a qual você pode não estar familiarizado. Mesmo que você não sinta que é a pessoa certa para revisar um pull request, ainda pode ajudar adicionando labels ou pedindo ao autor mais informações.
 
-## Reviewing PRs
+## Revisando PRs
 
-Pull Requests need to be reviewed and approved using GitHub's review feature before they can be merged. While anyone has the ability to review and approve a pull request, we typically only consider a pull request ready to be merged when the approval comes from one of the [contributors](https://github.com/facebook/react-native/blob/main/ECOSYSTEM.md).
+Pull Requests precisam ser revisados e aprovados usando o recurso de review do GitHub antes que possam ser mesclados. Embora qualquer pessoa tenha a capacidade de revisar e aprovar um pull request, normalmente só consideramos um pull request pronto para ser mesclado quando a aprovação vem de um dos [contribuidores](https://github.com/facebook/react-native/blob/main/ECOSYSTEM.md).
 
 <!-- alex ignore clearly -->
 
-So you've found a pull request that you feel confident reviewing. Please make use of the GitHub Review feature, and clearly and politely communicate any suggested changes.
+Então você encontrou um pull request que se sente confiante em revisar. Por favor, faça uso do recurso GitHub Review e comunique de forma clara e educada quaisquer mudanças sugeridas.
 
-Consider starting with pull requests that have been flagged as lacking a changelog or test plan.
+Considere começar com pull requests que foram sinalizados como faltando um changelog ou plano de teste.
 
-- [PRs that appear to lack a changelog](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+label%3A%22Missing+Changelog%22+) - take a look and see if you can add the changelog yourself by editing the PR. After doing so, remove the "Missing Changelog" label.
-- [PRs that are missing a test plan](https://github.com/facebook/react-native/pulls?q=is%3Apr+label%3A%22Missing+Test+Plan%22+is%3Aclosed) - open the pull request and look for a test plan. If the test plan looks sufficient, remove the "Missing Test Plan"" label. If there is no test plan, or it looks incomplete, add a comment politely asking the author to consider adding a test plan.
+- [PRs que parecem não ter um changelog](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+label%3A%22Missing+Changelog%22+) - dê uma olhada e veja se você pode adicionar o changelog você mesmo editando o PR. Depois de fazer isso, remova a label "Missing Changelog".
+- [PRs que estão faltando um plano de teste](https://github.com/facebook/react-native/pulls?q=is%3Apr+label%3A%22Missing+Test+Plan%22+is%3Aclosed) - abra o pull request e procure por um plano de teste. Se o plano de teste parecer suficiente, remova a label "Missing Test Plan". Se não houver plano de teste, ou se parecer incompleto, adicione um comentário pedindo educadamente ao autor para considerar adicionar um plano de teste.
 
-A pull request must pass all the tests before it can be merged. They run on every commit on `main` and pull request. A quick way to help us get pull requests ready for review is to [search for pull requests that are failing the pre-commit tests](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+label%3A%22CLA+Signed%22+status%3Afailure+) and determine if they need to be revised. The failing test is usually listed near the bottom of the thread, under "Some checks were not successful."
+Um pull request deve passar em todos os testes antes que possa ser mesclado. Eles são executados em cada commit no `main` e em pull requests. Uma maneira rápida de nos ajudar a deixar pull requests prontos para revisão é [buscar por pull requests que estão falhando nos testes de pré-commit](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+label%3A%22CLA+Signed%22+status%3Afailure+) e determinar se eles precisam ser revisados. O teste que falhou geralmente está listado perto do final da thread, em "Some checks were not successful."
 
-- Take a quick glance at the [latest tests runs on main](https://circleci.com/gh/facebook/react-native/tree/main). Is `main` green? If so,
-  - Does it look like the failure may be related to the changes in this pull request? Ask the author to investigate.
-  - Even if `main` is currently green, consider the possibility that the commits in the pull requests may be based off a commit from a point in time when `main` was broken. If you believe this may be the case, ask the author to rebase their changes on top of `main` in order to pull in any fixes that may have landed after they started working on the pull request.
-- If `main` appears to be broken, look for any [issues labeled as "CI Test Failure"](https://github.com/facebook/react-native/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22%E2%9D%8CCI+Test+Failure%22+).
-  - If you find an issue that seems related to the failure on `main`, go back to the pull request and thank the author for proposing these changes, and let them know that the test failure may be unrelated to their particular change (do not forget to link back to the CI Test Failure issue, as this will help the author know when they can try running tests again).
-  - If you cannot find an existing CI Test Failure issue that describes the problem you've observed on `main`, please submit a new issue and use the "CI Test Failure" label to let others know that `main` is broken (see [this issue](https://github.com/facebook/react-native/issues/23108) for an example).
+- Dê uma olhada rápida nas [últimas execuções de testes no main](https://circleci.com/gh/facebook/react-native/tree/main). O `main` está verde? Se sim,
+  - Parece que a falha pode estar relacionada às mudanças neste pull request? Peça ao autor para investigar.
+  - Mesmo que o `main` esteja verde atualmente, considere a possibilidade de que os commits no pull request possam estar baseados em um commit de um momento em que o `main` estava quebrado. Se você acredita que este pode ser o caso, peça ao autor para fazer rebase de suas mudanças em cima do `main` para incorporar quaisquer correções que possam ter sido aplicadas depois que eles começaram a trabalhar no pull request.
+- Se o `main` parecer estar quebrado, procure por quaisquer [issues rotuladas como "CI Test Failure"](https://github.com/facebook/react-native/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22%E2%9D%8CCI+Test+Failure%22+).
+  - Se você encontrar uma issue que parece relacionada à falha no `main`, volte ao pull request e agradeça ao autor por propor essas mudanças, e deixe-o saber que a falha no teste pode não estar relacionada à sua mudança específica (não se esqueça de linkar de volta para a issue CI Test Failure, pois isso ajudará o autor a saber quando pode tentar executar os testes novamente).
+  - Se você não conseguir encontrar uma issue CI Test Failure existente que descreva o problema que você observou no `main`, por favor submeta uma nova issue e use a label "CI Test Failure" para avisar outros que o `main` está quebrado (veja [esta issue](https://github.com/facebook/react-native/issues/23108) como exemplo).
 
-## How we prioritize PRs
+## Como priorizamos PRs
 
-Members of the React Native team at Meta aim to review pull requests quickly and most PRs will get a response within a week.
+Membros da equipe do React Native no Meta visam revisar pull requests rapidamente e a maioria dos PRs receberá uma resposta dentro de uma semana.
 
-## How does a PR get merged?
+## Como um PR é mesclado?
 
-The React Native GitHub repository is actually a mirror of a subdirectory from one of Meta's monorepos. Pull requests are therefore not merged in the traditional sense. Instead, they need to be imported into Meta's internal code review system as a ["diff"](https://www.phacility.com/phabricator/differential/).
+O repositório GitHub do React Native é na verdade um espelho de um subdiretório de um dos monorepos do Meta. Pull requests portanto não são mesclados no sentido tradicional. Em vez disso, eles precisam ser importados para o sistema de revisão de código interno do Meta como um ["diff"](https://www.phacility.com/phabricator/differential/).
 
-Once imported, the changes will go through a suite of tests. Some of these tests are land-blocking, meaning they need to succeed before the contents of the diff can be merged. Meta always runs React Native from `main` and some changes may require a Facebook employee to attach internal changes to your pull request before it can be merged. For example, if you rename a module name, all Facebook internal callsites have to be updated in the same change in order to merge it. If the diff lands successfully, the changes will eventually get synced back to GitHub by [ShipIt](https://github.com/facebook/fbshipit) as a single commit.
+Uma vez importado, as mudanças passarão por uma suíte de testes. Alguns desses testes são bloqueadores de merge, o que significa que precisam ter sucesso antes que o conteúdo do diff possa ser mesclado. O Meta sempre executa o React Native a partir do `main` e algumas mudanças podem exigir que um funcionário do Facebook anexe mudanças internas ao seu pull request antes que ele possa ser mesclado. Por exemplo, se você renomear um nome de módulo, todos os locais de chamada internos do Facebook precisam ser atualizados na mesma mudança para que possa ser mesclado. Se o diff for aplicado com sucesso, as mudanças eventualmente serão sincronizadas de volta ao GitHub pelo [ShipIt](https://github.com/facebook/fbshipit) como um único commit.
 
-Meta employees are using a custom browser extension for GitHub that can import a pull request in one of two ways: the pull request can be "landed to fbsource", meaning it will be imported and the resulting diff will be approved automatically, and barring any failures, the changes will eventually sync back to `main`. A pull request may also be "imported to Phabricator", meaning the changes will be copied to an internal diff that will require further review and approval before it can land.
+Funcionários do Meta estão usando uma extensão personalizada de navegador para o GitHub que pode importar um pull request de duas maneiras: o pull request pode ser "landed to fbsource", o que significa que será importado e o diff resultante será aprovado automaticamente e, salvo qualquer falha, as mudanças eventualmente sincronizarão de volta ao `main`. Um pull request também pode ser "imported to Phabricator", o que significa que as mudanças serão copiadas para um diff interno que exigirá revisão e aprovação adicionais antes de poder ser aplicado.
 
 <figure>
   <img src="/img/importing-pull-requests.png" />
-  <figcaption>Screenshot of the custom browser extension. The button "Import to fbsource" is used to import a Pull Request internally.</figcaption>
+  <figcaption>Screenshot da extensão personalizada de navegador. O botão "Import to fbsource" é usado para importar um Pull Request internamente.</figcaption>
 </figure>
 
 ## Bots
 
-As you review and work on pull requests, you might encounter comments left by a handful of GitHub bot accounts. These bots have been set up to aid in the pull request review process. See the [Bots Reference](/contributing/bots-reference) to learn more.
+À medida que você revisa e trabalha em pull requests, pode encontrar comentários deixados por algumas contas de bot do GitHub. Esses bots foram configurados para ajudar no processo de revisão de pull requests. Veja a [Referência de Bots](/contributing/bots-reference) para saber mais.
 
-## Pull Request Labels
+## Labels de Pull Request
 
-- `Merged`: Applied to a closed PR to indicate that its changes have been incorporated into the core repository. This label is necessary because pull requests are not merged directly on GitHub. Instead, a patch with the PR's changes is imported and queued up for code review. Once approved, the result of applying those changes on top of Meta's internal monorepository gets synced out to GitHub as a new commit. GitHub does not attribute that commit back to the original PR, hence the need for a label that communicates the PR's true status.
-- `Blocked on FB`: The PR has been imported, but the changes have not yet been applied.
+- `Merged`: Aplicada a um PR fechado para indicar que suas mudanças foram incorporadas ao repositório principal. Esta label é necessária porque os pull requests não são mesclados diretamente no GitHub. Em vez disso, um patch com as mudanças do PR é importado e enfileirado para revisão de código. Uma vez aprovado, o resultado da aplicação dessas mudanças em cima do monorepositório interno do Meta é sincronizado de volta para o GitHub como um novo commit. O GitHub não atribui esse commit de volta ao PR original, daí a necessidade de uma label que comunique o verdadeiro status do PR.
+- `Blocked on FB`: O PR foi importado, mas as mudanças ainda não foram aplicadas.

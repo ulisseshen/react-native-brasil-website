@@ -1,91 +1,92 @@
 ---
-title: How to Contribute Code
+ia-translated: true
+title: Como Contribuir com Código
 ---
 
-Thank you for your interest in contributing to React Native! From commenting on and triaging issues, to reviewing and sending PRs, [all contributions are welcome](/contributing/overview). In this document, we'll cover the steps to contributing code to React Native.
+Obrigado pelo seu interesse em contribuir com o React Native! Desde comentar e classificar issues, até revisar e enviar PRs, [todas as contribuições são bem-vindas](/contributing/overview). Neste documento, abordaremos os passos para contribuir com código para o React Native.
 
-If you are eager to start contributing code right away, we have a list of [`Good first issues`](https://github.com/facebook/react-native/labels/good%20first%20issue) that contain bugs which have a relatively limited scope.
-Issues labeled [`Help wanted`](https://github.com/facebook/react-native/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted+%3Aoctocat%3A%22+sort%3Aupdated-desc+) are good issues to submit a PR for.
+Se você está ansioso para começar a contribuir com código imediatamente, temos uma lista de [`Good first issues`](https://github.com/facebook/react-native/labels/good%20first%20issue) que contêm bugs com escopo relativamente limitado.
+Issues rotuladas como [`Help wanted`](https://github.com/facebook/react-native/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22help+wanted+%3Aoctocat%3A%22+sort%3Aupdated-desc+) são boas issues para submeter um PR.
 
-## Prerequisites
+## Pré-requisitos
 
 :::info
-Please refer to the [Environment Setup](/docs/environment-setup) guide to setup required tools and the development environment based on the platform us use and platform which you want to develop for.
+Por favor, consulte o guia de [Configuração do Ambiente](/docs/environment-setup) para configurar as ferramentas necessárias e o ambiente de desenvolvimento baseado na plataforma que você usa e na plataforma para a qual você deseja desenvolver.
 :::
 
-## Development Workflow
+## Fluxo de Trabalho de Desenvolvimento
 
-After cloning React Native, open the directory and run `yarn` to install its dependencies.
+Após clonar o React Native, abra o diretório e execute `yarn` para instalar suas dependências.
 
-Now you are set up to run several commands:
+Agora você está pronto para executar vários comandos:
 
-- `yarn start` starts the Metro packager server.
-- `yarn lint` checks the code style.
-- `yarn format` automatically formats your code.
-- `yarn test` runs the Jest-based JavaScript test suite.
-  - `yarn test --watch` runs an interactive JavaScript test watcher.
-  - `yarn test <pattern>` runs JavaScript tests with matching filenames.
-- `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
-  - `yarn flow-check-android` does a full Flow check over `*.android.js` files.
-  - `yarn flow-check-ios` does a full Flow check over `*.ios.js` files.
-- `yarn test-typescript` runs the [TypeScript](https://www.typescriptlang.org/) typechecks.
-- `yarn test-ios` runs the iOS test suite (macOS required).
-- `yarn build` builds all configured packages — in general, this command only needs to be run by CI ahead of publishing.
-  - Packages which require a build are configured in [scripts/build/config.js](https://github.com/facebook/react-native/blob/main/scripts/build/config.js).
-- `yarn build-types` generates TypeScript types for the public API and updates the snapshot.
+- `yarn start` inicia o servidor do Metro packager.
+- `yarn lint` verifica o estilo do código.
+- `yarn format` formata automaticamente seu código.
+- `yarn test` executa a suite de testes JavaScript baseada em Jest.
+  - `yarn test --watch` executa um observador de testes JavaScript interativo.
+  - `yarn test <pattern>` executa testes JavaScript com nomes de arquivo correspondentes.
+- `yarn flow` executa as verificações de tipo do [Flow](https://flowtype.org/).
+  - `yarn flow-check-android` faz uma verificação completa do Flow sobre arquivos `*.android.js`.
+  - `yarn flow-check-ios` faz uma verificação completa do Flow sobre arquivos `*.ios.js`.
+- `yarn test-typescript` executa as verificações de tipo do [TypeScript](https://www.typescriptlang.org/).
+- `yarn test-ios` executa a suite de testes do iOS (macOS necessário).
+- `yarn build` compila todos os pacotes configurados — em geral, este comando só precisa ser executado pelo CI antes da publicação.
+  - Pacotes que requerem compilação são configurados em [scripts/build/config.js](https://github.com/facebook/react-native/blob/main/scripts/build/config.js).
+- `yarn build-types` gera tipos TypeScript para a API pública e atualiza o snapshot.
 
-## Testing your Changes
+## Testando suas Alterações
 
-Tests help us prevent regressions from being introduced to the codebase. We recommend running `yarn test` or the platform-specific scripts above to make sure you don't introduce any regressions as you work on your change.
+Os testes nos ajudam a prevenir que regressões sejam introduzidas na base de código. Recomendamos executar `yarn test` ou os scripts específicos de plataforma acima para garantir que você não introduza regressões enquanto trabalha em sua alteração.
 
-The GitHub repository is [continuously tested](/contributing/how-to-run-and-write-tests#continuous-testing) using CircleCI, the results of which are available through the Checks functionality on [commits](https://github.com/facebook/react-native/commits/main) and pull requests.
+O repositório do GitHub é [testado continuamente](/contributing/how-to-run-and-write-tests#continuous-testing) usando CircleCI, cujos resultados estão disponíveis através da funcionalidade Checks em [commits](https://github.com/facebook/react-native/commits/main) e pull requests.
 
-You can learn more about running and writing tests on the [How to Run and Write Tests](/contributing/how-to-run-and-write-tests) page.
+Você pode aprender mais sobre execução e escrita de testes na página [Como Executar e Escrever Testes](/contributing/how-to-run-and-write-tests).
 
-## Coding Style
+## Estilo de Código
 
-We use Prettier to format our JavaScript code. This saves you time and energy as you can let Prettier fix up any formatting issues automatically through its editor integrations, or by manually running `yarn run prettier`. We also use a linter to catch styling issues that may exist in your code. You can check the status of your code styling by running `yarn run lint`.
+Usamos Prettier para formatar nosso código JavaScript. Isso economiza seu tempo e energia, pois você pode deixar o Prettier corrigir quaisquer problemas de formatação automaticamente através de suas integrações com editores, ou executando manualmente `yarn run prettier`. Também usamos um linter para capturar problemas de estilo que podem existir em seu código. Você pode verificar o status do estilo do seu código executando `yarn run lint`.
 
-However, there are still some styles that the linter cannot pick up, notably in Java or Objective-C code.
+No entanto, ainda existem alguns estilos que o linter não consegue capturar, notavelmente em código Java ou Objective-C.
 
 ### Objective-C
 
-- Space after `@property` declarations
-- Brackets on _every_ `if`, on the _same_ line
-- `- method`, `@interface`, and `@implementation` brackets on the following line
-- _Try_ to keep it around 80 characters line length (sometimes it's not possible...)
-- `*` operator goes with the variable name (e.g. `NSObject *variableName;`)
+- Espaço após declarações `@property`
+- Chaves em _todo_ `if`, na _mesma_ linha
+- Chaves de `- method`, `@interface` e `@implementation` na linha seguinte
+- _Tente_ manter em torno de 80 caracteres de comprimento de linha (às vezes não é possível...)
+- Operador `*` vai com o nome da variável (por exemplo, `NSObject *variableName;`)
 
 ### Java
 
-- If a method call spans multiple lines closing bracket is on the same line as the last argument.
-- If a method header doesn't fit on one line each argument goes on a separate line.
-- 100 character line length
+- Se uma chamada de método abrange várias linhas, a chave de fechamento fica na mesma linha do último argumento.
+- Se um cabeçalho de método não cabe em uma linha, cada argumento vai em uma linha separada.
+- 100 caracteres de comprimento de linha
 
-## Sending a Pull Request
+## Enviando um Pull Request
 
-Code-level contributions to React Native generally come in the form of [a pull request](https://help.github.com/en/articles/about-pull-requests). The process of proposing a change to React Native can be summarized as follows:
+Contribuições de código para o React Native geralmente vêm na forma de [um pull request](https://help.github.com/en/articles/about-pull-requests). O processo de propor uma alteração para o React Native pode ser resumido da seguinte forma:
 
-1. Fork the React Native repository and create your branch from `main`.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes, either locally or on CI once you opened a pull request.
-5. Make sure your code lints (for example via `yarn lint --fix`).
-6. Verify if your code modifies the JS public API with `yarn build-types --validate`. If so, regenerate the snapshot using `yarn build-types`.
-7. Push the changes to your fork.
-8. Create a pull request to the React Native repository.
-9. Review and address comments on your pull request.
-10. A bot may comment with suggestions. Generally we ask you to resolve these first before a maintainer will review your code.
-11. If you haven't already, submit the [Contributor License Agreement ("CLA")](#contributor-license-agreement).
+1. Faça um fork do repositório React Native e crie seu branch a partir de `main`.
+2. Se você adicionou código que deve ser testado, adicione testes.
+3. Se você alterou APIs, atualize a documentação.
+4. Certifique-se de que a suite de testes passa, localmente ou no CI assim que você abrir um pull request.
+5. Certifique-se de que seu código passa no lint (por exemplo, via `yarn lint --fix`).
+6. Verifique se seu código modifica a API pública JS com `yarn build-types --validate`. Se sim, regenere o snapshot usando `yarn build-types`.
+7. Faça push das alterações para seu fork.
+8. Crie um pull request para o repositório React Native.
+9. Revise e responda aos comentários em seu pull request.
+10. Um bot pode comentar com sugestões. Geralmente pedimos que você resolva essas primeiro antes que um mantenedor revise seu código.
+11. Se você ainda não o fez, submeta o [Contributor License Agreement ("CLA")](#contributor-license-agreement).
 
-If all goes well, your pull request will be merged. If it is not merged, maintainers will do their best to explain their reasoning.
+Se tudo correr bem, seu pull request será mesclado. Se não for mesclado, os mantenedores farão o melhor para explicar suas razões.
 
-If this is your first time sending a pull request, we have created a [step-by-step guide to help you get started](/contributing/how-to-open-a-pull-request). For more detailed information on how pull requests are handled, see the [Managing Pull Requests page](managing-pull-requests).
+Se esta é sua primeira vez enviando um pull request, criamos um [guia passo a passo para ajudá-lo a começar](/contributing/how-to-open-a-pull-request). Para informações mais detalhadas sobre como pull requests são tratados, consulte a página [Gerenciando Pull Requests](managing-pull-requests).
 
 ### Contributor License Agreement
 
-In order to accept your pull request, we need you to submit a [Contributor License Agreement (CLA)](/contributing/contribution-license-agreement). You only need to do this once to work on any of Meta's open source projects. It only takes a minute, so you can do it while you wait for your dependencies to install.
+Para aceitar seu pull request, precisamos que você submeta um [Contributor License Agreement (CLA)](/contributing/contribution-license-agreement). Você só precisa fazer isso uma vez para trabalhar em qualquer um dos projetos open source da Meta. Leva apenas um minuto, então você pode fazer isso enquanto espera suas dependências instalarem.
 
-## License
+## Licença
 
-By contributing to React Native, you agree that your contributions will be licensed under the [LICENSE](https://github.com/facebook/react-native/blob/main/LICENSE) file in the root directory of the React Native repository.
+Ao contribuir com o React Native, você concorda que suas contribuições serão licenciadas sob o arquivo [LICENSE](https://github.com/facebook/react-native/blob/main/LICENSE) no diretório raiz do repositório React Native.

@@ -1,26 +1,27 @@
 ---
+ia-translated: true
 id: architecture-overview
-title: Architecture Overview
+title: Visão Geral da Arquitetura
 slug: /overview
 ---
 
 :::info
-Welcome to the Architecture Overview! If you're getting started with React Native, please refer to <a href="/docs/getting-started">Guides</a> section. Continue reading to learn how internals of React Native work!
+Bem-vindo à Visão Geral da Arquitetura! Se você está começando com React Native, por favor consulte a seção <a href="/docs/getting-started">Guias</a>. Continue lendo para aprender como funcionam os componentes internos do React Native!
 
-This section is a work in progress and more material will be added in the future. Please make sure to come back later to check for new information.
+Esta seção é um trabalho em andamento e mais material será adicionado no futuro. Por favor, volte mais tarde para verificar novas informações.
 :::
 
-Architecture Overview is intended to share conceptual overview of how React Native's internals work. The intended audience includes library authors and core contributors. If you are an app developer, it is not a requirement to be familiar with this material to be effective with React Native. You can still benefit from the overview as it will give you insights into how React Native works under the hood. Feel free to share your feedback on the <a href="https://github.com/reactwg/react-native-new-architecture/discussions/9">discussion inside the working group</a> for this section.
+A Visão Geral da Arquitetura tem como objetivo compartilhar uma visão conceitual de como funcionam os componentes internos do React Native. O público-alvo inclui autores de bibliotecas e colaboradores principais. Se você é um desenvolvedor de aplicativos, não é um requisito estar familiarizado com este material para ser eficaz com React Native. Você ainda pode se beneficiar da visão geral, pois ela lhe dará insights sobre como o React Native funciona nos bastidores. Sinta-se livre para compartilhar seu feedback na <a href="https://github.com/reactwg/react-native-new-architecture/discussions/9">discussão dentro do grupo de trabalho</a> para esta seção.
 
-## Table of Contents
+## Índice
 
-- [About the New Architecture](landing-page)
-- Rendering
+- [Sobre a Nova Arquitetura](landing-page)
+- Renderização
   - [Fabric](fabric-renderer)
-  - [Render, Commit, and Mount](render-pipeline)
-  - [Cross Platform Implementation](xplat-implementation)
+  - [Render, Commit e Mount](render-pipeline)
+  - [Implementação Cross Platform](xplat-implementation)
   - [View Flattening](view-flattening)
   - [Threading Model](threading-model)
-- Build Tools
+- Ferramentas de Build
   - [Bundled Hermes](bundled-hermes)
-- [Glossary](glossary)
+- [Glossário](glossary)

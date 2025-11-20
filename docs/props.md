@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: props
 title: Props
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Most components can be customized when they are created, with different parameters. These created parameters are called `props`, short for properties.
+A maioria dos componentes pode ser customizada quando são criados, com diferentes parâmetros. Esses parâmetros criados são chamados de `props`, abreviação de properties (propriedades).
 
-For example, one basic React Native component is the `Image`. When you create an image, you can use a prop named `source` to control what image it shows.
+Por exemplo, um componente básico do React Native é o `Image`. Quando você cria uma imagem, você pode usar um prop chamado `source` para controlar qual imagem ela mostra.
 
 ```SnackPlayer name=Props
 import React from 'react';
@@ -25,9 +26,9 @@ const Bananas = () => {
 export default Bananas;
 ```
 
-Notice the braces surrounding `{pic}` - these embed the variable `pic` into JSX. You can put any JavaScript expression inside braces in JSX.
+Observe as chaves ao redor de `{pic}` - elas incorporam a variável `pic` no JSX. Você pode colocar qualquer expressão JavaScript dentro de chaves no JSX.
 
-Your own components can also use `props`. This lets you make a single component that is used in many different places in your app, with slightly different properties in each place by referring to `props` in your `render` function. Here's an example:
+Seus próprios componentes também podem usar `props`. Isso permite que você crie um único componente que seja usado em muitos lugares diferentes no seu app, com propriedades ligeiramente diferentes em cada lugar, referenciando `props` na sua função `render`. Aqui está um exemplo:
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -92,8 +93,8 @@ export default LotsOfGreetings;
 </TabItem>
 </Tabs>
 
-Using `name` as a prop lets us customize the `Greeting` component, so we can reuse that component for each of our greetings. This example also uses the `Greeting` component in JSX, similar to the [Core Components](intro-react-native-components). The power to do this is what makes React so cool - if you find yourself wishing that you had a different set of UI primitives to work with, you can invent new ones.
+Usar `name` como um prop nos permite customizar o componente `Greeting`, para que possamos reutilizar esse componente para cada uma de nossas saudações. Este exemplo também usa o componente `Greeting` em JSX, similar aos [Core Components](intro-react-native-components). O poder de fazer isso é o que torna o React tão legal - se você deseja ter um conjunto diferente de primitivas de UI para trabalhar, você pode inventar novas.
 
-The other new thing going on here is the [`View`](view.md) component. A [`View`](view.md) is useful as a container for other components, to help control style and layout.
+A outra coisa nova acontecendo aqui é o componente [`View`](view.md). Um [`View`](view.md) é útil como um container para outros componentes, para ajudar a controlar estilo e layout.
 
-With `props` and the basic [`Text`](text.md), [`Image`](image.md), and [`View`](view.md) components, you can build a wide variety of static screens. To learn how to make your app change over time, you need to [learn about State](state.md).
+Com `props` e os componentes básicos [`Text`](text.md), [`Image`](image.md) e [`View`](view.md), você pode construir uma grande variedade de telas estáticas. Para aprender como fazer seu app mudar ao longo do tempo, você precisa [aprender sobre State](state.md).

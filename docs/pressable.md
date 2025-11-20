@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: pressable
 title: Pressable
 ---
 
-Pressable is a Core Component wrapper that can detect various stages of press interactions on any of its defined children.
+Pressable é um wrapper de Core Component que pode detectar vários estágios de interações de toque em qualquer um de seus filhos definidos.
 
 ```tsx
 <Pressable onPress={onPressFunction}>
@@ -11,40 +12,40 @@ Pressable is a Core Component wrapper that can detect various stages of press in
 </Pressable>
 ```
 
-## How it works
+## Como funciona
 
-On an element wrapped by `Pressable`:
+Em um elemento envolvido por `Pressable`:
 
-- [`onPressIn`](#onpressin) is called when a press is activated.
-- [`onPressOut`](#onpressout) is called when the press gesture is deactivated.
+- [`onPressIn`](#onpressin) é chamado quando um toque é ativado.
+- [`onPressOut`](#onpressout) é chamado quando o gesto de toque é desativado.
 
-After pressing [`onPressIn`](#onpressin), one of two things will happen:
+Após pressionar [`onPressIn`](#onpressin), uma de duas coisas acontecerá:
 
-1. The person will remove their finger, triggering [`onPressOut`](#onpressout) followed by [`onPress`](#onpress).
-2. If the person leaves their finger longer than 500 milliseconds before removing it, [`onLongPress`](#onlongpress) is triggered. ([`onPressOut`](#onpressout) will still fire when they remove their finger.)
+1. A pessoa removerá o dedo, disparando [`onPressOut`](#onpressout) seguido por [`onPress`](#onpress).
+2. Se a pessoa deixar o dedo por mais de 500 milissegundos antes de removê-lo, [`onLongPress`](#onlongpress) é disparado. ([`onPressOut`](#onpressout) ainda será disparado quando o dedo for removido.)
 
-<img src="/docs/assets/d_pressable_pressing.svg" width="1000" alt="Diagram of the onPress events in sequence." />
+<img src="/docs/assets/d_pressable_pressing.svg" width="1000" alt="Diagrama dos eventos onPress em sequência." />
 
-Fingers are not the most precise instruments, and it is common for users to accidentally activate the wrong element or miss the activation area. To help, `Pressable` has an optional `HitRect` you can use to define how far a touch can register away from the wrapped element. Presses can start anywhere within a `HitRect`.
+Dedos não são os instrumentos mais precisos, e é comum que usuários acidentalmente ativem o elemento errado ou percam a área de ativação. Para ajudar, `Pressable` tem um `HitRect` opcional que você pode usar para definir quão longe um toque pode ser registrado a partir do elemento envolvido. Toques podem começar em qualquer lugar dentro de um `HitRect`.
 
-`PressRect` allows presses to move beyond the element and its `HitRect` while maintaining activation and being eligible for a "press"—think of sliding your finger slowly away from a button you're pressing down on.
+`PressRect` permite que toques se movam além do elemento e seu `HitRect` enquanto mantêm a ativação e são elegíveis para um "press"—pense em deslizar seu dedo lentamente para longe de um botão que você está pressionando.
 
 :::note
-The touch area never extends past the parent view bounds and the Z-index of sibling views always takes precedence if a touch hits two overlapping views.
+A área de toque nunca se estende além dos limites da view pai e o Z-index de views irmãs sempre tem precedência se um toque atingir duas views sobrepostas.
 :::
 
 <figure>
-  <img src="/docs/assets/d_pressable_anatomy.svg" width="1000" alt="Diagram of HitRect and PressRect and how they work." />
+  <img src="/docs/assets/d_pressable_anatomy.svg" width="1000" alt="Diagrama de HitRect e PressRect e como eles funcionam." />
   <figcaption>
-    You can set <code>HitRect</code> with <code>hitSlop</code> and set <code>PressRect</code> with <code>pressRetentionOffset</code>.
+    Você pode definir <code>HitRect</code> com <code>hitSlop</code> e definir <code>PressRect</code> com <code>pressRetentionOffset</code>.
   </figcaption>
 </figure>
 
 :::info
-`Pressable` uses React Native's `Pressability` API. For more information around the state machine flow of Pressability and how it works, check out the implementation for [Pressability](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Pressability/Pressability.js#L350).
+`Pressable` usa a API `Pressability` do React Native. Para mais informações sobre o fluxo da máquina de estados de Pressability e como ela funciona, confira a implementação de [Pressability](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Pressability/Pressability.js#L350).
 :::
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=Pressable
 import React, {useState} from 'react';
@@ -114,7 +115,7 @@ export default App;
 
 ### `android_disableSound` <div className="label android">Android</div>
 
-If true, doesn't play Android system sound on press.
+Se verdadeiro, não reproduz o som do sistema Android ao pressionar.
 
 | Type    | Default |
 | ------- | ------- |
@@ -122,7 +123,7 @@ If true, doesn't play Android system sound on press.
 
 ### `android_ripple` <div className="label android">Android</div>
 
-Enables the Android ripple effect and configures its properties.
+Habilita o efeito ripple do Android e configura suas propriedades.
 
 | Type                                   |
 | -------------------------------------- |
@@ -130,7 +131,7 @@ Enables the Android ripple effect and configures its properties.
 
 ### `children`
 
-Either children or a function that receives a boolean reflecting whether the component is currently pressed.
+Ou children ou uma função que recebe um booleano refletindo se o componente está sendo pressionado no momento.
 
 | Type                     |
 | ------------------------ |
@@ -138,7 +139,7 @@ Either children or a function that receives a boolean reflecting whether the com
 
 ### `unstable_pressDelay`
 
-Duration (in milliseconds) to wait after press down before calling `onPressIn`.
+Duração (em milissegundos) para aguardar após pressionar antes de chamar `onPressIn`.
 
 | Type   |
 | ------ |
@@ -146,7 +147,7 @@ Duration (in milliseconds) to wait after press down before calling `onPressIn`.
 
 ### `delayLongPress`
 
-Duration (in milliseconds) from `onPressIn` before `onLongPress` is called.
+Duração (em milissegundos) desde `onPressIn` até `onLongPress` ser chamado.
 
 | Type   | Default |
 | ------ | ------- |
@@ -154,7 +155,7 @@ Duration (in milliseconds) from `onPressIn` before `onLongPress` is called.
 
 ### `disabled`
 
-Whether the press behavior is disabled.
+Se o comportamento de toque está desabilitado.
 
 | Type    | Default |
 | ------- | ------- |
@@ -162,7 +163,7 @@ Whether the press behavior is disabled.
 
 ### `hitSlop`
 
-Sets additional distance outside of element in which a press can be detected.
+Define distância adicional fora do elemento na qual um toque pode ser detectado.
 
 | Type                   |
 | ---------------------- |
@@ -170,7 +171,7 @@ Sets additional distance outside of element in which a press can be detected.
 
 ### `onHoverIn`
 
-Called when the hover is activated to provide visual feedback.
+Chamado quando o hover é ativado para fornecer feedback visual.
 
 | Type                                                                                                      |
 | --------------------------------------------------------------------------------------------------------- |
@@ -178,7 +179,7 @@ Called when the hover is activated to provide visual feedback.
 
 ### `onHoverOut`
 
-Called when the hover is deactivated to undo visual feedback.
+Chamado quando o hover é desativado para desfazer o feedback visual.
 
 | Type                                                                                                      |
 | --------------------------------------------------------------------------------------------------------- |
@@ -186,7 +187,7 @@ Called when the hover is deactivated to undo visual feedback.
 
 ### `onLongPress`
 
-Called if the time after `onPressIn` lasts longer than 500 milliseconds. This time period can be customized with [`delayLongPress`](#delaylongpress).
+Chamado se o tempo após `onPressIn` durar mais de 500 milissegundos. Este período de tempo pode ser customizado com [`delayLongPress`](#delaylongpress).
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -194,7 +195,7 @@ Called if the time after `onPressIn` lasts longer than 500 milliseconds. This ti
 
 ### `onPress`
 
-Called after `onPressOut`.
+Chamado após `onPressOut`.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -202,7 +203,7 @@ Called after `onPressOut`.
 
 ### `onPressIn`
 
-Called immediately when a touch is engaged, before `onPressOut` and `onPress`.
+Chamado imediatamente quando um toque é iniciado, antes de `onPressOut` e `onPress`.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -210,7 +211,7 @@ Called immediately when a touch is engaged, before `onPressOut` and `onPress`.
 
 ### `onPressMove`
 
-Called when the press location moves.
+Chamado quando a localização do toque se move.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -218,7 +219,7 @@ Called when the press location moves.
 
 ### `onPressOut`
 
-Called when a touch is released.
+Chamado quando um toque é liberado.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -226,7 +227,7 @@ Called when a touch is released.
 
 ### `pressRetentionOffset`
 
-Additional distance outside of this view in which a touch is considered a press before `onPressOut` is triggered.
+Distância adicional fora desta view na qual um toque é considerado um press antes de `onPressOut` ser disparado.
 
 | Type                   | Default                                      |
 | ---------------------- | -------------------------------------------- |
@@ -234,7 +235,7 @@ Additional distance outside of this view in which a touch is considered a press 
 
 ### `style`
 
-Either view styles or a function that receives a boolean reflecting whether the component is currently pressed and returns view styles.
+Ou estilos de view ou uma função que recebe um booleano refletindo se o componente está sendo pressionado no momento e retorna estilos de view.
 
 | Type                                                                                            |
 | ----------------------------------------------------------------------------------------------- |
@@ -242,7 +243,7 @@ Either view styles or a function that receives a boolean reflecting whether the 
 
 ### `testOnly_pressed`
 
-Used only for documentation or testing (e.g. snapshot testing).
+Usado apenas para documentação ou testes (por exemplo, snapshot testing).
 
 | Type    | Default |
 | ------- | ------- |
@@ -252,7 +253,7 @@ Used only for documentation or testing (e.g. snapshot testing).
 
 ### RippleConfig
 
-Ripple effect configuration for the `android_ripple` property.
+Configuração do efeito ripple para a propriedade `android_ripple`.
 
 | Type   |
 | ------ |
@@ -260,9 +261,9 @@ Ripple effect configuration for the `android_ripple` property.
 
 **Properties:**
 
-| Name       | Type            | Required | Description                                                                                                                                                                                                                                                  |
-| ---------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| color      | [color](colors) | No       | Defines the color of the ripple effect.                                                                                                                                                                                                                      |
-| borderless | boolean         | No       | Defines if ripple effect should not include border.                                                                                                                                                                                                          |
-| radius     | number          | No       | Defines the radius of the ripple effect.                                                                                                                                                                                                                     |
-| foreground | boolean         | No       | Set to true to add the ripple effect to the foreground of the view, instead of the background. This is useful if one of your child views has a background of its own, or you're e.g. displaying images, and you don't want the ripple to be covered by them. |
+| Name       | Type            | Required | Description                                                                                                                                                                                                                                                                         |
+| ---------- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| color      | [color](colors) | No       | Define a cor do efeito ripple.                                                                                                                                                                                                                                                      |
+| borderless | boolean         | No       | Define se o efeito ripple não deve incluir borda.                                                                                                                                                                                                                                   |
+| radius     | number          | No       | Define o raio do efeito ripple.                                                                                                                                                                                                                                                     |
+| foreground | boolean         | No       | Defina como true para adicionar o efeito ripple ao primeiro plano da view, em vez do plano de fundo. Isso é útil se uma de suas views filhas tem um plano de fundo próprio, ou se você está, por exemplo, exibindo imagens, e não quer que o ripple seja coberto por elas. |

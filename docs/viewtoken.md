@@ -1,11 +1,12 @@
 ---
 id: viewtoken
 title: ViewToken Object Type
+ia-translated: true
 ---
 
-`ViewToken` object is returned as one of the properties in the `onViewableItemsChanged` callback (for example, in the [FlatList](flatlist) component). It is exported by [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js).
+O objeto `ViewToken` é retornado como uma das propriedades no callback `onViewableItemsChanged` (por exemplo, no componente [FlatList](flatlist)). Ele é exportado pelo [`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js).
 
-## Example
+## Exemplo
 
 ```js
 {
@@ -16,49 +17,49 @@ title: ViewToken Object Type
 }
 ```
 
-## Keys and values
+## Chaves e valores
 
 ### `index`
 
-Unique numeric identifier assigned to the data element.
+Identificador numérico único atribuído ao elemento de dados.
 
-| Type   | Optional |
+| Tipo   | Opcional |
 | ------ | -------- |
-| number | Yes      |
+| number | Sim      |
 
 ### `isViewable`
 
-Specifies if at least some part of list element is visible in the viewport.
+Especifica se pelo menos alguma parte do elemento da lista está visível no viewport.
 
-| Type    | Optional |
+| Tipo    | Opcional |
 | ------- | -------- |
-| boolean | No       |
+| boolean | Não      |
 
 ### `item`
 
-Item data
+Dados do item
 
-| Type | Optional |
+| Tipo | Opcional |
 | ---- | -------- |
-| any  | No       |
+| any  | Não      |
 
 ### `key`
 
-Key identifier assigned to the data element extracted to the top level.
+Identificador de chave atribuído ao elemento de dados extraído para o nível superior.
 
-| Type   | Optional |
+| Tipo   | Opcional |
 | ------ | -------- |
-| string | No       |
+| string | Não      |
 
 ### `section`
 
-Item section data when used with `SectionList`.
+Dados da seção do item quando usado com `SectionList`.
 
-| Type | Optional |
+| Tipo | Opcional |
 | ---- | -------- |
-| any  | Yes      |
+| any  | Sim      |
 
-## Used by
+## Usado por
 
 - [`FlatList`](flatlist)
 - [`SectionList`](sectionlist)

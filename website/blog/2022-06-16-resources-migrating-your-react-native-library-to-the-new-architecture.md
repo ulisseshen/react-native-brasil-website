@@ -1,114 +1,115 @@
 ---
-title: Helping migrate React Native libraries to the New Architecture
+ia-translated: true
+title: Ajudando a migrar bibliotecas React Native para a New Architecture
 authors: [cipolleschi]
 tags: [announcement]
 date: 2022-06-16
 ---
 
-**tl; dr**: We are working on improving the resources supporting the React Native New Architecture. We have already released a repository to help migrate your app ([RNNewArchitectureApp](https://github.com/react-native-community/RNNewArchitectureApp)) and one for your libraries ([RNNewArchitectureLibraries](https://github.com/react-native-community/RNNewArchitectureLibraries)). We are also revamping the [New Architecture guide](https://github.com/facebook/react-native-website/pull/3037) on the Website and we created a [GitHub Working Group](https://github.com/reactwg/react-native-new-architecture/discussions) to answer questions related to the New Architecture.
+**tl; dr**: Estamos trabalhando para melhorar os recursos que suportam a New Architecture do React Native. Já lançamos um repositório para ajudar a migrar seu aplicativo ([RNNewArchitectureApp](https://github.com/react-native-community/RNNewArchitectureApp)) e um para suas bibliotecas ([RNNewArchitectureLibraries](https://github.com/react-native-community/RNNewArchitectureLibraries)). Também estamos reformulando o [guia da New Architecture](https://github.com/facebook/react-native-website/pull/3037) no Website e criamos um [GitHub Working Group](https://github.com/reactwg/react-native-new-architecture/discussions) para responder perguntas relacionadas à New Architecture.
 
 <!--truncate-->
 
-## Introduction
+## Introdução
 
-In this post we are sharing an update on tools and resources to help you migrate your **Native Modules** and **Native Components** to their **New Architecture** equivalents, **TurboModule** and **Fabric Components**.
+Neste post, compartilhamos uma atualização sobre ferramentas e recursos para ajudá-lo a migrar seus **Native Modules** e **Native Components** para seus equivalentes da **New Architecture**, **TurboModule** e **Fabric Components**.
 
-React Native users leverage vast number of open source libraries for building apps. For a complete and consistent ecosystem, it is necessary that these libraries migrate such that everyone can benefit from the unlocked capabilities and performance improvements of the New Architecture.
+Os usuários do React Native utilizam um vasto número de bibliotecas open source para construir aplicativos. Para um ecossistema completo e consistente, é necessário que essas bibliotecas migrem para que todos possam se beneficiar das capacidades desbloqueadas e melhorias de performance da New Architecture.
 
-Here is what we’re working on to support library developers in migrating to the New Architecture:
+Aqui está o que estamos trabalhando para apoiar os desenvolvedores de bibliotecas na migração para a New Architecture:
 
-- **Documentation:** We are expanding the [New Architecture guide](https://github.com/facebook/react-native-website/pull/3037) on the website to cover more concepts of the New Architecture and how to develop your components.
-- **Example Migrations:** We’ve set up two repositories to demonstrate how to migrate a React Native app to the New Architecture ([RNNewArchitectureApp](https://github.com/react-native-community/RNNewArchitectureApp)) and how to create a **Fabric Component** and a **TurboModule** that work with both architectures ([RNNewArchitectureLibraries](https://github.com/react-native-community/RNNewArchitectureLibraries)).
-- **Support:** Earlier this year, we created a [GitHub Working Group](https://github.com/reactwg/react-native-new-architecture/discussions) dedicated to discussion and questions around the New Architecture.
+- **Documentação:** Estamos expandindo o [guia da New Architecture](https://github.com/facebook/react-native-website/pull/3037) no website para cobrir mais conceitos da New Architecture e como desenvolver seus componentes.
+- **Exemplos de Migração:** Configuramos dois repositórios para demonstrar como migrar um aplicativo React Native para a New Architecture ([RNNewArchitectureApp](https://github.com/react-native-community/RNNewArchitectureApp)) e como criar um **Fabric Component** e um **TurboModule** que funcionam com ambas as arquiteturas ([RNNewArchitectureLibraries](https://github.com/react-native-community/RNNewArchitectureLibraries)).
+- **Suporte:** No início deste ano, criamos um [GitHub Working Group](https://github.com/reactwg/react-native-new-architecture/discussions) dedicado a discussão e perguntas sobre a New Architecture.
 
-In this post, we will dig deeper into these resources and explain in more detail how you can use them most efficiently. Finally, we will provide a snapshot of the current migration state for the most used React Native libraries.
+Neste post, vamos nos aprofundar nesses recursos e explicar com mais detalhes como você pode usá-los de forma mais eficiente. Finalmente, forneceremos um panorama do estado atual de migração para as bibliotecas React Native mais usadas.
 
-### Documentation
+### Documentação
 
-In the past 6 months, we’ve added a [guide on adopting the New Architecture](https://github.com/reactwg/react-native-new-architecture#guides) and an [architecture deep-dive](/architecture/overview) on Fabric. We plan to expand this to include more guides and documentation around creating TurboModules, understanding CodeGen, and more. We plan to have updates to share by the 0.70 release.
+Nos últimos 6 meses, adicionamos um [guia sobre a adoção da New Architecture](https://github.com/reactwg/react-native-new-architecture#guides) e um [mergulho profundo na arquitetura](/architecture/overview) sobre Fabric. Planejamos expandir isso para incluir mais guias e documentação sobre criação de TurboModules, entendimento do CodeGen e mais. Planejamos ter atualizações para compartilhar até o lançamento 0.70.
 
-Currently, the **New Architecture** guide covers how to [migrate your app](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/enable-apps.md) and [your libraries](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/enable-libraries-prerequisites.md) to support the New Architecture properly.
+Atualmente, o guia da **New Architecture** cobre como [migrar seu aplicativo](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/enable-apps.md) e [suas bibliotecas](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/enable-libraries-prerequisites.md) para suportar a New Architecture adequadamente.
 
-If you are interested in the evolution of this guide, or have feedback, you can follow along on [this](https://github.com/facebook/react-native-website/pull/3037) pull request.
+Se você está interessado na evolução deste guia, ou tem feedback, pode acompanhar [este](https://github.com/facebook/react-native-website/pull/3037) pull request.
 
-### Example Migrations
+### Exemplos de Migração
 
-For developers who may want to follow along in code, we’ve prepared two example repositories.
+Para desenvolvedores que podem querer acompanhar no código, preparamos dois repositórios de exemplo.
 
 #### RNNewArchitectureApp
 
-[This repo](https://github.com/react-native-community/RNNewArchitectureApp) was created to demonstrate how to migrate an app, the native modules and the native components from the legacy architecture on the React Native version 0.67 to the New Architecture and the most recent version of React Native. Each commit corresponds to an isolated migration step.
+[Este repositório](https://github.com/react-native-community/RNNewArchitectureApp) foi criado para demonstrar como migrar um aplicativo, os native modules e os native components da arquitetura legada no React Native versão 0.67 para a New Architecture e a versão mais recente do React Native. Cada commit corresponde a uma etapa de migração isolada.
 
 <figure>
     <img src="/blog/assets/new-arch-example-steps-to-migrate-an-app.png" alt="Example steps to migrate an app" />
-    <figcaption>Commit list for a migration in the RNNewArchitectureApp repository</figcaption>
+    <figcaption>Lista de commits para uma migração no repositório RNNewArchitectureApp</figcaption>
 </figure>
 
-The repo is organized as follows:
+O repositório está organizado da seguinte forma:
 
-- A **main** branch has no code but a README.md which advertises other branches.
-- Several migration branches which show a migration from a specific version of RN to another.
+- Uma branch **main** não tem código, apenas um README.md que divulga outras branches.
+- Várias branches de migração que mostram uma migração de uma versão específica do RN para outra.
 
-Some of the migration branches also have a **RUN.md** file which describes in a more human-readable fashion the exact steps that have been applied in every commit.
+Algumas das branches de migração também têm um arquivo **RUN.md** que descreve de forma mais legível os passos exatos que foram aplicados em cada commit.
 
-We plan to keep this example up to date with the most recent stable releases, adding migrations to any minor release of React Native we are going to release. If you notice issue with any of the steps, please file an issue in the repository. This will hold until we have the reasonable feeling that most of the React Native users have migrated to the New Architecture.
+Planejamos manter este exemplo atualizado com os lançamentos estáveis mais recentes, adicionando migrações para qualquer lançamento menor do React Native que vamos lançar. Se você notar problemas com qualquer uma das etapas, por favor, registre uma issue no repositório. Isso será mantido até termos a sensação razoável de que a maioria dos usuários do React Native migrou para a New Architecture.
 
 #### RNNewArchitectureLibraries
 
-Similarly, [this repo](https://github.com/react-native-community/RNNewArchitectureLibraries) provides a step-by-step guide on how to create a **TurboModule** and a **Fabric Component**. It has a focus on ensuring backward compatibility between the New Architecture and the legacy one.
+Da mesma forma, [este repositório](https://github.com/react-native-community/RNNewArchitectureLibraries) fornece um guia passo a passo sobre como criar um **TurboModule** e um **Fabric Component**. Ele tem foco em garantir compatibilidade retroativa entre a New Architecture e a legada.
 
-The repository is organized in a similar way to the previous one:
+O repositório está organizado de maneira similar ao anterior:
 
-- A **main** branch has no code but a README.md which advertises other branches.
-- Other branches to show how to develop **TurboModules** and **Fabric Components**.
+- Uma branch **main** não tem código, apenas um README.md que divulga outras branches.
+- Outras branches para mostrar como desenvolver **TurboModules** e **Fabric Components**.
 
-We plan to keep this example updated onto new releases of React Native, especially releases that affect library development, as well as add more examples on how to use advanced features (for example: implementing commands, event emitters, custom state). If you notice errors, please file an issue in the example repository.
+Planejamos manter este exemplo atualizado para novos lançamentos do React Native, especialmente lançamentos que afetam o desenvolvimento de bibliotecas, bem como adicionar mais exemplos sobre como usar recursos avançados (por exemplo: implementar commands, event emitters, custom state). Se você notar erros, por favor, registre uma issue no repositório de exemplo.
 
-### Support
+### Suporte
 
-We’ve created a dedicated [working group](https://github.com/reactwg/react-native-new-architecture) to give the community space to ask questions and get updates on the New Architecture. If you are a library maintainer, this is a valuable resource to find answers to your questions, and for us to know about your requirements. To join, please follow [these instructions](https://github.com/reactwg/react-native-new-architecture#how-to-join-the-working-group). Everyone is welcome.
+Criamos um [working group](https://github.com/reactwg/react-native-new-architecture) dedicado para dar à comunidade espaço para fazer perguntas e obter atualizações sobre a New Architecture. Se você é um mantenedor de biblioteca, este é um recurso valioso para encontrar respostas para suas perguntas, e para nós sabermos sobre seus requisitos. Para participar, siga [estas instruções](https://github.com/reactwg/react-native-new-architecture#how-to-join-the-working-group). Todos são bem-vindos.
 
-The working group is organized into several sections:
+O working group está organizado em várias seções:
 
-- [Announcements](https://github.com/reactwg/react-native-new-architecture/discussions/categories/announcements): A place to share milestones and significant updates on the RN New Architecture Rollout
-- [Deep Dive](https://github.com/reactwg/react-native-new-architecture/discussions/categories/deep-dive): A place to chat about deep dives and technical-specific topics
-- [Documentation](https://github.com/reactwg/react-native-new-architecture/discussions/categories/documentation): A place to chat about the New Architecture documentation and migration material
-- [Libraries](https://github.com/reactwg/react-native-new-architecture/discussions/categories/libraries): A place to chat about 3rd party libraries and their migration story to the New Architecture
-- [Q&A](https://github.com/reactwg/react-native-new-architecture/discussions/categories/q-a): A place to ask the community for help on the New Architecture topics
-- [Releases](https://github.com/reactwg/react-native-new-architecture/discussions/categories/releases): A place to chat about release specific bugs & build problems
+- [Announcements](https://github.com/reactwg/react-native-new-architecture/discussions/categories/announcements): Um lugar para compartilhar marcos e atualizações significativas sobre o Rollout da RN New Architecture
+- [Deep Dive](https://github.com/reactwg/react-native-new-architecture/discussions/categories/deep-dive): Um lugar para conversar sobre mergulhos profundos e tópicos técnicos específicos
+- [Documentation](https://github.com/reactwg/react-native-new-architecture/discussions/categories/documentation): Um lugar para conversar sobre a documentação da New Architecture e material de migração
+- [Libraries](https://github.com/reactwg/react-native-new-architecture/discussions/categories/libraries): Um lugar para conversar sobre bibliotecas de terceiros e sua história de migração para a New Architecture
+- [Q&A](https://github.com/reactwg/react-native-new-architecture/discussions/categories/q-a): Um lugar para pedir ajuda à comunidade sobre tópicos da New Architecture
+- [Releases](https://github.com/reactwg/react-native-new-architecture/discussions/categories/releases): Um lugar para conversar sobre bugs específicos de lançamento e problemas de build
 
-To use this group effectively:
+Para usar este grupo de forma eficaz:
 
-- **Make sure your library is listed inside the [Libraries](https://github.com/reactwg/react-native-new-architecture/discussions/categories/libraries) section**. This will help us share a status update on the migration of your library and will help us understand which struggles library authors are facing to support you better.
-- **Leverage the Q&A [section](https://github.com/reactwg/react-native-new-architecture/discussions/categories/q-a) if you face a blocker and need support**. Our team and community experts are monitoring and will support at our best effort.
-- **Keep an eye on the other sections for topics that may affect you**. A new release may introduce exactly the API that you were looking for. You can subscribe to particular discussions via GitHub.
+- **Certifique-se de que sua biblioteca esteja listada dentro da seção [Libraries](https://github.com/reactwg/react-native-new-architecture/discussions/categories/libraries)**. Isso nos ajudará a compartilhar uma atualização de status sobre a migração de sua biblioteca e nos ajudará a entender quais dificuldades os autores de bibliotecas estão enfrentando para apoiá-lo melhor.
+- **Aproveite a seção Q&A [section](https://github.com/reactwg/react-native-new-architecture/discussions/categories/q-a) se você enfrentar um bloqueador e precisar de suporte**. Nossa equipe e especialistas da comunidade estão monitorando e apoiarão da melhor forma possível.
+- **Fique de olho nas outras seções para tópicos que podem afetá-lo**. Um novo lançamento pode introduzir exatamente a API que você estava procurando. Você pode se inscrever em discussões específicas via GitHub.
 
-We plan to support this group until the **New Architecture** is enabled by default and all the major libraries have been migrated to it.
+Planejamos apoiar este grupo até que a **New Architecture** esteja habilitada por padrão e todas as principais bibliotecas tenham sido migradas para ela.
 
-### Migration Status of Popular Libraries
+### Status de Migração de Bibliotecas Populares
 
-Libraries maintainers have been sharing with us [in the working group](https://github.com/reactwg/react-native-new-architecture/discussions/categories/libraries) the status of their migration effort, and we wanted to provide you with a quick overview:
+Mantenedores de bibliotecas têm compartilhado conosco [no working group](https://github.com/reactwg/react-native-new-architecture/discussions/categories/libraries) o status de seu esforço de migração, e queríamos fornecer uma visão geral rápida:
 
-- [react-native-gesture-handler](https://github.com/reactwg/react-native-new-architecture/discussions/15): ✅ Migrated
-- [react-native-navigation](https://github.com/reactwg/react-native-new-architecture/discussions/17): 🏃‍♂️ Ongoing
-- [react-native-pager-view](https://github.com/reactwg/react-native-new-architecture/discussions/16): 🏃‍♂️ Ongoing
-- [react-native-reanimated](https://github.com/reactwg/react-native-new-architecture/discussions/14): ✅ Migrated. In the process of testing and profiling for performances
-- [react-native-screens](https://github.com/reactwg/react-native-new-architecture/discussions/13): 🏃‍♂️ Ongoing
-- [react-native-slider](https://github.com/reactwg/react-native-new-architecture/discussions/38): 🎬 Started
-- [react-native-template-new-architecture](https://github.com/reactwg/react-native-new-architecture/discussions/21): ✅ Migrated. Gradually adopting/testing more companion Libraries
-- [react-native-template-typescript](https://github.com/reactwg/react-native-new-architecture/discussions/22): ✅ Migrated
-- [react-native-webview](https://github.com/reactwg/react-native-new-architecture/discussions/19): 🎬 Started
+- [react-native-gesture-handler](https://github.com/reactwg/react-native-new-architecture/discussions/15): ✅ Migrado
+- [react-native-navigation](https://github.com/reactwg/react-native-new-architecture/discussions/17): 🏃‍♂️ Em andamento
+- [react-native-pager-view](https://github.com/reactwg/react-native-new-architecture/discussions/16): 🏃‍♂️ Em andamento
+- [react-native-reanimated](https://github.com/reactwg/react-native-new-architecture/discussions/14): ✅ Migrado. Em processo de teste e profiling de performance
+- [react-native-screens](https://github.com/reactwg/react-native-new-architecture/discussions/13): 🏃‍♂️ Em andamento
+- [react-native-slider](https://github.com/reactwg/react-native-new-architecture/discussions/38): 🎬 Iniciado
+- [react-native-template-new-architecture](https://github.com/reactwg/react-native-new-architecture/discussions/21): ✅ Migrado. Adotando/testando gradualmente mais bibliotecas companheiras
+- [react-native-template-typescript](https://github.com/reactwg/react-native-new-architecture/discussions/22): ✅ Migrado
+- [react-native-webview](https://github.com/reactwg/react-native-new-architecture/discussions/19): 🎬 Iniciado
 
-## Next Steps
+## Próximos Passos
 
-We are invested in supporting the React Native community’s adoption of the New Architecture. Concretely, we will continue to:
+Estamos investidos em apoiar a adoção da New Architecture pela comunidade React Native. Concretamente, continuaremos a:
 
-- Offer best-effort support in the **Working Group.**
-- Provide more examples about how to achieve amazing results with the New Architecture in the **RNNewArchitecture** repositories.
-- Provide clear and up-to-date documentation on the **New Architecture**.
-- Track the migration status of essential React Native libraries in the **Working Group**.
-- Simplify the migration path for developers
+- Oferecer suporte de melhor esforço no **Working Group**.
+- Fornecer mais exemplos sobre como alcançar resultados incríveis com a New Architecture nos repositórios **RNNewArchitecture**.
+- Fornecer documentação clara e atualizada sobre a **New Architecture**.
+- Acompanhar o status de migração de bibliotecas essenciais do React Native no **Working Group**.
+- Simplificar o caminho de migração para desenvolvedores
 
-In addition, React Native 0.69 will ship with improved devX for app and library developers for New Architecture adoption. You can find more information about the 0.69.0 release [here](https://github.com/reactwg/react-native-releases/discussions/21).
+Além disso, React Native 0.69 será lançado com devX aprimorado para desenvolvedores de aplicativos e bibliotecas para adoção da New Architecture. Você pode encontrar mais informações sobre o lançamento 0.69.0 [aqui](https://github.com/reactwg/react-native-releases/discussions/21).
 
-We are excited about what we will build together with the **New Architecture**!
+Estamos empolgados com o que vamos construir juntos com a **New Architecture**!

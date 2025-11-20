@@ -1,19 +1,20 @@
 ---
+ia-translated: true
 id: toastandroid
 title: ToastAndroid
 ---
 
-React Native's ToastAndroid API exposes the Android platform's ToastAndroid module as a JS module. It provides the method `show(message, duration)` which takes the following parameters:
+A API ToastAndroid do React Native expõe o módulo ToastAndroid da plataforma Android como um módulo JS. Ela fornece o método `show(message, duration)` que recebe os seguintes parâmetros:
 
-- _message_ A string with the text to toast
-- _duration_ The duration of the toast—either `ToastAndroid.SHORT` or `ToastAndroid.LONG`
+- _message_ Uma string com o texto do toast
+- _duration_ A duração do toast—pode ser `ToastAndroid.SHORT` ou `ToastAndroid.LONG`
 
-You can alternatively use `showWithGravity(message, duration, gravity)` to specify where the toast appears in the screen's layout. May be `ToastAndroid.TOP`, `ToastAndroid.BOTTOM` or `ToastAndroid.CENTER`.
+Você também pode usar `showWithGravity(message, duration, gravity)` para especificar onde o toast aparece no layout da tela. Pode ser `ToastAndroid.TOP`, `ToastAndroid.BOTTOM` ou `ToastAndroid.CENTER`.
 
-The `showWithGravityAndOffset(message, duration, gravity, xOffset, yOffset)` method adds the ability to specify an offset with in pixels.
+O método `showWithGravityAndOffset(message, duration, gravity, xOffset, yOffset)` adiciona a capacidade de especificar um deslocamento em pixels.
 
 :::note
-Starting with Android 11 (API level 30), setting the gravity has no effect on text toasts. Read about the changes [here](https://developer.android.com/about/versions/11/behavior-changes-11#text-toast-api-changes).
+A partir do Android 11 (API level 30), definir a gravidade não tem efeito em toasts de texto. Leia sobre as mudanças [aqui](https://developer.android.com/about/versions/11/behavior-changes-11#text-toast-api-changes).
 :::
 
 ```SnackPlayer name=Toast%20Android%20API%20Example&supportedPlatforms=android
@@ -76,7 +77,7 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
 ## Methods
 
@@ -90,7 +91,7 @@ static show(message: string, duration: number);
 
 ### `showWithGravity()`
 
-This property will only work on Android API 29 and below. For similar functionality on higher Android APIs, consider using snackbar or notification.
+Esta propriedade funcionará apenas no Android API 29 e inferiores. Para funcionalidade similar em APIs Android superiores, considere usar snackbar ou notificação.
 
 ```tsx
 static showWithGravity(message: string, duration: number, gravity: number);
@@ -100,7 +101,7 @@ static showWithGravity(message: string, duration: number, gravity: number);
 
 ### `showWithGravityAndOffset()`
 
-This property will only work on Android API 29 and below. For similar functionality on higher Android APIs, consider using snackbar or notification.
+Esta propriedade funcionará apenas no Android API 29 e inferiores. Para funcionalidade similar em APIs Android superiores, considere usar snackbar ou notificação.
 
 ```tsx
 static showWithGravityAndOffset(
@@ -116,7 +117,7 @@ static showWithGravityAndOffset(
 
 ### `SHORT`
 
-Indicates the duration on the screen.
+Indica a duração na tela.
 
 ```tsx
 static SHORT: number;
@@ -126,7 +127,7 @@ static SHORT: number;
 
 ### `LONG`
 
-Indicates the duration on the screen.
+Indica a duração na tela.
 
 ```tsx
 static LONG: number;
@@ -136,7 +137,7 @@ static LONG: number;
 
 ### `TOP`
 
-Indicates the position on the screen.
+Indica a posição na tela.
 
 ```tsx
 static TOP: number;
@@ -146,7 +147,7 @@ static TOP: number;
 
 ### `BOTTOM`
 
-Indicates the position on the screen.
+Indica a posição na tela.
 
 ```tsx
 static BOTTOM: number;
@@ -156,7 +157,7 @@ static BOTTOM: number;
 
 ### `CENTER`
 
-Indicates the position on the screen.
+Indica a posição na tela.
 
 ```tsx
 static CENTER: number;

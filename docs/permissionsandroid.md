@@ -1,18 +1,19 @@
 ---
+ia-translated: true
 id: permissionsandroid
 title: PermissionsAndroid
 ---
 
 <div className="banner-native-code-required">
   <h3>Project with Native Code Required</h3>
-  <p>The following section only applies to projects with native code exposed. If you are using the managed Expo workflow, see the guide on <a href="https://docs.expo.dev/guides/permissions/">Permissions</a> in the Expo documentation for the appropriate alternative.</p>
+  <p>A seção a seguir se aplica apenas a projetos com código nativo exposto. Se você está usando o fluxo de trabalho gerenciado do Expo, consulte o guia sobre <a href="https://docs.expo.dev/guides/permissions/">Permissions</a> na documentação do Expo para a alternativa apropriada.</p>
 </div>
 
-`PermissionsAndroid` provides access to Android M's new permissions model. The so-called "normal" permissions are granted by default when the application is installed as long as they appear in `AndroidManifest.xml`. However, "dangerous" permissions require a dialog prompt. You should use this module for those permissions.
+`PermissionsAndroid` fornece acesso ao novo modelo de permissions do Android M. As chamadas permissions "normais" são concedidas por padrão quando a aplicação é instalada, desde que apareçam em `AndroidManifest.xml`. No entanto, permissions "perigosas" requerem um prompt de diálogo. Você deve usar este módulo para essas permissions.
 
-On devices before SDK version 23, the permissions are automatically granted if they appear in the manifest, so `check` should always result to `true` and `request` should always resolve to `PermissionsAndroid.RESULTS.GRANTED`.
+Em dispositivos com versão SDK anterior à 23, as permissions são concedidas automaticamente se aparecerem no manifest, então `check` deve sempre retornar `true` e `request` deve sempre resolver para `PermissionsAndroid.RESULTS.GRANTED`.
 
-If a user has previously turned off a permission that you prompt for, the OS will advise your app to show a rationale for needing the permission. The optional `rationale` argument will show a dialog prompt only if necessary - otherwise the normal permission prompt will appear.
+Se um usuário desativou anteriormente uma permission que você solicita, o sistema operacional irá recomendar que seu app mostre uma justificativa para precisar da permission. O argumento opcional `rationale` mostrará um prompt de diálogo apenas se necessário - caso contrário, o prompt de permission normal aparecerá.
 
 ### Example
 
@@ -79,9 +80,9 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-### Permissions that require prompting the user
+### Permissions que requerem prompt ao usuário
 
-Available as constants under `PermissionsAndroid.PERMISSIONS`:
+Disponíveis como constantes em `PermissionsAndroid.PERMISSIONS`:
 
 - `READ_CALENDAR`: 'android.permission.READ_CALENDAR'
 - `WRITE_CALENDAR`: 'android.permission.WRITE_CALENDAR'
@@ -126,9 +127,9 @@ Available as constants under `PermissionsAndroid.PERMISSIONS`:
 - `READ_VOICEMAIL`: 'com.android.voicemail.permission.READ_VOICEMAIL',
 - `WRITE_VOICEMAIL`: 'com.android.voicemail.permission.WRITE_VOICEMAIL',
 
-### Result strings for requesting permissions
+### Strings de resultado para solicitar permissions
 
-Available as constants under `PermissionsAndroid.RESULTS`:
+Disponíveis como constantes em `PermissionsAndroid.RESULTS`:
 
 - `GRANTED`: 'granted'
 - `DENIED`: 'denied'
@@ -146,13 +147,13 @@ Available as constants under `PermissionsAndroid.RESULTS`:
 static check(permission: Permission): Promise<boolean>;
 ```
 
-Returns a promise resolving to a boolean value as to whether the specified permissions has been granted.
+Retorna uma promise que resolve para um valor booleano indicando se a permission especificada foi concedida.
 
 **Parameters:**
 
-| Name       | Type   | Required | Description                  |
-| ---------- | ------ | -------- | ---------------------------- |
-| permission | string | Yes      | The permission to check for. |
+| Name       | Type   | Required | Description                         |
+| ---------- | ------ | -------- | ----------------------------------- |
+| permission | string | Yes      | A permission a ser verificada.      |
 
 ---
 
@@ -165,26 +166,26 @@ static request(
 ): Promise<PermissionStatus>;
 ```
 
-Prompts the user to enable a permission and returns a promise resolving to a string value (see result strings above) indicating whether the user allowed or denied the request or does not want to be asked again.
+Solicita ao usuário que habilite uma permission e retorna uma promise que resolve para um valor string (veja as strings de resultado acima) indicando se o usuário permitiu ou negou a solicitação ou não quer ser perguntado novamente.
 
-If `rationale` is provided, this function checks with the OS whether it is necessary to show a dialog explaining why the permission is needed (https://developer.android.com/training/permissions/requesting.html#explain) and then shows the system permission dialog.
+Se `rationale` for fornecido, esta função verifica com o sistema operacional se é necessário mostrar um diálogo explicando por que a permission é necessária (https://developer.android.com/training/permissions/requesting.html#explain) e então mostra o diálogo de permission do sistema.
 
 **Parameters:**
 
-| Name       | Type   | Required | Description                |
-| ---------- | ------ | -------- | -------------------------- |
-| permission | string | Yes      | The permission to request. |
-| rationale  | object | No       | See `rationale` below.     |
+| Name       | Type   | Required | Description                      |
+| ---------- | ------ | -------- | -------------------------------- |
+| permission | string | Yes      | A permission a ser solicitada.   |
+| rationale  | object | No       | Veja `rationale` abaixo.         |
 
 **Rationale:**
 
-| Name           | Type   | Required | Description                      |
-| -------------- | ------ | -------- | -------------------------------- |
-| title          | string | Yes      | The title of the dialog.         |
-| message        | string | Yes      | The message of the dialog.       |
-| buttonPositive | string | Yes      | The text of the positive button. |
-| buttonNegative | string | No       | The text of the negative button. |
-| buttonNeutral  | string | No       | The text of the neutral button.  |
+| Name           | Type   | Required | Description                       |
+| -------------- | ------ | -------- | --------------------------------- |
+| title          | string | Yes      | O título do diálogo.              |
+| message        | string | Yes      | A mensagem do diálogo.            |
+| buttonPositive | string | Yes      | O texto do botão positivo.        |
+| buttonNegative | string | No       | O texto do botão negativo.        |
+| buttonNeutral  | string | No       | O texto do botão neutro.          |
 
 ---
 
@@ -196,10 +197,10 @@ static requestMultiple(
 ): Promise<{[key in Permission]: PermissionStatus}>;
 ```
 
-Prompts the user to enable multiple permissions in the same dialog and returns an object with the permissions as keys and strings as values (see result strings above) indicating whether the user allowed or denied the request or does not want to be asked again.
+Solicita ao usuário que habilite múltiplas permissions no mesmo diálogo e retorna um objeto com as permissions como chaves e strings como valores (veja as strings de resultado acima) indicando se o usuário permitiu ou negou a solicitação ou não quer ser perguntado novamente.
 
 **Parameters:**
 
-| Name        | Type  | Required | Description                      |
-| ----------- | ----- | -------- | -------------------------------- |
-| permissions | array | Yes      | Array of permissions to request. |
+| Name        | Type  | Required | Description                            |
+| ----------- | ----- | -------- | -------------------------------------- |
+| permissions | array | Yes      | Array de permissions a serem solicitadas. |

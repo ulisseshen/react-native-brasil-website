@@ -1,61 +1,62 @@
 ---
-title: 'Implementing Twitter’s App Loading Animation in React Native'
+ia-translated: true
+title: 'Implementando a Animação de Carregamento do App do Twitter em React Native'
 authors: [Eli White]
 tags: [engineering]
 ---
 
-Twitter’s iOS app has a loading animation I quite enjoy.
+O app iOS do Twitter tem uma animação de carregamento que eu acho muito interessante.
 
 <img src="/blog/assets/loading-screen-01.gif" style={{float: 'left', paddingRight: 80, paddingBottom: 20}} />
 
-Once the app is ready, the Twitter logo delightfully expands, revealing the app.
+Quando o app está pronto, o logo do Twitter se expande de forma encantadora, revelando o aplicativo.
 
-I wanted to figure out how to recreate this loading animation with React Native.
+Eu queria descobrir como recriar esta animação de carregamento com React Native.
 
 <hr style={{clear: 'both', marginBottom: 40, width: 80}} />
 
-To understand _how_ to build it, I first had to understand the difference pieces of the loading animation. The easiest way to see the subtlety is to slow it down.
+Para entender _como_ construir isso, primeiro tive que entender as diferentes peças da animação de carregamento. A maneira mais fácil de ver a sutileza é desacelerar.
 
 <img src="/blog/assets/loading-screen-02.gif" style={{marginTop: 20, float: 'left', paddingRight: 80, paddingBottom: 20}} />
 
-There are a few major pieces in this that we will need to figure out how to build.
+Existem algumas peças principais nisso que precisaremos descobrir como construir.
 
-1. Scaling the bird.
-1. As the bird grows, showing the app underneath
-1. Scaling the app down slightly at the end
+1. Escalar o pássaro.
+1. À medida que o pássaro cresce, mostrar o app por baixo
+1. Reduzir ligeiramente a escala do app no final
 
-It took me quite a while to figure out how to make this animation.
+Levei um bom tempo para descobrir como fazer esta animação.
 
-I started with an _incorrect_ assumption that the blue background and Twitter bird were a layer on _top_ of the app and that as the bird grew, it became transparent which revealed the app underneath. This approach doesn’t work because the Twitter bird becoming transparent would show the blue layer, not the app underneath!
+Comecei com uma suposição _incorreta_ de que o fundo azul e o pássaro do Twitter eram uma camada em _cima_ do app e que, à medida que o pássaro crescia, ele se tornava transparente, o que revelava o app por baixo. Esta abordagem não funciona porque o pássaro do Twitter se tornando transparente mostraria a camada azul, não o app por baixo!
 
-Luckily for you, dear reader, you don’t have to go through the same frustration I did. You get this nice tutorial skipping to the good stuff!
+Felizmente para você, caro leitor, você não precisa passar pela mesma frustração que eu passei. Você tem este tutorial agradável pulando para as coisas boas!
 
 <hr style={{clear: 'both', marginBottom: 40, width: 80}} />
 
-## The right way
+## O caminho certo
 
-Before we get to code, it is important to understand how to break this down. To help visualize this effect, I recreated it in [CodePen](https://codepen.io/TheSavior/pen/NXNoJM) (embedded in a few paragraphs) so you can interactively see the different layers.
+Antes de chegarmos ao código, é importante entender como decompor isso. Para ajudar a visualizar este efeito, eu o recriei no [CodePen](https://codepen.io/TheSavior/pen/NXNoJM) (incorporado em alguns parágrafos) para que você possa ver interativamente as diferentes camadas.
 
 <img src="/blog/assets/loading-screen-03.png" style={{float: 'left', paddingRight: 80, paddingBottom: 20}} />
 
-There are three main layers to this effect. The first is the blue background layer. Even though this seems to appear on top of the app, it is actually in the back.
+Existem três camadas principais para este efeito. A primeira é a camada de fundo azul. Embora isso pareça aparecer em cima do app, na verdade está no fundo.
 
-We then have a plain white layer. And then lastly, in the very front, is our app.
+Então temos uma camada branca lisa. E então, por último, bem na frente, está nosso app.
 
 <hr style={{clear: 'both', marginBottom: 40, width: 80}} />
 <img src="/blog/assets/loading-screen-04.png" style={{float: 'left', paddingRight: 80, paddingBottom: 20}} />
 
-The main trick to this animation is using the Twitter logo as a `mask` and masking both the app, and the white layer. I won’t go too deep on the details of masking, there are [plenty](https://www.html5rocks.com/en/tutorials/masking/adobe/) of [resources](https://designshack.net/articles/graphics/a-complete-beginners-guide-to-masking-in-photoshop/) [online](https://www.sketchapp.com/docs/shapes/masking/) for that.
+O truque principal desta animação é usar o logo do Twitter como uma `mask` e mascarar tanto o app quanto a camada branca. Não vou me aprofundar muito nos detalhes do masking, existem [muitos](https://www.html5rocks.com/en/tutorials/masking/adobe/) [recursos](https://designshack.net/articles/graphics/a-complete-beginners-guide-to-masking-in-photoshop/) [online](https://www.sketchapp.com/docs/shapes/masking/) para isso.
 
-The basics of masking in this context are having images where opaque pixels of the mask show the content they are masking whereas transparent pixels of the mask hide the content they are masking.
+O básico do masking neste contexto é ter imagens onde pixels opacos da máscara mostram o conteúdo que estão mascarando, enquanto pixels transparentes da máscara escondem o conteúdo que estão mascarando.
 
-We use the Twitter logo as a mask, and having it mask two layers; the solid white layer, and the app layer.
+Usamos o logo do Twitter como uma máscara, fazendo com que ela mascare duas camadas; a camada branca sólida e a camada do app.
 
-To reveal the app, we scale the mask up until it is larger than the entire screen.
+Para revelar o app, escalamos a máscara até que ela seja maior que a tela inteira.
 
-While the mask is scaling up, we fade in the opacity of the app layer, showing the app and hiding the solid white layer behind it. To finish the effect, we start the app layer at a scale > 1, and scale it down to 1 as the animation is ending. We then hide the non-app layers as they will never be seen again.
+Enquanto a máscara está escalando, fazemos fade in da opacidade da camada do app, mostrando o app e escondendo a camada branca sólida atrás dele. Para finalizar o efeito, começamos a camada do app em uma escala > 1, e a reduzimos para 1 conforme a animação está terminando. Em seguida, escondemos as camadas que não são do app, pois elas nunca mais serão vistas.
 
-They say a picture is worth 1,000 words. How many words is an interactive visualization worth? Click through the animation with the “Next Step” button. Showing the layers gives you a side view perspective. The grid is there to help visualize the transparent layers.
+Dizem que uma imagem vale 1.000 palavras. Quantas palavras vale uma visualização interativa? Clique através da animação com o botão "Next Step". Mostrar as camadas dá a você uma perspectiva de vista lateral. A grade está lá para ajudar a visualizar as camadas transparentes.
 
 <iframe
   height="750"
@@ -74,11 +75,11 @@ They say a picture is worth 1,000 words. How many words is an interactive visual
   <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
-## Now, for the React Native
+## Agora, para o React Native
 
-Alrighty. Now that we know what we are building and how the animation works, we can get down to the code — the reason you are really here.
+Muito bem. Agora que sabemos o que estamos construindo e como a animação funciona, podemos descer para o código — a razão pela qual você está realmente aqui.
 
-The main piece of this puzzle is [MaskedViewIOS](https://reactnative.dev/docs/0.63/maskedviewios), a core React Native component.
+A peça principal deste quebra-cabeça é [MaskedViewIOS](https://reactnative.dev/docs/0.63/maskedviewios), um componente principal do React Native.
 
 ```jsx
 import {MaskedViewIOS} from 'react-native';
@@ -88,9 +89,9 @@ import {MaskedViewIOS} from 'react-native';
 </MaskedViewIOS>;
 ```
 
-`MaskedViewIOS` takes props `maskElement` and `children`. The children are masked by the `maskElement`. Note that the mask doesn’t need to be an image, it can be any arbitrary view. The behavior of the above example would be to render the blue view, but for it to be visible only where the words “Basic Mask” are from the `maskElement`. We just made complicated blue text.
+`MaskedViewIOS` recebe as props `maskElement` e `children`. Os children são mascarados pelo `maskElement`. Note que a máscara não precisa ser uma imagem, pode ser qualquer view arbitrária. O comportamento do exemplo acima seria renderizar a view azul, mas para ser visível apenas onde as palavras "Basic Mask" estão no `maskElement`. Acabamos de fazer um texto azul complicado.
 
-What we want to do is render our blue layer, and then on top render our masked app and white layers with the Twitter logo.
+O que queremos fazer é renderizar nossa camada azul e, em cima, renderizar nossas camadas mascaradas do app e branca com o logo do Twitter.
 
 ```jsx
 {
@@ -110,38 +111,38 @@ What we want to do is render our blue layer, and then on top render our masked a
 </MaskedViewIOS>;
 ```
 
-This will give us the layers we see below.
+Isso nos dará as camadas que vemos abaixo.
 
 <img src="/blog/assets/loading-screen-04.png" style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
 
-## Now for the Animated part
+## Agora para a parte Animated
 
-We have all the pieces we need to make this work, the next step is animating them. To make this animation feel good, we will be utilizing React Native’s [Animated](/docs/animated) API.
+Temos todas as peças que precisamos para fazer isso funcionar, o próximo passo é animá-las. Para fazer esta animação ter uma boa sensação, utilizaremos a API [Animated](/docs/animated) do React Native.
 
-Animated lets us define our animations declaratively in JavaScript. By default, these animations run in JavaScript and tell the native layer what changes to make on every frame. Even though JavaScript will try to update the animation every frame, it will likely not be able to do that fast enough and will cause dropped frames (jank) to occur. Not what we want!
+Animated nos permite definir nossas animações de forma declarativa em JavaScript. Por padrão, essas animações rodam em JavaScript e dizem à camada nativa quais mudanças fazer em cada frame. Mesmo que o JavaScript tente atualizar a animação a cada frame, provavelmente não será capaz de fazer isso rápido o suficiente e causará frames perdidos (jank). Não é o que queremos!
 
-Animated has special behavior to allow you to get animations without this jank. Animated has a flag called `useNativeDriver` which sends your animation definition from JavaScript to native at the beginning of your animation, allowing the native side to process the updates to your animation without having to go back and forth to JavaScript every frame. The downside of `useNativeDriver` is you can only update a specific set of properties, mostly `transform` and `opacity`. You can’t animate things like background color with `useNativeDriver`, at least not yet — we will add more over time, and of course you can always submit a PR for properties you need for your project, benefitting the whole community 😀.
+Animated tem um comportamento especial para permitir que você tenha animações sem esse jank. Animated tem um flag chamado `useNativeDriver` que envia sua definição de animação do JavaScript para o nativo no início da sua animação, permitindo que o lado nativo processe as atualizações da sua animação sem ter que ir e voltar para o JavaScript a cada frame. A desvantagem do `useNativeDriver` é que você só pode atualizar um conjunto específico de propriedades, principalmente `transform` e `opacity`. Você não pode animar coisas como background color com `useNativeDriver`, pelo menos ainda não — adicionaremos mais ao longo do tempo, e é claro você sempre pode enviar um PR para propriedades que você precisa para o seu projeto, beneficiando toda a comunidade 😀.
 
-Since we want this animation to be smooth, we will work within these constraints. For a more in depth look at how `useNativeDriver` works under the hood, check out our [blog post announcing it](/blog/2017/02/14/using-native-driver-for-animated).
+Como queremos que esta animação seja suave, trabalharemos dentro dessas restrições. Para uma visão mais aprofundada de como `useNativeDriver` funciona nos bastidores, confira nosso [blog post anunciando isso](/blog/2017/02/14/using-native-driver-for-animated).
 
-## Breaking down our animation
+## Decompondo nossa animação
 
-There are 4 components to our animation:
+Existem 4 componentes para nossa animação:
 
-1. Enlarge the bird, revealing the app and the solid white layer
-1. Fade in the app
-1. Scale down the app
-1. Hide the white layer and blue layer when it is done
+1. Aumentar o pássaro, revelando o app e a camada branca sólida
+1. Fazer fade in do app
+1. Reduzir a escala do app
+1. Esconder a camada branca e a camada azul quando terminar
 
-With Animated, there are two main ways to define your animation. The first is by using `Animated.timing` which lets you say exactly how long your animation will run for, along with an easing curve to smooth out the motion. The other approach is by using the physics based apis such as `Animated.spring`. With `Animated.spring`, you specify parameters like the amount of friction and tension in the spring, and let physics run your animation.
+Com Animated, existem duas maneiras principais de definir sua animação. A primeira é usando `Animated.timing` que permite que você diga exatamente quanto tempo sua animação vai rodar, junto com uma curva de easing para suavizar o movimento. A outra abordagem é usando as APIs baseadas em física, como `Animated.spring`. Com `Animated.spring`, você especifica parâmetros como a quantidade de fricção e tensão na mola, e deixa a física rodar sua animação.
 
-We have multiple animations we want to be running at the same time which are all closely related to each other. For example, we want the app to start fading in while the mask is mid-reveal. Because these animations are closely related, we will use `Animated.timing` with a single `Animated.Value`.
+Temos múltiplas animações que queremos que estejam rodando ao mesmo tempo que estão todas intimamente relacionadas umas com as outras. Por exemplo, queremos que o app comece a fazer fade in enquanto a máscara está no meio da revelação. Como essas animações estão intimamente relacionadas, usaremos `Animated.timing` com um único `Animated.Value`.
 
-`Animated.Value` is a wrapper around a native value that Animated uses to know the state of an animation. You typically want to only have one of these for a complete animation. Most components that use Animated will store the value in state.
+`Animated.Value` é um wrapper em torno de um valor nativo que Animated usa para saber o estado de uma animação. Você normalmente quer ter apenas um desses para uma animação completa. A maioria dos componentes que usam Animated armazenará o valor no state.
 
-Since I’m thinking about this animation as steps occurring at different points in time along the complete animation, we will start our `Animated.Value` at 0, representing 0% complete, and end our value at 100, representing 100% complete.
+Como estou pensando sobre esta animação como etapas ocorrendo em diferentes pontos no tempo ao longo da animação completa, começaremos nosso `Animated.Value` em 0, representando 0% completo, e terminaremos nosso valor em 100, representando 100% completo.
 
-Our initial component state will be the following.
+Nosso estado inicial do componente será o seguinte.
 
 ```jsx
 state = {
@@ -149,7 +150,7 @@ state = {
 };
 ```
 
-When we are ready to begin the animation, we tell Animated to animate this value to 100.
+Quando estivermos prontos para começar a animação, dizemos ao Animated para animar este valor para 100.
 
 ```jsx
 Animated.timing(this.state.loadingProgress, {
@@ -159,19 +160,19 @@ Animated.timing(this.state.loadingProgress, {
 }).start();
 ```
 
-I then try to figure out a rough estimate of the different pieces of the animations and the values I want them to have at different stages of the overall animation. Below is a table of the different pieces of the animation, and what I think their values should be at different points as we progress through time.
+Então tento descobrir uma estimativa aproximada das diferentes peças das animações e os valores que quero que elas tenham em diferentes estágios da animação geral. Abaixo está uma tabela das diferentes peças da animação, e o que acho que seus valores devem ser em diferentes pontos conforme progredimos através do tempo.
 
 ![](/blog/assets/loading-screen-05.png)
 
-The Twitter bird mask should start at scale 1, and it gets smaller before it shoots up in size. So at 10% through the animation, it should have a scale value of .8 before shooting up to scale 70 at the end. Picking 70 was pretty arbitrary to be honest, it needed to be large enough that the bird fully revealed the screen and 60 wasn’t big enough 😀. Something interesting about this part though is that the higher the number, the faster it will look like it is growing because it has to get there in the same amount of time. This number took some trial and error to make look good with this logo. Logos / devices of different sizes will require this end-scale to be different to ensure the entire screen is revealed.
+A máscara do pássaro do Twitter deve começar na escala 1, e fica menor antes de disparar em tamanho. Então, em 10% através da animação, deve ter um valor de escala de .8 antes de disparar para escala 70 no final. Escolher 70 foi bem arbitrário para ser honesto, precisava ser grande o suficiente para que o pássaro revelasse totalmente a tela e 60 não era grande o suficiente 😀. Algo interessante sobre esta parte, no entanto, é que quanto maior o número, mais rápido parecerá que está crescendo porque tem que chegar lá no mesmo tempo. Este número levou algumas tentativas e erros para ficar bom com este logo. Logos / dispositivos de tamanhos diferentes exigirão que esta escala final seja diferente para garantir que toda a tela seja revelada.
 
-The app should stay opaque for a while, at least through the Twitter logo getting smaller. Based on the official animation, I want to start showing it when the bird is mid way through scaling it up and to fully reveal it pretty quickly. So at 15% we start showing it, and at 30% through the overall animation it is fully visible.
+O app deve ficar opaco por um tempo, pelo menos até o logo do Twitter ficar menor. Com base na animação oficial, quero começar a mostrá-lo quando o pássaro estiver no meio do caminho escalando e revelá-lo completamente bem rapidamente. Então, em 15% começamos a mostrá-lo, e em 30% através da animação geral ele está totalmente visível.
 
-The app scale starts at 1.1 and scales down to its regular scale by the end of the animation.
+A escala do app começa em 1.1 e escala para sua escala regular até o final da animação.
 
-## And now, in code.
+## E agora, em código.
 
-What we essentially did above is map the values from the animation progress percentage to the values for the individual pieces. We do that with Animated using `.interpolate`. We create 3 different style objects, one for each piece of the animation, using interpolated values based off of `this.state.loadingProgress`.
+O que essencialmente fizemos acima é mapear os valores da porcentagem de progresso da animação para os valores das peças individuais. Fazemos isso com Animated usando `.interpolate`. Criamos 3 objetos de estilo diferentes, um para cada peça da animação, usando valores interpolados baseados em `this.state.loadingProgress`.
 
 ```jsx
 const loadingProgress = this.state.loadingProgress;
@@ -208,7 +209,7 @@ const appScale = {
 };
 ```
 
-Now that we have these style objects, we can use them when rendering the snippet of the view from earlier in the post. Note that only `Animated.View`, `Animated.Text`, and `Animated.Image` are able to use style objects that use `Animated.Value`.
+Agora que temos esses objetos de estilo, podemos usá-los ao renderizar o trecho da view de antes no post. Note que apenas `Animated.View`, `Animated.Text` e `Animated.Image` são capazes de usar objetos de estilo que usam `Animated.Value`.
 
 ```jsx
 const fullScreenBlueLayer = (
@@ -243,9 +244,9 @@ return (
 
 <img src="/blog/assets/loading-screen-06.gif" style={{float: 'left', paddingRight: 80, paddingBottom: 20}} />
 
-Yay! We now have the animation pieces looking like we want. Now we just have to clean up our blue and white layers which will never be seen again.
+Eba! Agora temos as peças da animação parecendo como queremos. Agora só temos que limpar nossas camadas azul e branca que nunca mais serão vistas.
 
-To know when we can clean them up, we need to know when the animation is complete. Luckily where we call, `Animated.timing` ,`.start` takes an optional callback that runs when the animation is complete.
+Para saber quando podemos limpá-las, precisamos saber quando a animação está completa. Felizmente, onde chamamos `Animated.timing`, `.start` recebe um callback opcional que roda quando a animação está completa.
 
 ```jsx
 Animated.timing(this.state.loadingProgress, {
@@ -259,7 +260,7 @@ Animated.timing(this.state.loadingProgress, {
 });
 ```
 
-Now that we have a value in `state` to know whether we are done with the animation, we can modify our blue and white layers to use that.
+Agora que temos um valor no `state` para saber se terminamos com a animação, podemos modificar nossas camadas azul e branca para usar isso.
 
 ```jsx
 const fullScreenBlueLayer = this.state.animationDone ? null : (
@@ -270,18 +271,18 @@ const fullScreenWhiteLayer = this.state.animationDone ? null : (
 );
 ```
 
-Voila! Our animation now works and we clean up our unused layers once the animation is done. We have built the Twitter app loading animation!
+Voilà! Nossa animação agora funciona e limpamos nossas camadas não utilizadas quando a animação termina. Construímos a animação de carregamento do app do Twitter!
 
-## But wait, mine doesn’t work!
+## Mas espere, o meu não funciona!
 
-Don’t fret, dear reader. I too hate when guides only give you chunks of the code and don’t give you the completed source.
+Não se preocupe, caro leitor. Eu também odeio quando guias só te dão pedaços do código e não te dão o código-fonte completo.
 
-This component has been published to npm and is on GitHub as [react-native-mask-loader](https://github.com/TheSavior/react-native-mask-loader). To try this out on your phone, it is [available on Expo](https://expo.io/@eliwhite/react-native-mask-loader-example) here:
+Este componente foi publicado no npm e está no GitHub como [react-native-mask-loader](https://github.com/TheSavior/react-native-mask-loader). Para experimentar isso no seu telefone, está [disponível no Expo](https://expo.io/@eliwhite/react-native-mask-loader-example) aqui:
 
 <img src="/blog/assets/loading-screen-07.png" style={{marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
 
-## More Reading / Extra Credit
+## Mais Leitura / Crédito Extra
 
-1. [This gitbook](https://browniefed.com/react-native-animation-book/) is a great resource to learn more about Animated after you have read the React Native docs.
-1. The actual Twitter animation seems to speed up the mask reveal towards the end. Try modifying the loader to use a different easing function (or a spring!) to better match that behavior.
-1. The current end-scale of the mask is hard coded and likely won’t reveal the entire app on a tablet. Calculating the end scale based on screen size and image size would be an awesome PR.
+1. [Este gitbook](https://browniefed.com/react-native-animation-book/) é um ótimo recurso para aprender mais sobre Animated depois de ter lido a documentação do React Native.
+1. A animação real do Twitter parece acelerar a revelação da máscara no final. Tente modificar o loader para usar uma função de easing diferente (ou uma mola!) para combinar melhor com esse comportamento.
+1. A escala final atual da máscara está codificada e provavelmente não revelará todo o app em um tablet. Calcular a escala final com base no tamanho da tela e tamanho da imagem seria um PR incrível.

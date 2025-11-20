@@ -1,5 +1,6 @@
 ---
-title: React Native Performance in Marketplace
+ia-translated: true
+title: Performance do React Native no Marketplace
 author: Aaron Chiu
 authorTitle: Software Engineer at Facebook
 authorURL: 'https://www.facebook.com/aaronechiu'
@@ -8,48 +9,48 @@ authorTwitter: AaaChiuuu
 tags: [engineering]
 ---
 
-React Native is used in multiple places across multiple apps in the Facebook family including a top level tab in the main Facebook apps. Our focus for this post is a highly visible product, [Marketplace](https://newsroom.fb.com/news/2016/10/introducing-marketplace-buy-and-sell-with-your-local-community/). It is available in a dozen or so countries and enables users to discover products and services provided by other users.
+React Native é usado em vários lugares em vários aplicativos da família Facebook, incluindo uma aba de nível superior nos principais aplicativos do Facebook. Nosso foco para este post é um produto altamente visível, [Marketplace](https://newsroom.fb.com/news/2016/10/introducing-marketplace-buy-and-sell-with-your-local-community/). Está disponível em cerca de uma dúzia de países e permite que os usuários descubram produtos e serviços fornecidos por outros usuários.
 
-In the first half of 2017, through the joint effort of the Relay Team, the Marketplace team, the Mobile JS Platform team, and the React Native team, we cut Marketplace Time to Interaction (TTI) in half for Android [Year Class 2010-11 devices](https://code.facebook.com/posts/307478339448736/year-class-a-classification-system-for-android/). Facebook has historically considered these devices as low-end Android devices, and they have the slowest TTIs on any platform or device type.
+Na primeira metade de 2017, através do esforço conjunto da equipe Relay, equipe Marketplace, equipe Mobile JS Platform e equipe React Native, cortamos o Time to Interaction (TTI) do Marketplace pela metade para dispositivos Android [Year Class 2010-11](https://code.facebook.com/posts/307478339448736/year-class-a-classification-system-for-android/). O Facebook historicamente considera esses dispositivos como dispositivos Android de baixo desempenho, e eles têm os TTIs mais lentos em qualquer plataforma ou tipo de dispositivo.
 
-A typical React Native startup looks something like this:
+Um startup típico do React Native se parece com algo assim:
 
 ![](/blog/assets/RNPerformanceStartup.png)
 
-> Disclaimer: ratios aren't representative and will vary depending on how React Native is configured and used.
+> Aviso: as proporções não são representativas e variarão dependendo de como o React Native é configurado e usado.
 
-We first initialize the React Native core (aka the “Bridge”) before running the product specific JavaScript which determines what native views React Native will render in the Native Processing Time.
+Primeiro inicializamos o core do React Native (também conhecido como "Bridge") antes de executar o JavaScript específico do produto que determina quais views nativas o React Native renderizará no Native Processing Time.
 
-### A different approach
+### Uma abordagem diferente
 
-One of the earlier mistakes that we made was to let [Systrace and CTScan](https://code.facebook.com/posts/747457662026706/performance-instrumentation-for-android-apps/) drive our performance efforts. These tools helped us find a lot of low-hanging fruit in 2016, but we discovered that both Systrace and CTScan are **not representative of production scenarios** and cannot emulate what happens in the wild. Ratios of time spent in the breakdowns are often incorrect and, wildly off-base at times. At the extreme, some things that we expected to take a few milliseconds actually take hundreds or thousands of milliseconds. That said, CTScan is useful and we've found it catches a third of regressions before they hit production.
+Um dos primeiros erros que cometemos foi deixar [Systrace e CTScan](https://code.facebook.com/posts/747457662026706/performance-instrumentation-for-android-apps/) dirigirem nossos esforços de performance. Essas ferramentas nos ajudaram a encontrar muitas frutas ao alcance da mão em 2016, mas descobrimos que tanto Systrace quanto CTScan **não são representativos de cenários de produção** e não podem emular o que acontece no mundo real. As proporções de tempo gasto nos detalhamentos são frequentemente incorretas e, em casos extremos, totalmente fora da realidade. No extremo, algumas coisas que esperávamos levar alguns milissegundos na verdade levam centenas ou milhares de milissegundos. Dito isso, CTScan é útil e descobrimos que ele detecta um terço das regressões antes de atingirem a produção.
 
-On Android, we attribute the shortcomings of these tools to the fact that 1) React Native is a multithreaded framework, 2) Marketplace is co-located with a multitude of complex views such as Newsfeed and other top-level tabs, and 3) computation times vary wildly. Thus, this half, we let production measurements and breakdowns drive almost all of our decision making and prioritization.
+No Android, atribuímos as limitações dessas ferramentas ao fato de que 1) React Native é um framework multi-threaded, 2) Marketplace está co-localizado com uma infinidade de views complexas como Newsfeed e outras abas de nível superior, e 3) os tempos de computação variam muito. Assim, nesta metade, deixamos medições e detalhamentos de produção dirigirem quase todas as nossas tomadas de decisão e priorização.
 
-### Down the path of production instrumentation
+### Pelo caminho da instrumentação de produção
 
-Instrumenting production may sound simple on the surface, but it turned out to be quite a complex process. It took multiple iteration cycles of 2-3 weeks each; due to the latency of landing a commit in master, to pushing the app to the Play Store, to gathering sufficient production samples to have confidence in our work. Each iteration cycle involved discovering if our breakdowns were accurate, if they had the right level of granularity, and if they properly added up to the whole time span. We could not rely on alpha and beta releases because they are not representative of the general population. In essence, we very tediously built a very accurate production trace based on the aggregate of millions of samples.
+Instrumentar a produção pode parecer simples na superfície, mas acabou sendo um processo bastante complexo. Levou vários ciclos de iteração de 2-3 semanas cada; devido à latência de fazer commit na master, enviar o aplicativo para a Play Store e coletar amostras de produção suficientes para ter confiança em nosso trabalho. Cada ciclo de iteração envolveu descobrir se nossos detalhamentos eram precisos, se tinham o nível certo de granularidade e se somavam adequadamente ao período de tempo total. Não podíamos confiar em lançamentos alpha e beta porque eles não são representativos da população geral. Em essência, construímos muito tediosamente um trace de produção muito preciso baseado no agregado de milhões de amostras.
 
-One of the reasons we meticulously verified that every millisecond in breakdowns properly added up to their parent metrics was that we realized early on there were gaps in our instrumentation. It turned out that our initial breakdowns did not account for stalls caused by thread jumps. Thread jumps themselves aren't expensive, but thread jumps to busy threads already doing work are very expensive. We eventually reproduced these blockages locally by sprinkling `Thread.sleep()` calls at the right moments, and we managed to fix them by:
+Uma das razões pelas quais verificamos meticulosamente que cada milissegundo nos detalhamentos somava adequadamente às suas métricas pai foi que percebemos logo cedo que havia lacunas em nossa instrumentação. Descobriu-se que nossos detalhamentos iniciais não contabilizavam travamentos causados por saltos de thread. Saltos de thread por si só não são caros, mas saltos de thread para threads ocupadas já fazendo trabalho são muito caros. Eventualmente reproduzimos esses bloqueios localmente espalhando chamadas `Thread.sleep()` nos momentos certos, e conseguimos corrigi-los:
 
-1. removing our dependency on AsyncTask,
-2. undoing the forced initialization of ReactContext and NativeModules on the UI thread, and
-3. removing the dependency on measuring the ReactRootView at initialization time.
+1. removendo nossa dependência de AsyncTask,
+2. desfazendo a inicialização forçada de ReactContext e NativeModules na thread da UI, e
+3. removendo a dependência de medir o ReactRootView no tempo de inicialização.
 
-Together, removing these thread blockage issues reduced the startup time by over 25%.
+Juntos, remover esses problemas de bloqueio de thread reduziu o tempo de startup em mais de 25%.
 
-Production metrics also challenged some of our prior assumptions. For example, we used to pre-load many JavaScript modules on the startup path under the assumption that co-locating modules in one bundle would reduce their initialization cost. However, the cost of pre-loading and co-locating these modules far outweighed the benefits. By re-configuring our inline require blacklists and removing JavaScript modules from the startup path, we were able to avoid loading unnecessary modules such as Relay Classic (when only [Relay Modern](https://relay.dev/docs/new-in-relay-modern) was necessary). Today, our `RUN_JS_BUNDLE` breakdown is over 75% faster.
+Métricas de produção também desafiaram algumas de nossas suposições anteriores. Por exemplo, costumávamos pré-carregar muitos módulos JavaScript no caminho de startup sob a suposição de que co-localizar módulos em um bundle reduziria seu custo de inicialização. No entanto, o custo de pré-carregar e co-localizar esses módulos superou em muito os benefícios. Ao reconfigurar nossas blacklists de inline require e remover módulos JavaScript do caminho de startup, conseguimos evitar carregar módulos desnecessários como Relay Classic (quando apenas [Relay Modern](https://relay.dev/docs/new-in-relay-modern) era necessário). Hoje, nosso detalhamento `RUN_JS_BUNDLE` é mais de 75% mais rápido.
 
-We also found wins by investigating product-specific native modules. For example, by lazily injecting a native module's dependencies, we reduced that native module's cost by 98%. By removing the contention of Marketplace startup with other products, we reduced startup by an equivalent interval.
+Também encontramos vitórias investigando módulos nativos específicos do produto. Por exemplo, ao injetar preguiçosamente as dependências de um módulo nativo, reduzimos o custo desse módulo nativo em 98%. Ao remover a contenção do startup do Marketplace com outros produtos, reduzimos o startup em um intervalo equivalente.
 
-The best part is that many of these improvements are broadly applicable to all screens built with React Native.
+A melhor parte é que muitas dessas melhorias são amplamente aplicáveis a todas as telas construídas com React Native.
 
-## Conclusion
+## Conclusão
 
-People assume that React Native startup performance problems are caused by JavaScript being slow or exceedingly high network times. While speeding up things like JavaScript would bring down TTI by a non-trivial sum, each of these contribute a much smaller percentage of TTI than was previously believed.
+As pessoas assumem que os problemas de performance de startup do React Native são causados por JavaScript sendo lento ou tempos de rede excessivamente altos. Embora acelerar coisas como JavaScript reduza o TTI em uma quantidade não trivial, cada um desses contribui com uma porcentagem muito menor do TTI do que se acreditava anteriormente.
 
-The lesson so far has been to _measure, measure, measure!_ Some wins come from moving run-time costs to build time, such as Relay Modern and [Lazy NativeModules](https://github.com/facebook/react-native/commit/797ca6c219b2a44f88f10c61d91e8cc21e2f306e). Other wins come from avoiding work by being smarter about parallelizing code or removing dead code. And some wins come from large architectural changes to React Native, such as cleaning up thread blockages. There is no grand solution to performance, and longer-term performance wins will come from incremental instrumentation and improvements. Do not let cognitive bias influence your decisions. Instead, carefully gather and interpret production data to guide future work.
+A lição até agora tem sido _medir, medir, medir!_ Algumas vitórias vêm de mover custos de runtime para tempo de build, como Relay Modern e [Lazy NativeModules](https://github.com/facebook/react-native/commit/797ca6c219b2a44f88f10c61d91e8cc21e2f306e). Outras vitórias vêm de evitar trabalho sendo mais inteligente sobre paralelizar código ou remover código morto. E algumas vitórias vêm de grandes mudanças arquiteturais no React Native, como limpar bloqueios de thread. Não há grande solução para performance, e vitórias de performance a longo prazo virão de instrumentação e melhorias incrementais. Não deixe viés cognitivo influenciar suas decisões. Em vez disso, colete e interprete cuidadosamente dados de produção para guiar trabalhos futuros.
 
-## Future plans
+## Planos futuros
 
-In the long term, we want Marketplace TTI to be comparable to similar products built with Native, and, in general, have React Native performance on par with native performance. Further more, although this half we drastically reduced the bridge startup cost by about 80%, we plan to bring the cost of the React Native bridge close to zero via projects like [Prepack](https://prepack.io/) and more build time processing.
+A longo prazo, queremos que o TTI do Marketplace seja comparável a produtos similares construídos com Native e, em geral, ter performance do React Native no mesmo nível da performance nativa. Além disso, embora nesta metade tenhamos reduzido drasticamente o custo de startup da bridge em cerca de 80%, planejamos trazer o custo da bridge do React Native perto de zero através de projetos como [Prepack](https://prepack.io/) e mais processamento em tempo de build.

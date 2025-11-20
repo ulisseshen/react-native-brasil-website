@@ -1,11 +1,12 @@
 ---
 id: using-a-scrollview
-title: Using a ScrollView
+title: Usando um ScrollView
+ia-translated: true
 ---
 
-The [ScrollView](scrollview.md) is a generic scrolling container that can contain multiple components and views. The scrollable items can be heterogeneous, and you can scroll both vertically and horizontally (by setting the `horizontal` property).
+O [ScrollView](scrollview.md) é um container genérico de rolagem que pode conter múltiplos componentes e views. Os itens roláveis podem ser heterogêneos, e você pode rolar tanto verticalmente quanto horizontalmente (configurando a propriedade `horizontal`).
 
-This example creates a vertical `ScrollView` with both images and text mixed together.
+Este exemplo cria um `ScrollView` vertical com imagens e texto misturados.
 
 ```SnackPlayer name=Using%20ScrollView
 import React from 'react';
@@ -56,8 +57,8 @@ const App = () => (
 export default App;
 ```
 
-ScrollViews can be configured to allow paging through views using swiping gestures by using the `pagingEnabled` props. Swiping horizontally between views can also be implemented on Android using the [ViewPager](https://github.com/react-native-community/react-native-viewpager) component.
+ScrollViews podem ser configurados para permitir paginação através de views usando gestos de deslize, utilizando a prop `pagingEnabled`. Deslizar horizontalmente entre views também pode ser implementado no Android usando o componente [ViewPager](https://github.com/react-native-community/react-native-viewpager).
 
-On iOS a ScrollView with a single item can be used to allow the user to zoom content. Set up the `maximumZoomScale` and `minimumZoomScale` props and your user will be able to use pinch and expand gestures to zoom in and out.
+No iOS, um ScrollView com um único item pode ser usado para permitir que o usuário dê zoom no conteúdo. Configure as props `maximumZoomScale` e `minimumZoomScale` e seu usuário será capaz de usar gestos de pinça e expansão para aumentar e diminuir o zoom.
 
-The ScrollView works best to present a small number of things of a limited size. All the elements and views of a `ScrollView` are rendered, even if they are not currently shown on the screen. If you have a long list of items which cannot fit on the screen, you should use a `FlatList` instead. So let's [learn about list views](using-a-listview.md) next.
+O ScrollView funciona melhor para apresentar um pequeno número de itens de tamanho limitado. Todos os elementos e views de um `ScrollView` são renderizados, mesmo que não estejam sendo exibidos na tela no momento. Se você tiver uma lista longa de itens que não cabem na tela, você deve usar um `FlatList` em vez disso. Então vamos [aprender sobre list views](using-a-listview.md) a seguir.

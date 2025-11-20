@@ -1,35 +1,36 @@
 ---
+ia-translated: true
 id: troubleshooting
-title: Troubleshooting
+title: Solução de Problemas
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-These are some common issues you may run into while setting up React Native. If you encounter something that is not listed here, try [searching for the issue in GitHub](https://github.com/facebook/react-native/issues/).
+Estes são alguns problemas comuns que você pode encontrar ao configurar o React Native. Se você encontrar algo que não está listado aqui, tente [pesquisar o problema no GitHub](https://github.com/facebook/react-native/issues/).
 
-### Port already in use
+### Porta já em uso
 
-The [Metro bundler][metro] runs on port 8081. If another process is already using that port, you can either terminate that process, or change the port that the bundler uses.
+O [Metro bundler][metro] executa na porta 8081. Se outro processo já estiver usando essa porta, você pode encerrar esse processo ou alterar a porta que o bundler usa.
 
-#### Terminating a process on port 8081
+#### Encerrando um processo na porta 8081
 
-Run the following command to find the id for the process that is listening on port 8081:
+Execute o seguinte comando para encontrar o id do processo que está escutando na porta 8081:
 
 ```shell
 sudo lsof -i :8081
 ```
 
-Then run the following to terminate the process:
+Em seguida, execute o seguinte para encerrar o processo:
 
 ```shell
 kill -9 <PID>
 ```
 
-On Windows you can find the process using port 8081 using [Resource Monitor](https://stackoverflow.com/questions/48198/how-can-you-find-out-which-process-is-listening-on-a-port-on-windows) and stop it using Task Manager.
+No Windows, você pode encontrar o processo usando a porta 8081 usando o [Resource Monitor](https://stackoverflow.com/questions/48198/how-can-you-find-out-which-process-is-listening-on-a-port-on-windows) e pará-lo usando o Task Manager.
 
-#### Using a port other than 8081
+#### Usando uma porta diferente de 8081
 
-You can configure the bundler to use a port other than 8081 by using the `port` parameter, from the root of your project run:
+Você pode configurar o bundler para usar uma porta diferente de 8081 usando o parâmetro `port`, a partir da raiz do seu projeto execute:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -48,22 +49,22 @@ yarn start --port 8088
 </TabItem>
 </Tabs>
 
-You will also need to update your applications to load the JavaScript bundle from the new port. If running on device from Xcode, you can do this by updating occurrences of `8081` to your chosen port in the `ios/__App_Name__.xcodeproj/project.pbxproj` file.
+Você também precisará atualizar suas aplicações para carregar o bundle JavaScript da nova porta. Se estiver executando no dispositivo a partir do Xcode, você pode fazer isso atualizando as ocorrências de `8081` para a porta escolhida no arquivo `ios/__App_Name__.xcodeproj/project.pbxproj`.
 
-### NPM locking error
+### Erro de bloqueio do NPM
 
-If you encounter an error such as `npm WARN locking Error: EACCES` while using the React Native CLI, try running the following:
+Se você encontrar um erro como `npm WARN locking Error: EACCES` ao usar o React Native CLI, tente executar o seguinte:
 
 ```shell
 sudo chown -R $USER ~/.npm
 sudo chown -R $USER /usr/local/lib/node_modules
 ```
 
-### Missing libraries for React
+### Bibliotecas ausentes para o React
 
-If you added React Native manually to your project, make sure you have included all the relevant dependencies that you are using, like `RCTText.xcodeproj`, `RCTImage.xcodeproj`. Next, the binaries built by these dependencies have to be linked to your app binary. Use the `Linked Frameworks and Binaries` section in the Xcode project settings. More detailed steps are here: [Linking Libraries](linking-libraries-ios.md#content).
+Se você adicionou o React Native manualmente ao seu projeto, certifique-se de ter incluído todas as dependências relevantes que você está usando, como `RCTText.xcodeproj`, `RCTImage.xcodeproj`. Em seguida, os binários construídos por essas dependências precisam ser vinculados ao binário do seu app. Use a seção `Linked Frameworks and Binaries` nas configurações do projeto Xcode. Etapas mais detalhadas estão aqui: [Linking Libraries](linking-libraries-ios.md#content).
 
-If you are using CocoaPods, verify that you have added React along with the subspecs to the `Podfile`. For example, if you were using the `<Text />`, `<Image />` and `fetch()` APIs, you would need to add these in your `Podfile`:
+Se você estiver usando CocoaPods, verifique se adicionou o React junto com os subspecs ao `Podfile`. Por exemplo, se você estivesse usando as APIs `<Text />`, `<Image />` e `fetch()`, você precisaria adicionar isso no seu `Podfile`:
 
 ```
 pod 'React', :path => '../node_modules/react-native', :subspecs => [
@@ -74,21 +75,21 @@ pod 'React', :path => '../node_modules/react-native', :subspecs => [
 ]
 ```
 
-Next, make sure you have run `pod install` and that a `Pods/` directory has been created in your project with React installed. CocoaPods will instruct you to use the generated `.xcworkspace` file henceforth to be able to use these installed dependencies.
+Em seguida, certifique-se de ter executado `pod install` e que um diretório `Pods/` foi criado no seu projeto com o React instalado. O CocoaPods irá instruí-lo a usar o arquivo `.xcworkspace` gerado daqui em diante para poder usar essas dependências instaladas.
 
-#### React Native does not compile when being used as a CocoaPod
+#### React Native não compila quando usado como CocoaPod
 
-There is a CocoaPods plugin called [cocoapods-fix-react-native](https://github.com/orta/cocoapods-fix-react-native) which handles any potential post-fixing of the source code due to differences when using a dependency manager.
+Existe um plugin do CocoaPods chamado [cocoapods-fix-react-native](https://github.com/orta/cocoapods-fix-react-native) que lida com qualquer possível correção pós-instalação do código-fonte devido a diferenças ao usar um gerenciador de dependências.
 
 #### Argument list too long: recursive header expansion failed
 
-In the project's build settings, `User Search Header Paths` and `Header Search Paths` are two configs that specify where Xcode should look for `#import` header files specified in the code. For Pods, CocoaPods uses a default array of specific folders to look in. Verify that this particular config is not overwritten, and that none of the folders configured are too large. If one of the folders is a large folder, Xcode will attempt to recursively search the entire directory and throw above error at some point.
+Nas configurações de build do projeto, `User Search Header Paths` e `Header Search Paths` são duas configurações que especificam onde o Xcode deve procurar arquivos de header `#import` especificados no código. Para Pods, o CocoaPods usa um array padrão de pastas específicas para procurar. Verifique se essa configuração específica não foi sobrescrita e se nenhuma das pastas configuradas é muito grande. Se uma das pastas for muito grande, o Xcode tentará pesquisar recursivamente todo o diretório e lançará o erro acima em algum momento.
 
-To revert the `User Search Header Paths` and `Header Search Paths` build settings to their defaults set by CocoaPods - select the entry in the Build Settings panel, and hit delete. It will remove the custom override and return to the CocoaPod defaults.
+Para reverter as configurações de build `User Search Header Paths` e `Header Search Paths` para seus padrões definidos pelo CocoaPods - selecione a entrada no painel Build Settings e pressione delete. Isso removerá a substituição personalizada e retornará aos padrões do CocoaPod.
 
 ### No transports available
 
-React Native implements a polyfill for WebSockets. These [polyfills](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Core/InitializeCore.js) are initialized as part of the react-native module that you include in your application through `import React from 'react'`. If you load another module that requires WebSockets, such as [Firebase](https://github.com/facebook/react-native/issues/3645), be sure to load/require it after react-native:
+O React Native implementa um polyfill para WebSockets. Esses [polyfills](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Core/InitializeCore.js) são inicializados como parte do módulo react-native que você inclui em sua aplicação através de `import React from 'react'`. Se você carregar outro módulo que requer WebSockets, como [Firebase](https://github.com/facebook/react-native/issues/3645), certifique-se de carregá-lo/requerê-lo após o react-native:
 
 ```
 import React from 'react';
@@ -97,14 +98,14 @@ import Firebase from 'firebase';
 
 ## Shell Command Unresponsive Exception
 
-If you encounter a ShellCommandUnresponsiveException exception such as:
+Se você encontrar uma exceção ShellCommandUnresponsiveException como:
 
 ```
 Execution failed for task ':app:installDebug'.
   com.android.builder.testing.api.DeviceException: com.android.ddmlib.ShellCommandUnresponsiveException
 ```
 
-Restart the ADB server by running the following commands in your terminal:
+Reinicie o servidor ADB executando os seguintes comandos no seu terminal:
 
 ```
 adb kill-server
@@ -115,7 +116,7 @@ adb start-server
 
 ### Case 1: Error "code":"ENOSPC","errno":"ENOSPC"
 
-Issue caused by the number of directories [inotify](https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers) (used by watchman on Linux) can monitor. To solve it, run this command in your terminal window
+Problema causado pelo número de diretórios que o [inotify](https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers) (usado pelo watchman no Linux) pode monitorar. Para resolver, execute este comando na janela do seu terminal
 
 ```shell
 echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -123,6 +124,6 @@ echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo s
 
 ### Error: spawnSync ./gradlew EACCES
 
-If you run into issue where executing `npm run android` or `yarn android` on macOS throws the above error, try to run `sudo chmod +x android/gradlew` command to make `gradlew` files into executable.
+Se você encontrar um problema onde executar `npm run android` ou `yarn android` no macOS lança o erro acima, tente executar o comando `sudo chmod +x android/gradlew` para tornar os arquivos `gradlew` executáveis.
 
 [metro]: https://metrobundler.dev/

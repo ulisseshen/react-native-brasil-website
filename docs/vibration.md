@@ -1,9 +1,10 @@
 ---
+ia-translated: true
 id: vibration
 title: Vibration
 ---
 
-Vibrates the device.
+Vibra o dispositivo.
 
 ## Example
 
@@ -104,11 +105,11 @@ export default App;
 ```
 
 :::info
-Android apps should request the `android.permission.VIBRATE` permission by adding `<uses-permission android:name="android.permission.VIBRATE"/>` to `AndroidManifest.xml`.
+Aplicativos Android devem solicitar a permissão `android.permission.VIBRATE` adicionando `<uses-permission android:name="android.permission.VIBRATE"/>` ao `AndroidManifest.xml`.
 :::
 
 :::note
-The Vibration API is implemented as a `AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)` call on iOS.
+A API Vibration é implementada como uma chamada `AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)` no iOS.
 :::
 
 ---
@@ -123,7 +124,7 @@ The Vibration API is implemented as a `AudioServicesPlaySystemSound(kSystemSound
 static cancel();
 ```
 
-Call this to stop vibrating after having invoked `vibrate()` with repetition enabled.
+Chame isso para parar de vibrar após ter invocado `vibrate()` com repetição habilitada.
 
 ---
 
@@ -136,17 +137,17 @@ static vibrate(
 );
 ```
 
-Triggers a vibration with a fixed duration.
+Dispara uma vibração com duração fixa.
 
-**On Android,** the vibration duration defaults to 400 milliseconds, and an arbitrary vibration duration can be specified by passing a number as the value for the `pattern` argument. **On iOS,** the vibration duration is fixed at roughly 400 milliseconds.
+**No Android,** a duração da vibração padrão é de 400 milissegundos, e uma duração de vibração arbitrária pode ser especificada passando um número como valor para o argumento `pattern`. **No iOS,** a duração da vibração é fixa em aproximadamente 400 milissegundos.
 
-The `vibrate()` method can take a `pattern` argument with an array of numbers that represent time in milliseconds. You may set `repeat` to true to run through the vibration pattern in a loop until `cancel()` is called.
+O método `vibrate()` pode receber um argumento `pattern` com um array de números que representam tempo em milissegundos. Você pode definir `repeat` como true para executar o padrão de vibração em loop até que `cancel()` seja chamado.
 
-**On Android,** the odd indices of the `pattern` array represent the vibration duration, while the even ones represent the separation time. **On iOS,** the numbers in the `pattern` array represent the separation time, as the vibration duration is fixed.
+**No Android,** os índices ímpares do array `pattern` representam a duração da vibração, enquanto os pares representam o tempo de separação. **No iOS,** os números no array `pattern` representam o tempo de separação, já que a duração da vibração é fixa.
 
 **Parameters:**
 
-| Name    | Type                                                                     | Default | Description                                                                                       |
-| ------- | ------------------------------------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------- |
-| pattern | number <div className="label android">Android</div><hr/>array of numbers | `400`   | Vibration duration in milliseconds.<hr/>Vibration pattern as an array of numbers in milliseconds. |
-| repeat  | boolean                                                                  | `false` | Repeat vibration pattern until `cancel()`.                                                        |
+| Name    | Type                                                                     | Default | Description                                                                                                                |
+| ------- | ------------------------------------------------------------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| pattern | number <div className="label android">Android</div><hr/>array of numbers | `400`   | Duração da vibração em milissegundos.<hr/>Padrão de vibração como um array de números em milissegundos. |
+| repeat  | boolean                                                                  | `false` | Repetir padrão de vibração até `cancel()`.                                                                                 |

@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: actionsheetios
 title: ActionSheetIOS
 ---
 
-Displays native to iOS [Action Sheet](https://developer.apple.com/design/human-interface-guidelines/ios/views/action-sheets/) component.
+Exibe o componente nativo do iOS [Action Sheet](https://developer.apple.com/design/human-interface-guidelines/ios/views/action-sheets/).
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=ActionSheetIOS%20Example&supportedPlatforms=ios
 import React, {useState} from 'react';
@@ -58,9 +59,9 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `showActionSheetWithOptions()`
 
@@ -71,22 +72,22 @@ static showActionSheetWithOptions: (
 );
 ```
 
-Display an iOS action sheet. The `options` object must contain one or more of:
+Exibe um action sheet do iOS. O objeto `options` deve conter uma ou mais das seguintes propriedades:
 
-- `options` (array of strings) - a list of button titles (required)
-- `cancelButtonIndex` (int) - index of cancel button in `options`
-- `cancelButtonTintColor` (string) - the [color](colors) used for the change the text color of the cancel button
-- `destructiveButtonIndex` (int or array of ints) - indices of destructive buttons in `options`
-- `title` (string) - a title to show above the action sheet
-- `message` (string) - a message to show below the title
-- `anchor` (number) - the node to which the action sheet should be anchored (used for iPad)
-- `tintColor` (string) - the [color](colors) used for non-destructive button titles
-- `disabledButtonIndices` (array of numbers) - a list of button indices which should be disabled
-- `userInterfaceStyle` (string) - the interface style used for the action sheet, can be set to `light` or `dark`, otherwise the default system style will be used
+- `options` (array de strings) - uma lista de títulos de botões (obrigatório)
+- `cancelButtonIndex` (int) - índice do botão de cancelamento em `options`
+- `cancelButtonTintColor` (string) - a [cor](colors) usada para alterar a cor do texto do botão de cancelamento
+- `destructiveButtonIndex` (int ou array de ints) - índices dos botões destrutivos em `options`
+- `title` (string) - um título para mostrar acima do action sheet
+- `message` (string) - uma mensagem para mostrar abaixo do título
+- `anchor` (number) - o nó ao qual o action sheet deve ser ancorado (usado para iPad)
+- `tintColor` (string) - a [cor](colors) usada para títulos de botões não destrutivos
+- `disabledButtonIndices` (array de numbers) - uma lista de índices de botões que devem ser desabilitados
+- `userInterfaceStyle` (string) - o estilo de interface usado para o action sheet, pode ser definido como `light` ou `dark`, caso contrário o estilo padrão do sistema será usado
 
-The 'callback' function takes one parameter, the zero-based index of the selected item.
+A função 'callback' recebe um parâmetro, o índice baseado em zero do item selecionado.
 
-Minimal example:
+Exemplo mínimo:
 
 ```tsx
 ActionSheetIOS.showActionSheetWithOptions(
@@ -111,7 +112,7 @@ ActionSheetIOS.showActionSheetWithOptions(
 static dismissActionSheet();
 ```
 
-Dismisses the most upper iOS action sheet presented, if no action sheet is present a warning is displayed.
+Descarta o action sheet do iOS mais superior apresentado, se nenhum action sheet estiver presente, um aviso é exibido.
 
 ---
 
@@ -125,20 +126,20 @@ static showShareActionSheetWithOptions: (
 );
 ```
 
-Display the iOS share sheet. The `options` object should contain one or both of `message` and `url` and can additionally have a `subject` or `excludedActivityTypes`:
+Exibe a folha de compartilhamento do iOS. O objeto `options` deve conter um ou ambos `message` e `url` e pode adicionalmente ter um `subject` ou `excludedActivityTypes`:
 
-- `url` (string) - a URL to share
-- `message` (string) - a message to share
-- `subject` (string) - a subject for the message
-- `excludedActivityTypes` (array) - the activities to exclude from the ActionSheet
+- `url` (string) - uma URL para compartilhar
+- `message` (string) - uma mensagem para compartilhar
+- `subject` (string) - um assunto para a mensagem
+- `excludedActivityTypes` (array) - as atividades a serem excluídas do ActionSheet
 
 :::note
-If `url` points to a local file, or is a base64-encoded uri, the file it points to will be loaded and shared directly. In this way, you can share images, videos, PDF files, etc. If `url` points to a remote file or address it must conform to URL format as described in [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt). For example, a web URL without a proper protocol (HTTP/HTTPS) will not be shared.
+Se `url` apontar para um arquivo local, ou for uma uri codificada em base64, o arquivo para o qual aponta será carregado e compartilhado diretamente. Dessa forma, você pode compartilhar imagens, vídeos, arquivos PDF, etc. Se `url` apontar para um arquivo ou endereço remoto, deve estar em conformidade com o formato de URL conforme descrito em [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt). Por exemplo, uma URL da web sem um protocolo adequado (HTTP/HTTPS) não será compartilhada.
 :::
 
-The 'failureCallback' function takes one parameter, an error object. The only property defined on this object is an optional `stack` property of type `string`.
+A função 'failureCallback' recebe um parâmetro, um objeto de erro. A única propriedade definida neste objeto é uma propriedade opcional `stack` do tipo `string`.
 
-The 'successCallback' function takes two parameters:
+A função 'successCallback' recebe dois parâmetros:
 
-- a boolean value signifying success or failure
-- a string that, in the case of success, indicates the method of sharing
+- um valor booleano indicando sucesso ou falha
+- uma string que, em caso de sucesso, indica o método de compartilhamento

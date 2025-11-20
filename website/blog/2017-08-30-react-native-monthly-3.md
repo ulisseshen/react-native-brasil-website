@@ -1,14 +1,15 @@
 ---
+ia-translated: true
 title: 'React Native Monthly #3'
 authors: [grabbou]
 tags: [engineering]
 ---
 
-The React Native monthly meeting continues! This month's meeting was a bit shorter as most of our teams were busy shipping. Next month, we are at [React Native EU](https://react-native.eu/) conference in Wroclaw, Poland. Make sure to grab a ticket and see you there in person! Meanwhile, let's see what our teams are up to.
+A reunião mensal do React Native continua! A reunião deste mês foi um pouco mais curta, pois a maioria de nossas equipes estava ocupada com lançamentos. No próximo mês, estaremos na conferência [React Native EU](https://react-native.eu/) em Wroclaw, Polônia. Certifique-se de pegar um ingresso e nos vemos lá pessoalmente! Enquanto isso, vamos ver o que nossas equipes estão fazendo.
 
-## Teams
+## Equipes
 
-On this third meeting, we had 5 teams join us:
+Nesta terceira reunião, tivemos 5 equipes se juntando a nós:
 
 - [Callstack](https://github.com/callstack)
 - [Expo](https://github.com/expo)
@@ -16,41 +17,41 @@ On this third meeting, we had 5 teams join us:
 - [Microsoft](https://github.com/microsoft)
 - [Shoutem](https://github.com/shoutem)
 
-## Notes
+## Notas
 
-Here are the notes from each team:
+Aqui estão as notas de cada equipe:
 
 ### Callstack
 
-- Recently open sourced [`react-native-material-palette`](https://github.com/callstack-io/react-native-material-palette). It extracts prominent colors from images to help you create visually engaging apps. It's Android only at the moment, but we are looking into adding support for iOS in the future.
-- We have landed HMR support into [`haul`](https://github.com/callstack-io/haul) and a bunch of other, cool stuff! Check out latest releases.
-- React Native EU 2017 is coming! Next month is all about React Native and Poland! Make sure to grab last tickets available [here](https://react-native.eu/).
+- Recentemente lançou open source [`react-native-material-palette`](https://github.com/callstack-io/react-native-material-palette). Ele extrai cores proeminentes de imagens para ajudá-lo a criar aplicativos visualmente envolventes. É apenas Android no momento, mas estamos investigando adicionar suporte para iOS no futuro.
+- Lançamos suporte HMR no [`haul`](https://github.com/callstack-io/haul) e várias outras coisas legais! Confira os últimos lançamentos.
+- React Native EU 2017 está chegando! O próximo mês é tudo sobre React Native e Polônia! Certifique-se de pegar os últimos ingressos disponíveis [aqui](https://react-native.eu/).
 
 ### Expo
 
-- Released support for installing npm packages on [Snack](https://snack.expo.io). Usual Expo restrictions apply -- packages can't depend on custom native APIs that aren't already included in Expo. We are also working on supporting multiple files and uploading assets in Snack. [Satyajit](https://github.com/satya164) will talk about Snack at [React Native Europe](https://react-native.eu/).
-- Released SDK20 with camera, payments, secure storage, magnetometer, pause/resume fs downloads, and improved splash/loading screen.
-- Continuing to work with [Krzysztof](https://github.com/kmagiera) on [react-native-gesture-handler](https://github.com/kmagiera/react-native-gesture-handler). Please give it a try, rebuild some gesture that you have previously built using PanResponder or native gesture recognizers and let us know what issues you encounter.
-- Experimenting with JSC debugging protocol, working on a bunch of feature requests on [Canny](https://expo.canny.io/feature-requests).
+- Lançou suporte para instalar pacotes npm no [Snack](https://snack.expo.io). Restrições usuais da Expo se aplicam -- pacotes não podem depender de APIs nativas personalizadas que ainda não estão incluídas na Expo. Também estamos trabalhando em suportar múltiplos arquivos e upload de assets no Snack. [Satyajit](https://github.com/satya164) falará sobre Snack na [React Native Europe](https://react-native.eu/).
+- Lançou SDK20 com câmera, pagamentos, armazenamento seguro, magnetômetro, pause/resume de downloads fs e tela de splash/carregamento melhorada.
+- Continuando a trabalhar com [Krzysztof](https://github.com/kmagiera) no [react-native-gesture-handler](https://github.com/kmagiera/react-native-gesture-handler). Por favor, experimente, reconstrua algum gesto que você construiu anteriormente usando PanResponder ou reconhecedores de gestos nativos e nos avise quais problemas você encontra.
+- Experimentando com protocolo de debugging JSC, trabalhando em várias solicitações de recursos no [Canny](https://expo.canny.io/feature-requests).
 
 ### Facebook
 
-- Last month we discussed management of the GitHub issue tracker and that we would try to make improvements to address the maintainability of the project.
-- Currently, the number of open issues is holding steady at around 600, and it seems like it may stay that way for a while. In the past month, we have closed 690 issues due to lack of activity (defined as no comments in the last 60 days). Out of those 690 issues, 58 were re-opened for a variety of reasons (a maintainer committed to providing a fix, or a contributor made a great case for keeping the issue open).
-- We plan to continue with the automated closing of stale issues for the foreseeable future. We’d like to be in a state where every impactful issue opened in the tracker is acted upon, but we’re not there yet. We need all the help we can from maintainers to triage issues and make sure we don't miss issues that introduce regressions or introduce breaking changes, especially those that affect newly created projects. People interested in helping out can use the Facebook GitHub Bot to triage issues and pull requests. The new Maintainers Guide contains more information on triage and use of the GitHub Bot. Please add yourself to the [issue task force](https://github.com/facebook/react-native/blob/master/bots/IssueCommands.txt) and encourage other active community members to do the same!
+- No mês passado discutimos o gerenciamento do rastreador de issues do GitHub e que tentaríamos fazer melhorias para abordar a manutenibilidade do projeto.
+- Atualmente, o número de issues abertas está se mantendo estável em torno de 600, e parece que pode permanecer assim por um tempo. No mês passado, fechamos 690 issues devido à falta de atividade (definida como sem comentários nos últimos 60 dias). Dessas 690 issues, 58 foram reabertas por várias razões (um mantenedor se comprometeu a fornecer uma correção, ou um contribuidor fez um ótimo argumento para manter a issue aberta).
+- Planejamos continuar com o fechamento automatizado de issues obsoletas no futuro previsível. Gostaríamos de estar em um estado onde cada issue impactante aberta no rastreador seja atendida, mas ainda não estamos lá. Precisamos de toda a ajuda que pudermos de mantenedores para fazer triagem de issues e garantir que não percamos issues que introduzem regressões ou introduzem breaking changes, especialmente aquelas que afetam projetos recém-criados. Pessoas interessadas em ajudar podem usar o Facebook GitHub Bot para fazer triagem de issues e pull requests. O novo Maintainers Guide contém mais informações sobre triagem e uso do GitHub Bot. Por favor, adicione-se à [força-tarefa de issues](https://github.com/facebook/react-native/blob/master/bots/IssueCommands.txt) e encoraje outros membros ativos da comunidade a fazer o mesmo!
 
 ### Microsoft
 
-- The new Skype app is built on top of React Native in order to facilitate sharing as much code between platforms as possible. The React Native-based Skype app is currently available in the Android and iOS app stores.
-- While building the Skype app on React Native, we send pull requests to React Native in order to address bugs and missing features that we come across. So far, we've gotten about [70 pull requests merged](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Arigdern%20).
-- React Native enabled us to power both the Android and iOS Skype apps from the same codebase. We also want to use that codebase to power the Skype web app. To help us achieve that goal, we built and open sourced a thin layer on top of React/React Native called [ReactXP](https://microsoft.github.io/reactxp/blog/2017/04/06/introducing-reactxp.html). ReactXP provides a set of cross platform components that get mapped to React Native when targeting iOS/Android and to react-dom when targeting the web. ReactXP's goals are similar to another open source library called React Native for Web. There's a brief description of how the approaches of these libraries differ in the [ReactXP FAQ](https://microsoft.github.io/reactxp/docs/faq.html).
+- O novo aplicativo Skype é construído em cima do React Native para facilitar o compartilhamento do máximo de código possível entre plataformas. O aplicativo Skype baseado em React Native está atualmente disponível nas lojas de aplicativos Android e iOS.
+- Ao construir o aplicativo Skype no React Native, enviamos pull requests para React Native para abordar bugs e recursos ausentes que encontramos. Até agora, tivemos cerca de [70 pull requests merged](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Arigdern%20).
+- React Native nos permitiu alimentar tanto o aplicativo Skype Android quanto iOS a partir da mesma base de código. Também queremos usar essa base de código para alimentar o aplicativo web Skype. Para nos ajudar a alcançar esse objetivo, construímos e lançamos open source uma camada fina em cima do React/React Native chamada [ReactXP](https://microsoft.github.io/reactxp/blog/2017/04/06/introducing-reactxp.html). ReactXP fornece um conjunto de componentes cross platform que são mapeados para React Native ao direcionar iOS/Android e para react-dom ao direcionar a web. Os objetivos do ReactXP são similares a outra biblioteca open source chamada React Native for Web. Há uma breve descrição de como as abordagens dessas bibliotecas diferem no [ReactXP FAQ](https://microsoft.github.io/reactxp/docs/faq.html).
 
 ### Shoutem
 
-- We are continuing our efforts on improving and simplifying the developer experience when building apps using [Shoutem](https://shoutem.github.io/).
-- Started migrating all our apps to react-navigation, but we ended postponing this until a more stable version is released, or one of the native navigation solutions becomes stable.
-- Updating all our [extensions](https://github.com/shoutem/extensions) and most of our open source libraries ([animation](https://github.com/shoutem/animation), [theme](https://github.com/shoutem/theme), [ui](https://github.com/shoutem/ui)) to React Native 0.47.1.
+- Estamos continuando nossos esforços em melhorar e simplificar a experiência do desenvolvedor ao construir aplicativos usando [Shoutem](https://shoutem.github.io/).
+- Começamos a migrar todos os nossos aplicativos para react-navigation, mas acabamos adiando isso até que uma versão mais estável seja lançada, ou uma das soluções de navegação nativa se torne estável.
+- Atualizando todas as nossas [extensões](https://github.com/shoutem/extensions) e a maioria de nossas bibliotecas open source ([animation](https://github.com/shoutem/animation), [theme](https://github.com/shoutem/theme), [ui](https://github.com/shoutem/ui)) para React Native 0.47.1.
 
-## Next session
+## Próxima sessão
 
-The next session is scheduled for Wednesday 13, September 2017. As this was only our third meeting, we'd like to know how do these notes benefit the React Native community. Feel free to ping me [on Twitter](https://twitter.com/grabbou) if you have any suggestion on how we should improve the output of the meeting.
+A próxima sessão está agendada para quarta-feira, 13 de setembro de 2017. Como esta foi apenas nossa terceira reunião, gostaríamos de saber como essas notas beneficiam a comunidade React Native. Sinta-se à vontade para me contatar [no Twitter](https://twitter.com/grabbou) se você tiver alguma sugestão sobre como devemos melhorar o resultado da reunião.

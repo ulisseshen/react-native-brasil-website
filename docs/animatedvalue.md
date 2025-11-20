@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: animatedvalue
 title: Animated.Value
 ---
 
-Standard value for driving animations. One `Animated.Value` can drive multiple properties in a synchronized fashion, but can only be driven by one mechanism at a time. Using a new mechanism (e.g. starting a new animation, or calling `setValue`) will stop any previous ones.
+Valor padrão para controlar animações. Um `Animated.Value` pode controlar múltiplas propriedades de forma sincronizada, mas só pode ser controlado por um mecanismo por vez. Usar um novo mecanismo (por exemplo, iniciar uma nova animação ou chamar `setValue`) irá parar todos os anteriores.
 
-Typically initialized with `useAnimatedValue(0);` or `new Animated.Value(0);` in class components.
+Tipicamente inicializado com `useAnimatedValue(0);` ou `new Animated.Value(0);` em class components.
 
 ---
 
@@ -19,13 +20,13 @@ Typically initialized with `useAnimatedValue(0);` or `new Animated.Value(0);` in
 setValue(value: number);
 ```
 
-Directly set the value. This will stop any animations running on the value and update all the bound properties.
+Define o valor diretamente. Isso irá parar quaisquer animações executando no valor e atualizar todas as propriedades vinculadas.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name  | Type   | Required | Description |
-| ----- | ------ | -------- | ----------- |
-| value | number | Yes      | Value       |
+| Nome  | Tipo   | Obrigatório | Descrição |
+| ----- | ------ | ----------- | --------- |
+| value | number | Sim         | Valor     |
 
 ---
 
@@ -35,13 +36,13 @@ Directly set the value. This will stop any animations running on the value and u
 setOffset(offset: number);
 ```
 
-Sets an offset that is applied on top of whatever value is set, whether via `setValue`, an animation, or `Animated.event`. Useful for compensating things like the start of a pan gesture.
+Define um offset que é aplicado em cima de qualquer valor definido, seja via `setValue`, uma animação ou `Animated.event`. Útil para compensar coisas como o início de um gesto de pan.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name   | Type   | Required | Description  |
-| ------ | ------ | -------- | ------------ |
-| offset | number | Yes      | Offset value |
+| Nome   | Tipo   | Obrigatório | Descrição     |
+| ------ | ------ | ----------- | ------------- |
+| offset | number | Sim         | Valor do offset |
 
 ---
 
@@ -51,7 +52,7 @@ Sets an offset that is applied on top of whatever value is set, whether via `set
 flattenOffset();
 ```
 
-Merges the offset value into the base value and resets the offset to zero. The final output of the value is unchanged.
+Mescla o valor do offset no valor base e redefine o offset para zero. A saída final do valor permanece inalterada.
 
 ---
 
@@ -61,7 +62,7 @@ Merges the offset value into the base value and resets the offset to zero. The f
 extractOffset();
 ```
 
-Sets the offset value to the base value, and resets the base value to zero. The final output of the value is unchanged.
+Define o valor do offset para o valor base, e redefine o valor base para zero. A saída final do valor permanece inalterada.
 
 ---
 
@@ -71,15 +72,15 @@ Sets the offset value to the base value, and resets the base value to zero. The 
 addListener(callback: (state: {value: number}) => void): string;
 ```
 
-Adds an asynchronous listener to the value so you can observe updates from animations. This is useful because there is no way to synchronously read the value because it might be driven natively.
+Adiciona um listener assíncrono ao valor para que você possa observar atualizações de animações. Isso é útil porque não há como ler o valor de forma síncrona, já que ele pode ser controlado nativamente.
 
-Returns a string that serves as an identifier for the listener.
+Retorna uma string que serve como identificador para o listener.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name     | Type     | Required | Description                                                                                 |
-| -------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
-| callback | function | Yes      | The callback function which will receive an object with a `value` key set to the new value. |
+| Nome     | Tipo     | Obrigatório | Descrição                                                                                         |
+| -------- | -------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| callback | function | Sim         | A função de callback que receberá um objeto com uma chave `value` definida para o novo valor. |
 
 ---
 
@@ -89,13 +90,13 @@ Returns a string that serves as an identifier for the listener.
 removeListener(id: string);
 ```
 
-Unregister a listener. The `id` param shall match the identifier previously returned by `addListener()`.
+Remove o registro de um listener. O parâmetro `id` deve corresponder ao identificador retornado anteriormente por `addListener()`.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name | Type   | Required | Description                        |
-| ---- | ------ | -------- | ---------------------------------- |
-| id   | string | Yes      | Id for the listener being removed. |
+| Nome | Tipo   | Obrigatório | Descrição                             |
+| ---- | ------ | ----------- | ------------------------------------- |
+| id   | string | Sim         | Id do listener sendo removido. |
 
 ---
 
@@ -105,7 +106,7 @@ Unregister a listener. The `id` param shall match the identifier previously retu
 removeAllListeners();
 ```
 
-Remove all registered listeners.
+Remove todos os listeners registrados.
 
 ---
 
@@ -115,13 +116,13 @@ Remove all registered listeners.
 stopAnimation(callback?: (value: number) => void);
 ```
 
-Stops any running animation or tracking. `callback` is invoked with the final value after stopping the animation, which is useful for updating state to match the animation position with layout.
+Para qualquer animação ou rastreamento em execução. `callback` é invocado com o valor final após parar a animação, o que é útil para atualizar o estado para corresponder à posição da animação com o layout.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name     | Type     | Required | Description                                   |
-| -------- | -------- | -------- | --------------------------------------------- |
-| callback | function | No       | A function that will receive the final value. |
+| Nome     | Tipo     | Obrigatório | Descrição                                  |
+| -------- | -------- | ----------- | ------------------------------------------ |
+| callback | function | Não         | Uma função que receberá o valor final. |
 
 ---
 
@@ -131,13 +132,13 @@ Stops any running animation or tracking. `callback` is invoked with the final va
 resetAnimation(callback?: (value: number) => void);
 ```
 
-Stops any animation and resets the value to its original.
+Para qualquer animação e redefine o valor para o original.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name     | Type     | Required | Description                                      |
-| -------- | -------- | -------- | ------------------------------------------------ |
-| callback | function | No       | A function that will receive the original value. |
+| Nome     | Tipo     | Obrigatório | Descrição                                     |
+| -------- | -------- | ----------- | --------------------------------------------- |
+| callback | function | Não         | Uma função que receberá o valor original. |
 
 ---
 
@@ -147,24 +148,24 @@ Stops any animation and resets the value to its original.
 interpolate(config: InterpolationConfigType);
 ```
 
-Interpolates the value before updating the property, e.g. mapping 0-1 to 0-10.
+Interpola o valor antes de atualizar a propriedade, por exemplo, mapeando 0-1 para 0-10.
 
-See `AnimatedInterpolation.js`
+Veja `AnimatedInterpolation.js`
 
-**Parameters:**
+**Parâmetros:**
 
-| Name   | Type   | Required | Description |
-| ------ | ------ | -------- | ----------- |
-| config | object | Yes      | See below.  |
+| Nome   | Tipo   | Obrigatório | Descrição     |
+| ------ | ------ | ----------- | ------------- |
+| config | object | Sim         | Veja abaixo. |
 
-The `config` object is composed of the following keys:
+O objeto `config` é composto pelas seguintes chaves:
 
-- `inputRange`: an array of numbers
-- `outputRange`: an array of numbers or strings
-- `easing` (optional): a function that returns a number, given an input number
-- `extrapolate` (optional): a string such as 'extend', 'identity', or 'clamp'
-- `extrapolateLeft` (optional): a string such as 'extend', 'identity', or 'clamp'
-- `extrapolateRight` (optional): a string such as 'extend', 'identity', or 'clamp'
+- `inputRange`: um array de números
+- `outputRange`: um array de números ou strings
+- `easing` (opcional): uma função que retorna um número, dado um número de entrada
+- `extrapolate` (opcional): uma string como 'extend', 'identity' ou 'clamp'
+- `extrapolateLeft` (opcional): uma string como 'extend', 'identity' ou 'clamp'
+- `extrapolateRight` (opcional): uma string como 'extend', 'identity' ou 'clamp'
 
 ---
 
@@ -174,11 +175,11 @@ The `config` object is composed of the following keys:
 animate(animation, callback);
 ```
 
-Typically only used internally, but could be used by a custom Animation class.
+Tipicamente usado apenas internamente, mas pode ser usado por uma classe Animation customizada.
 
-**Parameters:**
+**Parâmetros:**
 
-| Name      | Type      | Required | Description         |
-| --------- | --------- | -------- | ------------------- |
-| animation | Animation | Yes      | See `Animation.js`. |
-| callback  | function  | Yes      | Callback function.  |
+| Nome      | Tipo      | Obrigatório | Descrição            |
+| --------- | --------- | ----------- | -------------------- |
+| animation | Animation | Sim         | Veja `Animation.js`. |
+| callback  | function  | Sim         | Função de callback.  |
