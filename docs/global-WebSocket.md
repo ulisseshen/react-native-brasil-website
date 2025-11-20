@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-WebSocket
 title: WebSocket
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) for more information.
+🚧 Esta página está em desenvolvimento, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) para mais informações.
 :::
 
-The global `WebSocket` class, as defined in Web specifications.
+A classe global `WebSocket`, conforme definida nas especificações Web.

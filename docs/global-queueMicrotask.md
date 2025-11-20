@@ -1,10 +1,11 @@
 ---
 id: global-queueMicrotask
 title: queueMicrotask
+ia-translated: true
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/queueMicrotask) for more information.
+🚧 Esta página está em andamento, então consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/queueMicrotask) para mais informações.
 :::
 
-The global `queueMicrotask` function, as defined in Web specifications.
+A função global `queueMicrotask`, conforme definida nas especificações Web.

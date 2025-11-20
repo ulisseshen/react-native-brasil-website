@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: global-intersectionobserverentry
 title: IntersectionObserverEntry 🧪
 ---
@@ -7,9 +8,9 @@ import CanaryAPIWarning from './\_canary-channel-api-warning.mdx';
 
 <CanaryAPIWarning />
 
-The [`IntersectionObserverEntry`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) interface, as defined in Web specifications. It describes the intersection between the target element and its root container at a specific moment of transition.
+A interface [`IntersectionObserverEntry`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry), conforme definida nas especificações Web. Ela descreve a interseção entre o elemento alvo e seu contêiner raiz em um momento específico de transição.
 
-Instances of `IntersectionObserverEntry` are delivered to an [`IntersectionObserver`](global-intersectionobserver) callback in its `entries` parameter.
+Instâncias de `IntersectionObserverEntry` são entregues a um callback de [`IntersectionObserver`](global-intersectionobserver) em seu parâmetro `entries`.
 
 ---
 
@@ -19,56 +20,56 @@ Instances of `IntersectionObserverEntry` are delivered to an [`IntersectionObser
 
 ### `boundingClientRect`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/boundingClientRect).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/boundingClientRect).
 
-Returns the bounds rectangle of the target element as a `DOMRectReadOnly`.
+Retorna o retângulo de limites do elemento alvo como um `DOMRectReadOnly`.
 
 ### `intersectionRatio`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/intersectionRatio).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/intersectionRatio).
 
-Returns the ratio of the `intersectionRect` to the `boundingClientRect`.
+Retorna a razão do `intersectionRect` para o `boundingClientRect`.
 
 ### `intersectionRect`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/intersectionRect).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/intersectionRect).
 
-Returns a `DOMRectReadOnly` representing the target's visible area.
+Retorna um `DOMRectReadOnly` representando a área visível do alvo.
 
 ### `isIntersecting`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting).
 
-A Boolean value which is `true` if the target element intersects with the intersection observer's root. If this is `true`, then the `IntersectionObserverEntry` describes a transition into a state of intersection; if it's `false`, then you know the transition is from intersecting to not-intersecting.
+Um valor Boolean que é `true` se o elemento alvo se intersecta com a raiz do intersection observer. Se isso for `true`, então o `IntersectionObserverEntry` descreve uma transição para um estado de interseção; se for `false`, então você sabe que a transição é de intersectando para não-intersectando.
 
 ### `rnRootIntersectionRatio` ⚠️
 
 :::warning Non-standard
-This is a React Native specific extension.
+Esta é uma extensão específica do React Native.
 :::
 
-Returns the ratio of the `intersectionRect` to the `rootBounds`.
+Retorna a razão do `intersectionRect` para o `rootBounds`.
 
 ```ts
 get rnRootIntersectionRatio(): number;
 ```
 
-This is analogous to `intersectionRatio`, but computed relative to the root's bounding box instead of the target's bounding box. This corresponds to the `rnRootThreshold` option and allows you to determine what percentage of the root area is covered by the target element.
+Isso é análogo a `intersectionRatio`, mas calculado em relação à caixa de limites da raiz em vez da caixa de limites do alvo. Isso corresponde à opção `rnRootThreshold` e permite que você determine qual porcentagem da área raiz é coberta pelo elemento alvo.
 
 ### `rootBounds`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/rootBounds).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/rootBounds).
 
-Returns a `DOMRectReadOnly` for the intersection observer's root.
+Retorna um `DOMRectReadOnly` para a raiz do intersection observer.
 
 ### `target`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/target).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/target).
 
-The `Element` whose intersection with the root changed.
+O `Element` cuja interseção com a raiz mudou.
 
 ### `time`
 
-See [documentation in MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/time).
+Veja a [documentação no MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/time).
 
-A `DOMHighResTimeStamp` indicating the time at which the intersection was recorded, relative to the `IntersectionObserver`'s time origin.
+Um `DOMHighResTimeStamp` indicando o momento em que a interseção foi registrada, relativo à origem de tempo do `IntersectionObserver`.

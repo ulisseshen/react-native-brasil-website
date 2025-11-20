@@ -1,10 +1,11 @@
 ---
+ia-translated: true
 id: global-clearTimeout
 title: clearTimeout
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/clearTimeout) for more information.
+🚧 Esta página está em construção, então por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/clearTimeout) para mais informações.
 :::
 
-The global `clearTimeout` function, as defined in Web specifications.
+A função global `clearTimeout`, conforme definida nas especificações Web.

@@ -1,6 +1,7 @@
 ---
+ia-translated: true
 id: global-PerformanceMark
 title: PerformanceMark
 ---
 
-The global [`PerformanceMark`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceMark) class, as defined in Web specifications.
+A classe global [`PerformanceMark`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceMark), conforme definida nas especificações da Web.

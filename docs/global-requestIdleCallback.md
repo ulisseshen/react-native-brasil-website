@@ -1,10 +1,11 @@
 ---
 id: global-requestIdleCallback
 title: requestIdleCallback
+ia-translated: true
 ---
 
 :::warning
-🚧 This page is work in progress, so please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) for more information.
+🚧 Esta página está em construção, por favor consulte a [documentação MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) para mais informações.
 :::
 
-The global `requestIdleCallback` function, as defined in Web specifications.
+A função global `requestIdleCallback`, conforme definida nas especificações Web.
