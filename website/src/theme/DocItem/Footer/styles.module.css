@@ -17,6 +17,29 @@
   flex: 1;
 }
 
+.translationIssue {
+  padding: 1rem;
+  background-color: var(--ifm-background-surface-color);
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.translationIssueText {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ifm-color-content);
+}
+
+.translationIssueLink {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.translationIssueLink:hover {
+  text-decoration: none;
+}
+
 @media (min-width: 997px) {
   .lastUpdated {
     text-align: end;
