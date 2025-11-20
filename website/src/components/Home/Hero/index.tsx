@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 import GitHubButton from 'react-github-btn';
 import {useColorMode} from '@docusaurus/theme-common';
@@ -51,13 +53,13 @@ function Hero() {
       <div className={styles.content}>
         <Logo />
         <h1 className={styles.title}>React Native</h1>
-        <h2 className={styles.subtitle}>Learn once, write anywhere.</h2>
+        <h2 className={styles.subtitle}>Aprenda uma vez, escreva em qualquer lugar.</h2>
         <div className={styles.buttonContainer}>
           <a href="/docs/environment-setup" className={styles.primaryButton}>
-            Get Started
+            Começar
           </a>
           <a href="/docs/getting-started" className={styles.secondaryButton}>
-            Learn the Basics
+            Aprenda o Básico
           </a>
         </div>
       </div>

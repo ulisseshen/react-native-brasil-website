@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 
 import ThemedImage from '@theme/ThemedImage';
@@ -18,14 +20,14 @@ function Native() {
   return (
     <Section>
       <SectionTitle
-        title="Native development for everyone"
+        title="Desenvolvimento nativo para todos"
         description={
           <>
-            React Native lets you create truly native apps and doesn't
-            compromise your users' experiences. It provides a core set of
-            platform agnostic native components like <code>View</code>,{' '}
-            <code>Text</code>, and <code>Image</code> that map directly to the
-            platform's native UI building blocks.
+            React Native permite que você crie aplicativos verdadeiramente
+            nativos e não compromete a experiência dos seus usuários. Ele fornece um conjunto
+            central de componentes nativos agnósticos de plataforma como <code>View</code>,{' '}
+            <code>Text</code> e <code>Image</code> que mapeiam diretamente para os
+            blocos de construção de UI nativos da plataforma.
           </>
         }
       />
@@ -35,7 +37,7 @@ function Native() {
           dark: '/img/homepage/dissection-dark.png',
         }}
         className={styles.flyoutIllustration}
-        alt="A React Native UI pointing out native elements like Views, ScrollViews, and more"
+        alt="Uma UI React Native apontando elementos nativos como Views, ScrollViews e mais"
       />
     </Section>
   );

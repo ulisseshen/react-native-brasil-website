@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -20,14 +22,14 @@ function Platforms() {
   return (
     <Section>
       <SectionTitle
-        title="Create native apps for Android, iOS, and more using React"
+        title="Crie aplicativos nativos para Android, iOS e muito mais usando React"
         description={
           <>
-            React Native brings the best parts of developing with React to
-            native development.
+            React Native traz as melhores partes do desenvolvimento com React
+            para o desenvolvimento nativo.
             <br />
-            It's a best-in-class JavaScript library for building user
-            interfaces.
+            É uma biblioteca JavaScript de primeira classe para construir
+            interfaces de usuário.
           </>
         }
       />
@@ -70,7 +72,7 @@ function Platforms() {
                 dark: useBaseUrl('/img/homepage/devices-dark.png'),
               }}
               className={styles.devices}
-              alt="Android device and iOS device"
+              alt="Dispositivo Android e dispositivo iOS"
             />
           </div>
         </div>
@@ -78,9 +80,9 @@ function Platforms() {
       <div className={styles.foxFactContainer}>
         <FoxFact className={styles.fox} />
         <p>
-          <strong>Written in JavaScript, rendered with native code.</strong>{' '}
-          React primitives render to native platform UI, meaning your app uses
-          the same native platform APIs other apps do.
+          <strong>Escrito em JavaScript, renderizado com código nativo.</strong>{' '}
+          Os primitivos React renderizam para a UI nativa da plataforma, o que significa que seu aplicativo usa
+          as mesmas APIs nativas da plataforma que outros aplicativos usam.
         </p>
       </div>
     </Section>
