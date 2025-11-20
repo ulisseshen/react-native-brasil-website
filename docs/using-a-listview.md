@@ -1,15 +1,16 @@
 ---
+ia-translated: true
 id: using-a-listview
-title: Using List Views
+title: Usando List Views
 ---
 
-React Native provides a suite of components for presenting lists of data. Generally, you'll want to use either [FlatList](flatlist.md) or [SectionList](sectionlist.md).
+O React Native fornece um conjunto de componentes para apresentar listas de dados. Geralmente, você vai querer usar [FlatList](flatlist.md) ou [SectionList](sectionlist.md).
 
-The `FlatList` component displays a scrolling list of changing, but similarly structured, data. `FlatList` works well for long lists of data, where the number of items might change over time. Unlike the more generic [`ScrollView`](using-a-scrollview.md), the `FlatList` only renders elements that are currently showing on the screen, not all the elements at once.
+O componente `FlatList` exibe uma lista rolável de dados que mudam, mas com estrutura similar. `FlatList` funciona bem para listas longas de dados, onde o número de itens pode mudar ao longo do tempo. Diferente do [`ScrollView`](using-a-scrollview.md) mais genérico, o `FlatList` renderiza apenas os elementos que estão sendo exibidos na tela no momento, não todos os elementos de uma vez.
 
-The `FlatList` component requires two props: `data` and `renderItem`. `data` is the source of information for the list. `renderItem` takes one item from the source and returns a formatted component to render.
+O componente `FlatList` requer duas props: `data` e `renderItem`. `data` é a fonte de informação para a lista. `renderItem` pega um item da fonte e retorna um componente formatado para renderizar.
 
-This example creates a basic `FlatList` of hardcoded data. Each item in the `data` props is rendered as a `Text` component. The `FlatListBasics` component then renders the `FlatList` and all `Text` components.
+Este exemplo cria um `FlatList` básico com dados fixos. Cada item nas props `data` é renderizado como um componente `Text`. O componente `FlatListBasics` então renderiza o `FlatList` e todos os componentes `Text`.
 
 ```SnackPlayer name=FlatList%20Basics
 import React from 'react';
@@ -52,7 +53,7 @@ const FlatListBasics = () => {
 export default FlatListBasics;
 ```
 
-If you want to render a set of data broken into logical sections, maybe with section headers, similar to `UITableView` on iOS, then a [SectionList](sectionlist.md) is the way to go.
+Se você quiser renderizar um conjunto de dados dividido em seções lógicas, talvez com cabeçalhos de seção, similar ao `UITableView` no iOS, então [SectionList](sectionlist.md) é o caminho a seguir.
 
 ```SnackPlayer name=SectionList%20Basics
 import React from 'react';
@@ -111,4 +112,4 @@ const SectionListBasics = () => {
 export default SectionListBasics;
 ```
 
-One of the most common uses for a list view is displaying data that you fetch from a server. To do that, you will need to [learn about networking in React Native](network.md).
+Um dos usos mais comuns para uma list view é exibir dados que você busca de um servidor. Para fazer isso, você precisará [aprender sobre networking no React Native](network.md).

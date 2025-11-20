@@ -1,17 +1,18 @@
 ---
+ia-translated: true
 id: interactionmanager
 title: 🗑️ InteractionManager
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-:::warning Deprecated
-Avoid long-running work and use [`requestIdleCallback`](global-requestIdleCallback) instead.
+:::warning Descontinuado
+Evite trabalhos de longa duração e use [`requestIdleCallback`](global-requestIdleCallback) em vez disso.
 :::
 
-InteractionManager allows long-running work to be scheduled after any interactions/animations have completed. In particular, this allows JavaScript animations to run smoothly.
+InteractionManager permite que trabalhos de longa duração sejam agendados após a conclusão de quaisquer interações/animações. Em particular, isso permite que animações JavaScript sejam executadas de forma suave.
 
-Applications can schedule tasks to run after interactions with the following:
+As aplicações podem agendar tarefas para serem executadas após interações com o seguinte:
 
 ```tsx
 InteractionManager.runAfterInteractions(() => {
@@ -19,15 +20,15 @@ InteractionManager.runAfterInteractions(() => {
 });
 ```
 
-Compare this to other scheduling alternatives:
+Compare isso com outras alternativas de agendamento:
 
-- `requestAnimationFrame()` for code that animates a view over time.
-- `setImmediate/setTimeout()` run code later, note this may delay animations.
-- `runAfterInteractions()` run code later, without delaying active animations.
+- `requestAnimationFrame()` para código que anima uma view ao longo do tempo.
+- `setImmediate/setTimeout()` executa código posteriormente, note que isso pode atrasar animações.
+- `runAfterInteractions()` executa código posteriormente, sem atrasar animações ativas.
 
-The touch handling system considers one or more active touches to be an 'interaction' and will delay `runAfterInteractions()` callbacks until all touches have ended or been cancelled.
+O sistema de manipulação de toque considera um ou mais toques ativos como uma 'interação' e atrasará os callbacks de `runAfterInteractions()` até que todos os toques tenham terminado ou sido cancelados.
 
-InteractionManager also allows applications to register animations by creating an interaction 'handle' on animation start, and clearing it upon completion:
+InteractionManager também permite que as aplicações registrem animações criando um 'handle' de interação no início da animação e limpando-o após a conclusão:
 
 ```tsx
 const handle = InteractionManager.createInteractionHandle();
@@ -37,15 +38,15 @@ InteractionManager.clearInteractionHandle(handle);
 // queued tasks run if all handles were cleared
 ```
 
-`runAfterInteractions` takes either a plain callback function, or a `PromiseTask` object with a `gen` method that returns a `Promise`. If a `PromiseTask` is supplied, then it is fully resolved (including asynchronous dependencies that also schedule more tasks via `runAfterInteractions`) before starting on the next task that might have been queued up synchronously earlier.
+`runAfterInteractions` aceita uma função callback simples ou um objeto `PromiseTask` com um método `gen` que retorna uma `Promise`. Se um `PromiseTask` for fornecido, ele será totalmente resolvido (incluindo dependências assíncronas que também agendam mais tarefas via `runAfterInteractions`) antes de iniciar a próxima tarefa que possa ter sido enfileirada de forma síncrona anteriormente.
 
-By default, queued tasks are executed together in a loop in one `setImmediate` batch. If `setDeadline` is called with a positive number, then tasks will only be executed until the deadline (in terms of js event loop run time) approaches, at which point execution will yield via setTimeout, allowing events such as touches to start interactions and block queued tasks from executing, making apps more responsive.
+Por padrão, as tarefas enfileiradas são executadas juntas em um loop em um único lote `setImmediate`. Se `setDeadline` for chamado com um número positivo, as tarefas só serão executadas até que o deadline (em termos de tempo de execução do event loop do js) se aproxime, ponto em que a execução será cedida via setTimeout, permitindo que eventos como toques iniciem interações e bloqueiem as tarefas enfileiradas de serem executadas, tornando os aplicativos mais responsivos.
 
 ---
 
-## Example
+## Exemplo
 
-### Basic
+### Básico
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -218,7 +219,7 @@ export default App;
 </TabItem>
 </Tabs>
 
-### Advanced
+### Avançado
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -379,9 +380,9 @@ export default App;
 </TabItem>
 </Tabs>
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `runAfterInteractions()`
 
@@ -389,7 +390,7 @@ export default App;
 static runAfterInteractions(task?: (() => any) | SimpleTask | PromiseTask);
 ```
 
-Schedule a function to run after all interactions have completed. Returns a cancellable "promise".
+Agenda uma função para ser executada após a conclusão de todas as interações. Retorna uma "promise" cancelável.
 
 ---
 
@@ -399,7 +400,7 @@ Schedule a function to run after all interactions have completed. Returns a canc
 static createInteractionHandle(): Handle;
 ```
 
-Notify manager that an interaction has started.
+Notifica o gerenciador de que uma interação foi iniciada.
 
 ---
 
@@ -409,7 +410,7 @@ Notify manager that an interaction has started.
 static clearInteractionHandle(handle: Handle);
 ```
 
-Notify manager that an interaction has completed.
+Notifica o gerenciador de que uma interação foi concluída.
 
 ---
 
@@ -419,4 +420,4 @@ Notify manager that an interaction has completed.
 static setDeadline(deadline: number);
 ```
 
-A positive number will use setTimeout to schedule any tasks after the eventLoopRunningTime hits the deadline value, otherwise all tasks will be executed in one setImmediate batch (default).
+Um número positivo usará setTimeout para agendar quaisquer tarefas depois que o eventLoopRunningTime atingir o valor do deadline, caso contrário, todas as tarefas serão executadas em um único lote setImmediate (padrão).

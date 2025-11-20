@@ -1,73 +1,75 @@
-## Installing dependencies
+<!-- ia-translated: true -->
 
-You will need Node, Watchman, the React Native command line interface, Xcode and CocoaPods.
+## Instalando dependências
 
-While you can use any editor of your choice to develop your app, you will need to install Xcode in order to set up the necessary tooling to build your React Native app for iOS.
+Você precisará do Node, Watchman, a interface de linha de comando do React Native, Xcode e CocoaPods.
+
+Embora você possa usar qualquer editor de sua escolha para desenvolver seu app, você precisará instalar o Xcode para configurar as ferramentas necessárias para compilar seu app React Native para iOS.
 
 ### Node & Watchman
 
-We recommend installing Node and Watchman using [Homebrew](https://brew.sh/). Run the following commands in a Terminal after installing Homebrew:
+Recomendamos instalar o Node e o Watchman usando o [Homebrew](https://brew.sh/). Execute os seguintes comandos em um Terminal após instalar o Homebrew:
 
 ```shell
 brew install node
 brew install watchman
 ```
 
-If you have already installed Node on your system, make sure it is Node 20.19.4 or newer.
+Se você já instalou o Node no seu sistema, certifique-se de que é o Node 20.19.4 ou mais recente.
 
-[Watchman](https://facebook.github.io/watchman) is a tool by Facebook for watching changes in the filesystem. It is highly recommended you install it for better performance.
+[Watchman](https://facebook.github.io/watchman) é uma ferramenta do Facebook para observar mudanças no sistema de arquivos. É altamente recomendado que você o instale para melhor desempenho.
 
 ### Xcode
 
-Please use the **latest version** of Xcode.
+Por favor, use a **versão mais recente** do Xcode.
 
-The easiest way to install Xcode is via the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12). Installing Xcode will also install the iOS Simulator and all the necessary tools to build your iOS app.
+A maneira mais fácil de instalar o Xcode é via [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12). Instalar o Xcode também instalará o iOS Simulator e todas as ferramentas necessárias para compilar seu app iOS.
 
 #### Command Line Tools
 
-You will also need to install the Xcode Command Line Tools. Open Xcode, then choose **Settings... (or Preferences...)** from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in the Command Line Tools dropdown.
+Você também precisará instalar o Xcode Command Line Tools. Abra o Xcode, depois escolha **Settings... (ou Preferences...)** no menu Xcode. Vá para o painel Locations e instale as ferramentas selecionando a versão mais recente no dropdown Command Line Tools.
 
 ![Xcode Command Line Tools](/docs/assets/GettingStartedXcodeCommandLineTools.png)
 
-#### Installing an iOS Simulator in Xcode
+#### Instalando um iOS Simulator no Xcode
 
-To install a simulator, open **Xcode > Settings... (or Preferences...)** and select the **Platforms (or Components)** tab. Select a simulator with the corresponding version of iOS you wish to use.
+Para instalar um simulator, abra **Xcode > Settings... (ou Preferences...)** e selecione a aba **Platforms (ou Components)**. Selecione um simulator com a versão correspondente do iOS que você deseja usar.
 
-If you are using Xcode version 14.0 or greater to install a simulator, open **Xcode > Settings > Platforms** tab, then click "+" icon and select **iOS…** option.
+Se você está usando o Xcode versão 14.0 ou superior para instalar um simulator, abra a aba **Xcode > Settings > Platforms**, depois clique no ícone "+" e selecione a opção **iOS…**.
 
 #### CocoaPods
 
-[CocoaPods](https://cocoapods.org/) is one of the dependency management system available for iOS. CocoaPods is a Ruby [gem](https://en.wikipedia.org/wiki/RubyGems). You can install CocoaPods using the version of Ruby that ships with the latest version of macOS.
+[CocoaPods](https://cocoapods.org/) é um dos sistemas de gerenciamento de dependências disponíveis para iOS. CocoaPods é uma [gem](https://en.wikipedia.org/wiki/RubyGems) Ruby. Você pode instalar o CocoaPods usando a versão do Ruby que vem com a versão mais recente do macOS.
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Para mais informações, por favor visite o [guia Getting Started do CocoaPods](https://guides.cocoapods.org/using/getting-started.html).
 
-### [Optional] Configuring your environment
+### [Opcional] Configurando seu ambiente
 
-Starting from React Native version 0.69, it is possible to configure the Xcode environment using the `.xcode.env` file provided by the template.
+A partir do React Native versão 0.69, é possível configurar o ambiente do Xcode usando o arquivo `.xcode.env` fornecido pelo template.
 
-The `.xcode.env` file contains an environment variable to export the path to the `node` executable in the `NODE_BINARY` variable.
-This is the **suggested approach** to decouple the build infrastructure from the system version of `node`. You should customize this variable with your own path or your own `node` version manager, if it differs from the default.
+O arquivo `.xcode.env` contém uma variável de ambiente para exportar o caminho para o executável `node` na variável `NODE_BINARY`.
+Esta é a **abordagem sugerida** para desacoplar a infraestrutura de build da versão do sistema de `node`. Você deve personalizar esta variável com seu próprio caminho ou seu próprio gerenciador de versão de `node`, se diferir do padrão.
 
-On top of this, it's possible to add any other environment variable and to source the `.xcode.env` file in your build script phases. If you need to run script that requires some specific environment, this is the **suggested approach**: it allows to decouple the build phases from a specific environment.
+Além disso, é possível adicionar qualquer outra variável de ambiente e carregar o arquivo `.xcode.env` em suas fases de script de build. Se você precisar executar um script que requer algum ambiente específico, esta é a **abordagem sugerida**: ela permite desacoplar as fases de build de um ambiente específico.
 
 :::info
-If you are already using [NVM](https://nvm.sh/) (a command which helps you install and switch between versions of Node.js) and [zsh](https://ohmyz.sh/), you might want to move the code that initialize NVM from your `~/.zshrc` into a `~/.zshenv` file to help Xcode find your Node executable:
+Se você já está usando [NVM](https://nvm.sh/) (um comando que ajuda você a instalar e alternar entre versões do Node.js) e [zsh](https://ohmyz.sh/), você pode querer mover o código que inicializa o NVM do seu `~/.zshrc` para um arquivo `~/.zshenv` para ajudar o Xcode a encontrar seu executável Node:
 
 ```zsh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 ```
 
-You might also want to ensure that all "shell script build phase" of your Xcode project, is using `/bin/zsh` as its shell.
+Você também pode querer garantir que todas as "shell script build phase" do seu projeto Xcode estejam usando `/bin/zsh` como seu shell.
 :::
 
-<h3>That's it!</h3>
+<h3>É isso!</h3>
 
-Congratulations! You successfully set up your development environment.
+Parabéns! Você configurou com sucesso seu ambiente de desenvolvimento.
 
 <center><img src="/docs/assets/GettingStartedCongratulations.png" width="150"></img></center>
 
-<h2>Now what?</h2>
+<h2>E agora?</h2>
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](integration-with-existing-apps.md).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](getting-started).
+- Se você quiser adicionar este novo código React Native a uma aplicação existente, confira o [guia de Integração](integration-with-existing-apps.md).
+- Se você está curioso para aprender mais sobre React Native, confira a [Introdução ao React Native](getting-started).

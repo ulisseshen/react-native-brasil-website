@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 title: 'React Native Monthly #5'
 author: Tomislav Tenodi
 authorTitle: Founder at Speck
@@ -8,28 +9,28 @@ authorTwitter: TomislavTenodi
 tags: [engineering]
 ---
 
-The React Native monthly meeting continues! Let's see what our teams are up to.
+A reunião mensal do React Native continua! Vamos ver o que nossas equipes estão fazendo.
 
 ### Callstack
 
-- We’ve been working on React Native CI. Most importantly, we have migrated from Travis to Circle, leaving React Native with a single, unified CI pipeline.
-- We’ve organised [Hacktoberfest - React Native edition](https://blog.callstack.io/announcing-hacktoberfest-7313ea5ccf4f) where, together with attendees, we tried to submit many pull requests to open source projects.
-- We keep working on [Haul](https://github.com/callstack/haul). Last month, we have submitted two new releases, including webpack 3 support. We plan to add [CRNA](https://github.com/react-community/create-react-native-app) and [Expo](https://github.com/expo/expo) support as well as work on better HMR. Our roadmap is public on the issue tracker. If you would like to suggest improvements or give feedback, let us know!
+- Temos trabalhado no CI do React Native. Mais importante, migramos do Travis para o Circle, deixando o React Native com um único pipeline de CI unificado.
+- Organizamos [Hacktoberfest - edição React Native](https://blog.callstack.io/announcing-hacktoberfest-7313ea5ccf4f) onde, junto com os participantes, tentamos enviar muitos pull requests para projetos open source.
+- Continuamos trabalhando no [Haul](https://github.com/callstack/haul). No mês passado, enviamos dois novos lançamentos, incluindo suporte ao webpack 3. Planejamos adicionar suporte ao [CRNA](https://github.com/react-community/create-react-native-app) e [Expo](https://github.com/expo/expo), bem como trabalhar em melhor HMR. Nosso roadmap é público no rastreador de issues. Se você gostaria de sugerir melhorias ou dar feedback, nos avise!
 
 ### Expo
 
-- Released [Expo SDK 22](https://blog.expo.io/expo-sdk-v22-0-0-is-now-available-7745bfe97fc6) (using React Native 0.49) and updated [CRNA](https://github.com/react-community/create-react-native-app) for it.
-  - Includes improved splash screen API, basic ARKit support, “DeviceMotion” API, SFAuthenticationSession support on iOS11, and [more](https://blog.expo.io/expo-sdk-v22-0-0-is-now-available-7745bfe97fc6).
-- Your [snacks](https://snack.expo.io) can now have multiple JavaScript files and you can upload images and other assets by just dragging them into the editor.
-- Contribute to [react-navigation](https://github.com/react-community/react-navigation) to add support for iPhone X.
-- Focus our attention on rough edges when building large applications with Expo. For example:
-  - First-class support for deploying to multiple environments: staging, production, and arbitrary channels. Channels will support rolling back and setting the active release for a given channel. Let us know if you want to be an early tester, [@expo_io](https://twitter.com/expo_io).
-  - We are also working on improving our standalone app building infrastructure and adding support for bundling images and other non-code assets in standalone app builds while keeping the ability to update assets over the air.
+- Lançou [Expo SDK 22](https://blog.expo.io/expo-sdk-v22-0-0-is-now-available-7745bfe97fc6) (usando React Native 0.49) e atualizou [CRNA](https://github.com/react-community/create-react-native-app) para ele.
+  - Inclui API de splash screen melhorada, suporte básico a ARKit, API "DeviceMotion", suporte a SFAuthenticationSession no iOS11 e [mais](https://blog.expo.io/expo-sdk-v22-0-0-is-now-available-7745bfe97fc6).
+- Seus [snacks](https://snack.expo.io) agora podem ter múltiplos arquivos JavaScript e você pode fazer upload de imagens e outros assets apenas arrastando-os para o editor.
+- Contribuir para [react-navigation](https://github.com/react-community/react-navigation) para adicionar suporte ao iPhone X.
+- Focar nossa atenção em arestas ásperas ao construir grandes aplicativos com Expo. Por exemplo:
+  - Suporte de primeira classe para deploy em múltiplos ambientes: staging, produção e channels arbitrários. Channels suportarão rollback e definição do release ativo para um determinado channel. Nos avise se você quer ser um testador inicial, [@expo_io](https://twitter.com/expo_io).
+  - Também estamos trabalhando em melhorar nossa infraestrutura de build de aplicativos standalone e adicionar suporte para agrupar imagens e outros assets não-código em builds de aplicativos standalone, mantendo a capacidade de atualizar assets over the air.
 
 ### Facebook
 
-- Better RTL support:
-  - We’re introducing a number of direction-aware styles.
+- Melhor suporte RTL:
+  - Estamos introduzindo vários estilos direction-aware.
     - Position:
       - (left|right) → (start|end)
     - Margin:
@@ -41,20 +42,20 @@ The React Native monthly meeting continues! Let's see what our teams are up to.
       - borderBottom(Left|Right)Radius → borderBottom(Start|End)Radius
       - border(Left|Right)Width → border(Start|End)Width
       - border(Left|Right)Color → border(Start|End)Color
-  - The meaning of “left” and “right” were swapped in RTL for position, margin, padding, and border styles. Within a few months, we’re going to remove this behaviour and make “left” always mean “left,” and “right” always mean “right”. The breaking changes are hidden under a flag. Use `I18nManager.swapLeftAndRightInRTL(false)` in your React Native components to opt into them.
-- Working on [Flow](https://github.com/facebook/flow) typing our internal native modules and using those to generate interfaces in Java and protocols in ObjC that the native implementations must implement. We hope this codegen becomes open source next year, at the earliest.
+  - O significado de "left" e "right" foi trocado em RTL para estilos de position, margin, padding e border. Dentro de alguns meses, vamos remover esse comportamento e fazer "left" sempre significar "left", e "right" sempre significar "right". As breaking changes estão ocultas sob uma flag. Use `I18nManager.swapLeftAndRightInRTL(false)` em seus componentes React Native para optar por elas.
+- Trabalhando em tipagem [Flow](https://github.com/facebook/flow) de nossos módulos nativos internos e usando-os para gerar interfaces em Java e protocolos em ObjC que as implementações nativas devem implementar. Esperamos que esta codegen se torne open source no próximo ano, no mais cedo.
 
 ### Infinite Red
 
-- New OSS tool for helping React Native and other projects. More [here](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
-- Revamping [Ignite](https://github.com/infinitered/ignite) for a new boilerplate release (Code name: Bowser)
+- Nova ferramenta OSS para ajudar React Native e outros projetos. Mais [aqui](https://shift.infinite.red/solidarity-the-cli-for-developer-sanity-672fa81b98e9).
+- Reformulando [Ignite](https://github.com/infinitered/ignite) para um novo lançamento de boilerplate (Codinome: Bowser)
 
 ### Shoutem
 
-- Improving the development flow on Shoutem. We want to streamline the process from creating an app to first custom screen and make it really easy, thus lowering the barrier for new React Native developers. Prepared a few workshops to test out new features. We also improved [Shoutem CLI](https://github.com/shoutem/cli) to support new flows.
-- [Shoutem UI](https://github.com/shoutem/ui) received a few component improvements and bugfixes. We also checked compatibility with latest React Native versions.
-- Shoutem platform received a few notable updates, new integrations are available as part of the [open-source extensions project](https://github.com/shoutem/extensions). We are really excited to see active development on Shoutem extensions from other developers. We actively contact and offer advice and guidance about their extensions.
+- Melhorando o fluxo de desenvolvimento no Shoutem. Queremos otimizar o processo desde criar um aplicativo até a primeira tela personalizada e torná-lo realmente fácil, reduzindo assim a barreira para novos desenvolvedores React Native. Preparamos alguns workshops para testar novos recursos. Também melhoramos o [Shoutem CLI](https://github.com/shoutem/cli) para suportar novos fluxos.
+- [Shoutem UI](https://github.com/shoutem/ui) recebeu algumas melhorias de componentes e correções de bugs. Também verificamos compatibilidade com as versões mais recentes do React Native.
+- A plataforma Shoutem recebeu algumas atualizações notáveis, novas integrações estão disponíveis como parte do [projeto de extensões open-source](https://github.com/shoutem/extensions). Estamos realmente animados em ver desenvolvimento ativo em extensões Shoutem de outros desenvolvedores. Ativamente contatamos e oferecemos conselhos e orientação sobre suas extensões.
 
-## Next session
+## Próxima sessão
 
-The next session is scheduled for Wednesday 6, December 2017. Feel free to ping me [on Twitter](https://twitter.com/TomislavTenodi) if you have any suggestion on how we should improve the output of the meeting.
+A próxima sessão está agendada para quarta-feira, 6 de dezembro de 2017. Sinta-se à vontade para me contatar [no Twitter](https://twitter.com/TomislavTenodi) se você tiver alguma sugestão sobre como devemos melhorar o resultado da reunião.

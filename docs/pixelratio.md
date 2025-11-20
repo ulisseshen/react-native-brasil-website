@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: pixelratio
 title: PixelRatio
 ---
 
-`PixelRatio` gives you access to the device's pixel density and font scale.
+`PixelRatio` fornece acesso à densidade de pixels e escala de fonte do dispositivo.
 
-## Fetching a correctly sized image
+## Buscando uma imagem com tamanho correto
 
-You should get a higher resolution image if you are on a high pixel density device. A good rule of thumb is to multiply the size of the image you display by the pixel ratio.
+Você deve obter uma imagem de resolução mais alta se estiver em um dispositivo com alta densidade de pixels. Uma boa regra prática é multiplicar o tamanho da imagem que você exibe pela proporção de pixels.
 
 ```tsx
 const image = getImage({
@@ -17,17 +18,17 @@ const image = getImage({
 <Image source={image} style={{width: 200, height: 100}} />;
 ```
 
-## Pixel grid snapping
+## Ajuste à grade de pixels
 
-In iOS, you can specify positions and dimensions for elements with arbitrary precision, for example 29.674825. But, ultimately the physical display only have a fixed number of pixels, for example 640×1136 for iPhone SE (1st generation) or 828×1792 for iPhone 11. iOS tries to be as faithful as possible to the user value by spreading one original pixel into multiple ones to trick the eye. The downside of this technique is that it makes the resulting element look blurry.
+No iOS, você pode especificar posições e dimensões para elementos com precisão arbitrária, por exemplo 29.674825. Mas, em última análise, a tela física tem apenas um número fixo de pixels, por exemplo 640×1136 para iPhone SE (1ª geração) ou 828×1792 para iPhone 11. O iOS tenta ser o mais fiel possível ao valor do usuário distribuindo um pixel original em vários para enganar o olho. A desvantagem dessa técnica é que ela faz o elemento resultante parecer desfocado.
 
-In practice, we found out that developers do not want this feature and they have to work around it by doing manual rounding in order to avoid having blurry elements. In React Native, we are rounding all the pixels automatically.
+Na prática, descobrimos que os desenvolvedores não querem esse recurso e precisam contorná-lo fazendo arredondamento manual para evitar elementos desfocados. No React Native, estamos arredondando todos os pixels automaticamente.
 
-We have to be careful when to do this rounding. You never want to work with rounded and unrounded values at the same time as you're going to accumulate rounding errors. Having even one rounding error is deadly because a one pixel border may vanish or be twice as big.
+Precisamos ter cuidado ao fazer esse arredondamento. Você nunca quer trabalhar com valores arredondados e não arredondados ao mesmo tempo, pois você vai acumular erros de arredondamento. Ter apenas um erro de arredondamento é fatal porque uma borda de um pixel pode desaparecer ou ficar duas vezes maior.
 
-In React Native, everything in JavaScript and within the layout engine works with arbitrary precision numbers. It's only when we set the position and dimensions of the native element on the main thread that we round. Also, rounding is done relative to the root rather than the parent, again to avoid accumulating rounding errors.
+No React Native, tudo em JavaScript e no mecanismo de layout funciona com números de precisão arbitrária. É apenas quando definimos a posição e dimensões do elemento nativo na thread principal que arredondamos. Além disso, o arredondamento é feito em relação à raiz em vez do pai, novamente para evitar acumular erros de arredondamento.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=PixelRatio%20Example
 import React from 'react';
@@ -103,9 +104,9 @@ export default App;
 
 ---
 
-# Reference
+# Referência
 
-## Methods
+## Métodos
 
 ### `get()`
 
@@ -113,27 +114,27 @@ export default App;
 static get(): number;
 ```
 
-Returns the device pixel density. Some examples:
+Retorna a densidade de pixels do dispositivo. Alguns exemplos:
 
 - `PixelRatio.get() === 1`
-  - [mdpi Android devices](https://material.io/tools/devices/)
+  - [dispositivos Android mdpi](https://material.io/tools/devices/)
 - `PixelRatio.get() === 1.5`
-  - [hdpi Android devices](https://material.io/tools/devices/)
+  - [dispositivos Android hdpi](https://material.io/tools/devices/)
 - `PixelRatio.get() === 2`
   - iPhone SE, 6S, 7, 8
   - iPhone XR
   - iPhone 11
-  - [xhdpi Android devices](https://material.io/tools/devices/)
+  - [dispositivos Android xhdpi](https://material.io/tools/devices/)
 - `PixelRatio.get() === 3`
   - iPhone 6S Plus, 7 Plus, 8 Plus
   - iPhone X, XS, XS Max
   - iPhone 11 Pro, 11 Pro Max
   - Pixel, Pixel 2
-  - [xxhdpi Android devices](https://material.io/tools/devices/)
+  - [dispositivos Android xxhdpi](https://material.io/tools/devices/)
 - `PixelRatio.get() === 3.5`
   - Nexus 6
   - Pixel XL, Pixel 2 XL
-  - [xxxhdpi Android devices](https://material.io/tools/devices/)
+  - [dispositivos Android xxxhdpi](https://material.io/tools/devices/)
 
 ---
 
@@ -143,12 +144,12 @@ Returns the device pixel density. Some examples:
 static getFontScale(): number;
 ```
 
-Returns the scaling factor for font sizes. This is the ratio that is used to calculate the absolute font size, so any elements that heavily depend on that should use this to do calculations.
+Retorna o fator de escala para tamanhos de fonte. Esta é a proporção usada para calcular o tamanho de fonte absoluto, então qualquer elemento que dependa fortemente disso deve usar isso para fazer cálculos.
 
-- on Android value reflects the user preference set in **Settings > Display > Font size**
-- on iOS value reflects the user preference set in **Settings > Display & Brightness > Text Size**, value can also be updated in **Settings > Accessibility > Display & Text Size > Larger Text**
+- no Android, o valor reflete a preferência do usuário definida em **Settings > Display > Font size**
+- no iOS, o valor reflete a preferência do usuário definida em **Settings > Display & Brightness > Text Size**, o valor também pode ser atualizado em **Settings > Accessibility > Display & Text Size > Larger Text**
 
-If a font scale is not set, this returns the device pixel ratio.
+Se uma escala de fonte não estiver definida, isso retorna a proporção de pixels do dispositivo.
 
 ---
 
@@ -158,9 +159,9 @@ If a font scale is not set, this returns the device pixel ratio.
 static getPixelSizeForLayoutSize(layoutSize: number): number;
 ```
 
-Converts a layout size (dp) to pixel size (px).
+Converte um tamanho de layout (dp) para tamanho de pixel (px).
 
-Guaranteed to return an integer number.
+Garantido para retornar um número inteiro.
 
 ---
 
@@ -170,4 +171,4 @@ Guaranteed to return an integer number.
 static roundToNearestPixel(layoutSize: number): number;
 ```
 
-Rounds a layout size (dp) to the nearest layout size that corresponds to an integer number of pixels. For example, on a device with a PixelRatio of 3, `PixelRatio.roundToNearestPixel(8.4) = 8.33`, which corresponds to exactly (8.33 \* 3) = 25 pixels.
+Arredonda um tamanho de layout (dp) para o tamanho de layout mais próximo que corresponde a um número inteiro de pixels. Por exemplo, em um dispositivo com um PixelRatio de 3, `PixelRatio.roundToNearestPixel(8.4) = 8.33`, que corresponde a exatamente (8.33 \* 3) = 25 pixels.

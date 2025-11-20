@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 id: platformcolor
 title: PlatformColor
 ---
@@ -9,41 +10,41 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 PlatformColor(color1, [color2, ...colorN]);
 ```
 
-You can use the `PlatformColor` function to access native colors on the target platform by supplying the native color’s corresponding string value. You pass a string to the `PlatformColor` function and, provided it exists on that platform, it will return the corresponding native color, which you can apply in any part of your application.
+Você pode usar a função `PlatformColor` para acessar cores nativas na plataforma de destino fornecendo o valor de string correspondente da cor nativa. Você passa uma string para a função `PlatformColor` e, desde que ela exista naquela plataforma, ela retornará a cor nativa correspondente, que você pode aplicar em qualquer parte da sua aplicação.
 
-If you pass more than one string value to the `PlatformColor` function, it will treat the first value as the default and the rest as fallback.
+Se você passar mais de um valor de string para a função `PlatformColor`, ela tratará o primeiro valor como padrão e o restante como fallback.
 
 ```js
 PlatformColor('bogusName', 'linkColor');
 ```
 
-Since native colors can be sensitive to themes and/or high contrast, this platform specific logic also translates inside your components.
+Como as cores nativas podem ser sensíveis a temas e/ou alto contraste, essa lógica específica da plataforma também se traduz dentro dos seus componentes.
 
-### Supported colors
+### Cores suportadas
 
-For a full list of the types of system colors supported, see:
+Para uma lista completa dos tipos de cores de sistema suportadas, consulte:
 
 - Android:
-  - [R.attr](https://developer.android.com/reference/android/R.attr) - `?attr` prefix
-  - [R.color](https://developer.android.com/reference/android/R.color) - `@android:color` prefix
-- iOS (Objective-C and Swift notations):
+  - [R.attr](https://developer.android.com/reference/android/R.attr) - prefixo `?attr`
+  - [R.color](https://developer.android.com/reference/android/R.color) - prefixo `@android:color`
+- iOS (notações Objective-C e Swift):
   - [UIColor Standard Colors](https://developer.apple.com/documentation/uikit/uicolor/standard_colors)
   - [UIColor UI Element Colors](https://developer.apple.com/documentation/uikit/uicolor/ui_element_colors)
 
-#### Developer notes
+#### Notas para desenvolvedores
 
 <Tabs groupId="guide" queryString defaultValue="web" values={constants.getDevNotesTabs(["web"])}>
 
 <TabItem value="web">
 
 :::info
-If you’re familiar with design systems, another way of thinking about this is that `PlatformColor` lets you tap into the local design system's color tokens so your app can blend right in!
+Se você está familiarizado com design systems, outra forma de pensar sobre isso é que o `PlatformColor` permite que você acesse os tokens de cor do design system local para que seu app possa se integrar perfeitamente!
 :::
 
 </TabItem>
 </Tabs>
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=PlatformColor%20Example&supportedPlatforms=android,ios
 import React from 'react';
@@ -84,8 +85,8 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-The string value provided to the `PlatformColor` function must match the string as it exists on the native platform where the app is running. In order to avoid runtime errors, the function should be wrapped in a platform check, either through a `Platform.OS === 'platform'` or a `Platform.select()`, as shown on the example above.
+O valor de string fornecido para a função `PlatformColor` deve corresponder à string como ela existe na plataforma nativa onde o app está sendo executado. Para evitar erros em tempo de execução, a função deve ser envolvida em uma verificação de plataforma, seja através de um `Platform.OS === 'platform'` ou um `Platform.select()`, como mostrado no exemplo acima.
 
 :::note
-You can find a complete example that demonstrates proper, intended use of `PlatformColor` in [PlatformColorExample.js](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/PlatformColor/PlatformColorExample.js).
+Você pode encontrar um exemplo completo que demonstra o uso adequado e intencional do `PlatformColor` em [PlatformColorExample.js](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/PlatformColor/PlatformColorExample.js).
 :::

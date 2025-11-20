@@ -1,5 +1,6 @@
 ---
-title: 'A Monthly Release Cadence: Releasing December and January RC'
+ia-translated: true
+title: 'Uma Cadência de Lançamento Mensal: Liberando RC de Dezembro e Janeiro'
 author: Eric Vicenti
 authorTitle: Engineer at Facebook
 authorURL: 'https://twitter.com/EricVicenti'
@@ -8,29 +9,29 @@ authorTwitter: EricVicenti
 tags: [announcement]
 ---
 
-Shortly after React Native was introduced, we started releasing every two weeks to help the community adopt new features, while keeping versions stable for production use. At Facebook we had to stabilize the codebase every two weeks for the release of our production iOS apps, so we decided to release the open source versions at the same pace. Now, many of the Facebook apps ship once per week, especially on Android. Because we ship from master weekly, we need to keep it quite stable. So the bi-weekly release cadence doesn't even benefit internal contributors anymore.
+Logo após o React Native ser introduzido, começamos a lançar versões a cada duas semanas para ajudar a comunidade a adotar novos recursos, mantendo as versões estáveis para uso em produção. No Facebook tínhamos que estabilizar a base de código a cada duas semanas para o lançamento de nossos aplicativos iOS em produção, então decidimos lançar as versões open source no mesmo ritmo. Agora, muitos dos aplicativos do Facebook são lançados uma vez por semana, especialmente no Android. Como lançamos a partir da master semanalmente, precisamos mantê-la bastante estável. Então a cadência de lançamento quinzenal não beneficia mais nem mesmo os contribuidores internos.
 
-We frequently hear feedback from the community that the release rate is hard to keep up with. Tools like [Expo](https://expo.io/) had to skip every other release in order to manage the rapid change in version. So it seems clear that the bi-weekly releases did not serve the community well.
+Frequentemente ouvimos feedback da comunidade de que a taxa de lançamento é difícil de acompanhar. Ferramentas como [Expo](https://expo.io/) tiveram que pular todos os outros lançamentos para gerenciar a mudança rápida de versão. Então parece claro que os lançamentos quinzenais não serviam bem a comunidade.
 
-### Now releasing monthly
+### Agora lançando mensalmente
 
-We're happy to announce the new monthly release cadence, and the December 2016 release, `v0.40`, which has been stabilizing for all last month and is ready to adopt. (Just make sure to [update headers in your native modules on iOS](https://github.com/facebook/react-native/releases/tag/v0.40.0)).
+Estamos felizes em anunciar a nova cadência de lançamento mensal, e o lançamento de Dezembro de 2016, `v0.40`, que está sendo estabilizado durante todo o mês passado e está pronto para adoção. (Apenas certifique-se de [atualizar os headers em seus módulos nativos no iOS](https://github.com/facebook/react-native/releases/tag/v0.40.0)).
 
-Although it may vary a few days to avoid weekends or handle unforeseen issues, you can now expect a given release to be available on the first day of the month, and released on the last.
+Embora possa variar alguns dias para evitar fins de semana ou lidar com problemas imprevistos, agora você pode esperar que uma determinada versão esteja disponível no primeiro dia do mês e seja lançada no último.
 
-### Use the current month for the best support
+### Use o mês atual para o melhor suporte
 
-The January release candidate is ready to try, and you can [see what's new here](https://github.com/facebook/react-native/releases/tag/v0.41.0-rc.0).
+O release candidate de Janeiro está pronto para testar, e você pode [ver as novidades aqui](https://github.com/facebook/react-native/releases/tag/v0.41.0-rc.0).
 
-To see what changes are coming and provide better feedback to React Native contributors, always use the current month's release candidate when possible. By the time each version is released at the end of the month, the changes it contains will have been shipped in production Facebook apps for over two weeks.
+Para ver quais mudanças estão chegando e fornecer melhor feedback aos contribuidores do React Native, sempre use o release candidate do mês atual quando possível. Até o momento em que cada versão for lançada no final do mês, as mudanças que ela contém terão sido enviadas em aplicativos Facebook de produção por mais de duas semanas.
 
-You can easily upgrade your app with the new [react-native-git-upgrade](/blog/2016/12/05/easier-upgrades) command:
+Você pode facilmente atualizar seu aplicativo com o novo comando [react-native-git-upgrade](/blog/2016/12/05/easier-upgrades):
 
 ```
 npm install -g react-native-git-upgrade
 react-native-git-upgrade 0.41.0-rc.0
 ```
 
-We hope this simpler approach will make it easier for the community to keep track of changes in React Native, and to adopt new versions as quickly as possible!
+Esperamos que esta abordagem mais simples facilite para a comunidade acompanhar as mudanças no React Native e adotar novas versões o mais rápido possível!
 
-(Thanks go to [Martin Konicek](https://github.com/mkonicek) for coming up with this plan and [Mike Grabowski](https://github.com/grabbou) for making it happen)
+(Agradecimentos vão para [Martin Konicek](https://github.com/mkonicek) por elaborar este plano e [Mike Grabowski](https://github.com/grabbou) por fazê-lo acontecer)

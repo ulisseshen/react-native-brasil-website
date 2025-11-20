@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: pressevent
-title: PressEvent Object Type
+title: Tipo de Objeto PressEvent
 ---
 
-`PressEvent` object is returned in the callback as a result of user press interaction, for example `onPress` in [Button](button) component.
+O objeto `PressEvent` é retornado no callback como resultado da interação de pressionamento do usuário, por exemplo `onPress` no componente [Button](button).
 
-## Example
+## Exemplo
 
 ```js
 {
@@ -21,11 +22,11 @@ title: PressEvent Object Type
 }
 ```
 
-## Keys and values
+## Chaves e valores
 
 ### `changedTouches`
 
-Array of all PressEvents that have changed since the last event.
+Array de todos os PressEvents que mudaram desde o último evento.
 
 | Type                 | Optional |
 | -------------------- | -------- |
@@ -33,7 +34,7 @@ Array of all PressEvents that have changed since the last event.
 
 ### `force` <div className="label ios">iOS</div>
 
-Amount of force used during the 3D Touch press. Returns the float value in range from `0.0` to `1.0`.
+Quantidade de força usada durante o pressionamento 3D Touch. Retorna o valor float no intervalo de `0.0` a `1.0`.
 
 | Type   | Optional |
 | ------ | -------- |
@@ -41,7 +42,7 @@ Amount of force used during the 3D Touch press. Returns the float value in range
 
 ### `identifier`
 
-Unique numeric identifier assigned to the event.
+Identificador numérico único atribuído ao evento.
 
 | Type   | Optional |
 | ------ | -------- |
@@ -49,7 +50,7 @@ Unique numeric identifier assigned to the event.
 
 ### `locationX`
 
-Touch origin X coordinate inside touchable area (relative to the element).
+Coordenada X de origem do toque dentro da área tocável (relativa ao elemento).
 
 | Type   | Optional |
 | ------ | -------- |
@@ -57,7 +58,7 @@ Touch origin X coordinate inside touchable area (relative to the element).
 
 ### `locationY`
 
-Touch origin Y coordinate inside touchable area (relative to the element).
+Coordenada Y de origem do toque dentro da área tocável (relativa ao elemento).
 
 | Type   | Optional |
 | ------ | -------- |
@@ -65,7 +66,7 @@ Touch origin Y coordinate inside touchable area (relative to the element).
 
 ### `pageX`
 
-Touch origin X coordinate on the screen (relative to the root view).
+Coordenada X de origem do toque na tela (relativa à view raiz).
 
 | Type   | Optional |
 | ------ | -------- |
@@ -73,7 +74,7 @@ Touch origin X coordinate on the screen (relative to the root view).
 
 ### `pageY`
 
-Touch origin Y coordinate on the screen (relative to the root view).
+Coordenada Y de origem do toque na tela (relativa à view raiz).
 
 | Type   | Optional |
 | ------ | -------- |
@@ -81,7 +82,7 @@ Touch origin Y coordinate on the screen (relative to the root view).
 
 ### `target`
 
-The node id of the element receiving the PressEvent.
+O id do nó do elemento que recebe o PressEvent.
 
 | Type                        | Optional |
 | --------------------------- | -------- |
@@ -89,7 +90,7 @@ The node id of the element receiving the PressEvent.
 
 ### `timestamp`
 
-Timestamp value when a PressEvent occurred. Value is represented in milliseconds.
+Valor do timestamp quando um PressEvent ocorreu. O valor é representado em milissegundos.
 
 | Type   | Optional |
 | ------ | -------- |
@@ -97,13 +98,13 @@ Timestamp value when a PressEvent occurred. Value is represented in milliseconds
 
 ### `touches`
 
-Array of all current PressEvents on the screen.
+Array de todos os PressEvents atuais na tela.
 
 | Type                 | Optional |
 | -------------------- | -------- |
 | array of PressEvents | No       |
 
-## Used by
+## Usado por
 
 - [`Button`](button)
 - [`PanResponder`](panresponder)

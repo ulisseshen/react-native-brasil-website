@@ -1,81 +1,82 @@
 ---
-title: Hermes as the Default
+ia-translated: true
+title: Hermes como Padrão
 authors: [micleo]
 tags: [announcement, release]
 ---
 
-# Hermes As the Default Blogpost
+# Hermes como Padrão
 
-Last October, we [announced](/blog/2021/10/26/toward-hermes-being-the-default) that we had started work towards **making** **Hermes the default engine for all React Native apps**.
+Em outubro passado, [anunciamos](/blog/2021/10/26/toward-hermes-being-the-default) que havíamos começado o trabalho para **tornar** **o Hermes o engine padrão para todos os aplicativos React Native**.
 
-Hermes has provided a lot of value to React Native inside of Meta, and we believe the open-source community will benefit as well. Hermes is designed for resource constrained devices and optimizes for start up, app size, and memory consumption. One key difference between Hermes and other JS engines is its ability to compile JavaScript source code to bytecode ahead of time. This precompiled bytecode is bundled inside the binary, and saves the interpreter from having to perform this expensive step during app startup.
+O Hermes forneceu muito valor ao React Native dentro da Meta, e acreditamos que a comunidade open-source também se beneficiará. O Hermes é projetado para dispositivos com recursos limitados e otimiza para inicialização, tamanho do aplicativo e consumo de memória. Uma diferença chave entre o Hermes e outros engines JS é sua capacidade de compilar código-fonte JavaScript para bytecode antes do tempo. Este bytecode pré-compilado é empacotado dentro do binário e evita que o interpretador tenha que realizar esta etapa cara durante a inicialização do aplicativo.
 
-Since the announcement, a lot of work has gone into making Hermes better, and today, we are excited to share that **React Native 0.70 will ship with Hermes as the default engine.** This means that all new projects starting on v0.70 will have Hermes enabled by default. With the rollout coming up in July, we want to work closely with the community and make sure the transition is smooth and brings value to all users. This blogpost will go over what you can expect from the change, performance benchmarks, new features, and more. Note that you don’t need to wait for React Native 0.70 to start using Hermes - you can **follow [these instructions](/docs/hermes#enabling-hermes) to enable Hermes on your existing React Native app**.
+Desde o anúncio, muito trabalho foi feito para tornar o Hermes melhor, e hoje, estamos empolgados em compartilhar que **React Native 0.70 será lançado com Hermes como engine padrão.** Isso significa que todos os novos projetos iniciando na v0.70 terão o Hermes habilitado por padrão. Com o rollout chegando em julho, queremos trabalhar em estreita colaboração com a comunidade e garantir que a transição seja suave e traga valor a todos os usuários. Este post do blog passará pelo que você pode esperar da mudança, benchmarks de performance, novos recursos e muito mais. Observe que você não precisa esperar pelo React Native 0.70 para começar a usar o Hermes - você pode **seguir [estas instruções](/docs/hermes#enabling-hermes) para habilitar o Hermes em seu aplicativo React Native existente**.
 
-Note that while Hermes will be enabled by default in new React Native projects, support for other engines will continue.
+Observe que, embora o Hermes seja habilitado por padrão em novos projetos React Native, o suporte para outros engines continuará.
 
 <!--truncate-->
 
 ## Benchmarking
 
-We measured three different metrics important to app developers: TTI, binary size, and memory consumption. We used the React Native app [Mattermost](https://github.com/mattermost/mattermost-mobile) for testing. We ran these experiments for both Android and iOS on high end hardware from 2020.
+Medimos três métricas diferentes importantes para desenvolvedores de aplicativos: TTI, tamanho do binário e consumo de memória. Usamos o aplicativo React Native [Mattermost](https://github.com/mattermost/mattermost-mobile) para testes. Executamos esses experimentos tanto para Android quanto para iOS em hardware de ponta de 2020.
 
-- TTI, or time to interactive, is the duration of time from the app being launched to the user being able to interact with it. For this benchmark, we define it as the time from pressing the app icon to the first screen being rendered. We also show screen recordings of starting up Mattermost.
-- The binary size was measured as APK size on android and IPA size on iOS.
-- The memory consumption data was collected by using the Mattermost app over the span of a couple minutes. The same actions were performed in the app on both engines.
+- TTI, ou time to interactive, é a duração do tempo desde que o aplicativo é iniciado até que o usuário possa interagir com ele. Para este benchmark, definimos como o tempo desde pressionar o ícone do aplicativo até a primeira tela ser renderizada. Também mostramos gravações de tela da inicialização do Mattermost.
+- O tamanho do binário foi medido como tamanho do APK no Android e tamanho do IPA no iOS.
+- Os dados de consumo de memória foram coletados usando o aplicativo Mattermost ao longo de alguns minutos. As mesmas ações foram realizadas no aplicativo em ambos os engines.
 
-## Android Benchmarking Data
+## Dados de Benchmarking do Android
 
-All the android tests were performed on a Samsung Galaxy S20.
+Todos os testes do Android foram realizados em um Samsung Galaxy S20.
 
 <figure>
   <img src="/blog/assets/hermes-default-android-data.png" alt="Android Benchmarking Data" />
 </figure>
 
-### TTI Video
+### Vídeo TTI
 
 <figure>
   <img src="/blog/assets/hermes-default-android-video.gif" alt="Android TTI Video" />
 </figure>
 
-## iOS Benchmarking Data
+## Dados de Benchmarking do iOS
 
-All the iOS tests were performed on an iPhone 12 Pro.
+Todos os testes do iOS foram realizados em um iPhone 12 Pro.
 
 <figure>
   <img src="/blog/assets/hermes-default-ios-data.png" alt="iOS Benchmarking Data" />
 </figure>
 
-### TTI Video
+### Vídeo TTI
 
 <figure>
   <img src="/blog/assets/hermes-default-ios-video.gif" alt="iOS TTI Video" />
 </figure>
 
-### Slowed Down TTI Video, to better show the difference in startup time.
+### Vídeo TTI em Câmera Lenta, para mostrar melhor a diferença no tempo de inicialização.
 
 <figure>
   <img src="/blog/assets/hermes-default-ios-slow-video.gif" alt="iOS Slowed Down TTI Video" />
 </figure>
 
-## React Native/Hermes Integration
+## Integração React Native/Hermes
 
-We addressed a long-standing problem that has caused compatibility issues and is a recurrent problem when releasing new React Native versions: React Native depended on Hermes via prebuilt binaries distributed through CocoaPods and npm, which makes it possible to have API or [ABI incompatibilities](https://github.com/react-native-community/discussions-and-proposals/issues/257). To solve this problem, starting on React Native 0.69, Hermes is built alongside every version of React Native. This ensures full compatibility with each version React Native. This also creates a much tighter integration. It unlocks a more rapid iteration time to develop features or deploy bug fixes, and will give us greater confidence in making sure big changes to Hermes are done correctly. There is more in-depth information on the new integration change [here](https://github.com/facebook/react-native-website/pull/3159/files).
+Abordamos um problema de longa data que tem causado problemas de compatibilidade e é um problema recorrente ao lançar novas versões do React Native: React Native dependia do Hermes através de binários pré-compilados distribuídos via CocoaPods e npm, o que torna possível ter incompatibilidades de API ou [ABI](https://github.com/react-native-community/discussions-and-proposals/issues/257). Para resolver este problema, a partir do React Native 0.69, o Hermes é compilado junto com cada versão do React Native. Isso garante compatibilidade total com cada versão do React Native. Isso também cria uma integração muito mais estreita. Desbloqueia um tempo de iteração mais rápido para desenvolver recursos ou implantar correções de bugs, e nos dará maior confiança para garantir que grandes mudanças no Hermes sejam feitas corretamente. Há informações mais detalhadas sobre a nova mudança de integração [aqui](https://github.com/facebook/react-native-website/pull/3159/files).
 
 ## iOS Intl
 
-We finished the iOS counterpart implementation for [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl), the ECMAScript Internationalization API that provides a broad range of language sensitive functionality. This was a long-standing [gap](https://github.com/facebook/hermes/issues/23) that prevented some developers from using Hermes. The Android implementation, done in partnership with Microsoft, was shipped in React Native 0.65. With React Native 0.70, developers will have native support on both platforms.
+Finalizamos a implementação da contraparte iOS para [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl), a API de Internacionalização ECMAScript que fornece uma ampla gama de funcionalidades sensíveis ao idioma. Esta era uma [lacuna](https://github.com/facebook/hermes/issues/23) de longa data que impedia alguns desenvolvedores de usar o Hermes. A implementação do Android, feita em parceria com a Microsoft, foi lançada no React Native 0.65. Com o React Native 0.70, os desenvolvedores terão suporte nativo em ambas as plataformas.
 
-Typical implementations for `Intl` require importing large lookup tables or data like [Unicode CLDR](https://cldr.unicode.org/index). However, that can come with an expensive size increase of up to 6MB, so in order to avoid bloating the binary size of Hermes, we implemented `Intl` by calling into APIs exposed by iOS itself. This means we can take advantage of all the locale and internationalization data that comes with iOS already.
+Implementações típicas para `Intl` requerem a importação de grandes tabelas de consulta ou dados como [Unicode CLDR](https://cldr.unicode.org/index). No entanto, isso pode vir com um aumento de tamanho caro de até 6MB, então para evitar inflar o tamanho do binário do Hermes, implementamos `Intl` chamando APIs expostas pelo próprio iOS. Isso significa que podemos aproveitar todos os dados de localização e internacionalização que já vêm com o iOS.
 
-## Ongoing Work
+## Trabalho em Andamento
 
-As we continue evolving Hermes, we want to give the community a sense of our immediate priorities: improving developer experience and ensuring nobody avoids using Hermes due to lack of JavaScript language features. More specifically, we're:
+À medida que continuamos evoluindo o Hermes, queremos dar à comunidade uma noção de nossas prioridades imediatas: melhorar a experiência do desenvolvedor e garantir que ninguém evite usar o Hermes devido à falta de recursos da linguagem JavaScript. Mais especificamente, estamos:
 
-- Enabling developers to run the sampling profiler directly from the Chrome devtools UI.
-- Adding support for [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), a long-standing request from the community that may block some developers from using Hermes as it can’t be polyfilled.
-- Adding support for [`WeakRef`](https://github.com/facebook/hermes/issues/658), which will expose new memory management controls to developers.
+- Permitindo que desenvolvedores executem o profiler de amostragem diretamente da UI do Chrome devtools.
+- Adicionando suporte para [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), uma solicitação de longa data da comunidade que pode bloquear alguns desenvolvedores de usar o Hermes, pois não pode ser polyfilled.
+- Adicionando suporte para [`WeakRef`](https://github.com/facebook/hermes/issues/658), que exporá novos controles de gerenciamento de memória aos desenvolvedores.
 
-## Wrap Up
+## Conclusão
 
-Hermes becoming the default marks the beginning of a long-term journey. We are working on new features that will enable the community to write efficient apps for many years to come. We also encourage the community to reach out on our [GitHub Repo](https://github.com/facebook/react-native) to post any bugs, questions, feedback or ideas! We have created a `hermes` label that can be used for any Hermes-specific posts.
+O Hermes se tornar o padrão marca o início de uma jornada de longo prazo. Estamos trabalhando em novos recursos que permitirão à comunidade escrever aplicativos eficientes por muitos anos. Também encorajamos a comunidade a entrar em contato em nosso [GitHub Repo](https://github.com/facebook/react-native) para postar quaisquer bugs, perguntas, feedback ou ideias! Criamos uma label `hermes` que pode ser usada para quaisquer posts específicos do Hermes.

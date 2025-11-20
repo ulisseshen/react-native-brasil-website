@@ -1,6 +1,7 @@
 ---
+ia-translated: true
 id: set-up-your-environment
-title: Set Up Your Environment
+title: Configure Seu Ambiente
 hide_table_of_contents: true
 ---
 
@@ -13,27 +14,27 @@ import GuideMacOSAndroid from './\_getting-started-macos-android.md';
 import GuideWindowsAndroid from './\_getting-started-windows-android.md';
 import GuideMacOSIOS from './\_getting-started-macos-ios.md';
 
-In this guide, you'll learn how to set up your environment, so that you can run your project with Android Studio and Xcode. This will allow you to develop with Android emulators and iOS simulators, build your app locally, and more.
+Neste guia, você aprenderá como configurar seu ambiente, para que possa executar seu projeto com Android Studio e Xcode. Isso permitirá que você desenvolva com emuladores Android e simuladores iOS, compile seu aplicativo localmente e muito mais.
 
 :::info
-This guide requires Android Studio or Xcode. If you already have one of these programs installed, you should be able to get up and running within a few minutes. If they are not installed, you should expect to spend about an hour installing and configuring them.
+Este guia requer Android Studio ou Xcode. Se você já tiver um desses programas instalados, deverá conseguir começar a trabalhar em poucos minutos. Se eles não estiverem instalados, você deve esperar gastar cerca de uma hora instalando e configurando-os.
 
 <details>
-<summary>Is setting up my environment required?</summary>
+<summary>É necessário configurar meu ambiente?</summary>
 
-Setting up your environment is not required if you're using a [Framework](/architecture/glossary#react-native-framework). With a React Native Framework, you don't need to set up Android Studio or Xcode as it will take care of building the native app for you
+Configurar seu ambiente não é necessário se você estiver usando um [Framework](/architecture/glossary#react-native-framework). Com um React Native Framework, você não precisa configurar Android Studio ou Xcode, pois ele cuidará da compilação do aplicativo nativo para você.
 
-If you have constraints that prevent you from using a Framework, or you'd like to write your own Framework, then setting up your local environment is a requirement. After your environment is set up, learn how to [get started without a framework](getting-started-without-a-framework).
+Se você tiver restrições que o impedem de usar um Framework, ou se quiser escrever seu próprio Framework, então configurar seu ambiente local é um requisito. Depois que seu ambiente estiver configurado, aprenda como [começar sem um framework](getting-started-without-a-framework).
 
 </details>
 :::
 
-#### Development OS
+#### Sistema Operacional de Desenvolvimento
 
 <Tabs groupId="os" queryString defaultValue={constants.defaultOs} values={constants.oses} className="pill-tabs">
 <TabItem value="macos">
 
-#### Target OS
+#### Sistema Operacional Alvo
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
 <TabItem value="android">
@@ -55,7 +56,7 @@ If you have constraints that prevent you from using a Framework, or you'd like t
 </TabItem>
 <TabItem value="windows">
 
-#### Target OS
+#### Sistema Operacional Alvo
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
 <TabItem value="android">
@@ -69,10 +70,10 @@ If you have constraints that prevent you from using a Framework, or you'd like t
 
 [//]: # 'Windows, iOS'
 
-## Unsupported
+## Não Suportado
 
 :::info
-A Mac is required to build projects with native code for iOS. You can use [Expo Go](https://expo.dev/go) from [Expo](environment-setup#start-a-new-react-native-project-with-expo) to develop your app on your iOS device.
+Um Mac é necessário para compilar projetos com código nativo para iOS. Você pode usar o [Expo Go](https://expo.dev/go) do [Expo](environment-setup#start-a-new-react-native-project-with-expo) para desenvolver seu aplicativo em seu dispositivo iOS.
 :::
 
 </TabItem>
@@ -81,7 +82,7 @@ A Mac is required to build projects with native code for iOS. You can use [Expo 
 </TabItem>
 <TabItem value="linux">
 
-#### Target OS
+#### Sistema Operacional Alvo
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
 <TabItem value="android">
@@ -95,10 +96,10 @@ A Mac is required to build projects with native code for iOS. You can use [Expo 
 
 [//]: # 'Linux, iOS'
 
-## Unsupported
+## Não Suportado
 
 :::info
-A Mac is required to build projects with native code for iOS. You can use [Expo Go](https://expo.dev/go) from [Expo](environment-setup#start-a-new-react-native-project-with-expo) to develop your app on your iOS device.
+Um Mac é necessário para compilar projetos com código nativo para iOS. Você pode usar o [Expo Go](https://expo.dev/go) do [Expo](environment-setup#start-a-new-react-native-project-with-expo) para desenvolver seu aplicativo em seu dispositivo iOS.
 :::
 
 </TabItem>

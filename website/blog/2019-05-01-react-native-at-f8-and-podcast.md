@@ -1,12 +1,13 @@
 ---
-title: React Native at F8 and Open Source Podcast
+ia-translated: true
+title: React Native na F8 e Podcast Open Source
 authors: [cpojer]
 tags: [announcement]
 ---
 
-This week, [Eli White](https://twitter.com/Eli_White) gave a talk at [F8 2019](https://developers.facebook.com/videos/2019/mobile-innovation-with-react-native-componentkit-and-litho/) about React Native in Facebook's Android and iOS applications. We are excited to share what we've been up to for the past two years and what we're doing next.
+Esta semana, [Eli White](https://twitter.com/Eli_White) fez uma palestra na [F8 2019](https://developers.facebook.com/videos/2019/mobile-innovation-with-react-native-componentkit-and-litho/) sobre React Native nas aplicações Android e iOS do Facebook. Estamos animados para compartilhar no que estivemos trabalhando nos últimos dois anos e o que estamos fazendo a seguir.
 
-Check out the video on [Facebook's developer website](https://developers.facebook.com/videos/2019/mobile-innovation-with-react-native-componentkit-and-litho/):
+Confira o vídeo no [site de desenvolvedores do Facebook](https://developers.facebook.com/videos/2019/mobile-innovation-with-react-native-componentkit-and-litho/):
 
 <a href="https://developers.facebook.com/videos/2019/mobile-innovation-with-react-native-componentkit-and-litho/">
   <img
@@ -15,23 +16,23 @@ Check out the video on [Facebook's developer website](https://developers.faceboo
   />
 </a>
 
-#### Highlights from the talk:
+#### Destaques da palestra:
 
-- We spent 2017 and 2018 focused on React Native's largest product, Facebook's Marketplace. We collaborated with the Marketplace team to improve quality and add delight to the product. At this point, Marketplace is one of the highest quality products in the Facebook app both on Android and iOS.
-- Marketplace's performance was a big challenge as well, especially on mid-end Android devices. We cut startup time by more than 50% over the last year with more improvements on the way! The biggest improvements are being built into React Native and will be coming to the community later this year.
-- We have the confidence that we can build the high quality and performant apps that Facebook needs with React Native. This confidence has let us invest in bigger bets, like [rethinking the core of React Native](https://www.youtube.com/watch?v=UcqRXTriUVI&app=desktop).
-- Microsoft supports and uses React Native for Windows, enabling people to use their expertise and codebase to render to Microsofts's Universal Windows Platform. Check out Microsoft Build next week to [hear them talk about that more](https://mybuild.techcommunity.microsoft.com/sessions/77321).
+- Passamos 2017 e 2018 focados no maior produto do React Native, o Marketplace do Facebook. Colaboramos com o time do Marketplace para melhorar a qualidade e adicionar recursos ao produto. Neste momento, o Marketplace é um dos produtos de mais alta qualidade no aplicativo do Facebook, tanto no Android quanto no iOS.
+- A performance do Marketplace foi um grande desafio também, especialmente em dispositivos Android intermediários. Reduzimos o tempo de inicialização em mais de 50% no último ano, com mais melhorias a caminho! As maiores melhorias estão sendo incorporadas ao React Native e chegarão à comunidade ainda este ano.
+- Temos a confiança de que podemos construir aplicativos de alta qualidade e performance que o Facebook precisa com React Native. Essa confiança nos permitiu investir em apostas maiores, como [repensar o núcleo do React Native](https://www.youtube.com/watch?v=UcqRXTriUVI&app=desktop).
+- A Microsoft apoia e usa React Native para Windows, permitindo que as pessoas usem sua expertise e base de código para renderizar na Universal Windows Platform da Microsoft. Confira o Microsoft Build na próxima semana para [ouvi-los falar mais sobre isso](https://mybuild.techcommunity.microsoft.com/sessions/77321).
 
-### React Radio Podcast about Open Source
+### Podcast React Radio sobre Open Source
 
-Eli's talk concludes by talking about our recent open source work. We gave [an update on our progress in March](/blog/2019/03/01/react-native-open-source-update) and recently [Nader Dabit](https://twitter.com/dabit3) and [Gant Laborde](https://twitter.com/GantLaborde) invited Christoph for a chat on their podcast, [React Native Radio](https://devchat.tv/react-native-radio/react-native-open-source-the-react-native-community-feat-christoph-nakazawa/), to chat about React Native in open source.
+A palestra do Eli conclui falando sobre nosso recente trabalho open source. Demos [uma atualização sobre nosso progresso em março](/blog/2019/03/01/react-native-open-source-update) e recentemente [Nader Dabit](https://twitter.com/dabit3) e [Gant Laborde](https://twitter.com/GantLaborde) convidaram Christoph para uma conversa em seu podcast, [React Native Radio](https://devchat.tv/react-native-radio/react-native-open-source-the-react-native-community-feat-christoph-nakazawa/), para conversar sobre React Native em open source.
 
-#### Highlights from the podcast:
+#### Destaques do podcast:
 
-- We talked about how the React Native team at Facebook thinks about open source and how we are building a sustainable community that scales for a project of React Native's [size](https://octoverse.github.com/projects#repositories).
-- We are on track to remove multiple modules as part of the [Lean Core](https://github.com/facebook/react-native/issues/23313) effort. Many modules like WebView and the React Native CLI have received more than 100 Pull Requests since they were extracted.
-- Next, we'll be focusing on overhauling the React Native website and documentation. Stay tuned!
+- Conversamos sobre como o time do React Native no Facebook pensa sobre open source e como estamos construindo uma comunidade sustentável que escala para um projeto do [tamanho](https://octoverse.github.com/projects#repositories) do React Native.
+- Estamos no caminho certo para remover múltiplos módulos como parte do esforço [Lean Core](https://github.com/facebook/react-native/issues/23313). Muitos módulos como WebView e o React Native CLI receberam mais de 100 Pull Requests desde que foram extraídos.
+- Em seguida, vamos focar em reformular o site e a documentação do React Native. Fique atento!
 
-You'll find the episode in your favorite podcasting app soon or you can listen to the recording right here:
+Você encontrará o episódio em seu aplicativo de podcast favorito em breve ou pode ouvir a gravação aqui mesmo:
 
 <audio controls style={{display: 'block', margin: '0 auto'}} src="https://media.devchat.tv/reactnativeradio/React_Native_Radio_Episode_121.mp3"> {' '} Audio is unsupported in this browser.{' '} </audio>

@@ -1,4 +1,5 @@
 ---
+ia-translated: true
 title: React Native Core Contributor Summit 2022
 authors: [thymikee, cortinico]
 tags: [announcement]
@@ -7,11 +8,11 @@ date: 2022-11-22
 
 # React Native Core Contributor Summit 2022
 
-After years of pandemic and online-only events, we really felt it was time to bring the Core Contributors of React Native together!
+Após anos de pandemia e eventos apenas online, sentimos que era hora de reunir os Core Contributors do React Native!
 
-That’s why at the beginning of September, we gathered some of the active core contributors of React Native, library maintainers, and the Meta’s React Native and Metro teams to the **Core Contributor Summit 2022**. [Callstack](https://www.callstack.com/) hosted the Summit in their HQ in Wrocław, Poland, as a part of the [React Native EU](https://www.react-native.eu/) conference happening at the same time.
+É por isso que no início de setembro, reunimos alguns dos colaboradores principais ativos do React Native, mantenedores de bibliotecas e as equipes React Native e Metro da Meta para o **Core Contributor Summit 2022**. A [Callstack](https://www.callstack.com/) hospedou o Summit em sua sede em Wrocław, Polônia, como parte da conferência [React Native EU](https://www.react-native.eu/) acontecendo ao mesmo tempo.
 
-Together with the React Native core team, we devised a series of **workshops** in which the attendees could participate. The topics were:
+Junto com a equipe principal do React Native, elaboramos uma série de **workshops** nos quais os participantes puderam participar. Os tópicos foram:
 
 - ​​React Native Codegen & TypeScript Support
 - ​​React Native New Architecture Library Migration
@@ -19,107 +20,107 @@ Together with the React Native core team, we devised a series of **workshops** i
 - Metro Web and Ecosystem Alignment
 - Metro Simplified Release Workflow
 
-We were impressed by the amount of knowledge-sharing and collaboration over those two days. In this blog post, we’d like to give you a sneak peek of the results of this gathering.
+Ficamos impressionados com a quantidade de compartilhamento de conhecimento e colaboração ao longo desses dois dias. Neste post do blog, gostaríamos de dar a vocês uma prévia dos resultados desta reunião.
 
 <!--truncate-->
 
 ### React Native Codegen & TypeScript Support
 
-[React Native’s Codegen](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/codegen.md) is a fundamental part of the New Architecture of React Native. Supporting and improving it is among our top priorities for the future of React Native. For instance, earlier this year, we added support for generic code starting from TypeScript specs rather than Flow.
+O [React Native's Codegen](https://github.com/reactwg/react-native-new-architecture/blob/main/docs/codegen.md) é uma parte fundamental da New Architecture do React Native. Apoiá-lo e melhorá-lo está entre nossas principais prioridades para o futuro do React Native. Por exemplo, no início deste ano, adicionamos suporte para código genérico a partir de specs TypeScript em vez de Flow.
 
-In this session, we took the opportunity to onboard new contributors to Codegen, by explaining its core concept and describing how it works. We then focused on two major areas:
+Nesta sessão, aproveitamos a oportunidade para integrar novos colaboradores ao Codegen, explicando seu conceito central e descrevendo como funciona. Em seguida, focamos em duas áreas principais:
 
-#### 1. Supporting **new types** that are currently unsupported by Codegen. One of the highly requested ones was the [string union types in TypeScript](https://github.com/Titozzz/react-native/tree/codegen-string-union).
+#### 1. Suporte a **novos tipos** que atualmente não são suportados pelo Codegen. Um dos altamente solicitados foram os [string union types em TypeScript](https://github.com/Titozzz/react-native/tree/codegen-string-union).
 
-A team of a few people moved into a meeting room to tackle this task. They encountered and overcame some difficulties along the way, like how to run unit tests for Codegen. They spent quite some time understanding the code execution flow before starting to deal with the code. After some hours of collaborative work, they ended up with the first prototype that was able to recognize string unions. This experience was extremely useful in discussing design patterns and the ideal architecture we may want in the future.
+Uma equipe de algumas pessoas se mudou para uma sala de reuniões para enfrentar esta tarefa. Eles encontraram e superaram algumas dificuldades ao longo do caminho, como executar testes unitários para Codegen. Eles passaram um bom tempo entendendo o fluxo de execução do código antes de começar a lidar com o código. Após algumas horas de trabalho colaborativo, eles terminaram com o primeiro protótipo que foi capaz de reconhecer string unions. Esta experiência foi extremamente útil para discutir padrões de design e a arquitetura ideal que podemos querer no futuro.
 
-#### 2. Improving **[auto-linking for iOS](https://github.com/facebook/react-native/pull/34580)**, which was missing a use case.
+#### 2. Melhorar o **[auto-linking para iOS](https://github.com/facebook/react-native/pull/34580)**, que estava faltando um caso de uso.
 
-Specifically, auto-linking could not work well in scenarios where libraries and the app were living together in a monorepo. Android already supported this use case but it was missing for iOS.
+Especificamente, o auto-linking não podia funcionar bem em cenários onde bibliotecas e o aplicativo estavam vivendo juntos em um monorepo. Android já suportava este caso de uso, mas estava faltando para iOS.
 
-Working with the contributors on Codegen helped us realize that it wasn’t trivial to work in its codebase. For example, adding the support for one type required to copy-and-paste the same code in four different places: modules with specs written in Flow, modules with specs written in TypeScript, components with specs written in Flow, and components with specs written in TypeScript.
+Trabalhar com os colaboradores no Codegen nos ajudou a perceber que não era trivial trabalhar em sua base de código. Por exemplo, adicionar suporte para um tipo exigia copiar e colar o mesmo código em quatro lugares diferentes: módulos com specs escritas em Flow, módulos com specs escritas em TypeScript, componentes com specs escritas em Flow e componentes com specs escritas em TypeScript.
 
-This realization pushed us to create an [umbrella task](https://github.com/facebook/react-native/issues/34872) to reach out for help to the community in order to improve the status of the codebase toward a more maintainable one.
+Essa percepção nos levou a criar uma [tarefa guarda-chuva](https://github.com/facebook/react-native/issues/34872) para buscar ajuda da comunidade a fim de melhorar o status da base de código para uma mais sustentável.
 
-The participation was outstanding: we managed to quickly assign the first **40 tasks in 5 days**. At the end of October, the community completed **47 tasks** and many others are ready and waiting to be merged.
+A participação foi excelente: conseguimos atribuir rapidamente as primeiras **40 tarefas em 5 dias**. No final de outubro, a comunidade completou **47 tarefas** e muitas outras estão prontas e esperando para serem mescladas.
 
-This initiative also contributed to the [Hacktoberfest](https://hacktoberfest.com/) for all the people who contributed to these improvements!
+Esta iniciativa também contribuiu para o [Hacktoberfest](https://hacktoberfest.com/) para todas as pessoas que contribuíram para essas melhorias!
 
 ### ​​React Native New Architecture Library Migration
 
-The hot topic in the React Native space is the New Architecture. Having **libraries** that support the New Architecture is a crucial point in the [migration for the whole ecosystem](/blog/2022/06/16/resources-migrating-your-react-native-library-to-the-new-architecture). Therefore, we want to support library maintainers in migrating to the New Architectures.
+O tema quente no espaço React Native é a New Architecture. Ter **bibliotecas** que suportam a New Architecture é um ponto crucial na [migração para todo o ecossistema](/blog/2022/06/16/resources-migrating-your-react-native-library-to-the-new-architecture). Portanto, queremos apoiar os mantenedores de bibliotecas na migração para a New Architecture.
 
-Initially, this session started as a brainstorming, where the core contributors had the opportunity to ask the React Native team all the questions they had related to the New Architecture. This in-person feedback loop was crucial for both the core contributors to bring clarity and for the React Native team to collect feedback. Some of the shared feedback and concerns will end up being implemented in React Native 0.71.
+Inicialmente, esta sessão começou como um brainstorming, onde os colaboradores principais tiveram a oportunidade de fazer à equipe React Native todas as perguntas que tinham relacionadas à New Architecture. Este loop de feedback presencial foi crucial tanto para os colaboradores principais trazerem clareza quanto para a equipe React Native coletar feedback. Alguns dos feedbacks e preocupações compartilhados acabarão sendo implementados no React Native 0.71.
 
-We then moved to practically migrating as many libraries to the new architecture as possible. During this session, we kicked off the migration process for several community packages, such as `react-native-document-picker`, `react-native-store-review`, and `react-native-orientation`.
+Em seguida, passamos a migrar praticamente o máximo de bibliotecas possível para a nova arquitetura. Durante esta sessão, iniciamos o processo de migração para vários pacotes da comunidade, como `react-native-document-picker`, `react-native-store-review` e `react-native-orientation`.
 
-As a reminder, if you’re also migrating a library and need support in doing so, please reach out to our [New Architecture Working Group](https://github.com/reactwg/react-native-new-architecture) on GitHub.
+Como lembrete, se você também está migrando uma biblioteca e precisa de suporte para fazê-lo, entre em contato com nosso [New Architecture Working Group](https://github.com/reactwg/react-native-new-architecture) no GitHub.
 
 ### ​​React Native Monorepo
 
-Releasing a new version of React Native is not trivial today. React Native is one of the most downloaded packages on NPM, and we want to make sure that our release process is smooth.
+Lançar uma nova versão do React Native não é trivial hoje. React Native é um dos pacotes mais baixados no NPM, e queremos garantir que nosso processo de lançamento seja suave.
 
-That’s why we want to refactor the `react-native` repository and implement the **Monorepo RFC** ([#480](https://github.com/react-native-community/discussions-and-proposals/pull/480)).
+É por isso que queremos refatorar o repositório `react-native` e implementar o **Monorepo RFC** ([#480](https://github.com/react-native-community/discussions-and-proposals/pull/480)).
 
-In this session, we initially brainstormed and collected opinions from every contributor, as it’s crucial that we evolve our repository to reduce the breaking changes for our downstream dependencies.
+Nesta sessão, inicialmente fizemos um brainstorming e coletamos opiniões de cada colaborador, pois é crucial que evoluamos nosso repositório para reduzir as breaking changes para nossas dependências downstream.
 
-We then started working on two fronts. First, we had to expand our Continuous Integration infrastructure to support our monorepo, adding [Verdaccio](https://verdaccio.org/) to our testing infrastructure. We then started renaming & adding scopes to several of our packages, resulting in 6 distinct contributions.
+Em seguida, começamos a trabalhar em duas frentes. Primeiro, tivemos que expandir nossa infraestrutura de Integração Contínua para suportar nosso monorepo, adicionando [Verdaccio](https://verdaccio.org/) à nossa infraestrutura de testes. Em seguida, começamos a renomear e adicionar escopos a vários de nossos pacotes, resultando em 6 contribuições distintas.
 
-You can track the status of this effort under this [umbrella issue](https://github.com/facebook/react-native/issues/34692) and we hope to share more on this effort in the near future.
+Você pode acompanhar o status deste esforço nesta [issue guarda-chuva](https://github.com/facebook/react-native/issues/34692) e esperamos compartilhar mais sobre este esforço em um futuro próximo.
 
 ### Metro Web and Ecosystem Alignment
 
-[Metro](https://github.com/facebook/metro), our JavaScript Bundler, is a foundational and integrated part of the React Native development experience and we want to make sure it works with the latest standards in the JS ecosystem.
+[Metro](https://github.com/facebook/metro), nosso JavaScript Bundler, é uma parte fundamental e integrada da experiência de desenvolvimento React Native e queremos garantir que funcione com os padrões mais recentes no ecossistema JS.
 
-The focus of this session was to discuss improving Metro's feature set to work better for web use cases and with the npm and bundler ecosystem. Two major areas of discussion:
+O foco desta sessão foi discutir como melhorar o conjunto de recursos do Metro para funcionar melhor para casos de uso web e com o ecossistema npm e bundler. Duas áreas principais de discussão:
 
-#### 1. Adopting the `"exports"` ([package entry points](https://nodejs.org/api/packages.html#package-entry-points)) specification
+#### 1. Adotar a especificação `"exports"` ([package entry points](https://nodejs.org/api/packages.html#package-entry-points))
 
-From the [Node.js documentation](https://nodejs.org/api/packages.html#package-entry-points):
+Da [documentação do Node.js](https://nodejs.org/api/packages.html#package-entry-points):
 
 <!-- alex ignore clearly -->
 
 :::info
-The ["exports"](https://nodejs.org/api/packages.html#exports) provides a modern alternative to ["main"](https://nodejs.org/api/packages.html#main) allowing multiple entry points to be defined, conditional entry resolution support between environments, and **preventing any other entry points besides those defined in ["exports"](https://nodejs.org/api/packages.html#exports)**. This encapsulation allows module authors to define the public interface for their package clearly.
+A ["exports"](https://nodejs.org/api/packages.html#exports) fornece uma alternativa moderna à ["main"](https://nodejs.org/api/packages.html#main) permitindo que múltiplos pontos de entrada sejam definidos, suporte de resolução de entrada condicional entre ambientes, e **prevenindo qualquer outro ponto de entrada além daqueles definidos em ["exports"](https://nodejs.org/api/packages.html#exports)**. Este encapsulamento permite que autores de módulos definam claramente a interface pública para seu pacote.
 :::
 
-Adopting the `"exports"` specification has a lot of potential. In this session, we debated on how to handle [Platform Specific Code](/docs/platform-specific-code#platform-specific-extensions) with `"exports"`. Considering many factors, we came up with a fairly non-breaking rollout plan for `"exports"`, by adding a `"strict"` and `"non-strict"` mode to Metro resolver. We discussed how leveraging [builder-bob](https://github.com/callstack/react-native-builder-bob) would help library creators adopt the strict mode without friction.
+Adotar a especificação `"exports"` tem muito potencial. Nesta sessão, debatemos sobre como lidar com [Código Específico de Plataforma](/docs/platform-specific-code#platform-specific-extensions) com `"exports"`. Considerando muitos fatores, elaboramos um plano de rollout bastante não-disruptivo para `"exports"`, adicionando um modo `"strict"` e `"non-strict"` ao resolver Metro. Discutimos como aproveitar [builder-bob](https://github.com/callstack/react-native-builder-bob) ajudaria os criadores de bibliotecas a adotar o modo strict sem fricção.
 
-This discussion resulted in:
+Esta discussão resultou em:
 
-1. An [RFC](https://github.com/react-native-community/discussions-and-proposals/pull/534) for Metro on how package exports would work with React Native.
-2. An [RFC](https://github.com/nodejs/node/pull/45367) for Node.js to include “react-native” as a Community Condition.
+1. Uma [RFC](https://github.com/react-native-community/discussions-and-proposals/pull/534) para Metro sobre como package exports funcionariam com React Native.
+2. Uma [RFC](https://github.com/nodejs/node/pull/45367) para Node.js para incluir "react-native" como uma Community Condition.
 
-#### 2. Web and bundler ecosystem
+#### 2. Web e ecossistema bundler
 
-The Metro team shared progress from their partnership with Expo and the intent to continue this working model for upcoming bundle splitting and tree-shaking support. We touched again on ES module support and considered potential future features such as Yarn PnP and output optimization on the web. We discussed how Metro’s core shares logic and data structures with Jest and opportunities for more reuse.
+A equipe do Metro compartilhou o progresso de sua parceria com Expo e a intenção de continuar este modelo de trabalho para o próximo suporte a bundle splitting e tree-shaking. Tocamos novamente no suporte a módulos ES e consideramos recursos futuros potenciais como Yarn PnP e otimização de saída na web. Discutimos como o núcleo do Metro compartilha lógica e estruturas de dados com o Jest e oportunidades para mais reutilização.
 
-Developers surfaced insightful use cases for bundle splitting and interoperability with third-party tooling. This led us to discuss potential extension points in Metro and improving current documentation.
+Desenvolvedores apresentaram casos de uso perspicazes para bundle splitting e interoperabilidade com ferramentas de terceiros. Isso nos levou a discutir pontos de extensão potenciais no Metro e melhorar a documentação atual.
 
-This discussion provided us with good grounding for the next day's session on simplifying the release workflow.
+Esta discussão nos forneceu uma boa base para a sessão do dia seguinte sobre simplificação do workflow de lançamento.
 
 ### Metro Simplified Release Workflow
 
-As mentioned, releasing React Native is not trivial.
+Como mencionado, lançar React Native não é trivial.
 
-Things get harder as we need to release React Native, the React Native CLI, and Metro. Those tools are connected to each other as React Native and the CLI both depend on Metro. This creates some friction when any of the packages releases a new version.
+As coisas ficam mais difíceis pois precisamos lançar React Native, o React Native CLI e Metro. Essas ferramentas estão conectadas entre si, pois React Native e CLI dependem do Metro. Isso cria algum atrito quando qualquer um dos pacotes lança uma nova versão.
 
-Currently, we manage this through direct communication and synchronized releases, but there is space for improvement.
+Atualmente, gerenciamos isso através de comunicação direta e lançamentos sincronizados, mas há espaço para melhoria.
 
-In this session, we reconsidered the **dependencies** between React Native, Metro, and the CLI. We uncovered how some design decisions during the [“Lean Core” effort](https://github.com/react-native-community/discussions-and-proposals/issues/6), when we extracted the CLI from React Native, made these two projects codependent with some functionalities duplicated among efforts. The decisions back then made sense and allowed the CLI team to iterate faster than ever.
+Nesta sessão, reconsideramos as **dependências** entre React Native, Metro e CLI. Descobrimos como algumas decisões de design durante o [esforço "Lean Core"](https://github.com/react-native-community/discussions-and-proposals/issues/6), quando extraímos o CLI do React Native, tornaram esses dois projetos co-dependentes com algumas funcionalidades duplicadas entre esforços. As decisões naquela época faziam sentido e permitiram que a equipe CLI iterasse mais rápido do que nunca.
 
-It was about time to revisit them and take the experience of both teams to figure out the way through. As a result, the Metro team will take over the [`@react-native-community/cli-plugin-metro`](https://github.com/react-native-community/cli/tree/main/packages/cli-plugin-metro) development, temporarily moving it back to the core of React Native, and then most likely to the Metro monorepo.
+Era hora de revisitá-las e aproveitar a experiência de ambas as equipes para descobrir o caminho. Como resultado, a equipe do Metro assumirá o desenvolvimento do [`@react-native-community/cli-plugin-metro`](https://github.com/react-native-community/cli/tree/main/packages/cli-plugin-metro), movendo-o temporariamente de volta para o núcleo do React Native, e então provavelmente para o monorepo do Metro.
 
 ![](/blog/assets/core-contributor-summit-2022.jpg)
 
-The biggest takeaway, apart from three hours of drawing dependencies between the packages on the whiteboard, was for the CLI and Metro team to exchange their issues, experiences, and plans, resulting in a better understanding of each other.
+A maior lição, além de três horas desenhando dependências entre os pacotes no quadro branco, foi para as equipes CLI e Metro trocarem seus problemas, experiências e planos, resultando em um melhor entendimento mútuo.
 
-We wouldn’t be able to achieve this level of cooperation without actually meeting each other.
+Não seríamos capazes de alcançar este nível de cooperação sem realmente nos encontrarmos.
 
 ---
 
-We’re still impressed by how spending several hours together for a couple of days resulted in so much knowledge-sharing and cross-pollination of ideas. During this summit, we planted the seeds for initiatives that will help us improve and re-shape the React Native ecosystem.
+Ainda estamos impressionados com como passar várias horas juntos por alguns dias resultou em tanto compartilhamento de conhecimento e polinização cruzada de ideias. Durante este summit, plantamos as sementes para iniciativas que nos ajudarão a melhorar e remodelar o ecossistema React Native.
 
-We want to say thank you again to [Callstack](https://www.callstack.com/) for hosting us and to all the participants for joining us at the Core Contributor Summit 2022.
+Queremos agradecer novamente à [Callstack](https://www.callstack.com/) por nos hospedar e a todos os participantes por se juntarem a nós no Core Contributor Summit 2022.
 
-If you’re interested in joining the development of React Native, make sure you join our open initiatives and read the [contribution guide](https://reactnative.dev/contributing/overview) we have on our website. We hope to meet you in person as well in the future!
+Se você está interessado em participar do desenvolvimento do React Native, certifique-se de participar de nossas iniciativas abertas e ler o [guia de contribuição](https://reactnative.dev/contributing/overview) que temos em nosso website. Esperamos encontrá-lo pessoalmente também no futuro!

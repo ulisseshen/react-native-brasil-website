@@ -1,11 +1,12 @@
 ---
+ia-translated: true
 id: refreshcontrol
 title: RefreshControl
 ---
 
-This component is used inside a ScrollView or ListView to add pull to refresh functionality. When the ScrollView is at `scrollY: 0`, swiping down triggers an `onRefresh` event.
+Este componente é usado dentro de um ScrollView ou ListView para adicionar a funcionalidade pull to refresh. Quando o ScrollView está em `scrollY: 0`, deslizar para baixo dispara um evento `onRefresh`.
 
-## Example
+## Exemplo
 
 ```SnackPlayer name=RefreshControl&supportedPlatforms=ios,android
 import React from 'react';
@@ -53,24 +54,24 @@ export default App;
 ```
 
 :::note
-`refreshing` is a controlled prop, this is why it needs to be set to `true` in the `onRefresh` function otherwise the refresh indicator will stop immediately.
+`refreshing` é uma prop controlada, é por isso que ela precisa ser definida como `true` na função `onRefresh`, caso contrário o indicador de atualização vai parar imediatamente.
 :::
 
 ---
 
-# Reference
+# Referência
 
 ## Props
 
 ### [View Props](view.md#props)
 
-Inherits [View Props](view.md#props).
+Herda [View Props](view.md#props).
 
 ---
 
 ### <div className="label required basic">Required</div>**`refreshing`**
 
-Whether the view should be indicating an active refresh.
+Se a view deve estar indicando uma atualização ativa.
 
 | Type    |
 | ------- |
@@ -80,7 +81,7 @@ Whether the view should be indicating an active refresh.
 
 ### `colors` <div className="label android">Android</div>
 
-The colors (at least one) that will be used to draw the refresh indicator.
+As cores (pelo menos uma) que serão usadas para desenhar o indicador de atualização.
 
 | Type                         |
 | ---------------------------- |
@@ -90,7 +91,7 @@ The colors (at least one) that will be used to draw the refresh indicator.
 
 ### `enabled` <div className="label android">Android</div>
 
-Whether the pull to refresh functionality is enabled.
+Se a funcionalidade pull to refresh está habilitada.
 
 | Type    | Default |
 | ------- | ------- |
@@ -100,7 +101,7 @@ Whether the pull to refresh functionality is enabled.
 
 ### `onRefresh`
 
-Called when the view starts refreshing.
+Chamado quando a view começa a atualizar.
 
 | Type     |
 | -------- |
@@ -110,7 +111,7 @@ Called when the view starts refreshing.
 
 ### `progressBackgroundColor` <div className="label android">Android</div>
 
-The background color of the refresh indicator.
+A cor de fundo do indicador de atualização.
 
 | Type               |
 | ------------------ |
@@ -120,7 +121,7 @@ The background color of the refresh indicator.
 
 ### `progressViewOffset`
 
-Progress view top offset.
+Deslocamento do topo da view de progresso.
 
 | Type   | Default |
 | ------ | ------- |
@@ -130,7 +131,7 @@ Progress view top offset.
 
 ### `size` <div className="label android">Android</div>
 
-Size of the refresh indicator.
+Tamanho do indicador de atualização.
 
 | Type                         | Default     |
 | ---------------------------- | ----------- |
@@ -140,7 +141,7 @@ Size of the refresh indicator.
 
 ### `tintColor` <div className="label ios">iOS</div>
 
-The color of the refresh indicator.
+A cor do indicador de atualização.
 
 | Type               |
 | ------------------ |
@@ -150,7 +151,7 @@ The color of the refresh indicator.
 
 ### `title` <div className="label ios">iOS</div>
 
-The title displayed under the refresh indicator.
+O título exibido sob o indicador de atualização.
 
 | Type   |
 | ------ |
@@ -160,7 +161,7 @@ The title displayed under the refresh indicator.
 
 ### `titleColor` <div className="label ios">iOS</div>
 
-The color of the refresh indicator title.
+A cor do título do indicador de atualização.
 
 | Type               |
 | ------------------ |

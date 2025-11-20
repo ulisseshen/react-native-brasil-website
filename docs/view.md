@@ -1,15 +1,16 @@
 ---
+ia-translated: true
 id: view
 title: View
 ---
 
 import ExperimentalAPIWarning from './\_experimental-api-warning.mdx';
 
-The most fundamental component for building a UI, `View` is a container that supports layout with [flexbox](flexbox.md), [style](style.md), [some touch handling](handling-touches.md), and [accessibility](accessibility.md) controls. `View` maps directly to the native view equivalent on whatever platform React Native is running on, whether that is a `UIView`, `<div>`, `android.view`, etc.
+O componente mais fundamental para construir uma UI, `View` é um container que suporta layout com [flexbox](flexbox.md), [style](style.md), [manipulação de toque](handling-touches.md), e controles de [accessibility](accessibility.md). `View` mapeia diretamente para o equivalente de view nativa em qualquer plataforma que o React Native esteja executando, seja um `UIView`, `<div>`, `android.view`, etc.
 
-`View` is designed to be nested inside other views and can have 0 to many children of any type.
+`View` foi projetado para ser aninhado dentro de outras views e pode ter de 0 a muitos filhos de qualquer tipo.
 
-This example creates a `View` that wraps two boxes with color and a text component in a row with padding.
+Este exemplo cria uma `View` que envolve duas caixas com cor e um componente de texto em uma linha com padding.
 
 ```SnackPlayer name=View%20Example
 import React from 'react';
@@ -32,12 +33,12 @@ export default ViewBoxesWithColorAndText;
 ```
 
 :::note
-`View`s are designed to be used with [`StyleSheet`](style.md) for clarity and performance, although inline styles are also supported.
+`View`s foram projetadas para serem usadas com [`StyleSheet`](style.md) para clareza e performance, embora estilos inline também sejam suportados.
 :::
 
 ### Synthetic Touch Events
 
-For `View` responder props (e.g., `onResponderMove`), the synthetic touch event passed to them are in form of [PressEvent](pressevent).
+Para props de resposta da `View` (por exemplo, `onResponderMove`), o evento de toque sintético passado para elas está na forma de [PressEvent](pressevent).
 
 ---
 
@@ -49,9 +50,9 @@ For `View` responder props (e.g., `onResponderMove`), the synthetic touch event 
 
 ### `accessibilityActions`
 
-Accessibility actions allow an assistive technology to programmatically invoke the actions of a component. The `accessibilityActions` property should contain a list of action objects. Each action object should contain the field name and label.
+Ações de acessibilidade permitem que uma tecnologia assistiva invoque programaticamente as ações de um componente. A propriedade `accessibilityActions` deve conter uma lista de objetos de ação. Cada objeto de ação deve conter os campos name e label.
 
-See the [Accessibility guide](accessibility.md#accessibility-actions) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessibility-actions) para mais informações.
 
 | Type  |
 | ----- |
@@ -61,9 +62,9 @@ See the [Accessibility guide](accessibility.md#accessibility-actions) for more i
 
 ### `accessibilityElementsHidden` <div className="label ios">iOS</div>
 
-A boolean value indicating whether the given accessibility element, and any accessibility elements it contains, are hidden. Default is `false`.
+Um valor booleano indicando se o elemento de acessibilidade fornecido, e quaisquer elementos de acessibilidade que ele contenha, estão ocultos. O padrão é `false`.
 
-See the [Accessibility guide](accessibility.md#accessibilityelementshidden-ios) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessibilityelementshidden-ios) para mais informações.
 
 | Type |
 | ---- |
@@ -73,7 +74,7 @@ See the [Accessibility guide](accessibility.md#accessibilityelementshidden-ios) 
 
 ### `accessibilityHint`
 
-An accessibility hint helps users understand what will happen when they perform an action on the accessibility element when that result is not clear from the accessibility label.
+Uma dica de acessibilidade ajuda os usuários a entenderem o que acontecerá quando eles executarem uma ação no elemento de acessibilidade quando esse resultado não estiver claro a partir do rótulo de acessibilidade.
 
 | Type   |
 | ------ |
@@ -83,9 +84,9 @@ An accessibility hint helps users understand what will happen when they perform 
 
 ### `accessibilityLanguage` <div className="label ios">iOS</div>
 
-A value indicating which language should be used by the screen reader when the user interacts with the element. It should follow the [BCP 47 specification](https://www.rfc-editor.org/info/bcp47).
+Um valor indicando qual idioma deve ser usado pelo leitor de tela quando o usuário interage com o elemento. Deve seguir a [especificação BCP 47](https://www.rfc-editor.org/info/bcp47).
 
-See the [iOS `accessibilityLanguage` doc](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) for more information.
+Veja a [documentação do iOS `accessibilityLanguage`](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage) para mais informações.
 
 | Type   |
 | ------ |
@@ -95,9 +96,9 @@ See the [iOS `accessibilityLanguage` doc](https://developer.apple.com/documentat
 
 ### `accessibilityIgnoresInvertColors` <div className="label ios">iOS</div>
 
-A value indicating this view should or should not be inverted when color inversion is turned on. A value of `true` will tell the view to not be inverted even if color inversion is turned on.
+Um valor indicando que esta view deve ou não ser invertida quando a inversão de cores estiver ativada. Um valor de `true` dirá à view para não ser invertida mesmo se a inversão de cores estiver ativada.
 
-See the [Accessibility guide](accessibility.md#accessibilityignoresinvertcolors) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessibilityignoresinvertcolors) para mais informações.
 
 | Type |
 | ---- |
@@ -107,7 +108,7 @@ See the [Accessibility guide](accessibility.md#accessibilityignoresinvertcolors)
 
 ### `accessibilityLabel`
 
-Overrides the text that's read by the screen reader when the user interacts with the element. By default, the label is constructed by traversing all the children and accumulating all the `Text` nodes separated by space.
+Substitui o texto que é lido pelo leitor de tela quando o usuário interage com o elemento. Por padrão, o rótulo é construído percorrendo todos os filhos e acumulando todos os nós `Text` separados por espaço.
 
 | Type   |
 | ------ |
@@ -117,13 +118,13 @@ Overrides the text that's read by the screen reader when the user interacts with
 
 ### `accessibilityLiveRegion` <div className="label android">Android</div>
 
-Indicates to accessibility services whether the user should be notified when this view changes. Works for Android API >= 19 only. Possible values:
+Indica aos serviços de acessibilidade se o usuário deve ser notificado quando esta view mudar. Funciona apenas para Android API >= 19. Valores possíveis:
 
-- `'none'` - Accessibility services should not announce changes to this view.
-- `'polite'`- Accessibility services should announce changes to this view.
-- `'assertive'` - Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
+- `'none'` - Os serviços de acessibilidade não devem anunciar mudanças nesta view.
+- `'polite'`- Os serviços de acessibilidade devem anunciar mudanças nesta view.
+- `'assertive'` - Os serviços de acessibilidade devem interromper a fala em andamento para anunciar imediatamente mudanças nesta view.
 
-See the [Android `View` docs](https://developer.android.com/reference/android/view/View.html#attr_android:accessibilityLiveRegion) for reference.
+Veja a [documentação do Android `View`](https://developer.android.com/reference/android/view/View.html#attr_android:accessibilityLiveRegion) para referência.
 
 | Type                                |
 | ----------------------------------- |
@@ -133,38 +134,38 @@ See the [Android `View` docs](https://developer.android.com/reference/android/vi
 
 ### `accessibilityRole`
 
-`accessibilityRole` communicates the purpose of a component to the user of an assistive technology.
+`accessibilityRole` comunica o propósito de um componente ao usuário de uma tecnologia assistiva.
 
-`accessibilityRole` can be one of the following:
+`accessibilityRole` pode ser um dos seguintes:
 
-- `'none'` - Used when the element has no role.
-- `'button'` - Used when the element should be treated as a button.
-- `'link'` - Used when the element should be treated as a link.
-- `'search'` - Used when the text field element should also be treated as a search field.
-- `'image'` - Used when the element should be treated as an image. Can be combined with button or link, for example.
-- `'keyboardkey'` - Used when the element acts as a keyboard key.
-- `'text'` - Used when the element should be treated as static text that cannot change.
-- `'adjustable'` - Used when an element can be "adjusted" (e.g. a slider).
-- `'imagebutton'` - Used when the element should be treated as a button and is also an image.
-- `'header'` - Used when an element acts as a header for a content section (e.g. the title of a navigation bar).
-- `'summary'` - Used when an element can be used to provide a quick summary of current conditions in the app when the app first launches.
-- `'alert'` - Used when an element contains important text to be presented to the user.
-- `'checkbox'` - Used when an element represents a checkbox which can be checked, unchecked, or have mixed checked state.
-- `'combobox'` - Used when an element represents a combo box, which allows the user to select among several choices.
-- `'menu'` - Used when the component is a menu of choices.
-- `'menubar'` - Used when a component is a container of multiple menus.
-- `'menuitem'` - Used to represent an item within a menu.
-- `'progressbar'` - Used to represent a component which indicates progress of a task.
-- `'radio'` - Used to represent a radio button.
-- `'radiogroup'` - Used to represent a group of radio buttons.
-- `'scrollbar'` - Used to represent a scroll bar.
-- `'spinbutton'` - Used to represent a button which opens a list of choices.
-- `'switch'` - Used to represent a switch which can be turned on and off.
-- `'tab'` - Used to represent a tab.
-- `'tablist'` - Used to represent a list of tabs.
-- `'timer'` - Used to represent a timer.
-- `'toolbar'` - Used to represent a tool bar (a container of action buttons or components).
-- `'grid'` - Used with ScrollView, VirtualizedList, FlatList, or SectionList to represent a grid. Adds the in/out of grid announcements to the android GridView.
+- `'none'` - Usado quando o elemento não tem role.
+- `'button'` - Usado quando o elemento deve ser tratado como um botão.
+- `'link'` - Usado quando o elemento deve ser tratado como um link.
+- `'search'` - Usado quando o elemento de campo de texto também deve ser tratado como um campo de busca.
+- `'image'` - Usado quando o elemento deve ser tratado como uma imagem. Pode ser combinado com button ou link, por exemplo.
+- `'keyboardkey'` - Usado quando o elemento age como uma tecla de teclado.
+- `'text'` - Usado quando o elemento deve ser tratado como texto estático que não pode mudar.
+- `'adjustable'` - Usado quando um elemento pode ser "ajustado" (por exemplo, um slider).
+- `'imagebutton'` - Usado quando o elemento deve ser tratado como um botão e também é uma imagem.
+- `'header'` - Usado quando um elemento age como um cabeçalho para uma seção de conteúdo (por exemplo, o título de uma barra de navegação).
+- `'summary'` - Usado quando um elemento pode ser usado para fornecer um resumo rápido das condições atuais no app quando o app é iniciado pela primeira vez.
+- `'alert'` - Usado quando um elemento contém texto importante a ser apresentado ao usuário.
+- `'checkbox'` - Usado quando um elemento representa um checkbox que pode ser marcado, desmarcado ou ter estado misto.
+- `'combobox'` - Usado quando um elemento representa uma caixa de combinação, que permite ao usuário selecionar entre várias opções.
+- `'menu'` - Usado quando o componente é um menu de opções.
+- `'menubar'` - Usado quando um componente é um container de múltiplos menus.
+- `'menuitem'` - Usado para representar um item dentro de um menu.
+- `'progressbar'` - Usado para representar um componente que indica o progresso de uma tarefa.
+- `'radio'` - Usado para representar um botão de rádio.
+- `'radiogroup'` - Usado para representar um grupo de botões de rádio.
+- `'scrollbar'` - Usado para representar uma barra de rolagem.
+- `'spinbutton'` - Usado para representar um botão que abre uma lista de opções.
+- `'switch'` - Usado para representar um switch que pode ser ligado e desligado.
+- `'tab'` - Usado para representar uma aba.
+- `'tablist'` - Usado para representar uma lista de abas.
+- `'timer'` - Usado para representar um temporizador.
+- `'toolbar'` - Usado para representar uma barra de ferramentas (um container de botões de ação ou componentes).
+- `'grid'` - Usado com ScrollView, VirtualizedList, FlatList, ou SectionList para representar uma grade. Adiciona os anúncios de entrada/saída da grade ao GridView do Android.
 
 | Type   |
 | ------ |
@@ -174,9 +175,9 @@ See the [Android `View` docs](https://developer.android.com/reference/android/vi
 
 ### `accessibilityState`
 
-Describes the current state of a component to the user of an assistive technology.
+Descreve o estado atual de um componente ao usuário de uma tecnologia assistiva.
 
-See the [Accessibility guide](accessibility.md#accessibilitystate-ios-android) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessibilitystate-ios-android) para mais informações.
 
 | Type                                                                                             |
 | ------------------------------------------------------------------------------------------------ |
@@ -186,9 +187,9 @@ See the [Accessibility guide](accessibility.md#accessibilitystate-ios-android) f
 
 ### `accessibilityValue`
 
-Represents the current value of a component. It can be a textual description of a component's value, or for range-based components, such as sliders and progress bars, it contains range information (minimum, current, and maximum).
+Representa o valor atual de um componente. Pode ser uma descrição textual do valor de um componente, ou para componentes baseados em intervalo, como sliders e barras de progresso, contém informações de intervalo (mínimo, atual e máximo).
 
-See the [Accessibility guide](accessibility.md#accessibilityvalue-ios-android) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessibilityvalue-ios-android) para mais informações.
 
 | Type                                                            |
 | --------------------------------------------------------------- |
@@ -198,9 +199,9 @@ See the [Accessibility guide](accessibility.md#accessibilityvalue-ios-android) f
 
 ### `accessibilityViewIsModal` <div className="label ios">iOS</div>
 
-A value indicating whether VoiceOver should ignore the elements within views that are siblings of the receiver. Default is `false`.
+Um valor indicando se o VoiceOver deve ignorar os elementos dentro de views que são irmãs do receptor. O padrão é `false`.
 
-See the [Accessibility guide](accessibility.md#accessibilityviewismodal-ios) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessibilityviewismodal-ios) para mais informações.
 
 | Type |
 | ---- |
@@ -210,15 +211,15 @@ See the [Accessibility guide](accessibility.md#accessibilityviewismodal-ios) for
 
 ### `accessible`
 
-When `true`, indicates that the view is an accessibility element and discoverable by assistive technologies such as screen readers and hardware keyboards. By default, all the touchable elements are accessible.
+Quando `true`, indica que a view é um elemento de acessibilidade e detectável por tecnologias assistivas como leitores de tela e teclados de hardware. Por padrão, todos os elementos tocáveis são acessíveis.
 
-See the [Accessibility guide](accessibility.md#accessible) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessible) para mais informações.
 
 ---
 
 ### `aria-busy`
 
-Indicates an element is being modified and that assistive technologies may want to wait until the changes are complete before informing the user about the update.
+Indica que um elemento está sendo modificado e que as tecnologias assistivas podem querer esperar até que as mudanças estejam completas antes de informar o usuário sobre a atualização.
 
 | Type    | Default |
 | ------- | ------- |
@@ -228,7 +229,7 @@ Indicates an element is being modified and that assistive technologies may want 
 
 ### `aria-checked`
 
-Indicates the state of a checkable element. This field can either take a boolean or the "mixed" string to represent mixed checkboxes.
+Indica o estado de um elemento marcável. Este campo pode receber um booleano ou a string "mixed" para representar checkboxes mistos.
 
 | Type             | Default |
 | ---------------- | ------- |
@@ -238,7 +239,7 @@ Indicates the state of a checkable element. This field can either take a boolean
 
 ### `aria-disabled`
 
-Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.
+Indica que o elemento é perceptível mas desabilitado, então não é editável ou operável de outra forma.
 
 | Type    | Default |
 | ------- | ------- |
@@ -248,7 +249,7 @@ Indicates that the element is perceivable but disabled, so it is not editable or
 
 ### `aria-expanded`
 
-Indicates whether an expandable element is currently expanded or collapsed.
+Indica se um elemento expansível está atualmente expandido ou recolhido.
 
 | Type    | Default |
 | ------- | ------- |
@@ -258,9 +259,9 @@ Indicates whether an expandable element is currently expanded or collapsed.
 
 ### `aria-hidden`
 
-Indicates whether the element is hidden from assistive technologies.
+Indica se o elemento está oculto das tecnologias assistivas.
 
-For example, in a window that contains sibling views `A` and `B`, setting `aria-hidden` to `true` on view `B` causes VoiceOver to ignore the `B` element and its children.
+Por exemplo, em uma janela que contém views irmãs `A` e `B`, definir `aria-hidden` como `true` na view `B` faz com que o VoiceOver ignore o elemento `B` e seus filhos.
 
 | Type    | Default |
 | ------- | ------- |
@@ -270,7 +271,7 @@ For example, in a window that contains sibling views `A` and `B`, setting `aria-
 
 ### `aria-label`
 
-Defines a string value that labels an interactive element.
+Define um valor de string que rotula um elemento interativo.
 
 | Type   |
 | ------ |
@@ -280,7 +281,7 @@ Defines a string value that labels an interactive element.
 
 ### `aria-labelledby` <div className="label android">Android</div>
 
-Identifies the element that labels the element it is applied to. The value of `aria-labelledby` should match the [`nativeID`](view.md#nativeid) of the related element:
+Identifica o elemento que rotula o elemento ao qual é aplicado. O valor de `aria-labelledby` deve corresponder ao [`nativeID`](view.md#nativeid) do elemento relacionado:
 
 ```tsx
 <View>
@@ -297,11 +298,11 @@ Identifies the element that labels the element it is applied to. The value of `a
 
 ### `aria-live` <div className="label android">Android</div>
 
-Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
+Indica que um elemento será atualizado e descreve os tipos de atualizações que os agentes de usuário, tecnologias assistivas e usuário podem esperar da região ativa.
 
-- **off** Accessibility services should not announce changes to this view.
-- **polite** Accessibility services should announce changes to this view.
-- **assertive** Accessibility services should interrupt ongoing speech to immediately announce changes to this view.
+- **off** Os serviços de acessibilidade não devem anunciar mudanças nesta view.
+- **polite** Os serviços de acessibilidade devem anunciar mudanças nesta view.
+- **assertive** Os serviços de acessibilidade devem interromper a fala em andamento para anunciar imediatamente mudanças nesta view.
 
 | Type                                     | Default |
 | ---------------------------------------- | ------- |
@@ -311,7 +312,7 @@ Indicates that an element will be updated, and describes the types of updates th
 
 ### `aria-modal` <div className="label ios">iOS</div>
 
-Boolean value indicating whether VoiceOver should ignore the elements within views that are siblings of the receiver. Has precedence over the [`accessibilityViewIsModal`](#accessibilityviewismodal-ios) prop.
+Valor booleano indicando se o VoiceOver deve ignorar os elementos dentro de views que são irmãs do receptor. Tem precedência sobre a prop [`accessibilityViewIsModal`](#accessibilityviewismodal-ios).
 
 | Type    | Default |
 | ------- | ------- |
@@ -321,7 +322,7 @@ Boolean value indicating whether VoiceOver should ignore the elements within vie
 
 ### `aria-selected`
 
-Indicates whether a selectable element is currently selected or not.
+Indica se um elemento selecionável está atualmente selecionado ou não.
 
 | Type    |
 | ------- |
@@ -329,7 +330,7 @@ Indicates whether a selectable element is currently selected or not.
 
 ### `aria-valuemax`
 
-Represents the maximum value for range-based components, such as sliders and progress bars. Has precedence over the `max` value in the `accessibilityValue` prop.
+Representa o valor máximo para componentes baseados em intervalo, como sliders e barras de progresso. Tem precedência sobre o valor `max` na prop `accessibilityValue`.
 
 | Type   |
 | ------ |
@@ -339,7 +340,7 @@ Represents the maximum value for range-based components, such as sliders and pro
 
 ### `aria-valuemin`
 
-Represents the minimum value for range-based components, such as sliders and progress bars. Has precedence over the `min` value in the `accessibilityValue` prop.
+Representa o valor mínimo para componentes baseados em intervalo, como sliders e barras de progresso. Tem precedência sobre o valor `min` na prop `accessibilityValue`.
 
 | Type   |
 | ------ |
@@ -349,7 +350,7 @@ Represents the minimum value for range-based components, such as sliders and pro
 
 ### `aria-valuenow`
 
-Represents the current value for range-based components, such as sliders and progress bars. Has precedence over the `now` value in the `accessibilityValue` prop.
+Representa o valor atual para componentes baseados em intervalo, como sliders e barras de progresso. Tem precedência sobre o valor `now` na prop `accessibilityValue`.
 
 | Type   |
 | ------ |
@@ -359,7 +360,7 @@ Represents the current value for range-based components, such as sliders and pro
 
 ### `aria-valuetext`
 
-Represents the textual description of the component. Has precedence over the `text` value in the `accessibilityValue` prop.
+Representa a descrição textual do componente. Tem precedência sobre o valor `text` na prop `accessibilityValue`.
 
 | Type   |
 | ------ |
@@ -369,7 +370,7 @@ Represents the textual description of the component. Has precedence over the `te
 
 ### `collapsable`
 
-Views that are only used to layout their children or otherwise don't draw anything may be automatically removed from the native hierarchy as an optimization. Set this property to `false` to disable this optimization and ensure that this `View` exists in the native view hierarchy.
+Views que são usadas apenas para fazer layout de seus filhos ou que de outra forma não desenham nada podem ser removidas automaticamente da hierarquia nativa como uma otimização. Defina esta propriedade como `false` para desabilitar esta otimização e garantir que esta `View` exista na hierarquia de view nativa.
 
 | Type    | Default |
 | ------- | ------- |
@@ -379,7 +380,7 @@ Views that are only used to layout their children or otherwise don't draw anythi
 
 ### `collapsableChildren`
 
-Setting to false prevents direct children of the view from being removed from the native view hierarchy, similar to the effect of setting `collapsable={false}` on each child.
+Definir como false impede que os filhos diretos da view sejam removidos da hierarquia de view nativa, similar ao efeito de definir `collapsable={false}` em cada filho.
 
 | Type    | Default |
 | ------- | ------- |
@@ -391,12 +392,12 @@ Setting to false prevents direct children of the view from being removed from th
 
 <ExperimentalAPIWarning />
 
-`experimental_accessibilityOrder` indicates the order in which an assistive technology focuses descendants of this `View`. This prop takes an array of strings where each string is a [`nativeID`](view.md#nativeid) of some descendant component whose order is being defined. This prop does not enable accessibility itself, each referenced component still needs to be accessible by setting [`accessible`](view.md#accessible) to true. This prop is both **nestable** and **exhaustive** meaning
+`experimental_accessibilityOrder` indica a ordem na qual uma tecnologia assistiva foca nos descendentes desta `View`. Esta prop recebe um array de strings onde cada string é um [`nativeID`](view.md#nativeid) de algum componente descendente cuja ordem está sendo definida. Esta prop não habilita acessibilidade por si só, cada componente referenciado ainda precisa ser acessível definindo [`accessible`](view.md#accessible) como true. Esta prop é tanto **aninhável** quanto **exaustiva**, o que significa
 
-- If `experimental_accessibilityOrder` contains a reference to some non-accessible component, it will focus the descendants of that component in the default order. Additionally, it can also contain a reference to other components that also have an `experimental_accessibilityOrder`.
-- If some component that is otherwise accessible is not directly referenced in `experimental_accessibilityOrder`, or nested within some container directly referenced in `experimental_accessibilityOrder`, then it will not be accessible.
+- Se `experimental_accessibilityOrder` contém uma referência a algum componente não acessível, ele focará nos descendentes desse componente na ordem padrão. Adicionalmente, também pode conter uma referência a outros componentes que também têm um `experimental_accessibilityOrder`.
+- Se algum componente que é acessível de outra forma não for diretamente referenciado em `experimental_accessibilityOrder`, ou aninhado dentro de algum container diretamente referenciado em `experimental_accessibilityOrder`, então ele não será acessível.
 
-See the [accessibility guide](accessibility.md#experimental_accessibilityorder) for more information.
+Veja o [guia de accessibility](accessibility.md#experimental_accessibilityorder) para mais informações.
 
 | Type             |
 | ---------------- |
@@ -406,7 +407,7 @@ See the [accessibility guide](accessibility.md#experimental_accessibilityorder) 
 
 ### `focusable` <div className="label android">Android</div>
 
-Whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.
+Se esta `View` deve ser focalizável com um dispositivo de entrada não-toque, por exemplo, receber foco com um teclado de hardware.
 
 | Type    |
 | ------- |
@@ -416,12 +417,12 @@ Whether this `View` should be focusable with a non-touch input device, eg. recei
 
 ### `hitSlop`
 
-This defines how far a touch event can start away from the view. Typical interface guidelines recommend touch targets that are at least 30 - 40 points/density-independent pixels.
+Define quão longe um evento de toque pode começar da view. Diretrizes de interface típicas recomendam alvos de toque que tenham pelo menos 30 - 40 pontos/pixels independentes de densidade.
 
-For example, if a touchable view has a height of 20 the touchable height can be extended to 40 with `hitSlop={{top: 10, bottom: 10, left: 0, right: 0}}`
+Por exemplo, se uma view tocável tem uma altura de 20, a altura tocável pode ser estendida para 40 com `hitSlop={{top: 10, bottom: 10, left: 0, right: 0}}`
 
 :::note
-The touch area never extends past the parent view bounds, and the Z-index of sibling views always takes precedence if a touch hits two overlapping views.
+A área de toque nunca se estende além dos limites da view pai, e o índice Z de views irmãs sempre tem precedência se um toque atingir duas views sobrepostas.
 :::
 
 | Type                                                                 |
@@ -432,10 +433,10 @@ The touch area never extends past the parent view bounds, and the Z-index of sib
 
 ### `id`
 
-Used to locate this view from native classes. Has precedence over `nativeID` prop.
+Usado para localizar esta view a partir de classes nativas. Tem precedência sobre a prop `nativeID`.
 
 :::warning
-This disables the 'layout-only view removal' optimization for this view!
+Isso desabilita a otimização de 'remoção de view somente de layout' para esta view!
 :::
 
 | Type   |
@@ -446,16 +447,16 @@ This disables the 'layout-only view removal' optimization for this view!
 
 ### `importantForAccessibility` <div className="label android">Android</div>
 
-Controls how view is important for accessibility which is if it fires accessibility events and if it is reported to accessibility services that query the screen. Works for Android only.
+Controla quão importante a view é para acessibilidade, ou seja, se ela dispara eventos de acessibilidade e se é reportada aos serviços de acessibilidade que consultam a tela. Funciona apenas para Android.
 
-Possible values:
+Valores possíveis:
 
-- `'auto'` - The system determines whether the view is important for accessibility - default (recommended).
-- `'yes'` - The view is important for accessibility.
-- `'no'` - The view is not important for accessibility.
-- `'no-hide-descendants'` - The view is not important for accessibility, nor are any of its descendant views.
+- `'auto'` - O sistema determina se a view é importante para acessibilidade - padrão (recomendado).
+- `'yes'` - A view é importante para acessibilidade.
+- `'no'` - A view não é importante para acessibilidade.
+- `'no-hide-descendants'` - A view não é importante para acessibilidade, nem qualquer uma de suas views descendentes.
 
-See the [Android `importantForAccessibility` docs](https://developer.android.com/reference/android/R.attr.html#importantForAccessibility) for reference.
+Veja a [documentação do Android `importantForAccessibility`](https://developer.android.com/reference/android/R.attr.html#importantForAccessibility) para referência.
 
 | Type                                             |
 | ------------------------------------------------ |
@@ -465,10 +466,10 @@ See the [Android `importantForAccessibility` docs](https://developer.android.com
 
 ### `nativeID`
 
-Used to locate this view from native classes.
+Usado para localizar esta view a partir de classes nativas.
 
 :::warning
-This disables the 'layout-only view removal' optimization for this view!
+Isso desabilita a otimização de 'remoção de view somente de layout' para esta view!
 :::
 
 | Type   |
@@ -479,9 +480,9 @@ This disables the 'layout-only view removal' optimization for this view!
 
 ### `needsOffscreenAlphaCompositing`
 
-Whether this `View` needs to rendered offscreen and composited with an alpha in order to preserve 100% correct colors and blending behavior. The default (`false`) falls back to drawing the component and its children with an alpha applied to the paint used to draw each element instead of rendering the full component offscreen and compositing it back with an alpha value. This default may be noticeable and undesired in the case where the `View` you are setting an opacity on has multiple overlapping elements (e.g. multiple overlapping `View`s, or text and a background).
+Se esta `View` precisa ser renderizada fora da tela e composta com um alpha para preservar 100% de cores corretas e comportamento de mesclagem. O padrão (`false`) volta a desenhar o componente e seus filhos com um alpha aplicado à pintura usada para desenhar cada elemento em vez de renderizar o componente completo fora da tela e compô-lo de volta com um valor alpha. Esse padrão pode ser perceptível e indesejado no caso em que a `View` na qual você está definindo uma opacidade tem múltiplos elementos sobrepostos (por exemplo, múltiplas `View`s sobrepostas, ou texto e um plano de fundo).
 
-Rendering offscreen to preserve correct alpha behavior is extremely expensive and hard to debug for non-native developers, which is why it is not turned on by default. If you do need to enable this property for an animation, consider combining it with renderToHardwareTextureAndroid if the view **contents** are static (i.e. it doesn't need to be redrawn each frame). If that property is enabled, this View will be rendered off-screen once, saved in a hardware texture, and then composited onto the screen with an alpha each frame without having to switch rendering targets on the GPU.
+Renderizar fora da tela para preservar o comportamento correto do alpha é extremamente caro e difícil de depurar para desenvolvedores não nativos, razão pela qual não está ativado por padrão. Se você precisa habilitar esta propriedade para uma animação, considere combiná-la com renderToHardwareTextureAndroid se o **conteúdo** da view for estático (ou seja, não precisa ser redesenhado a cada frame). Se essa propriedade estiver habilitada, esta View será renderizada fora da tela uma vez, salva em uma textura de hardware, e então composta na tela com um alpha a cada frame sem ter que trocar alvos de renderização na GPU.
 
 | Type |
 | ---- |
@@ -491,7 +492,7 @@ Rendering offscreen to preserve correct alpha behavior is extremely expensive an
 
 ### `nextFocusDown` <div className="label android">Android</div>
 
-Designates the next view to receive focus when the user navigates down. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusDown).
+Designa a próxima view a receber foco quando o usuário navega para baixo. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusDown).
 
 | Type   |
 | ------ |
@@ -501,7 +502,7 @@ Designates the next view to receive focus when the user navigates down. See the 
 
 ### `nextFocusForward` <div className="label android">Android</div>
 
-Designates the next view to receive focus when the user navigates forward. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusForward).
+Designa a próxima view a receber foco quando o usuário navega para frente. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusForward).
 
 | Type   |
 | ------ |
@@ -511,7 +512,7 @@ Designates the next view to receive focus when the user navigates forward. See t
 
 ### `nextFocusLeft` <div className="label android">Android</div>
 
-Designates the next view to receive focus when the user navigates left. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusLeft).
+Designa a próxima view a receber foco quando o usuário navega para a esquerda. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusLeft).
 
 | Type   |
 | ------ |
@@ -521,7 +522,7 @@ Designates the next view to receive focus when the user navigates left. See the 
 
 ### `nextFocusRight` <div className="label android">Android</div>
 
-Designates the next view to receive focus when the user navigates right. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusRight).
+Designa a próxima view a receber foco quando o usuário navega para a direita. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusRight).
 
 | Type   |
 | ------ |
@@ -531,7 +532,7 @@ Designates the next view to receive focus when the user navigates right. See the
 
 ### `nextFocusUp` <div className="label android">Android</div>
 
-Designates the next view to receive focus when the user navigates up. See the [Android documentation](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusUp).
+Designa a próxima view a receber foco quando o usuário navega para cima. Veja a [documentação do Android](https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusUp).
 
 | Type   |
 | ------ |
@@ -541,9 +542,9 @@ Designates the next view to receive focus when the user navigates up. See the [A
 
 ### `onAccessibilityAction`
 
-Invoked when the user performs the accessibility actions. The only argument to this function is an event containing the name of the action to perform.
+Invocado quando o usuário executa as ações de acessibilidade. O único argumento para esta função é um evento contendo o nome da ação a ser executada.
 
-See the [Accessibility guide](accessibility.md#accessibility-actions) for more information.
+Veja o [guia de Accessibility](accessibility.md#accessibility-actions) para mais informações.
 
 | Type     |
 | -------- |
@@ -553,7 +554,7 @@ See the [Accessibility guide](accessibility.md#accessibility-actions) for more i
 
 ### `onAccessibilityEscape` <div className="label ios">iOS</div>
 
-When `accessible` is `true`, the system will invoke this function when the user performs the escape gesture.
+Quando `accessible` é `true`, o sistema invocará esta função quando o usuário executar o gesto de escape.
 
 | Type     |
 | -------- |
@@ -563,7 +564,7 @@ When `accessible` is `true`, the system will invoke this function when the user 
 
 ### `onAccessibilityTap` <div className="label ios">iOS</div>
 
-When `accessible` is true, the system will try to invoke this function when the user performs accessibility tap gesture.
+Quando `accessible` é true, o sistema tentará invocar esta função quando o usuário executar o gesto de toque de acessibilidade.
 
 | Type     |
 | -------- |
@@ -573,9 +574,9 @@ When `accessible` is true, the system will try to invoke this function when the 
 
 ### `onLayout`
 
-Invoked on mount and on layout changes.
+Invocado na montagem e em mudanças de layout.
 
-This event is fired immediately once the layout has been calculated, but the new layout may not yet be reflected on the screen at the time the event is received, especially if a layout animation is in progress.
+Este evento é disparado imediatamente assim que o layout é calculado, mas o novo layout pode ainda não estar refletido na tela no momento em que o evento é recebido, especialmente se uma animação de layout estiver em andamento.
 
 | Type                                                     |
 | -------------------------------------------------------- |
@@ -585,7 +586,7 @@ This event is fired immediately once the layout has been calculated, but the new
 
 ### `onMagicTap` <div className="label ios">iOS</div>
 
-When `accessible` is `true`, the system will invoke this function when the user performs the magic tap gesture.
+Quando `accessible` é `true`, o sistema invocará esta função quando o usuário executar o gesto de toque mágico.
 
 | Type     |
 | -------- |
@@ -595,7 +596,7 @@ When `accessible` is `true`, the system will invoke this function when the user 
 
 ### `onMoveShouldSetResponder`
 
-Does this view want to "claim" touch responsiveness? This is called for every touch move on the `View` when it is not the responder.
+Esta view quer "reivindicar" responsividade ao toque? Isso é chamado para cada movimento de toque na `View` quando ela não é o respondedor.
 
 | Type                                                      |
 | --------------------------------------------------------- |
@@ -605,7 +606,7 @@ Does this view want to "claim" touch responsiveness? This is called for every to
 
 ### `onMoveShouldSetResponderCapture`
 
-If a parent `View` wants to prevent a child `View` from becoming responder on a move, it should have this handler which returns `true`.
+Se uma `View` pai quiser impedir que uma `View` filha se torne respondedora em um movimento, ela deve ter este manipulador que retorna `true`.
 
 | Type                                                      |
 | --------------------------------------------------------- |
@@ -615,9 +616,9 @@ If a parent `View` wants to prevent a child `View` from becoming responder on a 
 
 ### `onResponderGrant`
 
-The View is now responding for touch events. This is the time to highlight and show the user what is happening.
+A View agora está respondendo a eventos de toque. Este é o momento de destacar e mostrar ao usuário o que está acontecendo.
 
-On Android, return true from this callback to prevent any other native components from becoming responder until this responder terminates.
+No Android, retorne true deste callback para impedir que quaisquer outros componentes nativos se tornem respondedores até que este respondedor termine.
 
 | Type                                                              |
 | ----------------------------------------------------------------- |
@@ -627,7 +628,7 @@ On Android, return true from this callback to prevent any other native component
 
 ### `onResponderMove`
 
-The user is moving their finger.
+O usuário está movendo seu dedo.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -637,7 +638,7 @@ The user is moving their finger.
 
 ### `onResponderReject`
 
-Another responder is already active and will not release it to that `View` asking to be the responder.
+Outro respondedor já está ativo e não o liberará para aquela `View` solicitando ser o respondedor.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -647,7 +648,7 @@ Another responder is already active and will not release it to that `View` askin
 
 ### `onResponderRelease`
 
-Fired at the end of the touch.
+Disparado no final do toque.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -657,7 +658,7 @@ Fired at the end of the touch.
 
 ### `onResponderTerminate`
 
-The responder has been taken from the `View`. Might be taken by other views after a call to `onResponderTerminationRequest`, or might be taken by the OS without asking (e.g., happens with control center/ notification center on iOS)
+O respondedor foi retirado da `View`. Pode ser retirado por outras views após uma chamada a `onResponderTerminationRequest`, ou pode ser retirado pelo SO sem perguntar (por exemplo, acontece com a central de controle/central de notificações no iOS)
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -667,7 +668,7 @@ The responder has been taken from the `View`. Might be taken by other views afte
 
 ### `onResponderTerminationRequest`
 
-Some other `View` wants to become responder and is asking this `View` to release its responder. Returning `true` allows its release.
+Alguma outra `View` quer se tornar respondedora e está pedindo a esta `View` para liberar seu respondedor. Retornar `true` permite sua liberação.
 
 | Type                                                   |
 | ------------------------------------------------------ |
@@ -677,7 +678,7 @@ Some other `View` wants to become responder and is asking this `View` to release
 
 ### `onStartShouldSetResponder`
 
-Does this view want to become responder on the start of a touch?
+Esta view quer se tornar respondedora no início de um toque?
 
 | Type                                                      |
 | --------------------------------------------------------- |
@@ -687,7 +688,7 @@ Does this view want to become responder on the start of a touch?
 
 ### `onStartShouldSetResponderCapture`
 
-If a parent `View` wants to prevent a child `View` from becoming responder on a touch start, it should have this handler which returns `true`.
+Se uma `View` pai quiser impedir que uma `View` filha se torne respondedora no início de um toque, ela deve ter este manipulador que retorna `true`.
 
 | Type                                                      |
 | --------------------------------------------------------- |
@@ -697,11 +698,11 @@ If a parent `View` wants to prevent a child `View` from becoming responder on a 
 
 ### `pointerEvents`
 
-Controls whether the `View` can be the target of touch events.
+Controla se a `View` pode ser o alvo de eventos de toque.
 
-- `'auto'`: The View can be the target of touch events.
-- `'none'`: The View is never the target of touch events.
-- `'box-none'`: The View is never the target of touch events but its subviews can be. It behaves like if the view had the following classes in CSS:
+- `'auto'`: A View pode ser o alvo de eventos de toque.
+- `'none'`: A View nunca é o alvo de eventos de toque.
+- `'box-none'`: A View nunca é o alvo de eventos de toque mas suas subviews podem ser. Ela se comporta como se a view tivesse as seguintes classes em CSS:
 
 ```css
 .box-none {
@@ -712,7 +713,7 @@ Controls whether the `View` can be the target of touch events.
 }
 ```
 
-- `'box-only'`: The view can be the target of touch events but its subviews cannot be. It behaves like if the view had the following classes in CSS:
+- `'box-only'`: A view pode ser o alvo de eventos de toque mas suas subviews não podem ser. Ela se comporta como se a view tivesse as seguintes classes em CSS:
 
 ```css
 .box-only {
@@ -731,13 +732,13 @@ Controls whether the `View` can be the target of touch events.
 
 ### `ref`
 
-A ref setter that will be assigned an [element node](element-nodes) when mounted.
+Um setter de ref que será atribuído a um [nó de elemento](element-nodes) quando montado.
 
 ---
 
 ### `removeClippedSubviews`
 
-This is a reserved performance property exposed by `RCTView` and is useful for scrolling content when there are many subviews, most of which are offscreen. For this property to be effective, it must be applied to a view that contains many subviews that extend outside its bound. The subviews must also have `overflow: hidden`, as should the containing view (or one of its superviews).
+Esta é uma propriedade de performance reservada exposta por `RCTView` e é útil para rolagem de conteúdo quando há muitas subviews, a maioria das quais está fora da tela. Para que esta propriedade seja eficaz, ela deve ser aplicada a uma view que contenha muitas subviews que se estendem além de seu limite. As subviews também devem ter `overflow: hidden`, assim como a view container (ou uma de suas superviews).
 
 | Type |
 | ---- |
@@ -747,9 +748,9 @@ This is a reserved performance property exposed by `RCTView` and is useful for s
 
 ### `renderToHardwareTextureAndroid` <div className="label android">Android</div>
 
-Whether this `View` should render itself (and all of its children) into a single hardware texture on the GPU.
+Se esta `View` deve renderizar a si mesma (e todos os seus filhos) em uma única textura de hardware na GPU.
 
-On Android, this is useful for animations and interactions that only modify opacity, rotation, translation, and/or scale: in those cases, the view doesn't have to be redrawn and display lists don't need to be re-executed. The texture can be re-used and re-composited with different parameters. The downside is that this can use up limited video memory, so this prop should be set back to false at the end of the interaction/animation.
+No Android, isso é útil para animações e interações que modificam apenas opacidade, rotação, translação e/ou escala: nesses casos, a view não precisa ser redesenhada e as listas de exibição não precisam ser re-executadas. A textura pode ser reutilizada e recomposta com diferentes parâmetros. A desvantagem é que isso pode usar memória de vídeo limitada, então esta prop deve ser definida de volta como false no final da interação/animação.
 
 | Type |
 | ---- |
@@ -759,7 +760,7 @@ On Android, this is useful for animations and interactions that only modify opac
 
 ### `role`
 
-`role` communicates the purpose of a component to the user of an assistive technology. Has precedence over the [`accessibilityRole`](view#accessibilityrole) prop.
+`role` comunica o propósito de um componente ao usuário de uma tecnologia assistiva. Tem precedência sobre a prop [`accessibilityRole`](view#accessibilityrole).
 
 | Type                       |
 | -------------------------- |
@@ -769,11 +770,11 @@ On Android, this is useful for animations and interactions that only modify opac
 
 ### `shouldRasterizeIOS` <div className="label ios">iOS</div>
 
-Whether this `View` should be rendered as a bitmap before compositing.
+Se esta `View` deve ser renderizada como um bitmap antes da composição.
 
-On iOS, this is useful for animations and interactions that do not modify this component's dimensions nor its children; for example, when translating the position of a static view, rasterization allows the renderer to reuse a cached bitmap of a static view and quickly composite it during each frame.
+No iOS, isso é útil para animações e interações que não modificam as dimensões deste componente nem de seus filhos; por exemplo, ao transladar a posição de uma view estática, a rasterização permite que o renderizador reutilize um bitmap em cache de uma view estática e o componha rapidamente durante cada frame.
 
-Rasterization incurs an off-screen drawing pass and the bitmap consumes memory. Test and measure when using this property.
+A rasterização incorre em uma passagem de desenho fora da tela e o bitmap consome memória. Teste e meça ao usar esta propriedade.
 
 | Type |
 | ---- |
@@ -791,11 +792,11 @@ Rasterization incurs an off-screen drawing pass and the bitmap consumes memory. 
 
 ### `tabIndex` <div className="label android">Android</div>
 
-Whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.
-Supports the following values:
+Se esta `View` deve ser focalizável com um dispositivo de entrada não-toque, por exemplo, receber foco com um teclado de hardware.
+Suporta os seguintes valores:
 
-- `0` - View is focusable
-- `-1` - View is not focusable
+- `0` - View é focalizável
+- `-1` - View não é focalizável
 
 | Type        |
 | ----------- |
@@ -805,10 +806,10 @@ Supports the following values:
 
 ### `testID`
 
-Used to locate this view in end-to-end tests.
+Usado para localizar esta view em testes end-to-end.
 
 :::warning
-This disables the 'layout-only view removal' optimization for this view!
+Isso desabilita a otimização de 'remoção de view somente de layout' para esta view!
 :::
 
 | Type   |

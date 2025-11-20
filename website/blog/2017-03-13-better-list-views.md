@@ -1,5 +1,6 @@
 ---
-title: Better List Views in React Native
+ia-translated: true
+title: Melhores List Views no React Native
 author: Spencer Ahrens
 authorTitle: Software Engineer at Facebook
 authorURL: 'https://github.com/sahrens'
@@ -8,11 +9,11 @@ authorTwitter: sahrens2012
 tags: [engineering]
 ---
 
-Many of you have started playing with some of our new List components already after our [teaser announcement in the community group](https://www.facebook.com/groups/react.native.community/permalink/921378591331053), but we are officially announcing them today! No more `ListView`s or `DataSource`s, stale rows, ignored bugs, or excessive memory consumption - with the latest React Native March 2017 release candidate (`0.43-rc.1`) you can pick from the new suite of components what best fits your use-case, with great perf and feature sets out of the box:
+Muitos de vocês já começaram a brincar com alguns de nossos novos componentes List após nosso [anúncio teaser no grupo da comunidade](https://www.facebook.com/groups/react.native.community/permalink/921378591331053), mas estamos anunciando oficialmente hoje! Sem mais `ListView`s ou `DataSource`s, linhas obsoletas, bugs ignorados ou consumo excessivo de memória - com o último release candidate do React Native de Março de 2017 (`0.43-rc.1`) você pode escolher da nova suíte de componentes o que melhor se adequa ao seu caso de uso, com ótima performance e conjuntos de recursos prontos para uso:
 
 ### [`<FlatList>`](/docs/flatlist)
 
-This is the workhorse component for simple, performant lists. Provide an array of data and a `renderItem` function and you're good to go:
+Este é o componente de trabalho para listas simples e performáticas. Forneça um array de dados e uma função `renderItem` e você está pronto:
 
 ```
 <FlatList
@@ -23,7 +24,7 @@ This is the workhorse component for simple, performant lists. Provide an array o
 
 ### [`<SectionList>`](/docs/sectionlist)
 
-If you want to render a set of data broken into logical sections, maybe with section headers (e.g. in an alphabetical address book), and potentially with heterogeneous data and rendering (such as a profile view with some buttons followed by a composer, then a photo grid, then a friend grid, and finally a list of stories), this is the way to go.
+Se você quiser renderizar um conjunto de dados dividido em seções lógicas, talvez com cabeçalhos de seção (por exemplo, em uma agenda telefônica alfabética), e potencialmente com dados e renderização heterogêneos (como uma visualização de perfil com alguns botões seguidos de um compositor, depois uma grade de fotos, depois uma grade de amigos e finalmente uma lista de histórias), este é o caminho a seguir.
 
 ```
 <SectionList
@@ -47,26 +48,26 @@ If you want to render a set of data broken into logical sections, maybe with sec
 
 ### [`<VirtualizedList>`](/docs/virtualizedlist)
 
-The implementation behind the scenes with a more flexible API. Especially handy if your data is not in a plain array (e.g. an immutable list).
+A implementação por trás dos bastidores com uma API mais flexível. Especialmente útil se seus dados não estão em um array simples (por exemplo, uma lista imutável).
 
-## Features
+## Recursos
 
-Lists are used in many contexts, so we packed the new components full of features to handle the majority of use cases out of the box:
+Listas são usadas em muitos contextos, então empacotamos os novos componentes cheios de recursos para lidar com a maioria dos casos de uso prontos para uso:
 
-- Scroll loading (`onEndReached`).
+- Carregamento por rolagem (`onEndReached`).
 - Pull to refresh (`onRefresh` / `refreshing`).
-- [Configurable](https://github.com/facebook/react-native/blob/master/Libraries/CustomComponents/Lists/ViewabilityHelper.js) viewability (VPV) callbacks (`onViewableItemsChanged` / `viewabilityConfig`).
-- Horizontal mode (`horizontal`).
-- Intelligent item and section separators.
-- Multi-column support (`numColumns`)
-- `scrollToEnd`, `scrollToIndex`, and `scrollToItem`
-- Better Flow typing.
+- Callbacks de visibilidade [configuráveis](https://github.com/facebook/react-native/blob/master/Libraries/CustomComponents/Lists/ViewabilityHelper.js) (VPV) (`onViewableItemsChanged` / `viewabilityConfig`).
+- Modo horizontal (`horizontal`).
+- Separadores inteligentes de itens e seções.
+- Suporte multi-coluna (`numColumns`)
+- `scrollToEnd`, `scrollToIndex` e `scrollToItem`
+- Melhor tipagem Flow.
 
-### Some Caveats
+### Algumas Ressalvas
 
-- The internal state of item subtrees is not preserved when content scrolls out of the render window. Make sure all your data is captured in the item data or external stores like Flux, Redux, or Relay.
+- O estado interno das subárvores de itens não é preservado quando o conteúdo sai da janela de renderização. Certifique-se de que todos os seus dados sejam capturados nos dados do item ou em stores externos como Flux, Redux ou Relay.
 
-- These components are based on `PureComponent` which means that they will not re-render if `props` remains shallow-equal. Make sure that everything your `renderItem` function depends on directly is passed as a prop that is not `===` after updates, otherwise your UI may not update on changes. This includes the `data` prop and parent component state. For example:
+- Esses componentes são baseados em `PureComponent`, o que significa que eles não serão re-renderizados se `props` permanecer shallow-equal. Certifique-se de que tudo do qual sua função `renderItem` depende diretamente seja passado como uma prop que não seja `===` após atualizações, caso contrário sua UI pode não atualizar nas mudanças. Isso inclui a prop `data` e o estado do componente pai. Por exemplo:
 
   ```jsx
   <FlatList
@@ -95,32 +96,32 @@ Lists are used in many contexts, so we packed the new components full of feature
   />
   ```
 
-- In order to constrain memory and enable smooth scrolling, content is rendered asynchronously offscreen. This means it's possible to scroll faster than the fill rate and momentarily see blank content. This is a tradeoff that can be adjusted to suit the needs of each application, and we are working on improving it behind the scenes.
+- Para restringir a memória e permitir rolagem suave, o conteúdo é renderizado de forma assíncrona fora da tela. Isso significa que é possível rolar mais rápido do que a taxa de preenchimento e momentaneamente ver conteúdo em branco. Este é um trade-off que pode ser ajustado para atender às necessidades de cada aplicativo, e estamos trabalhando para melhorá-lo nos bastidores.
 
-- By default, these new lists look for a `key` prop on each item and use that for the React key. Alternatively, you can provide a custom `keyExtractor` prop.
+- Por padrão, essas novas listas procuram uma prop `key` em cada item e usam isso para a key do React. Alternativamente, você pode fornecer uma prop `keyExtractor` personalizada.
 
 ## Performance
 
-Besides simplifying the API, the new list components also have significant performance enhancements, the main one being nearly constant memory usage for any number of rows. This is done by 'virtualizing' elements that are outside of the render window by completely unmounting them from the component hierarchy and reclaiming the JS memory from the react components, along with the native memory from the shadow tree and the UI views. This has a catch which is that internal component state will not be preserved, so **make sure you track any important state outside of the components themselves, e.g. in Relay or Redux or Flux store.**
+Além de simplificar a API, os novos componentes de lista também têm melhorias significativas de performance, sendo a principal o uso de memória quase constante para qualquer número de linhas. Isso é feito 'virtualizando' elementos que estão fora da janela de renderização, desmontando-os completamente da hierarquia de componentes e recuperando a memória JS dos componentes react, junto com a memória nativa da shadow tree e das views UI. Isso tem uma ressalva, que é que o estado interno do componente não será preservado, então **certifique-se de rastrear qualquer estado importante fora dos próprios componentes, por exemplo, em store Relay, Redux ou Flux.**
 
-Limiting the render window also reduces the amount of work that needs to be done by React and the native platform, e.g from view traversals. Even if you are rendering the last of a million elements, with these new lists there is no need to iterate through all those elements in order to render. You can even jump to the middle with `scrollToIndex` without excessive rendering.
+Limitar a janela de renderização também reduz a quantidade de trabalho que precisa ser feito pelo React e pela plataforma nativa, por exemplo, de travessias de view. Mesmo se você estiver renderizando o último de um milhão de elementos, com essas novas listas não há necessidade de iterar por todos esses elementos para renderizar. Você pode até pular para o meio com `scrollToIndex` sem renderização excessiva.
 
-We've also made some improvements with scheduling which should help with application responsiveness. Items at the edge of the render window are rendered infrequently and at a lower priority after any active gestures or animations or other interactions have completed.
+Também fizemos algumas melhorias com agendamento que devem ajudar com a responsividade do aplicativo. Itens na borda da janela de renderização são renderizados com pouca frequência e em prioridade mais baixa após quaisquer gestos ativos, animações ou outras interações terem sido concluídas.
 
-## Advanced Usage
+## Uso Avançado
 
-Unlike `ListView`, all items in the render window are re-rendered any time any props change. Often this is fine because the windowing reduces the number of items to a constant number, but if your items are on the complex side, you should make sure to follow React best practices for performance and use `React.PureComponent` and/or `shouldComponentUpdate` as appropriate within your components to limit re-renders of the recursive subtree.
+Ao contrário de `ListView`, todos os itens na janela de renderização são re-renderizados sempre que qualquer prop muda. Frequentemente isso é bom porque o windowing reduz o número de itens para um número constante, mas se seus itens forem complexos, você deve certificar-se de seguir as melhores práticas do React para performance e usar `React.PureComponent` e/ou `shouldComponentUpdate` conforme apropriado dentro de seus componentes para limitar re-renderizações da subárvore recursiva.
 
-If you can calculate the height of your rows without rendering them, you can improve the user experience by providing the `getItemLayout` prop. This makes it much smoother to scroll to specific items with e.g. `scrollToIndex`, and will improve the scroll indicator UI because the height of the content can be determined without rendering it.
+Se você pode calcular a altura de suas linhas sem renderizá-las, você pode melhorar a experiência do usuário fornecendo a prop `getItemLayout`. Isso torna muito mais suave rolar para itens específicos com, por exemplo, `scrollToIndex`, e melhorará o indicador de rolagem UI porque a altura do conteúdo pode ser determinada sem renderizá-lo.
 
-If you have an alternative data type, like an immutable list, `<VirtualizedList>` is the way to go. It takes a `getItem` prop that lets you return the item data for any given index and has looser flow typing.
+Se você tiver um tipo de dados alternativo, como uma lista imutável, `<VirtualizedList>` é o caminho a seguir. Ela recebe uma prop `getItem` que permite retornar os dados do item para qualquer índice dado e tem tipagem flow mais flexível.
 
-There are also a bunch of parameters you can tweak if you have an unusual use case. For example, you can use `windowSize` to trade off memory usage vs. user experience, `maxToRenderPerBatch` to adjust fill rate vs. responsiveness, `onEndReachedThreshold` to control when scroll loading happens, and more.
+Há também vários parâmetros que você pode ajustar se tiver um caso de uso incomum. Por exemplo, você pode usar `windowSize` para compensar uso de memória vs. experiência do usuário, `maxToRenderPerBatch` para ajustar taxa de preenchimento vs. responsividade, `onEndReachedThreshold` para controlar quando o carregamento por rolagem acontece, e mais.
 
-## Future Work
+## Trabalho Futuro
 
-- Migration of existing surfaces (ultimately deprecation of `ListView`).
-- More features as we see/hear the need (let us know!).
-- Sticky section header support.
-- More performance optimizations.
-- Support functional item components with state.
+- Migração de superfícies existentes (eventualmente deprecação de `ListView`).
+- Mais recursos conforme vermos/ouvirmos a necessidade (nos avise!).
+- Suporte a cabeçalhos de seção fixos.
+- Mais otimizações de performance.
+- Suporte a componentes de item funcionais com estado.

@@ -1,48 +1,49 @@
 ---
-title: Releasing React Native 0.59
+ia-translated: true
+title: Lançamento do React Native 0.59
 author: Ryan Turner
-authorTitle: Core Maintainer & React Native Developer
+authorTitle: Mantenedor Principal & Desenvolvedor React Native
 authorURL: 'https://twitter.com/turnrye'
 authorImageURL: 'https://avatars0.githubusercontent.com/u/701035?s=460&v=4'
 authorTwitter: turnrye
-tags: [announcement, release]
+tags: [anúncio, lançamento]
 ---
 
-Welcome to the 0.59 release of React Native! This is another big release with 644 commits by 88 contributors. Contributions also come in other forms, so _thank you_ for maintaining issues, fostering communities, and teaching people about React Native. This month brings a number of highly anticipated changes, and we hope you enjoy them.
+Bem-vindo ao lançamento 0.59 do React Native! Este é mais um grande lançamento com 644 commits de 88 contribuidores. As contribuições também vêm de outras formas, então _obrigado_ por manter issues, fomentar comunidades e ensinar as pessoas sobre React Native. Este mês traz uma série de mudanças muito aguardadas, e esperamos que você as aproveite.
 
-## 🎣 Hooks are here
+## 🎣 Hooks chegaram
 
-React Hooks are part of this release, which let you reuse stateful logic across components. There is a lot of buzz about hooks, but if you haven't heard, take a look at some of the wonderful resources below:
+React Hooks fazem parte deste lançamento, o que permite reutilizar lógica com estado entre componentes. Há muito buzz sobre hooks, mas se você ainda não ouviu falar, dê uma olhada em alguns dos recursos maravilhosos abaixo:
 
-> - [Introducing Hooks](https://reactjs.org/docs/hooks-intro.html) explains why we’re adding Hooks to React.
-> - [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html) is a fast-paced overview of the built-in Hooks.
-> - [Building Your Own Hooks](https://reactjs.org/docs/hooks-custom.html) demonstrates code reuse with custom Hooks.
-> - [Making Sense of React Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889) explores the new possibilities unlocked by Hooks.
-> - [useHooks.com](https://usehooks.com/) showcases community-maintained Hooks recipes and demos.
+> - [Introducing Hooks](https://reactjs.org/docs/hooks-intro.html) explica por que estamos adicionando Hooks ao React.
+> - [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html) é uma visão geral acelerada dos Hooks integrados.
+> - [Building Your Own Hooks](https://reactjs.org/docs/hooks-custom.html) demonstra a reutilização de código com Hooks personalizados.
+> - [Making Sense of React Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889) explora as novas possibilidades desbloqueadas pelos Hooks.
+> - [useHooks.com](https://usehooks.com/) apresenta receitas e demonstrações de Hooks mantidos pela comunidade.
 
-Be sure to give this a try in your apps. We hope that you find the reuse as exciting as we do.
+Certifique-se de experimentar isso em seus aplicativos. Esperamos que você ache a reutilização tão empolgante quanto nós.
 
-## 📱 Updated JSC means performance gains and 64-bit support on Android
+## 📱 JSC atualizado significa ganhos de performance e suporte a 64 bits no Android
 
-React Native uses JSC ([JavaScriptCore](https://webkit.org/)) to power your application. JSC on Android was a few years old, which meant that a lot of modern JavaScript features weren't supported. Even worse, it performed poorly compared iOS's modern JSC. With this release, that all changes.
+React Native usa JSC ([JavaScriptCore](https://webkit.org/)) para alimentar sua aplicação. O JSC no Android tinha alguns anos de idade, o que significava que muitos recursos modernos de JavaScript não eram suportados. Pior ainda, seu desempenho era ruim em comparação com o JSC moderno do iOS. Com este lançamento, tudo isso muda.
 
-Thanks to some awesome work by [@DanielZlotin](https://github.com/danielzlotin), [@dulmandakh](https://github.com/dulmandakh), [@gengjiawen](https://github.com/gengjiawen), [@kmagiera](https://github.com/kmagiera), and [@kudo](https://github.com/kudo) JSC has caught up with the past few years. This brings with it 64-bit support, modern JavaScript support, and [big performance improvements](https://github.com/react-native-community/jsc-android-buildscripts/tree/master/measure). Kudos for also making this a maintainable process now so that we can take advantage of future WebKit improvements without so much legwork, and thank you Software Mansion and Expo for making this work possible.
+Graças ao trabalho incrível de [@DanielZlotin](https://github.com/danielzlotin), [@dulmandakh](https://github.com/dulmandakh), [@gengjiawen](https://github.com/gengjiawen), [@kmagiera](https://github.com/kmagiera) e [@kudo](https://github.com/kudo), o JSC alcançou os últimos anos. Isso traz consigo suporte a 64 bits, suporte a JavaScript moderno e [grandes melhorias de performance](https://github.com/react-native-community/jsc-android-buildscripts/tree/master/measure). Parabéns também por tornar este um processo sustentável agora, para que possamos aproveitar futuras melhorias do WebKit sem tanto trabalho braçal, e obrigado Software Mansion e Expo por tornar este trabalho possível.
 
-## 💨 Faster app launches with inline requires
+## 💨 Inicialização mais rápida de apps com inline requires
 
-We want to help people have performant React Native apps by default and are working to bring Facebook's optimizations to the community. Applications load resources as needed rather than slowing down launch. This feature is called "inline requires", as it lets Metro identify components to be lazy loaded. Apps with a deep and varied component architecture will see the most improvement.
+Queremos ajudar as pessoas a terem aplicativos React Native performáticos por padrão e estamos trabalhando para trazer as otimizações do Facebook para a comunidade. As aplicações carregam recursos conforme necessário, em vez de desacelerar a inicialização. Este recurso é chamado de "inline requires", pois permite que o Metro identifique componentes para serem carregados preguiçosamente. Aplicativos com uma arquitetura de componentes profunda e variada verão a maior melhoria.
 
 ![source of the `metro.config.js` file in the 0.59 template, demonstrating where to enable `inlineRequires`](/blog/assets/inline-requires.png)
 
-We need the community to let us know how it works before we turn it on by default. When you upgrade to 0.59, there will be a new `metro.config.js` file; flip the options to true and give us [your feedback](https://twitter.com/hashtag/inline-requires)! Read more about inline requires [in the performance docs](/docs/performance#inline-requires) to benchmark your app.
+Precisamos que a comunidade nos informe como funciona antes de ativarmos por padrão. Quando você atualizar para 0.59, haverá um novo arquivo `metro.config.js`; mude as opções para true e nos dê [seu feedback](https://twitter.com/hashtag/inline-requires)! Leia mais sobre inline requires [na documentação de performance](/docs/performance#inline-requires) para fazer benchmark do seu aplicativo.
 
-## 🚅 Lean core is underway
+## 🚅 Lean core está em andamento
 
-React Native is a large and complex project with a complicated repository. This makes the codebase less approachable to contributors, difficult to test, and bloated as a dev dependency. [Lean Core](https://github.com/react-native-community/discussions-and-proposals/issues/6) is our effort to address these issues by migrating code to separate libraries for better management. The past few releases have seen the first steps of this, but [let's get serious](https://www.youtube.com/watch?v=FMLKb4or8yg).
+React Native é um projeto grande e complexo com um repositório complicado. Isso torna a base de código menos acessível para contribuidores, difícil de testar e inchada como dependência de desenvolvimento. [Lean Core](https://github.com/react-native-community/discussions-and-proposals/issues/6) é nosso esforço para resolver esses problemas migrando código para bibliotecas separadas para melhor gerenciamento. Os últimos lançamentos viram os primeiros passos disso, mas [vamos ficar sérios](https://www.youtube.com/watch?v=FMLKb4or8yg).
 
-You may notice that additional components are now officially deprecated. This is great news, as there are now owners for these features actively maintaining them. Heed the warning messages and migrate to the new libraries for these features, because they will be removed in a future release. Below is a table indicating the component, its status, and where you may migrate your use to.
+Você pode notar que componentes adicionais agora estão oficialmente depreciados. Esta é uma ótima notícia, pois agora existem mantenedores para esses recursos que os mantêm ativamente. Preste atenção às mensagens de aviso e migre para as novas bibliotecas para esses recursos, porque eles serão removidos em um lançamento futuro. Abaixo está uma tabela indicando o componente, seu status e para onde você pode migrar seu uso.
 
-| Component            | Deprecated? | New home                                                                                                                                                 |
+| Component            | Depreciado? | Nova localização                                                                                                                                         |
 | -------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **AsyncStorage**     | 0.59        | [@react-native-community/react-native-async-storage](https://github.com/react-native-community/react-native-async-storage)                               |
 | **ImageStore**       | 0.59        | [expo-file-system](https://github.com/expo/expo/tree/master/packages/expo-file-system) or [react-native-fs](https://github.com/itinance/react-native-fs) |
@@ -51,32 +52,32 @@ You may notice that additional components are now officially deprecated. This is
 | **Slider**           | 0.59        | [@react-native-community/react-native-slider](https://github.com/react-native-community/react-native-slider)                                             |
 | **ViewPagerAndroid** | 0.59        | [@react-native-community/react-native-viewpager](https://github.com/react-native-community/react-native-viewpager)                                       |
 
-Over the coming months, there will be many more components following this path to a leaner core. We're looking for help with this &mdash; head over to the [lean core umbrella](https://github.com/facebook/react-native/issues/23313) to pitch in.
+Nos próximos meses, haverá muitos mais componentes seguindo este caminho para um core mais enxuto. Estamos procurando ajuda com isso &mdash; vá até o [umbrella do lean core](https://github.com/facebook/react-native/issues/23313) para contribuir.
 
-## 👩🏽‍💻 CLI improvements
+## 👩🏽‍💻 Melhorias no CLI
 
-React Native's command line tools are developer's entry point to the ecosystem, but they had long-standing issues and lacked official support. The CLI tools have been moved to a [new repository](https://github.com/react-native-community/react-native-cli), and a [dedicated group of maintainers](https://blog.callstack.io/the-react-native-cli-has-a-new-home-79b63838f0e6) have already made some exciting improvements.
+As ferramentas de linha de comando do React Native são o ponto de entrada do desenvolvedor para o ecossistema, mas tinham problemas de longa data e faltava suporte oficial. As ferramentas CLI foram movidas para um [novo repositório](https://github.com/react-native-community/react-native-cli), e um [grupo dedicado de mantenedores](https://blog.callstack.io/the-react-native-cli-has-a-new-home-79b63838f0e6) já fez algumas melhorias empolgantes.
 
-Logs are formatted much better now. Commands now run nearly instantly &mdash; you'll immediately notice a difference:
+Os logs estão muito melhor formatados agora. Os comandos agora são executados quase instantaneamente &mdash; você notará imediatamente a diferença:
 
 ![0.58's CLI is slow to start](/blog/assets/0.58-cli-speed.png)![0.58's CLI is nearly instantaneous](/blog/assets/0.59-cli-speed.png)
 
-## 🚀 Upgrading to 0.59
+## 🚀 Atualizando para 0.59
 
-We heard your feedback regarding the [React Native upgrade process](https://github.com/react-native-community/discussions-and-proposals/issues/68) and we are taking steps to improve the experience in [future releases](https://github.com/react-native-community/discussions-and-proposals/issues/64#issuecomment-444775432). To upgrade to 0.59, we recommend using [`rn-diff-purge`](https://github.com/react-native-community/rn-diff-purge) to determine what has changed between your current React Native version and 0.59, then applying those changes manually. Once you've upgraded your project to 0.59, you will be able to use the newly improved `react-native upgrade` command (based on `rn-diff-purge`!) to upgrade to 0.60 and beyond as newer releases become available.
+Ouvimos seu feedback sobre o [processo de atualização do React Native](https://github.com/react-native-community/discussions-and-proposals/issues/68) e estamos tomando medidas para melhorar a experiência em [lançamentos futuros](https://github.com/react-native-community/discussions-and-proposals/issues/64#issuecomment-444775432). Para atualizar para 0.59, recomendamos usar [`rn-diff-purge`](https://github.com/react-native-community/rn-diff-purge) para determinar o que mudou entre sua versão atual do React Native e 0.59, e então aplicar essas alterações manualmente. Depois de atualizar seu projeto para 0.59, você poderá usar o comando `react-native upgrade` recém-melhorado (baseado em `rn-diff-purge`!) para atualizar para 0.60 e versões posteriores conforme novos lançamentos se tornarem disponíveis.
 
 ## 🔨 Breaking Changes
 
-Android support in 0.59 has been cleaned up following Google's latest recommendations, which may result in potential breakage of existing apps. This issue might present as a runtime crash and a message, "You need to use a Theme.AppCompat theme (or descendant) with this activity". We recommend updating your project's `AndroidManifest.xml` file, making sure that the `android:theme` value is an `AppCompat` theme (such as `@style/Theme.AppCompat.Light.NoActionBar`).
+O suporte ao Android em 0.59 foi limpo seguindo as últimas recomendações do Google, o que pode resultar em potencial quebra de aplicativos existentes. Este problema pode se apresentar como uma falha em tempo de execução e uma mensagem, "You need to use a Theme.AppCompat theme (or descendant) with this activity". Recomendamos atualizar o arquivo `AndroidManifest.xml` do seu projeto, certificando-se de que o valor `android:theme` seja um tema `AppCompat` (como `@style/Theme.AppCompat.Light.NoActionBar`).
 
-The `react-native-git-upgrade` command has been removed in 0.59, in favor of the newly improved `react-native upgrade` command.
+O comando `react-native-git-upgrade` foi removido em 0.59, em favor do comando `react-native upgrade` recém-melhorado.
 
-## 🤗 Thanks
+## 🤗 Agradecimentos
 
-Lots of new contributors helped with [enabling generation of native code from flow types](https://github.com/facebook/react-native/issues/22990) and [resolving Xcode warnings](https://github.com/facebook/react-native/issues/22609) - these are a great way to learn how React Native works and contributing to the greater good. Thank you! Look out for similar issues in the future.
+Muitos novos contribuidores ajudaram com [habilitação de geração de código nativo a partir de tipos flow](https://github.com/facebook/react-native/issues/22990) e [resolução de avisos do Xcode](https://github.com/facebook/react-native/issues/22609) - estas são ótimas maneiras de aprender como o React Native funciona e contribuir para o bem maior. Obrigado! Fique de olho em issues similares no futuro.
 
-While these are the highlights that we noted, there are many others to be excited about. To see all of the updates, take a look at the [changelog](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md). 0.59 is a huge release – we can't wait for you to try it out.
+Embora estes sejam os destaques que notamos, há muitos outros para se entusiasmar. Para ver todas as atualizações, dê uma olhada no [changelog](https://github.com/react-native-community/react-native-releases/blob/master/CHANGELOG.md). 0.59 é um lançamento enorme – mal podemos esperar para você experimentá-lo.
 
-We have even more improvements coming throughout the rest of the year. Stay tuned!
+Temos ainda mais melhorias chegando durante o resto do ano. Fique ligado!
 
-[Ryan](https://github.com/turnrye) and the whole [React Native core team](https://twitter.com/reactnative)
+[Ryan](https://github.com/turnrye) e toda a [equipe principal do React Native](https://twitter.com/reactnative)

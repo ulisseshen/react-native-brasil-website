@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -33,13 +35,13 @@ const VersionItem = ({
     archivedDocumentationUrl ??
       `/docs/${isCurrentVersion ? '' : version + '/'}getting-started`
   );
-  const documentationLink = <a href={documentationUrl}>Documentation</a>;
+  const documentationLink = <a href={documentationUrl}>Documentação</a>;
 
   let releaseNotesURL = 'https://github.com/facebook/react-native/releases';
   let releaseNotesTitle = 'Changelog';
   if (isNext) {
     releaseNotesURL = `https://github.com/facebook/react-native/compare/${latestMajorVersion}-stable...main`;
-    releaseNotesTitle = 'Commits since ' + latestMajorVersion;
+    releaseNotesTitle = 'Commits desde ' + latestMajorVersion;
   } else if (!isRC) {
     releaseNotesURL = `https://github.com/facebook/react-native/releases/tag/v${version}.0`;
   }
@@ -65,35 +67,35 @@ const Versions = () => {
   );
 
   return (
-    <Layout title="Versions" wrapperClassName="versions-page">
-      <h1>React Native versions</h1>
+    <Layout title="Versões" wrapperClassName="versions-page">
+      <h1>Versões do React Native</h1>
       <p>
-        Open source React Native releases follow a release train that is
-        coordinated on GitHub through the{' '}
+        As versões de código aberto do React Native seguem um processo de release coordenado
+        no GitHub através do repositório{' '}
         <a
           href={'https://github.com/reactwg/react-native-releases/discussions'}>
           <code>react-native-releases</code>
         </a>{' '}
-        repository. New releases are created off the <code>main</code> branch of{' '}
+        . Novas versões são criadas a partir da branch <code>main</code> de{' '}
         <a href={'https://github.com/facebook/react-native'}>
           <code>facebook/react-native</code>
         </a>
-        . They will follow a Release Candidate process to allow contributors
-        like yourself to{' '}
-        <a href={useBaseUrl('docs/upgrading')}>verify the changes</a> and to
-        identify any issues by{' '}
+        . Elas seguirão um processo de Release Candidate para permitir que contribuidores
+        como você{' '}
+        <a href={useBaseUrl('docs/upgrading')}>verifiquem as mudanças</a> e
+        identifiquem quaisquer problemas{' '}
         <a href="https://github.com/facebook/react-native/issues">
-          writing clear, actionable bug reports
+          escrevendo relatórios de bugs claros e acionáveis
         </a>
-        . Eventually, the release candidate will be promoted to stable.
+        . Eventualmente, o release candidate será promovido a estável.
       </p>
-      <h2>Next version (Unreleased)</h2>
+      <h2>Próxima versão (Não lançada)</h2>
       <p>
-        To see what changes are coming and provide better feedback to React
-        Native contributors, use the latest release candidate when possible.
-        Changes introduced in a release candidate will have been shipped to
-        production Facebook apps for over two weeks by the time the release
-        candidate is cut.
+        Para ver quais mudanças estão chegando e fornecer melhor feedback aos
+        contribuidores do React Native, use o último release candidate quando possível.
+        As mudanças introduzidas em um release candidate terão sido enviadas para
+        apps da Facebook em produção por mais de duas semanas no momento em que o release
+        candidate é criado.
       </p>
       <table className="versions">
         <tbody>
@@ -106,10 +108,10 @@ const Versions = () => {
           ))}
         </tbody>
       </table>
-      <h2>Latest version</h2>
+      <h2>Última versão</h2>
       <p>
-        The most recent stable version will be used automatically whenever a new
-        project is created using the <code>npx react-native init</code> command.
+        A versão estável mais recente será usada automaticamente sempre que um novo
+        projeto for criado usando o comando <code>npx react-native init</code>.
       </p>
       <table className="versions">
         <tbody>
@@ -120,7 +122,7 @@ const Versions = () => {
           />
         </tbody>
       </table>
-      <h2>Previous versions</h2>
+      <h2>Versões anteriores</h2>
       <table className="versions">
         <tbody>
           {stableVersions.map(version => (
@@ -132,10 +134,10 @@ const Versions = () => {
           ))}
         </tbody>
       </table>
-      <h2>Archived versions</h2>
+      <h2>Versões arquivadas</h2>
       <p>
-        The documentation for unmaintained versions can be found on website
-        archive snapshots, hosted as separate sites.
+        A documentação para versões não mantidas pode ser encontrada em snapshots de arquivo do website,
+        hospedados como sites separados.
       </p>
       <table className="versions">
         <tbody>
@@ -152,8 +154,8 @@ const Versions = () => {
         </tbody>
       </table>
       <p>
-        The documentation for versions below <code>0.60</code> can be found on
-        the separate website called{' '}
+        A documentação para versões abaixo de <code>0.60</code> pode ser encontrada no
+        site separado chamado{' '}
         <a href="https://archive.reactnative.dev/versions">
           React Native Archive
         </a>

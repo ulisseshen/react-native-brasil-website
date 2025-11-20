@@ -1,54 +1,55 @@
 ---
-title: React Native Open Source Update March 2019
+ia-translated: true
+title: Atualização do React Native Open Source - Março de 2019
 authors: [cpojer]
 tags: [announcement]
 ---
 
-We announced our [React Native Open Source roadmap](/blog/2018/11/01/oss-roadmap) in Q4 2018 after deciding to invest more in the React Native open source community.
+Anunciamos nosso [roadmap do React Native Open Source](/blog/2018/11/01/oss-roadmap) no Q4 de 2018 após decidirmos investir mais na comunidade open source do React Native.
 
-For our first milestone, we focused on identifying and improving the most visible aspects of our community. Our goals were to reduce outstanding pull requests, reduce the project's surface area, identify leading user problems, and establish guidelines for community management.
+Para nosso primeiro milestone, focamos em identificar e melhorar os aspectos mais visíveis da nossa comunidade. Nossos objetivos eram reduzir os pull requests pendentes, reduzir a área de superfície do projeto, identificar os principais problemas dos usuários e estabelecer diretrizes para gestão da comunidade.
 
-In the past two months, we made more progress than we expected. Read on for more details:
+Nos últimos dois meses, fizemos mais progresso do que esperávamos. Continue lendo para mais detalhes:
 
 ### Pull Requests
 
-In order to build a healthy community, we must respond quickly to code contributions. In past years, we de-prioritized reviewing community contributions and accumulated 280 pull requests (December 2018). In the first milestone, we reduced the number of open pull requests to ~65. Simultaneously, the average number of pull requests opened per day increased from 3.5 to 7 which means we have handled about [600 pull requests](https://github.com/facebook/react-native/pulls?page=24&q=is%3Apr+closed%3A%3E2018-12-01&utf8=%E2%9C%93) in the last three months.
+Para construir uma comunidade saudável, devemos responder rapidamente às contribuições de código. Nos últimos anos, despriorizamos a revisão de contribuições da comunidade e acumulamos 280 pull requests (dezembro de 2018). No primeiro milestone, reduzimos o número de pull requests abertos para ~65. Simultaneamente, o número médio de pull requests abertos por dia aumentou de 3.5 para 7, o que significa que lidamos com cerca de [600 pull requests](https://github.com/facebook/react-native/pulls?page=24&q=is%3Apr+closed%3A%3E2018-12-01&utf8=%E2%9C%93) nos últimos três meses.
 
-We merged [almost two-thirds](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr+closed%3A%3E2018-12-01+label%3A%22Merged%22+) and closed one-third of the pull requests. They were closed without being merged if they are obsolete or low quality, or if they unnecessarily increase the project's surface area. Most of the merged pull requests fixed bugs, improved cross-platform parity, or introduced new features. Notable contributions include improving type safety and the ongoing work to support AndroidX.
+Fizemos merge em [quase dois terços](https://github.com/facebook/react-native/pulls?utf8=%E2%9C%93&q=is%3Apr+closed%3A%3E2018-12-01+label%3A%22Merged%22+) e fechamos um terço dos pull requests. Eles foram fechados sem merge se estavam obsoletos ou eram de baixa qualidade, ou se aumentavam desnecessariamente a área de superfície do projeto. A maioria dos pull requests com merge corrigiu bugs, melhorou a paridade entre plataformas ou introduziu novos recursos. Contribuições notáveis incluem melhorias na segurança de tipos e o trabalho em andamento para suportar AndroidX.
 
-At Facebook, we run React Native from master, so we test all changes first before they make it into a React Native Release. Out of all the merged pull requests, only six caused issues: four only affected internal development and two were caught in the release candidate state.
+No Facebook, executamos o React Native a partir do master, então testamos todas as mudanças primeiro antes que elas cheguem a um Release do React Native. De todos os pull requests com merge, apenas seis causaram problemas: quatro afetaram apenas o desenvolvimento interno e dois foram detectados no estado de release candidate.
 
-One of the more visible community contributions was [the updated “RedBox” screen](https://github.com/facebook/react-native/pull/22242). It's a good example of how the community is making the developer experience friendlier.
+Uma das contribuições da comunidade mais visíveis foi [a atualização da tela "RedBox"](https://github.com/facebook/react-native/pull/22242). É um bom exemplo de como a comunidade está tornando a experiência do desenvolvedor mais amigável.
 
 ### Lean Core
 
-React Native currently has a very wide surface area with many unmaintained abstractions that we do not use a lot at Facebook. We are working on reducing the surface area in order to make React Native smaller and allow the community to take better care of abstractions that are mostly unused at Facebook.
+O React Native atualmente tem uma área de superfície muito ampla com muitas abstrações não mantidas que não usamos muito no Facebook. Estamos trabalhando para reduzir a área de superfície a fim de tornar o React Native menor e permitir que a comunidade cuide melhor das abstrações que são pouco usadas no Facebook.
 
-In the first milestone, [we asked the community for help on the Lean Core project](https://twitter.com/reactnative/status/1093171521114247171). The response was overwhelming and we could barely keep up with all the progress. [Check out all the work completed in less than a month](https://github.com/facebook/react-native/issues/23313)!
+No primeiro milestone, [pedimos à comunidade ajuda no projeto Lean Core](https://twitter.com/reactnative/status/1093171521114247171). A resposta foi esmagadora e mal conseguimos acompanhar todo o progresso. [Confira todo o trabalho concluído em menos de um mês](https://github.com/facebook/react-native/issues/23313)!
 
-What we are most excited about is that maintainers have jumped in fixing long standing issues, adding tests, and supporting long requested features. These modules are getting more support than they ever did within React Native, showing that this is a great step for the community. Examples of such projects are [WebView](https://github.com/react-native-community/react-native-webview) that has [received many pull requests](https://twitter.com/titozzz/status/1101283928026034176) since their extraction and the CLI that is now [maintained by members of the community](https://blog.callstack.io/the-react-native-cli-has-a-new-home-79b63838f0e6) and received much needed improvements and fixes.
+O que mais nos anima é que os mantenedores se envolveram corrigindo problemas antigos, adicionando testes e suportando recursos há muito solicitados. Esses módulos estão recebendo mais suporte do que nunca tiveram dentro do React Native, mostrando que este é um ótimo passo para a comunidade. Exemplos de tais projetos são o [WebView](https://github.com/react-native-community/react-native-webview) que [recebeu muitos pull requests](https://twitter.com/titozzz/status/1101283928026034176) desde sua extração, e a CLI que agora é [mantida por membros da comunidade](https://blog.callstack.io/the-react-native-cli-has-a-new-home-79b63838f0e6) e recebeu melhorias e correções muito necessárias.
 
-### Leading User Problems
+### Principais Problemas dos Usuários
 
-In December, we asked the community what they [disliked about React Native](https://github.com/react-native-community/discussions-and-proposals/issues/64). We aggregated the responses and [replied to each and every problem](https://github.com/react-native-community/discussions-and-proposals/issues/104). Fortunately, many of the issues that our community faces are also problems at Facebook. In our next milestone, we plan to address some of the main problems.
+Em dezembro, perguntamos à comunidade o que eles [não gostavam sobre o React Native](https://github.com/react-native-community/discussions-and-proposals/issues/64). Agregamos as respostas e [respondemos a cada um dos problemas](https://github.com/react-native-community/discussions-and-proposals/issues/104). Felizmente, muitos dos problemas que nossa comunidade enfrenta também são problemas no Facebook. Em nosso próximo milestone, planejamos abordar alguns dos principais problemas.
 
-One of the highest voted problems was the developer experience of upgrading to newer versions of React Native. Unfortunately, this is not something that we experience ourselves because we run React Native from master. Thankfully, members from the community already stepped up to address this problem:
+Um dos problemas mais votados foi a experiência do desenvolvedor ao atualizar para versões mais recentes do React Native. Infelizmente, isso não é algo que experimentamos nós mesmos porque executamos o React Native a partir do master. Felizmente, membros da comunidade já se apresentaram para resolver este problema:
 
-- [Michał Pierzchała](https://github.com/thymikee) from Callstack [improved react-native upgrade](https://github.com/react-native-community/react-native-cli/pull/176/files) by using [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge) under the hood. We also updated the website to remove outdated upgrade instructions.
-- [We plan on recommending CocoaPods by default for iOS projects](https://github.com/facebook/react-native/pull/23563) which will reduce churn in project files when upgrading React Native. This will make it easier for people to install and link third-party modules which is even more important in the context of Lean Core as we expect projects to link more modules by default.
+- [Michał Pierzchała](https://github.com/thymikee) da Callstack [melhorou o react-native upgrade](https://github.com/react-native-community/react-native-cli/pull/176/files) usando [rn-diff-purge](https://github.com/react-native-community/rn-diff-purge) internamente. Também atualizamos o site para remover instruções de upgrade desatualizadas.
+- [Planejamos recomendar CocoaPods por padrão para projetos iOS](https://github.com/facebook/react-native/pull/23563), o que reduzirá mudanças nos arquivos do projeto ao atualizar o React Native. Isso facilitará a instalação e vinculação de módulos de terceiros, o que é ainda mais importante no contexto do Lean Core, pois esperamos que os projetos vinculem mais módulos por padrão.
 
-### 0.59 Release
+### Release 0.59
 
-Without the help of the React Native community, especially [Mike Grabowski](https://github.com/grabbou) and [Lorenzo Sciandra](https://github.com/kelset), we would not be able to ship releases. We want to improve the release management process and plan to be more involved from now on:
+Sem a ajuda da comunidade React Native, especialmente [Mike Grabowski](https://github.com/grabbou) e [Lorenzo Sciandra](https://github.com/kelset), não seríamos capazes de publicar releases. Queremos melhorar o processo de gestão de releases e planejamos nos envolver mais a partir de agora:
 
-- We will work with community members to create a blog post for each major release.
-- We will show breaking changes directly in the CLI when people upgrade to new versions.
-- We will reduce the time it takes to make a release. We are exploring ways to increase automated testing and also creating an improved manual test plan.
+- Trabalharemos com membros da comunidade para criar um post de blog para cada release principal.
+- Mostraremos breaking changes diretamente na CLI quando as pessoas atualizarem para novas versões.
+- Reduziremos o tempo necessário para fazer um release. Estamos explorando maneiras de aumentar os testes automatizados e também criar um plano de teste manual aprimorado.
 
-Many of these plans will be incorporated in the upcoming [React Native 0.59 release](https://github.com/facebook/react-native/releases/tag/v0.59.0-rc.3). 0.59 will ship with React Hooks, a new 64-bit version of JavaScriptCore for Android, and many performance and functionality improvements. It is currently published as a release candidate and is expected to be stable within the next two weeks.
+Muitos desses planos serão incorporados no próximo [release do React Native 0.59](https://github.com/facebook/react-native/releases/tag/v0.59.0-rc.3). A versão 0.59 será lançada com React Hooks, uma nova versão 64-bit do JavaScriptCore para Android, e muitas melhorias de desempenho e funcionalidade. Atualmente está publicada como release candidate e espera-se que esteja estável nas próximas duas semanas.
 
-### Next Steps
+### Próximos Passos
 
-For the next two months, we will continue managing pull requests [to stay on track](https://k03lwm00zo.codesandbox.io/) while also starting to reduce the number of outstanding GitHub issues. We will continue reducing the surface area of React Native through the Lean Core project. We plan to address 5 of the top community problems. As we finalize the community guidelines, we will turn attention to our website and documentation.
+Nos próximos dois meses, continuaremos gerenciando pull requests [para nos mantermos no caminho certo](https://k03lwm00zo.codesandbox.io/) enquanto também começamos a reduzir o número de issues pendentes no GitHub. Continuaremos reduzindo a área de superfície do React Native através do projeto Lean Core. Planejamos abordar 5 dos principais problemas da comunidade. À medida que finalizarmos as diretrizes da comunidade, voltaremos nossa atenção para nosso site e documentação.
 
-We are very excited to host over ten contributors from our community at Facebook London in March to help drive several of these efforts. We are glad that you are using React Native and hope that you'll see and feel the improvements we are working on in 2019. We'll be back with another update in a few months and _will be merging your pull requests in the meantime!_ ⚛️✌️
+Estamos muito animados em receber mais de dez colaboradores da nossa comunidade no Facebook London em março para ajudar a impulsionar várias dessas iniciativas. Estamos felizes que você está usando React Native e esperamos que você veja e sinta as melhorias em que estamos trabalhando em 2019. Voltaremos com outra atualização em alguns meses e _estaremos fazendo merge dos seus pull requests nesse meio tempo!_ ⚛️✌️

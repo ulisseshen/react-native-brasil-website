@@ -1,93 +1,94 @@
 ---
-title: React Native's Many Platform Vision
+ia-translated: true
+title: A Visão de Muitas Plataformas do React Native
 authors: [abernathyca, Eli White, lunaleaps, yungsters]
 tags: [announcement]
 ---
 
-React Native has been very successful at raising the bar for mobile development, both at Facebook and elsewhere in the industry. As we interact with computers in new ways and as new devices are invented, we want React Native to be there for everyone. Although React Native was originally created to build mobile apps, we believe that focusing on many platforms and building to each platform’s strengths and constraints has a symbiotic effect. We have seen huge benefits when we extended this technology to desktop and virtual reality, and we're excited to share what this means for the future of React Native.
+O React Native tem sido muito bem-sucedido em elevar o padrão para desenvolvimento mobile, tanto no Facebook quanto em outros lugares da indústria. À medida que interagimos com computadores de novas maneiras e à medida que novos dispositivos são inventados, queremos que o React Native esteja lá para todos. Embora o React Native tenha sido originalmente criado para construir aplicativos móveis, acreditamos que focar em muitas plataformas e construir para os pontos fortes e restrições de cada plataforma tem um efeito simbiótico. Vimos enormes benefícios quando estendemos esta tecnologia para desktop e realidade virtual, e estamos empolgados em compartilhar o que isso significa para o futuro do React Native.
 
 <!--truncate-->
 
-## Respecting the Platform
+## Respeitando a Plataforma
 
-Our first guiding principle is [to match the expectations people have for each platform](https://reactnative.dev/blog/2020/07/17/react-native-principles#native-experience). Android users expect accessible apps using TalkBack. Navigation should work the way it does in other Android apps. A button should look and feel the way buttons look and feel on Android. It should not look and feel like an iOS button. Although we seek to offer a consistent cross-platform developer experience, we resist the temptation to sacrifice users’ expectations.
+Nosso primeiro princípio orientador é [atender às expectativas que as pessoas têm para cada plataforma](https://reactnative.dev/blog/2020/07/17/react-native-principles#native-experience). Usuários do Android esperam aplicativos acessíveis usando TalkBack. A navegação deve funcionar da maneira como funciona em outros aplicativos Android. Um botão deve parecer e se comportar como botões parecem e se comportam no Android. Ele não deve parecer e se comportar como um botão do iOS. Embora busquemos oferecer uma experiência de desenvolvedor consistente entre plataformas, resistimos à tentação de sacrificar as expectativas dos usuários.
 
-We believe that React Native enables developers to meet users’ expectations while also gaining the benefits of a better developer experience. In this section, we share the following:
+Acreditamos que o React Native permite que os desenvolvedores atendam às expectativas dos usuários enquanto também ganham os benefícios de uma melhor experiência de desenvolvedor. Nesta seção, compartilhamos o seguinte:
 
-1. By embracing platform constraints, we actually improve the experience on other platforms.
-2. We can learn from institutional knowledge to build higher level cross-platform abstractions.
-3. Other players on each platform inspire us to build better developer and user experiences.
+1. Ao abraçar as restrições da plataforma, na verdade melhoramos a experiência em outras plataformas.
+2. Podemos aprender com o conhecimento institucional para construir abstrações cross-platform de nível superior.
+3. Outros participantes em cada plataforma nos inspiram a construir melhores experiências de desenvolvedor e usuário.
 
-### Embracing Platform Constraints
+### Abraçando as Restrições da Plataforma
 
 <!-- alex ignore easy -->
 
-Specific device hardware or user expectations impose unique constraints and requirements. As an example, memory is typically more constrained on Android and VR headsets than on iOS, macOS, and Windows. As another example, users expect mobile apps to start up almost instantaneously, but they are less frustrated when desktop apps take longer to start up. **We have found that by approaching these problems with React Native, we can more easily borrow lessons learned and code written for one platform, and apply them to other platforms.**
+Hardware de dispositivo específico ou expectativas do usuário impõem restrições e requisitos únicos. Como exemplo, a memória é tipicamente mais restrita no Android e headsets VR do que no iOS, macOS e Windows. Como outro exemplo, os usuários esperam que aplicativos móveis iniciem quase instantaneamente, mas ficam menos frustrados quando aplicativos desktop demoram mais para iniciar. **Descobrimos que ao abordar esses problemas com React Native, podemos mais facilmente emprestar lições aprendidas e código escrito para uma plataforma, e aplicá-los a outras plataformas.**
 
 <figure>
   <img src="/blog/assets/many-platform-vision-facebook-dating.png" alt="Screenshot of Facebook Dating on mobile" />
   <figcaption>
-    React Native and Relay power over 1000 Facebook surfaces on Android and iOS.
+    React Native e Relay alimentam mais de 1000 superfícies do Facebook no Android e iOS.
   </figcaption>
 </figure>
 
-For example, React Native relies on an optimization known as “view flattening” which is critical for reducing memory usage on Android. We never built this optimization for iOS because it does not bear the same memory constraints. Over the past few years as we built our new cross-platform renderer, we had to reimplement “view flattening”. But this time, it was written in C++ instead of platform-specific Java. Trying out this same optimization on iOS was now only a matter of flipping a switch. In the production Facebook app, we observed that this improved performance on iOS! We likely never would have built this for iOS, but our investment on Android was able to benefit our investment on iOS.
+Por exemplo, o React Native depende de uma otimização conhecida como "view flattening" que é crítica para reduzir o uso de memória no Android. Nunca construímos esta otimização para iOS porque ele não tem as mesmas restrições de memória. Nos últimos anos, ao construirmos nosso novo renderer cross-platform, tivemos que reimplementar "view flattening". Mas desta vez, foi escrito em C++ em vez de Java específico da plataforma. Experimentar esta mesma otimização no iOS agora era apenas uma questão de apertar um botão. No aplicativo de produção do Facebook, observamos que isso melhorou o desempenho no iOS! Provavelmente nunca teríamos construído isso para iOS, mas nosso investimento no Android foi capaz de beneficiar nosso investimento no iOS.
 
-### Learning from Institutional Knowledge
+### Aprendendo com o Conhecimento Institucional
 
-One of the reasons that React Native was originally created was to reduce engineering silos. There is a tendency for Android engineers to be siloed from iOS engineers working on the same product. Android engineers review code for Android engineers and attend Android meetups and conferences. iOS engineers review code for iOS engineers and attend iOS meetups and conferences. Engineers working on different platforms bring unique domain and institutional knowledge about how to build great product experiences.
+Uma das razões pelas quais o React Native foi originalmente criado foi para reduzir silos de engenharia. Há uma tendência de engenheiros Android ficarem isolados de engenheiros iOS trabalhando no mesmo produto. Engenheiros Android revisam código para engenheiros Android e participam de meetups e conferências Android. Engenheiros iOS revisam código para engenheiros iOS e participam de meetups e conferências iOS. Engenheiros trabalhando em diferentes plataformas trazem conhecimento de domínio e institucional único sobre como construir grandes experiências de produto.
 
-One of the best outcomes of cross-platform frameworks like React Native is how they bring together engineers with vastly different domain expertise. **We believe that by targeting more platforms, we can accelerate cross-pollination of institutional knowledge between platform experts.**
+Um dos melhores resultados de frameworks cross-platform como React Native é como eles reúnem engenheiros com conhecimento de domínio vastamente diferente. **Acreditamos que ao atingir mais plataformas, podemos acelerar a polinização cruzada de conhecimento institucional entre especialistas de plataforma.**
 
-As an example, the accessibility abstractions in React Native are influenced by how Android, iOS, and web each approach accessibility in different ways. This enabled us to build a common interface that improves how accessibility hints are handled on both mobile platforms.
+Como exemplo, as abstrações de acessibilidade no React Native são influenciadas por como Android, iOS e web abordam a acessibilidade de maneiras diferentes. Isso nos permitiu construir uma interface comum que melhora como as dicas de acessibilidade são tratadas em ambas as plataformas móveis.
 
-As another example, our research into user perception of speed on the web led to concurrent features like Suspense. Over the past year, these features were vetted by the new [Facebook.com](https://facebook.com/) website. Now with our new renderer, these features are making their way to React Native and influencing how we design event scheduling and priorities. The React team’s investment into improving the web experience is benefiting React Native for native platforms.
+Como outro exemplo, nossa pesquisa sobre percepção do usuário de velocidade na web levou a recursos concorrentes como Suspense. No último ano, esses recursos foram testados pelo novo site [Facebook.com](https://facebook.com/). Agora, com nosso novo renderer, esses recursos estão chegando ao React Native e influenciando como projetamos agendamento de eventos e prioridades. O investimento da equipe do React em melhorar a experiência web está beneficiando o React Native para plataformas nativas.
 
-### Competition Drives Innovation
+### Competição Impulsiona Inovação
 
-In addition to domain-specific engineers and meetups and conferences, each platform also brings other unique players solving similar problems. On the web, React (which directly powers React Native) frequently draws inspiration from other open source web frameworks like [Vue](https://vuejs.org/), [Preact](https://preactjs.com/), and [Svelte](https://svelte.dev/). On mobile, React Native has been inspired by other open source mobile frameworks, and we have been learning from other mobile frameworks built inside Facebook.
+Além de engenheiros específicos de domínio e meetups e conferências, cada plataforma também traz outros participantes únicos resolvendo problemas semelhantes. Na web, o React (que alimenta diretamente o React Native) frequentemente se inspira em outros frameworks web open source como [Vue](https://vuejs.org/), [Preact](https://preactjs.com/) e [Svelte](https://svelte.dev/). No mobile, o React Native tem sido inspirado por outros frameworks móveis open source, e temos aprendido com outros frameworks móveis construídos dentro do Facebook.
 
-**We believe that competition leads to better outcomes for everyone in the long run.** By studying what makes other players on each platform great, we can learn lessons that may apply to other platforms. For example, the race to simplify complex websites influenced the development of React and gave React Native a head start to offer a declarative framework for mobile apps. The demand for faster iteration cycles and build times for the web also led to the development of Fast Refresh which significantly benefited React Native. Similarly, performance optimizations in our internal mobile frameworks — especially around data fetching and parallelization — challenged us to improve React Native in a way that has also influenced React when we built the new [Facebook.com](https://facebook.com/) website.
+**Acreditamos que a competição leva a melhores resultados para todos no longo prazo.** Ao estudar o que torna outros participantes em cada plataforma excelentes, podemos aprender lições que podem se aplicar a outras plataformas. Por exemplo, a corrida para simplificar sites complexos influenciou o desenvolvimento do React e deu ao React Native uma vantagem inicial para oferecer um framework declarativo para aplicativos móveis. A demanda por ciclos de iteração mais rápidos e tempos de build para a web também levou ao desenvolvimento do Fast Refresh, que beneficiou significativamente o React Native. Da mesma forma, otimizações de desempenho em nossos frameworks móveis internos — especialmente em torno de busca de dados e paralelização — nos desafiaram a melhorar o React Native de uma forma que também influenciou o React quando construímos o novo site [Facebook.com](https://facebook.com/).
 
 <figure>
   <img src="/blog/assets/many-platform-vision-facebook-website.png" alt="Screenshot of the Facebook.com website" />
   <figcaption>
-    React and Relay powers the <a href="https://facebook.com/">Facebook.com</a> website.
+    React e Relay alimentam o site <a href="https://facebook.com/">Facebook.com</a>.
   </figcaption>
 </figure>
 
-## Expanding to New Platforms
+## Expandindo para Novas Plataformas
 
-React and React Native are at a turning point. React has [started the road to a React 18 release](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html), and [the new React Native renderer is now fully powering the Facebook mobile apps](https://twitter.com/reactnative/status/1415099806507167745). Our team has grown substantially this year in order to support the growing adoption at Facebook. Teams developing on other platforms have noticed the adoption and see the opportunity for them to also reap the benefits of React Native.
+O React e o React Native estão em um ponto de virada. O React [começou a estrada para um lançamento do React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html), e [o novo renderer do React Native agora está totalmente alimentando os aplicativos móveis do Facebook](https://twitter.com/reactnative/status/1415099806507167745). Nossa equipe cresceu substancialmente este ano para suportar a crescente adoção no Facebook. Equipes desenvolvendo em outras plataformas notaram a adoção e veem a oportunidade de também colher os benefícios do React Native.
 
-**For the past year, we have been partnering with Microsoft and the Messenger team to create a truly native video calling experience on Windows and macOS.** Due to the high scrutiny that we place on startup time for mobile apps, our initial implementation of desktop video calling using React Native completely blew away the performance of the Electron implementation that it replaced. For the first couple weeks of building this experience, we recorded videos of us resizing a window with multiple live video calls and marveled at the smooth frame rates.
+**No último ano, temos feito parceria com a Microsoft e a equipe do Messenger para criar uma experiência de chamada de vídeo verdadeiramente nativa no Windows e macOS.** Devido ao alto escrutínio que colocamos no tempo de inicialização para aplicativos móveis, nossa implementação inicial de chamada de vídeo desktop usando React Native superou completamente o desempenho da implementação Electron que substituiu. Nas primeiras semanas de construção desta experiência, gravamos vídeos de nós redimensionando uma janela com várias chamadas de vídeo ao vivo e nos maravilhamos com as taxas de quadros suaves.
 
-Building for desktop has been very exciting for us. We have taken what we know about building mobile experiences and applied them to desktop with eyes wide open. We’ve expanded our horizons with multiple child windows, menu bars, system trays, and more. As we continue collaborating on new desktop Messenger features, we expect to find opportunities that influence how we build on web and mobile. If you want to stay up to date, our desktop collaboration work is taking place [on GitHub](https://github.com/microsoft/react-native-windows).
+Construir para desktop tem sido muito emocionante para nós. Aplicamos o que sabemos sobre construir experiências móveis e as aplicamos ao desktop com os olhos bem abertos. Expandimos nossos horizontes com múltiplas janelas filhas, barras de menu, bandejas do sistema e muito mais. À medida que continuamos colaborando em novos recursos do Messenger para desktop, esperamos encontrar oportunidades que influenciem como construímos na web e mobile. Se você quer ficar atualizado, nosso trabalho de colaboração em desktop está acontecendo [no GitHub](https://github.com/microsoft/react-native-windows).
 
 <figure>
   <img src="/blog/assets/many-platform-vision-messenger-desktop.png" alt="Screenshot of the Messenger app on macOS" />
   <figcaption>
-    React Native powers Video Calling in Messenger for Windows and macOS.
+    React Native alimenta Chamadas de Vídeo no Messenger para Windows e macOS.
   </figcaption>
 </figure>
 
-**We are also partnering more closely with [Facebook Reality Labs](https://tech.fb.com/ar-vr/) to understand how React is uniquely positioned to deliver virtual reality experiences on Oculus.** Building experiences in VR with React Native will be particularly interesting because of tighter memory constraints and user sensitivity to interaction latency.
+**Também estamos fazendo parceria mais estreitamente com [Facebook Reality Labs](https://tech.fb.com/ar-vr/) para entender como o React está posicionado de forma única para entregar experiências de realidade virtual no Oculus.** Construir experiências em VR com React Native será particularmente interessante devido a restrições de memória mais apertadas e sensibilidade do usuário à latência de interação.
 
-Similar to how we approach React Native for mobile, we will be validating our technology at Facebook scale before we share anything publicly. A lot is still changing and we still have many questions. We want to have confidence that the technology is production-ready and reliable before sharing with the community.
+Semelhante a como abordamos o React Native para mobile, estaremos validando nossa tecnologia na escala do Facebook antes de compartilhar qualquer coisa publicamente. Muito ainda está mudando e ainda temos muitas perguntas. Queremos ter confiança de que a tecnologia está pronta para produção e confiável antes de compartilhar com a comunidade.
 
-Although most of the development for VR will still be internal, we hope to share more as soon as we can. We also anticipate that improvements to React Native for VR will surface in open source. For example, we anticipate that projects to reduce memory usage for VR use cases will also reduce memory usage for React Native on mobile and desktop experiences.
+Embora a maior parte do desenvolvimento para VR ainda seja interna, esperamos compartilhar mais assim que pudermos. Também antecipamos que melhorias no React Native para VR aparecerão no open source. Por exemplo, antecipamos que projetos para reduzir o uso de memória para casos de uso de VR também reduzirão o uso de memória para React Native em experiências mobile e desktop.
 
 <figure>
   <img src="/blog/assets/many-platform-vision-oculus-home.png" alt="Screenshot of Oculus Home in virtual reality" />
   <figcaption>
-    React and Relay power the Oculus Home and many other virtual reality experiences.
+    React e Relay alimentam o Oculus Home e muitas outras experiências de realidade virtual.
   </figcaption>
 </figure>
 
-When we reflect back on how the industry has adopted React, there has always been an appetite in the community for React on more platforms. Even before we announced React Native to the community, Netflix had already been crafting Gibbon, their custom renderer for building TV experiences with React. And before Facebook started building Messenger for desktop, [Microsoft was already using React to build native desktop experiences in Office and Windows 10](https://www.youtube.com/watch?v=IUMWFExtDSg&t=382s).
+Quando refletimos sobre como a indústria adotou o React, sempre houve um apetite na comunidade pelo React em mais plataformas. Mesmo antes de anunciarmos o React Native para a comunidade, a Netflix já estava criando o Gibbon, seu renderer personalizado para construir experiências de TV com React. E antes do Facebook começar a construir o Messenger para desktop, [a Microsoft já estava usando React para construir experiências desktop nativas no Office e Windows 10](https://www.youtube.com/watch?v=IUMWFExtDSg&t=382s).
 
-## Summary
+## Resumo
 
-In summary, our vision is to expand React Native's reach beyond mobile and we've already started by partnering with desktop and VR teams at Facebook. We know that when we embrace the platform constraints of each platform, learn from institutional knowledge, and gather inspiration from other players, it benefits every platform in the ecosystem. And most importantly, in doing so, we stay true to [our guiding principles](https://reactnative.dev/blog/2020/07/17/react-native-principles).
+Em resumo, nossa visão é expandir o alcance do React Native além do mobile e já começamos ao fazer parceria com equipes de desktop e VR no Facebook. Sabemos que quando abraçamos as restrições da plataforma de cada plataforma, aprendemos com o conhecimento institucional e coletamos inspiração de outros participantes, isso beneficia todas as plataformas no ecossistema. E mais importante, ao fazer isso, permanecemos fiéis aos [nossos princípios orientadores](https://reactnative.dev/blog/2020/07/17/react-native-principles).
 
-We are excited about what's to come as we continue to explore what many platforms unlocks for React Native. Connect with us ([@reactnative](https://twitter.com/reactnative)) for more updates and share your thoughts!
+Estamos animados com o que está por vir à medida que continuamos a explorar o que muitas plataformas desbloqueiam para o React Native. Conecte-se conosco ([@reactnative](https://twitter.com/reactnative)) para mais atualizações e compartilhe seus pensamentos!

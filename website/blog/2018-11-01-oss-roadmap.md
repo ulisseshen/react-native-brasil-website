@@ -1,5 +1,6 @@
 ---
-title: Open Source Roadmap
+ia-translated: true
+title: Roadmap Open Source
 author: Héctor Ramos
 authorTitle: Engineer at Facebook
 authorURL: 'https://hectorramos.com/about'
@@ -10,55 +11,55 @@ tags: [announcement]
 
 ![](/blog/assets/oss-roadmap-hero.jpg)
 
-This year, the React Native team has focused on a large scale [re-architecture of React Native](https://github.com/react-native-community/discussions-and-proposals/issues/4). As Sophie mentioned in her [State of React Native post,](/blog/2018/06/14/state-of-react-native-2018) we've sketched out a plan to better support the thriving population of React Native users and collaborators outside of Facebook. It's now time to share more details about what we've been working on. Before I do so, I'd like to lay out our long-term vision for React Native in open source.
+Este ano, a equipe React Native se concentrou em uma [rearquitetura em grande escala do React Native](https://github.com/react-native-community/discussions-and-proposals/issues/4). Como Sophie mencionou em seu [post sobre o Estado do React Native,](/blog/2018/06/14/state-of-react-native-2018) esboçamos um plano para melhor apoiar a próspera população de usuários e colaboradores React Native fora do Facebook. Agora é hora de compartilhar mais detalhes sobre o que temos trabalhado. Antes de fazer isso, gostaria de apresentar nossa visão de longo prazo para React Native em open source.
 
-Our vision for React Native is...
+Nossa visão para React Native é...
 
-- **A healthy GitHub repository.** Issues and pull requests get handled within a reasonable period of time.
-  - Increased test coverage.
-  - Commits that sync out from the Facebook code repository should not break open source tests.
-  - A higher scale of meaningful community contributions.
-- **Stable APIs,** making it easier to interface with open source dependencies.
-  - Facebook uses the same public API as open source
-  - React Native releases that follow semantic versioning.
-- **A vibrant eco-system.** High quality ViewManagers, native modules, and multiple platform support maintained by the community.
-- **Excellent documentation.** Focus on helping users create high quality experiences, and up-to-date API reference docs.
+- **Um repositório GitHub saudável.** Issues e pull requests são tratados dentro de um período de tempo razoável.
+  - Aumento da cobertura de testes.
+  - Commits que sincronizam do repositório de código do Facebook não devem quebrar testes open source.
+  - Uma escala maior de contribuições significativas da comunidade.
+- **APIs estáveis,** tornando mais fácil interfacear com dependências open source.
+  - Facebook usa a mesma API pública que o open source
+  - Lançamentos React Native que seguem versionamento semântico.
+- **Um ecossistema vibrante.** ViewManagers de alta qualidade, módulos nativos e suporte a múltiplas plataformas mantidos pela comunidade.
+- **Excelente documentação.** Foco em ajudar usuários a criar experiências de alta qualidade, e documentação de referência de API atualizada.
 
-We have identified the following focus areas to help us achieve this vision.
+Identificamos as seguintes áreas de foco para nos ajudar a alcançar esta visão.
 
 ## ✂️ Lean Core
 
-Our goal is to [reduce the surface area of React Native](https://github.com/react-native-community/discussions-and-proposals/issues/6) by removing non-core and unused components. We'll transfer non-core components to the community to allow it to move faster. The reduced surface area will make it easier to manage contributions to React Native.
+Nosso objetivo é [reduzir a área de superfície do React Native](https://github.com/react-native-community/discussions-and-proposals/issues/6) removendo componentes não essenciais e não utilizados. Transferiremos componentes não essenciais para a comunidade para permitir que ela se mova mais rápido. A área de superfície reduzida facilitará o gerenciamento de contribuições ao React Native.
 
-[`WebView`](https://github.com/react-native-community/discussions-and-proposals/blob/master/proposals/0001-webview.md) is an example of a component that we transferred to the community. We are working on a workflow that will allow internal teams to continue using these components after we remove them from the repository. We have identified [dozens more components](https://github.com/react-native-community/discussions-and-proposals/issues/6) that we'll give ownership of to the community.
+[`WebView`](https://github.com/react-native-community/discussions-and-proposals/blob/master/proposals/0001-webview.md) é um exemplo de um componente que transferimos para a comunidade. Estamos trabalhando em um fluxo de trabalho que permitirá às equipes internas continuar usando esses componentes depois de removê-los do repositório. Identificamos [dezenas de componentes adicionais](https://github.com/react-native-community/discussions-and-proposals/issues/6) dos quais daremos a propriedade à comunidade.
 
-## 🎁 Open Sourcing Internals and 🛠Updated Tooling
+## 🎁 Open Sourcing Internals e 🛠Ferramental Atualizado
 
-The React Native development experience for product teams at Facebook can be quite different from open source. Tools that may be popular in the open source community are not used at Facebook. There may be an internal tool that achieves the same purpose. In some cases, Facebook teams have become used to tools that do not exist outside of Facebook. These disparities can pose challenges when we open source our upcoming architecture work.
+A experiência de desenvolvimento React Native para equipes de produto no Facebook pode ser bem diferente do open source. Ferramentas que podem ser populares na comunidade open source não são usadas no Facebook. Pode haver uma ferramenta interna que alcança o mesmo propósito. Em alguns casos, equipes do Facebook se acostumaram com ferramentas que não existem fora do Facebook. Essas disparidades podem apresentar desafios quando fazemos open source do nosso próximo trabalho de arquitetura.
 
-We'll work on releasing some of these internal tools. We'll also improve support for tools popular with the open source community. Here's a non-exhaustive list of projects we'll tackle:
+Trabalharemos no lançamento de algumas dessas ferramentas internas. Também melhoraremos o suporte para ferramentas populares com a comunidade open source. Aqui está uma lista não exaustiva de projetos que abordaremos:
 
-- Open source JSI and enable the community to bring their own JavaScript VMs, replacing the existing JavaScriptCore from RN's initial release. We'll be covering what JSI is in a future post, in the meantime you can learn more about JSI from [Parashuram's talk at React Conf](https://www.youtube.com/watch?v=UcqRXTriUVI).
-- Support 64-bit libraries on Android.
-- Enable debugging under the new architecture.
-- Improve support for CocoaPods, Gradle, Maven, and new Xcode build system.
+- Fazer open source do JSI e permitir que a comunidade traga suas próprias VMs JavaScript, substituindo o JavaScriptCore existente do lançamento inicial do RN. Cobriremos o que é JSI em um post futuro, enquanto isso você pode aprender mais sobre JSI na [palestra de Parashuram na React Conf](https://www.youtube.com/watch?v=UcqRXTriUVI).
+- Suportar bibliotecas 64-bit no Android.
+- Habilitar debugging sob a nova arquitetura.
+- Melhorar o suporte para CocoaPods, Gradle, Maven e novo sistema de build do Xcode.
 
-## ✅ Testing Infrastructure
+## ✅ Infraestrutura de Testes
 
-When Facebook engineers publish code, it's considered safe to land if it passes all tests. These tests identify whether a change might break one of our own React Native surfaces. Yet, there are differences in how Facebook uses React Native. This has allowed us to unknowingly break React Native in open source.
+Quando engenheiros do Facebook publicam código, é considerado seguro incluir se passar em todos os testes. Esses testes identificam se uma mudança pode quebrar uma de nossas próprias superfícies React Native. No entanto, há diferenças em como o Facebook usa React Native. Isso nos permitiu quebrar inadvertidamente o React Native em open source.
 
-We'll shore up our internal tests to ensure they run in an environment that is as close as possible to open source. This will help prevent code that breaks these tests from making it to open source. We will also work on infrastructure to enable better testing of the core repo on GitHub, enabling future pull requests to easily include tests.
+Reforçaremos nossos testes internos para garantir que eles rodem em um ambiente o mais próximo possível do open source. Isso ajudará a prevenir que código que quebra esses testes chegue ao open source. Também trabalharemos em infraestrutura para permitir melhores testes do repositório principal no GitHub, permitindo que futuros pull requests incluam testes facilmente.
 
-Combined with the reduced surface area, this will allow contributors to merge pull requests quicker, with confidence.
+Combinado com a área de superfície reduzida, isso permitirá que contribuidores mesclem pull requests mais rapidamente, com confiança.
 
-## 📜 Public API
+## 📜 API Pública
 
-Facebook will consume React Native via the public API, the same way open source does, to reduce unintentional breaking changes. We have started converting internal call sites to address this. Our goal is to converge on a stable, public API, leading to the adoption of semantic versioning in version 1.0.
+Facebook consumirá React Native via API pública, da mesma forma que o open source, para reduzir mudanças breaking não intencionais. Começamos a converter sites de chamada internos para abordar isso. Nosso objetivo é convergir em uma API pública estável, levando à adoção de versionamento semântico na versão 1.0.
 
-## 📣 Communication
+## 📣 Comunicação
 
-React Native is one of the [top open source projects on GitHub](https://octoverse.github.com/#top-and-trending-projects) by contributor count. That makes us really happy, and we'd like to keep it going. We'll continue working on initiatives that lead to involved contributors, such as increased transparency and open discussion. The documentation is one of the first things someone new to React Native will encounter, yet it has not been a priority. We'd like to fix that, starting with bringing back auto-generated API reference docs, creating additional content focused on creating [quality user experiences](/docs/improvingux), and improving our [release notes](https://github.com/react-native-community/react-native-releases/issues/47).
+React Native é um dos [principais projetos open source no GitHub](https://octoverse.github.com/#top-and-trending-projects) por contagem de contribuidores. Isso nos deixa muito felizes, e gostaríamos de manter isso. Continuaremos trabalhando em iniciativas que levam a contribuidores envolvidos, como aumento de transparência e discussão aberta. A documentação é uma das primeiras coisas que alguém novo no React Native encontrará, mas não tem sido uma prioridade. Gostaríamos de consertar isso, começando por trazer de volta documentação de referência de API gerada automaticamente, criar conteúdo adicional focado em criar [experiências de usuário de qualidade](/docs/improvingux), e melhorar nossas [notas de lançamento](https://github.com/react-native-community/react-native-releases/issues/47).
 
 ## Timeline
 
-We're planning to land these projects throughout the next year or so. Some of these efforts are already ongoing, such as [JSI which has already landed in open source](https://github.com/facebook/react-native/compare/e337bcafb0b017311c37f2dbc24e5a757af0a205...8427f64e06456f171f9df0316c6ca40613de7a20). Others will take a bit longer to complete, such as reducing the surface area. We'll do our best to keep the community up to date with our progress. Please join us in the [Discussions and Proposals](https://github.com/react-native-community/discussions-and-proposals) repository, an initiative from the React Native community that has led to the creation of several of the initiatives discussed in this roadmap.
+Estamos planejando incluir esses projetos ao longo do próximo ano ou mais. Alguns desses esforços já estão em andamento, como [JSI que já foi incluído em open source](https://github.com/facebook/react-native/compare/e337bcafb0b017311c37f2dbc24e5a757af0a205...8427f64e06456f171f9df0316c6ca40613de7a20). Outros levarão um pouco mais para completar, como reduzir a área de superfície. Faremos o nosso melhor para manter a comunidade atualizada com nosso progresso. Junte-se a nós no repositório [Discussions and Proposals](https://github.com/react-native-community/discussions-and-proposals), uma iniciativa da comunidade React Native que levou à criação de várias das iniciativas discutidas neste roadmap.

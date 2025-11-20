@@ -1,16 +1,17 @@
 ---
-title: Introducing new iOS WebViews
+ia-translated: true
+title: Introduzindo Novos iOS WebViews
 author: Ramanpreet Nara
 authorTitle: Software Engineer at Facebook
 authorURL: 'https://github.com/rsnara'
 tags: [engineering]
 ---
 
-For a long time now, Apple has discouraged using UIWebViews in favor of WKWebView. In iOS 12, which will be released in the upcoming months, [UIWebViews will be formally deprecated](https://developer.apple.com/videos/play/wwdc2018/234/?time=104). React Native's iOS WebView implementation relies heavily on the UIWebView class. Therefore, in light of these developments, we've built a new native iOS backend to the WebView React Native component that uses WKWebView.
+Há muito tempo, a Apple tem desencorajado o uso de UIWebViews em favor de WKWebView. No iOS 12, que será lançado nos próximos meses, [UIWebViews serão formalmente descontinuados](https://developer.apple.com/videos/play/wwdc2018/234/?time=104). A implementação do iOS WebView do React Native depende fortemente da classe UIWebView. Portanto, à luz desses desenvolvimentos, construímos um novo backend nativo iOS para o componente WebView React Native que usa WKWebView.
 
-The tail end of these changes were landed in [this commit](https://github.com/facebook/react-native/commit/33b353c97c31190439a22febbd3d2a9ead49d3c9), and will become available in the 0.57 release.
+O final dessas mudanças foi incluído [neste commit](https://github.com/facebook/react-native/commit/33b353c97c31190439a22febbd3d2a9ead49d3c9), e estará disponível no lançamento 0.57.
 
-To opt into this new implementation, please use the [`useWebKit`](https://reactnative.dev/docs/0.63/webview#usewebkit) prop:
+Para optar por esta nova implementação, use a prop [`useWebKit`](https://reactnative.dev/docs/0.63/webview#usewebkit):
 
 ```js
 <WebView
@@ -19,28 +20,28 @@ To opt into this new implementation, please use the [`useWebKit`](https://reactn
 />
 ```
 
-## Improvements
+## Melhorias
 
-`UIWebView` had no legitimate way to facilitate communication between the JavaScript running in the WebView, and React Native. When messages were sent from the WebView, we relied on a hack to deliver them to React Native. Succinctly, we encoded the message data into a url with a special scheme, and navigated the WebView to it. On the native side, we intercepted and cancelled this navigation, parsed the data from the url, and finally called into React Native. This implementation was error prone and insecure. I'm glad to announce that we've leveraged `WKWebView` features to completely replace it.
+`UIWebView` não tinha uma maneira legítima de facilitar a comunicação entre o JavaScript rodando no WebView e React Native. Quando mensagens eram enviadas do WebView, contávamos com um hack para entregá-las ao React Native. Resumidamente, codificávamos os dados da mensagem em uma url com um esquema especial e navegávamos o WebView para ela. No lado nativo, interceptávamos e cancelávamos essa navegação, parseávamos os dados da url e finalmente chamávamos no React Native. Esta implementação era propensa a erros e insegura. Estou feliz em anunciar que aproveitamos os recursos do `WKWebView` para substituí-la completamente.
 
-Other benefits of WKWebView over UIWebView include faster JavaScript execution, and a multi-process architecture. Please see this [2014 WWDC](https://developer.apple.com/videos/play/wwdc2014/206) for more details.
+Outros benefícios do WKWebView sobre UIWebView incluem execução JavaScript mais rápida e uma arquitetura multi-processo. Consulte este [WWDC 2014](https://developer.apple.com/videos/play/wwdc2014/206) para mais detalhes.
 
-## Caveats
+## Ressalvas
 
-If your components use the following props, then you may experience problems when switching to WKWebView. For the time being, we suggest that you avoid using these props:
+Se seus componentes usam as seguintes props, então você pode experimentar problemas ao mudar para WKWebView. Por enquanto, sugerimos que você evite usar essas props:
 
-**Inconsistent behavior:**
+**Comportamento inconsistente:**
 
-`automaticallyAdjustContentInsets` and `contentInsets` ([commit](https://github.com/facebook/react-native/commit/bacfd9297657569006bab2b1f024ad1f289b1b27))
+`automaticallyAdjustContentInsets` e `contentInsets` ([commit](https://github.com/facebook/react-native/commit/bacfd9297657569006bab2b1f024ad1f289b1b27))
 
-When you add contentInsets to a `WKWebView`, it doesn't change the `WKWebView`'s viewport. The viewport remains the same size as the frame. With `UIWebView`, the viewport size actually changes (gets smaller, if the content insets are positive).
+Quando você adiciona contentInsets a um `WKWebView`, não muda a viewport do `WKWebView`. A viewport permanece do mesmo tamanho que o frame. Com `UIWebView`, o tamanho da viewport realmente muda (fica menor, se os content insets forem positivos).
 
 `backgroundColor` ([commit](https://github.com/facebook/react-native/commit/215fa14efc2a817c7e038075163491c8d21526fd))
 
-With the new iOS implementation of WebView, there's a chance that your background color will flicker into view if you use this property. Furthermore, `WKWebView` renders transparent backgrounds differently from `UIWebview`. Please look at the commit description for more details.
+Com a nova implementação iOS do WebView, há uma chance de que sua background color pisque na view se você usar esta propriedade. Além disso, `WKWebView` renderiza backgrounds transparentes de forma diferente do `UIWebview`. Consulte a descrição do commit para mais detalhes.
 
-**Not supported:**
+**Não suportado:**
 
 `scalesPageToFit` ([commit](https://github.com/facebook/react-native/commit/b18fddadfeae5512690a0a059a4fa80c864f43a3))
 
-WKWebView didn't support the scalesPageToFit prop, so we couldn't implement this on the WebView React Native component.
+WKWebView não suportou a prop scalesPageToFit, então não conseguimos implementar isso no componente WebView React Native.
