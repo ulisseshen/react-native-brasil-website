@@ -1,26 +1,27 @@
+<!-- ia-translated: true -->
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-# Emitting Events in Native Modules
+# Emitindo Eventos em Native Modules
 
-In some circustamces, you may want to have a Native Module that listen to some events in the platform layer and then emit them to the JavaScript layer, to let you application react to such native events. In other cases, you might have long running operations that can emits events so that the UI can be updated when those happen.
+Em algumas circunstâncias, você pode querer ter um Native Module que escuta alguns eventos na camada da plataforma e então os emite para a camada JavaScript, para permitir que sua aplicação reaja a tais eventos nativos. Em outros casos, você pode ter operações de longa duração que podem emitir eventos para que a UI possa ser atualizada quando isso acontecer.
 
-Both are good use cases for emitting events from a Native Modules. In this guide, you'll learn how to do that.
+Ambos são bons casos de uso para emitir eventos de um Native Module. Neste guia, você aprenderá como fazer isso.
 
-## Emitting an Event when a new key added to the storage
+## Emitindo um Evento quando uma nova chave é adicionada ao storage
 
-In this example, you will learn how to emit an event when a new key is added to the storage. Changing the value of the key will not emit the event, but adding a new key will.
+Neste exemplo, você aprenderá como emitir um evento quando uma nova chave é adicionada ao storage. Mudar o valor da chave não emitirá o evento, mas adicionar uma nova chave sim.
 
-This guide starts from the [Native Module](/docs/next/turbo-native-modules-introduction) guide.
-Make sure to be familiar with that guide before diving into this one, potentially implementing the example in the guide.
+Este guia começa a partir do guia de [Native Module](/docs/next/turbo-native-modules-introduction).
+Certifique-se de estar familiarizado com esse guia antes de mergulhar neste, potencialmente implementando o exemplo no guia.
 
-## Step 1: Update the Specs of NativeLocalStorage
+## Passo 1: Atualizar as Specs do NativeLocalStorage
 
-The first step would be to update the specs of the `NativeLocalStorage` specs to let React Native aware that the module can emit events.
+O primeiro passo seria atualizar as specs do `NativeLocalStorage` para deixar o React Native ciente de que o módulo pode emitir eventos.
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultJavaScriptSpecLanguage} values={constants.javaScriptSpecLanguages}>
 <TabItem value="typescript">
 
-Open the `NativeLocalStorage.ts` file and update it as it follows:
+Abra o arquivo `NativeLocalStorage.ts` e atualize-o da seguinte forma:
 
 ```diff title="NativeLocalStorage.ts"
 +import type {TurboModule, CodegenTypes} from 'react-native';
@@ -48,7 +49,7 @@ export default TurboModuleRegistry.getEnforcing<Spec>(
 </TabItem>
 <TabItem value="flow">
 
-Open the `NativeLocalStorage.js` file and update it as it follows:
+Abra o arquivo `NativeLocalStorage.js` e atualize-o da seguinte forma:
 
 ```diff title="NativeLocalStorage.js"
 
@@ -76,19 +77,19 @@ export default (TurboModuleRegistry.get<Spec>(
 </TabItem>
 </Tabs>
 
-With the `import type` statement, you are importing the `CodegenTypes` from `react-native`, which includes the `EventEmitter` type. This allows you to define the `onKeyAdded` property using `CodegenTypes.EventEmitter<KeyValuePair>`, specifying that the event will emit a payload of type `KeyValuePair`.
+Com a instrução `import type`, você está importando os `CodegenTypes` do `react-native`, que incluem o tipo `EventEmitter`. Isso permite que você defina a propriedade `onKeyAdded` usando `CodegenTypes.EventEmitter<KeyValuePair>`, especificando que o evento emitirá um payload do tipo `KeyValuePair`.
 
-When the event is emitted, you expect for it to receive a parameter of type `KeyValuePair`.
+Quando o evento é emitido, você espera que ele receba um parâmetro do tipo `KeyValuePair`.
 
-## Step 2: Generate Codegen
+## Passo 2: Gerar o Codegen
 
-Given that you have updated the specs for your Native Module, you now have to rerun Codegen to generate the artifacts in the native code.
+Dado que você atualizou as specs para seu Native Module, agora você precisa executar novamente o Codegen para gerar os artefatos no código nativo.
 
-This is the same process presented in the Native Modules guide.
+Este é o mesmo processo apresentado no guia de Native Modules.
 
 <Tabs groupId="platforms" queryString defaultValue={constants.defaultPlatform}>
 <TabItem value="android" label="Android">
-Codegen is executed through the `generateCodegenArtifactsFromSchema` Gradle task:
+O Codegen é executado através da task Gradle `generateCodegenArtifactsFromSchema`:
 
 ```bash
 cd android
@@ -98,10 +99,10 @@ BUILD SUCCESSFUL in 837ms
 14 actionable tasks: 3 executed, 11 up-to-date
 ```
 
-This is automatically run when you build your Android application.
+Isso é executado automaticamente quando você compila sua aplicação Android.
 </TabItem>
 <TabItem value="ios" label="iOS">
-Codegen is run as part of the script phases that's automatically added to the project generated by CocoaPods.
+O Codegen é executado como parte das fases de script que são automaticamente adicionadas ao projeto gerado pelo CocoaPods.
 
 ```bash
 cd ios
@@ -109,7 +110,7 @@ bundle install
 bundle exec pod install
 ```
 
-The output will look like this:
+A saída parecerá com isso:
 
 ```shell
 ...
@@ -127,11 +128,11 @@ Framework build type is static library
 </TabItem>
 </Tabs>
 
-## Step 3: Update the App code
+## Passo 3: Atualizar o código do App
 
-Now, it's time to update the code of the App to handle the new event.
+Agora, é hora de atualizar o código do App para lidar com o novo evento.
 
-Open the `App.tsx` file and modify it as it follows:
+Abra o arquivo `App.tsx` e modifique-o da seguinte forma:
 
 ```diff title="App.tsx"
 import React from 'react';
@@ -248,29 +249,29 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-There are a few relevant changes to look at:
+Existem algumas mudanças relevantes a serem observadas:
 
-1. You need to import the `EventSubscription` type from `react-native` to handle the `EventSubscription`
-2. You need to use a `useRef` to keep track of the `EventSubscription` reference
-3. You register the listener using an `useEffect` hook. The `onKeyAdded` function takes a callback with an object of type `KeyValuePair` as a function parameter.
-4. The callback added to `onKeyAdded` is executed every time the event is emitted from Native to JS.
-5. In the `useEffect` cleanup function, you `remove` the event subscription and you set the ref to `null`.
+1. Você precisa importar o tipo `EventSubscription` do `react-native` para lidar com o `EventSubscription`
+2. Você precisa usar um `useRef` para manter o rastreamento da referência do `EventSubscription`
+3. Você registra o listener usando um hook `useEffect`. A função `onKeyAdded` recebe um callback com um objeto do tipo `KeyValuePair` como parâmetro da função.
+4. O callback adicionado ao `onKeyAdded` é executado toda vez que o evento é emitido do Native para o JS.
+5. Na função de cleanup do `useEffect`, você `remove` a subscription do evento e define a ref como `null`.
 
-The rest of the changes are regular React changes to improve the App for this new feature.
+O resto das mudanças são mudanças regulares do React para melhorar o App para essa nova funcionalidade.
 
-## Step 4: Write your Native Code
+## Passo 4: Escrever seu Código Nativo
 
-With everything prepared, let's start writing native platform code.
+Com tudo preparado, vamos começar a escrever o código nativo da plataforma.
 
 <Tabs groupId="platforms" queryString defaultValue={constants.defaultPlatform}>
 <TabItem value="android" label="Android">
 
-Assuming you followed the guide for Android described in the [Native Modules guide](/docs/turbo-native-modules-introduction?platforms=android&language=typescript#3-write-application-code-using-the-turbo-native-module), what's left to do is to plug the code that emit the events in your app.
+Assumindo que você seguiu o guia para Android descrito no [guia de Native Modules](/docs/turbo-native-modules-introduction?platforms=android&language=typescript#3-write-application-code-using-the-turbo-native-module), o que resta fazer é conectar o código que emite os eventos em seu app.
 
-To do so, you have to:
+Para fazer isso, você precisa:
 
-1. Open the `NativeLocalStorage.kt` file
-2. Modify it as it follows:
+1. Abrir o arquivo `NativeLocalStorage.kt`
+2. Modificá-lo da seguinte forma:
 
 ```diff title="NativeLocalStorage"
 package com.nativelocalstorage
@@ -312,22 +313,22 @@ class NativeLocalStorageModule(reactContext: ReactApplicationContext) : NativeLo
   }
 ```
 
-First, you need to import a couple of types that you need to use to create the eventData that needs to be sent from Native to JS. These imports are:
+Primeiro, você precisa importar alguns tipos que você precisa usar para criar o eventData que precisa ser enviado do Native para o JS. Esses imports são:
 
 - `import com.facebook.react.bridge.Arguments`
 - `import com.facebook.react.bridge.WritableMap`
 
-Secondly, you need to implement the logic that actually emits the event to JS. In case of complex types, like the `KeyValuePair` defined in the specs, Codegen will generate a function that expects a `ReadableMap` as a parameter. You can create the `ReadableMap` by using the `Arguments.createMap()` factory method, and use the `apply` function to populate the map. It's your responsibility to make sure that the the keys you are using in the map are the same properties that are defined in the spec type in JS.
+Em segundo lugar, você precisa implementar a lógica que realmente emite o evento para o JS. No caso de tipos complexos, como o `KeyValuePair` definido nas specs, o Codegen gerará uma função que espera um `ReadableMap` como parâmetro. Você pode criar o `ReadableMap` usando o método factory `Arguments.createMap()`, e usar a função `apply` para popular o map. É sua responsabilidade garantir que as chaves que você está usando no map sejam as mesmas propriedades que estão definidas no tipo da spec em JS.
 
 </TabItem>
 <TabItem value="ios" label="iOS">
 
-Assuming you followed the guide for iOS described in the [Native Modules guide](/docs/turbo-native-modules-introduction?platforms=ios&language=typescript#3-write-application-code-using-the-turbo-native-module), what's left to do is to plug the code that emit the events in your app.
+Assumindo que você seguiu o guia para iOS descrito no [guia de Native Modules](/docs/turbo-native-modules-introduction?platforms=ios&language=typescript#3-write-application-code-using-the-turbo-native-module), o que resta fazer é conectar o código que emite os eventos em seu app.
 
-To do so, you have to:
+Para fazer isso, você precisa:
 
-1. Open the `RCTNativeLocalStorage.h` file.
-2. Change the base class from `NSObject` to `NativeLocalStorageSpecBase`
+1. Abrir o arquivo `RCTNativeLocalStorage.h`.
+2. Mudar a classe base de `NSObject` para `NativeLocalStorageSpecBase`
 
 ```diff title="RCTNativeLocalStorage.h"
 #import <Foundation/Foundation.h>
@@ -343,8 +344,8 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 ```
 
-3. Open the `RCTNativeLocalStorage.mm` file.
-4. Modify it to emit the events when needed, for example:
+3. Abrir o arquivo `RCTNativeLocalStorage.mm`.
+4. Modificá-lo para emitir os eventos quando necessário, por exemplo:
 
 ```diff title="RCTNativeLocalStorage.mm"
  - (void)setItem:(NSString *)value key:(NSString *)key {
@@ -360,16 +361,16 @@ NS_ASSUME_NONNULL_END
 }
 ```
 
-The `NativeLocalStorageSpecBase` is a base class that provides the `emitOnKeyAdded` method and its basic implementation and boilerplate. Thanks to this class, you don't have to handle all the conversion between Objective-C and JSI that is required to send the event to JS.
+O `NativeLocalStorageSpecBase` é uma classe base que fornece o método `emitOnKeyAdded` e sua implementação básica e boilerplate. Graças a essa classe, você não precisa lidar com toda a conversão entre Objective-C e JSI que é necessária para enviar o evento para o JS.
 
-In case of complex types, like the `KeyValuePair` defined in the specs, Codegen will generate a generic dictionary that you can populate on the native side. It's your responsibility to make sure that the the keys you are using in the dictionary are the same properties that are defined in the spec type in JS.
+No caso de tipos complexos, como o `KeyValuePair` definido nas specs, o Codegen gerará um dicionário genérico que você pode popular no lado nativo. É sua responsabilidade garantir que as chaves que você está usando no dicionário sejam as mesmas propriedades que estão definidas no tipo da spec em JS.
 
 </TabItem>
 </Tabs>
 
-## Step 5: Run Your App
+## Passo 5: Executar Seu App
 
-If you now try to run your app, you should see this behavior.
+Se você tentar executar seu app agora, você deve ver este comportamento.
 
 | <center>Android</center>                                                                                    | <center>iOS</center>                                                                                    |
 | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |

@@ -1,10 +1,12 @@
-# Advanced Topics on Native Modules Development
+<!-- ia-translated: true -->
 
-This document contains a set of advanced topics to implement more complex functionalities of Native Modules. It is recommended to first read the [Codegen](/docs/the-new-architecture/what-is-codegen) section and the guides on [Native Modules](/docs/turbo-native-modules-introduction).
+# Tópicos Avançados sobre Desenvolvimento de Native Modules
 
-This guide will cover the following topics:
+Este documento contém um conjunto de tópicos avançados para implementar funcionalidades mais complexas de Native Modules. É recomendado ler primeiro a seção [Codegen](/docs/the-new-architecture/what-is-codegen) e os guias sobre [Native Modules](/docs/turbo-native-modules-introduction).
 
-- [Add custom C++ types to your C++ modules](/docs/the-new-architecture/custom-cxx-types)
-- [Use Swift in your Module](/docs/next/the-new-architecture/turbo-modules-with-swift)
-- [Emit custom events from your Native Modules](/docs/next/the-new-architecture/native-modules-custom-events)
-- [Native Modules Lifecycle](/docs/next/the-new-architecture/native-modules-lifecycle)
+Este guia cobrirá os seguintes tópicos:
+
+- [Adicionar tipos C++ customizados aos seus módulos C++](/docs/the-new-architecture/custom-cxx-types)
+- [Usar Swift no seu Module](/docs/next/the-new-architecture/turbo-modules-with-swift)
+- [Emitir eventos customizados dos seus Native Modules](/docs/next/the-new-architecture/native-modules-custom-events)
+- [Ciclo de vida dos Native Modules](/docs/next/the-new-architecture/native-modules-lifecycle)

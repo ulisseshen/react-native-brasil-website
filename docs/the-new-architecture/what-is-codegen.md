@@ -1,15 +1,17 @@
-# What is Codegen?
+<!-- ia-translated: true -->
 
-**Codegen** is a tool to avoid writing a lot of repetitive code. Using Codegen **is not mandatory**: you can write all the generated code manually. However, Codegen generates scaffolding code that could save you a lot of time.
+# O que é Codegen?
 
-React Native invokes Codegen automatically every time an iOS or Android app is built. Occasionally, you would like to manually run the Codegen scripts to know which types and files are actually generated: this is a common scenario when developing [Turbo Native Modules](/docs/turbo-native-modules-introduction) and Fabric Native Components.
+**Codegen** é uma ferramenta para evitar escrever muito código repetitivo. Usar Codegen **não é obrigatório**: você pode escrever todo o código gerado manualmente. No entanto, o Codegen gera código de estrutura que pode economizar muito tempo.
+
+O React Native invoca o Codegen automaticamente toda vez que um app iOS ou Android é compilado. Ocasionalmente, você pode querer executar manualmente os scripts do Codegen para saber quais tipos e arquivos são realmente gerados: este é um cenário comum ao desenvolver [Turbo Native Modules](/docs/turbo-native-modules-introduction) e Fabric Native Components.
 
 <!-- TODO: Add links to TM and FC -->
 
-## How Codegen Works
+## Como o Codegen Funciona
 
-**Codegen** is a process that is tightly coupled with a React Native app. The Codegen scripts live inside the `react-native` NPM package and the apps call those scripts at build time.
+**Codegen** é um processo fortemente acoplado a um app React Native. Os scripts do Codegen estão dentro do pacote NPM `react-native` e os apps chamam esses scripts em tempo de compilação.
 
-Codegen crawls the folders in your project, starting from a directory you specify in your `package.json`, looking for some specific JS files that contain the specification (or specs) for your custom modules and components. Spec files are JS files written in a typed dialect: React Native currently supports Flow and TypeScript.
+O Codegen percorre as pastas no seu projeto, começando de um diretório que você especifica no seu `package.json`, procurando por arquivos JS específicos que contêm a especificação (ou specs) para seus módulos e componentes customizados. Arquivos de spec são arquivos JS escritos em um dialeto tipado: o React Native atualmente suporta Flow e TypeScript.
 
-Every time Codegen finds a spec file, it generates boilerplate code associated with it. Codegen generates some C++ glue-code and then it generates platform-specific code, using Java for Android and Objective-C++ for iOS.
+Toda vez que o Codegen encontra um arquivo de spec, ele gera código boilerplate associado a ele. O Codegen gera código de ligação em C++ e então gera código específico da plataforma, usando Java para Android e Objective-C++ para iOS.

@@ -1,5 +1,6 @@
 ---
-title: 'React Native 0.82 - A New Era'
+ia-translated: true
+title: 'React Native 0.82 - Uma Nova Era'
 authors: [vzaidman, cortinico, gabrieldonadel, alanjhughes]
 tags: [engineering]
 date: 2025-10-08
@@ -8,18 +9,18 @@ date: 2025-10-08
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# **React Native 0.82 - A New Era**
+# **React Native 0.82 - Uma Nova Era**
 
-Today we're excited to release React Native 0.82: the first React Native that runs entirely on the New Architecture.
+Hoje estamos animados em lançar o React Native 0.82: o primeiro React Native que executa inteiramente na New Architecture.
 
-This is a milestone release for React Native and we believe it's the start of a new era. In future versions we will be removing the remaining code from the Legacy Architecture to reduce install size and streamline the codebase.
+Este é um lançamento marco para o React Native e acreditamos que é o início de uma nova era. Em versões futuras, removeremos o código restante da Legacy Architecture para reduzir o tamanho da instalação e simplificar a base de código.
 
-In addition, 0.82 also ships with an experimental opt-in to a newer version of Hermes called Hermes V1. We’re also enabling several React features by updating the React version to 19.1.1, and shipping support for DOM Node APIs.
+Além disso, a versão 0.82 também traz um opt-in experimental para uma versão mais recente do Hermes chamada Hermes V1. Também estamos habilitando vários recursos do React atualizando a versão do React para 19.1.1 e fornecendo suporte para DOM Node APIs.
 
-### Highlights
+### Destaques
 
-- [New Architecture Only](/blog/2025/10/08/react-native-0.82#new-architecture-only)
-- [Experimental Hermes V1](/blog/2025/10/08/react-native-0.82#experimental-hermes-v1)
+- [Somente New Architecture](/blog/2025/10/08/react-native-0.82#new-architecture-only)
+- [Hermes V1 Experimental](/blog/2025/10/08/react-native-0.82#experimental-hermes-v1)
 - [React 19.1.1](/blog/2025/10/08/react-native-0.82#react-1911)
 - [DOM Node APIs](/blog/2025/10/08/react-native-0.82#dom-node-apis)
 
@@ -27,66 +28,66 @@ In addition, 0.82 also ships with an experimental opt-in to a newer version of H
 
 ## New Architecture Only
 
-In React Native 0.76 we announced that [The New Architecture](/blog/2024/10/23/the-new-architecture-is-here) became the default architecture of React Native.
+No React Native 0.76, anunciamos que [The New Architecture](/blog/2024/10/23/the-new-architecture-is-here) se tornou a arquitetura padrão do React Native.
 
-Since then, the New Architecture has been tested and refined and we're confident in making it the **only** architecture for this and future versions of React Native.
+Desde então, a New Architecture foi testada e refinada e estamos confiantes em torná-la a **única** arquitetura para esta e futuras versões do React Native.
 
-This means that if you try to set `newArchEnabled=false` on Android, or if you try to install CocoaPods with `RCT_NEW_ARCH_ENABLED=0` on iOS, these will be ignored and your app will still run using the New Architecture.
+Isso significa que se você tentar definir `newArchEnabled=false` no Android, ou se tentar instalar CocoaPods com `RCT_NEW_ARCH_ENABLED=0` no iOS, essas configurações serão ignoradas e seu app ainda será executado usando a New Architecture.
 
-### How to migrate
+### Como migrar
 
-If you haven’t migrated your project to the New Architecture, we recommend first migrating your project to React Native 0.81 or Expo SDK 54. These are the last versions that allow you to use the Legacy Architecture. They contain warnings and performance improvements specifically to help migrating to the New Architecture.
-<br/> Then enable the New Architecture in 0.81 and verify that your application is working fine.
-<br/> Once you're using the New Architecture in 0.81, you can update safely to React Native 0.82 which prevents enabling the Legacy Architecture.
+Se você ainda não migrou seu projeto para a New Architecture, recomendamos primeiro migrar seu projeto para React Native 0.81 ou Expo SDK 54. Estas são as últimas versões que permitem usar a Legacy Architecture. Elas contêm avisos e melhorias de desempenho especificamente para ajudar na migração para a New Architecture.
+<br/> Em seguida, habilite a New Architecture na versão 0.81 e verifique se sua aplicação está funcionando corretamente.
+<br/> Uma vez que você esteja usando a New Architecture na versão 0.81, pode atualizar com segurança para React Native 0.82, que impede a habilitação da Legacy Architecture.
 
-If an incompatible 3rd party dependency is blocking you from migrating to the New Architecture, we recommend you reach out to the library maintainers directly.
+Se uma dependência de terceiros incompatível está bloqueando você de migrar para a New Architecture, recomendamos que você entre em contato diretamente com os mantenedores da biblioteca.
 
-If a bug in React Native core is blocking you from migrating, we recommend you reach out to us [through our issue tracker](https://github.com/facebook/react-native/issues/new/choose).
+Se um bug no núcleo do React Native está bloqueando você de migrar, recomendamos que você entre em contato conosco [através do nosso rastreador de issues](https://github.com/facebook/react-native/issues/new/choose).
 
-### Interop Layers & 3P library compatibility
+### Interop Layers e compatibilidade com bibliotecas de terceiros
 
-We will keep the interop layers in the codebase for the foreseeable future. All the classes and functions that are required by the interop layers won’t be removed anytime soon. We will share further updates in the future regarding the removal of Interop Layers.
+Manteremos as interop layers na base de código no futuro previsível. Todas as classes e funções que são necessárias pelas interop layers não serão removidas tão cedo. Compartilharemos mais atualizações no futuro sobre a remoção das Interop Layers.
 
-We’ve also verified that the 3P libraries that offer backward compatibility with both architectures will keep on working with 0.82 where New Architecture is the only architecture.
+Também verificamos que as bibliotecas de terceiros que oferecem compatibilidade retroativa com ambas as arquiteturas continuarão funcionando com a versão 0.82, onde a New Architecture é a única arquitetura.
 
-### Removal of Legacy Architecture classes
+### Remoção de classes da Legacy Architecture
 
-To ensure backward compatibility and reduce breaking changes, we are not removing any APIs of the Legacy Architecture from the core of React Native in this version. Removing the Legacy Architecture will allow us to save significant size on the overall bundle size, therefore the removal is scheduled to start from the next version of React Native.
+Para garantir compatibilidade retroativa e reduzir breaking changes, não estamos removendo nenhuma API da Legacy Architecture do núcleo do React Native nesta versão. Remover a Legacy Architecture nos permitirá economizar tamanho significativo no tamanho geral do bundle, portanto, a remoção está programada para começar a partir da próxima versão do React Native.
 
-You can find more information in [RFC0929: Removal of the Legacy Architecture of React Native](https://github.com/react-native-community/discussions-and-proposals/pull/929).
+Você pode encontrar mais informações em [RFC0929: Removal of the Legacy Architecture of React Native](https://github.com/react-native-community/discussions-and-proposals/pull/929).
 
 ## Experimental Hermes V1
 
-React Native 0.82 adds support for opting into Hermes V1.
+React Native 0.82 adiciona suporte para optar pelo Hermes V1.
 
-Hermes V1 is the next evolution of Hermes. We've been experimenting with it internally in our apps, and it is now time for the community to try it as well. It comes with improvements in the compiler and in the VM that boost Hermes performance.
+Hermes V1 é a próxima evolução do Hermes. Temos experimentado com ele internamente em nossos apps, e agora é hora da comunidade experimentá-lo também. Ele vem com melhorias no compilador e na VM que aumentam o desempenho do Hermes.
 
-From initial tests and benchmarks, Hermes V1 outperforms current Hermes in various scenarios. We have seen improvements in bundle loading and TTI. The improvements strongly depend on the details of your apps.
+A partir de testes e benchmarks iniciais, o Hermes V1 supera o Hermes atual em vários cenários. Vimos melhorias no carregamento de bundle e TTI. As melhorias dependem fortemente dos detalhes de seus apps.
 
-On the [Expensify app](https://github.com/Expensify/App), a real world and complex application, we have seen the following improvements:
-| Metric | Android (low end device) | iOS |
+No [app Expensify](https://github.com/Expensify/App), uma aplicação complexa do mundo real, vimos as seguintes melhorias:
+| Métrica | Android (dispositivo de baixo desempenho) | iOS |
 | --- | --- | --- |
-| Bundle Load Time | 3.2% faster | 9% faster |
-| Total TTI | 7.6% faster | 2.5% faster |
-| Content TTI | 7.2% faster | 7.5% faster |
+| Tempo de Carregamento do Bundle | 3.2% mais rápido | 9% mais rápido |
+| TTI Total | 7.6% mais rápido | 2.5% mais rápido |
+| TTI de Conteúdo | 7.2% mais rápido | 7.5% mais rápido |
 
-For Total TTI, we measured the time it takes from bundle loading to when the first screen in the app is rendered and it is interactive.
+Para TTI Total, medimos o tempo que leva desde o carregamento do bundle até quando a primeira tela no app é renderizada e está interativa.
 
-For Content TTI, we measured the time it takes for a component to be interactive, starting from the first rendering of the component itself.
+Para TTI de Conteúdo, medimos o tempo que leva para um componente ficar interativo, começando da primeira renderização do próprio componente.
 
-Hermes V1 does not yet contain JS-to-native compilation (previously known as “Static Hermes”) or the JIT compilation that was [presented during React Native EU 2023](https://www.youtube.com/watch?v=q-xKYA0EO-c). We are still testing these features, and will share more as we make progress.
+Hermes V1 ainda não contém compilação JS-para-nativo (anteriormente conhecida como "Static Hermes") ou a compilação JIT que foi [apresentada durante React Native EU 2023](https://www.youtube.com/watch?v=q-xKYA0EO-c). Ainda estamos testando esses recursos e compartilharemos mais à medida que avançamos.
 
-### How to enable Hermes V1
+### Como habilitar o Hermes V1
 
 :::info
 
-While Hermes V1 is in the experimental phase, you’ll need to build React Native from source to try it out. Once Hermes V1 ships as default in a future React Native version, this restriction will be lifted.
+Enquanto o Hermes V1 está na fase experimental, você precisará compilar o React Native a partir do código-fonte para experimentá-lo. Uma vez que o Hermes V1 seja enviado como padrão em uma versão futura do React Native, essa restrição será removida.
 
 :::
 
-To try Hermes V1 in your own project, use the following steps:
+Para experimentar o Hermes V1 em seu próprio projeto, use os seguintes passos:
 
-1. Force your package manager to resolve the experimental version of Hermes V1 compiler package by modifying the corresponding section of your `package.json` file (note that the current versioning convention is only for the experimental phase of Hermes V1):
+1. Force seu gerenciador de pacotes a resolver a versão experimental do pacote do compilador Hermes V1 modificando a seção correspondente do seu arquivo `package.json` (observe que a convenção de versionamento atual é apenas para a fase experimental do Hermes V1):
 
 <Tabs>
   <TabItem label="yarn" value="yarn" default>
@@ -105,13 +106,13 @@ To try Hermes V1 in your own project, use the following steps:
   </TabItem>
 </Tabs>
 
-2. Enable Hermes V1 for Android by adding `hermesV1Enabled=true` inside the `android/gradle.properties`:
+2. Habilite o Hermes V1 para Android adicionando `hermesV1Enabled=true` dentro do `android/gradle.properties`:
 
 ```sh title="android/gradle.properties"
 hermesV1Enabled=true
 ```
 
-Also, configure React Native [to build from source](https://reactnative.dev/contributing/how-to-build-from-source#android) by editing `android/settings.gradle`:
+Além disso, configure o React Native [para compilar a partir do código-fonte](https://reactnative.dev/contributing/how-to-build-from-source#android) editando `android/settings.gradle`:
 
 ```jsx title="android/settings.gradle"
   includeBuild('../node_modules/react-native') {
@@ -123,40 +124,40 @@ Also, configure React Native [to build from source](https://reactnative.dev/cont
   }
 ```
 
-3. Enable Hermes V1 for iOS by installing pods with `RCT_HERMES_V1_ENABLED=1` environment variable.
+3. Habilite o Hermes V1 para iOS instalando pods com a variável de ambiente `RCT_HERMES_V1_ENABLED=1`.
 
 ```sh
 RCT_HERMES_V1_ENABLED=1 bundle exec pod install
 ```
 
-Keep in mind that Hermes V1 is not compatible with the precompiled React Native builds, so make sure you don’t use the `RCT_USE_PREBUILT_RNCORE` flag when installing pods.
+Tenha em mente que o Hermes V1 não é compatível com as compilações pré-compiladas do React Native, então certifique-se de não usar a flag `RCT_USE_PREBUILT_RNCORE` ao instalar pods.
 
-4. To confirm if your app is running Hermes V1, execute the following code within your app or DevTools console. This code will return the Hermes version, which should match the version specified in step 1 (`250829098.0.1`):
+4. Para confirmar se seu app está executando o Hermes V1, execute o seguinte código dentro do seu app ou no console do DevTools. Este código retornará a versão do Hermes, que deve corresponder à versão especificada no passo 1 (`250829098.0.1`):
 
 ```jsx
-// expecting "250829098.0.1" in Hermes V1
+// esperando "250829098.0.1" no Hermes V1
 HermesInternal.getRuntimeProperties()['OSS Release Version'];
 ```
 
 ## React 19.1.1
 
-This release of React Native ships with the latest React stable: [React 19.1.1](https://github.com/facebook/react/releases/tag/v19.1.1).
+Este lançamento do React Native vem com a versão estável mais recente do React: [React 19.1.1](https://github.com/facebook/react/releases/tag/v19.1.1).
 
-This release of React contains full support for owner stacks for React Native. Back in React Native 0.80, when we shipped support for 19.1.0, we [mentioned](/blog/2025/06/12/react-native-0.80#react-1910) that owner stacks were not fully supported if you were using the [`@babel/plugin-transform-function-name`](https://babeljs.io/docs/babel-plugin-transform-function-name) Babel plugin. This release lifts this restriction and enables owner stacks for all React Native users.
+Este lançamento do React contém suporte completo para owner stacks para React Native. No React Native 0.80, quando enviamos suporte para 19.1.0, [mencionamos](/blog/2025/06/12/react-native-0.80#react-1910) que owner stacks não eram totalmente suportados se você estivesse usando o plugin Babel [`@babel/plugin-transform-function-name`](https://babeljs.io/docs/babel-plugin-transform-function-name). Este lançamento remove essa restrição e habilita owner stacks para todos os usuários do React Native.
 
-| BEFORE                                                                                                            | AFTER                                                                                                         |
+| ANTES                                                                                                            | DEPOIS                                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | <center>![Example error thrown without Owner Stacks](../static/blog/assets/0.82-owners-stack-before.png)</center> | <center>![Example error thrown with Owner Stacks](../static/blog/assets/0.82-owners-stack-after.png)</center> |
 
-React 19.1.1 also improves the reliability of [`useDeferredValue`](https://react.dev/reference/react/useDeferredValue) and [`startTransition`](https://react.dev/reference/react/startTransition) in a Suspense boundary for React Native. These are essential React features, designed to boost app responsiveness. Previously both were wrongly showing the fallback component when used together with a Suspense boundary on React Native. With React 19.1.1, they now consistently perform as expected on React Native, aligning their behavior with Web.
+React 19.1.1 também melhora a confiabilidade de [`useDeferredValue`](https://react.dev/reference/react/useDeferredValue) e [`startTransition`](https://react.dev/reference/react/startTransition) em um limite de Suspense para React Native. Esses são recursos essenciais do React, projetados para aumentar a responsividade do app. Anteriormente, ambos estavam erroneamente mostrando o componente fallback quando usados juntos com um limite de Suspense no React Native. Com React 19.1.1, eles agora funcionam consistentemente conforme esperado no React Native, alinhando seu comportamento com a Web.
 
 ## DOM Node APIs
 
-Starting from React Native 0.82, native components will provide DOM-like nodes via refs.
+A partir do React Native 0.82, componentes nativos fornecerão nodes semelhantes ao DOM via refs.
 
 <!--alex ignore just retext-equality-->
 
-Before, native components provided React Native-specific objects with just a handful of methods like `measure` and `setNativeProps`. After this release, they will provide [nodes implementing a subset of the DOM API](https://reactnative.dev/docs/element-nodes) to traverse the UI tree, measure layout, and more as on Web. For example:
+Antes, componentes nativos forneciam objetos específicos do React Native com apenas um punhado de métodos como `measure` e `setNativeProps`. Após este lançamento, eles fornecerão [nodes implementando um subconjunto da API DOM](https://reactnative.dev/docs/element-nodes) para percorrer a árvore de UI, medir layout e mais, como na Web. Por exemplo:
 
 ```jsx
 function MyComponent(props) {
@@ -184,44 +185,44 @@ function MyComponent(props) {
 }
 ```
 
-Additionally, this will expose access to leaf [text nodes](https://reactnative.dev/docs/text-nodes) (created by the `Text` component) and [document nodes](https://reactnative.dev/docs/document-nodes) representing React Native root nodes.
+Além disso, isso exporá acesso a [text nodes](https://reactnative.dev/docs/text-nodes) folha (criados pelo componente `Text`) e [document nodes](https://reactnative.dev/docs/document-nodes) representando nodes raiz do React Native.
 
-This is a backwards compatible change, as the new nodes will continue implementing the legacy methods (like `measure`).
+Esta é uma mudança compatível com versões anteriores, pois os novos nodes continuarão implementando os métodos legados (como `measure`).
 
-For more information, please check our [documentation](https://reactnative.dev/docs/nodes).
+Para mais informações, consulte nossa [documentação](https://reactnative.dev/docs/nodes).
 
-## Other changes
+## Outras mudanças
 
 ### Web Performance APIs (Canary)
 
-React Native now implements a subset of the performance APIs available on Web:
+React Native agora implementa um subconjunto das APIs de desempenho disponíveis na Web:
 
-- [High Resolution Time](https://www.w3.org/TR/hr-time-3/): defines `performance.now()` and `performance.timeOrigin`.
-- [Performance Timeline](https://w3c.github.io/performance-timeline/): defines `PerformanceObserver` and methods to access performance entries in the performance object (`getEntries()`, `getEntriesByType()`, `getEntriesByName()`).
-- [User Timing](https://w3c.github.io/user-timing/): defines `performance.mark` and `performance.measure`.
-- [Event Timing API](https://w3c.github.io/event-timing/): defines `event` entry types reported to `PerformanceObserver`.
-- [Long Tasks API](https://w3c.github.io/longtasks/): defines `longtask` entry types reported to `PerformanceObserver`.
+- [High Resolution Time](https://www.w3.org/TR/hr-time-3/): define `performance.now()` e `performance.timeOrigin`.
+- [Performance Timeline](https://w3c.github.io/performance-timeline/): define `PerformanceObserver` e métodos para acessar entradas de desempenho no objeto performance (`getEntries()`, `getEntriesByType()`, `getEntriesByName()`).
+- [User Timing](https://w3c.github.io/user-timing/): define `performance.mark` e `performance.measure`.
+- [Event Timing API](https://w3c.github.io/event-timing/): define tipos de entrada `event` relatados ao `PerformanceObserver`.
+- [Long Tasks API](https://w3c.github.io/longtasks/): define tipos de entrada `longtask` relatados ao `PerformanceObserver`.
 
-They allow tracking different aspects of performance in your app at runtime (for telemetry) and they will be visible in the performance panel in React Native DevTools (available in a future version of React Native).
+Elas permitem rastrear diferentes aspectos de desempenho em seu app em tempo de execução (para telemetria) e estarão visíveis no painel de desempenho no React Native DevTools (disponível em uma versão futura do React Native).
 
-They are currently **available only in the [canary release level](https://reactnative.dev/docs/releases/release-levels)**, and will be released as stable in a future version of React Native.
+Atualmente estão **disponíveis apenas no [nível de lançamento canary](https://reactnative.dev/docs/releases/release-levels)**, e serão lançadas como estáveis em uma versão futura do React Native.
 
-### Optimized Debug Build Type for Android
+### Tipo de Build Debug Otimizado para Android
 
-Starting with React Native 0.82, you will be able to use the `debugOptimized` build type to speed up your development experience.
+A partir do React Native 0.82, você poderá usar o tipo de build `debugOptimized` para acelerar sua experiência de desenvolvimento.
 
-Historically, Android creates two default build variants:
+Historicamente, o Android cria duas variantes de build padrão:
 
-- `debug`, used by default when developing and that allows you to connect to the various debugger tools such as React Native DevTools, Metro, the Android JVM and C++ debugger
-- `release`, used when shipping your application to production. This is fully optimized, with obfuscation and optimization that will make debugging harder.
+- `debug`, usado por padrão ao desenvolver e que permite conectar-se às várias ferramentas de depuração como React Native DevTools, Metro, o JVM do Android e o depurador C++
+- `release`, usado ao enviar sua aplicação para produção. Este é totalmente otimizado, com ofuscação e otimização que tornarão a depuração mais difícil.
 
-As most React Native developers won’t need to use the C++ debugger when developing, we introduced the `debugOptimized` build type.
+Como a maioria dos desenvolvedores React Native não precisará usar o depurador C++ ao desenvolver, introduzimos o tipo de build `debugOptimized`.
 
-With `debugOptimized` your animations and re-rendering will be faster, because you’re running a React Native build with several C++ optimizations enabled. At the same time you will still be able to use React Native Dev Tools to debug your JavaScript code.
+Com `debugOptimized`, suas animações e re-renderizações serão mais rápidas, porque você está executando uma build do React Native com várias otimizações C++ habilitadas. Ao mesmo tempo, você ainda poderá usar React Native Dev Tools para depurar seu código JavaScript.
 
-When using `debugOptimized`, you won’t be able to use the C++ native debuggers, but you will still be able to use it if you use the debug build type.
+Ao usar `debugOptimized`, você não poderá usar os depuradores nativos C++, mas ainda poderá usá-lo se usar o tipo de build debug.
 
-To run the `debugOptimized` variant for your app you can invoke:
+Para executar a variante `debugOptimized` para seu app, você pode invocar:
 
 <Tabs>
   <TabItem label="Community CLI" value="Community CLI" default>
@@ -238,84 +239,84 @@ To run the `debugOptimized` variant for your app you can invoke:
 
 :::info
 
-The `debugOptimized` build type has also been backported to React Native 0.81 and Expo SDK 54.
+O tipo de build `debugOptimized` também foi retroportado para React Native 0.81 e Expo SDK 54.
 
 :::
 
-You can see the `debugOptimized` in action in these samples where we’re rendering several animations on screens.
+Você pode ver o `debugOptimized` em ação nesses exemplos onde estamos renderizando várias animações em telas.
 
-The build running `debug` is running at ~20FPS while the `debugOptimized` one is running at ~60FPS:
+A build executando `debug` está rodando a ~20FPS enquanto a `debugOptimized` está rodando a ~60FPS:
 | `debug` | `debugOptimized` |
 | ------- | ---------------- |
 | ![Example build running with `debug`](../static/blog/assets/0.82-debug.gif) | ![Example build running with `debugOptimized`](../static/blog/assets/0.82-debug-optimized.gif) |
 
 ## Breaking Changes
 
-### Uncaught promise rejections will now raise `console.error`
+### Rejeições de promise não capturadas agora gerarão `console.error`
 
-Following the [improvement of reporting uncaught JavaScript errors](/blog/2025/08/12/react-native-0.81#improved-reporting-of-uncaught-javascript-errors) in the previous version, we will now be reporting uncaught promises through that mechanism as well:
+Seguindo a [melhoria no relato de erros JavaScript não capturados](/blog/2025/08/12/react-native-0.81#improved-reporting-of-uncaught-javascript-errors) na versão anterior, agora estaremos relatando promises não capturadas através desse mecanismo também:
 
 ![Example of a promise rejection reported to console](../static/blog/assets/0.82-uncaught-promise-rejection-report.png)
 
-Due to a bug, these were completely swallowed and ignored previously, so please expect some pre-existing errors to surface after upgrading to React Native 0.81. For that reason, previously pre-existing errors might also surface in JavaScript errors reported to your backend, and create a surge in new reports.
+Devido a um bug, esses erros eram completamente suprimidos e ignorados anteriormente, então espere que alguns erros pré-existentes apareçam após atualizar para React Native 0.81. Por esse motivo, erros pré-existentes também podem aparecer em erros JavaScript relatados ao seu backend e criar um aumento nos novos relatórios.
 
-### Other Breaking Changes
+### Outras Breaking Changes
 
-#### General
+#### Geral
 
-- Move `ReactNativeFeatureFlags` to `src/private`
-  - In general you should not depend on `ReactNativeFeatureFlags` at all as that is a private API.
-- Type of `Appearance.setColorScheme()` has been updated to no longer accept a nullable value
-  - Use 'unspecified' instead of null/undefined in the edge case that the color scheme needs to be reset.
+- Move `ReactNativeFeatureFlags` para `src/private`
+  - Em geral, você não deve depender de `ReactNativeFeatureFlags`, pois essa é uma API privada.
+- Tipo de `Appearance.setColorScheme()` foi atualizado para não aceitar mais um valor nullable
+  - Use 'unspecified' em vez de null/undefined no caso extremo em que o esquema de cores precise ser redefinido.
 
 #### iOS
 
-- Migrated `RCTDisplayLink` away from legacy api `RCTModuleData` as we plan to remove it in the future.
+- Migrou `RCTDisplayLink` da API legada `RCTModuleData` pois planejamos removê-la no futuro.
 
 #### Android
 
-- Class `com.facebook.react.bridge.JSONArguments` is removed as was accidentally `public`
-- Deprecate `MessageQueueThreadPerfStats`
-  - We deprecated this API and replaced it with stub. You should not rely on stats from this API anymore as the provided stats were not reliable
-- Bump Gradle from 8.x to 9.0.0
-  - List of all the changes in the next major stable version of Gradle 9.0.0 is available [here](https://gradle.org/whats-new/gradle-9/) but we expect no impact at all to users
+- Classe `com.facebook.react.bridge.JSONArguments` foi removida pois estava acidentalmente `public`
+- Depreciar `MessageQueueThreadPerfStats`
+  - Depreciamos esta API e a substituímos por stub. Você não deve mais confiar em estatísticas desta API, pois as estatísticas fornecidas não eram confiáveis
+- Atualizar Gradle de 8.x para 9.0.0
+  - Lista de todas as mudanças na próxima versão estável principal do Gradle 9.0.0 está disponível [aqui](https://gradle.org/whats-new/gradle-9/), mas não esperamos nenhum impacto para os usuários
 
 #### C++
 
-- Delete backward compatibility headers for `CallbackWrapper.h` / `LongLivedObject.h`
-  - The correct include for those headers is `#include <react/bridging/LongLivedObject.h>` and `#include <react/bridging/CallbackWrapper.h>`.
-  - You should not use the old includes under `#import <ReactCommon/….h>`
+- Deletar headers de compatibilidade retroativa para `CallbackWrapper.h` / `LongLivedObject.h`
+  - O include correto para esses headers é `#include <react/bridging/LongLivedObject.h>` e `#include <react/bridging/CallbackWrapper.h>`.
+  - Você não deve usar os includes antigos sob `#import <ReactCommon/….h>`
 
-Read the full list of breaking changes in the [CHANGELOG for 0.82](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#v0820).
+Leia a lista completa de breaking changes no [CHANGELOG para 0.82](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#v0820).
 
-## Acknowledgements
+## Agradecimentos
 
-React Native 0.82 contains over 868 commits from 93 contributors. Thanks for all your hard work!
+React Native 0.82 contém mais de 868 commits de 93 contribuidores. Obrigado por todo o trabalho árduo!
 
-We want to send a special thank you to those community members that shipped significant contributions in this release:
+Queremos enviar um agradecimento especial aos membros da comunidade que enviaram contribuições significativas neste lançamento:
 
-- [Dawid Małecki](https://github.com/coado) and [Jakub Piasecki](https://github.com/j-piasecki) for the help in rolling out Hermes V1.
-- [Krystof Woldrich](https://github.com/krystofwoldrich) for the support with fixing the swallowing of uncaught promise rejections.
-- [Riccardo Cipolleschi](https://github.com/cipolleschi) for the support with writing the React 19.1.1 and Hermes V1 paragraph above.
-- [Rubén Norte](https://github.com/rubennorte) for the support with writing the DOM API and Performance API paragraphs.
-- [Tomasz Zawadzki](https://github.com/tomekzaw/) for the support with the `debugOptimized` benchmarking.
+- [Dawid Małecki](https://github.com/coado) e [Jakub Piasecki](https://github.com/j-piasecki) pela ajuda no lançamento do Hermes V1.
+- [Krystof Woldrich](https://github.com/krystofwoldrich) pelo suporte na correção da supressão de rejeições de promise não capturadas.
+- [Riccardo Cipolleschi](https://github.com/cipolleschi) pelo suporte na escrita dos parágrafos sobre React 19.1.1 e Hermes V1 acima.
+- [Rubén Norte](https://github.com/rubennorte) pelo suporte na escrita dos parágrafos sobre DOM API e Performance API.
+- [Tomasz Zawadzki](https://github.com/tomekzaw/) pelo suporte no benchmarking do `debugOptimized`.
 
-## Upgrade to 0.82
+## Atualizar para 0.82
 
-Please use the [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) to view code changes between React Native versions for existing projects, in addition to the [upgrading to new versions docs](/docs/upgrading).
+Use o [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para visualizar as mudanças de código entre as versões do React Native para projetos existentes, além da [documentação sobre atualização para novas versões](/docs/upgrading).
 
-To create a new project:
+Para criar um novo projeto:
 
 ```bash
 npx @react-native-community/cli@latest init MyProject --version latest
 ```
 
-If you use Expo, React Native 0.82 will be available as part of the expo@canary releases.
+Se você usa Expo, React Native 0.82 estará disponível como parte dos lançamentos expo@canary.
 
-The next SDK, SDK 55, will be shipped with the next stable release of React Native: 0.83.
+O próximo SDK, SDK 55, será enviado com o próximo lançamento estável do React Native: 0.83.
 
 :::info
 
-0.82 is now the latest stable version of React Native and 0.79.x moves to unsupported. For more information see [React Native's support policy](https://github.com/reactwg/react-native-releases/blob/main/docs/support.md).
+0.82 agora é a versão estável mais recente do React Native e 0.79.x passa a não ter suporte. Para mais informações, consulte [a política de suporte do React Native](https://github.com/reactwg/react-native-releases/blob/main/docs/support.md).
 
 :::

@@ -1,128 +1,129 @@
 ---
-title: 'React Native 0.80 - React 19.1, JS API Changes, Freezing Legacy Arch and much more'
+ia-translated: true
+title: 'React Native 0.80 - React 19.1, Mudanças na API JavaScript, Congelamento da Legacy Arch e muito mais'
 authors: [hezi, fabriziocucci, gabrieldonadel, chrfalch]
 tags: [engineering]
 date: 2025-06-12T16:01
 ---
 
-# React Native 0.80 - React 19.1, JS API Changes, Freezing Legacy Arch and much more
+# React Native 0.80 - React 19.1, Mudanças na API JavaScript, Congelamento da Legacy Arch e muito mais
 
-Today we are excited to release React Native 0.80!
+Hoje estamos animados em lançar o React Native 0.80!
 
-This release brings the version of React we ship inside React Native to the latest stable available: 19.1.0.
+Este lançamento traz a versão do React que enviamos dentro do React Native para a mais recente versão estável disponível: 19.1.0.
 
-We’re also shipping a series of stability improvements to our JS API: deep imports will now fire a warning and we’re offering a new opt-in Strict TypeScript API which offers types that are more accurate and safer to use.
+Também estamos lançando uma série de melhorias de estabilidade em nossa API JavaScript: deep imports agora dispararão um aviso e estamos oferecendo uma nova API TypeScript Strict opcional que oferece tipos mais precisos e seguros de usar.
 
-Moreover, the Legacy Architecture of React Native is now officially frozen, and you’ll start seeing warnings for APIs that will stop working once we fully sunset the Legacy Architecture.
+Além disso, a Legacy Architecture do React Native agora está oficialmente congelada, e você começará a ver avisos para APIs que deixarão de funcionar assim que descontinuarmos totalmente a Legacy Architecture.
 
-### Highlights
+### Destaques
 
-- [JavaScript deep imports deprecation](/blog/2025/06/12/react-native-0.80#javascript-deep-imports-deprecation)
-- [Legacy Architecture Freezing & Warnings](/blog/2025/06/12/react-native-0.80#legacy-architecture-freezing--warnings)
+- [Depreciação de deep imports JavaScript](/blog/2025/06/12/react-native-0.80#javascript-deep-imports-deprecation)
+- [Congelamento e Avisos da Legacy Architecture](/blog/2025/06/12/react-native-0.80#legacy-architecture-freezing--warnings)
 - [React 19.1.0](/blog/2025/06/12/react-native-0.80#react-1910)
-- [Experimental - React Native iOS dependencies are now prebuilt](/blog/2025/06/12/react-native-0.80#experimental---react-native-ios-dependencies-are-now-prebuilt)
+- [Experimental - Dependências iOS do React Native agora são pré-compiladas](/blog/2025/06/12/react-native-0.80#experimental---react-native-ios-dependencies-are-now-prebuilt)
 
 <!--truncate-->
 
-## Highlights
+## Destaques
 
-### JavaScript deep imports deprecation
+### Depreciação de deep imports JavaScript {#javascript-deep-imports-deprecation}
 
-In this release, we are making moves to improve and stabilize React Native's public JavaScript API. The first step towards this is better scoping of which of our APIs are importable by apps and frameworks. In line with this, we are formally deprecating deep imports from React Native ([see RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894)), and are introducing warnings via ESLint and the JS console.
+Neste lançamento, estamos fazendo mudanças para melhorar e estabilizar a API JavaScript pública do React Native. O primeiro passo nessa direção é um melhor escopo de quais de nossas APIs são importáveis por apps e frameworks. Alinhado com isso, estamos formalmente depreciando deep imports do React Native ([veja RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894)), e estamos introduzindo avisos via ESLint e o console JavaScript.
 
-These warnings are scoped to imports from within your project's source code, and can be [opted out from](/docs/strict-typescript-api). However, please bear in mind that we aim to remove deep imports from React Native's API in a future release, and these should instead be updated to the root import.
+Esses avisos são limitados a imports de dentro do código-fonte do seu projeto, e podem ser [desativados](/docs/strict-typescript-api). No entanto, tenha em mente que nosso objetivo é remover deep imports da API do React Native em um lançamento futuro, e esses devem ser atualizados para o import raiz.
 
 ```js
-// Before - import from subpath
+// Antes - import de subpath
 import {Alert} from 'react-native/Libraries/Alert/Alert';
 
-// After - import from `react-native`
+// Depois - import de `react-native`
 import {Alert} from 'react-native';
 ```
 
-Some APIs are not exported at root, and will become unavailable without deep imports. This is intentional, in order to reduce the overall surface area of React Native's API. We have an open [feedback thread](https://github.com/react-native-community/discussions-and-proposals/discussions/893) for user issues, and will be working with the community to finalize which APIs we export over (at least) the next two React Native releases. Please share your feedback!
+Algumas APIs não são exportadas na raiz, e ficarão indisponíveis sem deep imports. Isso é intencional, para reduzir a superfície geral da API do React Native. Temos um [tópico de feedback](https://github.com/react-native-community/discussions-and-proposals/discussions/893) aberto para problemas de usuários, e estaremos trabalhando com a comunidade para finalizar quais APIs exportamos durante (pelo menos) os próximos dois lançamentos do React Native. Por favor, compartilhe seu feedback!
 
-Learn more about this change in our dedicated post: [Moving Towards a Stable JavaScript API](/blog/2025/06/12/moving-towards-a-stable-javascript-api).
+Saiba mais sobre esta mudança em nossa postagem dedicada: [Avançando em Direção a uma API JavaScript Estável](/blog/2025/06/12/moving-towards-a-stable-javascript-api).
 
-#### Opt-in Strict TypeScript API
+#### API TypeScript Strict opcional {#opt-in-strict-typescript-api}
 
-With the above redefinition of the exports in our public API, we're also shipping a new set of TypeScript types for the `react-native` package in 0.80, which we're calling the Strict TypeScript API.
+Com a redefinição acima das exportações em nossa API pública, também estamos enviando um novo conjunto de tipos TypeScript para o pacote `react-native` na versão 0.80, que estamos chamando de API TypeScript Strict.
 
-Opting into the Strict TypeScript API is a preview of our future, stable JavaScript API for React Native. These new types are:
+Optar pela API TypeScript Strict é uma prévia do nosso futuro, uma API JavaScript estável para React Native. Esses novos tipos são:
 
-1. **Generated directly from our source code** — improving coverage and correctness, so you can expect stronger compatibility guarantees.
-2. **Restricted to React Native's index file** — more tightly defining our public API, and meaning we won't break the API when making internal file changes.
+1. **Gerados diretamente do nosso código-fonte** — melhorando cobertura e correção, para que você possa esperar garantias de compatibilidade mais fortes.
+2. **Restritos ao arquivo index do React Native** — definindo mais rigidamente nossa API pública, e significando que não quebraremos a API ao fazer alterações internas de arquivos.
 
-We're shipping these alongside our existing types, meaning you can choose to migrate when ready. Also, if you're using standard React Native APIs, a lot of apps should validate with **no changes**. We strongly encourage early adopters and newly created apps to opt in via your `tsconfig.json` file.
+Estamos enviando esses junto com nossos tipos existentes, o que significa que você pode escolher migrar quando estiver pronto. Além disso, se você estiver usando APIs padrão do React Native, muitos apps devem validar **sem alterações**. Encorajamos fortemente adotantes iniciais e apps recém-criados a optar via seu arquivo `tsconfig.json`.
 
-When the community is ready, the Strict TypeScript API will become our default API in future — synchronized with deep imports removal.
+Quando a comunidade estiver pronta, a API TypeScript Strict se tornará nossa API padrão no futuro — sincronizada com a remoção de deep imports.
 
-Learn more about this change in our dedicated post: [Moving Towards a Stable JavaScript API](/blog/2025/06/12/moving-towards-a-stable-javascript-api).
+Saiba mais sobre esta mudança em nossa postagem dedicada: [Avançando em Direção a uma API JavaScript Estável](/blog/2025/06/12/moving-towards-a-stable-javascript-api).
 
-### Legacy Architecture Freezing & Warnings
+### Congelamento e Avisos da Legacy Architecture {#legacy-architecture-freezing--warnings}
 
-The New Architecture of React Native is the default choice [since version 0.76](/blog/2024/10/23/the-new-architecture-is-here) and we’ve been reading [success stories](https://blog.kraken.com/product/engineering/how-kraken-fixed-performance-issues-via-incremental-adoption-of-the-react-native-new-architecture) of projects and tools that greatly benefit from it.
+A New Architecture do React Native é a escolha padrão [desde a versão 0.76](/blog/2024/10/23/the-new-architecture-is-here) e temos lido [histórias de sucesso](https://blog.kraken.com/product/engineering/how-kraken-fixed-performance-issues-via-incremental-adoption-of-the-react-native-new-architecture) de projetos e ferramentas que se beneficiam enormemente dela.
 
-[We recently shared](https://github.com/reactwg/react-native-new-architecture/discussions/290) that we now consider the Legacy Architecture as frozen. We won’t be developing new bugfixes or features in the Legacy Architecture anymore and we will stop testing the Legacy Architecture while working on a release.
+[Compartilhamos recentemente](https://github.com/reactwg/react-native-new-architecture/discussions/290) que agora consideramos a Legacy Architecture como congelada. Não estaremos mais desenvolvendo novos bugfixes ou recursos na Legacy Architecture e vamos parar de testar a Legacy Architecture ao trabalhar em um lançamento.
 
-In order to smooth the migration, we are still allowing users to opt-out of the New Architecture if you’re experiencing bugs or regressions.
+Para facilitar a migração, ainda estamos permitindo que usuários desativem a New Architecture se você estiver enfrentando bugs ou regressões.
 
-However shipping two architectures with React Native is a huge challenge, which impacts runtime performance, app size and maintenance of our codebase.
+No entanto, enviar duas arquiteturas com React Native é um desafio enorme, que impacta o desempenho em tempo de execução, tamanho do app e manutenção de nossa base de código.
 
-That’s why we’ll eventually have to sunset the Legacy Architecture at some point in the future.
+É por isso que eventualmente teremos que descontinuar a Legacy Architecture em algum momento no futuro.
 
-In 0.80, we’ve added a series of warnings that will pop-up in React Native DevTools to warn you if you’re using APIs that won’t work in the New Architecture.
+Na versão 0.80, adicionamos uma série de avisos que aparecerão no React Native DevTools para avisá-lo se você estiver usando APIs que não funcionarão na New Architecture.
 
-We recommend you to not ignore those warnings and to consider migrating your apps & libraries to the New Architecture to be ready for the future.
+Recomendamos que você não ignore esses avisos e considere migrar seus apps e bibliotecas para a New Architecture para estar pronto para o futuro.
 
 ![legacy architecture warnings](../static/blog/assets/0.80-legacy-arch-warnings.png)
 
-You can learn more about those changes in the talk "Life After Legacy: The New Architecture Future" [we recently presented at App.js](https://www.youtube.com/live/K2JTTKpptGs?si=tRkT535f0GzguVGt&t=9011).
+Você pode aprender mais sobre essas mudanças na palestra "Life After Legacy: The New Architecture Future" [que apresentamos recentemente na App.js](https://www.youtube.com/live/K2JTTKpptGs?si=tRkT535f0GzguVGt&t=9011).
 
-### React 19.1.0
+### React 19.1.0 {#react-1910}
 
-This release of React Native ships with the latest React stable: 19.1.0
+Este lançamento do React Native vem com a última versão estável do React: 19.1.0
 
-You can read about all the new features and bugfixes introduced in React 19.1.0 in the [release description](https://github.com/facebook/react/releases/tag/v19.1.0).
+Você pode ler sobre todos os novos recursos e bugfixes introduzidos no React 19.1.0 na [descrição do lançamento](https://github.com/facebook/react/releases/tag/v19.1.0).
 
 :::warning
 
-One notable feature of React 19.1.0 is the implementation and improvements of owner stacks. This is a development only feature that should help you identify which component is responsible for a specific error.
+Um recurso notável do React 19.1.0 é a implementação e melhorias de owner stacks. Este é um recurso apenas para desenvolvimento que deve ajudá-lo a identificar qual componente é responsável por um erro específico.
 
-However, we are aware that owner stacks are not working as expected in React Native if you use the `@babel/plugin-transform-function-name` Babel plugin, which is enabled by default in the React Native Babel Preset. We will be shipping a fix for this in a future release of React Native.
+No entanto, estamos cientes de que owner stacks não estão funcionando como esperado no React Native se você usar o plugin Babel `@babel/plugin-transform-function-name`, que está habilitado por padrão no React Native Babel Preset. Enviaremos uma correção para isso em um lançamento futuro do React Native.
 
 :::
 
-### Experimental - React Native iOS dependencies are now prebuilt
+### Experimental - Dependências iOS do React Native agora são pré-compiladas {#experimental---react-native-ios-dependencies-are-now-prebuilt}
 
-If you’re building a React Native iOS app, you probably noticed that the first native build will take some time: a couple of minutes or even longer on older machines. That’s because we need to compile the whole React Native iOS code plus all of its dependencies.
+Se você está construindo um app iOS em React Native, provavelmente notou que a primeira compilação nativa levará algum tempo: alguns minutos ou até mais em máquinas mais antigas. Isso ocorre porque precisamos compilar todo o código iOS do React Native mais todas as suas dependências.
 
-Over the last weeks we’ve been experimenting with prebuilding some of the React Native core for iOS, similarly to what happens on Android, to reduce the build time when you’re first running a React Native app.
+Nas últimas semanas, temos experimentado pré-compilar parte do núcleo do React Native para iOS, de forma similar ao que acontece no Android, para reduzir o tempo de compilação quando você está executando um app React Native pela primeira vez.
 
-React Native 0.80 is the first release that can ship part of React Native for iOS as a prebuild to help reduce build times.
+O React Native 0.80 é o primeiro lançamento que pode enviar parte do React Native para iOS como pré-compilado para ajudar a reduzir os tempos de compilação.
 
-During the release process of React Native, we are producing an XCFramework called `ReactNativeDependencies.xcframework` that is a prebuilt version of only the 3rd party dependencies React Native depends on.
+Durante o processo de lançamento do React Native, estamos produzindo um XCFramework chamado `ReactNativeDependencies.xcframework` que é uma versão pré-compilada apenas das dependências de terceiros das quais o React Native depende.
 
-We experimented and benchmarked how much time this initial prebuild for iOS is saving and, in our benchmarks, run on an M4 machine, iOS builds are roughly 12% faster with the prebuild rather than by building from source.
+Experimentamos e medimos quanto tempo esta pré-compilação inicial para iOS está economizando e, em nossos benchmarks, executados em uma máquina M4, as compilações iOS são aproximadamente 12% mais rápidas com a pré-compilação em vez de compilar a partir do código-fonte.
 
-From our experience, we also observed that several bug reports from users are caused by build issues related with React Native’s 3rd party dependencies (example [#39568](https://github.com/facebook/react-native/issues/39568)).
-Prebuilding the 3rd party dependencies allows us to build them for you, so that you won’t face these build issues anymore.
+A partir de nossa experiência, também observamos que vários relatórios de bugs de usuários são causados por problemas de compilação relacionados às dependências de terceiros do React Native (exemplo [#39568](https://github.com/facebook/react-native/issues/39568)).
+Pré-compilar as dependências de terceiros nos permite compilá-las para você, para que você não enfrente mais esses problemas de compilação.
 
-Note that we are not pre-building the whole React Native: we are only pre-building the libraries Meta does not directly control, such as Folly and GLog.
+Observe que não estamos pré-compilando todo o React Native: estamos apenas pré-compilando as bibliotecas que a Meta não controla diretamente, como Folly e GLog.
 
-In a future release, we will also ship the rest of React Native core as a prebuild.
+Em um lançamento futuro, também enviaremos o restante do núcleo do React Native como pré-compilado.
 
-#### How to use them
+#### Como usá-los {#how-to-use-them}
 
-This feature is still experimental, so it is not turned on by default.
+Este recurso ainda é experimental, então não está ativado por padrão.
 
-If you want to use them, you can install your pods by adding the `RCT_USE_RN_DEP` env variable:
+Se você quiser usá-los, pode instalar seus pods adicionando a variável de ambiente `RCT_USE_RN_DEP`:
 
 ```bash
 RCT_USE_RN_DEP=1 bundle exec pod install
 ```
 
-Alternatively, if you want to enable it for all the developers working on that, you can modify your Podfile like this:
+Alternativamente, se você quiser habilitá-lo para todos os desenvolvedores trabalhando nisso, pode modificar seu Podfile assim:
 
 ```diff
 if linkage != nil
@@ -136,96 +137,96 @@ target 'HelloWorld' do
   config = use_native_modules!
 ```
 
-Please, report any issue that the prebuilds might cause to you and to your app in [this discussion](https://github.com/react-native-community/discussions-and-proposals/discussions/912). We are committed to looking into them and making sure that tier usage is transparent to your app.
+Por favor, reporte qualquer problema que as pré-compilações possam causar a você e ao seu app [nesta discussão](https://github.com/react-native-community/discussions-and-proposals/discussions/912). Estamos comprometidos em investigá-los e garantir que seu uso seja transparente para seu app.
 
-## Other Changes
+## Outras Mudanças
 
-### Android - Smaller APK size thanks to IPO
+### Android - Tamanho de APK menor graças ao IPO {#android---smaller-apk-size-thanks-to-ipo}
 
-This release ships with significant size reduction for all the Android apps built with React Native. Starting in 0.80, we enabled [Interprocedural Optimization](https://en.wikipedia.org/wiki/Interprocedural_optimization) for both React Native and Hermes builds.
+Este lançamento vem com redução significativa de tamanho para todos os apps Android construídos com React Native. A partir da versão 0.80, habilitamos [Otimização Interprocedural](https://en.wikipedia.org/wiki/Interprocedural_optimization) para compilações do React Native e Hermes.
 
-This resulted in a saving of ~1Mb for all the Android apps.
+Isso resultou em uma economia de ~1Mb para todos os apps Android.
 
 ![android apk size comparison](../static/blog/assets/0.80-android-apk-size.png)
 
-You will get this size win by updating your React Native version to 0.80 and there are no further changes required to your project.
+Você obterá essa redução de tamanho atualizando sua versão do React Native para 0.80 e não há mais alterações necessárias em seu projeto.
 
-### New App Screen redesign
+### Redesign da tela de novo app {#new-app-screen-redesign}
 
-If you’re not using Expo but you’re using the Community CLI & Template, in this version we've moved the New App Screen into its [own package](https://www.npmjs.com/package/@react-native/new-app-screen) and given it a fresh coat of paint. This reduces initial code boilerplate when you create a new app with the Community Template, and also provides a better experience when viewed on larger screens.
+Se você não está usando Expo mas está usando o Community CLI & Template, nesta versão movemos a tela de novo app para seu [próprio pacote](https://www.npmjs.com/package/@react-native/new-app-screen) e demos a ela uma nova aparência. Isso reduz o boilerplate de código inicial quando você cria um novo app com o Community Template, e também fornece uma melhor experiência quando visualizado em telas maiores.
 
 ![New App Screen redesign](../static/blog/assets/0.80-new-community-template-landing.jpg)
 
-### Notice about JSC community support
+### Aviso sobre suporte comunitário ao JSC {#notice-about-jsc-community-support}
 
-React Native 0.80 is the last version of React Native to offer first party JSC support. The support for JSC will be offered via the community maintained package `@react-native-community/javascriptcore`.
+React Native 0.80 é a última versão do React Native a oferecer suporte JSC de primeira parte. O suporte para JSC será oferecido via pacote mantido pela comunidade `@react-native-community/javascriptcore`.
 
-In case you missed the announcement, you can [read more about it here](/blog/2025/04/08/react-native-0.79#jsc-moving-to-community-package)
+Caso você tenha perdido o anúncio, você pode [ler mais sobre isso aqui](/blog/2025/04/08/react-native-0.79#jsc-moving-to-community-package)
 
 ## Breaking Changes
 
-### Added `"exports"` field on main package
+### Adicionado campo `"exports"` no pacote principal {#added-exports-field-on-main-package}
 
-As part of our JS Stable API changes, we've introduced an [`"exports"` field](https://nodejs.org/api/packages.html#package-entry-points) on the `package.json` manifest of `react-native`.
+Como parte de nossas mudanças na API JavaScript Estável, introduzimos um [campo `"exports"`](https://nodejs.org/api/packages.html#package-entry-points) no manifesto `package.json` do `react-native`.
 
-In 0.80, this mapping continues to expose **all JavaScript subpaths** by default, and therefore should not be a major breaking change. At the same time, this may subtly affect how modules within the `react-native` package are resolved:
+Na versão 0.80, esse mapeamento continua a expor **todos os subpaths JavaScript** por padrão, e, portanto, não deve ser uma breaking change importante. Ao mesmo tempo, isso pode afetar sutilmente como os módulos dentro do pacote `react-native` são resolvidos:
 
-- Under Metro, [platform-specific extensions](https://metrobundler.dev/docs/package-exports#replacing-platform-specific-extensions) will not be automatically expanded against `"exports"` matches. We've provided a number of shim modules to accommodate this ([#50426](https://github.com/facebook/react-native/pull/50426)).
-- Under Jest, the ability to mock deep imports may be altered, which may require updating tests.
+- No Metro, [extensões específicas de plataforma](https://metrobundler.dev/docs/package-exports#replacing-platform-specific-extensions) não serão automaticamente expandidas contra correspondências de `"exports"`. Fornecemos vários módulos shim para acomodar isso ([#50426](https://github.com/facebook/react-native/pull/50426)).
+- No Jest, a capacidade de fazer mock de deep imports pode ser alterada, o que pode exigir a atualização de testes.
 
-### Other Breaking Changes
+### Outras Breaking Changes {#other-breaking-changes}
 
-This list contains a series of other breaking changes we suspect could have a minor impact to your product code and are worth noting:
+Esta lista contém uma série de outras breaking changes que suspeitamos que possam ter um impacto menor no código do seu produto e vale a pena notar:
 
 ### JS
 
-- We bumped `eslint-plugin-react-hooks` from v4.6.0 to v5.2.0 (see full [changelog here](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md)). The `react-hooks` lint rules may produce new error signals which you will have to fix or suppress
+- Atualizamos `eslint-plugin-react-hooks` da v4.6.0 para v5.2.0 (veja o [changelog completo aqui](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md)). As regras de lint `react-hooks` podem produzir novos sinais de erro que você terá que corrigir ou suprimir
 
 ### Android
 
-- This release bumps the Kotlin version shipped with React Native to version 2.1.20. Kotlin 2.1 introduces new language features in preview that you can start using in your modules/components. You can read more about it in [the official release notes](https://kotlinlang.org/docs/whatsnew21.html).
-- We deleted the `StandardCharsets` class. It has been deprecated since 0.73. You should use the `java.nio.charset.StandardCharsets` class instead.
-- We made several classes internal. Those classes are not part of the public API and should not be accessed. We already notified or submitted patches to the affected libraries:
+- Este lançamento atualiza a versão do Kotlin enviada com React Native para a versão 2.1.20. Kotlin 2.1 introduz novos recursos de linguagem em preview que você pode começar a usar em seus módulos/componentes. Você pode ler mais sobre isso nas [notas de lançamento oficiais](https://kotlinlang.org/docs/whatsnew21.html).
+- Excluímos a classe `StandardCharsets`. Ela foi depreciada desde a versão 0.73. Você deve usar a classe `java.nio.charset.StandardCharsets` em vez disso.
+- Tornamos várias classes internas. Essas classes não fazem parte da API pública e não devem ser acessadas. Já notificamos ou submetemos patches para as bibliotecas afetadas:
   - `com.facebook.react.fabric.StateWrapperImpl`
   - `com.facebook.react.modules.core.ChoreographerCompat`
   - `com.facebook.react.modules.common.ModuleDataCleaner`
-- We migrated several classes from Java to Kotlin. If you’re using those classes, the nullability and types of some parameter changed so you might need to adjust your code:
-  - All the classes inside `com.facebook.react.devsupport`
+- Migramos várias classes de Java para Kotlin. Se você estiver usando essas classes, a nulabilidade e tipos de alguns parâmetros mudaram, então você pode precisar ajustar seu código:
+  - Todas as classes dentro de `com.facebook.react.devsupport`
   - `com.facebook.react.bridge.ColorPropConverter`
   - `com.facebook.react.views.textinput.ReactEditText`
   - `com.facebook.react.views.textinput.ReactTextInputManager`
 
 ### iOS
 
-- We deleted the `RCTFloorPixelValue` field from RCTUtils.h - The `RCTFloorPixelValue` method was not used in React Native and we removed it altogether.
+- Excluímos o campo `RCTFloorPixelValue` de RCTUtils.h - O método `RCTFloorPixelValue` não foi usado no React Native e o removemos completamente.
 
-Further smaller breaking changes are listed [in the CHANGELOG for 0.80](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#v0800).
+Outras breaking changes menores estão listadas [no CHANGELOG para 0.80](https://github.com/facebook/react-native/blob/main/CHANGELOG.md#v0800).
 
-## Acknowledgements
+## Agradecimentos
 
-React Native 0.80 contains over 1167 commits from 127 contributors. Thanks for all your hard work!
+O React Native 0.80 contém mais de 1167 commits de 127 contribuidores. Obrigado por todo o seu trabalho árduo!
 
-We want to send a special thank you to those community members that shipped significant contributions in this release:
+Queremos enviar um agradecimento especial àqueles membros da comunidade que enviaram contribuições significativas neste lançamento:
 
-- [Christian Falch](https://github.com/chrfalch) for the work on the iOS prebuilds for React Native Dependencies
-- [Iwo Plaza](https://x.com/iwoplaza), [Jakub Piasecki](https://x.com/breskin67), and [Dawid Małecki](https://github.com/coado) for their work on the Strict TypeScript API.
+- [Christian Falch](https://github.com/chrfalch) pelo trabalho nas pré-compilações iOS para React Native Dependencies
+- [Iwo Plaza](https://x.com/iwoplaza), [Jakub Piasecki](https://x.com/breskin67), e [Dawid Małecki](https://github.com/coado) pelo trabalho na API TypeScript Strict.
 
-Moreover, we also want to thank the additional authors that worked on documenting features in this release post:
+Além disso, também queremos agradecer aos autores adicionais que trabalharam na documentação de recursos nesta postagem de lançamento:
 
-- [Riccardo Cipolleschi](https://github.com/cipolleschi) for authoring the part related to iOS prebuilds for React Native Dependencies.
-- [Alex Hunt](https://x.com/huntie) for Deep imports deprecation, Opt-in Strict TypeScript API, New App Screen redesign.
-- [Nicola Corti](https://x.com/cortinico) for the Legacy Architecture Freezing & Warnings.
+- [Riccardo Cipolleschi](https://github.com/cipolleschi) por escrever a parte relacionada às pré-compilações iOS para React Native Dependencies.
+- [Alex Hunt](https://x.com/huntie) por Depreciação de deep imports, API TypeScript Strict opcional, Redesign da tela de novo app.
+- [Nicola Corti](https://x.com/cortinico) por Congelamento e Avisos da Legacy Architecture.
 
-## Upgrade to 0.80
+## Atualizar para 0.80
 
-Please use the [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) to view code changes between React Native versions for existing projects, in addition to the Upgrading docs.
+Por favor, use o [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) para visualizar alterações de código entre versões do React Native para projetos existentes, além da documentação de Atualização.
 
-To create a new project:
+Para criar um novo projeto:
 
-If you use Expo, React Native 0.80 will be supported in a canary release of the Expo SDK. Instructions on how to use React Native 0.80 in Expo are also available [in a dedicated blogpost](https://expo.dev/changelog/react-native-80).
+Se você usa Expo, o React Native 0.80 será suportado em um lançamento canary do Expo SDK. Instruções sobre como usar o React Native 0.80 no Expo também estão disponíveis [em uma postagem de blog dedicada](https://expo.dev/changelog/react-native-80).
 
 :::info
 
-0.80 is now the latest stable version of React Native and 0.77.x moves to unsupported. For more information see React Native's support policy. We aim to publish a final end-of-life update of 0.77 in the near future.
+0.80 é agora a versão estável mais recente do React Native e 0.77.x passa para não suportado. Para mais informações, veja a política de suporte do React Native. Pretendemos publicar uma atualização final de fim de vida útil da versão 0.77 em um futuro próximo.
 
 :::
