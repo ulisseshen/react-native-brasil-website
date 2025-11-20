@@ -1,16 +1,18 @@
-# Phase 2 - Step 2: Contributing Documentation - Part 1
+<!-- ia-translated: true -->
 
-**Target:** 8 files
-**Category:** How to Contribute to React Native
-**Estimated Time:** 2-3 hours
-**Agent:** `.claude/agents/translator.md`
+# Fase 2 - Etapa 2: Documentação de Contribuição - Parte 1
 
-## Objective
-Translate contribution guidelines and processes for the React Native repository.
+**Meta:** 8 arquivos
+**Categoria:** Como Contribuir para o React Native
+**Tempo Estimado:** 2-3 horas
+**Agente:** `.claude/agents/translator.md`
 
-## Files to Translate (8 files)
+## Objetivo
+Traduzir diretrizes e processos de contribuição para o repositório React Native.
 
-### Contributing Guides
+## Arquivos para Traduzir (8 arquivos)
+
+### Guias de Contribuição
 1. `website/contributing/contributing-overview.md`
 2. `website/contributing/contribution-license-agreement.md`
 3. `website/contributing/how-to-contribute-code.md`
@@ -20,34 +22,34 @@ Translate contribution guidelines and processes for the React Native repository.
 7. `website/contributing/how-to-run-and-write-tests.md`
 8. `website/contributing/bots-reference.md`
 
-## Translation Instructions
+## Instruções de Tradução
 
-### Contributing Documentation Guidelines
+### Diretrizes da Documentação de Contribuição
 
-1. **GitHub Terms** - Keep in English:
+1. **Termos do GitHub** - Manter em inglês:
    - Pull Request (PR), Issue, Fork, Clone
    - Repository, Branch, Commit, Merge
    - GitHub Actions, CI/CD
    - Labels, Milestones, Projects
 
-2. **Git Commands** - Keep unchanged:
+2. **Comandos Git** - Manter inalterados:
    - `git clone`, `git checkout`, `git commit`
    - `git push`, `git pull`, `git rebase`
-   - All command-line operations
+   - Todas as operações de linha de comando
 
-3. **Legal Terms** - Handle carefully:
+3. **Termos Legais** - Tratar com cuidado:
    - CLA (Contributor License Agreement)
-   - Keep legal document names in English
-   - Translate explanations
+   - Manter nomes de documentos legais em inglês
+   - Traduzir explicações
 
-4. **Bot Names** - Keep unchanged:
+4. **Nomes de Bots** - Manter inalterados:
    - react-native-bot, Danger Bot
-   - CI bot names and commands
+   - Nomes de bots CI e comandos
 
-### Example Pattern
+### Padrão de Exemplo
 
 ```markdown
-<!-- English -->
+<!-- Inglês -->
 ## Opening a Pull Request
 
 Before opening a pull request, make sure:
@@ -56,7 +58,7 @@ Before opening a pull request, make sure:
 3. Make your changes
 4. Run tests: `yarn test`
 
-<!-- Portuguese -->
+<!-- Português -->
 ## Abrindo um Pull Request
 
 Antes de abrir um pull request, certifique-se de:
@@ -66,39 +68,39 @@ Antes de abrir um pull request, certifique-se de:
 4. Executar os testes: `yarn test`
 ```
 
-## GitHub/Git Terminology
+## Terminologia GitHub/Git
 
-| English | Translation Approach |
+| Inglês | Abordagem de Tradução |
 |---------|---------------------|
-| Pull Request | Keep as "Pull Request" (PR) |
-| Issue | Keep as "Issue" or "Issue/Problema" |
-| Fork | Can use "Fork" or "Fork/Bifurcação" |
-| Clone | Keep "Clone/Clonar" |
-| Commit | Keep "Commit" |
-| Branch | "Branch" or "Branch/Ramificação" |
+| Pull Request | Manter como "Pull Request" (PR) |
+| Issue | Manter como "Issue" ou "Issue/Problema" |
+| Fork | Pode usar "Fork" ou "Fork/Bifurcação" |
+| Clone | Manter "Clone/Clonar" |
+| Commit | Manter "Commit" |
+| Branch | "Branch" ou "Branch/Ramificação" |
 | Merge | "Merge/Mesclar" |
 | Repository | "Repositório" |
 | Contributor | "Contribuidor/Contribuidora" |
 
-## Quality Checklist
+## Lista de Verificação de Qualidade
 
-- [ ] Git commands unchanged
-- [ ] GitHub terms consistent
-- [ ] Legal documents referenced correctly
-- [ ] Bot names unchanged
-- [ ] CI/CD terminology consistent
-- [ ] Code review process clear
-- [ ] Testing commands preserved
-- [ ] Links to GitHub intact
+- [ ] Comandos Git inalterados
+- [ ] Termos do GitHub consistentes
+- [ ] Documentos legais referenciados corretamente
+- [ ] Nomes de bots inalterados
+- [ ] Terminologia CI/CD consistente
+- [ ] Processo de revisão de código claro
+- [ ] Comandos de teste preservados
+- [ ] Links para o GitHub intactos
 
-## Output Location
+## Localização de Saída
 
-All translated files should be placed in:
+Todos os arquivos traduzidos devem ser colocados em:
 ```
 website/i18n/pt-BR/docusaurus-plugin-content-docs-contributing/current/
 ```
 
-## Progress Tracking
+## Acompanhamento do Progresso
 
 - [ ] website/contributing/contributing-overview.md
 - [ ] website/contributing/contribution-license-agreement.md
@@ -109,5 +111,5 @@ website/i18n/pt-BR/docusaurus-plugin-content-docs-contributing/current/
 - [ ] website/contributing/how-to-run-and-write-tests.md
 - [ ] website/contributing/bots-reference.md
 
-## Next Step
-After completing this step, proceed to **step03.md** (Contributing Documentation - Part 2 & Community)
+## Próxima Etapa
+Após completar esta etapa, prossiga para **step03.md** (Documentação de Contribuição - Parte 2 & Comunidade)
