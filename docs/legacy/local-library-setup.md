@@ -1,19 +1,20 @@
 ---
+ia-translated: true
 id: local-library-setup
 title: Local libraries setup
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-A local library is a library containing views or modules that's local to your app and not published to a registry. This is different from the traditional setup for view and modules in the sense that a local library is decoupled from your app's native code.
+Uma biblioteca local é uma biblioteca contendo views ou módulos que é local ao seu aplicativo e não publicada em um registro. Isso é diferente da configuração tradicional para views e módulos no sentido de que uma biblioteca local é desacoplada do código nativo do seu aplicativo.
 
-The local library is created outside of the `android/` and `ios/` folders and makes use of autolinking to integrate with your app. The structure with a local library may look like this:
+A biblioteca local é criada fora das pastas `android/` e `ios/` e faz uso de autolinking para integrar com seu aplicativo. A estrutura com uma biblioteca local pode parecer assim:
 
 ```plaintext
 MyApp
 ├── node_modules
-├── modules <-- folder for your local libraries
-│ └── awesome-module <-- your local library
+├── modules <-- pasta para suas bibliotecas locais
+│ └── awesome-module <-- sua biblioteca local
 ├── android
 ├── ios
 ├── src
@@ -21,23 +22,23 @@ MyApp
 └── package.json
 ```
 
-Since a local library's code exists outside of `android/` and `ios/` folders, it makes it easier to upgrade React Native versions in the future, copy to other projects etc.
+Como o código de uma biblioteca local existe fora das pastas `android/` e `ios/`, fica mais fácil atualizar versões do React Native no futuro, copiar para outros projetos, etc.
 
-To create local library we will use [create-react-native-library](https://callstack.github.io/react-native-builder-bob/create). This tool contains all the necessary templates.
+Para criar uma biblioteca local usaremos [create-react-native-library](https://callstack.github.io/react-native-builder-bob/create). Esta ferramenta contém todos os templates necessários.
 
 ### Getting Started
 
-Inside your React Native application's root folder, run the following command:
+Dentro da pasta raiz da sua aplicação React Native, execute o seguinte comando:
 
 ```shell
 npx create-react-native-library@latest awesome-module
 ```
 
-Where `awesome-module` is the name you would like for the new module. After going through the prompts, you will have a new folder called `modules` in your project's root directory which contains the new module.
+Onde `awesome-module` é o nome que você gostaria para o novo módulo. Após passar pelos prompts, você terá uma nova pasta chamada `modules` no diretório raiz do seu projeto que contém o novo módulo.
 
 ### Linking
 
-By default, the generated library is automatically linked to the project using `link:` protocol when using Yarn and `file:` when using npm:
+Por padrão, a biblioteca gerada é automaticamente vinculada ao projeto usando o protocolo `link:` ao usar Yarn e `file:` ao usar npm:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 
@@ -61,11 +62,11 @@ By default, the generated library is automatically linked to the project using `
 </TabItem>
 </Tabs>
 
-This creates a symlink to the library under `node_modules` which makes autolinking work.
+Isso cria um symlink para a biblioteca em `node_modules` o que faz o autolinking funcionar.
 
 ### Installing dependencies
 
-To link the module you need to install dependencies:
+Para vincular o módulo você precisa instalar as dependências:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 
@@ -87,7 +88,7 @@ yarn install
 
 ### Using module inside your app
 
-To use the module inside your app, you can import it by its name:
+Para usar o módulo dentro do seu aplicativo, você pode importá-lo por seu nome:
 
 ```js
 import {multiply} from 'awesome-module';

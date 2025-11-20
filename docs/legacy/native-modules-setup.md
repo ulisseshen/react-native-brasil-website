@@ -1,27 +1,28 @@
 ---
+ia-translated: true
 id: native-modules-setup
-title: Native Modules NPM Package Setup
+title: Configuração de Pacote NPM para Native Modules
 ---
 
 import NativeDeprecated from '../the-new-architecture/\_markdown_native_deprecation.mdx'
 
 <NativeDeprecated />
 
-Native modules are usually distributed as npm packages, except that on top of the usual JavaScript they will include some native code per platform. To understand more about npm packages you may find [this guide](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) useful.
+Native modules geralmente são distribuídos como pacotes npm, exceto que além do JavaScript usual, eles incluem algum código nativo por plataforma. Para entender mais sobre pacotes npm, você pode achar [este guia](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) útil.
 
-To get set up with the basic project structure for a native module we will use the community tool called [create-react-native-library](https://callstack.github.io/react-native-builder-bob/create). You can go ahead further and dive deep into how that library works, but for our needs we will only execute the basic script:
+Para configurar a estrutura básica de projeto para um native module, usaremos a ferramenta da comunidade chamada [create-react-native-library](https://callstack.github.io/react-native-builder-bob/create). Você pode ir mais a fundo e explorar como essa biblioteca funciona, mas para nossas necessidades executaremos apenas o script básico:
 
 ```shell
 npx create-react-native-library@latest react-native-awesome-module
 ```
 
-Where `react-native-awesome-module` is the name you would like for the new module. After doing this you will navigate into `react-native-awesome-module` folder and bootstrap the example project by running:
+Onde `react-native-awesome-module` é o nome que você gostaria para o novo módulo. Depois de fazer isso, você navegará para a pasta `react-native-awesome-module` e inicializará o projeto de exemplo executando:
 
 ```shell
 yarn
 ```
 
-When the bootstrap is done, you will be able to start the example app by executing one of the following commands:
+Quando a inicialização estiver concluída, você poderá iniciar o aplicativo de exemplo executando um dos seguintes comandos:
 
 ```shell
 # Android app
@@ -30,4 +31,4 @@ yarn example android
 yarn example ios
 ```
 
-When all steps above are done, you will be able to continue with [Android Native Modules](native-modules-android) or [iOS Native Modules](native-modules-ios) guides to add in some code.
+Quando todas as etapas acima estiverem concluídas, você poderá continuar com os guias [Android Native Modules](native-modules-android) ou [iOS Native Modules](native-modules-ios) para adicionar algum código.

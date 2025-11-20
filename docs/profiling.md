@@ -1,139 +1,140 @@
 ---
+ia-translated: true
 id: profiling
 title: Profiling
 ---
 
-Profiling is the process of analyzing an app's performance, resource usage, and behavior to identify potential bottlenecks or inefficiencies. It's worth making use of profiling tools to ensure your app works smoothly across different devices and conditions.
+Profiling é o processo de analisar o desempenho, uso de recursos e comportamento de um aplicativo para identificar possíveis gargalos ou ineficiências. Vale a pena fazer uso de ferramentas de profiling para garantir que seu aplicativo funcione suavemente em diferentes dispositivos e condições.
 
-For iOS, Instruments is an invaluable tool, and on Android you should learn to use the [Android Studio Profiler](profiling.md#profiling-android-ui-performance-with-system-tracing).
+Para iOS, Instruments é uma ferramenta inestimável, e no Android você deve aprender a usar o [Android Studio Profiler](profiling.md#profiling-android-ui-performance-with-system-tracing).
 
-But first, [**make sure that Development Mode is OFF!**](performance.md#running-in-development-mode-devtrue).
+Mas primeiro, [**certifique-se de que o Development Mode está DESLIGADO!**](performance.md#running-in-development-mode-devtrue).
 
-## Profiling Android UI Performance with System Tracing
+## Profiling de Desempenho de UI Android com System Tracing
 
-Android supports 10k+ different phones and is generalized to support software rendering: the framework architecture and need to generalize across many hardware targets unfortunately means you get less for free relative to iOS. But sometimes, there are things you can improve -- and many times it's not native code's fault at all!
+Android suporta mais de 10 mil telefones diferentes e é generalizado para suportar renderização de software: a arquitetura do framework e a necessidade de generalizar em muitos alvos de hardware infelizmente significa que você recebe menos de graça em relação ao iOS. Mas às vezes, há coisas que você pode melhorar -- e muitas vezes não é culpa do código nativo!
 
-The first step for debugging this jank is to answer the fundamental question of where your time is being spent during each 16ms frame. For that, we'll be using the [built-in System Tracing profiler in the Android Studio](https://developer.android.com/studio/profile).
+O primeiro passo para depurar esse jank é responder à questão fundamental de onde seu tempo está sendo gasto durante cada frame de 16ms. Para isso, usaremos o [profiler System Tracing integrado no Android Studio](https://developer.android.com/studio/profile).
 
-### 1. Collecting a trace
+### 1. Coletando um trace
 
-First, connect a device that exhibits the stuttering you want to investigate to your computer via USB. Open your project's `android` folder in Android Studio, select your device in the top right pane, and [run your project as profileable](https://developer.android.com/studio/profile#build-and-run).
+Primeiro, conecte um dispositivo que exiba o stuttering que você quer investigar ao seu computador via USB. Abra a pasta `android` do seu projeto no Android Studio, selecione seu dispositivo no painel superior direito e [execute seu projeto como profileable](https://developer.android.com/studio/profile#build-and-run).
 
-When your app is built as profileable and is running on the device, get your app to the point right before the navigation/animation you want to profile and start the ["Capture System Activities" task](https://developer.android.com/studio/profile#start-profiling) in the Android Studio Profiler pane.
+Quando seu aplicativo estiver construído como profileable e estiver rodando no dispositivo, coloque seu aplicativo no ponto logo antes da navegação/animação que você quer fazer profile e inicie a tarefa ["Capture System Activities"](https://developer.android.com/studio/profile#start-profiling) no painel Android Studio Profiler.
 
-Once the trace starts collecting, perform the animation or interaction you care about. Then press "Stop recording". You can now [inspect the trace directly in the Android Studio](https://developer.android.com/studio/profile/jank-detection). Alternatively, you can select it in the "Past Recordings" pane, press "Export recording", and open it in a tool like [Perfetto](https://perfetto.dev/).
+Assim que o trace começar a coletar, execute a animação ou interação que você se importa. Em seguida, pressione "Stop recording". Agora você pode [inspecionar o trace diretamente no Android Studio](https://developer.android.com/studio/profile/jank-detection). Alternativamente, você pode selecioná-lo no painel "Past Recordings", pressionar "Export recording" e abri-lo em uma ferramenta como [Perfetto](https://perfetto.dev/).
 
-### 2. Reading the trace
+### 2. Lendo o trace
 
-After opening the trace in Android Studio or Perfetto, you should see something like this:
+Depois de abrir o trace no Android Studio ou Perfetto, você deve ver algo assim:
 
 ![Example](/docs/assets/SystraceExample.png)
 
-:::note Hint
-Use the WASD keys to strafe and zoom.
+:::note Dica
+Use as teclas WASD para deslocar e dar zoom.
 :::
 
-The exact UI might be different but the instructions below will apply regardless of the tool you're using.
+A UI exata pode ser diferente, mas as instruções abaixo se aplicarão independentemente da ferramenta que você estiver usando.
 
-:::info Enable VSync highlighting
-Check this checkbox at the top right of the screen to highlight the 16ms frame boundaries:
+:::info Habilite o realce de VSync
+Marque esta caixa de seleção no canto superior direito da tela para realçar os limites de frame de 16ms:
 
 ![Enable VSync Highlighting](/docs/assets/SystraceHighlightVSync.png)
 
-You should see zebra stripes as in the screenshot above. If you don't, try profiling on a different device: Samsung has been known to have issues displaying vsyncs while the Nexus series is generally pretty reliable.
+Você deve ver listras zebradas como na captura de tela acima. Se não ver, tente fazer profiling em um dispositivo diferente: Samsung é conhecida por ter problemas ao exibir vsyncs, enquanto a série Nexus é geralmente bastante confiável.
 :::
 
-### 3. Find your process
+### 3. Encontre seu processo
 
-Scroll until you see (part of) the name of your package. In this case, I was profiling `com.facebook.adsmanager`, which shows up as `book.adsmanager` because of silly thread name limits in the kernel.
+Role até ver (parte do) nome do seu pacote. Neste caso, eu estava fazendo profiling de `com.facebook.adsmanager`, que aparece como `book.adsmanager` por causa de limites bobos de nome de thread no kernel.
 
-On the left side, you'll see a set of threads which correspond to the timeline rows on the right. There are a few threads we care about for our purposes: the UI thread (which has your package name or the name UI Thread), `mqt_js`, and `mqt_native_modules`. If you're running on Android 5+, we also care about the Render Thread.
+No lado esquerdo, você verá um conjunto de threads que correspondem às linhas da timeline à direita. Há algumas threads com as quais nos importamos para nossos propósitos: a thread UI (que tem o nome do seu pacote ou o nome UI Thread), `mqt_js`, e `mqt_native_modules`. Se você está executando no Android 5+, também nos importamos com a Render Thread.
 
-- **UI Thread.** This is where standard android measure/layout/draw happens. The thread name on the right will be your package name (in my case book.adsmanager) or UI Thread. The events that you see on this thread should look something like this and have to do with `Choreographer`, `traversals`, and `DispatchUI`:
+- **UI Thread.** É aqui que a medida/layout/desenho padrão do Android acontece. O nome da thread à direita será o nome do seu pacote (no meu caso book.adsmanager) ou UI Thread. Os eventos que você vê nesta thread devem se parecer com isso e ter a ver com `Choreographer`, `traversals` e `DispatchUI`:
 
   ![UI Thread Example](/docs/assets/SystraceUIThreadExample.png)
 
-- **JS Thread.** This is where JavaScript is executed. The thread name will be either `mqt_js` or `<...>` depending on how cooperative the kernel on your device is being. To identify it if it doesn't have a name, look for things like `JSCall`, `Bridge.executeJSCall`, etc:
+- **JS Thread.** É aqui que JavaScript é executado. O nome da thread será `mqt_js` ou `<...>` dependendo de quão cooperativo o kernel do seu dispositivo está sendo. Para identificá-la se não tiver um nome, procure por coisas como `JSCall`, `Bridge.executeJSCall`, etc:
 
   ![JS Thread Example](/docs/assets/SystraceJSThreadExample.png)
 
-- **Native Modules Thread.** This is where native module calls (e.g. the `UIManager`) are executed. The thread name will be either `mqt_native_modules` or `<...>`. To identify it in the latter case, look for things like `NativeCall`, `callJavaModuleMethod`, and `onBatchComplete`:
+- **Native Modules Thread.** É aqui que chamadas de native modules (por exemplo, o `UIManager`) são executadas. O nome da thread será `mqt_native_modules` ou `<...>`. Para identificá-la no último caso, procure por coisas como `NativeCall`, `callJavaModuleMethod` e `onBatchComplete`:
 
   ![Native Modules Thread Example](/docs/assets/SystraceNativeModulesThreadExample.png)
 
-- **Bonus: Render Thread.** If you're using Android L (5.0) and up, you will also have a render thread in your application. This thread generates the actual OpenGL commands used to draw your UI. The thread name will be either `RenderThread` or `<...>`. To identify it in the latter case, look for things like `DrawFrame` and `queueBuffer`:
+- **Bônus: Render Thread.** Se você está usando Android L (5.0) e acima, você também terá uma render thread em seu aplicativo. Esta thread gera os comandos OpenGL reais usados para desenhar sua UI. O nome da thread será `RenderThread` ou `<...>`. Para identificá-la no último caso, procure por coisas como `DrawFrame` e `queueBuffer`:
 
   ![Render Thread Example](/docs/assets/SystraceRenderThreadExample.png)
 
-## Identifying a culprit
+## Identificando um culpado
 
-A smooth animation should look something like the following:
+Uma animação suave deve se parecer com o seguinte:
 
 ![Smooth Animation](/docs/assets/SystraceWellBehaved.png)
 
-Each change in color is a frame -- remember that in order to display a frame, all our UI work needs to be done by the end of that 16ms period. Notice that no thread is working close to the frame boundary. An application rendering like this is rendering at 60 FPS.
+Cada mudança de cor é um frame -- lembre-se de que para exibir um frame, todo o nosso trabalho de UI precisa ser feito até o final desse período de 16ms. Observe que nenhuma thread está trabalhando perto do limite do frame. Um aplicativo renderizando assim está renderizando a 60 FPS.
 
-If you noticed chop, however, you might see something like this:
+Se você notou engasgos, no entanto, você pode ver algo assim:
 
 ![Choppy Animation from JS](/docs/assets/SystraceBadJS.png)
 
-Notice that the JS thread is executing almost all the time, and across frame boundaries! This app is not rendering at 60 FPS. In this case, **the problem lies in JS**.
+Observe que a thread JS está executando quase o tempo todo, e através dos limites de frame! Este aplicativo não está renderizando a 60 FPS. Neste caso, **o problema está no JS**.
 
-You might also see something like this:
+Você também pode ver algo assim:
 
 ![Choppy Animation from UI](/docs/assets/SystraceBadUI.png)
 
-In this case, the UI and render threads are the ones that have work crossing frame boundaries. The UI that we're trying to render on each frame is requiring too much work to be done. In this case, **the problem lies in the native views being rendered**.
+Neste caso, as threads UI e render são as que têm trabalho atravessando os limites de frame. A UI que estamos tentando renderizar em cada frame está exigindo muito trabalho a ser feito. Neste caso, **o problema está nas views nativas sendo renderizadas**.
 
-At this point, you'll have some very helpful information to inform your next steps.
+Neste ponto, você terá algumas informações muito úteis para informar seus próximos passos.
 
-## Resolving JavaScript issues
+## Resolvendo problemas de JavaScript
 
-If you identified a JS problem, look for clues in the specific JS that you're executing. In the scenario above, we see `RCTEventEmitter` being called multiple times per frame. Here's a zoom-in of the JS thread from the trace above:
+Se você identificou um problema JS, procure pistas no JavaScript específico que você está executando. No cenário acima, vemos `RCTEventEmitter` sendo chamado várias vezes por frame. Aqui está um zoom na thread JS do trace acima:
 
 ![Too much JS](/docs/assets/SystraceBadJS2.png)
 
-This doesn't seem right. Why is it being called so often? Are they actually different events? The answers to these questions will probably depend on your product code. And many times, you'll want to look into [shouldComponentUpdate](https://react.dev/reference/react/Component#shouldcomponentupdate).
+Isso não parece certo. Por que está sendo chamado com tanta frequência? São realmente eventos diferentes? As respostas para essas perguntas provavelmente dependerão do código do seu produto. E muitas vezes, você vai querer olhar para [shouldComponentUpdate](https://react.dev/reference/react/Component#shouldcomponentupdate).
 
-## Resolving native UI Issues
+## Resolvendo problemas de UI nativa
 
-If you identified a native UI problem, there are usually two scenarios:
+Se você identificou um problema de UI nativa, geralmente há dois cenários:
 
-1. the UI you're trying to draw each frame involves too much work on the GPU, or
-2. You're constructing new UI during the animation/interaction (e.g. loading in new content during a scroll).
+1. a UI que você está tentando desenhar em cada frame envolve muito trabalho na GPU, ou
+2. Você está construindo nova UI durante a animação/interação (por exemplo, carregando novo conteúdo durante uma rolagem).
 
-### Too much GPU work
+### Muito trabalho na GPU
 
-In the first scenario, you'll see a trace that has the UI thread and/or Render Thread looking like this:
+No primeiro cenário, você verá um trace que tem a thread UI e/ou Render Thread parecendo assim:
 
 ![Overloaded GPU](/docs/assets/SystraceBadUI.png)
 
-Notice the long amount of time spent in `DrawFrame` that crosses frame boundaries. This is time spent waiting for the GPU to drain its command buffer from the previous frame.
+Observe a longa quantidade de tempo gasto em `DrawFrame` que atravessa os limites de frame. Este é o tempo gasto esperando a GPU drenar seu buffer de comando do frame anterior.
 
-To mitigate this, you should:
+Para mitigar isso, você deve:
 
-- investigate using `renderToHardwareTextureAndroid` for complex, static content that is being animated/transformed (e.g. the `Navigator` slide/alpha animations)
-- make sure that you are **not** using `needsOffscreenAlphaCompositing`, which is disabled by default, as it greatly increases the per-frame load on the GPU in most cases.
+- investigar o uso de `renderToHardwareTextureAndroid` para conteúdo complexo e estático que está sendo animado/transformado (por exemplo, as animações de deslize/alfa do `Navigator`)
+- certifique-se de que você **não** está usando `needsOffscreenAlphaCompositing`, que é desabilitado por padrão, pois aumenta muito a carga por frame na GPU na maioria dos casos.
 
-### Creating new views on the UI thread
+### Criando novas views na thread UI
 
-In the second scenario, you'll see something more like this:
+No segundo cenário, você verá algo mais parecido com isso:
 
 ![Creating Views](/docs/assets/SystraceBadCreateUI.png)
 
-Notice that first the JS thread thinks for a bit, then you see some work done on the native modules thread, followed by an expensive traversal on the UI thread.
+Observe que primeiro a thread JS pensa um pouco, depois você vê algum trabalho feito na thread de native modules, seguido por uma travessia cara na thread UI.
 
-There isn't a quick way to mitigate this unless you're able to postpone creating new UI until after the interaction, or you are able to simplify the UI you're creating. The react native team is working on an infrastructure level solution for this that will allow new UI to be created and configured off the main thread, allowing the interaction to continue smoothly.
+Não há uma maneira rápida de mitigar isso, a menos que você seja capaz de adiar a criação de nova UI até depois da interação, ou você seja capaz de simplificar a UI que está criando. A equipe do react native está trabalhando em uma solução de nível de infraestrutura para isso que permitirá que nova UI seja criada e configurada fora da thread principal, permitindo que a interação continue suavemente.
 
-### Finding native CPU hotspots
+### Encontrando hotspots de CPU nativa
 
-If the problem seems to be on the native side, you can use the [CPU hotspot profiler](https://developer.android.com/studio/profile/record-java-kotlin-methods) to get more details on what's happening. Open the Android Studio Profiler panel and select "Find CPU Hotspots (Java/Kotlin Method Recording)".
+Se o problema parecer estar no lado nativo, você pode usar o [profiler de hotspot de CPU](https://developer.android.com/studio/profile/record-java-kotlin-methods) para obter mais detalhes sobre o que está acontecendo. Abra o painel Android Studio Profiler e selecione "Find CPU Hotspots (Java/Kotlin Method Recording)".
 
-:::info Choose the Java/Kotlin recording
+:::info Escolha a gravação Java/Kotlin
 
-Make sure you select "Find CPU Hotspots **(Java/Kotlin Recording)**" rather than "Find CPU Hotspots (Callstack Sample)". They have similar icons but do different things.
+Certifique-se de selecionar "Find CPU Hotspots **(Java/Kotlin Recording)**" em vez de "Find CPU Hotspots (Callstack Sample)". Eles têm ícones semelhantes, mas fazem coisas diferentes.
 :::
 
-Perform the interactions and press "Stop recording". Recording is resource-intensive, so keep the interaction short. You can then either inspect the resulting trace in the Android Studio or export it and open it in an online tool like [Firefox Profiler](https://profiler.firefox.com/).
+Execute as interações e pressione "Stop recording". A gravação consome muitos recursos, então mantenha a interação curta. Você pode então inspecionar o trace resultante no Android Studio ou exportá-lo e abri-lo em uma ferramenta online como [Firefox Profiler](https://profiler.firefox.com/).
 
-Unlike System Trace, CPU hotspot profiling is slow so it won't give you accurate measurements. However, it should give you an idea of what native methods are being called, and where the time is being spent proportionally during each frame.
+Ao contrário do System Trace, o profiling de hotspot de CPU é lento, então não lhe dará medições precisas. No entanto, deve dar uma ideia de quais métodos nativos estão sendo chamados e onde o tempo está sendo gasto proporcionalmente durante cada frame.

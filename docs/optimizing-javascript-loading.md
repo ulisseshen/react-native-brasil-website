@@ -1,39 +1,39 @@
 ---
+ia-translated: true
 id: optimizing-javascript-loading
-title: Optimizing JavaScript loading
+title: Otimizando o Carregamento de JavaScript
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-Parsing and running JavaScript code requires memory and time. Because of this, as your app grows, it's often useful to delay loading code until it's needed for the first time. React Native comes with some standard optimizations that are on by default, and there are techniques you can adopt in your own code to help React load your app more efficiently. There are also some advanced automatic optimizations (with their own tradeoffs) that are suitable for very large apps.
+Fazer o parsing e executar código JavaScript requer memória e tempo. Por causa disso, à medida que seu aplicativo cresce, geralmente é útil adiar o carregamento de código até que seja necessário pela primeira vez. React Native vem com algumas otimizações padrão que estão ativadas por padrão, e há técnicas que você pode adotar em seu próprio código para ajudar React a carregar seu aplicativo de forma mais eficiente. Existem também algumas otimizações automáticas avançadas (com seus próprios trade-offs) que são adequadas para aplicativos muito grandes.
 
-## Recommended: Use Hermes
+## Recomendado: Use Hermes
 
-Hermes is the default engine for new React Native apps, and is highly optimized for efficient code loading. In release builds, JavaScript code is fully compiled to bytecode ahead of time. Bytecode is loaded to memory on-demand and does not need to be parsed like plain JavaScript does.
-
-:::info
-Read more about using Hermes in React Native [here](./hermes).
-:::
-
-## Recommended: Lazy-load large components
-
-If a component with a lot of code/dependencies is not likely to be used when initially rendering your app, you can use React's [`lazy`](https://react.dev/reference/react/lazy) API to defer loading its code until it's rendered for the first time. Typically, you should consider lazy-loading screen-level components in your app, so that adding new screens to your app does not increase its startup time.
+Hermes é o mecanismo padrão para novos aplicativos React Native e é altamente otimizado para carregamento eficiente de código. Em builds de release, o código JavaScript é totalmente compilado para bytecode antecipadamente. Bytecode é carregado na memória sob demanda e não precisa ser analisado como JavaScript simples.
 
 :::info
-Read more about [lazy-loading components with Suspense
-](https://react.dev/reference/react/lazy#suspense-for-code-splitting), including code examples, in React's documentation.
+Leia mais sobre o uso do Hermes no React Native [aqui](./hermes).
 :::
 
-### Tip: Avoid module side effects
+## Recomendado: Lazy-load de componentes grandes
 
-Lazy-loading components can change the behavior of your app if your component modules (or their dependencies) have _side effects_, such as modifying global variables or subscribing to events outside of a component. Most modules in React apps should not have any side effects.
+Se um componente com muito código/dependências não é provável de ser usado ao renderizar inicialmente seu aplicativo, você pode usar a API [`lazy`](https://react.dev/reference/react/lazy) do React para adiar o carregamento de seu código até que seja renderizado pela primeira vez. Normalmente, você deve considerar fazer lazy-loading de componentes no nível de tela em seu aplicativo, para que adicionar novas telas ao seu aplicativo não aumente seu tempo de inicialização.
+
+:::info
+Leia mais sobre [lazy-loading de componentes com Suspense](https://react.dev/reference/react/lazy#suspense-for-code-splitting), incluindo exemplos de código, na documentação do React.
+:::
+
+### Dica: Evite efeitos colaterais de módulos
+
+Fazer lazy-loading de componentes pode alterar o comportamento do seu aplicativo se os módulos do seu componente (ou suas dependências) tiverem _efeitos colaterais_, como modificar variáveis globais ou se inscrever em eventos fora de um componente. A maioria dos módulos em aplicativos React não deve ter efeitos colaterais.
 
 ```tsx title="SideEffects.tsx"
 import Logger from './utils/Logger';
 
-//  🚩 🚩 🚩 Side effect! This must be executed before React can even begin to
-// render the SplashScreen component, and can unexpectedly break code elsewhere
-// in your app if you later decide to lazy-load SplashScreen.
+//  🚩 🚩 🚩 Efeito colateral! Isso deve ser executado antes que React possa até começar a
+// renderizar o componente SplashScreen, e pode quebrar inesperadamente código em outro lugar
+// no seu app se você decidir mais tarde fazer lazy-load do SplashScreen.
 global.logger = new Logger();
 
 export function SplashScreen() {
@@ -41,9 +41,9 @@ export function SplashScreen() {
 }
 ```
 
-## Advanced: Call `require` inline
+## Avançado: Chame `require` inline
 
-Sometimes you may want to defer loading some code until you use it for the first time, without using `lazy` or an asynchronous `import()`. You can do this by using the [`require()`](https://metrobundler.dev/docs/module-api/#require) function where you would otherwise use a static `import` at the top of the file.
+Às vezes você pode querer adiar o carregamento de algum código até usá-lo pela primeira vez, sem usar `lazy` ou um `import()` assíncrono. Você pode fazer isso usando a função [`require()`](https://metrobundler.dev/docs/module-api/#require) onde você normalmente usaria um `import` estático no topo do arquivo.
 
 ```tsx title="VeryExpensive.tsx"
 import {Component} from 'react';
@@ -85,9 +85,9 @@ export default function Optimize() {
 }
 ```
 
-## Advanced: Automatically inline `require` calls
+## Avançado: Inline automático de chamadas `require`
 
-If you use the React Native CLI to build your app, `require` calls (but not `import`s) will automatically be inlined for you, both in your code and inside any third-party packages (`node_modules`) you use.
+Se você usa o React Native CLI para construir seu aplicativo, chamadas `require` (mas não `import`s) serão automaticamente inline para você, tanto em seu código quanto dentro de quaisquer pacotes de terceiros (`node_modules`) que você usa.
 
 ```tsx
 import {useCallback, useState} from 'react';
@@ -114,18 +114,18 @@ export default function Optimize() {
 ```
 
 :::info
-Some React Native frameworks disable this behavior. In particular, in Expo projects, `require` calls are not inlined by default. You can enable this optimization by editing your project's Metro config and setting `inlineRequires: true` in [`getTransformOptions`](https://metrobundler.dev/docs/configuration#gettransformoptions).
+Alguns frameworks React Native desabilitam esse comportamento. Em particular, em projetos Expo, chamadas `require` não são inline por padrão. Você pode habilitar essa otimização editando a configuração Metro do seu projeto e definindo `inlineRequires: true` em [`getTransformOptions`](https://metrobundler.dev/docs/configuration#gettransformoptions).
 :::
 
-### Pitfalls of inline `require`s
+### Armadilhas de `require`s inline
 
-Inlining `require` calls changes the order in which modules are evaluated, and can even cause some modules to _never_ be evaluated. This is usually safe to do automatically, because JavaScript modules are often written to be side-effect-free.
+Fazer inline de chamadas `require` altera a ordem em que os módulos são avaliados, e pode até fazer com que alguns módulos _nunca_ sejam avaliados. Isso geralmente é seguro fazer automaticamente, porque módulos JavaScript geralmente são escritos para serem livres de efeitos colaterais.
 
-If one of your modules does have side effects - for example, if it initializes some logging mechanism, or patches a global API used by the rest of your code - then you might see unexpected behavior or even crashes. In those cases, you may want to exclude certain modules from this optimization, or disable it entirely.
+Se um dos seus módulos tiver efeitos colaterais - por exemplo, se ele inicializa algum mecanismo de logging, ou corrige uma API global usada pelo resto do seu código - então você pode ver comportamento inesperado ou até crashes. Nesses casos, você pode querer excluir certos módulos dessa otimização, ou desabilitá-la totalmente.
 
-To **disable all automatic inlining of `require` calls:**
+Para **desabilitar todo inline automático de chamadas `require`:**
 
-Update your `metro.config.js` to set the `inlineRequires` transformer option to `false`:
+Atualize seu `metro.config.js` para definir a opção do transformer `inlineRequires` como `false`:
 
 ```tsx title="metro.config.js"
 module.exports = {
@@ -141,9 +141,9 @@ module.exports = {
 };
 ```
 
-To only **exclude certain modules from `require` inlining:**
+Para apenas **excluir certos módulos do inline de `require`:**
 
-There are two relevant transformer options: `inlineRequires.blockList` and `nonInlinedRequires`. See the code snippet for examples of how to use each one.
+Existem duas opções relevantes do transformer: `inlineRequires.blockList` e `nonInlinedRequires`. Veja o trecho de código para exemplos de como usar cada um.
 
 ```tsx title="metro.config.js"
 module.exports = {
@@ -171,22 +171,22 @@ module.exports = {
 };
 ```
 
-See the documentation for [`getTransformOptions` in Metro](https://metrobundler.dev/docs/configuration#gettransformoptions) for more details on setting up and fine-tuning your inline `require`s.
+Veja a documentação para [`getTransformOptions` no Metro](https://metrobundler.dev/docs/configuration#gettransformoptions) para mais detalhes sobre configurar e ajustar seus `require`s inline.
 
-## Advanced: Use random access module bundles (non-Hermes)
+## Avançado: Use random access module bundles (não-Hermes)
 
 :::tip
-**Not supported when [using Hermes](#use-hermes).** Hermes bytecode is not compatible with the RAM bundle format, and provides the same (or better) performance in all use cases.
+**Não suportado ao [usar Hermes](#use-hermes).** Bytecode Hermes não é compatível com o formato RAM bundle e fornece o mesmo (ou melhor) desempenho em todos os casos de uso.
 :::
 
-Random access module bundles (also known as RAM bundles) work in conjunction with the techniques mentioned above to limit the amount of JavaScript code that needs to be parsed and loaded into memory. Each module is stored as a separate string (or file) which is only parsed when the module needs to be executed.
+Random access module bundles (também conhecidos como RAM bundles) funcionam em conjunto com as técnicas mencionadas acima para limitar a quantidade de código JavaScript que precisa ser analisado e carregado na memória. Cada módulo é armazenado como uma string separada (ou arquivo) que é analisada apenas quando o módulo precisa ser executado.
 
-RAM bundles may be physically split into separate files, or they may use the _indexed_ format, consisting of a lookup table of multiple modules in a single file.
+RAM bundles podem ser fisicamente divididos em arquivos separados, ou podem usar o formato _indexed_, consistindo de uma tabela de consulta de múltiplos módulos em um único arquivo.
 
 <Tabs groupId="platform" queryString defaultValue={constants.defaultPlatform} values={constants.platforms}>
 <TabItem value="android">
 
-On Android enable the RAM format by editing your `android/app/build.gradle` file. Before the line `apply from: "../../node_modules/react-native/react.gradle"` add or amend the `project.ext.react` block:
+No Android, habilite o formato RAM editando seu arquivo `android/app/build.gradle`. Antes da linha `apply from: "../../node_modules/react-native/react.gradle"` adicione ou altere o bloco `project.ext.react`:
 
 ```
 project.ext.react = [
@@ -194,7 +194,7 @@ project.ext.react = [
 ]
 ```
 
-Use the following lines on Android if you want to use a single indexed file:
+Use as seguintes linhas no Android se você quiser usar um único arquivo indexado:
 
 ```
 project.ext.react = [
@@ -206,9 +206,9 @@ project.ext.react = [
 </TabItem>
 <TabItem value="ios">
 
-On iOS, RAM bundles are always indexed ( = single file).
+No iOS, RAM bundles são sempre indexados ( = arquivo único).
 
-Enable the RAM format in Xcode by editing the build phase "Bundle React Native code and images". Before `../node_modules/react-native/scripts/react-native-xcode.sh` add `export BUNDLE_COMMAND="ram-bundle"`:
+Habilite o formato RAM no Xcode editando a fase de build "Bundle React Native code and images". Antes de `../node_modules/react-native/scripts/react-native-xcode.sh` adicione `export BUNDLE_COMMAND="ram-bundle"`:
 
 ```
 export BUNDLE_COMMAND="ram-bundle"
@@ -219,4 +219,4 @@ export NODE_BINARY=node
 </TabItem>
 </Tabs>
 
-See the documentation for [`getTransformOptions` in Metro](https://metrobundler.dev/docs/configuration#gettransformoptions) for more details on setting up and fine-tuning your RAM bundle build.
+Veja a documentação para [`getTransformOptions` no Metro](https://metrobundler.dev/docs/configuration#gettransformoptions) para mais detalhes sobre configurar e ajustar seu build de RAM bundle.

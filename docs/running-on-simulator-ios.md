@@ -1,13 +1,14 @@
 ---
+ia-translated: true
 id: running-on-simulator-ios
-title: Running On Simulator
+title: Executando no Simulator
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## Starting the simulator
+## Iniciando o simulator
 
-Once you have your React Native project initialized, you can run the following command inside the newly created project directory.
+Depois que você tiver seu projeto React Native inicializado, você pode executar o seguinte comando dentro do diretório do projeto recém-criado.
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -26,11 +27,11 @@ yarn ios
 </TabItem>
 </Tabs>
 
-If everything is set up correctly, you should see your new app running in the iOS Simulator shortly.
+Se tudo estiver configurado corretamente, você deve ver seu novo app rodando no iOS Simulator em breve.
 
-## Specifying a device
+## Especificando um dispositivo
 
-You can specify the device the simulator should run with the `--simulator` flag, followed by the device name as a string. The default is `"iPhone 14"`. If you wish to run your app on an iPhone SE (3rd generation), run the following command:
+Você pode especificar o dispositivo que o simulator deve executar com a flag `--simulator`, seguida do nome do dispositivo como string. O padrão é `"iPhone 14"`. Se você deseja executar seu app em um iPhone SE (3rd generation), execute o seguinte comando:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -49,11 +50,11 @@ yarn ios --simulator "iPhone SE (3rd generation)"
 </TabItem>
 </Tabs>
 
-The device names correspond to the list of devices available in Xcode. You can check your available devices by running `xcrun simctl list devices` from the console.
+Os nomes dos dispositivos correspondem à lista de dispositivos disponíveis no Xcode. Você pode verificar seus dispositivos disponíveis executando `xcrun simctl list devices` no console.
 
-### Specifying a version of device
+### Especificando uma versão do dispositivo
 
-If you have multiple iOS versions installed, you also need to specify its appropriate version. E.g. To run your app on an iPhone 14 Pro (16.0) run the following command:
+Se você tiver várias versões do iOS instaladas, também precisará especificar sua versão apropriada. Por exemplo, para executar seu app em um iPhone 14 Pro (16.0), execute o seguinte comando:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
@@ -72,9 +73,9 @@ yarn ios --simulator "iPhone 14 Pro (16.0)"
 </TabItem>
 </Tabs>
 
-## Specifying an UDID
+## Especificando um UDID
 
-You can specify the device UDID returned from `xcrun simctl list devices` command. E.g. To run your app with UDID `AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA` run the following command:
+Você pode especificar o UDID do dispositivo retornado do comando `xcrun simctl list devices`. Por exemplo, para executar seu app com UDID `AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA`, execute o seguinte comando:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">

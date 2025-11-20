@@ -1,18 +1,19 @@
 ---
+ia-translated: true
 id: debugging-native-code
-title: Debugging Native Code
+title: Depuração de Código Nativo
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 <div className="banner-native-code-required">
-  <h3>Projects with Native Code Only</h3>
-  <p>The following section only applies to projects with native code exposed. If you are using the managed Expo workflow, see the guide on <a href="https://docs.expo.dev/workflow/prebuild/" target="_blank">prebuild</a> to use this API.</p>
+  <h3>Apenas Projetos com Código Nativo</h3>
+  <p>A seção a seguir se aplica apenas a projetos com código nativo exposto. Se você está usando o fluxo de trabalho gerenciado do Expo, consulte o guia sobre <a href="https://docs.expo.dev/workflow/prebuild/" target="_blank">prebuild</a> para usar esta API.</p>
 </div>
 
-## Accessing Logs
+## Acessando Logs
 
-You can display the native logs for an iOS or Android app by using the following commands in a terminal while the app is running:
+Você pode exibir os logs nativos de um aplicativo iOS ou Android usando os seguintes comandos em um terminal enquanto o aplicativo estiver em execução:
 
 ```shell
 # For Android:
@@ -21,16 +22,16 @@ npx react-native log-android
 npx react-native log-ios
 ```
 
-You may also access these through Debug > Open System Log… in the iOS Simulator or by running `adb logcat "*:S" ReactNative:V ReactNativeJS:V` in a terminal while an Android app is running on a device or emulator.
+Você também pode acessá-los através de Debug > Open System Log… no iOS Simulator ou executando `adb logcat "*:S" ReactNative:V ReactNativeJS:V` em um terminal enquanto um aplicativo Android estiver em execução em um dispositivo ou emulador.
 
 <details>
-<summary>**💡 Custom Native Logs**</summary>
+<summary>**💡 Logs Nativos Personalizados**</summary>
 
-If you are writing a Native Module and want to add custom logs to your module for debugging purposes, you can use the following method:
+Se você está escrevendo um Native Module e deseja adicionar logs personalizados ao seu módulo para fins de depuração, você pode usar o seguinte método:
 
 #### Android (Java/Kotlin)
 
-In your native module, use the `Log` class to add logs that can be viewed in Logcat:
+Em seu módulo nativo, use a classe `Log` para adicionar logs que podem ser visualizados no Logcat:
 
 ```java
 import android.util.Log;
@@ -40,7 +41,7 @@ private void log(String message) {
 }
 ```
 
-To view these logs in Logcat, use this command, replacing `YourModuleName` with your custom tag:
+Para visualizar esses logs no Logcat, use este comando, substituindo `YourModuleName` pela sua tag personalizada:
 
 ```shell
 adb logcat "*:S" ReactNative:V ReactNativeJS:V YourModuleName:D
@@ -48,32 +49,32 @@ adb logcat "*:S" ReactNative:V ReactNativeJS:V YourModuleName:D
 
 #### iOS (Objective-C/Swift)
 
-In your native module, use `NSLog` for custom logs:
+Em seu módulo nativo, use `NSLog` para logs personalizados:
 
 ```objective-c
 NSLog(@"YourModuleName: %@", message);
 ```
 
-Or, in Swift:
+Ou, em Swift:
 
 ```swift
 print("YourModuleName: \(message)")
 ```
 
-These logs will appear in the Xcode console when running the app.
+Esses logs aparecerão no console do Xcode ao executar o aplicativo.
 
 </details>
 
-## Debugging in a Native IDE
+## Depuração em uma IDE Nativa
 
-When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app.
+Ao trabalhar com código nativo, como ao escrever Native Modules, você pode iniciar o aplicativo a partir do Android Studio ou Xcode e aproveitar os recursos de depuração nativos (configuração de breakpoints, etc.) como você faria ao construir um aplicativo nativo padrão.
 
-Another option is to run your application using the React Native CLI and attach the native debugger of the native IDE (Android Studio or Xcode) to the process.
+Outra opção é executar seu aplicativo usando o React Native CLI e anexar o debugger nativo da IDE nativa (Android Studio ou Xcode) ao processo.
 
 ### Android Studio
 
-On Android Studio you can do this by going on the "Run" option on the menu bar, clicking on "Attach to Process..." and selecting the running React Native app.
+No Android Studio, você pode fazer isso indo na opção "Run" na barra de menu, clicando em "Attach to Process..." e selecionando o aplicativo React Native em execução.
 
 ### Xcode
 
-On Xcode click on "Debug" on the top menu bar, select the "Attach to process" option, and select the application in the list of "Likely Targets".
+No Xcode, clique em "Debug" na barra de menu superior, selecione a opção "Attach to process" e selecione o aplicativo na lista de "Likely Targets".

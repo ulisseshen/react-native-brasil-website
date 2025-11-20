@@ -1,61 +1,62 @@
 ---
+ia-translated: true
 id: testing-overview
-title: Testing
+title: Testando
 author: Vojtech Novak
 authorURL: 'https://twitter.com/vonovak'
-description: This guide introduces React Native developers to the key concepts behind testing, how to write good tests, and what kinds of tests you can incorporate into your workflow.
+description: Este guia apresenta aos desenvolvedores React Native os conceitos-chave por trás de testes, como escrever bons testes e quais tipos de testes você pode incorporar ao seu workflow.
 ---
 
-As your codebase expands, small errors and edge cases you don’t expect can cascade into larger failures. Bugs lead to bad user experience and ultimately, business losses. One way to prevent fragile programming is to test your code before releasing it into the wild.
+À medida que sua base de código se expande, pequenos erros e casos extremos que você não espera podem se transformar em falhas maiores. Bugs levam a uma experiência ruim do usuário e, em última análise, perdas nos negócios. Uma maneira de evitar programação frágil é testar seu código antes de lançá-lo.
 
-In this guide, we will cover different, automated ways to ensure your app works as expected, ranging from static analysis to end-to-end tests.
+Neste guia, abordaremos diferentes maneiras automatizadas de garantir que seu app funcione conforme esperado, desde análise estática até testes end-to-end.
 
-<img src="/docs/assets/diagram_testing.svg" alt="Testing is a cycle of fixing, testing, and either passing to release or failing back into testing." />
+<img src="/docs/assets/diagram_testing.svg" alt="Testar é um ciclo de corrigir, testar e passar para release ou falhar de volta para teste." />
 
-## Why Test
+## Por que Testar
 
-We're humans, and humans make mistakes. Testing is important because it helps you uncover these mistakes and verifies that your code is working. Perhaps even more importantly, testing ensures that your code continues to work in the future as you add new features, refactor the existing ones, or upgrade major dependencies of your project.
+Somos humanos e humanos cometem erros. Testar é importante porque ajuda você a descobrir esses erros e verifica se seu código está funcionando. Talvez ainda mais importante, testar garante que seu código continue funcionando no futuro à medida que você adiciona novos recursos, refatora os existentes ou atualiza dependências principais do seu projeto.
 
-There is more value in testing than you might realize. One of the best ways to fix a bug in your code is to write a failing test that exposes it. Then when you fix the bug and re-run the test, if it passes it means the bug is fixed, never reintroduced into the code base.
+Há mais valor em testar do que você pode perceber. Uma das melhores maneiras de corrigir um bug no seu código é escrever um teste que falha e o expõe. Então, quando você corrige o bug e executa o teste novamente, se ele passar, significa que o bug foi corrigido e nunca será reintroduzido na base de código.
 
-Tests can also serve as documentation for new people joining your team. For people who have never seen a codebase before, reading tests can help them understand how the existing code works.
+Os testes também podem servir como documentação para novas pessoas que se juntam à sua equipe. Para pessoas que nunca viram uma base de código antes, ler testes pode ajudá-las a entender como o código existente funciona.
 
-Last but not least, more automated testing means less time spent with manual <abbr title="Quality Assurance">QA</abbr>, freeing up valuable time.
+Por último, mas não menos importante, mais testes automatizados significam menos tempo gasto com <abbr title="Quality Assurance">QA</abbr> manual, liberando tempo valioso.
 
 ## Static Analysis
 
-The first step to improve your code quality is to start using static analysis tools. Static analysis checks your code for errors as you write it, but without running any of that code.
+O primeiro passo para melhorar a qualidade do seu código é começar a usar ferramentas de análise estática. A análise estática verifica seu código em busca de erros enquanto você o escreve, mas sem executar nenhum código.
 
-- **Linters** analyze code to catch common errors such as unused code and to help avoid pitfalls, to flag style guide no-nos like using tabs instead of spaces (or vice versa, depending on your configuration).
-- **Type checking** ensures that the construct you’re passing to a function matches what the function was designed to accept, preventing passing a string to a counting function that expects a number, for instance.
+- **Linters** analisam código para detectar erros comuns, como código não utilizado, e para ajudar a evitar armadilhas, para sinalizar itens que não seguem o guia de estilo, como usar tabs em vez de espaços (ou vice-versa, dependendo da sua configuração).
+- **Type checking** garante que o construto que você está passando para uma função corresponde ao que a função foi projetada para aceitar, evitando passar uma string para uma função de contagem que espera um número, por exemplo.
 
-React Native comes with two such tools configured out of the box: [ESLint](https://eslint.org/) for linting and [TypeScript](typescript) for type checking.
+React Native vem com duas dessas ferramentas configuradas por padrão: [ESLint](https://eslint.org/) para linting e [TypeScript](typescript) para type checking.
 
 ## Writing Testable Code
 
-To start with tests, you first need to write code that is testable. Consider an aircraft manufacturing process - before any model first takes off to show that all of its complex systems work well together, individual parts are tested to guarantee they are safe and function correctly. For example, wings are tested by bending them under extreme load; engine parts are tested for their durability; the windshield is tested against simulated bird impact.
+Para começar com testes, você primeiro precisa escrever código que seja testável. Considere um processo de fabricação de aeronaves - antes que qualquer modelo decole pela primeira vez para mostrar que todos os seus sistemas complexos funcionam bem juntos, partes individuais são testadas para garantir que sejam seguras e funcionem corretamente. Por exemplo, as asas são testadas dobrando-as sob carga extrema; partes do motor são testadas quanto à sua durabilidade; o para-brisa é testado contra impacto simulado de pássaros.
 
-Software is similar. Instead of writing your entire program in one huge file with many lines of code, you write your code in multiple small modules that you can test more thoroughly than if you tested the assembled whole. In this way, writing testable code is intertwined with writing clean, modular code.
+Software é semelhante. Em vez de escrever todo o seu programa em um grande arquivo com muitas linhas de código, você escreve seu código em vários módulos pequenos que você pode testar de forma mais completa do que se testasse o todo montado. Dessa forma, escrever código testável está entrelaçado com escrever código limpo e modular.
 
-To make your app more testable, start by separating the view part of your app—your React components—from your business logic and app state (regardless of whether you use Redux, MobX or other solutions). This way, you can keep your business logic testing—which shouldn’t rely on your React components—independent of the components themselves, whose job is primarily rendering your app’s UI!
+Para tornar seu app mais testável, comece separando a parte de visualização do seu app—seus componentes React—da lógica de negócios e do estado do app (independentemente de você usar Redux, MobX ou outras soluções). Dessa forma, você pode manter seu teste de lógica de negócios—que não deve depender de seus componentes React—independente dos próprios componentes, cujo trabalho é principalmente renderizar a UI do seu app!
 
-Theoretically, you could go so far as to move all logic and data fetching out of your components. This way your components would be solely dedicated to rendering. Your state would be entirely independent of your components. Your app’s logic would work without any React components at all!
+Teoricamente, você poderia ir tão longe a ponto de mover toda a lógica e busca de dados para fora de seus componentes. Dessa forma, seus componentes seriam dedicados apenas à renderização. O estado do seu app seria inteiramente independente de seus componentes. A lógica do seu app funcionaria sem nenhum componente React!
 
 :::tip
-We encourage you to further explore the topic of testable code in other learning resources.
+Encorajamos você a explorar mais o tópico de código testável em outros recursos de aprendizagem.
 :::
 
 ## Writing Tests
 
-After writing testable code, it’s time to write some actual tests! The default template of React Native ships with [Jest](https://jestjs.io) testing framework. It includes a preset that's tailored to this environment so you can get productive without tweaking the configuration and mocks straight away—[more on mocks](#mocking) shortly. You can use Jest to write all types of tests featured in this guide.
+Depois de escrever código testável, é hora de escrever alguns testes reais! O template padrão do React Native vem com [Jest](https://jestjs.io) testing framework. Ele inclui um preset que é adaptado para este ambiente, para que você possa ser produtivo sem ajustar a configuração e mocks imediatamente—[mais sobre mocks](#mocking) em breve. Você pode usar Jest para escrever todos os tipos de testes apresentados neste guia.
 
 :::note
-If you do test-driven development, you actually write tests first! That way, testability of your code is given.
+Se você faz desenvolvimento orientado a testes, você na verdade escreve testes primeiro! Dessa forma, a testabilidade do seu código é garantida.
 :::
 
 ### Structuring Tests
 
-Your tests should be short and ideally test only one thing. Let's start with an example unit test written with Jest:
+Seus testes devem ser curtos e idealmente testar apenas uma coisa. Vamos começar com um exemplo de teste unitário escrito com Jest:
 
 ```js
 it('given a date in the past, colorForDueDate() returns red', () => {
@@ -63,92 +64,92 @@ it('given a date in the past, colorForDueDate() returns red', () => {
 });
 ```
 
-The test is described by the string passed to the [`it`](https://jestjs.io/docs/en/api#testname-fn-timeout) function. Take good care writing the description so that it’s clear what is being tested. Do your best to cover the following:
+O teste é descrito pela string passada para a função [`it`](https://jestjs.io/docs/en/api#testname-fn-timeout). Tenha cuidado ao escrever a descrição para que fique claro o que está sendo testado. Faça o seu melhor para cobrir o seguinte:
 
-1. **Given** - some precondition
-2. **When** - some action executed by the function that you’re testing
-3. **Then** - the expected outcome
+1. **Given** - alguma pré-condição
+2. **When** - alguma ação executada pela função que você está testando
+3. **Then** - o resultado esperado
 
-This is also known as AAA (Arrange, Act, Assert).
+Isso também é conhecido como AAA (Arrange, Act, Assert).
 
-Jest offers [`describe`](https://jestjs.io/docs/en/api#describename-fn) function to help structure your tests. Use `describe` to group together all tests that belong to one functionality. Describes can be nested, if you need that. Other functions you'll commonly use are [`beforeEach`](https://jestjs.io/docs/en/api#beforeeachfn-timeout) or [`beforeAll`](https://jestjs.io/docs/en/api#beforeallfn-timeout) that you can use for setting up the objects you're testing. Read more in the [Jest api reference](https://jestjs.io/docs/en/api).
+Jest oferece a função [`describe`](https://jestjs.io/docs/en/api#describename-fn) para ajudar a estruturar seus testes. Use `describe` para agrupar todos os testes que pertencem a uma funcionalidade. Describes podem ser aninhados, se você precisar disso. Outras funções que você usará comumente são [`beforeEach`](https://jestjs.io/docs/en/api#beforeeachfn-timeout) ou [`beforeAll`](https://jestjs.io/docs/en/api#beforeallfn-timeout) que você pode usar para configurar os objetos que está testando. Leia mais na [referência da api do Jest](https://jestjs.io/docs/en/api).
 
-If your test has many steps or many expectations, you probably want to split it into multiple smaller ones. Also, ensure that your tests are completely independent of one another. Each test in your suite must be executable on its own without first running some other test. Conversely, if you run all your tests together, the first test must not influence the output of the second one.
+Se o seu teste tem muitas etapas ou muitas expectations, você provavelmente quer dividi-lo em vários menores. Além disso, certifique-se de que seus testes sejam completamente independentes uns dos outros. Cada teste em sua suíte deve ser executável por conta própria sem primeiro executar algum outro teste. Por outro lado, se você executar todos os seus testes juntos, o primeiro teste não deve influenciar a saída do segundo.
 
-Lastly, as developers we like when our code works great and doesn't crash. With tests, this is often the opposite. Think of a failed test as of a _good thing!_ When a test fails, it often means something is not right. This gives you an opportunity to fix the problem before it impacts the users.
+Por último, como desenvolvedores gostamos quando nosso código funciona bem e não trava. Com testes, isso geralmente é o oposto. Pense em um teste que falhou como uma _coisa boa!_ Quando um teste falha, muitas vezes significa que algo não está certo. Isso lhe dá a oportunidade de corrigir o problema antes que ele afete os usuários.
 
 ## Unit Tests
 
-Unit tests cover the smallest parts of code, like individual functions or classes.
+Testes unitários cobrem as menores partes de código, como funções individuais ou classes.
 
-When the object being tested has any dependencies, you’ll often need to mock them out, as described in the next paragraph.
+Quando o objeto sendo testado tem alguma dependência, você frequentemente precisará fazer mock delas, conforme descrito no próximo parágrafo.
 
-The great thing about unit tests is that they are quick to write and run. Therefore, as you work, you get fast feedback about whether your tests are passing. Jest even has an option to continuously run tests that are related to code you’re editing: [Watch mode](https://jestjs.io/docs/en/cli#watch).
+A grande vantagem dos testes unitários é que eles são rápidos de escrever e executar. Portanto, enquanto você trabalha, você obtém feedback rápido sobre se seus testes estão passando. O Jest tem até uma opção para executar continuamente testes relacionados ao código que você está editando: [Watch mode](https://jestjs.io/docs/en/cli#watch).
 
 <img src="/docs/assets/p_tests-unit.svg" alt=" " />
 
 ### Mocking
 
-Sometimes, when your tested objects have external dependencies, you’ll want to “mock them out.” “Mocking” is when you replace some dependency of your code with your own implementation.
+Às vezes, quando seus objetos testados têm dependências externas, você vai querer fazer "mock" delas. "Mocking" é quando você substitui alguma dependência do seu código com sua própria implementação.
 
 :::info
-Generally, using real objects in your tests is better than using mocks but there are situations where this is not possible. For example: when your JS unit test relies on a native module written in Java or Objective-C.
+Geralmente, usar objetos reais em seus testes é melhor do que usar mocks, mas há situações em que isso não é possível. Por exemplo: quando seu teste unitário JS depende de um módulo nativo escrito em Java ou Objective-C.
 :::
 
-Imagine you’re writing an app that shows the current weather in your city and you’re using some external service or other dependency that provides you with the weather information. If the service tells you that it’s raining, you want to show an image with a rainy cloud. You don’t want to call that service in your tests, because:
+Imagine que você está escrevendo um app que mostra o clima atual na sua cidade e você está usando algum serviço externo ou outra dependência que fornece as informações do clima. Se o serviço disser que está chovendo, você quer mostrar uma imagem com uma nuvem chuvosa. Você não quer chamar esse serviço em seus testes, porque:
 
-- It could make the tests slow and unstable (because of the network requests involved)
-- The service may return different data every time you run the test
-- Third party services can go offline when you really need to run tests!
+- Isso poderia tornar os testes lentos e instáveis (por causa das solicitações de rede envolvidas)
+- O serviço pode retornar dados diferentes cada vez que você executa o teste
+- Serviços de terceiros podem ficar offline quando você realmente precisa executar testes!
 
-Therefore, you can provide a mock implementation of the service, effectively replacing thousands of lines of code and some internet-connected thermometers!
+Portanto, você pode fornecer uma implementação mock do serviço, substituindo efetivamente milhares de linhas de código e alguns termômetros conectados à internet!
 
 :::note
-Jest comes with [support for mocking](https://jestjs.io/docs/en/mock-functions#mocking-modules) from function level all the way to module level mocking.
+O Jest vem com [suporte para mocking](https://jestjs.io/docs/en/mock-functions#mocking-modules) desde o nível de função até o nível de módulo.
 :::
 
 ## Integration Tests
 
-When writing larger software systems, individual pieces of it need to interact with each other. In unit testing, if your unit depends on another one, you’ll sometimes end up mocking the dependency, replacing it with a fake one.
+Ao escrever sistemas de software maiores, peças individuais precisam interagir umas com as outras. Em testes unitários, se sua unidade depende de outra, você às vezes acaba fazendo mock da dependência, substituindo-a por uma falsa.
 
-In integration testing, real individual units are combined (same as in your app) and tested together to ensure that their cooperation works as expected. This is not to say that mocking does not happen here: you’ll still need mocks (for example, to mock communication with a weather service), but you'll need them much less than in unit testing.
+Em testes de integração, unidades individuais reais são combinadas (como no seu app) e testadas juntas para garantir que sua cooperação funcione conforme esperado. Isso não quer dizer que o mocking não aconteça aqui: você ainda precisará de mocks (por exemplo, para fazer mock da comunicação com um serviço de clima), mas você precisará deles muito menos do que em testes unitários.
 
 :::info
-Please note that the terminology around what integration testing means is not always consistent. Also, the line between what is a unit test and what is an integration test may not always be clear. For this guide, your test falls into "integration testing" if it:
+Observe que a terminologia em torno do que significa teste de integração nem sempre é consistente. Além disso, a linha entre o que é um teste unitário e o que é um teste de integração nem sempre pode ser clara. Para este guia, seu teste se enquadra em "testes de integração" se ele:
 
-- Combines several modules of your app as described above
-- Uses an external system
-- Makes a network call to other application (such as the weather service API)
-- Does any kind of file or database <abbr title="Input/Output">I/O</abbr>
+- Combina vários módulos do seu app conforme descrito acima
+- Usa um sistema externo
+- Faz uma chamada de rede para outra aplicação (como a API do serviço de clima)
+- Faz qualquer tipo de <abbr title="Input/Output">I/O</abbr> de arquivo ou banco de dados
   :::
 
 <img src="/docs/assets/p_tests-integration.svg" alt=" " />
 
 ## Component Tests
 
-React components are responsible for rendering your app, and users will directly interact with their output. Even if your app's business logic has high testing coverage and is correct, without component tests you may still deliver a broken UI to your users. Component tests could fall into both unit and integration testing, but because they are such a core part of React Native, we'll cover them separately.
+Componentes React são responsáveis por renderizar seu app, e os usuários interagirão diretamente com sua saída. Mesmo que a lógica de negócios do seu app tenha alta cobertura de teste e esteja correta, sem testes de componentes você ainda pode entregar uma UI quebrada aos seus usuários. Os testes de componentes podem se enquadrar tanto em testes unitários quanto de integração, mas como são uma parte tão central do React Native, nós os cobrimos separadamente.
 
-For testing React components, there are two things you may want to test:
+Para testar componentes React, existem duas coisas que você pode querer testar:
 
-- Interaction: to ensure the component behaves correctly when interacted with by a user (eg. when user presses a button)
-- Rendering: to ensure the component render output used by React is correct (eg. the button's appearance and placement in the UI)
+- Interaction: para garantir que o componente se comporte corretamente quando interagido por um usuário (por exemplo, quando o usuário pressiona um botão)
+- Rendering: para garantir que a saída de renderização do componente usada pelo React esteja correta (por exemplo, a aparência e o posicionamento do botão na UI)
 
-For example, if you have a button that has an `onPress` listener, you want to test that the button both appears correctly and that tapping the button is correctly handled by the component.
+Por exemplo, se você tem um botão que tem um listener `onPress`, você quer testar que o botão aparece corretamente e que tocar no botão é corretamente tratado pelo componente.
 
-There are several libraries that can help you testing these:
+Existem várias bibliotecas que podem ajudá-lo a testar isso:
 
-- [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) builds on top of React’s test renderer and adds `fireEvent` and `query` APIs described in the next paragraph.
-- [Deprecated] React’s [Test Renderer](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#deprecated-react-test-renderer), developed alongside its core, provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
+- [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) é construída em cima do test renderer do React e adiciona APIs `fireEvent` e `query` descritas no próximo parágrafo.
+- [Deprecated] [Test Renderer](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#deprecated-react-test-renderer) do React, desenvolvido junto com seu núcleo, fornece um renderer React que pode ser usado para renderizar componentes React em objetos JavaScript puros, sem depender do DOM ou de um ambiente móvel nativo.
 
 :::warning
-Component tests are only JavaScript tests running in Node.js environment. They do _not_ take into account any iOS, Android, or other platform code which is backing the React Native components. It follows that they cannot give you a 100% confidence that everything works for the user. If there is a bug in the iOS or Android code, they will not find it.
+Testes de componentes são apenas testes JavaScript executando em ambiente Node.js. Eles _não_ levam em conta nenhum código iOS, Android ou outro código de plataforma que está dando suporte aos componentes React Native. Segue-se que eles não podem dar a você 100% de confiança de que tudo funciona para o usuário. Se houver um bug no código iOS ou Android, eles não o encontrarão.
 :::
 
 <img src="/docs/assets/p_tests-component.svg" alt=" " />
 
 ### Testing User Interactions
 
-Aside from rendering some UI, your components handle events like `onChangeText` for `TextInput` or `onPress` for `Button`. They may also contain other functions and event callbacks. Consider the following example:
+Além de renderizar alguma UI, seus componentes lidam com eventos como `onChangeText` para `TextInput` ou `onPress` para `Button`. Eles também podem conter outras funções e callbacks de eventos. Considere o seguinte exemplo:
 
 ```tsx
 function GroceryShoppingList() {
@@ -179,24 +180,24 @@ function GroceryShoppingList() {
 }
 ```
 
-When testing user interactions, test the component from the user perspective—what's on the page? What changes when interacted with?
+Ao testar interações do usuário, teste o componente da perspectiva do usuário—o que está na página? O que muda quando interagido?
 
-As a rule of thumb, prefer using things users can see or hear:
+Como regra geral, prefira usar coisas que os usuários podem ver ou ouvir:
 
-- make assertions using rendered text or [accessibility helpers](https://reactnative.dev/docs/accessibility#accessibility-properties)
+- faça asserções usando texto renderizado ou [helpers de acessibilidade](https://reactnative.dev/docs/accessibility#accessibility-properties)
 
-Conversely, you should avoid:
+Por outro lado, você deve evitar:
 
-- making assertions on component props or state
-- testID queries
+- fazer asserções em props ou state do componente
+- queries testID
 
-Avoid testing implementation details like props or state—while such tests work, they are not oriented toward how users will interact with the component and tend to break by refactoring (for example when you'd like to rename some things or rewrite class component using hooks).
+Evite testar detalhes de implementação como props ou state—embora tais testes funcionem, eles não são orientados a como os usuários vão interagir com o componente e tendem a quebrar ao refatorar (por exemplo, quando você gostaria de renomear algumas coisas ou reescrever componente de classe usando hooks).
 
 :::info
-React class components are especially prone to testing their implementation details such as internal state, props or event handlers. To avoid testing implementation details, prefer using function components with Hooks, which make relying on component internals _harder_.
+Componentes de classe React são especialmente propensos a testar seus detalhes de implementação, como state interno, props ou event handlers. Para evitar testar detalhes de implementação, prefira usar componentes de função com Hooks, o que torna depender de internals do componente _mais difícil_.
 :::
 
-Component testing libraries such as [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) facilitate writing user-centric tests by careful choice of provided APIs. The following example uses `fireEvent` methods `changeText` and `press` that simulate a user interacting with the component and a query function `getAllByText` that finds matching `Text` nodes in the rendered output.
+Bibliotecas de testes de componentes como [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) facilitam escrever testes centrados no usuário por meio de escolha cuidadosa das APIs fornecidas. O exemplo a seguir usa os métodos `fireEvent` `changeText` e `press` que simulam um usuário interagindo com o componente e uma função de query `getAllByText` que encontra nós `Text` correspondentes na saída renderizada.
 
 ```tsx
 test('given empty GroceryShoppingList, user can add an item to it', () => {
@@ -215,13 +216,13 @@ test('given empty GroceryShoppingList, user can add an item to it', () => {
 });
 ```
 
-This example is not testing how some state changes when you call a function. It tests what happens when a user changes text in the `TextInput` and presses the `Button`!
+Este exemplo não está testando como algum state muda quando você chama uma função. Ele testa o que acontece quando um usuário muda o texto no `TextInput` e pressiona o `Button`!
 
 ### Testing Rendered Output
 
-[Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) is an advanced kind of testing enabled by Jest. It is a very powerful and low-level tool, so extra attention is advised when using it.
+[Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) é um tipo avançado de teste habilitado pelo Jest. É uma ferramenta muito poderosa e de baixo nível, então atenção extra é aconselhada ao usá-la.
 
-A "component snapshot" is a JSX-like string created by a custom React serializer built into Jest. This serializer lets Jest translate React component trees to string that's human-readable. Put another way: a component snapshot is a textual representation of your component’s render output _generated_ during a test run. It may look like this:
+Um "component snapshot" é uma string do tipo JSX criada por um serializador React customizado integrado ao Jest. Este serializador permite ao Jest traduzir árvores de componentes React em string que é legível por humanos. Dito de outra forma: um component snapshot é uma representação textual da saída de renderização do seu componente _gerada_ durante uma execução de teste. Pode parecer assim:
 
 ```tsx
 <Text
@@ -235,43 +236,43 @@ A "component snapshot" is a JSX-like string created by a custom React serializer
 </Text>
 ```
 
-With snapshot testing, you typically first implement your component and then run the snapshot test. The snapshot test then creates a snapshot and saves it to a file in your repo as a reference snapshot. **The file is then committed and checked during code review**. Any future changes to the component render output will change its snapshot, which will cause the test to fail. You then need to update the stored reference snapshot for the test to pass. That change again needs to be committed and reviewed.
+Com snapshot testing, você normalmente primeiro implementa seu componente e então executa o snapshot test. O snapshot test então cria um snapshot e o salva em um arquivo no seu repositório como um snapshot de referência. **O arquivo é então commitado e verificado durante a revisão de código**. Quaisquer mudanças futuras na saída de renderização do componente mudarão seu snapshot, o que fará o teste falhar. Você então precisa atualizar o snapshot de referência armazenado para que o teste passe. Essa mudança novamente precisa ser commitada e revisada.
 
-Snapshots have several weak points:
+Snapshots têm vários pontos fracos:
 
-- For you as a developer or reviewer, it can be hard to tell whether a change in snapshot is intended or whether it's evidence of a bug. Especially large snapshots can quickly become hard to understand and their added value becomes low.
-- When snapshot is created, at that point it is considered to be correct-even in the case when the rendered output is actually wrong.
-- When a snapshot fails, it's tempting to update it using the `--updateSnapshot` jest option without taking proper care to investigate whether the change is expected. Certain developer discipline is thus needed.
+- Para você como desenvolvedor ou revisor, pode ser difícil dizer se uma mudança no snapshot é intencional ou se é evidência de um bug. Especialmente snapshots grandes podem rapidamente se tornar difíceis de entender e seu valor agregado torna-se baixo.
+- Quando o snapshot é criado, naquele ponto ele é considerado correto—mesmo no caso em que a saída renderizada está realmente errada.
+- Quando um snapshot falha, é tentador atualizá-lo usando a opção `--updateSnapshot` do jest sem tomar o devido cuidado para investigar se a mudança é esperada. Certa disciplina de desenvolvedor é necessária.
 
-Snapshots themselves do not ensure that your component render logic is correct, they are merely good at guarding against unexpected changes and for checking that the components in the React tree under test receive the expected props (styles and etc.).
+Snapshots em si não garantem que sua lógica de renderização do componente esteja correta, eles são meramente bons em proteger contra mudanças inesperadas e para verificar que os componentes na árvore React sob teste recebam as props esperadas (styles e etc.).
 
-We recommend that you only use small snapshots (see [`no-large-snapshots` rule](https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/no-large-snapshots.md)). If you want to test a _change_ between two React component states, use [`snapshot-diff`](https://github.com/jest-community/snapshot-diff). When in doubt, prefer explicit expectations as described in the previous paragraph.
+Recomendamos que você use apenas snapshots pequenos (veja a regra [`no-large-snapshots`](https://github.com/jest-community/eslint-plugin-jest/blob/master/docs/rules/no-large-snapshots.md)). Se você quiser testar uma _mudança_ entre dois estados de componente React, use [`snapshot-diff`](https://github.com/jest-community/snapshot-diff). Quando em dúvida, prefira expectations explícitas como descrito no parágrafo anterior.
 
 <img src="/docs/assets/p_tests-snapshot.svg" alt=" " />
 
 ## End-to-End Tests
 
-In end-to-end (E2E) tests, you verify your app is working as expected on a device (or a simulator / emulator) from the user perspective.
+Em testes end-to-end (E2E), você verifica se seu app está funcionando conforme esperado em um dispositivo (ou um simulator / emulator) da perspectiva do usuário.
 
-This is done by building your app in the release configuration and running the tests against it. In E2E tests, you no longer think about React components, React Native APIs, Redux stores or any business logic. That is not the purpose of E2E tests and those are not even accessible to you during E2E testing.
+Isso é feito fazendo build do seu app na configuração release e executando os testes contra ela. Em testes E2E, você não pensa mais em componentes React, APIs React Native, Redux stores ou qualquer lógica de negócios. Esse não é o propósito dos testes E2E e esses nem mesmo estão acessíveis a você durante os testes E2E.
 
-Instead, E2E testing libraries allow you to find and control elements in the screen of your app: for example, you can _actually_ tap buttons or insert text into `TextInputs` the same way a real user would. Then you can make assertions about whether or not a certain element exists in the app’s screen, whether or not it’s visible, what text it contains, and so on.
+Em vez disso, bibliotecas de testes E2E permitem que você encontre e controle elementos na tela do seu app: por exemplo, você pode _realmente_ tocar botões ou inserir texto em `TextInputs` da mesma forma que um usuário real faria. Então você pode fazer asserções sobre se um determinado elemento existe ou não na tela do app, se está visível ou não, qual texto ele contém e assim por diante.
 
-E2E tests give you the highest possible confidence that part of your app is working. The tradeoffs include:
+Testes E2E lhe dão a maior confiança possível de que parte do seu app está funcionando. Os tradeoffs incluem:
 
-- writing them is more time consuming compared to the other types of tests
-- they are slower to run
-- they are more prone to flakiness (a "flaky" test is a test which randomly passes and fails without any change to code)
+- escrevê-los consome mais tempo comparado aos outros tipos de testes
+- eles são mais lentos para executar
+- eles são mais propensos a flakiness (um teste "flaky" é um teste que passa e falha aleatoriamente sem nenhuma mudança no código)
 
-Try to cover the vital parts of your app with E2E tests: authentication flow, core functionalities, payments, etc. Use faster JS tests for the non-vital parts of your app. The more tests you add, the higher your confidence, but also, the more time you'll spend maintaining and running them. Consider the tradeoffs and decide what's best for you.
+Tente cobrir as partes vitais do seu app com testes E2E: fluxo de autenticação, funcionalidades principais, pagamentos, etc. Use testes JS mais rápidos para as partes não vitais do seu app. Quanto mais testes você adiciona, maior sua confiança, mas também mais tempo você gastará mantendo-os e executando-os. Considere os tradeoffs e decida o que é melhor para você.
 
-There are several E2E testing tools available: in the React Native community, [Detox](https://github.com/wix/detox/) is a popular framework because it’s tailored for React Native apps. Another popular library in the space of iOS and Android apps is [Appium](https://appium.io/) or [Maestro](https://maestro.mobile.dev/).
+Existem várias ferramentas de testes E2E disponíveis: na comunidade React Native, [Detox](https://github.com/wix/detox/) é um framework popular porque é feito sob medida para apps React Native. Outra biblioteca popular no espaço de apps iOS e Android é [Appium](https://appium.io/) ou [Maestro](https://maestro.mobile.dev/).
 
 <img src="/docs/assets/p_tests-e2e.svg" alt=" " />
 
 ## Summary
 
-We hope you enjoyed reading and learned something from this guide. There are many ways you can test your apps. It may be hard to decide what to use at first. However, we believe it all will make sense once you start adding tests to your awesome React Native app. So what are you waiting for? Get your coverage up!
+Esperamos que você tenha gostado de ler e aprendido algo com este guia. Existem muitas maneiras de testar seus apps. Pode ser difícil decidir o que usar no início. No entanto, acreditamos que tudo fará sentido assim que você começar a adicionar testes ao seu incrível app React Native. Então o que você está esperando? Aumente sua cobertura!
 
 ### Links
 
@@ -284,4 +285,4 @@ We hope you enjoyed reading and learned something from this guide. There are man
 
 ---
 
-_This guide originally authored and contributed in full by [Vojtech Novak](https://twitter.com/vonovak)._
+_Este guia foi originalmente criado e contribuído integralmente por [Vojtech Novak](https://twitter.com/vonovak)._

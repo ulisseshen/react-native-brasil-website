@@ -1,28 +1,29 @@
 ---
+ia-translated: true
 id: build-speed
-title: Speeding up your Build phase
+title: Acelerando sua fase de Build
 ---
 
-Building your React Native app could be **expensive** and take several minutes of developers time.
-This can be problematic as your project grows and generally in bigger organizations with multiple React Native developers.
+Construir seu aplicativo React Native pode ser **caro** e levar vários minutos do tempo dos desenvolvedores.
+Isso pode ser problemático à medida que seu projeto cresce e geralmente em organizações maiores com vários desenvolvedores React Native.
 
-To mitigate this performance hit, this page shares some suggestions on how to **improve your build time**.
+Para mitigar esse impacto na performance, esta página compartilha algumas sugestões sobre como **melhorar seu tempo de build**.
 
 :::info
 
-Please note that those suggestions are advanced feature that requires some amount of understanding of how the native build tools work.
+Por favor, note que essas sugestões são recursos avançados que exigem algum conhecimento de como as ferramentas de build nativas funcionam.
 
 :::
 
-## Build only one ABI during development (Android-only)
+## Construir apenas uma ABI durante o desenvolvimento (Somente Android)
 
-When building your android app locally, by default you build all the 4 [Application Binary Interfaces (ABIs)](https://developer.android.com/ndk/guides/abis) : `armeabi-v7a`, `arm64-v8a`, `x86` & `x86_64`.
+Quando você está construindo seu app Android localmente, por padrão você constrói todas as 4 [Application Binary Interfaces (ABIs)](https://developer.android.com/ndk/guides/abis): `armeabi-v7a`, `arm64-v8a`, `x86` & `x86_64`.
 
-However, you probably don't need to build all of them if you're building locally and testing your emulator or on a physical device.
+No entanto, você provavelmente não precisa construir todas elas se estiver construindo localmente e testando em seu emulador ou em um dispositivo físico.
 
-This should reduce your **native build time** by a ~75% factor.
+Isso deve reduzir seu **tempo de build nativo** em aproximadamente 75%.
 
-If you're using the React Native CLI, you can add the `--active-arch-only` flag to the `run-android` command. This flag will make sure the correct ABI is picked up from either the running emulator or the plugged in phone. To confirm that this approach is working fine, you'll see a message like `info Detected architectures arm64-v8a` on console.
+Se você está usando o React Native CLI, pode adicionar a flag `--active-arch-only` ao comando `run-android`. Esta flag garantirá que a ABI correta seja selecionada do emulador em execução ou do telefone conectado. Para confirmar que essa abordagem está funcionando bem, você verá uma mensagem como `info Detected architectures arm64-v8a` no console.
 
 ```
 $ yarn react-native run-android --active-arch-only
@@ -35,17 +36,17 @@ info Detected architectures arm64-v8a
 info Installing the app...
 ```
 
-This mechanism relies on the `reactNativeArchitectures` Gradle property.
+Este mecanismo depende da propriedade Gradle `reactNativeArchitectures`.
 
-Therefore, if you're building directly with Gradle from the command line and without the CLI, you can specify the ABI you want to build as follows:
+Portanto, se você está construindo diretamente com Gradle a partir da linha de comando e sem o CLI, você pode especificar a ABI que deseja construir da seguinte forma:
 
 ```
 $ ./gradlew :app:assembleDebug -PreactNativeArchitectures=x86,x86_64
 ```
 
-This can be useful if you wish to build your Android App on a CI and use a matrix to parallelize the build of the different architectures.
+Isso pode ser útil se você deseja construir seu app Android em um CI e usar uma matriz para paralelizar o build das diferentes arquiteturas.
 
-If you wish, you can also override this value locally, using the `gradle.properties` file you have in the [top-level folder](https://github.com/facebook/react-native/blob/19cf70266eb8ca151aa0cc46ac4c09cb987b2ceb/template/android/gradle.properties#L30-L33) of your project:
+Se desejar, você também pode sobrescrever esse valor localmente, usando o arquivo `gradle.properties` que você tem na [pasta de nível superior](https://github.com/facebook/react-native/blob/19cf70266eb8ca151aa0cc46ac4c09cb987b2ceb/template/android/gradle.properties#L30-L33) do seu projeto:
 
 ```
 # Use this property to specify which architecture you want to build.
@@ -54,40 +55,40 @@ If you wish, you can also override this value locally, using the `gradle.propert
 reactNativeArchitectures=armeabi-v7a,arm64-v8a,x86,x86_64
 ```
 
-Once you build a **release version** of your app, don't forget to remove those flags as you want to build an apk/app bundle that works for all the ABIs and not only for the one you're using in your daily development workflow.
+Quando você construir uma **versão de release** do seu app, não se esqueça de remover essas flags, pois você quer construir um apk/app bundle que funcione para todas as ABIs e não apenas para a que você está usando em seu fluxo de trabalho de desenvolvimento diário.
 
-## Enable Configuration Caching (Android-only)
+## Habilitar Configuration Caching (Somente Android)
 
-Since React Native 0.79, you can also enable Gradle Configuration Caching.
+Desde o React Native 0.79, você também pode habilitar o Gradle Configuration Caching.
 
-When you’re running an Android build with `yarn android`, you will be executing a Gradle build that is composed by two steps ([source](https://docs.gradle.org/current/userguide/build_lifecycle.html)):
+Quando você está executando um build Android com `yarn android`, você estará executando um build Gradle que é composto por duas etapas ([fonte](https://docs.gradle.org/current/userguide/build_lifecycle.html)):
 
-- Configuration phase, when all the `.gradle` files are evaluated.
-- Execution phase, when the tasks are actually executed so the Java/Kotlin code is compiled and so on.
+- Fase de configuração, quando todos os arquivos `.gradle` são avaliados.
+- Fase de execução, quando as tarefas são realmente executadas, então o código Java/Kotlin é compilado e assim por diante.
 
-You will now be able to enable Configuration Caching, which will allow you to skip the Configuration phase on subsequent builds.
+Agora você poderá habilitar o Configuration Caching, que permitirá pular a fase de configuração em builds subsequentes.
 
-This is beneficial when making frequent changes to the native code as it improves build times.
+Isso é benéfico ao fazer alterações frequentes no código nativo, pois melhora os tempos de build.
 
-For example here you can see how rebuilding faster it is to rebuild RN-Tester after a change in the native code:
+Por exemplo, aqui você pode ver o quão mais rápido é reconstruir o RN-Tester após uma alteração no código nativo:
 
 ![gradle config caching](/docs/assets/gradle-config-caching.gif)
 
-You can enable Gradle Configuration Caching by adding the following line in your `android/gradle.properties` file:
+Você pode habilitar o Gradle Configuration Caching adicionando a seguinte linha em seu arquivo `android/gradle.properties`:
 
 ```
 org.gradle.configuration-cache=true
 ```
 
-Please refer to the [official Gradle documentation](https://docs.gradle.org/current/userguide/configuration_cache.html) for more resources on Configuration Caching.
+Consulte a [documentação oficial do Gradle](https://docs.gradle.org/current/userguide/configuration_cache.html) para mais recursos sobre Configuration Caching.
 
-## Using a Maven Mirror (Android-only)
+## Usando um Maven Mirror (Somente Android)
 
-When building Android apps, your Gradle builds will need to download the necessary dependencies from Maven Central and other repositories from the internet.
+Ao construir apps Android, seus builds Gradle precisarão baixar as dependências necessárias do Maven Central e outros repositórios da internet.
 
-If your organization is running a Maven repository mirror, you should consider using it as it will speed up your build, by downloading the artifacts from the mirror rather than from the internet.
+Se sua organização está executando um espelho de repositório Maven, você deve considerar usá-lo, pois isso acelerará seu build, baixando os artefatos do espelho em vez da internet.
 
-You can configure a mirror by specifying the `exclusiveEnterpriseRepository` property in your `android/gradle.properties` file:
+Você pode configurar um espelho especificando a propriedade `exclusiveEnterpriseRepository` em seu arquivo `android/gradle.properties`:
 
 ```diff
 # Use this property to enable or disable the Hermes JS engine.
@@ -99,31 +100,31 @@ hermesEnabled=true
 +exclusiveEnterpriseRepository=https://my.internal.proxy.net/
 ```
 
-By setting this property, your build will fetch dependencies **exclusively** from your specified repository and not from others.
+Ao definir esta propriedade, seu build buscará dependências **exclusivamente** do seu repositório especificado e não de outros.
 
-## Use a compiler cache
+## Use um cache de compilador
 
-If you're running frequent native builds (either C++ or Objective-C), you might benefit from using a **compiler cache**.
+Se você está executando builds nativos frequentes (seja C++ ou Objective-C), pode se beneficiar do uso de um **cache de compilador**.
 
-Specifically you can use two type of caches: local compiler caches and distributed compiler caches.
+Especificamente, você pode usar dois tipos de caches: caches de compilador locais e caches de compilador distribuídos.
 
-### Local caches
+### Caches locais
 
 :::info
-The following instructions will work for **both Android & iOS**.
-If you're building only Android apps, you should be good to go.
-If you're building also iOS apps, please follow the instructions in the [Xcode Specific Setup](#xcode-specific-setup) section below.
+As instruções a seguir funcionarão para **Android e iOS**.
+Se você está construindo apenas apps Android, você deve estar pronto para começar.
+Se você também está construindo apps iOS, siga as instruções na seção [Configuração Específica do Xcode](#xcode-specific-setup) abaixo.
 :::
 
-We suggest to use [**ccache**](https://ccache.dev/) to cache the compilation of your native builds.
-Ccache works by wrapping the C++ compilers, storing the compilation results, and skipping the compilation
-if an intermediate compilation result was originally stored.
+Sugerimos usar o [**ccache**](https://ccache.dev/) para armazenar em cache a compilação de seus builds nativos.
+O Ccache funciona envolvendo os compiladores C++, armazenando os resultados da compilação e pulando a compilação
+se um resultado de compilação intermediário foi originalmente armazenado.
 
-Ccache is available in the package manager for most operating systems. On macOS, we can install ccache with `brew install ccache`.
-Or you can follow the [official installation instructions](https://github.com/ccache/ccache/blob/master/doc/INSTALL.md) to install from source.
+O Ccache está disponível no gerenciador de pacotes para a maioria dos sistemas operacionais. No macOS, podemos instalar o ccache com `brew install ccache`.
+Ou você pode seguir as [instruções oficiais de instalação](https://github.com/ccache/ccache/blob/master/doc/INSTALL.md) para instalar a partir do código-fonte.
 
-You can then do two clean builds (e.g. on Android you can first run `yarn react-native run-android`, delete the `android/app/build` folder and run the first command once more). You will notice that the second build was way faster than the first one (it should take seconds rather than minutes).
-While building, you can verify that `ccache` works correctly and check the cache hits/miss rate `ccache -s`
+Você pode então fazer dois builds limpos (por exemplo, no Android você pode primeiro executar `yarn react-native run-android`, excluir a pasta `android/app/build` e executar o primeiro comando mais uma vez). Você notará que o segundo build foi muito mais rápido que o primeiro (deve levar segundos em vez de minutos).
+Enquanto estiver construindo, você pode verificar se o `ccache` funciona corretamente e verificar a taxa de acertos/erros do cache com `ccache -s`
 
 ```
 $ ccache -s
@@ -141,15 +142,15 @@ Primary storage:
   Cache size (GB): 0.60 / 20.00 (3.00 %)
 ```
 
-Note that `ccache` aggregates the stats over all builds. You can use `ccache --zero-stats` to reset them before a build to verify the cache-hit ratio.
+Note que o `ccache` agrega as estatísticas de todos os builds. Você pode usar `ccache --zero-stats` para redefini-las antes de um build para verificar a taxa de acerto do cache.
 
-Should you need to wipe your cache, you can do so with `ccache --clear`
+Se você precisar limpar seu cache, pode fazer isso com `ccache --clear`
 
-#### Xcode Specific Setup
+#### Configuração Específica do Xcode
 
-To make sure `ccache` works correctly with iOS and Xcode, you need to enable React Native support for ccache in `ios/Podfile`.
+Para garantir que o `ccache` funcione corretamente com iOS e Xcode, você precisa habilitar o suporte do React Native para ccache em `ios/Podfile`.
 
-Open `ios/Podfile` in your editor and uncomment the `ccache_enabled` line.
+Abra `ios/Podfile` em seu editor e descomente a linha `ccache_enabled`.
 
 ```ruby
   post_install do |installer|
@@ -164,21 +165,21 @@ Open `ios/Podfile` in your editor and uncomment the `ccache_enabled` line.
   end
 ```
 
-#### Using this approach on a CI
+#### Usando esta abordagem em um CI
 
-Ccache uses the `/Users/$USER/Library/Caches/ccache` folder on macOS to store the cache.
-Therefore you could save & restore the corresponding folder also on CI to speedup your builds.
+O Ccache usa a pasta `/Users/$USER/Library/Caches/ccache` no macOS para armazenar o cache.
+Portanto, você pode salvar e restaurar a pasta correspondente também no CI para acelerar seus builds.
 
-However, there are a couple of things to be aware:
+No entanto, há algumas coisas a serem observadas:
 
-1. On CI, we recommend to do a full clean build, to avoid poisoned cache problems. If you follow the approach mentioned in the previous paragraph, you should be able to parallelize the native build on 4 different ABIs and you will most likely not need `ccache` on CI.
+1. No CI, recomendamos fazer um build limpo completo, para evitar problemas de cache envenenado. Se você seguir a abordagem mencionada no parágrafo anterior, você deve ser capaz de paralelizar o build nativo em 4 ABIs diferentes e provavelmente não precisará do `ccache` no CI.
 
-2. `ccache` relies on timestamps to compute a cache hit. This doesn't work well on CI as files are re-downloaded at every CI run. To overcome this, you'll need to use the `compiler_check content` option which relies instead on [hashing the content of the file](https://ccache.dev/manual/4.3.html).
+2. O `ccache` depende de timestamps para calcular um acerto de cache. Isso não funciona bem no CI, pois os arquivos são baixados novamente a cada execução do CI. Para superar isso, você precisará usar a opção `compiler_check content` que depende de [fazer hash do conteúdo do arquivo](https://ccache.dev/manual/4.3.html).
 
-### Distributed caches
+### Caches distribuídos
 
-Similar to local caches, you might want to consider using a distributed cache for your native builds.
-This could be specifically useful in bigger organizations that are doing frequent native builds.
+Semelhante aos caches locais, você pode querer considerar o uso de um cache distribuído para seus builds nativos.
+Isso pode ser especialmente útil em organizações maiores que estão fazendo builds nativos frequentes.
 
-We recommend to use [sccache](https://github.com/mozilla/sccache) to achieve this.
-We defer to the sccache [distributed compilation quickstart](https://github.com/mozilla/sccache/blob/main/docs/DistributedQuickstart.md) for instructions on how to setup and use this tool.
+Recomendamos usar o [sccache](https://github.com/mozilla/sccache) para conseguir isso.
+Remetemos ao [guia de início rápido de compilação distribuída](https://github.com/mozilla/sccache/blob/main/docs/DistributedQuickstart.md) do sccache para instruções sobre como configurar e usar esta ferramenta.
