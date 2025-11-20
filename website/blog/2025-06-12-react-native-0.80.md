@@ -27,7 +27,7 @@ Além disso, a Legacy Architecture do React Native agora está oficialmente cong
 
 ## Destaques
 
-### Depreciação de deep imports JavaScript {:#javascript-deep-imports-deprecation}
+### Depreciação de deep imports JavaScript {#javascript-deep-imports-deprecation}
 
 Neste lançamento, estamos fazendo mudanças para melhorar e estabilizar a API JavaScript pública do React Native. O primeiro passo nessa direção é um melhor escopo de quais de nossas APIs são importáveis por apps e frameworks. Alinhado com isso, estamos formalmente depreciando deep imports do React Native ([veja RFC](https://github.com/react-native-community/discussions-and-proposals/pull/894)), e estamos introduzindo avisos via ESLint e o console JavaScript.
 
@@ -45,7 +45,7 @@ Algumas APIs não são exportadas na raiz, e ficarão indisponíveis sem deep im
 
 Saiba mais sobre esta mudança em nossa postagem dedicada: [Avançando em Direção a uma API JavaScript Estável](/blog/2025/06/12/moving-towards-a-stable-javascript-api).
 
-#### API TypeScript Strict opcional {:#opt-in-strict-typescript-api}
+#### API TypeScript Strict opcional {#opt-in-strict-typescript-api}
 
 Com a redefinição acima das exportações em nossa API pública, também estamos enviando um novo conjunto de tipos TypeScript para o pacote `react-native` na versão 0.80, que estamos chamando de API TypeScript Strict.
 
@@ -60,7 +60,7 @@ Quando a comunidade estiver pronta, a API TypeScript Strict se tornará nossa AP
 
 Saiba mais sobre esta mudança em nossa postagem dedicada: [Avançando em Direção a uma API JavaScript Estável](/blog/2025/06/12/moving-towards-a-stable-javascript-api).
 
-### Congelamento e Avisos da Legacy Architecture {:#legacy-architecture-freezing--warnings}
+### Congelamento e Avisos da Legacy Architecture {#legacy-architecture-freezing--warnings}
 
 A New Architecture do React Native é a escolha padrão [desde a versão 0.76](/blog/2024/10/23/the-new-architecture-is-here) e temos lido [histórias de sucesso](https://blog.kraken.com/product/engineering/how-kraken-fixed-performance-issues-via-incremental-adoption-of-the-react-native-new-architecture) de projetos e ferramentas que se beneficiam enormemente dela.
 
@@ -80,7 +80,7 @@ Recomendamos que você não ignore esses avisos e considere migrar seus apps e b
 
 Você pode aprender mais sobre essas mudanças na palestra "Life After Legacy: The New Architecture Future" [que apresentamos recentemente na App.js](https://www.youtube.com/live/K2JTTKpptGs?si=tRkT535f0GzguVGt&t=9011).
 
-### React 19.1.0 {:#react-1910}
+### React 19.1.0 {#react-1910}
 
 Este lançamento do React Native vem com a última versão estável do React: 19.1.0
 
@@ -94,7 +94,7 @@ No entanto, estamos cientes de que owner stacks não estão funcionando como esp
 
 :::
 
-### Experimental - Dependências iOS do React Native agora são pré-compiladas {:#experimental---react-native-ios-dependencies-are-now-prebuilt}
+### Experimental - Dependências iOS do React Native agora são pré-compiladas {#experimental---react-native-ios-dependencies-are-now-prebuilt}
 
 Se você está construindo um app iOS em React Native, provavelmente notou que a primeira compilação nativa levará algum tempo: alguns minutos ou até mais em máquinas mais antigas. Isso ocorre porque precisamos compilar todo o código iOS do React Native mais todas as suas dependências.
 
@@ -113,7 +113,7 @@ Observe que não estamos pré-compilando todo o React Native: estamos apenas pr�
 
 Em um lançamento futuro, também enviaremos o restante do núcleo do React Native como pré-compilado.
 
-#### Como usá-los {:#how-to-use-them}
+#### Como usá-los {#how-to-use-them}
 
 Este recurso ainda é experimental, então não está ativado por padrão.
 
@@ -141,7 +141,7 @@ Por favor, reporte qualquer problema que as pré-compilações possam causar a v
 
 ## Outras Mudanças
 
-### Android - Tamanho de APK menor graças ao IPO {:#android---smaller-apk-size-thanks-to-ipo}
+### Android - Tamanho de APK menor graças ao IPO {#android---smaller-apk-size-thanks-to-ipo}
 
 Este lançamento vem com redução significativa de tamanho para todos os apps Android construídos com React Native. A partir da versão 0.80, habilitamos [Otimização Interprocedural](https://en.wikipedia.org/wiki/Interprocedural_optimization) para compilações do React Native e Hermes.
 
@@ -151,13 +151,13 @@ Isso resultou em uma economia de ~1Mb para todos os apps Android.
 
 Você obterá essa redução de tamanho atualizando sua versão do React Native para 0.80 e não há mais alterações necessárias em seu projeto.
 
-### Redesign da tela de novo app {:#new-app-screen-redesign}
+### Redesign da tela de novo app {#new-app-screen-redesign}
 
 Se você não está usando Expo mas está usando o Community CLI & Template, nesta versão movemos a tela de novo app para seu [próprio pacote](https://www.npmjs.com/package/@react-native/new-app-screen) e demos a ela uma nova aparência. Isso reduz o boilerplate de código inicial quando você cria um novo app com o Community Template, e também fornece uma melhor experiência quando visualizado em telas maiores.
 
 ![New App Screen redesign](../static/blog/assets/0.80-new-community-template-landing.jpg)
 
-### Aviso sobre suporte comunitário ao JSC {:#notice-about-jsc-community-support}
+### Aviso sobre suporte comunitário ao JSC {#notice-about-jsc-community-support}
 
 React Native 0.80 é a última versão do React Native a oferecer suporte JSC de primeira parte. O suporte para JSC será oferecido via pacote mantido pela comunidade `@react-native-community/javascriptcore`.
 
@@ -165,7 +165,7 @@ Caso você tenha perdido o anúncio, você pode [ler mais sobre isso aqui](/blog
 
 ## Breaking Changes
 
-### Adicionado campo `"exports"` no pacote principal {:#added-exports-field-on-main-package}
+### Adicionado campo `"exports"` no pacote principal {#added-exports-field-on-main-package}
 
 Como parte de nossas mudanças na API JavaScript Estável, introduzimos um [campo `"exports"`](https://nodejs.org/api/packages.html#package-entry-points) no manifesto `package.json` do `react-native`.
 
@@ -174,7 +174,7 @@ Na versão 0.80, esse mapeamento continua a expor **todos os subpaths JavaScript
 - No Metro, [extensões específicas de plataforma](https://metrobundler.dev/docs/package-exports#replacing-platform-specific-extensions) não serão automaticamente expandidas contra correspondências de `"exports"`. Fornecemos vários módulos shim para acomodar isso ([#50426](https://github.com/facebook/react-native/pull/50426)).
 - No Jest, a capacidade de fazer mock de deep imports pode ser alterada, o que pode exigir a atualização de testes.
 
-### Outras Breaking Changes {:#other-breaking-changes}
+### Outras Breaking Changes {#other-breaking-changes}
 
 Esta lista contém uma série de outras breaking changes que suspeitamos que possam ter um impacto menor no código do seu produto e vale a pena notar:
 
