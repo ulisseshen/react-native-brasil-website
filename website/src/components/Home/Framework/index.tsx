@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -19,13 +21,13 @@ function Framework() {
   return (
     <Section>
       <SectionTitle
-        title="Get a head start with a framework"
+        title="Comece com vantagem com um framework"
         description={
           <>
-            React Native brings the React programming paradigm to platforms like
-            Android and iOS. It doesn’t prescribe how to do routing, or how to
-            access each of the numerous platform APIs. To build a new app with
-            React Native, we recommend a framework like{' '}
+            React Native traz o paradigma de programação React para plataformas como
+            Android e iOS. Ele não prescreve como fazer roteamento, ou como
+            acessar cada uma das inúmeras APIs de plataforma. Para construir um novo aplicativo com
+            React Native, recomendamos um framework como{' '}
             <a href="https://expo.dev">Expo</a>.
           </>
         }
@@ -38,13 +40,13 @@ function Framework() {
               dark: '/img/homepage/file-based-routing-dark.png',
             }}
             className={styles.cardImage}
-            alt="File system with folders and files representing screens and navigation"
+            alt="Sistema de arquivos com pastas e arquivos representando telas e navegação"
           />
           <div className={styles.cardContent}>
-            <h4 className={styles.cardTitle}>File-based routing</h4>
+            <h4 className={styles.cardTitle}>Roteamento baseado em arquivos</h4>
             <p className={styles.cardDescription}>
-              Create stack, modal, drawer, and tab screens with minimal
-              boilerplate using your filesystem.
+              Crie telas em pilha, modal, gaveta e abas com o mínimo
+              de código boilerplate usando seu sistema de arquivos.
             </p>
           </div>
         </div>
@@ -54,16 +56,16 @@ function Framework() {
               light: useBaseUrl('/img/homepage/libraries.png'),
               dark: useBaseUrl('/img/homepage/libraries-dark.png'),
             }}
-            alt="Grid of icons representing libraries, SDKs, and native code"
+            alt="Grade de ícones representando bibliotecas, SDKs e código nativo"
             className={styles.cardImage}
           />
           <div className={styles.cardContent}>
             <h4 className={styles.cardTitle}>
-              Use any library, SDK, or native code
+              Use qualquer biblioteca, SDK ou código nativo
             </h4>
             <p className={styles.cardDescription}>
-              Generate native changes or write your own native code. Use over 50
-              modules to create your app.
+              Gere alterações nativas ou escreva seu próprio código nativo. Use mais de 50
+              módulos para criar seu aplicativo.
             </p>
           </div>
         </div>
@@ -74,14 +76,14 @@ function Framework() {
               dark: useBaseUrl('/img/homepage/tools-dark.png'),
             }}
             className={styles.cardImage}
-            alt="List of developer tool toggles for debugging, performance, and more"
+            alt="Lista de alternâncias de ferramentas de desenvolvedor para depuração, desempenho e mais"
           />
           <div className={styles.cardContent}>
-            <h4 className={styles.cardTitle}>Developer tools</h4>
+            <h4 className={styles.cardTitle}>Ferramentas de desenvolvedor</h4>
             <p className={styles.cardDescription}>
-              Get started quickly with Expo Go, then continue with
-              expo-dev-client: a module that adds Expo’s tools to apps that
-              require native changes.
+              Comece rapidamente com Expo Go, depois continue com
+              expo-dev-client: um módulo que adiciona as ferramentas do Expo a aplicativos que
+              requerem alterações nativas.
             </p>
           </div>
         </div>

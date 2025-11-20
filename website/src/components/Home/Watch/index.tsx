@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 
 import Section from '../Section';
@@ -16,16 +18,16 @@ function Watch() {
   return (
     <Section>
       <SectionTitle
-        title="Watch and learn"
+        title="Assista e aprenda"
         description={
           <>
-            Watch talks by the React team and learn how to get the most out of
+            Assista palestras da equipe React e aprenda como aproveitar ao máximo o
             React Native.
             <br />
-            Find the latest on{' '}
+            Encontre as últimas novidades no{' '}
             <a href="https://bsky.app/profile/reactnative.dev">
               Bluesky
-            </a> and{' '}
+            </a> e no{' '}
             <a href="https://twitter.com/intent/follow?screen_name=reactnative&region=follow_link">
               X
             </a>
@@ -37,28 +39,28 @@ function Watch() {
         <div className={styles.videoContainer}>
           <iframe
             src="https://www.youtube.com/embed/NCAY0HIfrwc"
-            title="Mobile Innovation with React Native, ComponentKit, and Litho"
+            title="Inovação Mobile com React Native, ComponentKit e Litho"
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className={styles.video}
           />
           <div className={styles.videoInfo}>
-            <h4>FB 2019: Mobile innovation with React Native</h4>
+            <h4>FB 2019: Inovação mobile com React Native</h4>
             <p>45:29</p>
           </div>
         </div>
         <div className={styles.videoContainer}>
           <iframe
             src="https://www.youtube.com/embed/wUDeLT6WXnQ"
-            title="Explain Like I'm 5: React Native"
+            title="Explique Como Se Eu Tivesse 5 Anos: React Native"
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className={styles.video}
           />
           <div className={styles.videoInfo}>
-            <h4>Why React Native?</h4>
+            <h4>Por que React Native?</h4>
             <p>1:42</p>
           </div>
         </div>

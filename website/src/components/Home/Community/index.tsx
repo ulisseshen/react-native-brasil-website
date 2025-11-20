@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// ia-translated: true
+
 import React from 'react';
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -23,21 +25,20 @@ function Community() {
 
   return (
     <Section>
-      <SectionTitle title="Meta supported. Community driven." />
+      <SectionTitle title="Apoiado pela Meta. Impulsionado pela comunidade." />
       <div className={styles.featureContainer}>
         <div>
           <p>
-            Meta released React Native in 2015 and has been maintaining it ever
-            since.
+            A Meta lançou o React Native em 2015 e tem mantido desde então.
           </p>
           <p>
-            In 2018, React Native had the{' '}
+            Em 2018, React Native teve o{' '}
             <a href="https://octoverse.github.com/2018/projects#repositories">
-              2nd highest
+              2º maior
             </a>{' '}
-            number of contributors for any repository in GitHub. Today, React
-            Native is supported by contributions from individuals and companies
-            around the world including{' '}
+            número de contribuidores para qualquer repositório no GitHub. Hoje, React
+            Native é apoiado por contribuições de indivíduos e empresas
+            ao redor do mundo incluindo{' '}
             <span>
               <a href="https://callstack.com/">Callstack</a>
             </span>
@@ -46,12 +47,12 @@ function Community() {
               <a href="https://expo.io/">Expo</a>
             </span>
             , <a href="https://infinite.red/">Infinite Red</a>,{' '}
-            <a href="https://www.microsoft.com/">Microsoft</a> and{' '}
+            <a href="https://www.microsoft.com/">Microsoft</a> e{' '}
             <a href="https://swmansion.com/">Software Mansion</a>.
           </p>
           <p>
-            Our community is always shipping exciting new projects and exploring
-            platforms beyond Android and iOS with repos like{' '}
+            Nossa comunidade está sempre lançando novos projetos empolgantes e explorando
+            plataformas além de Android e iOS com repositórios como{' '}
             <span>
               <a href="https://github.com/microsoft/react-native-windows#readme">
                 React Native Windows
@@ -61,7 +62,7 @@ function Community() {
             <a href="https://github.com/microsoft/react-native-macos#readme">
               React Native macOS
             </a>{' '}
-            and{' '}
+            e{' '}
             <a href="https://github.com/necolas/react-native-web#readme">
               React Native Web
             </a>
@@ -70,8 +71,8 @@ function Community() {
         </div>
         <div>
           <p>
-            React Native is being used in thousands of apps, but it's likely
-            you've already used it in one of these apps:
+            React Native está sendo usado em milhares de aplicativos, mas é provável
+            que você já tenha usado em um desses aplicativos:
           </p>
           <ul className="AppList">
             {apps.map((app, i) => {
@@ -92,7 +93,7 @@ function Community() {
             })}
           </ul>
           <p>
-            and <a href={useBaseUrl(`showcase`)}>many more</a>.
+            e <a href={useBaseUrl(`showcase`)}>muito mais</a>.
           </p>
         </div>
       </div>
